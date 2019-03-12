@@ -4,8 +4,11 @@
  */
 class LazySegmentTree {
 private:
+	const ll initialValue = 0;
+	const ll ignoreValue = 0;
+	const ll lazyIgnoreValue = 1e5;
+
 	const ll m_size;
-	const ll m_initialValue;
 	std::vector<ll> m_node;
 	std::vector<ll> m_lazy;
 
@@ -17,29 +20,38 @@ private:
 		return size;
 	}
 
-	ll rangeUpdate(ll x, ll l, ll r) {
-		return x;
-	}
 	void spreadLazy(ll k) {
 		if (k >= m_size - 1) { return; }
-		m_lazy[2 * k + 1] = m_lazy[k];
-		m_lazy[2 * k + 2] = m_lazy[k];
+		m_lazy[2 * k + 1] = m_lazy[k] / 2;
+		m_lazy[2 * k + 2] = m_lazy[k] / 2;
 	}
 	void reflectLazy(ll k) {
 		m_node[k] = m_lazy[k];
 	}
+
 	ll merge(ll xl, ll xr) {
-		return std::min(xl, xr);
+		return xl + xr;
+	}
+	ll rangeUpdate(ll x, ll l, ll r) {
+		return x * (r - l);
 	}
 public:
-	LazySegmentTree(ll n, ll val) :
+	LazySegmentTree() = delete;
+	LazySegmentTree(ll n) :
 		m_size(calcSize(n)),
-		m_initialValue(val),
-		m_node(m_size * 2 - 1, m_initialValue),
-		m_lazy(m_size * 2 - 1, m_initialValue) {
+		m_node(m_size * 2 - 1, initialValue),
+		m_lazy(m_size * 2 - 1, lazyIgnoreValue) {
 	}
 
-	void add(ll a, ll b, ll x) { add(a, b + 1, x, 0, 0, m_size); }
+	void add(ll a, ll b, ll x) {
+		add(a, b + 1, x, 0, 0, m_size);
+		/**
+		cout << "-- tree -- " << endl;
+		REP(i, 2 * m_size - 1) {
+			cout << m_node[i] << " " << m_lazy[i] << endl;
+		}
+		/*//**/
+	}
 	void add(ll a, ll b, ll x, ll k, ll l, ll r) {
 		eval(k);
 		if (r <= a || b <= l) { return; }
@@ -53,14 +65,14 @@ public:
 		m_node[k] = merge(m_node[2 * k + 1], m_node[2 * k + 2]);
 	}
 	void eval(ll k) {
-		if (m_lazy[k] == m_initialValue) { return; }
+		if (m_lazy[k] == lazyIgnoreValue) { return; }
 		reflectLazy(k);
 		spreadLazy(k);
-		m_lazy[k] = m_initialValue;
+		m_lazy[k] = lazyIgnoreValue;
 	}
 	ll query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
 	ll query(ll a, ll b, ll k, ll l, ll r) {
-		if (r <= a || b <= l) { return m_initialValue; }
+		if (r <= a || b <= l) { return ignoreValue; }
 		eval(k);
 		if (a <= l && r <= b) { return m_node[k]; }
 		return merge(
