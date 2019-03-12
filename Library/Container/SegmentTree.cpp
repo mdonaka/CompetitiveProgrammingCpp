@@ -2,13 +2,14 @@
  *	セグメント木を構成する
  *	2methodの変更により調整
  */
+template<class T>
 class SegmentTree {
 private:
-	const ll initialValue = (1LL << 31) - 1;
-	const ll ignoreValue = (1LL << 31) - 1;
+	const T initialValue = T(1, 0);
+	const T ignoreValue = T(1, 0);
 
 	const ll m_size;
-	std::vector<ll> m_node;
+	vector<T> m_node;
 
 	ll calcSize(ll n) {
 		ll size = 1;
@@ -18,12 +19,18 @@ private:
 		return size;
 	}
 
-	void update(ll k, ll x) {
+	/**
+	 * 値の更新(更新:=, 加算:+=, etc...)
+	 */
+	void update(ll k, T x) {
 		m_node[k] = x;
 	}
 
-	ll merge(ll xl, ll xr) {
-		return std::min(xl, xr);
+	/**
+	* 値の併合
+	*/
+	T merge(T xl, T xr) {
+		return T(xl.first*xr.first, xl.second*xr.first + xr.second);
 	}
 public:
 	SegmentTree(ll n) :
@@ -31,7 +38,7 @@ public:
 		m_node(m_size * 2 - 1, initialValue) {
 	}
 
-	void add(ll itr, ll val) {
+	void add(ll itr, T val) {
 		ll i = itr + m_size - 1;
 		update(i, val);
 
@@ -42,13 +49,13 @@ public:
 		/**
 		cout << "-- tree -- " << endl;
 		REP(i, 2 * m_size - 1) {
-		cout << m_node[i] << endl;
+			cout << m_node[i] << endl;
 		}
 		/*//**/
 	}
 
-	ll query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
-	ll query(ll a, ll b, ll k, ll l, ll r) {
+	T query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
+	T query(ll a, ll b, ll k, ll l, ll r) {
 		if (r <= a || b <= l) { return ignoreValue; }
 		if (a <= l && r <= b) { return m_node[k]; }
 		return merge(
