@@ -16,7 +16,7 @@ public:
 		return sumList[n + 1];
 	}
 	ll get(ll l, ll r) {
-        if(l < r){ return 0LL; }
+        if(r < l){ return 0LL; }
 		return sumList[r + 1] - sumList[l];
 	}
 };
