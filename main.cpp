@@ -15,7 +15,7 @@
 #include <numeric>
 
 /* (=＾o＾=) */
-#define int ll;
+#define int ll
 
 /* macro */
 #define FOR(i, b, e) for(ll i = (ll)(b); i < (ll)(e); ++i)
