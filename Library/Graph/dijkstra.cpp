@@ -1,3 +1,7 @@
+/**
+ *  ダイクストラにより任意のnodeから全nodeへの最初コストを得る
+ *  O((E+V)logV)
+ */
 VL dijkstra(const unordered_multimap<ll, PAIR> graph, ll n, ll begin) {
 	VL cost(n, 1e15);
 	cost[begin] = 0;
