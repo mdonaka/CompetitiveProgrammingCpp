@@ -77,6 +77,9 @@ constexpr ll MOD = 1000000007;
 /* Initial processing  */
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
+/* define hash */
+namespace std { template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return hash<ll>()(1000000000 * x.first + x.second); } }; }
+
 /* input output */
 template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for (T& x : vec) is >> x; return is; }
 template<class S, class T>std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) { os << "(" << p.first << ", " << p.second << ")"; return os; }
@@ -95,5 +98,5 @@ template<class... Tail>inline void print(std::list<std::string>& str, const std:
 //=============================================================================================
 
 signed main() {
-
+    
 }
