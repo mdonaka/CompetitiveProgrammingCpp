@@ -40,7 +40,7 @@
 #define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);BR;}while(false)
 
 /* type define */
-using ll = long long;
+using ll = __int64;
 using PAIR = std::pair<ll, ll>;
 using VS = std::vector<std::string>;
 using VL = std::vector<long long>;
