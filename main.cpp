@@ -40,7 +40,7 @@
 #define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);BR;}while(false)
 
 /* type define */
-using ll = long long;
+using ll = __int64;
 using PAIR = std::pair<ll, ll>;
 using VS = std::vector<std::string>;
 using VL = std::vector<long long>;
@@ -91,12 +91,12 @@ inline void print(std::list<std::string>& str); template<class Primitive, class.
 template<class Container>inline auto printSingle(const Container& c) ->decltype(c.begin()) { for (const auto& x : c) { std::cout << x << " "; }std::cout << "\n"; return c.begin(); }
 template<class Primitive, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t> = nullptr>inline void printSingle(const Primitive& x) { std::cout << x << " "; }
 inline void print(std::list<std::string>& str) {}
-template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t> = nullptr>inline void print(std::list<std::string>& str, const Primitive& x, const Tail&... tail) { std::cout << *str.begin() << ":" << x << " "; if (sizeof...(tail) > 0) { std::cout << "\n"; str.pop_front(); print(str, tail...); } }
+template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t>>inline void print(std::list<std::string>& str, const Primitive& x, const Tail&... tail) { std::cout << *str.begin() << ":" << x << " "; if (sizeof...(tail) > 0) { std::cout << "\n"; str.pop_front(); print(str, tail...); } }
 template<class Container, class... Tail>inline auto print(std::list<std::string>& str, const Container& c, const Tail&... tail) ->decltype(c.begin()) { std::cout << "-- " << *str.begin() << " --\n"; for (const auto& x : c) { printSingle(x); BR; }std::cout << "\n"; str.pop_front();	print(str, tail...); return c.begin(); }
 template<class... Tail>inline void print(std::list<std::string>& str, const std::string& s, const Tail&... tail) { std::cout << *str.begin() << ":" << s << "\n"; str.pop_front();	print(str, tail...); }
 
 //=============================================================================================
 
 signed main() {
-    
+
 }
