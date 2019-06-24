@@ -17,6 +17,7 @@
 #include "./debug.hpp"
 #else
 #define dump(...)
+template<class T>inline auto d_val(T a, T b) { return a; }
 #endif
 
 /* (=＾o＾=) */
@@ -90,7 +91,5 @@ template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) {
 //=============================================================================================
 
 signed main() {
-	VL v{1,2,2,3,4};
-	dump(v);
-	
+
 }
