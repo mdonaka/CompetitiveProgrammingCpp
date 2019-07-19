@@ -1,0 +1,7 @@
+856ba1f299baf9b98b5a63309c7e6379fa781d69 commit	refs/heads/debug
+24df855f4da3b7faaab9fc0af5956cf85eab43f7 commit	refs/heads/develop
+f92588ca7cf7fb38f7f0db52ead9165bc415cbd9 commit	refs/heads/master
+f92588ca7cf7fb38f7f0db52ead9165bc415cbd9 commit	refs/remotes/origin/HEAD
+856ba1f299baf9b98b5a63309c7e6379fa781d69 commit	refs/remotes/origin/debug
+24df855f4da3b7faaab9fc0af5956cf85eab43f7 commit	refs/remotes/origin/develop
+f92588ca7cf7fb38f7f0db52ead9165bc415cbd9 commit	refs/remotes/origin/master
