@@ -62,7 +62,7 @@ inline void printSingle(const Primitive & x) {
 
 inline void print(std::list<std::string>& str) {}
 
-template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t> = nullptr>
+template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t>>
 inline void print(std::list<std::string> & str, const Primitive & x, const Tail & ... tail) {
 	std::cout << *str.begin() << ":" << x << " ";
 	if (sizeof...(tail) > 0) {
