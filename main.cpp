@@ -52,6 +52,8 @@ using VL = std::vector<long long>;
 using VVL = std::vector<VL>;
 using VVVL = std::vector<VVL>;
 using VD = std::vector<double>;
+template<class T>
+using V = std::vector<T>
 
 /* using std */
 using std::cout;
