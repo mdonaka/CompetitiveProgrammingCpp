@@ -172,6 +172,37 @@ class SuffixArray {
 public:
 	SuffixArray(const std::string& str) :m_str(str), m_suffixArray(createSuffixArray(toIntVec(str))) {}
 
+	/**
+	 * 引数として与えられたpatternの出現位置リストを返す
+	 */
+	std::list<int> findPattern(const std::string& pattern) const {
+
+		auto find = [&](const std::string& ptn) {
+			int end = m_suffixArray.size();
+			int ok = end;
+			int ng = -1;
+			while (ok - ng > 1) {
+				int mid = (ok + ng) / 2;
+				auto sub = m_str.substr(m_suffixArray[mid], end);
+				int isOk = (ptn <= sub);
+				if (isOk) { ok = mid; } else { ng = mid; }
+			}
+			return ok;
+		};
+		auto patternUpper = [&pattern]() {
+			auto ptn = pattern;
+			++* ptn.rbegin();
+			return ptn;
+		}();
+		auto fl = find(pattern);
+		auto fu = find(patternUpper);
+		std::list<int> lst;
+		for (int i = fl; i < fu; ++i) {
+			lst.emplace_back(m_suffixArray[i]);
+		}
+		return lst;
+	}
+
 	/* output fot debug */
 	void debugOutput() const {
 		dump(m_suffixArray);
