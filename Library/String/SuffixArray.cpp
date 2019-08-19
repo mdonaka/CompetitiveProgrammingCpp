@@ -11,8 +11,8 @@ class SuffixArray {
 		L, S, LMS
 	};
 
-	std::string m_str;
-	std::vector<int> m_suffixArray;
+	const std::string m_str;
+	const std::vector<int> m_suffixArray;
 
 	/* string to vector<int> */
 	static std::vector<int> toIntVec(const std::string& str) {
@@ -102,6 +102,7 @@ class SuffixArray {
 
 	/* order lms -> sorted lms */
 	static std::unordered_map<int, int> getLmsChanger(const std::vector<int>& str, const std::vector<TYPE>& type, const std::list<int>& lms) {
+		if (lms.size() == 1) { return std::unordered_map<int, int>{ { str.size() - 1, 0 }}; }
 		std::unordered_map<int, int> changer{{static_cast<int>(str.size()) - 1,0},{*++lms.begin(),1}};
 		int num = 1;
 		for (auto itr = ++lms.begin(); itr != (--lms.end());) {
@@ -172,7 +173,7 @@ public:
 	SuffixArray(const std::string& str) :m_str(str), m_suffixArray(createSuffixArray(toIntVec(str))) {}
 
 	/* output fot debug */
-	void debugOutput() {
+	void debugOutput() const {
 		dump(m_suffixArray);
 		auto end = m_str.size();
 		REPC(x, m_suffixArray) {
