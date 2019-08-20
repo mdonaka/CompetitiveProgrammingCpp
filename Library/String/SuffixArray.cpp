@@ -2,7 +2,7 @@
  * SuffixArrayを構築する
  * O(N)
  * 文字列の全てのsuffixをソートした配列が得られる
- * ex) abadc -> [0, 2, 1, 4, 3]([abadc, abc, badc, c, dc])
+ * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])
  *
  * SA-IS(Suffix Array - Induced Sort)で実装
  */
