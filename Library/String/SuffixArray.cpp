@@ -19,7 +19,7 @@ class SuffixArray {
 		std::vector<int> vec;
 		vec.reserve(str.size() + 1);
 		for (const auto& c : str) {
-			vec.emplace_back(c - 'a' + 1);
+			vec.emplace_back(c - '0' + 1);
 		}
 		vec.emplace_back(0);
 		return vec;
