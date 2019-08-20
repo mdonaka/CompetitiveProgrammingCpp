@@ -1,6 +1,6 @@
 /**
  * SuffixArrayを構築する
- * O(N)? <- memory:n^2
+ * O(N)
  * 文字列の全てのsuffixをソートした配列が得られる
  * ex) abadc -> [0, 2, 1, 4, 3]([abadc, abc, badc, c, dc])
  *
@@ -126,7 +126,7 @@ class SuffixArray {
 	}
 
 	/* calc Suffix Array*/
-	static std::vector<int> createSuffixArray(const std::vector<int>& str) {
+	static std::vector<int> constructSuffixArray(const std::vector<int>& str) {
 		auto type = classifying(str);
 
 		/* calc fake Suffix Array using order seed*/
@@ -156,7 +156,7 @@ class SuffixArray {
 				str.emplace_back(changer[c]);
 				def.emplace_back(c);
 			}
-			auto lmsSuffixArray = createSuffixArray(str);
+			auto lmsSuffixArray = constructSuffixArray(str);
 			lmsTrueOrder = std::list<int>{static_cast<int>(type.size()) - 1};
 			for (const auto& c : lmsSuffixArray) {
 				lmsTrueOrder.emplace_back(def[c]);
@@ -170,7 +170,7 @@ class SuffixArray {
 	}
 
 public:
-	SuffixArray(const std::string& str) :m_str(str), m_suffixArray(createSuffixArray(toIntVec(str))) {}
+	SuffixArray(const std::string& str) :m_str(str), m_suffixArray(constructSuffixArray(toIntVec(str))) {}
 
 	/**
 	 * 引数として与えられたpatternの出現位置リストを返す
@@ -201,6 +201,10 @@ public:
 			lst.emplace_back(m_suffixArray[i]);
 		}
 		return lst;
+	}
+
+	auto getSuffixArray() const {
+		return m_suffixArray;
 	}
 
 	/* output fot debug */
