@@ -3,6 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include <list>
+#include <string_view>
 
 namespace Timer {
 
@@ -13,22 +14,22 @@ namespace Timer {
 		struct NANO {
 			using second = std::chrono::nanoseconds;
 			static constexpr long long magnification = 1;
-			static constexpr char* str = "ns";
+			static constexpr std::string_view str = "ns";
 		};
 		struct MICRO {
 			using second = std::chrono::microseconds;
 			static constexpr long long magnification = 1000;
-			static constexpr char* str = "μs";
+			static constexpr std::string_view str = "μs";
 		};
 		struct MILLI {
 			using second = std::chrono::milliseconds;
 			static constexpr long long magnification = 1000000;
-			static constexpr char* str = "ms";
+			static constexpr std::string_view str = "ms";
 		};
 		struct SECOND {
 			using second = std::chrono::microseconds;
 			long long magnification = 1000000000;
-			static constexpr char* str = "s";
+			static constexpr std::string_view str = "s";
 		};
 	}
 
