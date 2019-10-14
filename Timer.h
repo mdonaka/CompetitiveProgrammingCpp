@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <list>
 
 namespace Timer {
 
@@ -11,18 +12,22 @@ namespace Timer {
 	namespace UNITS {
 		struct NANO {
 			using second = std::chrono::nanoseconds;
+			static constexpr long long magnification = 1;
 			static constexpr char* str = "ns";
 		};
 		struct MICRO {
 			using second = std::chrono::microseconds;
+			static constexpr long long magnification = 1000;
 			static constexpr char* str = "μs";
 		};
 		struct MILLI {
 			using second = std::chrono::milliseconds;
+			static constexpr long long magnification = 1000000;
 			static constexpr char* str = "ms";
 		};
 		struct SECOND {
 			using second = std::chrono::microseconds;
+			long long magnification = 1000000000;
 			static constexpr char* str = "s";
 		};
 	}
@@ -40,20 +45,43 @@ namespace Timer {
 	 * 開始からの時間のみ計測
 	 */
 	class SimpleTimer {
-		const std::chrono::system_clock::time_point start;
+		std::chrono::system_clock::time_point start;
 
-		template <class UNIT>
+	public:
+		SimpleTimer() :start(std::chrono::system_clock::now()) {}
+		SimpleTimer& operator=(SimpleTimer&& tm) { start = std::move(tm.start);  return *this; }
+
+		template <class UNIT = std::chrono::nanoseconds>
 		auto now() const {
 			const auto now = std::chrono::system_clock::now();
 			return std::chrono::duration_cast<UNIT>(now - start).count();
 		}
-	public:
-		SimpleTimer() :start(std::chrono::system_clock::now()) {}
 
-		template<class UNIT = UNITS::MICRO>
+		template<class UNIT = UNITS::NANO>
 		auto print() const {
 			_print<UNIT>(now<UNIT::second>());
 		}
 	};
 
+	/**
+	 * ラップ付き時間計測クラス
+	 */
+	class LapTimer {
+		std::list<long long> lapTimeList;
+		SimpleTimer timer;
+	public:
+		LapTimer() :timer(SimpleTimer()) {}
+
+		auto lap() {
+			lapTimeList.emplace_back(timer.now());
+			timer = SimpleTimer();
+		}
+
+		template<class UNIT = UNITS::NANO>
+		auto print() const {
+			for (auto&& t : lapTimeList) {
+				_print<UNIT>(t / UNIT::magnification);
+			}
+		}
+	};
 }
