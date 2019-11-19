@@ -28,7 +28,7 @@ namespace Timer {
 		};
 		struct SECOND {
 			using second = std::chrono::microseconds;
-			long long magnification = 1000000000;
+			static constexpr long long magnification = 1000000000;
 			static constexpr std::string_view str = "s";
 		};
 	}
@@ -60,7 +60,7 @@ namespace Timer {
 
 		template<class UNIT = UNITS::NANO>
 		auto print() const {
-			_print<UNIT>(now<UNIT::second>());
+			_print<UNIT>(now<typename UNIT::second>());
 		}
 	};
 
