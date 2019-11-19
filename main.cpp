@@ -16,6 +16,8 @@
 #include <cassert>
 #ifdef DEBUG
 #include "./debug.hpp"
+#include "./Timer.hpp"
+#include "./sample.hpp"
 #else
 #define dump(...)
 template<class T>inline auto d_val(T a, T b) { return a; }
