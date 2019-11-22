@@ -36,7 +36,9 @@ namespace Sample {
 		auto generate_random(const Range& range) {
 			return rnd.random(range);
 		}
-		auto generate_random(const std::vector<Range>& ranges) {
+		auto generate_random(const std::pair<int_fast64_t, int_fast64_t>& pair) { return rnd.random(Range(pair.first, pair.second)); }
+		template<class T>
+		auto generate_random(const std::vector<T>& ranges) {
 			std::vector<long long> v;
 			v.reserve(ranges.size());
 			for (auto&& range : ranges) { v.emplace_back(generate_random(range)); }
