@@ -40,12 +40,18 @@ template<class T>inline auto d_val(T a, T b) { return a; }
 #define ALL(x) (x).begin(),(x).end()
 #define cauto const auto&
 /* macro func */
-#define SORT(x) do{sort(ALL(x));}while(false)
-#define RSORT(x) do{sort((x).rbegin(),(x).rend());}while(false)
-#define UNIQUE(v) do{v.erase( unique(v.begin(), v.end()), v.end() );}while(false)
-#define MAX(x,y) do{x = std::max(x,y);}while(false)
-#define MIN(x,y) do{x = std::min(x,y);}while(false)
-#define BR do{cout<<"\n";}while(false)
+/* macro func */
+template<class T>
+auto sort(T& t) { std::sort(ALL(t)); }
+template<class T>
+auto rsort(T& t) { std::sort((t).rbegin(), (t).rend()); }
+template<class T>
+auto unique(T& t) { (t).erase(unique((t).begin(), (t).end()), (t).end()); }
+template<class T, class S>
+auto chmax(T& t, const S& s) { if (s > t) { t = s; return true; } return false; }
+template<class T, class S>
+auto chmin(T& t, const S& s) { if (s < t) { t = s; return true; } return false; }
+auto BR() { std::cout << "\n"; }
 
 /* type define */
 using ll = long long;
