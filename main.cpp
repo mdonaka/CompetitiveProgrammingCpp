@@ -40,18 +40,17 @@ template<class T>inline auto d_val(T a, T b) { return a; }
 #define ALL(x) (x).begin(),(x).end()
 #define cauto const auto&
 /* macro func */
-/* macro func */
 template<class T>
-auto sort(T& t) { std::sort(ALL(t)); }
+inline auto sort(T& t) { std::sort(ALL(t)); }
 template<class T>
-auto rsort(T& t) { std::sort((t).rbegin(), (t).rend()); }
+inline auto rsort(T& t) { std::sort((t).rbegin(), (t).rend()); }
 template<class T>
-auto unique(T& t) { (t).erase(unique((t).begin(), (t).end()), (t).end()); }
+inline auto unique(T& t) { (t).erase(unique((t).begin(), (t).end()), (t).end()); }
 template<class T, class S>
-auto chmax(T& t, const S& s) { if (s > t) { t = s; return true; } return false; }
+inline auto chmax(T& t, const S& s) { if (s > t) { t = s; return true; } return false; }
 template<class T, class S>
-auto chmin(T& t, const S& s) { if (s < t) { t = s; return true; } return false; }
-auto BR() { std::cout << "\n"; }
+inline auto chmin(T& t, const S& s) { if (s < t) { t = s; return true; } return false; }
+inline auto BR() { std::cout << "\n"; }
 
 /* type define */
 using ll = long long;
@@ -68,7 +67,6 @@ using V = std::vector<T>;
 using std::cout;
 constexpr char endl = '\n';
 using std::cin;
-using std::sort;
 using std::pair;
 using std::string;
 using std::stack;
