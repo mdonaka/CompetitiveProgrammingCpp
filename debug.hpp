@@ -3,7 +3,7 @@
 
 template<class T>inline auto d_val(T a, T b) { return b; }
 
-#define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);BR;}while(false)
+#define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);std::cout<<'\n';}while(false)
 
 /* for dump function */
 inline std::list<std::string> split(std::string str, char del) {
