@@ -1,0 +1,2 @@
+#!/bin/sh
+g++-9 -std=c++2a -O2 -D DEBUG $1
