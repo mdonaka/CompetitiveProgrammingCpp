@@ -107,6 +107,18 @@ public:
 		}
 	}
 
+	/*
+	 * lambda: (int size, list<int> rItr) -> void
+	 */
+	template<class Lambda>
+	auto bfs_edges(const Lambda& lambda) {
+
+	}
+	template<class Lambda>
+	auto bfs_suffixLinks(const Lambda& lambda) {
+
+	}
+
 	// debug—p
 	auto outputTree() {
 		dump(m_s);
