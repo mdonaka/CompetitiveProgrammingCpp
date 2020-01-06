@@ -14,6 +14,7 @@
 #include <bitset>
 #include <numeric>
 #include <cassert>
+#include <memory>
 #ifdef DEBUG
 #include "./debug.hpp"
 #include "./Timer.hpp"
