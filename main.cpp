@@ -20,7 +20,6 @@
 #include "./sample.hpp"
 #else
 #define dump(...)
-template<class T>constexpr inline auto d_val(T a, T b) { return a; }
 #endif
 
 /* (=＾o＾=) */
