@@ -1,3 +1,4 @@
+#pragma once
 #include <memory>
 #include <string>
 #include <iostream>
@@ -47,10 +48,9 @@ class PalindromicTree {
 	public:
 		// constructor
 		Node(int size, const std::weak_ptr<Node>& suffixLink) :
-			m_itrs(),
 			m_size(size),
 			m_suffixLink(suffixLink) {}
-		Node() :Node(-1, weak_from_this()) {}
+		Node() :m_size(-1) {}
 
 
 		// 次サイズの回文を追加
@@ -86,6 +86,16 @@ class PalindromicTree {
 			m_suffixLink = weak_from_this();
 			m_edges.emplace(' ', evenRoot);
 		}
+		/*
+		 * lambda: (int size, list<int> rItr) -> void
+		 */
+		template<class Lambda>
+		auto dfs_edges(const Lambda& lambda)->void {
+			if (m_size > 0) { lambda(m_size, m_itrs); }
+			for (const auto& edge : m_edges) {
+				edge.second->dfs_edges(lambda);
+			}
+		}
 	};
 
 	// 対象となる文字列
@@ -99,7 +109,7 @@ public:
 	PalindromicTree(const std::string& s) :
 		m_s(s),
 		m_rootOdd(std::make_shared<Node>()),
-		m_rootEven(std::move(std::make_shared<Node>(0, m_rootOdd))) {
+		m_rootEven(std::make_shared<Node>(0, m_rootOdd)) {
 		m_rootOdd->isOddRoot(m_rootEven);
 		auto root = m_rootOdd;
 		for (int r = 0; r < s.size(); ++r) {
@@ -111,12 +121,8 @@ public:
 	 * lambda: (int size, list<int> rItr) -> void
 	 */
 	template<class Lambda>
-	auto bfs_edges(const Lambda& lambda) {
-
-	}
-	template<class Lambda>
-	auto bfs_suffixLinks(const Lambda& lambda) {
-
+	auto dfs_edges(const Lambda& lambda) {
+		m_rootOdd->dfs_edges(lambda);
 	}
 
 	// debug用
