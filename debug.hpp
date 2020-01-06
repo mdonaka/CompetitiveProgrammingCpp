@@ -1,7 +1,7 @@
+#pragma once
 #include <list>
 #include <string>
-
-template<class T>constexpr inline auto d_val(T a, T b) { return b; }
+#include <iostream>
 
 #define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);std::cout<<'\n';}while(false)
 
