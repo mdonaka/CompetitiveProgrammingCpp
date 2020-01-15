@@ -23,6 +23,20 @@ namespace Geometry {
 			for (int i = 0; i < m_v.size(); ++i) { sum += m_v[i] * vec.m_v[i]; }
 			return sum;
 		}
+		auto outerProduct(const Vector& vec)const {
+			if (m_v.size() == 3) { return Vector({m_v[1] * vec.m_v[2] - m_v[2] * vec.m_v[1],m_v[2] * vec.m_v[0] - m_v[0] * vec.m_v[2],m_v[0] * vec.m_v[1] - m_v[1] * vec.m_v[0]}); }
+			if (m_v.size() == 2) { return Vector({0.0,0.0,m_v[0] * vec.m_v[1] - m_v[1] * vec.m_v[0]}); }
+			std::cout << m_v.size() << " dim outerProduct is not defined" << std::endl;
+			exit(EXIT_FAILURE);
+		}
+		auto cos(const Vector& vec) const {
+			auto norms = this->norm() * vec.norm();
+			if (std::abs(norms) < 1e-5) { return 0.0; }
+			return this->innerProduct(vec) / norms;
+		}
+		auto unit() const {
+			return (*this / this->norm());
+		}
 
 		/* ŠeŽí‰‰ŽZ */
 		auto operator+(double d)const ->Vector {
@@ -48,6 +62,12 @@ namespace Geometry {
 			return Vector(std::move(v));
 		}
 		auto operator/(double d)const ->Vector { return operator*(1.0 / d); }
+		auto operator==(const Vector& vec) {
+			bool equal = true;
+			for (int i = 0; i < m_v.size(); ++i) { equal &= (std::abs(m_v[i] - vec.m_v[i]) < 1e-5); }
+			return equal;
+		}
+		auto operator[](int n)const { return m_v[n]; }
 
 		/* output */
 		friend std::ostream& operator<<(std::ostream& os, const Vector& p) {
