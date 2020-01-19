@@ -23,7 +23,7 @@
 #define dump(...)
 #endif
 
-/* (=＾o＾=) */
+/* (=�ｾo�ｾ=) */
 #define int ll
 
 /* macro */

@@ -10,33 +10,33 @@ using std::cin;
 
 class PalindromicTree {
 	class Node :public std::enable_shared_from_this<Node> {
-		// Å‘å‚Ì‰ñ•¶Ú”ö«
+		// æœ€å¤§ã®å›æ–‡æ¥å°¾è¾
 		std::weak_ptr<Node> m_suffixLink;
-		// ŸƒTƒCƒY‚Ì‰ñ•¶(ˆÍ‚Ş•¶š, Ÿ‚ÌNode)
+		// æ¬¡ã‚µã‚¤ã‚ºã®å›æ–‡(å›²ã‚€æ–‡å­—, æ¬¡ã®Node)
 		std::unordered_map<char, std::shared_ptr<Node>> m_edges;
 
-		// ‰ñ•¶‚Ì‰E’[itr
+		// å›æ–‡ã®å³ç«¯itr
 		std::list<int> m_itrs;
-		// ‰ñ•¶ƒTƒCƒY
+		// å›æ–‡ã‚µã‚¤ã‚º
 		const int m_size;
 
-		// xAx‚Æ‚È‚éA‚ğ’T‚·(x=str[itr])
+		// xAxã¨ãªã‚‹Aã‚’æ¢ã™(x=str[itr])
 		auto find(int itr, const std::string& s, bool flg = false) {
-			// root‚É‚½‚Ç‚è’…‚¢‚½
+			// rootã«ãŸã©ã‚Šç€ã„ãŸ
 			if (m_size == -1) { return weak_from_this(); }
-			// Œ»İ’n"A"‚É‚¨‚¢‚Ä"xAx"‚Æ‚È‚é
+			// ç¾åœ¨åœ°"A"ã«ãŠã„ã¦"xAx"ã¨ãªã‚‹
 			if (itr - m_size - 1 >= 0 && s[itr] == s[itr - m_size - 1]) {
 				return weak_from_this();
 			}
-			// Œ©‚Â‚©‚ç‚È‚¢
+			// è¦‹ã¤ã‹ã‚‰ãªã„
 			return m_suffixLink.lock()->find(itr, s, flg);
 		}
 
-		// V‚µ‚¢‰ñ•¶Node‚ğì¬‚·‚é
+		// æ–°ã—ã„å›æ–‡Nodeã‚’ä½œæˆã™ã‚‹
 		auto create(int itr, const std::string& s) {
-			// suffixLink‚Ì’Tõ
+			// suffixLinkã®æ¢ç´¢
 			auto suffixLinkFrom = m_suffixLink.lock()/*->m_suffixLink.lock()*/->find(itr, s, true).lock();
-			// VNode‚Ìì¬
+			// æ–°Nodeã®ä½œæˆ
 			auto newNode = std::make_shared<Node>(
 				m_size + 2, (suffixLinkFrom->m_edges.find(s[itr]) == suffixLinkFrom->m_edges.end()) ?
 				suffixLinkFrom->m_edges.find(' ')->second :
@@ -53,7 +53,7 @@ class PalindromicTree {
 		Node() :m_size(-1) {}
 
 
-		// ŸƒTƒCƒY‚Ì‰ñ•¶‚ğ’Ç‰Á
+		// æ¬¡ã‚µã‚¤ã‚ºã®å›æ–‡ã‚’è¿½åŠ 
 		auto add(int itr, const std::string& s) {
 			auto addRoot = find(itr, s).lock();
 			auto nextNode = (addRoot->m_edges.find(s[itr]) == addRoot->m_edges.end()) ?
@@ -63,13 +63,13 @@ class PalindromicTree {
 			return nextNode;
 		}
 
-		// debug—p
+		// debugç”¨
 		auto outputTree(const std::string& s) ->void {
 			if (m_size <= 0) { cout << "root"; } else {
-				// ’i
+				// æ®µ
 				for (int i = 0; (i < (m_size + 1) / 2); ++i) { cout << " |"; }
 				cout << "- " << s.substr(*m_itrs.begin() - m_size + 1, m_size);
-				// ‰Eitr
+				// å³itr
 				cout << " [ "; for (const auto& itr : m_itrs) { cout << itr << " "; }cout << "] ";
 				// suffix link
 				//auto p = m_suffixLink.lock();
@@ -81,7 +81,7 @@ class PalindromicTree {
 			}
 		}
 
-		// root‚ğŒˆ’è
+		// rootã‚’æ±ºå®š
 		auto isOddRoot(const std::weak_ptr<Node>& evenRoot) {
 			m_suffixLink = weak_from_this();
 			m_edges.emplace(' ', evenRoot);
@@ -98,10 +98,10 @@ class PalindromicTree {
 		}
 	};
 
-	// ‘ÎÛ‚Æ‚È‚é•¶š—ñ
+	// å¯¾è±¡ã¨ãªã‚‹æ–‡å­—åˆ—
 	const std::string m_s;
 
-	// ‹ô”’·CŠï”’·‚ÌPalindromicTree‚Ìª(0, -1)
+	// å¶æ•°é•·ï¼Œå¥‡æ•°é•·ã®PalindromicTreeã®æ ¹(0, -1)
 	std::shared_ptr<Node> m_rootOdd;
 	std::shared_ptr<Node> m_rootEven;
 public:
@@ -125,7 +125,7 @@ public:
 		m_rootOdd->dfs_edges(lambda);
 	}
 
-	// debug—p
+	// debugç”¨
 	auto outputTree() {
 		dump(m_s);
 		cout << "-- even --\n";
