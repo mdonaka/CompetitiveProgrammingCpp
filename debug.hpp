@@ -50,15 +50,15 @@ template<class T>
 constexpr auto print(const T&) {
 	std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
 }
-inline auto print(const std::string& s) { std::cerr << s << ' '; }
+inline auto print(const std::string& s) { std::cerr << s << ' ' << std::endl; }
 template<Printable T>
 constexpr auto print(const T& p) { std::cerr << p << ' '; }
 template<Container T>
 constexpr auto print(const T& c) {
 	for (auto&& x : c) {
 		print(x);
-		std::cerr << '\n';
 	}
+	std::cerr << '\n';
 }
 
 // 変数の出力
@@ -72,7 +72,6 @@ template<class T>
 inline auto printVariable(T&& name, const std::string& s) {
 	std::cerr << name << ": ";
 	print(s);
-	std::cerr << '\n';
 }
 template<class T, Container S>
 constexpr auto printVariable(T&& name, const S& c) {
