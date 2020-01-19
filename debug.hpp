@@ -1,92 +1,93 @@
 #pragma once
-#include <list>
-#include <string>
+#include <concepts>
 #include <iostream>
+#include <list>
+#include <string_view>
 
-#define dump(...) do{ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__,','); print(__DUMP_NAME_LIST__, __VA_ARGS__);std::cout<<'\n';}while(false)
+template<class T>constexpr inline auto d_val(T a, T b) { return b; }
 
-/* for dump function */
-inline std::list<std::string> split(std::string str, char del) {
-	std::list<std::string> sList;
-	std::string s = "";
-	for (const auto& c : str) {
-		if (c == del) {
-			sList.emplace_back(s);
-			s = "";
-		} else {
-			if (c != ' ' || del == ' ') { s += c; }
-		}
-	}
-	sList.emplace_back(s);
-	return sList;
-}
+// debug用出力マクロ
+#define dump(...)                                               \
+  do {                                                          \
+    auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__, ',');         \
+    splitVariables(std::move(__DUMP_NAME_LIST__), __VA_ARGS__); \
+  } while (false)
 
+// 出力できる種類の追加
 template<class S, class T>
 std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
 	return os;
 }
-
-template<class T>
-struct has_begin {
-private:
-	template <class U>
-	static auto check(U x) -> decltype(x.begin(), std::true_type{});
-	static std::false_type check(...);
-public:
-	static bool const value = decltype(check(std::declval<T>()))::value;
+// split
+inline auto split(std::string_view str, char del = ' ') {
+	std::list<std::string_view> sList;
+	int from = -1;
+	int i = 0;
+	for (auto && c : str) {
+		if (c == ' ') {
+			sList.emplace_back(str.substr(from + 1, i - from - 2));
+			from = i;
+		}
+		++i;
+	}
+	sList.emplace_back(str.substr(from + 1, str.size() - from));
+	return sList;
+}
+// 制約
+template <class T>
+concept Container = requires(T x) {
+	x.begin();
 };
 
-inline void print(std::list<std::string>& str);
-template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t> = nullptr>
-inline void print(std::list<std::string> & str, const Primitive & x, const Tail & ... tail);
-template<class Container, class... Tail>
-inline auto print(std::list<std::string>& str, const Container& c, const Tail& ... tail) -> decltype(c.begin());
-template<class... Tail>
-inline void print(std::list<std::string>& str, const std::string& s, const Tail& ... tail);
+template <class T>
+concept Printable = requires(T x) {
+	std::cerr << x;
+};
 
-
-template<class Container>
-inline auto printSingle(const Container& c) ->decltype(c.begin()) {
-	for (const auto& x : c) {
-		std::cout << x << " ";
+// 出力
+template<class T>
+constexpr auto print(const T&) {
+	std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
+}
+inline auto print(const std::string& s) { std::cerr << s << ' '; }
+template<Printable T>
+constexpr auto print(const T& p) { std::cerr << p << ' '; }
+template<Container T>
+constexpr auto print(const T& c) {
+	for (auto&& x : c) {
+		print(x);
 	}
-	std::cout << "\n";
-	return c.begin();
+	std::cerr << '\n';
 }
 
-template<class Primitive, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t> = nullptr>
-inline void printSingle(const Primitive & x) {
-	std::cout << x << " ";
+// 変数の出力
+template<class T,class S>
+constexpr auto printVariable(T&& name, const S& p) {
+	std::cerr << name << ": ";
+	print(p);
+	std::cerr << '\n';
+}
+template<class T>
+inline auto printVariable(T&& name, const std::string& s) {
+	std::cerr << name << ": ";
+	print(s);
+	std::cerr << '\n';
+}
+template<class T, Container S>
+constexpr auto printVariable(T&& name, const S& c) {
+	std::cerr << "-- " << name << " --" << '\n';
+	print(c);
 }
 
-inline void print(std::list<std::string>& str) {}
+// 1変数ずつ処理
+template<class T>
+constexpr auto splitVariables(T&& names) {}
 
-template<class Primitive, class... Tail, std::enable_if_t<!has_begin<Primitive>::value, std::nullptr_t>>
-inline void print(std::list<std::string> & str, const Primitive & x, const Tail & ... tail) {
-	std::cout << *str.begin() << ":" << x << " ";
-	if (sizeof...(tail) > 0) {
-		std::cout << "\n";
-		str.pop_front();
-		print(str, tail...);
-	}
-}
-
-template<class Container, class... Tail>
-inline auto print(std::list<std::string>& str, const Container& c, const Tail& ... tail) ->decltype(c.begin()) {
-	std::cout << "-- " << *str.begin() << " --\n";
-	for (const auto& x : c) {
-		printSingle(x);
-		std::cout << "\n";
-	}
-	std::cout << "\n";
-	str.pop_front();
-	print(str, tail...);
-	return c.begin();
-}
-
-template<class... Tail>inline void print(std::list<std::string>& str, const std::string& s, const Tail& ... tail) {
-	std::cout << *str.begin() << ":" << s << "\n";
-	str.pop_front();
-	print(str, tail...);
+template<class T, class S, class... Tail>
+constexpr auto splitVariables(T&& names, const S& x,
+							  const Tail&... tail) {
+	printVariable(names.front(), x);
+	names.pop_front();
+	splitVariables(std::forward<decltype(names)>(names), tail...);
 }
