@@ -6,14 +6,14 @@
 
 template<class T>constexpr inline auto d_val(T a, T b) { return b; }
 
-// debug—po—Íƒ}ƒNƒ
+// debugç”¨å‡ºåŠ›ãƒã‚¯ãƒ­
 #define dump(...)                                               \
   do {                                                          \
     auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__, ',');         \
     splitVariables(std::move(__DUMP_NAME_LIST__), __VA_ARGS__); \
   } while (false)
 
-// o—Í‚Å‚«‚éí—Ş‚Ì’Ç‰Á
+// å‡ºåŠ›ã§ãã‚‹ç¨®é¡ã®è¿½åŠ 
 template<class S, class T>
 std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) {
 	os << "(" << p.first << ", " << p.second << ")";
@@ -33,7 +33,7 @@ inline auto split(std::string_view str, char del = ' ') {
 	sList.emplace_back(str.substr(from + 1, str.size() - from));
 	return sList;
 }
-// §–ñ
+// åˆ¶ç´„
 template <class T>
 concept Container = requires(T x) {
 	x.begin();
@@ -44,7 +44,7 @@ concept Printable = requires(T x) {
 	std::cerr << x;
 };
 
-// o—Í
+// å‡ºåŠ›
 constexpr auto print(const auto&) {
 	std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
 }
@@ -57,7 +57,7 @@ constexpr auto print(const Container auto& c) {
 	std::cerr << '\n';
 }
 
-// •Ï”‚Ìo—Í
+// å¤‰æ•°ã®å‡ºåŠ›
 constexpr auto printVariable(auto&& name, const auto& p) {
 	std::cerr << name << ": ";
 	print(p);
@@ -73,7 +73,7 @@ constexpr auto printVariable(auto&& name, const Container auto& c) {
 	print(c);
 }
 
-// 1•Ï”‚¸‚Âˆ—
+// 1å¤‰æ•°ãšã¤å‡¦ç†
 constexpr auto splitVariables(auto&& names) {}
 constexpr auto splitVariables(auto&& names, const auto& x,
 							  const auto&... tail) {
