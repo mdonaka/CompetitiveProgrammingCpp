@@ -57,8 +57,8 @@ template<Container T>
 constexpr auto print(const T& c) {
 	for (auto&& x : c) {
 		print(x);
+		std::cerr << '\n';
 	}
-	std::cerr << '\n';
 }
 
 // 変数の出力
