@@ -23,7 +23,7 @@
 #define dump(...)
 #endif
 
-/* (=ï¼ï½¾oï¼ï½¾=) */
+/* (=EE¾oEE¾=) */
 #define int ll
 
 /* macro */
