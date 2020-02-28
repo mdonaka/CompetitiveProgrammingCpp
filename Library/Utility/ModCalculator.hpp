@@ -3,6 +3,7 @@
 constexpr long long MOD = 1000000007;
 
 class ModCalculator {
+	const long long m_mod;
 	const std::vector<long long> m_fac;
 	const std::vector<long long> m_finv;
 
@@ -11,37 +12,37 @@ class ModCalculator {
 		fac[0] = fac[1] = 1;
 		for (long long i = 2; i < s; ++i) {
 			fac[i] = fac[i - 1] * i;
-			if (fac[i] > MOD) { fac[i] %= MOD; }
+			if (fac[i] > m_mod) { fac[i] %= m_mod; }
 		}
 		return fac;
 	}
 	auto constructInv(long long s) {
 		std::vector<long long> finv(s);
-		finv[s - 1] = this->pow(m_fac[s - 1], MOD - 2);
+		finv[s - 1] = this->pow(m_fac[s - 1], m_mod - 2);
 		for (long long i = s - 2; i >= 0; --i) {
 			finv[i] = finv[i + 1] * (i + 1);
-			if (finv[i] > MOD) { finv[i] %= MOD; }
+			if (finv[i] > m_mod) { finv[i] %= m_mod; }
 		}
 		return finv;
 	}
 public:
-	ModCalculator(long long size = 3 * 1e6) :
-		m_fac(constructFac(size)), m_finv(constructInv(size)) {}
+	ModCalculator(long long mod = MOD, long long size = 3 * 1e6) :
+		m_mod(mod), m_fac(constructFac(size)), m_finv(constructInv(size)) {}
 
 	long long pow(long long a, long long b) const {
 		long long ans = 1;
 		while (b > 0) {
-			if (b & 1) { ans *= a; if (ans > MOD) { ans %= MOD; } }
-			b >>= 1; a *= a; if (a > MOD) { a %= MOD; }
+			if (b & 1) { ans *= a; if (ans > m_mod) { ans %= m_mod; } }
+			b >>= 1; a *= a; if (a > m_mod) { a %= m_mod; }
 		}
 		return ans;
 	}
 
 	auto C(int n, int r) const {
 		long long val = m_fac[n] * m_finv[r];
-		if (val > MOD) { val %= MOD; }
+		if (val > m_mod) { val %= m_mod; }
 		val *= m_finv[n - r];;
-		if (val > MOD) { val %= MOD; }
+		if (val > m_mod) { val %= m_mod; }
 		return val;
 	}
 }calc;
