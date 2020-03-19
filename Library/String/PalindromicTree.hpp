@@ -3,12 +3,17 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <queue>
+#include <vector>
 #include "./../../debug.hpp"
 #include <unordered_map>
 using std::cout;
 using std::cin;
 
+constexpr auto nullLambda = [](int, const std::list<int>&) {};
 class PalindromicTree {
+	//static constexpr auto nullLambda = [](int, const std::list<int>&) {};// c++17
+
 	class Node :public std::enable_shared_from_this<Node> {
 		// 最大の回文接尾辞
 		std::weak_ptr<Node> m_suffixLink;
@@ -64,7 +69,7 @@ class PalindromicTree {
 		}
 
 		// debug用
-		auto outputTree(const std::string& s) ->void {
+		auto outputTree(const std::string& s) ->void const {
 			if (m_size <= 0) { cout << "root"; } else {
 				// 段
 				for (int i = 0; (i < (m_size + 1) / 2); ++i) { cout << " |"; }
@@ -86,14 +91,22 @@ class PalindromicTree {
 			m_suffixLink = weak_from_this();
 			m_edges.emplace(' ', evenRoot);
 		}
+
+		// ラムダ式の実行
+		template<class Lambda>
+		auto runLambda(const Lambda& lambda) {
+			if (m_size > 0) { lambda(m_size, m_itrs); }
+		}
+
 		/*
 		 * lambda: (int size, list<int> rItr) -> void
 		 */
-		template<class Lambda>
-		auto dfs_edges(const Lambda& lambda)->void {
-			if (m_size > 0) { lambda(m_size, m_itrs); }
+		template<class Lambda, class SuffixLinkLambda = decltype(nullLambda)>
+		auto dfs_edges(const Lambda& lambda, const SuffixLinkLambda& slLambda = nullLambda)->void {
+			runLambda(lambda);
+			m_suffixLink.lock()->runLambda(slLambda);
 			for (const auto& edge : m_edges) {
-				edge.second->dfs_edges(lambda);
+				edge.second->dfs_edges(lambda, slLambda);
 			}
 		}
 	};
@@ -123,6 +136,39 @@ public:
 	template<class Lambda>
 	auto dfs_edges(const Lambda& lambda) {
 		m_rootOdd->dfs_edges(lambda);
+	}
+
+	/*
+	 * かなり強引な実装
+	 * lambda: (int from, int to) -> void
+	 */
+	template<class Lambda>
+	auto dp_suffixLink(const Lambda& lambda) {
+		// 森の生成，探索順序の決定
+		int from;
+		std::unordered_map<int, int> graph;
+		std::vector<int> orderCount(m_s.size());
+		m_rootOdd->dfs_edges([&](int size, const std::list<int>& rItrs) {
+			from = rItrs.front();
+		}, [&](int size, const std::list<int>& rItrs) {
+			int to = rItrs.front();
+			graph.emplace(from, to);
+			++orderCount[to];
+		});
+		// 探索順序に従って処理
+		std::queue<int> q;
+		for (int i = 0; i < m_s.size(); ++i)if (orderCount[i] == 0) { q.emplace(i); }
+		while (!q.empty()) {
+			int from = q.front();
+			q.pop();
+			auto range = graph.equal_range(from);
+			for (auto itr = range.first; itr != range.second; ++itr) {
+				int to = itr->second;
+				--orderCount[to];
+				lambda(from, to);
+				if (orderCount[to] == 0) { q.emplace(to); }
+			}
+		}
 	}
 
 	// debug用
