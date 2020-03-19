@@ -10,7 +10,7 @@
 using std::cout;
 using std::cin;
 
-constexpr auto nullLambda = [](int, const std::list<int>&) {};
+auto nullLambda = [](int, const std::list<int>&) {};
 class PalindromicTree {
 	//static constexpr auto nullLambda = [](int, const std::list<int>&) {};// c++17
 
