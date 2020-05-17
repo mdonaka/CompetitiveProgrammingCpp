@@ -23,7 +23,8 @@ std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) {
 inline auto split(std::string_view str, char del = ' ') {
 	std::list<std::string_view> sList;
 	int from = -1;
-	for (int i = 0; auto && c : str) {
+	int i = 0;
+	for (auto && c : str) {
 		if (c == ' ') {
 			sList.emplace_back(str.substr(from + 1, i - from - 2));
 			from = i;
@@ -45,12 +46,15 @@ concept Printable = requires(T x) {
 };
 
 // 出力
-constexpr auto print(const auto&) {
+template<class T>
+constexpr auto print(const T&) {
 	std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
 }
-inline auto print(const std::string& s) { std::cerr << s << ' '; }
-constexpr auto print(const Printable auto& p) { std::cerr << p << ' '; }
-constexpr auto print(const Container auto& c) {
+inline auto print(const std::string& s) { std::cerr << s << ' ' << std::endl; }
+template<Printable T>
+constexpr auto print(const T& p) { std::cerr << p << ' '; }
+template<Container T>
+constexpr auto print(const T& c) {
 	for (auto&& x : c) {
 		print(x);
 	}
@@ -58,25 +62,30 @@ constexpr auto print(const Container auto& c) {
 }
 
 // 変数の出力
-constexpr auto printVariable(auto&& name, const auto& p) {
+template<class T,class S>
+constexpr auto printVariable(T&& name, const S& p) {
 	std::cerr << name << ": ";
 	print(p);
 	std::cerr << '\n';
 }
-inline auto printVariable(auto&& name, const std::string& s) {
+template<class T>
+inline auto printVariable(T&& name, const std::string& s) {
 	std::cerr << name << ": ";
 	print(s);
-	std::cerr << '\n';
 }
-constexpr auto printVariable(auto&& name, const Container auto& c) {
+template<class T, Container S>
+constexpr auto printVariable(T&& name, const S& c) {
 	std::cerr << "-- " << name << " --" << '\n';
 	print(c);
 }
 
 // 1変数ずつ処理
-constexpr auto splitVariables(auto&& names) {}
-constexpr auto splitVariables(auto&& names, const auto& x,
-							  const auto&... tail) {
+template<class T>
+constexpr auto splitVariables(T&& names) {}
+
+template<class T, class S, class... Tail>
+constexpr auto splitVariables(T&& names, const S& x,
+							  const Tail&... tail) {
 	printVariable(names.front(), x);
 	names.pop_front();
 	splitVariables(std::forward<decltype(names)>(names), tail...);

@@ -1,3 +1,6 @@
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f")
+#pragma GCC optimize("O3")
+#pragma GCC optimize("unroll-loops")
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -15,6 +18,10 @@
 #include <numeric>
 #include <cassert>
 #include <memory>
+#include <random>
+#include <functional>
+#include <complex>
+#include <immintrin.h>
 #ifdef DEBUG
 #include "./debug.hpp"
 #include "./Timer.hpp"
@@ -22,9 +29,6 @@
 #else
 #define dump(...)
 #endif
-
-/* (=・・ｾo・・ｾ=) */
-#define int ll
 
 /* macro */
 #define FOR(i, b, e) for(ll i = (ll)(b); i < (ll)(e); ++i)
@@ -84,10 +88,6 @@ using std::multiset;
 using std::bitset;
 using std::priority_queue;
 
-/* constant value */
-constexpr ll MOD = 1000000007;
-//constexpr ll MOD = 998244353;
-
 /* Initial processing  */
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
@@ -99,6 +99,10 @@ namespace std { template <>	class hash<std::pair<ll, ll>> { public:	size_t opera
 
 /* input */
 template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for (T& x : vec) is >> x; return is; }
+
+/* constant value */
+constexpr ll MOD = 1000000007;
+//constexpr ll MOD = 998244353;
 
 //=============================================================================================
 
