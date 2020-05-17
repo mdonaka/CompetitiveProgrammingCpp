@@ -92,7 +92,7 @@ using std::priority_queue;
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
 /* Remove the source of the bug */
-constexpr signed pow(signed, signed) { assert(false); return -1; }
+const signed pow(signed, signed) { assert(false); return -1; }
 
 /* define hash */
 namespace std { template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return hash<ll>()(1000000000 * x.first + x.second); } }; }
