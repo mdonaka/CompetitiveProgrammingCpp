@@ -1,5 +1,4 @@
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f")
-#pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #include <iostream>
 #include <iomanip>
@@ -92,10 +91,12 @@ using std::priority_queue;
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
 /* Remove the source of the bug */
-const signed pow(signed, signed) { assert(false); return -1; }
+signed pow(signed, signed) { assert(false); return -1; }
 
 /* define hash */
-namespace std { template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return hash<ll>()(1000000000 * x.first + x.second); } }; }
+namespace std {
+template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return hash<ll>()(1000000000 * x.first + x.second); } };
+}
 
 /* input */
 template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for (T& x : vec) is >> x; return is; }
@@ -107,5 +108,5 @@ constexpr ll MOD = 1000000007;
 //=============================================================================================
 
 signed main() {
-	
+
 }
