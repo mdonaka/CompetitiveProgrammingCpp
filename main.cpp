@@ -1,4 +1,6 @@
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f")
+//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+#pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
 #include <iostream>
 #include <iomanip>
