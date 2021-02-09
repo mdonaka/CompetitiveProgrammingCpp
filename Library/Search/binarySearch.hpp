@@ -1,15 +1,32 @@
-/**
-* 整数値 単調増加
-* 単調減少 -> 真偽逆転 ng = ok
-*/
-ll ok = 1e18;
-ll ng = -1;
-while (ok - ng > 1) {
-	ll mid = (ok + ng) / 2;
-	ll isOk = true;
-	/*** 判定 ***/
-    
-	/************/
-	if (isOk) { ok = mid; }
-	else { ng = mid; }
+template <class Lambda>
+auto binarySearch(double mn, double mx, int rep, const Lambda& judge,
+		  bool rev = false) {
+  auto ok = mx;
+  auto ng = mn;
+  for (int _ = 0; _ < rep; ++_) {
+    auto mid = (ok + ng) / 2;
+    auto isOk = judge(mid);
+    if ((isOk && !rev) || (!isOk && rev)) {
+      ok = mid;
+    } else {
+      ng = mid;
+    }
+  }
+  return ok;
+}
+
+template <class Lambda>
+auto binarySearch(ll mn, ll mx, const Lambda& judge, bool rev = false) {
+  auto ok = mx;
+  auto ng = mn - 1;
+  while (ok - ng > 1) {
+    auto mid = (ok + ng) / 2;
+    auto isOk = judge(mid);
+    if ((isOk && !rev) || (!isOk && rev)) {
+      ok = mid;
+    } else {
+      ng = mid;
+    }
+  }
+  return ok;
 }
