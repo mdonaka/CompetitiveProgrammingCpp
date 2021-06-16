@@ -1,5 +1,8 @@
+#pragma once
+
 using ll = long long;
 #include <vector>
+#include <utility>
 
 template<class T>
 class isMonoid {
@@ -11,82 +14,62 @@ public:
 };
 
 /* sample */
-class SampleMonoid {
-	const long long m_val;
-public:
-	explicit SampleMonoid(long long val) :m_val(val) {}
-	
+struct SampleMonoid {
+	long long m_val;
+
 	/* 元 */
-	explicit SampleMonoid() :m_val(0) {}
+	SampleMonoid() :m_val(0) {}
+
 	/* 2項演算 */
 	SampleMonoid binaryOperation(const SampleMonoid& m2)const {
-		return SampleMonoid(m_val + m2.m_val);
+		return m_val + m2.m_val;
 	}
+
+	SampleMonoid(long long val) :m_val(val) {}
+	~SampleMonoid() = default;
+	SampleMonoid(SampleMonoid&) = default;
+	SampleMonoid(SampleMonoid&& sm) = default;
+	SampleMonoid& operator=(SampleMonoid&) = default;
+	SampleMonoid& operator=(SampleMonoid&&) = default;
+
 };
 
-/**
- *	セグメント木を構成する
- *	2methodの変更により調整
- */
-template<class T>
+template<class Monoid, std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr >
 class SegmentTree {
 private:
-	const T initialValue = 0;
-	const T ignoreValue = 0;
+	const int m_size;
+	vector<Monoid> m_node;
 
-	const ll m_size;
-	vector<T> m_node;
+	int calcSize(int n) const { int size = 1; while (size < n) { size <<= 1; }return size; }
 
-	ll calcSize(ll n) {
-		ll size = 1;
-		while (size < n) {
-			size *= 2;
-		}
-		return size;
+	auto _query(ll a, ll b) {
+		return _query(a, b + 1, 0, 0, m_size);
 	}
-
-	/**
-	 * 値の更新(更新:=, 加算:+=, etc...)
-	 */
-	void update(ll k, T x) {
-		m_node[k] = x;
-	}
-
-	/**
-	* 値の併合
-	*/
-	T merge(T xl, T xr) {
-		return xl + xr;
+	auto _query(ll a, ll b, ll k, ll l, ll r) {
+		if (r <= a || b <= l) { return Monoid(); }
+		if (a <= l && r <= b) { return m_node[k]; }
+		return
+			_query(a, b, 2 * k + 1, l, (l + r) / 2)
+			.binaryOperation(
+				_query(a, b, 2 * k + 2, (l + r) / 2, r)
+			);
 	}
 public:
 	SegmentTree(ll n) :
 		m_size(calcSize(n)),
-		m_node(m_size * 2 - 1, initialValue) {
+		m_node(m_size * 2 - 1) {
 	}
 
-	void add(ll itr, T val) {
+	auto add(ll itr, Monoid&& val) {
 		ll i = itr + m_size - 1;
-		update(i, val);
+		m_node[i] = std::forward<decltype(val)>(val);
 
 		while (i > 0) {
 			i = (i - 1) / 2;
-			m_node[i] = merge(m_node[i * 2 + 1], m_node[i * 2 + 2]);
+			m_node[i] = m_node[i * 2 + 1].binaryOperation(m_node[i * 2 + 2]);
 		}
-		/**
-		cout << "-- tree -- " << endl;
-		REP(i, 2 * m_size - 1) {
-			cout << m_node[i] << endl;
-		}
-		/*//**/
 	}
 
-	T query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
-	T query(ll a, ll b, ll k, ll l, ll r) {
-		if (r <= a || b <= l) { return ignoreValue; }
-		if (a <= l && r <= b) { return m_node[k]; }
-		return merge(
-			query(a, b, 2 * k + 1, l, (l + r) / 2),
-			query(a, b, 2 * k + 2, (l + r) / 2, r)
-		);
-	}
+	auto query(ll a, ll b, ll k, ll l, ll r) { return _query(a, b, k, l, r).m_val; }
+	auto query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
 };
