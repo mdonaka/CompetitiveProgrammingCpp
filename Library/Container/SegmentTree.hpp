@@ -1,6 +1,5 @@
 #pragma once
 
-using ll = long long;
 #include <vector>
 #include <utility>
 
@@ -42,10 +41,10 @@ private:
 
 	int calcSize(int n) const { int size = 1; while (size < n) { size <<= 1; }return size; }
 
-	auto _query(ll a, ll b) {
+	auto _query(int a, int b) {
 		return _query(a, b + 1, 0, 0, m_size);
 	}
-	auto _query(ll a, ll b, ll k, ll l, ll r) {
+	auto _query(int a, int b, int k, int l, int r) {
 		if (r <= a || b <= l) { return Monoid(); }
 		if (a <= l && r <= b) { return m_node[k]; }
 		return
@@ -55,13 +54,13 @@ private:
 			);
 	}
 public:
-	SegmentTree(ll n) :
+	SegmentTree(int n) :
 		m_size(calcSize(n)),
 		m_node(m_size * 2 - 1) {
 	}
 
-	auto add(ll itr, Monoid&& val) {
-		ll i = itr + m_size - 1;
+	auto add(int itr, Monoid&& val) {
+		int i = itr + m_size - 1;
 		m_node[i] = std::forward<decltype(val)>(val);
 
 		while (i > 0) {
@@ -70,6 +69,6 @@ public:
 		}
 	}
 
-	auto query(ll a, ll b, ll k, ll l, ll r) { return _query(a, b, k, l, r).m_val; }
-	auto query(ll a, ll b) { return query(a, b + 1, 0, 0, m_size); }
+	auto query(int a, int b, int k, int l, int r) { return _query(a, b, k, l, r).m_val; }
+	auto query(int a, int b) { return query(a, b + 1, 0, 0, m_size); }
 };
