@@ -1,3 +1,29 @@
+using ll = long long;
+#include <vector>
+
+template<class T>
+class isMonoid {
+	template <class U>
+	static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});
+	static std::false_type check(...);
+public:
+	static bool const value = decltype(check(std::declval<T>()))::value;
+};
+
+/* sample */
+class SampleMonoid {
+	const long long m_val;
+public:
+	explicit SampleMonoid(long long val) :m_val(val) {}
+	
+	/* 元 */
+	explicit SampleMonoid() :m_val(0) {}
+	/* 2項演算 */
+	SampleMonoid binaryOperation(const SampleMonoid& m2)const {
+		return SampleMonoid(m_val + m2.m_val);
+	}
+};
+
 /**
  *	セグメント木を構成する
  *	2methodの変更により調整
@@ -5,8 +31,8 @@
 template<class T>
 class SegmentTree {
 private:
-	const T initialValue = T(1, 0);
-	const T ignoreValue = T(1, 0);
+	const T initialValue = 0;
+	const T ignoreValue = 0;
 
 	const ll m_size;
 	vector<T> m_node;
@@ -30,7 +56,7 @@ private:
 	* 値の併合
 	*/
 	T merge(T xl, T xr) {
-		return T(xl.first*xr.first, xl.second*xr.first + xr.second);
+		return xl + xr;
 	}
 public:
 	SegmentTree(ll n) :
