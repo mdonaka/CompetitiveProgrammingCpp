@@ -49,11 +49,12 @@ public:
 template<
 	class S,   // 要素の型
 	S element, // 元
-	S T(S, S)  // 2項演算子
+	class T // lambdaはC++20じゃないと渡せなかった．．．
+	// S T(S, S)  // 2項演算子
 >
 struct Monoid {
 	S m_val;
 	Monoid() :m_val(element) {}
 	Monoid(S val) :m_val(val) {}
-	Monoid binaryOperation(const Monoid& m2)const { return T(m_val, m2.m_val); }
+	Monoid binaryOperation(const Monoid& m2)const { return T()(m_val, m2.m_val); }
 };
