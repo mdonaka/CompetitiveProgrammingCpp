@@ -17,41 +17,30 @@ class SCC {
 		return graph;
 	}
 
-	template<class Lambda>
-	auto dfs(int n,
-		const std::unordered_multimap<int, int>& graph,
-		int root,
+	auto dfs(const std::unordered_multimap<int, int>& graph,
+		int from,
 		std::vector<int>& isUsed,
-		const Lambda& lambda) const {
-		isUsed[root] = true;
-		std::stack<int> q; q.emplace(root);
-		while (!q.empty()) {
-			auto from = q.top();
-			q.pop();
+		std::list<int>& visit)->void {
 
-			auto range = graph.equal_range(from);
-			for (auto itr = range.first; itr != range.second; ++itr) {
-				auto to = itr->second;
-				if (!isUsed[to]) {
-					q.emplace(to);
-					isUsed[to] = true;
-					lambda(from, to);
-				}
+		auto range = graph.equal_range(from);
+		for (auto itr = range.first; itr != range.second; ++itr) {
+			auto to = itr->second;
+			if (!isUsed[to]) {
+				isUsed[to] = true;
+				dfs(graph, to, isUsed, visit);
 			}
 		}
+		visit.emplace_back(from);
 	}
 
-	auto constructGroup()const {
+	auto constructGroup() {
 		std::list<int> order;
 		{
 			std::vector<int> used(m_n);
 			for (int from = 0; from < m_n; ++from) if (!used[from]) {
 				std::list<int> localOrder;
-				localOrder.emplace_front(from);
-				dfs(m_n, m_graph, from, used, [&](int f, int t) {
-					used[t] = true;
-					localOrder.emplace_front(t);
-				});
+				used[from] = true;
+				dfs(m_graph, from, used, localOrder);
 				for (const auto& x : localOrder) {
 					order.emplace_front(x);
 				}
@@ -63,11 +52,10 @@ class SCC {
 
 			int g = 0;
 			for (const auto& from : order) if (!used[from]) {
-				group[from] = g;
-				dfs(m_n, m_revGraph, from, used, [&](int f, int t) {
-					used[t] = true;
-					group[t] = g;
-				});
+				used[from] = true;
+				std::list<int> visit;
+				dfs(m_revGraph, from, used, visit);
+				for (const auto& f : visit) { group[f] = g; };
 				++g;
 			}
 		}
