@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <list>
 #include <queue>
 #include <unordered_map>
 #include <unordered_set>
@@ -27,14 +26,14 @@ class Dinic {
 
 	const int m_n;
 	const Graph m_graph;
-	const std::vector<std::list<int>> m_to_list;
+	const std::vector<std::unordered_set<int>> m_to_list;
 
 	static auto construct_to_list(int n, const Graph_f& graph_f) {
-		std::vector<std::list<int>> to_list(n);
+		std::vector<std::unordered_set<int>> to_list(n);
 		for (const auto& [f, tc] : graph_f) {
 			auto [t, c] = tc;
-			to_list[f].emplace_back(t);
-			to_list[t].emplace_back(f);
+			to_list[f].emplace(t);
+			to_list[t].emplace(f);
 		}
 		return to_list;
 	}
@@ -42,7 +41,7 @@ class Dinic {
 		Graph graph;
 		for (const auto& [f, tc] : graph_f) {
 			auto [t, c] = tc;
-			graph.emplace(std::pair<int, int>{f, t}, c);
+			graph[std::pair<int, int>{f, t}] += c;
 		}
 		return graph;
 	}
