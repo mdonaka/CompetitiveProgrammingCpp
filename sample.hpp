@@ -1,6 +1,6 @@
 #pragma once
 #include <random>
-
+#include <vector>
 #include<iostream>
 
 namespace Sample {
@@ -28,6 +28,8 @@ namespace Sample {
 		auto random(const Range& range) { return range.normalize(mt()); }
 		auto random(uint_fast64_t l, uint_fast64_t u) { return random(Range(l, u)); }
 		auto random(uint_fast64_t u) { return random(Range(0LL, u)); }
+
+		auto get_gen()const { return mt; }
 	};
 
 	class SampleGenerator {
@@ -51,6 +53,13 @@ namespace Sample {
 		template<class ... T>
 		auto generate(T&& ...ranges) {
 			return std::make_tuple(generate_random(ranges)...);
+		}
+
+		auto generate_permutation(int size) const {
+			std::vector<int> rnd_p(size);
+			std::iota(rnd_p.begin(), rnd_p.end(), 0);
+			std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());
+			return rnd_p;
 		}
 	};
 }
