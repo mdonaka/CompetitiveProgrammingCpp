@@ -28,7 +28,7 @@ class LCPArray {
 			}
 			lcpArray[rank[i] - 1] = h;
 		}
-		return suffixArray;
+		return lcpArray;
 	}
 
 public:
