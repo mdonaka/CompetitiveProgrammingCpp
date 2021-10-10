@@ -1,4 +1,4 @@
-#include <unordered_map>
+ï»¿#include <unordered_map>
 #include <queue>
 
 template<class Lambda>
@@ -69,8 +69,8 @@ auto graphBFS(long long n, const std::unordered_multimap<long long, long long>& 
 }
 
 /*
- * •”•ª–Ø‚Ìî•ñ‚ğƒ}[ƒW‚·‚éMonoid
- * ƒ}[ƒW‚³‚ê‚½î•ñ‚ğe‚É—¬‚·lambda
+ * éƒ¨åˆ†æœ¨ã®æƒ…å ±ã‚’ãƒãƒ¼ã‚¸ã™ã‚‹Monoid
+ * ãƒãƒ¼ã‚¸ã•ã‚ŒãŸæƒ…å ±ã‚’è¦ªã«æµã™lambda
  */
 template<class Monoid, class Lambda>
 auto reRootingDP(long long n,
@@ -79,7 +79,7 @@ auto reRootingDP(long long n,
 
 	constexpr int root = 0;
 
-	// <‚ ‚é•”•ª–Øî•ñ‚ğƒ}[ƒW‚·‚é>
+	// <ã‚ã‚‹éƒ¨åˆ†æœ¨æƒ…å ±ã‚’ãƒãƒ¼ã‚¸ã™ã‚‹>
 	std::vector<std::deque<std::pair<int, Monoid>>> v(n);
 	auto merge = [&](const std::deque<std::pair<int, Monoid>>& dq) {
 		Monoid val{};
@@ -89,12 +89,12 @@ auto reRootingDP(long long n,
 		return val;
 	};
 
-	// root‚ğª‚Æ‚µ‚½‰ğ‚ğ‹‚ß‚é
+	// rootã‚’æ ¹ã¨ã—ãŸè§£ã‚’æ±‚ã‚ã‚‹
 	treeDP(n, graph, root, [&](int f, int t) {
 		v[t].emplace_back(f, transition(merge(v[f])));
 	});
 
-	// <node:t‚Å•ªŠ„‚µ‚½•”•ª–Ø‚ğfˆÈŠOƒ}[ƒW‚µ‚½‰ğ‚ğ‚Ü‚Æ‚ß‚Ä‹‚ß‚é>
+	// <node:tã§åˆ†å‰²ã—ãŸéƒ¨åˆ†æœ¨ã‚’fä»¥å¤–ãƒãƒ¼ã‚¸ã—ãŸè§£ã‚’ã¾ã¨ã‚ã¦æ±‚ã‚ã‚‹>
 	std::vector<std::unordered_map<int, Monoid>> mp(n);
 	auto calc_mp = [&](int t) {
 		Monoid val_ord{};
@@ -110,14 +110,14 @@ auto reRootingDP(long long n,
 		}
 	};
 
-	// root‚©‚çbfs‚µ‚ÄŠenode‚ğª‚Æ‚µ‚½‰ğ‚ğ‹‚ß‚é
+	// rootã‹ã‚‰bfsã—ã¦å„nodeã‚’æ ¹ã¨ã—ãŸè§£ã‚’æ±‚ã‚ã‚‹
 	calc_mp(root);
 	graphBFS(n, graph, root, [&](int f, int t) {
 		v[t].emplace_back(f, mp[f][t]);
 		calc_mp(t);
 	});
 
-	// ‘S‚Ä‚Ì•”•ª–Øî•ñ‚ğƒ}[ƒW‚µ‚Ä•Ô‚·
+	// å…¨ã¦ã®éƒ¨åˆ†æœ¨æƒ…å ±ã‚’ãƒãƒ¼ã‚¸ã—ã¦è¿”ã™
 	std::vector<Monoid> ret;
 	ret.reserve(n);
 	for (const auto& dq : v) {
@@ -127,10 +127,10 @@ auto reRootingDP(long long n,
 }
 
 template<
-	class S,   // —v‘f‚ÌŒ^
-	// ¦C++17‚Å‚Í‚Ù‚Æ‚ñ‚Ç‚ÌŒ^‚ğƒOƒ[ƒoƒ‹éŒ¾‚µ‚½‰Šú’l‚ğQÆ‚Å“n‚·•K—v‚ ‚è
-	S& element, // Œ³
-	class T // 2€‰‰ZqD
+	class S,   // è¦ç´ ã®å‹
+	// â€»C++17ã§ã¯ã»ã¨ã‚“ã©ã®å‹ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å®£è¨€ã—ãŸåˆæœŸå€¤ã‚’å‚ç…§ã§æ¸¡ã™å¿…è¦ã‚ã‚Š
+	S& element, // å…ƒ
+	class T // 2é …æ¼”ç®—å­ï¼
 >
 struct Monoid {
 	S m_val;
