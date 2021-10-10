@@ -128,6 +128,7 @@ auto reRootingDP(long long n,
 
 template<
 	class S,   // —v‘f‚ÌŒ^
+	// ¦C++17‚Å‚Í‚Ù‚Æ‚ñ‚Ç‚ÌŒ^‚ðƒOƒ[ƒoƒ‹éŒ¾‚µ‚½‰Šú’l‚ðŽQÆ‚Å“n‚·•K—v‚ ‚è
 	S& element, // Œ³
 	class T // 2€‰‰ŽZŽqD
 >
