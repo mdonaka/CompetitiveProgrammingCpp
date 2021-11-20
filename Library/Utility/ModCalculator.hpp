@@ -30,7 +30,6 @@ public:
 
 	long long pow(long long a, long long b) const {
 		a %= m_mod;
-		if(a == 0) { return 0LL; }
 		long long ans = 1;
 		while (b > 0) {
 			if (b & 1) { ans *= a; if (ans >= m_mod) { ans %= m_mod; } }
