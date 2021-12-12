@@ -122,13 +122,12 @@ auto reRootingDP(long long n,
         partial[t].emplace_back(f, all_merge(f));
     });
     accumulation(0);
-    dump(partial, partial_ac);
+
     // rootからbfsして各nodeを根とした解を求める
     graphBFS(n, graph, root, [&](int f, int t) {
         partial[t].emplace_back(f, partial_ac[f][t]);
         accumulation(t);
     });
-    dump(partial, partial_ac);
 
     return ret;
 }
