@@ -23,6 +23,7 @@
 #include <functional>
 #include <complex>
 #include <immintrin.h>
+#include <stdexcept>
 #ifdef DEBUG
 #include "./debug.hpp"
 #include "./Timer.hpp"
