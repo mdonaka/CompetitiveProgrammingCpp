@@ -38,9 +38,9 @@ public:
     auto process(const Lambda1& add, const Lambda2& del) {
         const auto l = lq[order[ni]];
         const auto r = rq[order[ni]];
-        while(nl < l) { del(nl++); }
-        while(nr < r) { add(++nr); }
         while(nl > l) { add(--nl); }
+        while(nr < r) { add(++nr); }
+        while(nl < l) { del(nl++); }
         while(nr > r) { del(nr--); }
         return order[ni++];
     }
