@@ -18,6 +18,7 @@ class Mo {
         int w = std::sqrt(q);
         std::sort(order.begin(), order.end(), [&](int a, int b) {
             if(lq[a] / w != lq[b] / w) return lq[a] < lq[b];
+            if(rq[a] == rq[b]) { return false; }
             bool less = (rq[a] < rq[b]);
             bool flg = (lq[a] / w) & 1;
             return static_cast<bool>(less ^ flg);
