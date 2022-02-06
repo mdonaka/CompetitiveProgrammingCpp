@@ -10,9 +10,8 @@ class SegmentMap {
 
     auto add(int i, int val, bool left = true, bool right = true) {
         auto it = std::prev(mp.upper_bound(i));
+        if(right && std::next(it)->second == val) { mp.erase(std::next(it)); }
         if(left && it->second == val) { return; }
-        ++it;
-        if(right && it->second == val) { mp.erase(it); }
         mp.emplace(i, val);
 
     }
@@ -69,6 +68,13 @@ public:
             ++it;
         }
         return dq;
+    }
+
+    auto get(int i) {
+        auto it = std::prev(mp.upper_bound(i));
+        int nx = std::next(it)->first;
+        int len = nx - it->first;
+        return std::pair{it->second,len};
     }
 
 };
