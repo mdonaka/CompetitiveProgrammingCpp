@@ -25,9 +25,9 @@
 #include <immintrin.h>
 #include <stdexcept>
 #ifdef DEBUG
-#include "./debug.hpp"
-#include "./Timer.hpp"
-#include "./sample.hpp"
+#include "./CompetitiveProgrammingCpp/debug.hpp"
+#include "./CompetitiveProgrammingCpp/Timer.hpp"
+#include "./CompetitiveProgrammingCpp/sample.hpp"
 #else
 #define dump(...)
 #endif
@@ -53,21 +53,24 @@ inline auto rsort(T& t) { std::sort((t).rbegin(), (t).rend()); }
 template<class T>
 inline auto unique(T& t) { (t).erase(unique((t).begin(), (t).end()), (t).end()); }
 template<class T, class S>
-inline auto chmax(T& t, const S& s) { if (s > t) { t = s; return true; } return false; }
+inline auto chmax(T& t, const S& s) { if(s > t) { t = s; return true; } return false; }
 template<class T, class S>
-inline auto chmin(T& t, const S& s) { if (s < t) { t = s; return true; } return false; }
+inline auto chmin(T& t, const S& s) { if(s < t) { t = s; return true; } return false; }
 inline auto BR() { std::cout << "\n"; }
 
 /* type define */
 using ll = long long;
-using PAIR = std::pair<ll, ll>;
 using VS = std::vector<std::string>;
 using VL = std::vector<long long>;
 using VVL = std::vector<VL>;
 using VVVL = std::vector<VVL>;
+using VVVVL = std::vector<VVVL>;
+using VVVVVL = std::vector<VVVVL>;
 using VD = std::vector<double>;
 template<class T>
 using V = std::vector<T>;
+template<class T = ll, class U = T>
+using P = std::pair<T, U>;
 
 /* using std */
 using std::cout;
@@ -77,6 +80,7 @@ using std::pair;
 using std::string;
 using std::stack;
 using std::queue;
+using std::deque;
 using std::vector;
 using std::list;
 using std::map;
@@ -94,7 +98,7 @@ using std::priority_queue;
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
 /* Remove the source of the bug */
-signed pow(signed, signed) { assert(false); return -1; }
+auto pow(signed, signed) { assert(false); }
 
 /* define hash */
 namespace std {
@@ -102,11 +106,11 @@ template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std:
 }
 
 /* input */
-template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for (T& x : vec) is >> x; return is; }
+template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for(T& x : vec) is >> x; return is; }
 
 /* constant value */
-constexpr ll MOD = 1000000007;
-//constexpr ll MOD = 998244353;
+// constexpr ll MOD = 1000000007;
+constexpr ll MOD = 998244353;
 
 //=============================================================================================
 
