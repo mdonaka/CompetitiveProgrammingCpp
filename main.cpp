@@ -34,9 +34,9 @@
 
 /* macro */
 #define FOR(i, b, e) for(ll i = (ll)(b); i < (ll)(e); ++i)
-#define RFOR(i, b, e) for(ll i = (ll)(e-1); i >= (ll)(b); --i)
-#define REP(i, n) FOR(i, 0, n)
-#define RREP(i, n) RFOR(i, 0, n)
+#define RFOR(i, b, e) for(ll i = (ll)((e)-1); i >= (ll)(b); --i)
+#define REP(i, n) FOR(i, 0, (n))
+#define RREP(i, n) RFOR(i, 0, (n))
 #define REPC(x,c) for(const auto& x:(c))
 #define REPI2(it,b,e) for(auto it = (b); it != (e); ++it)
 #define REPI(it,c) REPI2(it, (c).begin(), (c).end())
