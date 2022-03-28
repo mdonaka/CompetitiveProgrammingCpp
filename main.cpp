@@ -71,6 +71,7 @@ template<class T>
 using V = std::vector<T>;
 template<class T = ll, class U = T>
 using P = std::pair<T, U>;
+using PAIR = P<ll>;
 
 /* using std */
 using std::cout;
