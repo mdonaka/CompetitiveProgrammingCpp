@@ -77,12 +77,11 @@ class SuccessiveShortestPath {
         return std::pair<cap_t, cost_t>{mn, cost_all};
     }
 
-    auto shortest_path(node_t s, node_t t, const Graph& graph) const {
+    auto shortest_path(node_t s, const Graph& graph) const {
         std::priority_queue<std::pair<cost_t, node_t>> q;
         std::vector<std::pair<cost_t, node_t>> min(m_n, {1e18,-1});
         auto add = [&](node_t node, cost_t cst, node_t from) {
             if(cst >= min[node].first) { return; }
-            if(cst < 0) { return; }
             min[node].first = cst;
             min[node].second = from;
             q.emplace(cst, node);
@@ -98,16 +97,29 @@ class SuccessiveShortestPath {
                 add(to, nowCost + find_it->second.second, from);
             }
         }
-        if(min[t].second == -1) { return std::deque<node_t>{}; }
+        return min;
+    }
+
+    static auto potential_residual(const Graph& residual, const std::vector<cost_t>& p) {
+        Graph pr;
+        for(const auto& [ft, cc] : residual) {
+            auto [f, t] = ft;
+            auto [cap, cst] = cc;
+            auto potential = cst + p[f] - p[t];
+            pr.emplace(ft, std::pair<cap_t, cost_t>{cap, potential});
+        }
+        return pr;
+    }
+
+    static auto restore_route(int t, const std::vector<std::pair<cost_t, node_t>>& sp) {
         std::deque<node_t> route;
         auto now = t;
         while(now > -1) {
             route.emplace_front(now);
-            now = min[now].second;
+            now = sp[now].second;
         }
         return route;
     }
-
 public:
     SuccessiveShortestPath(int n, const Graph_f& graph) :
         m_n(n),
@@ -127,13 +139,18 @@ public:
     auto slope(node_t s, node_t t, cap_t c = 1e18)const {
         auto residual = m_graph;
         std::deque<std::pair<cost_t, cap_t>> sl;
+        std::vector<cost_t> p(m_n);
         cap_t rem = c;
         while(rem > 0) {
-            auto route = shortest_path(s, t, residual);
-            if(route.empty()) { break; }
+            auto pr = potential_residual(residual, p);
+            auto sp = shortest_path(s, pr);
+            if(sp[t].second == -1) { break; }
+            auto route = restore_route(t, sp);
+
             auto [use, cst] = update_residual(s, rem, residual, route);
             sl.emplace_back(use, cst);
             rem -= use;
+            for(int i = 0; i < m_n; ++i) { p[i] += sp[i].first; }
         }
         return sl;
     }
