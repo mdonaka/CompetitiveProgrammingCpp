@@ -124,18 +124,26 @@ public:
         }
     }
 
-    auto min_cost_max_flow(node_t s, node_t t, cap_t c = 1e18)const {
+    auto slope(node_t s, node_t t, cap_t c = 1e18)const {
         auto residual = m_graph;
-        cost_t cost_all = 0;
+        std::deque<std::pair<cost_t, cap_t>> sl;
         cap_t rem = c;
         while(rem > 0) {
             auto route = shortest_path(s, t, residual);
             if(route.empty()) { break; }
             auto [use, cst] = update_residual(s, rem, residual, route);
-            cost_all += cst;
+            sl.emplace_back(use, cst);
             rem -= use;
         }
-        return std::pair<cap_t, cost_t>{c - rem, cost_all};
+        return sl;
     }
 
+    auto min_cost_max_flow(node_t s, node_t t, cap_t c = 1e18)const {
+        cap_t use_all = 0;
+        cost_t cost_all = 0;
+        for(const auto& [u, c] : slope(s, t, c)) {
+            use_all += u; cost_all += c;
+        }
+        return std::pair<cap_t, cost_t>{use_all, cost_all};
+    }
 };
