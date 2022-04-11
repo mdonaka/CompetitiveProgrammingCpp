@@ -77,6 +77,23 @@ class SuccessiveShortestPath {
         return std::pair<cap_t, cost_t>{mn, cost_all};
     }
 
+    auto shortest_path_allow_minus(node_t s,
+                                   const GraphCap& residual_cap,
+                                   const GraphCost& residual_cost) const {
+        CostV cost(m_n, 1e18);
+        cost[s] = 0;
+        for(int _ = 0; _ < m_n; ++_) {
+            for(int from = 0; from < m_n; ++from) {
+                for(const auto& to : m_graph_to[from]) {
+                    if(residual_cap[from][to] > 0) {
+                        cost[to] = std::min(cost[to], cost[from] + residual_cost[from][to]);
+                    }
+                }
+            }
+        }
+        return cost;
+    }
+
     auto shortest_path(node_t s,
                        const GraphCap& residual_cap,
                        const GraphCost& residual_cost,
@@ -117,16 +134,16 @@ public:
     /* íPèÉÉOÉâÉtÇâºíË */
     SuccessiveShortestPath(int n, const GraphInput& graph) :
         m_n(n),
+        m_graph_to(construct_graph_to(graph)),
         m_graph_cap(construct_graph_cap(graph)),
-        m_graph_cost(construct_graph_cost(graph)),
-        m_graph_to(construct_graph_to(graph)) {
+        m_graph_cost(construct_graph_cost(graph)) {
     }
 
     auto slope(node_t s, node_t t, cap_t c = 1e18)const {
         auto residual_cap = m_graph_cap;
         auto residual_cost = m_graph_cost;
         std::deque<std::pair<cost_t, cap_t>> sl;
-        std::vector<cost_t> p(m_n);
+        CostV p = shortest_path_allow_minus(s, residual_cap, residual_cost);
         cap_t rem = c;
         while(rem > 0) {
             auto sp = shortest_path(s, residual_cap, m_graph_cost, p);
