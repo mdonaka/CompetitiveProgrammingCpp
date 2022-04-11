@@ -10,75 +10,79 @@
 
 class SuccessiveShortestPath {
 
-    struct HashPair {
-        template<class T1, class T2>
-        size_t operator()(const std::pair<T1, T2>& p) const {
-            auto hash1 = std::hash<T1>{}(p.first);
-            auto hash2 = std::hash<T2>{}(p.second);
-            size_t seed = 0;
-            seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-            seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-            return seed;
-        }
-    };
-
     using node_t = long long;
     using cap_t = long long;
     using cost_t = long long;
 
-
-    using Graph_f = std::unordered_multimap<node_t, std::pair<node_t, std::pair<cap_t, cost_t>>>;
-    using Graph = std::unordered_map<std::pair<node_t, node_t>, std::pair<cap_t, cost_t>, HashPair>;
+    using GraphInput = std::unordered_multimap<node_t, std::pair<node_t, std::pair<cap_t, cost_t>>>;
+    using GraphTo = std::vector<std::deque<node_t>>;
+    using CapV = std::vector<cost_t>;
+    using GraphCap = std::vector<CapV>;
+    using CostV = std::vector<cost_t>;
+    using GraphCost = std::vector<CostV>;
 
     const int m_n;
-    const Graph m_graph;
-    const std::vector<std::unordered_set<node_t>> m_to_list;
+    const GraphTo m_graph_to;
+    const GraphCap m_graph_cap;
+    const GraphCost m_graph_cost;
 
-    static auto construct_to_list(int n, const Graph_f& graph_f) {
-        std::vector<std::unordered_set<node_t>> to_list(n);
+    auto construct_graph_to(const GraphInput& graph_f)const {
+        GraphTo graphTo(m_n);
         for(const auto& [f, tcc] : graph_f) {
             auto [t, _] = tcc;
-            to_list[f].emplace(t);
-            to_list[t].emplace(f);
+            graphTo[f].emplace_back(t);
+            graphTo[t].emplace_back(f);
         }
-        return to_list;
-    }
-    static auto construct_graph(const Graph_f& graph_f) {
-        Graph graph;
-        for(const auto& [f, tcc] : graph_f) {
-            auto [t, cc] = tcc;
-            auto [cap, cost] = cc;
-            graph[std::pair<node_t, node_t>{f, t}].first += cap;
-            // TODO: costは単に加算するのでは良くないので要修正
-            graph[std::pair<node_t, node_t>{f, t}].second += cost;
-        }
-        return graph;
+        return graphTo;
     }
 
-    auto update_residual(node_t s, cap_t rem, Graph& residual, const std::deque<node_t>& route)const {
+    auto construct_graph_cap(const GraphInput& graph_f)const {
+        GraphCap graph_cap(m_n, CapV(m_n));
+        for(const auto& [f, tcc] : graph_f) {
+            auto [t, cc] = tcc;
+            auto [cap, _] = cc;
+            graph_cap[f][t] += cap;
+        }
+        return graph_cap;
+    }
+    auto construct_graph_cost(const GraphInput& graph_f) const {
+        GraphCost graph_cost(m_n, CostV(m_n));
+        for(const auto& [f, tcc] : graph_f) {
+            auto [t, cc] = tcc;
+            auto [_, cost] = cc;
+            graph_cost[f][t] = cost;
+            graph_cost[t][f] = -cost;
+        }
+        return graph_cost;
+    }
+
+    auto update_residual(node_t s, cap_t rem,
+                         GraphCap& residual_cap, GraphCost& residual_cost,
+                         const std::deque<node_t>& route)const {
         cost_t mn = rem;
         auto from = s;
         for(const auto& to : route)if(from != to) {
-            mn = std::min(mn, residual[{from, to}].first);
+            mn = std::min(mn, residual_cap[from][to]);
             from = to;
         }
 
         cost_t cost_all = 0;
         from = s;
         for(const auto& to : route)if(from != to) {
-            auto& [ft, cst] = residual[{from, to}];
-            ft -= mn;
-            cost_all += mn * cst;
-            residual[{to, from}].first += mn;
-            residual[{to, from}].second = -cst;
-            if(ft == 0) { residual.erase({from,to}); }
+            residual_cap[from][to] -= mn;
+            residual_cap[to][from] += mn;
+            cost_all += mn * residual_cost[from][to];
             from = to;
         }
         return std::pair<cap_t, cost_t>{mn, cost_all};
     }
 
-    auto shortest_path(node_t s, const Graph& graph) const {
-        std::priority_queue<std::pair<cost_t, node_t>> q;
+    auto shortest_path(node_t s,
+                       const GraphCap& residual_cap,
+                       const GraphCost& residual_cost,
+                       const std::vector<cost_t>& p) const {
+        using P = std::pair<cost_t, node_t>;
+        std::priority_queue<P, std::vector<P>, std::greater<P>> q;
         std::vector<std::pair<cost_t, node_t>> min(m_n, {1e18,-1});
         auto add = [&](node_t node, cost_t cst, node_t from) {
             if(cst >= min[node].first) { return; }
@@ -91,24 +95,13 @@ class SuccessiveShortestPath {
             auto [nowCost, from] = q.top();
             q.pop();
             if(min[from].first < nowCost) { continue; }
-            for(const auto& to : m_to_list[from]) {
-                auto find_it = graph.find({from,to});
-                if(find_it == graph.end()) { continue; }
-                add(to, nowCost + find_it->second.second, from);
+            for(const auto& to : m_graph_to[from]) {
+                if(residual_cap[from][to] == 0) { continue; }
+                auto potential = residual_cost[from][to] + p[from] - p[to];
+                add(to, nowCost + potential, from);
             }
         }
         return min;
-    }
-
-    static auto potential_residual(const Graph& residual, const std::vector<cost_t>& p) {
-        Graph pr;
-        for(const auto& [ft, cc] : residual) {
-            auto [f, t] = ft;
-            auto [cap, cst] = cc;
-            auto potential = cst + p[f] - p[t];
-            pr.emplace(ft, std::pair<cap_t, cost_t>{cap, potential});
-        }
-        return pr;
     }
 
     static auto restore_route(int t, const std::vector<std::pair<cost_t, node_t>>& sp) {
@@ -121,33 +114,25 @@ class SuccessiveShortestPath {
         return route;
     }
 public:
-    SuccessiveShortestPath(int n, const Graph_f& graph) :
+    /* 単純グラフを仮定 */
+    SuccessiveShortestPath(int n, const GraphInput& graph) :
         m_n(n),
-        m_graph(construct_graph(graph)),
-        m_to_list(construct_to_list(n, graph)) {
-    }
-
-    auto output(const Graph& graph)const {
-        std::cout << "-- graph --" << std::endl;
-        for(const auto& [p, c] : graph) {
-            std::cout
-                << "(" << p.first << " -> " << p.second << "): ("
-                << c.first << ", " << c.second << std::endl;
-        }
+        m_graph_cap(construct_graph_cap(graph)),
+        m_graph_cost(construct_graph_cost(graph)),
+        m_graph_to(construct_graph_to(graph)) {
     }
 
     auto slope(node_t s, node_t t, cap_t c = 1e18)const {
-        auto residual = m_graph;
+        auto residual_cap = m_graph_cap;
+        auto residual_cost = m_graph_cost;
         std::deque<std::pair<cost_t, cap_t>> sl;
         std::vector<cost_t> p(m_n);
         cap_t rem = c;
         while(rem > 0) {
-            auto pr = potential_residual(residual, p);
-            auto sp = shortest_path(s, pr);
-            if(sp[t].second == -1) { break; }
+            auto sp = shortest_path(s, residual_cap, m_graph_cost, p);
             auto route = restore_route(t, sp);
-
-            auto [use, cst] = update_residual(s, rem, residual, route);
+            auto [use, cst] = update_residual(s, rem, residual_cap, residual_cost, route);
+            if(use == 0) { break; }
             sl.emplace_back(use, cst);
             rem -= use;
             for(int i = 0; i < m_n; ++i) { p[i] += sp[i].first; }
