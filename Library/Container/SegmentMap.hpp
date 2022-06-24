@@ -60,11 +60,12 @@ public:
         if(l < 0 || r >= n) { throw std::runtime_error(""); }
         if(l > r) { throw std::runtime_error(""); }
         auto it = std::prev(mp.upper_bound(l));
-        std::deque<std::pair<int, int>> dq;
+        std::deque<std::pair<int, std::pair<int, int>>> dq;
         while(it->first <= r) {
             int nx = std::next(it)->first;
-            int len = std::min(nx - 1, r) - std::max(l, it->first) + 1;
-            dq.emplace_back(it->second, len);
+            int nr = std::min(nx - 1, r);
+            int nl = std::max(l, it->first);
+            dq.emplace_back(it->second, std::pair<int, int>{nl,nr});
             ++it;
         }
         return dq;
@@ -73,8 +74,9 @@ public:
     auto get(int i) {
         auto it = std::prev(mp.upper_bound(i));
         int nx = std::next(it)->first;
-        int len = nx - it->first;
-        return std::pair{it->second,len};
+        int nr = nx - 1;
+        int nl = it->first;
+        return std::pair{it->second,std::pair{nl,nr}};
     }
 
 };
