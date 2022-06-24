@@ -4,11 +4,14 @@
 #include <stdexcept>
 #include <deque>
 
-class SegmentMap {
-    const int n;
-    std::map<int, int> mp;
 
-    auto add(int i, int val, bool left = true, bool right = true) {
+template<class ValType = long long, class SizeType = long long>
+class SegmentMap {
+
+    const SizeType n;
+    std::map<SizeType, ValType> mp;
+
+    auto add(SizeType i, ValType val, bool left = true, bool right = true) {
         auto it = std::prev(mp.upper_bound(i));
         if(right && std::next(it)->second == val) { mp.erase(std::next(it)); }
         if(left && it->second == val) { return; }
@@ -16,7 +19,7 @@ class SegmentMap {
 
     }
 
-    auto remove(int l, int r, const decltype(mp)::iterator& it) {
+    auto remove(SizeType l, SizeType r, auto& it) {
         auto nx = std::next(it)->first;
         auto val = it->second;
         auto ret = std::next(it);
@@ -25,7 +28,7 @@ class SegmentMap {
         return ret;
     }
 
-    auto remove(int l, int r) {
+    auto remove(SizeType l, SizeType r) {
         auto it = std::prev(mp.upper_bound(l));
         while(it->first <= r) {
             it = remove(l, r, it);
@@ -35,7 +38,7 @@ class SegmentMap {
 
 public:
 
-    SegmentMap(int n) :n(n) {
+    SegmentMap(SizeType n) :n(n) {
         mp.emplace(-1, -1);
         mp.emplace(0, -2);
         mp.emplace(n, -1);
@@ -49,34 +52,33 @@ public:
         }
     }
 
-    auto update(int l, int r, int val) {
+    auto update(SizeType l, SizeType r, ValType val) {
         if(l < 0 || r >= n) { throw std::runtime_error(""); }
         if(l > r) { throw std::runtime_error(""); }
         remove(l, r);
         add(l, val);
     }
 
-    auto query(int l, int r) {
+    auto query(SizeType l, SizeType r) {
         if(l < 0 || r >= n) { throw std::runtime_error(""); }
         if(l > r) { throw std::runtime_error(""); }
         auto it = std::prev(mp.upper_bound(l));
-        std::deque<std::pair<int, std::pair<int, int>>> dq;
+        std::deque<std::pair<ValType, std::pair<SizeType, SizeType>>> dq;
         while(it->first <= r) {
-            int nx = std::next(it)->first;
-            int nr = std::min(nx - 1, r);
-            int nl = std::max(l, it->first);
-            dq.emplace_back(it->second, std::pair<int, int>{nl,nr});
+            auto nx = std::next(it)->first;
+            auto nr = std::min(nx - 1, r);
+            auto nl = std::max(l, it->first);
+            dq.emplace_back(it->second, std::pair{nl,nr});
             ++it;
         }
         return dq;
     }
 
-    auto get(int i) {
+    auto get(SizeType i) {
         auto it = std::prev(mp.upper_bound(i));
-        int nx = std::next(it)->first;
-        int nr = nx - 1;
-        int nl = it->first;
+        auto nx = std::next(it)->first;
+        auto nr = nx - 1;
+        auto nl = it->first;
         return std::pair{it->second,std::pair{nl,nr}};
     }
-
 };
