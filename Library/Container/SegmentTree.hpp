@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <deque>
 #include <utility>
 
 template<class T>
@@ -17,32 +18,51 @@ class SegmentTree {
 private:
     const int m_size;
     vector<Monoid> m_node;
+    using S = decltype(Monoid().m_val);
 
     int calcSize(int n) const { int size = 1; while(size < n) { size <<= 1; }return size; }
 
-    auto _query(int a, int b) {
-        return _query(a, b + 1, 0, 0, m_size);
-    }
-    auto _query(int a, int b, int k, int l, int r) {
-        if(r <= a || b <= l) { return Monoid(); }
-        if(a <= l && r <= b) { return m_node[k]; }
-        return _query(a, b, 2 * k + 1, l, (l + r) / 2).binaryOperation(
-            _query(a, b, 2 * k + 2, (l + r) / 2, r)
-        );
-    }
-public:
-    SegmentTree(int n) : m_size(calcSize(n)), m_node(m_size * 2 - 1) {}
-
-    auto add(int itr, Monoid&& val) {
+    auto _add(int itr, Monoid&& val) {
         int i = itr + m_size - 1;
         m_node[i] = std::forward<decltype(val)>(val);
-        while(i > 0) {
-            i = (i - 1) / 2;
-            m_node[i] = m_node[i * 2 + 1].binaryOperation(m_node[i * 2 + 2]);
+        while(i) {
+            i = (i - 1) >> 1;
+            m_node[i] = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);
         }
     }
-    auto query(int a, int b, int k, int l, int r) { return _query(a, b, k, l, r).m_val; }
-    auto query(int a, int b) { return query(a, b + 1, 0, 0, m_size); }
+
+    auto _query(int _l, int _r) const {
+        auto l = _l + m_size;
+        int r = _r + m_size;
+        std::deque<Monoid> dq;
+        while(l < r) {
+            if(l & 1) { dq.emplace_front(m_node[l - 1]); ++l; }
+            if(r & 1) { --r; dq.emplace_back(m_node[r - 1]); }
+            l >>= 1, r >>= 1;
+        }
+        auto res = Monoid();
+        for(auto&& m : dq) { res = res.binaryOperation(m); }
+        return res;
+    }
+    auto _construct(const std::vector<S>& vec) {
+        for(unsigned int i = 0; i < vec.size(); ++i) {
+            m_node[i + m_size - 1] = Monoid(vec[i]);
+        }
+        for(int i = m_size - 2; i >= 0; --i) {
+            m_node[i] = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);
+        }
+    }
+public:
+    SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size << 1) - 1) {}
+    SegmentTree(int n, const std::vector<S>& vec) :SegmentTree(n) { _construct(vec); }
+
+    auto add(int itr, Monoid&& val) { return _add(itr, std::forward<Monoid>(val)); }
+    auto query(int l, int r)const { return _query(l, r + 1).m_val; }
+
+    auto output()const {
+        for(int i = 0; i < m_size; ++i) { std::cout << m_node[m_size + i - 1] << " "; }
+        std::cout << std::endl;
+    }
 };
 
 
@@ -57,4 +77,7 @@ struct Monoid {
     Monoid() :m_val(element) {}
     Monoid(S val) :m_val(val) {}
     Monoid binaryOperation(const Monoid& m2)const { return T()(m_val, m2.m_val); }
+    friend std::ostream& operator<<(std::ostream& os, const Monoid<S, element, T>& m) {
+        return os << m.m_val;
+    }
 };
