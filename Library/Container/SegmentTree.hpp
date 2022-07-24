@@ -22,9 +22,10 @@ private:
 
     int calcSize(int n) const { int size = 1; while(size < n) { size <<= 1; }return size; }
 
-    auto _add(int itr, Monoid&& val) {
+    template<class Lambda>
+    auto _update_op(int itr, Monoid&& val, const Lambda& op) {
         int i = itr + m_size - 1;
-        m_node[i] = std::forward<decltype(val)>(val);
+        m_node[i] = op(m_node[i], std::forward<decltype(val)>(val));
         while(i) {
             i = (i - 1) >> 1;
             m_node[i] = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);
@@ -56,7 +57,10 @@ public:
     SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size << 1) - 1) {}
     SegmentTree(int n, const std::vector<S>& vec) :SegmentTree(n) { _construct(vec); }
 
-    auto add(int itr, Monoid&& val) { return _add(itr, std::forward<Monoid>(val)); }
+    template<class Lambda>
+    auto update_op(int itr, Monoid&& val, const Lambda& op) { return _update_op(itr, std::forward<Monoid>(val), op); }
+    auto update(int itr, Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid&, const Monoid& m2) {return m2; }); }
+    auto add(int itr, Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid& m1, const Monoid& m2) {return Monoid(m1.m_val + m2.m_val); }); }
     auto query(int l, int r)const { return _query(l, r + 1).m_val; }
 
     auto output()const {
