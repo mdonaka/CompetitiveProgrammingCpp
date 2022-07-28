@@ -164,4 +164,19 @@ public:
 
         return cut;
     }
+
+    auto get_edge(long long s, long long t)const {
+        auto residual = construct_residual(s, t);
+
+        Graph_f edge;
+        for(long long from = 0; from < m_n; ++from) {
+            for(const auto& to : m_to_list[from]) {
+                if(m_graph.find({from,to}) == m_graph.end()) { continue; }
+                auto val = m_graph.at({from, to}) - residual[{from, to}];
+                if(val > 0) { edge.emplace(from, std::pair<long long, long long>{to, val}); }
+            }
+        }
+        return edge;
+
+    }
 };
