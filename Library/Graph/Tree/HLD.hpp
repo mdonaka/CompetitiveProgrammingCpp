@@ -8,7 +8,7 @@ class HLD {
 
     using node_t = int;
     using Graph_f = std::unordered_multimap<node_t, node_t>;
-    using Graph = std::vector<std::deque<node_t>>;
+    using Graph = std::unordered_map<node_t, std::deque<node_t>>;
 
     const Graph m_tree;
     const std::vector<node_t> m_height;
@@ -34,21 +34,25 @@ class HLD {
         }
 
         std::vector<node_t> size(n, 1);
-        Graph hld_tree(n);
+        Graph hld_tree;
         for(const auto& [f, p] : order) {
             auto range = tree.equal_range(f);
             node_t size_sum = 1;
             node_t size_max = 0;
+            std::deque<node_t> to_list;
             for(auto itr = range.first; itr != range.second; ++itr) {
                 auto t = itr->second;
                 if(t == p) { continue; }
                 if(size[t] > size_max) {
                     size_max = size[t];
-                    hld_tree[f].emplace_front(t);
+                    to_list.emplace_front(t);
                 } else {
-                    hld_tree[f].emplace_back(t);
+                    to_list.emplace_back(t);
                 }
                 size_sum += size[t];
+            }
+            if(!to_list.empty()) {
+                hld_tree.emplace(f, to_list);
             }
             size[f] = size_sum;
         }
@@ -62,11 +66,11 @@ class HLD {
             auto [f, root, par] = stk.top();
             stk.pop();
 
-            if(tree[f].empty()) { root_par[f] = {root,par}; continue; }
-            auto itr = tree[f].begin();
+            if(tree.find(f) == tree.end()) { root_par[f] = {root,par}; continue; }
+            auto itr = tree.at(f).begin();
             stk.emplace(*itr, root, par);
             root_par[f] = {root,par};
-            for(++itr; itr != tree[f].end(); ++itr) {
+            for(++itr; itr != tree.at(f).end(); ++itr) {
                 stk.emplace(*itr, *itr, f);
             }
         }
@@ -79,7 +83,8 @@ class HLD {
         while(!q.empty()) {
             auto f = q.front();
             q.pop();
-            for(const auto& t : tree[f]) {
+            if(tree.find(f) == tree.end()) { continue; }
+            for(const auto& t : tree.at(f)) {
                 height[t] = height[f] + 1;
                 q.emplace(t);
             }
@@ -103,7 +108,8 @@ public:
             auto f = stk.top();
             stk.pop();
             id[f] = val; ++val;
-            for(const auto& t : tree[f]) { stk.emplace(t); }
+            if(tree.find(f) == tree.end()) { continue; }
+            for(const auto& t : tree.at(f)) { stk.emplace(t); }
         }
         return id;
     }
