@@ -10,9 +10,11 @@ class HLD {
     using Graph_f = std::unordered_multimap<node_t, node_t>;
     using Graph = std::unordered_map<node_t, std::deque<node_t>>;
 
+    const node_t m_n;
     const Graph m_tree;
     const std::vector<node_t> m_height;
     const std::vector<std::pair<node_t, node_t>> m_root_par;
+    const std::vector<node_t> m_ids;
 
     static auto constructGraph(node_t n, const Graph_f& tree) {
         std::deque<std::pair<node_t, node_t>> order;
@@ -45,9 +47,9 @@ class HLD {
                 if(t == p) { continue; }
                 if(size[t] > size_max) {
                     size_max = size[t];
-                    to_list.emplace_front(t);
-                } else {
                     to_list.emplace_back(t);
+                } else {
+                    to_list.emplace_front(t);
                 }
                 size_sum += size[t];
             }
@@ -76,7 +78,7 @@ class HLD {
         }
         return root_par;
     }
-    static auto construcHeight(node_t n, const Graph& tree) {
+    static auto constructHeight(node_t n, const Graph& tree) {
         std::vector<node_t> height(n);
         std::queue<node_t> q;
         q.emplace(0);
@@ -91,27 +93,30 @@ class HLD {
         }
         return height;
     }
-public:
 
-    HLD(node_t n, const Graph_f& tree) :
-        m_tree(constructGraph(n, tree)),
-        m_root_par(constructRootPar(n, m_tree)),
-        m_height(construcHeight(n, m_tree)) {
-    }
-
-    auto getId(node_t n, const Graph& tree) const {
-        std::vector<node_t> id(n);
+    auto constructIds() const {
+        std::vector<node_t> ids(m_n);
         node_t val = 0;
         std::stack<node_t> stk;
         stk.emplace(0);
         while(!stk.empty()) {
             auto f = stk.top();
             stk.pop();
-            id[f] = val; ++val;
-            if(tree.find(f) == tree.end()) { continue; }
-            for(const auto& t : tree.at(f)) { stk.emplace(t); }
+            ids[f] = val; ++val;
+            if(m_tree.find(f) == m_tree.end()) { continue; }
+            for(const auto& t : m_tree.at(f)) { stk.emplace(t); }
         }
-        return id;
+        return ids;
+    }
+
+public:
+
+    HLD(node_t n, const Graph_f& tree) :
+        m_n(n),
+        m_tree(constructGraph(n, tree)),
+        m_root_par(constructRootPar(n, m_tree)),
+        m_height(constructHeight(n, m_tree)),
+        m_ids(constructIds()) {
     }
 
     auto lca(node_t f, node_t t)const {
@@ -126,6 +131,15 @@ public:
         return (m_height[f] < m_height[t]) ? f : t;
     }
 
+    auto hld_order_vec()const {
+        std::vector<node_t> order(m_n);
+        for(int i = 0; i < m_n; ++i) { order[m_ids[i]] = i; }
+        return order;
+    }
+
+    auto get_id(ll i)const { return m_ids[i]; }
+
     auto range(node_t f, node_t t)const {
+
     }
 };
