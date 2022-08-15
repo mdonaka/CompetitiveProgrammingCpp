@@ -11,6 +11,7 @@ class HLD {
     using Graph = std::unordered_map<node_t, std::deque<node_t>>;
 
     const node_t m_n;
+    const std::vector<node_t> m_size;
     const Graph m_tree;
     const std::vector<node_t> m_height;
     const std::vector<std::pair<node_t, node_t>> m_root_par;
@@ -62,6 +63,41 @@ class HLD {
         }
         return hld_tree;
     }
+
+    static auto constructSize(node_t n, const Graph_f& tree) {
+        std::deque<std::pair<node_t, node_t>> order;
+        std::vector<node_t> used(n);
+        std::stack<std::pair<node_t, node_t>> stk;
+        stk.emplace(0, -1); used[0] = true;
+        while(!stk.empty()) {
+            auto [f, p] = stk.top();
+            order.emplace_front(f, p);
+            stk.pop();
+            auto range = tree.equal_range(f);
+            for(auto itr = range.first; itr != range.second; ++itr) {
+                auto t = itr->second;
+                if(!used[t]) {
+                    used[t] = true;
+                    stk.emplace(t, f);
+                }
+            }
+        }
+
+        std::vector<node_t> size(n, 1);
+        for(const auto& [f, p] : order) {
+            auto range = tree.equal_range(f);
+            node_t size_sum = 1;
+            for(auto itr = range.first; itr != range.second; ++itr) {
+                auto t = itr->second;
+                if(t == p) { continue; }
+                size_sum += size[t];
+            }
+            size[f] = size_sum;
+        }
+        return size;
+
+    }
+
     static auto constructRootPar(node_t n, const Graph& tree) {
         std::vector<std::pair<node_t, node_t>> root_par(n);
         std::stack<std::tuple<node_t, node_t, node_t>> stk;
@@ -142,6 +178,7 @@ public:
 
     HLD(node_t n, const Graph_f& tree) :
         m_n(n),
+        m_size(constructSize(n, tree)),
         m_tree(constructGraph(n, tree)),
         m_root_par(constructRootPar(n, m_tree)),
         m_height(constructHeight(n, m_tree)),
@@ -206,5 +243,11 @@ public:
             if(fph < tph) { add(t, tr); t = tp; } else { add(f, fr); f = fp; }
         } while(true);
         return ret;
+    }
+
+    auto rangeSubTree(node_t f)const {
+        return std::pair<node_t, node_t>{
+            m_ids[f], m_ids[f] + m_size[f] - 1
+        };
     }
 };
