@@ -69,10 +69,10 @@ class HLD {
             stk.pop();
 
             if(tree.find(f) == tree.end()) { root_par[f] = {root,par}; continue; }
-            auto itr = tree.at(f).begin();
+            auto itr = tree.at(f).rbegin();
             stk.emplace(*itr, root, par);
             root_par[f] = {root,par};
-            for(++itr; itr != tree.at(f).end(); ++itr) {
+            for(++itr; itr != tree.at(f).rend(); ++itr) {
                 stk.emplace(*itr, *itr, f);
             }
         }
@@ -118,6 +118,13 @@ public:
         m_height(constructHeight(n, m_tree)),
         m_ids(constructIds()) {
     }
+    auto hld_order_vec()const {
+        std::vector<node_t> order(m_n);
+        for(int i = 0; i < m_n; ++i) { order[m_ids[i]] = i; }
+        return order;
+    }
+
+    auto get_id(node_t i)const { return m_ids[i]; }
 
     auto lca(node_t f, node_t t)const {
         do {
@@ -131,15 +138,21 @@ public:
         return (m_height[f] < m_height[t]) ? f : t;
     }
 
-    auto hld_order_vec()const {
-        std::vector<node_t> order(m_n);
-        for(int i = 0; i < m_n; ++i) { order[m_ids[i]] = i; }
-        return order;
-    }
-
-    auto get_id(ll i)const { return m_ids[i]; }
-
     auto range(node_t f, node_t t)const {
-
+        std::deque<std::pair<node_t, node_t>> ret;
+        auto add = [&](node_t f, node_t t) {
+            auto l = std::min(m_ids[f], m_ids[t]);
+            auto r = std::max(m_ids[f], m_ids[t]);
+            ret.emplace_back(l, r);
+        };
+        do {
+            auto [fr, fp] = m_root_par[f];
+            auto [tr, tp] = m_root_par[t];
+            if(fr == tr) { add(f, t); break; }
+            auto fph = (fp > -1) ? m_height[fp] : -1;
+            auto tph = (tp > -1) ? m_height[tp] : -1;
+            if(fph < tph) { add(t, tr); t = tp; } else { add(f, fr); f = fp; }
+        } while(true);
+        return ret;
     }
 };
