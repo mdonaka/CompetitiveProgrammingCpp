@@ -99,3 +99,68 @@ struct Monoid {
         return os << m.m_val;
     }
 };
+
+/*
+各種頻出サンプル
+ex) 区間最小値，区間更新
+LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>
+
+//---- 要素 ----
+PAIR base_s{0,1};
+struct F_RSQ {
+    auto operator()(const PAIR& a, const PAIR& b)const {
+        return PAIR{a.first + b.first,a.second + b.second};
+    }
+};
+using M_S = Monoid<PAIR, base_s, F_RSQ>;
+
+ll base_m{static_cast<ll>(1e18)};
+struct F_RMQ {
+    auto operator()(ll a, ll b)const {
+        return std::min(a, b);
+    }
+};
+using M_M = Monoid<ll, base_m, F_RMQ>;
+
+//---- 作用素 ----
+ll base_u{static_cast<ll>(-1e18)};
+struct F_RUQ {
+    auto operator()(ll a, ll b)const {
+        if(b == base_u) { return a; }
+        return b;
+    }
+};
+using M_U = Monoid<ll, base_u, F_RUQ>;
+
+ll base_a{static_cast<ll>(0)};
+struct F_RAQ {
+    auto operator()(ll a, ll b)const {
+        return a + b;
+    }
+};
+using M_A = Monoid<ll, base_a, F_RAQ>;
+
+//---- 作用 ----
+struct OP_RUQ_RSQ {
+    auto operator()(const M_S& m, const M_U& m2) {
+        if(m2.m_val == base_u) { return m; }
+        return M(PAIR{m.m_val.second * m2.m_val,m.m_val.second});
+    }
+};
+struct OP_RUQ_RMQ {
+    auto operator()(const M_M& m, const M_U& m2) {
+        if(m2.m_val == base_u) { return m; }
+        return M_M(m2.m_val);
+    }
+};
+struct OP_RAQ_RSQ {
+    auto operator()(const M_S& m, const M_A& m2) {
+        return M_S(PAIR{m.m_val.first + m.m_val.second * m2.m_val,m.m_val.second});
+    }
+};
+struct OP_RAQ_RMQ {
+    auto operator()(const M_M& m, const M_A& m2) {
+        return M_M{m.m_val + m2.m_val};
+    }
+};
+*/
