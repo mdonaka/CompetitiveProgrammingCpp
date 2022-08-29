@@ -5,7 +5,7 @@
 #include <list>
 #include <queue>
 #include <vector>
-#include "./../../debug.hpp"
+#include "./../../Utils/debug.hpp"
 #include <unordered_map>
 using std::cout;
 using std::cin;
