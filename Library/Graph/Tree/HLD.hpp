@@ -153,7 +153,7 @@ class HLD {
         return order;
     }
     /*
-     * �ӂ�node�Ƃ��Ċg�������ꍇ�̕�node����ID��U��
+     * 辺をnodeとして拡張した場合の辺nodeだけIDを振る
      * (1) - (2)
      * (1) - (e) - (2)
      * [-1, -1, 0]

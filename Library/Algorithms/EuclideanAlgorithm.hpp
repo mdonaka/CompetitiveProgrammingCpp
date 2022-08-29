@@ -7,7 +7,7 @@ class EuclideanAlgorithm {
 
     const T m_a;
     const T m_b;
-    const T m_mx; // ‘å‚«‚·‚¬‚é‚ÆƒI[ƒo[ƒtƒ[‚µ‚Ä‚µ‚Ü‚¤
+    const T m_mx; // å¤§ãã™ãã‚‹ã¨ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã—ã¦ã—ã¾ã†
 
     T m_gcd;
     T m_x;
@@ -25,7 +25,7 @@ class EuclideanAlgorithm {
     }
 
     auto kRange(T x, T b, T l) const -> std::tuple<T, T> {
-        // x + b * k >= l ‚ğ–‚½‚· k ‚Ì”ÍˆÍ‚ğ‹‚ß‚é
+        // x + b * k >= l ã‚’æº€ãŸã™ k ã®ç¯„å›²ã‚’æ±‚ã‚ã‚‹
         T xd = (l - x);
         if(b == 0 && x >= l) { return {-m_mx,m_mx}; }
         if(b == 0 && x < l) { return {m_mx,-m_mx}; }

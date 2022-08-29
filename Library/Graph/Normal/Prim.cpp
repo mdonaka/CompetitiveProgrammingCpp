@@ -1,6 +1,6 @@
 /*
- * Prim–@‚É‚æ‚éÅ¬‘Sˆæ–Ø\¬
- * O(E+VlogV)H
+ * Primæ³•ã«ã‚ˆã‚‹æœ€å°å…¨åŸŸæœ¨æ§‹æˆ
+ * O(E+VlogV)ï¼Ÿ
  */
 std::unordered_multimap<ll, PAIR> Prim(ll n, const unordered_multimap<ll, PAIR>& graph) {
 

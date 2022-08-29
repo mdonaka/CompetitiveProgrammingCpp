@@ -1,5 +1,5 @@
 /**
- * d‚İ‚È‚µƒOƒ‰ƒt‚ÌBFS
+ * é‡ã¿ãªã—ã‚°ãƒ©ãƒ•ã®BFS
  */
 V<bool> isUsed(n, false); isUsed[0] = true;
 queue<PAIR> q;	q.emplace(0, 0);

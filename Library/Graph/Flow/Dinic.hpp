@@ -96,7 +96,7 @@ class Dinic {
             auto f = [&](auto&& f, node_t now, std::list<node_t>& route)->void {
                 route.emplace_back(now);
 
-                // t‚É“’B‚µ‚Ä‚¢‚ê‚Î—¬‚·
+                // tã«åˆ°é”ã—ã¦ã„ã‚Œã°æµã™
                 if(now == t) { update_residual(s, residual, route); run = true; }
 
                 for(const auto& to : m_to_list[now]) {
@@ -135,7 +135,7 @@ public:
     }
 
     auto get_cut_list(node_t s, node_t t) const {
-        // c—]ƒOƒ‰ƒt‚Ån“_‚©‚ç“’B‚Å‚«‚éW‡
+        // æ®‹ä½™ã‚°ãƒ©ãƒ•ã§å§‹ç‚¹ã‹ã‚‰åˆ°é”ã§ãã‚‹é›†åˆ
         std::unordered_set<node_t> st;
 
         auto residual = construct_residual(s, t);

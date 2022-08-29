@@ -131,7 +131,7 @@ class SuccessiveShortestPath {
         return route;
     }
 public:
-    /* ’PƒƒOƒ‰ƒt‚ğ‰¼’è */
+    /* å˜ç´”ã‚°ãƒ©ãƒ•ã‚’ä»®å®š */
     SuccessiveShortestPath(int n, const GraphInput& graph) :
         m_n(n),
         m_graph_to(construct_graph_to(graph)),
