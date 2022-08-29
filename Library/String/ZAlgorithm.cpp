@@ -1,7 +1,7 @@
 /**
- * Z algorithm‚É‚æ‚èZ Array‚ð\’z‚·‚é
+ * Z algorithmã«ã‚ˆã‚ŠZ Arrayã‚’æ§‹ç¯‰ã™ã‚‹
  * O(N)
- * S[0..]‚ÆS[i..]‚Ì‹¤’ÊÚ“ªŽ«”
+ * S[0..]ã¨S[i..]ã®å…±é€šæŽ¥é ­è¾žæ•°
  * ex) aaabaaaab -> [9, 2, 1, 0, 3, 4, 2, 1, 0]
  */
 class ZAlgorithm {

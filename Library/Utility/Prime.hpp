@@ -28,7 +28,7 @@ public:
 
 	Prime(int n) :n(n), p_list(std::get<0>(linearSieve(n))) {}
 
-	/* n‚Ísqrt(max(x))‚ ‚ê‚Î\•ª‚È‚Ì‚Å‹C‚ğ•t‚¯‚é */
+	/* nã¯sqrt(max(x))ã‚ã‚Œã°ååˆ†ãªã®ã§æ°—ã‚’ä»˜ã‘ã‚‹ */
 	auto factorization(int x) const {
 		std::unordered_map<int, int> table;
 		for (const auto& p : p_list) {

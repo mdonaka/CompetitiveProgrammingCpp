@@ -1,5 +1,5 @@
 /**
- * ü•ª‚ÌŒğ·”»’è
+ * ç·šåˆ†ã®äº¤å·®åˆ¤å®š
  * https://qiita.com/ykob/items/ab7f30c43a0ed52d16f2
  */
 bool judgeIentersected(double ax, double ay, double bx, double by,
@@ -10,5 +10,5 @@ bool judgeIentersected(double ax, double ay, double bx, double by,
 	auto td = (ax - bx) * (dy - ay) + (ay - by) * (ax - dx);
 
 	// return tc * td < 0 && ta * tb < 0;
-	return tc * td <= 0 && ta * tb <= 0; // ’[“_‚ğŠÜ‚Şê‡
+	return tc * td <= 0 && ta * tb <= 0; // ç«¯ç‚¹ã‚’å«ã‚€å ´åˆ
 };

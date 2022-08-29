@@ -114,7 +114,7 @@ public:
 
 
 	auto get_cut_list(node_t s, node_t t) const {
-		// c—]ƒOƒ‰ƒt‚Ån“_‚©‚ç“’B‚Å‚«‚éW‡
+		// æ®‹ä½™ã‚°ãƒ©ãƒ•ã§å§‹ç‚¹ã‹ã‚‰åˆ°é”ã§ãã‚‹é›†åˆ
 		std::unordered_set<node_t> st;
 
 		auto residual = construct_residual(s, t);

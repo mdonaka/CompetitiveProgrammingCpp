@@ -1,7 +1,7 @@
 /**
- * ƒNƒ‰ƒXƒJƒ‹–@‚É‚æ‚éÅ¬‘Sˆæ–Ø\¬
- * O(ElogE)H
- * Unionfind–Ø‚ª•K—v
+ * ã‚¯ãƒ©ã‚¹ã‚«ãƒ«æ³•ã«ã‚ˆã‚‹æœ€å°å…¨åŸŸæœ¨æ§‹æˆ
+ * O(ElogE)ï¼Ÿ
+ * Unionfindæœ¨ãŒå¿…è¦
  */
 std::unordered_multimap<ll, PAIR> Kruskal(ll n, const unordered_multimap<ll, PAIR>& graph) {
 

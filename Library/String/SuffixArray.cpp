@@ -1,10 +1,10 @@
 /**
- * SuffixArray‚ğ\’z‚·‚é
+ * SuffixArrayã‚’æ§‹ç¯‰ã™ã‚‹
  * O(N)
- * •¶š—ñ‚Ì‘S‚Ä‚Ìsuffix‚ğƒ\[ƒg‚µ‚½”z—ñ‚ª“¾‚ç‚ê‚é
+ * æ–‡å­—åˆ—ã®å…¨ã¦ã®suffixã‚’ã‚½ãƒ¼ãƒˆã—ãŸé…åˆ—ãŒå¾—ã‚‰ã‚Œã‚‹
  * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])
  *
- * SA-IS(Suffix Array - Induced Sort)‚ÅÀ‘•
+ * SA-IS(Suffix Array - Induced Sort)ã§å®Ÿè£…
  */
 class SuffixArray {
 	enum class TYPE {
@@ -173,7 +173,7 @@ public:
 	SuffixArray(const std::string& str) :m_str(str), m_suffixArray(constructSuffixArray(toIntVec(str))) {}
 
 	/**
-	 * ˆø”‚Æ‚µ‚Ä—^‚¦‚ç‚ê‚½pattern‚ÌoŒ»ˆÊ’uƒŠƒXƒg‚ğ•Ô‚·
+	 * å¼•æ•°ã¨ã—ã¦ä¸ãˆã‚‰ã‚ŒãŸpatternã®å‡ºç¾ä½ç½®ãƒªã‚¹ãƒˆã‚’è¿”ã™
 	 */
 	std::list<int> findPattern(const std::string& pattern) const {
 

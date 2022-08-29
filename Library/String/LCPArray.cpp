@@ -1,11 +1,11 @@
 /**
- * ¦ SuffixArrayƒNƒ‰ƒX‚ª•K—v
- * LCPArray‚ğ\’z‚·‚é
+ * â€» SuffixArrayã‚¯ãƒ©ã‚¹ãŒå¿…è¦
+ * LCPArrayã‚’æ§‹ç¯‰ã™ã‚‹
  * O(N)
- * suffix array‚Å—×Ú‚·‚éstr‚ÌÅ’·‹¤’ÊÚ“ª«(LCP:Longest Common Prefix)‚ğ“¾‚é
+ * suffix arrayã§éš£æ¥ã™ã‚‹strã®æœ€é•·å…±é€šæ¥é ­è¾(LCP:Longest Common Prefix)ã‚’å¾—ã‚‹
  * ex) sa:[aab, ab, abaab, b, baab] -> LCPA:[1, 2, 0, 1]
  *
- * Kasai's algorithm‚ÅÀ‘•
+ * Kasai's algorithmã§å®Ÿè£…
  */
 class LCPArray {
 

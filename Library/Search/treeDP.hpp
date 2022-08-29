@@ -1,4 +1,4 @@
-﻿#include <unordered_map>
+#include <unordered_map>
 #include <queue>
 
 template<class Lambda>

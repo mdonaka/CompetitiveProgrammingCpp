@@ -58,7 +58,7 @@ public:
 }calc;
 
 /**
-*	MOD‚È‚µcombination
+*	MODãªã—combination
 *	n< 51, r<51
 */
 long long combFast(long long a, long long b) {
@@ -81,7 +81,7 @@ long long combFast(long long a, long long b) {
 }
 
 /**
-*	ƒVƒ“ƒvƒ‹combination
+*	ã‚·ãƒ³ãƒ—ãƒ«combination
 *	O(r)
 */
 long long combSimple(long long a, long long b) {
