@@ -14,7 +14,7 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.6/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ Main/main_srm.cpp: line 28: unable to process #include in #if / #ifdef / #ifndef\
+    \ Main/main_srm.cpp: line 29: unable to process #include in #if / #ifdef / #ifndef\
     \ other than include guards\n"
   code: "//#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f\"\
     )\r\n#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx\")\r\n#pragma\
@@ -24,8 +24,8 @@ data:
     \n#include <unordered_set>\r\n#include <list>\r\n#include <stack>\r\n#include\
     \ <queue>\r\n#include <bitset>\r\n#include <numeric>\r\n#include <cassert>\r\n\
     #include <memory>\r\n#include <random>\r\n#include <functional>\r\n#include <complex>\r\
-    \n#include <immintrin.h>\r\n#include <stdexcept>\r\n#ifdef DEBUG\r\n#include \"\
-    ./CompetitiveProgrammingCpp/debug.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Timer.hpp\"\
+    \n#include <immintrin.h>\r\n#include <stdexcept>\r\n#define IGNORE\r\n#ifdef DEBUG\r\
+    \n#include \"./CompetitiveProgrammingCpp/debug.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Timer.hpp\"\
     \r\n#include \"./CompetitiveProgrammingCpp/sample.hpp\"\r\n#else\r\n#define dump(...)\r\
     \n#endif\r\n\r\n/* macro */\r\n#define FOR(i, b, e) for(ll i = (ll)(b); i < (ll)(e);\
     \ ++i)\r\n#define RFOR(i, b, e) for(ll i = (ll)((e)-1); i >= (ll)(b); --i)\r\n\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: Main/main_srm.cpp
   requiredBy: []
-  timestamp: '2022-08-30 03:53:25+09:00'
+  timestamp: '2022-08-30 05:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main_srm.cpp
