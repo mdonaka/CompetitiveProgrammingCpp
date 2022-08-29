@@ -13,8 +13,8 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <memory>\r\
     \n#include <string>\r\n#include <iostream>\r\n#include <list>\r\n#include <queue>\r\
-    \n#include <vector>\r\n#line 2 \"Utils/debug.hpp\"\n#define IGNORE\n#include <concepts>\n\
-    #line 6 \"Utils/debug.hpp\"\n#include <string_view>\n\ntemplate<class T>constexpr\
+    \n#include <vector>\r\n#line 2 \"Utils/debug.hpp\"\n#include <concepts>\n#line\
+    \ 5 \"Utils/debug.hpp\"\n#include <string_view>\n\ntemplate<class T>constexpr\
     \ inline auto d_val(T a, T b) { return b; }\n\n// debug\u7528\u51FA\u529B\u30DE\
     \u30AF\u30ED\n#define dump(...)                                              \
     \ \\\n  do {                                                          \\\n   \
@@ -208,7 +208,7 @@ data:
   isVerificationFile: false
   path: Library/String/PalindromicTree.hpp
   requiredBy: []
-  timestamp: '2022-08-30 05:07:28+09:00'
+  timestamp: '2022-08-30 04:49:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/String/PalindromicTree.hpp
