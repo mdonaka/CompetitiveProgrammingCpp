@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/search/volumes/0516"
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516"
 
 #include <iostream>
 #include <map>
