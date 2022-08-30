@@ -11,9 +11,9 @@ data:
       title: Library/Algorithms/Mo.hpp
   - name: Library/Container
     pages:
-    - icon: ':warning:'
-      path: Library/Container/CumulativeSum.cpp
-      title: Library/Container/CumulativeSum.cpp
+    - icon: ':question:'
+      path: Library/Container/Accumulation.hpp
+      title: Library/Container/Accumulation.hpp
     - icon: ':warning:'
       path: Library/Container/CumulativeSum2D.cpp
       title: Library/Container/CumulativeSum2D.cpp
@@ -160,6 +160,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/Mo.test.cpp
       title: Test/Algorithms/Mo.test.cpp
+  - name: Test/Container
+    pages:
+    - icon: ':x:'
+      path: Test/Container/Accumulation_sum.test.cpp
+      title: Test/Container/Accumulation_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/Accumulation_xor.test.cpp
+      title: Test/Container/Accumulation_xor.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
