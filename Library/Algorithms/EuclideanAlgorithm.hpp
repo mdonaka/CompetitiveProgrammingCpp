@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <tuple>
 
 class EuclideanAlgorithm {
     using T = long long;
@@ -24,7 +25,7 @@ class EuclideanAlgorithm {
         return {g, x, y};
     }
 
-    auto kRange(T x, T b, T l) const -> std::tuple<T, T> {
+    auto kRange(T x, T b, T l) const -> std::pair<T, T> {
         // x + b * k >= l を満たす k の範囲を求める
         T xd = (l - x);
         if(b == 0 && x >= l) { return {-m_mx,m_mx}; }
@@ -57,18 +58,18 @@ public:
     auto get(T x, T y) const {
         return m_a * x + m_b * y;
     }
-    auto get(T k) const ->std::tuple<T, T> {
+    auto get(T k) const ->std::pair<T, T> {
         if(m_b == 0) { return {m_x,m_y - k}; }
         if(m_a == 0) { return {m_x + k,m_y}; }
         return {m_x + m_b * k, m_y - m_a * k};
     }
-    auto getMinX(T x_l = 0)const -> std::tuple<T, T> {
+    auto getMinX(T x_l = 0)const -> std::pair<T, T> {
         return kRange(m_x, m_b, x_l);
     }
-    auto getMinY(T y_l = 0)const -> std::tuple<T, T> {
+    auto getMinY(T y_l = 0)const -> std::pair<T, T> {
         return kRange(m_y, -1 * m_a, y_l);
     }
-    auto getMin(T x_l = 0, T y_l = 0)const -> std::tuple<T, T> {
+    auto getMin(T x_l = 0, T y_l = 0)const -> std::pair<T, T> {
         auto [xl, xr] = getMinX(x_l);
         auto [yl, yr] = getMinY(y_l);
         return {std::max(xl,yl),std::min(xr,yr)};
