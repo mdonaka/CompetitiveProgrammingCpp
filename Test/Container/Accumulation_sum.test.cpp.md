@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Container/Accumulation.hpp
     title: Library/Container/Accumulation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/search/volumes/0516
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516
     links:
-    - https://onlinejudge.u-aizu.ac.jp/challenges/search/volumes/0516
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516
   bundledCode: "#line 1 \"Test/Container/Accumulation_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/challenges/search/volumes/0516\"\r\n\r\n\
-    #include <iostream>\r\n#include <map>\r\n#line 2 \"Library/Container/Accumulation.hpp\"\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <map>\r\n#line 2 \"Library/Container/Accumulation.hpp\"\
     \n#include <vector>\r\n#include <algorithm>\r\n\r\ntemplate<\r\n    class S, \
     \  // \u8981\u7D20\u306E\u578B\r\n    S element, // \u5143\r\n    class T, //\
     \ 2\u9805\u6F14\u7B97\u5B50\r\n    class U // \u9006\u5143\r\n>\r\nstruct Group\
@@ -47,7 +47,7 @@ data:
     \n            auto val = acc.get(i, i + k - 1);\r\n            ans = std::max(ans,\
     \ val);\r\n        }\r\n        cout << ans << endl;\r\n    } while(true);\r\n\
     }\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/search/volumes/0516\"\
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516\"\
     \r\n\r\n#include <iostream>\r\n#include <map>\r\n#include \"./../../Library/Container/Accumulation.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    do {\r\n        ll n, k;\r\n\
@@ -63,8 +63,8 @@ data:
   isVerificationFile: true
   path: Test/Container/Accumulation_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-31 03:49:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-31 03:56:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Container/Accumulation_sum.test.cpp
 layout: document

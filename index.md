@@ -11,7 +11,7 @@ data:
       title: Library/Algorithms/Mo.hpp
   - name: Library/Container
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Container/Accumulation.hpp
       title: Library/Container/Accumulation.hpp
     - icon: ':warning:'
@@ -162,7 +162,7 @@ data:
       title: Test/Algorithms/Mo.test.cpp
   - name: Test/Container
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_sum.test.cpp
       title: Test/Container/Accumulation_sum.test.cpp
     - icon: ':heavy_check_mark:'

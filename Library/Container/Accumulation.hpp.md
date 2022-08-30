@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Container/Accumulation_sum.test.cpp
     title: Test/Container/Accumulation_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Container/Accumulation_xor.test.cpp
     title: Test/Container/Accumulation_xor.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Container/Accumulation.hpp\"\n#include <vector>\r\
@@ -61,7 +61,7 @@ data:
   path: Library/Container/Accumulation.hpp
   requiredBy: []
   timestamp: '2022-08-31 03:38:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Container/Accumulation_sum.test.cpp
   - Test/Container/Accumulation_xor.test.cpp
