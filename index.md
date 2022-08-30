@@ -3,10 +3,10 @@ data:
   libraryCategories:
   - name: Library/Algorithms
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/EuclideanAlgorithm.hpp
       title: Library/Algorithms/EuclideanAlgorithm.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/Mo.hpp
       title: Library/Algorithms/Mo.hpp
   - name: Library/Container
@@ -135,6 +135,9 @@ data:
       path: Main/main.cpp
       title: Main/main.cpp
     - icon: ':warning:'
+      path: Main/main_minimum.cpp
+      title: Main/main_minimum.cpp
+    - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
   - name: Utils
@@ -149,6 +152,14 @@ data:
       path: Utils/sample.hpp
       title: Utils/sample.hpp
   verificationCategories:
+  - name: Test/Algorithms
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Algorithms/EuclideanAlgorithm.test.cpp
+      title: Test/Algorithms/EuclideanAlgorithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Algorithms/Mo.test.cpp
+      title: Test/Algorithms/Mo.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
