@@ -25,14 +25,14 @@ data:
     \ <queue>\r\n#include <bitset>\r\n#include <numeric>\r\n#include <cassert>\r\n\
     #include <memory>\r\n#include <random>\r\n#include <functional>\r\n#include <complex>\r\
     \n#include <immintrin.h>\r\n#include <stdexcept>\r\n#ifdef DEBUG\r\n#include \"\
-    ./CompetitiveProgrammingCpp/debug.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Timer.hpp\"\
-    \r\n#include \"./CompetitiveProgrammingCpp/sample.hpp\"\r\n#else\r\n#define dump(...)\r\
-    \n#endif\r\n\r\n/* macro */\r\n#define FOR(i, b, e) for(ll i = (ll)(b); i < (ll)(e);\
-    \ ++i)\r\n#define RFOR(i, b, e) for(ll i = (ll)((e)-1); i >= (ll)(b); --i)\r\n\
-    #define REP(i, n) FOR(i, 0, (n))\r\n#define RREP(i, n) RFOR(i, 0, (n))\r\n#define\
-    \ REPC(x,c) for(const auto& x:(c))\r\n#define REPI2(it,b,e) for(auto it = (b);\
-    \ it != (e); ++it)\r\n#define REPI(it,c) REPI2(it, (c).begin(), (c).end())\r\n\
-    #define RREPI(it,c) REPI2(it, (c).rbegin(), (c).rend())\r\n#define REPI_ERACE2(it,\
+    ./CompetitiveProgrammingCpp/Utils/debug.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Utils/Timer.hpp\"\
+    \r\n#include \"./CompetitiveProgrammingCpp/Utils/sample.hpp\"\r\n#else\r\n#define\
+    \ dump(...)\r\n#endif\r\n\r\n/* macro */\r\n#define FOR(i, b, e) for(ll i = (ll)(b);\
+    \ i < (ll)(e); ++i)\r\n#define RFOR(i, b, e) for(ll i = (ll)((e)-1); i >= (ll)(b);\
+    \ --i)\r\n#define REP(i, n) FOR(i, 0, (n))\r\n#define RREP(i, n) RFOR(i, 0, (n))\r\
+    \n#define REPC(x,c) for(const auto& x:(c))\r\n#define REPI2(it,b,e) for(auto it\
+    \ = (b); it != (e); ++it)\r\n#define REPI(it,c) REPI2(it, (c).begin(), (c).end())\r\
+    \n#define RREPI(it,c) REPI2(it, (c).rbegin(), (c).rend())\r\n#define REPI_ERACE2(it,\
     \ b, e) for(auto it = (b); it != (e);)\r\n#define REPI_ERACE(it, c) REPI_ERACE2(it,\
     \ (c).begin(), (c).end())\r\n#define ALL(x) (x).begin(),(x).end()\r\n#define cauto\
     \ const auto&\r\n/* macro func */\r\ntemplate<class T>\r\nvoid sort(T& t) { std::sort(ALL(t));\
@@ -67,7 +67,7 @@ data:
   isVerificationFile: false
   path: Main/main_srm.cpp
   requiredBy: []
-  timestamp: '2022-08-30 03:53:25+09:00'
+  timestamp: '2022-08-31 22:30:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main_srm.cpp
