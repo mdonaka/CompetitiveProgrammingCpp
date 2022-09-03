@@ -14,9 +14,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/Accumulation.hpp
       title: Library/Container/Accumulation.hpp
-    - icon: ':warning:'
-      path: Library/Container/CumulativeSum2D.cpp
-      title: Library/Container/CumulativeSum2D.cpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Container/Accumulation2D.hpp
+      title: Library/Container/Accumulation2D.hpp
     - icon: ':warning:'
       path: Library/Container/LazySegmentTree.hpp
       title: Library/Container/LazySegmentTree.hpp
@@ -162,6 +162,9 @@ data:
       title: Test/Algorithms/Mo.test.cpp
   - name: Test/Container
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/Accumulation2D_sum.test.cpp
+      title: Test/Container/Accumulation2D_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_sum.test.cpp
       title: Test/Container/Accumulation_sum.test.cpp
