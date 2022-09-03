@@ -171,6 +171,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_xor.test.cpp
       title: Test/Container/Accumulation_xor.test.cpp
+    - icon: ':x:'
+      path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+      title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'

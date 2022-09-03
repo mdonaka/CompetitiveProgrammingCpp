@@ -62,12 +62,12 @@ data:
     template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec)\
     \ { for(T& x : vec) is >> x; return is; }\r\n\r\n/* constant value */\r\n// constexpr\
     \ ll MOD = 1000000007;\r\nconstexpr ll MOD = 998244353;\r\n\r\n//=============================================================================================\r\
-    \n"
+    \n\r\n\r\n/**\r\nsigned main() {\r\n\r\n}\r\n/*//**/"
   dependsOn: []
   isVerificationFile: false
   path: Main/main_srm.cpp
   requiredBy: []
-  timestamp: '2022-08-31 22:30:40+09:00'
+  timestamp: '2022-09-04 03:56:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main_srm.cpp

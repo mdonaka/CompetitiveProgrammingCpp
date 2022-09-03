@@ -56,27 +56,30 @@ data:
     \ Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\r\
     \n\r\n/*\r\n\u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB\r\nex) \u533A\u9593\
     \u6700\u5C0F\u5024\uFF0C\u533A\u9593\u66F4\u65B0\r\nLazySegmentTree<M_M, M_U,\
-    \ OP_RUQ_RMQ>\r\n\r\n//---- \u8981\u7D20 ----\r\nPAIR base_s{0,1};\r\nstruct F_RSQ\
-    \ {\r\n    auto operator()(const PAIR& a, const PAIR& b)const {\r\n        return\
-    \ PAIR{a.first + b.first,a.second + b.second};\r\n    }\r\n};\r\nusing M_S = Monoid<PAIR,\
-    \ base_s, F_RSQ>;\r\n\r\nll base_m{static_cast<ll>(1e18)};\r\nstruct F_RMQ {\r\
-    \n    auto operator()(ll a, ll b)const {\r\n        return std::min(a, b);\r\n\
-    \    }\r\n};\r\nusing M_M = Monoid<ll, base_m, F_RMQ>;\r\n\r\n//---- \u4F5C\u7528\
-    \u7D20 ----\r\nll base_u{static_cast<ll>(-1e18)};\r\nstruct F_RUQ {\r\n    auto\
-    \ operator()(ll a, ll b)const {\r\n        if(b == base_u) { return a; }\r\n \
-    \       return b;\r\n    }\r\n};\r\nusing M_U = Monoid<ll, base_u, F_RUQ>;\r\n\
-    \r\nll base_a{static_cast<ll>(0)};\r\nstruct F_RAQ {\r\n    auto operator()(ll\
-    \ a, ll b)const {\r\n        return a + b;\r\n    }\r\n};\r\nusing M_A = Monoid<ll,\
-    \ base_a, F_RAQ>;\r\n\r\n//---- \u4F5C\u7528 ----\r\nstruct OP_RUQ_RSQ {\r\n \
-    \   auto operator()(const M_S& m, const M_U& m2) {\r\n        if(m2.m_val == base_u)\
-    \ { return m; }\r\n        return M(PAIR{m.m_val.second * m2.m_val,m.m_val.second});\r\
-    \n    }\r\n};\r\nstruct OP_RUQ_RMQ {\r\n    auto operator()(const M_M& m, const\
-    \ M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n        return\
-    \ M_M(m2.m_val);\r\n    }\r\n};\r\nstruct OP_RAQ_RSQ {\r\n    auto operator()(const\
-    \ M_S& m, const M_A& m2) {\r\n        return M_S(PAIR{m.m_val.first + m.m_val.second\
-    \ * m2.m_val,m.m_val.second});\r\n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto\
-    \ operator()(const M_M& m, const M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\
-    \n    }\r\n};\r\n*/\n"
+    \ OP_RUQ_RMQ>\r\n*/\r\n//---- \u8981\u7D20 ----\r\nstd::pair<long long, long long>\
+    \ base_s{0,1};\r\nstruct F_RSQ {\r\n    auto operator()(const std::pair<long long,\
+    \ long long>& a, const std::pair<long long, long long>& b)const {\r\n        return\
+    \ std::pair<long long, long long>{a.first + b.first, a.second + b.second};\r\n\
+    \    }\r\n};\r\nusing M_S = Monoid<std::pair<long long, long long>, base_s, F_RSQ>;\r\
+    \n\r\nlong long base_m{static_cast<long long>(1e18)};\r\nstruct F_RMQ {\r\n  \
+    \  auto operator()(long long a, long long b)const {\r\n        return std::min(a,\
+    \ b);\r\n    }\r\n};\r\nusing M_M = Monoid<long long, base_m, F_RMQ>;\r\n\r\n\
+    //---- \u4F5C\u7528\u7D20 ----\r\nlong long base_u{static_cast<long long>(-1e18)};\r\
+    \nstruct F_RUQ {\r\n    auto operator()(long long a, long long b)const {\r\n \
+    \       if(b == base_u) { return a; }\r\n        return b;\r\n    }\r\n};\r\n\
+    using M_U = Monoid<long long, base_u, F_RUQ>;\r\n\r\nlong long base_a{static_cast<long\
+    \ long>(0)};\r\nstruct F_RAQ {\r\n    auto operator()(long long a, long long b)const\
+    \ {\r\n        return a + b;\r\n    }\r\n};\r\nusing M_A = Monoid<long long, base_a,\
+    \ F_RAQ>;\r\n\r\n//---- \u4F5C\u7528 ----\r\nstruct OP_RUQ_RSQ {\r\n    auto operator()(const\
+    \ M_S& m, const M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n\
+    \        return M_S(std::pair<long long, long long>{m.m_val.second* m2.m_val,\
+    \ m.m_val.second});\r\n    }\r\n};\r\nstruct OP_RUQ_RMQ {\r\n    auto operator()(const\
+    \ M_M& m, const M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n\
+    \        return M_M(m2.m_val);\r\n    }\r\n};\r\nstruct OP_RAQ_RSQ {\r\n    auto\
+    \ operator()(const M_S& m, const M_A& m2) {\r\n        return M_S(std::pair<long\
+    \ long, long long>{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});\r\
+    \n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto operator()(const M_M& m, const\
+    \ M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\n    }\r\n};\r\n"
   code: "#pragma once\r\n#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\
     \n#include <utility>\r\n\r\ntemplate<class T>\r\nclass isMonoid {\r\n    template\
     \ <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\
@@ -125,32 +128,35 @@ data:
     \ Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\r\
     \n\r\n/*\r\n\u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB\r\nex) \u533A\u9593\
     \u6700\u5C0F\u5024\uFF0C\u533A\u9593\u66F4\u65B0\r\nLazySegmentTree<M_M, M_U,\
-    \ OP_RUQ_RMQ>\r\n\r\n//---- \u8981\u7D20 ----\r\nPAIR base_s{0,1};\r\nstruct F_RSQ\
-    \ {\r\n    auto operator()(const PAIR& a, const PAIR& b)const {\r\n        return\
-    \ PAIR{a.first + b.first,a.second + b.second};\r\n    }\r\n};\r\nusing M_S = Monoid<PAIR,\
-    \ base_s, F_RSQ>;\r\n\r\nll base_m{static_cast<ll>(1e18)};\r\nstruct F_RMQ {\r\
-    \n    auto operator()(ll a, ll b)const {\r\n        return std::min(a, b);\r\n\
-    \    }\r\n};\r\nusing M_M = Monoid<ll, base_m, F_RMQ>;\r\n\r\n//---- \u4F5C\u7528\
-    \u7D20 ----\r\nll base_u{static_cast<ll>(-1e18)};\r\nstruct F_RUQ {\r\n    auto\
-    \ operator()(ll a, ll b)const {\r\n        if(b == base_u) { return a; }\r\n \
-    \       return b;\r\n    }\r\n};\r\nusing M_U = Monoid<ll, base_u, F_RUQ>;\r\n\
-    \r\nll base_a{static_cast<ll>(0)};\r\nstruct F_RAQ {\r\n    auto operator()(ll\
-    \ a, ll b)const {\r\n        return a + b;\r\n    }\r\n};\r\nusing M_A = Monoid<ll,\
-    \ base_a, F_RAQ>;\r\n\r\n//---- \u4F5C\u7528 ----\r\nstruct OP_RUQ_RSQ {\r\n \
-    \   auto operator()(const M_S& m, const M_U& m2) {\r\n        if(m2.m_val == base_u)\
-    \ { return m; }\r\n        return M(PAIR{m.m_val.second * m2.m_val,m.m_val.second});\r\
-    \n    }\r\n};\r\nstruct OP_RUQ_RMQ {\r\n    auto operator()(const M_M& m, const\
-    \ M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n        return\
-    \ M_M(m2.m_val);\r\n    }\r\n};\r\nstruct OP_RAQ_RSQ {\r\n    auto operator()(const\
-    \ M_S& m, const M_A& m2) {\r\n        return M_S(PAIR{m.m_val.first + m.m_val.second\
-    \ * m2.m_val,m.m_val.second});\r\n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto\
-    \ operator()(const M_M& m, const M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\
-    \n    }\r\n};\r\n*/"
+    \ OP_RUQ_RMQ>\r\n*/\r\n//---- \u8981\u7D20 ----\r\nstd::pair<long long, long long>\
+    \ base_s{0,1};\r\nstruct F_RSQ {\r\n    auto operator()(const std::pair<long long,\
+    \ long long>& a, const std::pair<long long, long long>& b)const {\r\n        return\
+    \ std::pair<long long, long long>{a.first + b.first, a.second + b.second};\r\n\
+    \    }\r\n};\r\nusing M_S = Monoid<std::pair<long long, long long>, base_s, F_RSQ>;\r\
+    \n\r\nlong long base_m{static_cast<long long>(1e18)};\r\nstruct F_RMQ {\r\n  \
+    \  auto operator()(long long a, long long b)const {\r\n        return std::min(a,\
+    \ b);\r\n    }\r\n};\r\nusing M_M = Monoid<long long, base_m, F_RMQ>;\r\n\r\n\
+    //---- \u4F5C\u7528\u7D20 ----\r\nlong long base_u{static_cast<long long>(-1e18)};\r\
+    \nstruct F_RUQ {\r\n    auto operator()(long long a, long long b)const {\r\n \
+    \       if(b == base_u) { return a; }\r\n        return b;\r\n    }\r\n};\r\n\
+    using M_U = Monoid<long long, base_u, F_RUQ>;\r\n\r\nlong long base_a{static_cast<long\
+    \ long>(0)};\r\nstruct F_RAQ {\r\n    auto operator()(long long a, long long b)const\
+    \ {\r\n        return a + b;\r\n    }\r\n};\r\nusing M_A = Monoid<long long, base_a,\
+    \ F_RAQ>;\r\n\r\n//---- \u4F5C\u7528 ----\r\nstruct OP_RUQ_RSQ {\r\n    auto operator()(const\
+    \ M_S& m, const M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n\
+    \        return M_S(std::pair<long long, long long>{m.m_val.second* m2.m_val,\
+    \ m.m_val.second});\r\n    }\r\n};\r\nstruct OP_RUQ_RMQ {\r\n    auto operator()(const\
+    \ M_M& m, const M_U& m2) {\r\n        if(m2.m_val == base_u) { return m; }\r\n\
+    \        return M_M(m2.m_val);\r\n    }\r\n};\r\nstruct OP_RAQ_RSQ {\r\n    auto\
+    \ operator()(const M_S& m, const M_A& m2) {\r\n        return M_S(std::pair<long\
+    \ long, long long>{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});\r\
+    \n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto operator()(const M_M& m, const\
+    \ M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Container/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-29 04:36:32+09:00'
+  timestamp: '2022-09-03 18:54:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Container/LazySegmentTree.hpp
