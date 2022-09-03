@@ -114,3 +114,10 @@ template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) {
 constexpr ll MOD = 998244353;
 
 //=============================================================================================
+
+
+/**
+signed main() {
+
+}
+/*//**/
