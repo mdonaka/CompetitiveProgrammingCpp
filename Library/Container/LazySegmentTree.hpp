@@ -104,47 +104,47 @@ struct Monoid {
 各種頻出サンプル
 ex) 区間最小値，区間更新
 LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>
-
+*/
 //---- 要素 ----
-PAIR base_s{0,1};
+std::pair<long long, long long> base_s{0,1};
 struct F_RSQ {
-    auto operator()(const PAIR& a, const PAIR& b)const {
-        return PAIR{a.first + b.first,a.second + b.second};
+    auto operator()(const std::pair<long long, long long>& a, const std::pair<long long, long long>& b)const {
+        return std::pair<long long, long long>{a.first + b.first, a.second + b.second};
     }
 };
-using M_S = Monoid<PAIR, base_s, F_RSQ>;
+using M_S = Monoid<std::pair<long long, long long>, base_s, F_RSQ>;
 
-ll base_m{static_cast<ll>(1e18)};
+long long base_m{static_cast<long long>(1e18)};
 struct F_RMQ {
-    auto operator()(ll a, ll b)const {
+    auto operator()(long long a, long long b)const {
         return std::min(a, b);
     }
 };
-using M_M = Monoid<ll, base_m, F_RMQ>;
+using M_M = Monoid<long long, base_m, F_RMQ>;
 
 //---- 作用素 ----
-ll base_u{static_cast<ll>(-1e18)};
+long long base_u{static_cast<long long>(-1e18)};
 struct F_RUQ {
-    auto operator()(ll a, ll b)const {
+    auto operator()(long long a, long long b)const {
         if(b == base_u) { return a; }
         return b;
     }
 };
-using M_U = Monoid<ll, base_u, F_RUQ>;
+using M_U = Monoid<long long, base_u, F_RUQ>;
 
-ll base_a{static_cast<ll>(0)};
+long long base_a{static_cast<long long>(0)};
 struct F_RAQ {
-    auto operator()(ll a, ll b)const {
+    auto operator()(long long a, long long b)const {
         return a + b;
     }
 };
-using M_A = Monoid<ll, base_a, F_RAQ>;
+using M_A = Monoid<long long, base_a, F_RAQ>;
 
 //---- 作用 ----
 struct OP_RUQ_RSQ {
     auto operator()(const M_S& m, const M_U& m2) {
         if(m2.m_val == base_u) { return m; }
-        return M(PAIR{m.m_val.second * m2.m_val,m.m_val.second});
+        return M_S(std::pair<long long, long long>{m.m_val.second* m2.m_val, m.m_val.second});
     }
 };
 struct OP_RUQ_RMQ {
@@ -155,7 +155,7 @@ struct OP_RUQ_RMQ {
 };
 struct OP_RAQ_RSQ {
     auto operator()(const M_S& m, const M_A& m2) {
-        return M_S(PAIR{m.m_val.first + m.m_val.second * m2.m_val,m.m_val.second});
+        return M_S(std::pair<long long, long long>{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});
     }
 };
 struct OP_RAQ_RMQ {
@@ -163,4 +163,3 @@ struct OP_RAQ_RMQ {
         return M_M{m.m_val + m2.m_val};
     }
 };
-*/
