@@ -1,3 +1,4 @@
+#define PROBLEM "https://yukicoder.me/problems/no/1623"
 
 #include <iostream>
 #include "./../../Library/Container/Accumulation2D.hpp"
@@ -11,7 +12,7 @@ signed main() {
     int n;
     cin >> n;
 
-    constexpr ll size = 5;//3e3 + 1;
+    constexpr ll size = 3e3 + 1;
 
     std::vector<ll> rv; rv.reserve(n);
     for(int _ = 0; _ < n; ++_) { int r; cin >> r; rv.emplace_back(r); }
@@ -23,7 +24,7 @@ signed main() {
     for(int i = 0; i < size; ++i)for(int j = 0; j < size; ++j) {
         table[std::max(i, j)][i + j] += gc[i] * bc[j];
     }
-    auto acc = Accumulation2D(table);
+    auto acc = Accumulation2D<>(table);
 
     ll ans = 0;
     for(const auto& r : rv) {
