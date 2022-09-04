@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Container/SegmentMap.test.cpp
+    title: Test/Container/SegmentMap.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Container/SegmentMap.hpp\"\n#include <iostream>\r\
@@ -81,8 +84,9 @@ data:
   path: Library/Container/SegmentMap.hpp
   requiredBy: []
   timestamp: '2022-06-25 00:21:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Container/SegmentMap.test.cpp
 documentation_of: Library/Container/SegmentMap.hpp
 layout: document
 redirect_from:

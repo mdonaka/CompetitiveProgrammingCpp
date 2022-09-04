@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Container/UnionFind.test.cpp
+    title: Test/Container/UnionFind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Container/UnionFind.hpp\"\n#include <vector>\r\n\
@@ -44,8 +47,9 @@ data:
   path: Library/Container/UnionFind.hpp
   requiredBy: []
   timestamp: '2022-07-29 00:48:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Container/UnionFind.test.cpp
 documentation_of: Library/Container/UnionFind.hpp
 layout: document
 redirect_from:

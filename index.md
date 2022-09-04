@@ -20,13 +20,13 @@ data:
     - icon: ':warning:'
       path: Library/Container/LazySegmentTree.hpp
       title: Library/Container/LazySegmentTree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Container/SegmentMap.hpp
       title: Library/Container/SegmentMap.hpp
     - icon: ':warning:'
       path: Library/Container/SegmentTree.hpp
       title: Library/Container/SegmentTree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Container/UnionFind.hpp
       title: Library/Container/UnionFind.hpp
     - icon: ':warning:'
@@ -174,6 +174,12 @@ data:
     - icon: ':x:'
       path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
       title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+    - icon: ':x:'
+      path: Test/Container/SegmentMap.test.cpp
+      title: Test/Container/SegmentMap.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/UnionFind.test.cpp
+      title: Test/Container/UnionFind.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
