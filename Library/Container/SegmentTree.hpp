@@ -17,7 +17,7 @@ template<class Monoid, std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t>
 class SegmentTree {
 private:
     const int m_size;
-    vector<Monoid> m_node;
+    std::vector<Monoid> m_node;
     using S = decltype(Monoid().m_val);
 
     int calcSize(int n) const { int size = 1; while(size < n) { size <<= 1; }return size; }
