@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Container/SegmentTree.hpp
     title: Library/Container/SegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
@@ -66,9 +66,9 @@ data:
     \n    struct F { auto operator()(ll a, ll b)const { return a + b; } };\r\n   \
     \ using M = Monoid<ll, 0, F>;\r\n    auto segtree = SegmentTree<M>(n);\r\n\r\n\
     \    for(int _ = 0; _ < q; ++_) {\r\n        int k, x, y;\r\n        cin >> k\
-    \ >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x, y);\r\n   \
-    \     } else {\r\n            cout << segtree.query(x, y) << endl;\r\n       \
-    \ }\r\n    }\r\n}\n"
+    \ >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x - 1, y);\r\n\
+    \        } else {\r\n            cout << segtree.query(x - 1, y - 1) << endl;\r\
+    \n        }\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\
     \r\n\r\n#include <iostream>\r\n#include \"./../../Library/Container/SegmentTree.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
@@ -76,16 +76,16 @@ data:
     \ q;\r\n\r\n    struct F { auto operator()(ll a, ll b)const { return a + b; }\
     \ };\r\n    using M = Monoid<ll, 0, F>;\r\n    auto segtree = SegmentTree<M>(n);\r\
     \n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k, x, y;\r\n        cin\
-    \ >> k >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x, y);\r\n\
-    \        } else {\r\n            cout << segtree.query(x, y) << endl;\r\n    \
-    \    }\r\n    }\r\n}"
+    \ >> k >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x - 1, y);\r\
+    \n        } else {\r\n            cout << segtree.query(x - 1, y - 1) << endl;\r\
+    \n        }\r\n    }\r\n}"
   dependsOn:
   - Library/Container/SegmentTree.hpp
   isVerificationFile: true
   path: Test/Container/SegmentTree_RSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 22:31:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-05 22:41:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Container/SegmentTree_RSQ.test.cpp
 layout: document
