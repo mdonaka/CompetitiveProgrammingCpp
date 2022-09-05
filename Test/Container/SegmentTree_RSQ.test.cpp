@@ -20,7 +20,7 @@ signed main() {
         int k, x, y;
         cin >> k >> x >> y;
         if(k == 0) {
-            segtree.update(x, y);
+            segtree.add(x, y);
         } else {
             cout << segtree.query(x, y) << endl;
         }
