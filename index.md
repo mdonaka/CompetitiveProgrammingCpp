@@ -17,10 +17,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/Accumulation2D.hpp
       title: Library/Container/Accumulation2D.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Container/LazySegmentTree.hpp
       title: Library/Container/LazySegmentTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Container/SegmentMap.hpp
       title: Library/Container/SegmentMap.hpp
     - icon: ':warning:'
@@ -171,10 +171,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_xor.test.cpp
       title: Test/Container/Accumulation_xor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+      title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+      title: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+      title: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
       title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Container/SegmentMap.test.cpp
       title: Test/Container/SegmentMap.test.cpp
     - icon: ':heavy_check_mark:'

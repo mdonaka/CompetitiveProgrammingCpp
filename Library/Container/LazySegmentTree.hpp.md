@@ -2,10 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+    title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+    title: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+    title: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+    title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Container/LazySegmentTree.hpp\"\n#include <iostream>\r\
@@ -157,8 +169,12 @@ data:
   path: Library/Container/LazySegmentTree.hpp
   requiredBy: []
   timestamp: '2022-09-03 18:54:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+  - Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+  - Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+  - Test/Container/LazySegmentTree_RUQRSQ.test.cpp
 documentation_of: Library/Container/LazySegmentTree.hpp
 layout: document
 redirect_from:
