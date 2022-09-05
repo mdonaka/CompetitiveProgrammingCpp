@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_I"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 
 #include <iostream>
 #include "./../../Library/Container/LazySegmentTree.hpp"
@@ -12,8 +12,8 @@ signed main() {
     int n, q;
     cin >> n >> q;
 
-    std::vector<std::pair<long long, long long>> v(n, {0,1});
-    auto segtree = LazySegmentTree<M_S, M_U, OP_RUQ_RSQ>(n, v);
+    std::vector<long long> v(n, (1LL << 31) - 1);
+    auto segtree = LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>(n, v);
 
     for(int _ = 0; _ < q; ++_) {
         int k;
@@ -25,7 +25,7 @@ signed main() {
         } else {
             int s, t;
             cin >> s >> t;
-            cout << segtree.query(s, t).first << endl;
+            cout << segtree.query(s, t) << endl;
         }
     }
 }
