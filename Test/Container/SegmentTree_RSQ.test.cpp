@@ -20,9 +20,9 @@ signed main() {
         int k, x, y;
         cin >> k >> x >> y;
         if(k == 0) {
-            segtree.add(x, y);
+            segtree.add(x - 1, y);
         } else {
-            cout << segtree.query(x, y) << endl;
+            cout << segtree.query(x - 1, y - 1) << endl;
         }
     }
 }
