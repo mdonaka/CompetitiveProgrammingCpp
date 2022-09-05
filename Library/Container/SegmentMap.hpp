@@ -16,10 +16,10 @@ class SegmentMap {
         if(right && std::next(it)->second == val) { mp.erase(std::next(it)); }
         if(left && it->second == val) { return; }
         mp.emplace(i, val);
-
     }
 
-    auto remove(SizeType l, SizeType r, auto& it) {
+    template <class Iterator>
+    auto remove(SizeType l, SizeType r, Iterator& it) {
         auto nx = std::next(it)->first;
         auto val = it->second;
         auto ret = std::next(it);
