@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/PlaneGeometry/ConvexHull.test.cpp
+    title: Test/PlaneGeometry/ConvexHull.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/PlaneGeometry/ConvexHull.hpp\"\n\r\n#include <vector>\r\
@@ -61,8 +64,9 @@ data:
   path: Library/PlaneGeometry/ConvexHull.hpp
   requiredBy: []
   timestamp: '2021-08-08 14:42:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/PlaneGeometry/ConvexHull.test.cpp
 documentation_of: Library/PlaneGeometry/ConvexHull.hpp
 layout: document
 redirect_from:

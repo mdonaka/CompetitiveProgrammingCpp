@@ -76,7 +76,7 @@ data:
       title: Library/Graph/Tree/LCA.hpp
   - name: Library/PlaneGeometry
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
     - icon: ':warning:'
@@ -195,6 +195,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/UnionFind.test.cpp
       title: Test/Container/UnionFind.test.cpp
+  - name: Test/PlaneGeometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/PlaneGeometry/ConvexHull.test.cpp
+      title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
