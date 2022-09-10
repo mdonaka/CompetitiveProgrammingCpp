@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
 #include <string>
 #include <set>
 #include <unordered_map>
@@ -181,9 +182,9 @@ public:
     SuffixArray(const std::string& str) :m_str(str), m_suffixArray(constructSuffixArray(toIntVec(str))) {}
 
     /**
-     * 引数として与えられたpatternの出現位置リストを返す
+     * 引数として与えられたpattern出現位置の区間を返す
      */
-    std::list<int> findPattern(const std::string& pattern) const {
+    std::pair<int, int> findPattern(const std::string& pattern) const {
 
         auto find = [&](const std::string& ptn) {
             int end = m_suffixArray.size();
@@ -204,11 +205,7 @@ public:
         }();
         auto fl = find(pattern);
         auto fu = find(patternUpper);
-        std::list<int> lst;
-        for(int i = fl; i < fu; ++i) {
-            lst.emplace_back(m_suffixArray[i]);
-        }
-        return lst;
+        return {fl,fu};
     }
 
     auto getSuffixArray() const {
