@@ -109,12 +109,12 @@ data:
     - icon: ':warning:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':warning:'
-      path: Library/String/SuffixArray.cpp
-      title: Library/String/SuffixArray.cpp
-    - icon: ':warning:'
-      path: Library/String/TrieTree.cpp
-      title: Library/String/TrieTree.cpp
+    - icon: ':heavy_check_mark:'
+      path: Library/String/SuffixArray.hpp
+      title: Library/String/SuffixArray.hpp
+    - icon: ':x:'
+      path: Library/String/TrieTree.hpp
+      title: Library/String/TrieTree.hpp
     - icon: ':warning:'
       path: Library/String/ZAlgorithm.cpp
       title: Library/String/ZAlgorithm.cpp
@@ -200,6 +200,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/PlaneGeometry/ConvexHull.test.cpp
       title: Test/PlaneGeometry/ConvexHull.test.cpp
+  - name: Test/String
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/String/SuffixArray.test.cpp
+      title: Test/String/SuffixArray.test.cpp
+    - icon: ':x:'
+      path: Test/String/TrieTree.test.cpp
+      title: Test/String/TrieTree.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
