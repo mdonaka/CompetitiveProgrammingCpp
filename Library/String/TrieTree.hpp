@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <vector>
+#include <memory>
 
 constexpr auto nullLambda = [](int n) {};
 template<class Val = bool, Val ignore = false>
