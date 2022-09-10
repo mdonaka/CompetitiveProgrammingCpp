@@ -112,7 +112,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/TrieTree.hpp
       title: Library/String/TrieTree.hpp
     - icon: ':warning:'
@@ -205,7 +205,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/TrieTree.test.cpp
       title: Test/String/TrieTree.test.cpp
   - name: Test/sample
