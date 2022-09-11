@@ -6,10 +6,7 @@
 #include <queue>
 #include <stack>
 #include <vector>
-#include "./../../Utils/debug.hpp"
 #include <unordered_map>
-using std::cout;
-using std::cin;
 
 auto nullLambda = [](int, const std::list<int>&) {};
 class PalindromicTree {
@@ -75,16 +72,16 @@ class PalindromicTree {
 
         // debug用
         auto outputTree(const std::string& s) ->void const {
-            if(m_size <= 0) { cout << "root"; } else {
+            if(m_size <= 0) { std::cerr << "root"; } else {
                 // 段
-                for(int i = 0; (i < (m_size + 1) / 2); ++i) { cout << " |"; }
-                cout << "- " << s.substr(*m_itrs.begin() - m_size + 1, m_size);
+                for(int i = 0; (i < (m_size + 1) / 2); ++i) { std::cerr << " |"; }
+                std::cerr << "- " << s.substr(*m_itrs.begin() - m_size + 1, m_size);
                 // 右itr
-                cout << " [ "; for(const auto& itr : m_itrs) { cout << itr << " "; }cout << "] ";
+                std::cerr << " [ "; for(const auto& itr : m_itrs) { std::cerr << itr << " "; }std::cerr << "] ";
                 // suffix link
                 //auto p = m_suffixLink.lock();
-                //cout << "{" << s.substr(*p->m_itrs.begin() - p->m_size + 1, p->m_size) << "} ";
-            } cout << "\n";
+                //std::cerr << "{" << s.substr(*p->m_itrs.begin() - p->m_size + 1, p->m_size) << "} ";
+            } std::cerr << "\n";
             for(const auto& edge : m_edges) {
                 if(m_size == -1 && edge.first == ' ') { continue; }
                 edge.second->outputTree(s);
@@ -185,10 +182,10 @@ public:
 
     // debug用
     auto outputTree() {
-        dump(m_s);
-        cout << "-- even --\n";
+        std::cerr << m_s << std::endl;
+        std::cerr << "-- even --\n";
         m_rootEven->outputTree(m_s);
-        cout << "-- odd --\n";
+        std::cerr << "-- odd --\n";
         m_rootOdd->outputTree(m_s);
     }
 };
