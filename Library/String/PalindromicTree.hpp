@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <queue>
+#include <stack>
 #include <vector>
 #include "./../../Utils/debug.hpp"
 #include <unordered_map>
@@ -27,14 +28,17 @@ class PalindromicTree {
 
         // xAxとなるAを探す(x=str[itr])
         auto find(int itr, const std::string& s, bool flg = false) {
-            // rootにたどり着いた
-            if(m_size == -1) { return weak_from_this(); }
-            // 現在地"A"において"xAx"となる
-            if(itr - m_size - 1 >= 0 && s[itr] == s[itr - m_size - 1]) {
-                return weak_from_this();
+            auto p = this->weak_from_this();
+            while(true) {
+                auto size = p.lock()->m_size;
+                // rootにたどり着いた
+                if(size == -1) { return p; }
+                // 現在地"A"において"xAx"となる
+                if(itr - size - 1 >= 0 && s[itr] == s[itr - size - 1]) {
+                    return p;
+                }
+                p = p.lock()->m_suffixLink;
             }
-            // 見つからない
-            return m_suffixLink.lock()->find(itr, s, flg);
         }
 
         // 新しい回文Nodeを作成する
@@ -104,10 +108,17 @@ class PalindromicTree {
          */
         template<class Lambda, class SuffixLinkLambda = decltype(nullLambda)>
         auto dfs_edges(const Lambda& lambda, const SuffixLinkLambda& slLambda = nullLambda)->void {
-            runLambda(lambda);
-            m_suffixLink.lock()->runLambda(slLambda);
-            for(const auto& edge : m_edges) {
-                edge.second->dfs_edges(lambda, slLambda);
+            std::stack<std::shared_ptr<Node>> stk;
+            stk.emplace(this->weak_from_this().lock());
+            while(!stk.empty()) {
+                auto p = stk.top();
+                stk.pop();
+                p->runLambda(lambda);
+                p->m_suffixLink.lock()->runLambda(slLambda);
+                for(const auto& [_, next_p] : p->m_edges) {
+                    // std::cerr << p->m_size << " -> " << next_p->m_size << std::endl;
+                    stk.emplace(next_p);
+                }
             }
         }
     };
