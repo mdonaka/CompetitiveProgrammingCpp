@@ -103,7 +103,7 @@ data:
     - icon: ':warning:'
       path: Library/String/LCPArray.cpp
       title: Library/String/LCPArray.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
     - icon: ':heavy_check_mark:'
@@ -142,7 +142,7 @@ data:
     - icon: ':warning:'
       path: Utils/Timer.hpp
       title: Utils/Timer.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: Utils/debug.hpp
       title: Utils/debug.hpp
     - icon: ':warning:'
@@ -199,7 +199,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
     - icon: ':heavy_check_mark:'

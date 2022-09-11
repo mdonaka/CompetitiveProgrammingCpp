@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: Library/String/PalindromicTree.hpp
-    title: Library/String/PalindromicTree.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/String/PalindromicTree.test.cpp
-    title: Test/String/PalindromicTree.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Utils/debug.hpp\"\n#include <concepts>\n#include <iostream>\n\
@@ -79,12 +73,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utils/debug.hpp
-  requiredBy:
-  - Library/String/PalindromicTree.hpp
+  requiredBy: []
   timestamp: '2022-08-30 03:53:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/String/PalindromicTree.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Utils/debug.hpp
 layout: document
 redirect_from:
