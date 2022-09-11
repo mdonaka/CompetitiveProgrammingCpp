@@ -123,8 +123,8 @@ class SuffixArray {
                 if(str[f1 + i] != str[f2 + i]) { break; }
                 auto b1 = (type[f1 + i] == TYPE::LMS);
                 auto b2 = (type[f2 + i] == TYPE::LMS);
-                if(b1 | b2 && i > 0) {
-                    if(b1 & b2) { isSame = true; break; }
+                if((b1 || b2) && i > 0) {
+                    if(b1 && b2) { isSame = true; break; }
                     break;
                 }
             }
