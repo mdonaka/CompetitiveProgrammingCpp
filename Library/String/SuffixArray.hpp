@@ -1,4 +1,5 @@
 #pragma once
+#include "./../Search/binarySearch.hpp"
 
 #include <iostream>
 #include <vector>
@@ -6,7 +7,6 @@
 #include <string>
 #include <set>
 #include <unordered_map>
-
 /**
  * SuffixArrayを構築する
  * O(N)
@@ -188,15 +188,11 @@ public:
 
         auto find = [&](const std::string& ptn) {
             int end = m_suffixArray.size();
-            int ok = end;
-            int ng = -1;
-            while(ok - ng > 1) {
-                int mid = (ok + ng) / 2;
+            auto ret = binarySearch(0, end, [&](int mid) {
                 auto sub = m_str.substr(m_suffixArray[mid], end);
-                int isOk = (ptn <= sub);
-                if(isOk) { ok = mid; } else { ng = mid; }
-            }
-            return ok;
+                return (ptn <= sub);
+            });
+            return ret;
         };
         auto patternUpper = [&pattern]() {
             auto ptn = pattern;
