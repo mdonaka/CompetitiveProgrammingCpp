@@ -188,9 +188,15 @@ public:
 
         auto find = [&](const std::string& ptn) {
             int end = m_suffixArray.size();
+            int ptn_sz = ptn.size();
             auto ret = binarySearch(0, end, [&](int mid) {
-                auto sub = m_str.substr(m_suffixArray[mid], end);
-                return (ptn <= sub);
+                int st = m_suffixArray[mid];
+                int sub_sz = end - st;
+                for(int k = 0; k < std::min(ptn_sz, sub_sz); ++k) {
+                    if(ptn[k] < m_str[st + k]) { return true; }
+                    if(ptn[k] > m_str[st + k]) { return false; }
+                }
+                return ptn_sz <= sub_sz;
             });
             return ret;
         };
