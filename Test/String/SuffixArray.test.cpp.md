@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Library/Search/binarySearch.hpp
+    title: Library/Search/binarySearch.hpp
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
@@ -15,12 +18,24 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
   bundledCode: "#line 1 \"Test/String/SuffixArray.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/String/SuffixArray.hpp\"\n\
-    \r\n#line 4 \"Library/String/SuffixArray.hpp\"\n#include <vector>\r\n#include\
+    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Search/binarySearch.hpp\"\
+    \n\r\ntemplate <class Lambda>\r\nauto binarySearch(double mn, double mx, int rep,\
+    \ const Lambda& judge,\r\n                  bool rev = false) {\r\n    auto ok\
+    \ = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\n       \
+    \ auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk\
+    \ && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\
+    \n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate\
+    \ <class Lambda>\r\nauto binarySearch(long long mn, long long mx, const Lambda&\
+    \ judge, bool rev = false) {\r\n    auto ok = mx;\r\n    auto ng = mn - 1;\r\n\
+    \    while(ok - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto\
+    \ isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk && rev)) {\r\n   \
+    \         ok = mid;\r\n        } else {\r\n            ng = mid;\r\n        }\r\
+    \n    }\r\n    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\
+    \r\n#line 5 \"Library/String/SuffixArray.hpp\"\n#include <vector>\r\n#include\
     \ <list>\r\n#include <string>\r\n#include <set>\r\n#include <unordered_map>\r\n\
-    \r\n/**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\
-    \u5B57\u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\
-    \u914D\u5217\u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc,\
+    /**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\
+    \u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\
+    \u5217\u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc,\
     \ adc, badc, c, dc])\r\n *\r\n * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\
     \u88C5\r\n */\r\nclass SuffixArray {\r\n    enum class TYPE {\r\n        L, S,\
     \ LMS\r\n    };\r\n\r\n    const std::string m_str;\r\n    const std::vector<int>\
@@ -75,8 +90,8 @@ data:
     \            auto f2 = *(++itr);\r\n\r\n            bool isSame = false;\r\n \
     \           for(int i = 0;; ++i) {\r\n                if(str[f1 + i] != str[f2\
     \ + i]) { break; }\r\n                auto b1 = (type[f1 + i] == TYPE::LMS);\r\
-    \n                auto b2 = (type[f2 + i] == TYPE::LMS);\r\n                if(b1\
-    \ | b2 && i > 0) {\r\n                    if(b1 & b2) { isSame = true; break;\
+    \n                auto b2 = (type[f2 + i] == TYPE::LMS);\r\n                if((b1\
+    \ || b2) && i > 0) {\r\n                    if(b1 && b2) { isSame = true; break;\
     \ }\r\n                    break;\r\n                }\r\n            }\r\n  \
     \          if(!isSame) { ++num; }\r\n            changer.emplace(f2, num);\r\n\
     \        }\r\n        return changer;\r\n    }\r\n\r\n    /* calc Suffix Array*/\r\
@@ -108,14 +123,16 @@ data:
     \u73FE\u4F4D\u7F6E\u306E\u533A\u9593\u3092\u8FD4\u3059\r\n     */\r\n    std::pair<int,\
     \ int> findPattern(const std::string& pattern) const {\r\n\r\n        auto find\
     \ = [&](const std::string& ptn) {\r\n            int end = m_suffixArray.size();\r\
-    \n            int ok = end;\r\n            int ng = -1;\r\n            while(ok\
-    \ - ng > 1) {\r\n                int mid = (ok + ng) / 2;\r\n                auto\
-    \ sub = m_str.substr(m_suffixArray[mid], end);\r\n                int isOk = (ptn\
-    \ <= sub);\r\n                if(isOk) { ok = mid; } else { ng = mid; }\r\n  \
-    \          }\r\n            return ok;\r\n        };\r\n        auto patternUpper\
-    \ = [&pattern]() {\r\n            auto ptn = pattern;\r\n            ++* ptn.rbegin();\r\
-    \n            return ptn;\r\n        }();\r\n        auto fl = find(pattern);\r\
-    \n        auto fu = find(patternUpper);\r\n        return {fl,fu};\r\n    }\r\n\
+    \n            int ptn_sz = ptn.size();\r\n            auto ret = binarySearch(0,\
+    \ end, [&](int mid) {\r\n                int st = m_suffixArray[mid];\r\n    \
+    \            int sub_sz = end - st;\r\n                for(int k = 0; k < std::min(ptn_sz,\
+    \ sub_sz); ++k) {\r\n                    if(ptn[k] < m_str[st + k]) { return true;\
+    \ }\r\n                    if(ptn[k] > m_str[st + k]) { return false; }\r\n  \
+    \              }\r\n                return ptn_sz <= sub_sz;\r\n            });\r\
+    \n            return ret;\r\n        };\r\n        auto patternUpper = [&pattern]()\
+    \ {\r\n            auto ptn = pattern;\r\n            ++* ptn.rbegin();\r\n  \
+    \          return ptn;\r\n        }();\r\n        auto fl = find(pattern);\r\n\
+    \        auto fu = find(patternUpper);\r\n        return {fl,fu};\r\n    }\r\n\
     \r\n    auto getSuffixArray() const {\r\n        return m_suffixArray;\r\n   \
     \ }\r\n\r\n    /* output fot debug */\r\n    void debugOutput() const {\r\n  \
     \      for(const auto& x : m_suffixArray) {\r\n            std::cout << x << \"\
@@ -123,27 +140,32 @@ data:
     \n        for(const auto& x : m_suffixArray) {\r\n            std::cout << m_str.substr(x,\
     \ end) << std::endl;\r\n        }\r\n    }\r\n};\n#line 6 \"Test/String/SuffixArray.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    std::string s;\r\n    ll\
-    \ n;\r\n    cin >> s >> n;\r\n    std::vector<std::string> vt;\r\n    vt.reserve(n);\r\
-    \n    for(int _ = 0; _ < n; ++_) {\r\n        std::string t;\r\n        cin >>\
-    \ t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto sa = SuffixArray(s);\r\
-    \n\r\n    for(const auto& t : vt) {\r\n        auto [l, r] = sa.findPattern(t);\r\
-    \n        cout << ((r - l) > 0) << endl;\r\n    }\r\n}\n"
+    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
+    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
+    \    std::string s;\r\n    ll n;\r\n    cin >> s >> n;\r\n    std::vector<std::string>\
+    \ vt;\r\n    vt.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        std::string\
+    \ t;\r\n        cin >> t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto\
+    \ sa = SuffixArray(s);\r\n\r\n    for(const auto& t : vt) {\r\n        auto [l,\
+    \ r] = sa.findPattern(t);\r\n        cout << ((r - l) > 0) << endl;\r\n    }\r\
+    \n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
     \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../Library/String/SuffixArray.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    std::string s;\r\n    ll\
-    \ n;\r\n    cin >> s >> n;\r\n    std::vector<std::string> vt;\r\n    vt.reserve(n);\r\
-    \n    for(int _ = 0; _ < n; ++_) {\r\n        std::string t;\r\n        cin >>\
-    \ t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto sa = SuffixArray(s);\r\
-    \n\r\n    for(const auto& t : vt) {\r\n        auto [l, r] = sa.findPattern(t);\r\
-    \n        cout << ((r - l) > 0) << endl;\r\n    }\r\n}"
+    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
+    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
+    \    std::string s;\r\n    ll n;\r\n    cin >> s >> n;\r\n    std::vector<std::string>\
+    \ vt;\r\n    vt.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        std::string\
+    \ t;\r\n        cin >> t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto\
+    \ sa = SuffixArray(s);\r\n\r\n    for(const auto& t : vt) {\r\n        auto [l,\
+    \ r] = sa.findPattern(t);\r\n        cout << ((r - l) > 0) << endl;\r\n    }\r\
+    \n}"
   dependsOn:
   - Library/String/SuffixArray.hpp
+  - Library/Search/binarySearch.hpp
   isVerificationFile: true
   path: Test/String/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 05:25:24+09:00'
+  timestamp: '2022-09-11 19:59:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/String/SuffixArray.test.cpp

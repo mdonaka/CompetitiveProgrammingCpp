@@ -79,9 +79,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
-    - icon: ':warning:'
-      path: Library/PlaneGeometry/judgeIentersected.cpp
-      title: Library/PlaneGeometry/judgeIentersected.cpp
   - name: Library/Search
     pages:
     - icon: ':warning:'
@@ -90,7 +87,7 @@ data:
     - icon: ':warning:'
       path: Library/Search/bfs.hpp
       title: Library/Search/bfs.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Search/binarySearch.hpp
       title: Library/Search/binarySearch.hpp
     - icon: ':warning:'
