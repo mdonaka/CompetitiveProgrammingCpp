@@ -203,6 +203,9 @@ data:
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/String/PalindromicTree_large.test.cpp
+      title: Test/String/PalindromicTree_large.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
     - icon: ':heavy_check_mark:'

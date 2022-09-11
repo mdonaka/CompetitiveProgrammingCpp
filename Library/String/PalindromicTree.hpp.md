@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/String/PalindromicTree.test.cpp
     title: Test/String/PalindromicTree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/String/PalindromicTree_large.test.cpp
+    title: Test/String/PalindromicTree_large.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -209,6 +212,7 @@ data:
   timestamp: '2022-09-12 03:48:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/String/PalindromicTree_large.test.cpp
   - Test/String/PalindromicTree.test.cpp
 documentation_of: Library/String/PalindromicTree.hpp
 layout: document
