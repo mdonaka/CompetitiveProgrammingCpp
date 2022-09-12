@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Search/binarySearch.hpp
     title: Library/Search/binarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []

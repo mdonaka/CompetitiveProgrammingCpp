@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/SegmentMap.hpp
       title: Library/Container/SegmentMap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Container/SegmentTree.hpp
       title: Library/Container/SegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
     - icon: ':warning:'
       path: Library/Search/bfs.hpp
       title: Library/Search/bfs.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Search/binarySearch.hpp
       title: Library/Search/binarySearch.hpp
     - icon: ':warning:'
@@ -100,21 +100,21 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':warning:'
-      path: Library/String/LCPArray.cpp
-      title: Library/String/LCPArray.cpp
+    - icon: ':x:'
+      path: Library/String/LCPArray.hpp
+      title: Library/String/LCPArray.hpp
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
     - icon: ':heavy_check_mark:'
       path: Library/String/TrieTree.hpp
       title: Library/String/TrieTree.hpp
-    - icon: ':warning:'
-      path: Library/String/ZAlgorithm.cpp
-      title: Library/String/ZAlgorithm.cpp
+    - icon: ':heavy_check_mark:'
+      path: Library/String/ZAlgorithm.hpp
+      title: Library/String/ZAlgorithm.hpp
   - name: Library/Utility
     pages:
     - icon: ':warning:'
@@ -199,6 +199,9 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
+    - icon: ':x:'
+      path: Test/String/LCPArray.test.cpp
+      title: Test/String/LCPArray.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
@@ -211,6 +214,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/TrieTree.test.cpp
       title: Test/String/TrieTree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/String/ZAlgorithm.test.cpp
+      title: Test/String/ZAlgorithm.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
