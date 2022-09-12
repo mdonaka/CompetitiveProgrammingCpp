@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Container/SegmentTree.hpp
     title: Library/Container/SegmentTree.hpp
   _extendedRequiredBy: []

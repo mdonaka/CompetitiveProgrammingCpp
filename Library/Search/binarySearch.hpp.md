@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/LCPArray.hpp
     title: Library/String/LCPArray.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/String/SuffixArray.test.cpp
     title: Test/String/SuffixArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Search/binarySearch.hpp\"\n\r\ntemplate <class Lambda>\r\
@@ -52,7 +52,7 @@ data:
   - Library/String/LCPArray.hpp
   - Library/String/SuffixArray.hpp
   timestamp: '2022-09-11 19:45:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/String/SuffixArray.test.cpp

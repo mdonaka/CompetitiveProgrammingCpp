@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/SegmentMap.hpp
       title: Library/Container/SegmentMap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Container/SegmentTree.hpp
       title: Library/Container/SegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
     - icon: ':warning:'
       path: Library/Search/bfs.hpp
       title: Library/Search/bfs.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Search/binarySearch.hpp
       title: Library/Search/binarySearch.hpp
     - icon: ':warning:'
@@ -100,13 +100,13 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
     - icon: ':heavy_check_mark:'
@@ -199,7 +199,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
     - icon: ':heavy_check_mark:'

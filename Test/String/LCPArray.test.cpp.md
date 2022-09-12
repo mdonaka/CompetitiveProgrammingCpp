@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Container/SegmentTree.hpp
     title: Library/Container/SegmentTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Search/binarySearch.hpp
     title: Library/Search/binarySearch.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/LCPArray.hpp
     title: Library/String/LCPArray.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/599
@@ -226,7 +226,7 @@ data:
     \ len) {\r\n                dp[r + 1] += dp[l];\r\n                if(dp[r + 1]\
     \ >= MOD) { dp[r + 1] -= MOD; }\r\n            }\r\n        }\r\n    }\r\n\r\n\
     \    ll ans = 0;\r\n    for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans\
-    \ -= MOD; } }\r\n    cout << ans << endl;\r\n}\r\n"
+    \ -= MOD; } }\r\n    cout << ans;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/599\"\r\n\r\n#include\
     \ <iostream>\r\n\r\n#include \"./../../Library/String/LCPArray.hpp\"\r\n#include\
     \ \"./../../Library/Container/SegmentTree.hpp\"\r\n\r\nusing ll = long long;\r\
@@ -246,7 +246,7 @@ data:
     \ len) {\r\n                dp[r + 1] += dp[l];\r\n                if(dp[r + 1]\
     \ >= MOD) { dp[r + 1] -= MOD; }\r\n            }\r\n        }\r\n    }\r\n\r\n\
     \    ll ans = 0;\r\n    for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans\
-    \ -= MOD; } }\r\n    cout << ans << endl;\r\n}\r\n"
+    \ -= MOD; } }\r\n    cout << ans;\r\n}\r\n"
   dependsOn:
   - Library/String/LCPArray.hpp
   - Library/String/SuffixArray.hpp
@@ -255,8 +255,8 @@ data:
   isVerificationFile: true
   path: Test/String/LCPArray.test.cpp
   requiredBy: []
-  timestamp: '2022-09-13 03:54:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-13 04:07:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/String/LCPArray.test.cpp
 layout: document

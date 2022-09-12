@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Search/binarySearch.hpp
     title: Library/Search/binarySearch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/Search/binarySearch.hpp\"\
@@ -186,7 +186,7 @@ data:
   path: Library/String/LCPArray.hpp
   requiredBy: []
   timestamp: '2022-09-13 03:54:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
 documentation_of: Library/String/LCPArray.hpp
