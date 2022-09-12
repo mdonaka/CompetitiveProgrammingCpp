@@ -13,6 +13,7 @@
 class LCPArray {
 
     const std::vector<int> m_lcpArray;
+    const std::vector<int> m_suffixArray;
 
     static std::vector<int> constructLcpArray(const std::string& str) {
         auto sz = str.size();
@@ -35,7 +36,17 @@ class LCPArray {
     }
 
 public:
-    LCPArray(const std::string& str) :m_lcpArray(constructLcpArray(str)) {}
+    LCPArray(const std::string& str) :
+        m_suffixArray(SuffixArray(str).getSuffixArray()),
+        m_lcpArray(constructLcpArray(str)) {
+    }
 
     auto getLCPArray()const { return m_lcpArray; }
+    auto getSuffixArrayIndexList()const {
+        std::vector<int> sail(m_suffixArray.size());
+        for(unsigned int i = 0; i < m_suffixArray.size(); ++i) {
+            sail[m_suffixArray[i]] = i;
+        }
+        return sail;
+    }
 };
