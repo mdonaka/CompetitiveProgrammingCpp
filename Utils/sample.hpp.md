@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/sample/sample1.test.cpp
-    title: Test/sample/sample1.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utils/sample.hpp\"\n#include <random>\r\n#include <vector>\r\
-    \n#include <tuple>\r\n#include<iostream>\r\n\r\nnamespace Sample {\r\n\r\n\tusing\
-    \ std::cout;\r\n\tconstexpr char endl = '\\n';\r\n\tclass Range {\r\n\t\tconst\
-    \ uint_fast64_t l;\r\n\t\tconst uint_fast64_t u;\r\n\tpublic:\r\n\t\tRange(uint_fast64_t\
+  bundledCode: "#line 2 \"Utils/sample.hpp\"\n#define IGNORE\r\n\r\n#include <random>\r\
+    \n#include <vector>\r\n#include<iostream>\r\n\r\nnamespace Sample {\r\n\r\n\t\
+    using std::cout;\r\n\tconstexpr char endl = '\\n';\r\n\tclass Range {\r\n\t\t\
+    const uint_fast64_t l;\r\n\t\tconst uint_fast64_t u;\r\n\tpublic:\r\n\t\tRange(uint_fast64_t\
     \ l, uint_fast64_t u) :l(l), u(u) {}\r\n\t\tRange(uint_fast64_t u) :l(0), u(u)\
     \ {}\r\n\r\n\t\tauto normalize(uint_fast64_t val)const {\r\n\t\t\treturn (val\
     \ % (u + 1 - l)) + l;\r\n\t\t}\r\n\t};\r\n\r\n\tclass RandomGenerator {\r\n\t\t\
@@ -36,7 +33,7 @@ data:
     \t\t}\r\n\r\n\t\tauto generate_permutation(int size) const {\r\n\t\t\tstd::vector<int>\
     \ rnd_p(size);\r\n\t\t\tstd::iota(rnd_p.begin(), rnd_p.end(), 0);\r\n\t\t\tstd::shuffle(rnd_p.begin(),\
     \ rnd_p.end(), rnd.get_gen());\r\n\t\t\treturn rnd_p;\r\n\t\t}\r\n\t};\r\n}\n"
-  code: "#pragma once\r\n#include <random>\r\n#include <vector>\r\n#include <tuple>\r\
+  code: "#pragma once\r\n#define IGNORE\r\n\r\n#include <random>\r\n#include <vector>\r\
     \n#include<iostream>\r\n\r\nnamespace Sample {\r\n\r\n\tusing std::cout;\r\n\t\
     constexpr char endl = '\\n';\r\n\tclass Range {\r\n\t\tconst uint_fast64_t l;\r\
     \n\t\tconst uint_fast64_t u;\r\n\tpublic:\r\n\t\tRange(uint_fast64_t l, uint_fast64_t\
@@ -65,10 +62,9 @@ data:
   isVerificationFile: false
   path: Utils/sample.hpp
   requiredBy: []
-  timestamp: '2022-09-13 04:17:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/sample/sample1.test.cpp
+  timestamp: '2022-09-13 04:29:25+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Utils/sample.hpp
 layout: document
 redirect_from:
