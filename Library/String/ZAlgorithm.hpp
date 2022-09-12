@@ -49,5 +49,4 @@ public:
         for(const auto& x : m_zArray) { std::cerr << x << " "; }
         std::cerr << std::endl;
     }
-
 };
