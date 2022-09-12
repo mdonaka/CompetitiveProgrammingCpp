@@ -139,13 +139,13 @@ data:
       title: Main/main_srm.cpp
   - name: Utils
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Utils/Timer.hpp
       title: Utils/Timer.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Utils/debug.hpp
       title: Utils/debug.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Utils/sample.hpp
       title: Utils/sample.hpp
   verificationCategories:
@@ -219,7 +219,7 @@ data:
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/sample
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/sample/sample1.test.cpp
       title: Test/sample/sample1.test.cpp
 layout: toppage

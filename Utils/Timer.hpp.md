@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/sample/sample1.test.cpp
+    title: Test/sample/sample1.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"Utils/Timer.hpp\"\n\uFEFF#pragma once\r\n\r\n#include <iostream>\r\
@@ -83,8 +86,9 @@ data:
   path: Utils/Timer.hpp
   requiredBy: []
   timestamp: '2022-09-11 12:54:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/sample/sample1.test.cpp
 documentation_of: Utils/Timer.hpp
 layout: document
 redirect_from:

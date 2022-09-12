@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/sample/sample1.test.cpp
+    title: Test/sample/sample1.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Utils/debug.hpp\"\n#include <concepts>\n#include <iostream>\n\
@@ -75,8 +78,9 @@ data:
   path: Utils/debug.hpp
   requiredBy: []
   timestamp: '2022-08-30 03:53:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/sample/sample1.test.cpp
 documentation_of: Utils/debug.hpp
 layout: document
 redirect_from:
