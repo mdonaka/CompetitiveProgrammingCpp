@@ -46,5 +46,5 @@ signed main() {
 
     ll ans = 0;
     for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans -= MOD; } }
-    cout << ans << endl;
+    cout << ans;
 }
