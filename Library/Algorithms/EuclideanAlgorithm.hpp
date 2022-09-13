@@ -1,14 +1,18 @@
 #pragma once
 
 #include <iostream>
+#include <numeric>
 #include <tuple>
 
 class EuclideanAlgorithm {
     using T = long long;
 
+    // 大きすぎるとオーバーフローしてしまう
+    const static inline T m_mx = 1e9;
+
     const T m_a;
     const T m_b;
-    const T m_mx; // 大きすぎるとオーバーフローしてしまう
+    const T m_c;
 
     T m_gcd;
     T m_x;
@@ -41,16 +45,18 @@ public:
     auto debug()const {
         std::cout << m_a << " * " << m_x
             << " + " << m_b << " * " << m_y
-            << " = " << m_gcd << std::endl;
-        std::cout << m_a * m_x + m_b * m_y
-            << " = " << m_gcd << std::endl;
+            << " = " << m_c << std::endl;
+        std::cout << "calc: " << m_a * m_x + m_b * m_y
+            << " = " << m_c << std::endl;
     }
 
-    EuclideanAlgorithm(T a, T b, T mx = 1e9) :m_a(a), m_b(b), m_mx(mx) {
+    EuclideanAlgorithm(T a, T b, T c) :m_a(a), m_b(b), m_c(c) {
         if(a == 0 && b == 0) { throw std::runtime_error(""); }
         auto [g, x, y] = excludedEuclidAlgorithm(a, b);
-        m_gcd = g; m_x = x; m_y = y;
+        if(c % g > 0) { throw std::runtime_error("There is no solution to the equation. c must be divisible by gcd(a,b)."); }
+        m_gcd = g; m_x = c / g * x; m_y = c / g * y;
     }
+    EuclideanAlgorithm(T a, T b) :EuclideanAlgorithm(a, b, std::gcd(a, b)) {}
 
     auto gcd() const {
         return m_gcd;
