@@ -157,6 +157,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/EuclideanAlgorithm.test.cpp
       title: Test/Algorithms/EuclideanAlgorithm.test.cpp
+    - icon: ':x:'
+      path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+      title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/Mo.test.cpp
       title: Test/Algorithms/Mo.test.cpp
