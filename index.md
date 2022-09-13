@@ -118,6 +118,9 @@ data:
   - name: Library/Utility
     pages:
     - icon: ':warning:'
+      path: Library/Utility/Combination.hpp
+      title: Library/Utility/Combination.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
     - icon: ':warning:'
@@ -217,6 +220,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/ZAlgorithm.test.cpp
       title: Test/String/ZAlgorithm.test.cpp
+  - name: Test/Utility
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Utility/ModCalculator.test.cpp
+      title: Test/Utility/ModCalculator.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
