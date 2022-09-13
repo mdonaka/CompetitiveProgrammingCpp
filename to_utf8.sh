@@ -1,5 +1,4 @@
-cd Library
-find . -type f | while read FILE
+find Library Test -type f | while read FILE
 do
     nkf -w --overwrite ${FILE}
 done
