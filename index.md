@@ -135,9 +135,6 @@ data:
       path: Main/main.cpp
       title: Main/main.cpp
     - icon: ':warning:'
-      path: Main/main_minimum.cpp
-      title: Main/main_minimum.cpp
-    - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
   - name: Utils
