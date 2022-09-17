@@ -30,15 +30,16 @@ public:
         m_mod(mod), m_fac(constructFac(size)), m_finv(constructInv(size)) {
     }
 
-    long long pow(long long a, long long b) const {
-        a %= m_mod;
+    static long long pow(long long a, long long b, long long mod) {
+        a %= mod;
         long long ans = 1;
         while(b > 0) {
-            if(b & 1) { ans *= a; if(ans >= m_mod) { ans %= m_mod; } }
-            b >>= 1; a *= a; if(a >= m_mod) { a %= m_mod; }
+            if(b & 1) { ans *= a; if(ans >= mod) { ans %= mod; } }
+            b >>= 1; a *= a; if(a >= mod) { a %= mod; }
         }
         return ans;
     }
+    long long pow(long long a, long long b) const { return pow(a, b, m_mod); }
 
     auto fact(int n) const {
         if(n < 0) { return 0LL; }
