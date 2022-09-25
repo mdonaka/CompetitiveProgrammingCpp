@@ -10,7 +10,7 @@
 
 class SuccessiveShortestPath {
 
-    using node_t = long long;
+    using node_t = int;
     using cap_t = long long;
     using cost_t = long long;
 
