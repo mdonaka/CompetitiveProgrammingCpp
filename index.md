@@ -34,13 +34,13 @@ data:
       title: Library/Container/UnionFindWeight.cpp
   - name: Library/Graph/Flow
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/Dinic.hpp
       title: Library/Graph/Flow/Dinic.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/SuccessiveShortestPath.hpp
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph/Normal
@@ -195,6 +195,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/UnionFind.test.cpp
       title: Test/Container/UnionFind.test.cpp
+  - name: Test/Graph/Flow
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Flow/Dinic.test.cpp
+      title: Test/Graph/Flow/Dinic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Flow/FordFulkerson.test.cpp
+      title: Test/Graph/Flow/FordFulkerson.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+      title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

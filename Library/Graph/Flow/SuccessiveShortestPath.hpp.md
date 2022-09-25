@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+    title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n#include <queue>\r\n\
     #include <unordered_map>\r\n#include <unordered_set>\r\n#include <map>\r\n\r\n\
-    class SuccessiveShortestPath {\r\n\r\n    using node_t = long long;\r\n    using\
-    \ cap_t = long long;\r\n    using cost_t = long long;\r\n\r\n    using GraphInput\
-    \ = std::unordered_multimap<node_t, std::pair<node_t, std::pair<cap_t, cost_t>>>;\r\
+    class SuccessiveShortestPath {\r\n\r\n    using node_t = int;\r\n    using cap_t\
+    \ = long long;\r\n    using cost_t = long long;\r\n\r\n    using GraphInput =\
+    \ std::unordered_multimap<node_t, std::pair<node_t, std::pair<cap_t, cost_t>>>;\r\
     \n    using GraphTo = std::vector<std::deque<node_t>>;\r\n    using CapV = std::vector<cost_t>;\r\
     \n    using GraphCap = std::vector<CapV>;\r\n    using CostV = std::vector<cost_t>;\r\
     \n    using GraphCost = std::vector<CostV>;\r\n\r\n    const int m_n;\r\n    const\
@@ -89,11 +92,11 @@ data:
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <deque>\r\n#include <queue>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\
     \n#include <map>\r\n\r\nclass SuccessiveShortestPath {\r\n\r\n    using node_t\
-    \ = long long;\r\n    using cap_t = long long;\r\n    using cost_t = long long;\r\
-    \n\r\n    using GraphInput = std::unordered_multimap<node_t, std::pair<node_t,\
-    \ std::pair<cap_t, cost_t>>>;\r\n    using GraphTo = std::vector<std::deque<node_t>>;\r\
-    \n    using CapV = std::vector<cost_t>;\r\n    using GraphCap = std::vector<CapV>;\r\
-    \n    using CostV = std::vector<cost_t>;\r\n    using GraphCost = std::vector<CostV>;\r\
+    \ = int;\r\n    using cap_t = long long;\r\n    using cost_t = long long;\r\n\r\
+    \n    using GraphInput = std::unordered_multimap<node_t, std::pair<node_t, std::pair<cap_t,\
+    \ cost_t>>>;\r\n    using GraphTo = std::vector<std::deque<node_t>>;\r\n    using\
+    \ CapV = std::vector<cost_t>;\r\n    using GraphCap = std::vector<CapV>;\r\n \
+    \   using CostV = std::vector<cost_t>;\r\n    using GraphCost = std::vector<CostV>;\r\
     \n\r\n    const int m_n;\r\n    const GraphTo m_graph_to;\r\n    const GraphCap\
     \ m_graph_cap;\r\n    const GraphCost m_graph_cost;\r\n\r\n    auto construct_graph_to(const\
     \ GraphInput& graph_f)const {\r\n        GraphTo graphTo(m_n);\r\n        for(const\
@@ -167,9 +170,10 @@ data:
   isVerificationFile: false
   path: Library/Graph/Flow/SuccessiveShortestPath.hpp
   requiredBy: []
-  timestamp: '2022-08-30 04:52:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-25 18:52:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
 documentation_of: Library/Graph/Flow/SuccessiveShortestPath.hpp
 layout: document
 redirect_from:
