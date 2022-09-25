@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <queue>
+#include <list>
 #include <unordered_map>
 #include <unordered_set>
 #include <map>
@@ -77,7 +78,6 @@ class Dinic {
         from = s;
         for(const auto& to : route)if(from != to) {
             auto& ft = residual[{from, to}];
-            auto use = ft - mn;
             ft -= mn;
             if(ft == 0) { residual.erase({from,to}); }
             residual[{to, from}] += mn;
