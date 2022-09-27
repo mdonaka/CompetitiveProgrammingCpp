@@ -57,12 +57,12 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':warning:'
-      path: Library/Graph/Normal/WarshallFloyd.cpp
-      title: Library/Graph/Normal/WarshallFloyd.cpp
-    - icon: ':warning:'
-      path: Library/Graph/Normal/dijkstra.cpp
-      title: Library/Graph/Normal/dijkstra.cpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Graph/Normal/WarshallFloyd.hpp
+      title: Library/Graph/Normal/WarshallFloyd.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Graph/Normal/dijkstra.hpp
+      title: Library/Graph/Normal/dijkstra.hpp
   - name: Library/Graph/Tree
     pages:
     - icon: ':warning:'
@@ -206,6 +206,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+  - name: Test/Graph/Normal
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/WarshallFloyd.test.cpp
+      title: Test/Graph/Normal/WarshallFloyd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/dijkstra.test.cpp
+      title: Test/Graph/Normal/dijkstra.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

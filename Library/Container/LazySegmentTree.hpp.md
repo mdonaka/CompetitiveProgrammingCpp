@@ -172,9 +172,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Container/LazySegmentTree_RAQRSQ.test.cpp
-  - Test/Container/LazySegmentTree_RAQRMQ.test.cpp
   - Test/Container/LazySegmentTree_RUQRMQ.test.cpp
   - Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+  - Test/Container/LazySegmentTree_RAQRMQ.test.cpp
 documentation_of: Library/Container/LazySegmentTree.hpp
 layout: document
 redirect_from:
