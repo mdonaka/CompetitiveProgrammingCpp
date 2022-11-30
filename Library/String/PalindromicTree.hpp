@@ -106,7 +106,7 @@ class PalindromicTree {
          */
         template<class Lambda, class SuffixLinkLambda = decltype(nullLambda)>
         auto dfs_edges(const Lambda& lambda, const SuffixLinkLambda& slLambda = nullLambda)->void {
-            std::stack<std::shared_ptr<Node>> stk;
+            std::stack<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>> stk;
             stk.emplace(this->weak_from_this().lock());
             while(!stk.empty()) {
                 auto p = stk.top();
@@ -166,7 +166,7 @@ public:
             ++orderCount[to];
         });
         // 探索順序に従って処理
-        std::queue<int> q;
+        std::queue<int, std::list<int>> q;
         for(int i = 0; i < static_cast<int>(m_s.size()); ++i)if(orderCount[i] == 0) { q.emplace(i); }
         while(!q.empty()) {
             int from = q.front();
