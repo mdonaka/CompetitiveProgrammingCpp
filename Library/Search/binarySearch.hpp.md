@@ -54,8 +54,8 @@ data:
   timestamp: '2022-09-11 19:45:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
+  - Test/String/SuffixArray.test.cpp
 documentation_of: Library/Search/binarySearch.hpp
 layout: document
 redirect_from:
