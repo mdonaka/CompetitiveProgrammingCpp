@@ -13,15 +13,16 @@ class PalindromicTree {
     //static constexpr auto nullLambda = [](int, const std::list<int>&) {};// c++17
 
     class Node :public std::enable_shared_from_this<Node> {
+        // 回文の右端itr
+        std::list<int> m_itrs;
+        // 回文サイズ
+        const int m_size;
+
         // 最大の回文接尾辞
         std::weak_ptr<Node> m_suffixLink;
         // 次サイズの回文(囲む文字, 次のNode)
         std::unordered_map<char, std::shared_ptr<Node>> m_edges;
 
-        // 回文の右端itr
-        std::list<int> m_itrs;
-        // 回文サイズ
-        const int m_size;
 
         // xAxとなるAを探す(x=str[itr])
         auto find(int itr, const std::string& s, bool flg = false) {
@@ -134,7 +135,7 @@ public:
         m_rootEven(std::make_shared<Node>(0, m_rootOdd)) {
         m_rootOdd->isOddRoot(m_rootEven);
         auto root = m_rootOdd;
-        for(int r = 0; r < s.size(); ++r) {
+        for(int r = 0; r < static_cast<int>(s.size()); ++r) {
             root = root->add(r, s).lock();
         }
     }
@@ -166,7 +167,7 @@ public:
         });
         // 探索順序に従って処理
         std::queue<int> q;
-        for(int i = 0; i < m_s.size(); ++i)if(orderCount[i] == 0) { q.emplace(i); }
+        for(int i = 0; i < static_cast<int>(m_s.size()); ++i)if(orderCount[i] == 0) { q.emplace(i); }
         while(!q.empty()) {
             int from = q.front();
             q.pop();
