@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 
-constexpr long long _ModCalculator_MOD = 1e9 + 7;
 class ModCalculator {
     const long long m_mod;
     const std::vector<long long> m_fac;
@@ -26,7 +25,7 @@ class ModCalculator {
         return finv;
     }
 public:
-    ModCalculator(long long mod = _ModCalculator_MOD, long long size = 3 * 1e6) :
+    ModCalculator(long long mod, long long size = 3 * 1e6) :
         m_mod(mod), m_fac(constructFac(size)), m_finv(constructInv(size)) {
     }
 
@@ -65,5 +64,4 @@ public:
         return val;
     }
 
-}calc;
-
+};
