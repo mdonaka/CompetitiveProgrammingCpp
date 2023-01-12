@@ -18,6 +18,9 @@ data:
       path: Library/Container/Accumulation2D.hpp
       title: Library/Container/Accumulation2D.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/Container/DisjointSparseTable.hpp
+      title: Library/Container/DisjointSparseTable.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Container/LazySegmentTree.hpp
       title: Library/Container/LazySegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -171,6 +174,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_xor.test.cpp
       title: Test/Container/Accumulation_xor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/DisjointSparseTable.test.cpp
+      title: Test/Container/DisjointSparseTable.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
       title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp

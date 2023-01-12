@@ -63,8 +63,8 @@ data:
   timestamp: '2022-08-31 03:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/Accumulation_sum.test.cpp
   - Test/Container/Accumulation_xor.test.cpp
+  - Test/Container/Accumulation_sum.test.cpp
 documentation_of: Library/Container/Accumulation.hpp
 layout: document
 redirect_from:
