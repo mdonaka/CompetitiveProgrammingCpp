@@ -52,6 +52,7 @@ public:
     auto get(int l, int r)const {
         if(r < l) { throw std::runtime_error("ERROR! `l` must less than `r`"); }
         l = std::max(l, 0); r = std::min(r, m_n - 1);
+        if(l == r) { return m_table[0][l].m_val; }
         auto idx = msb(l ^ r);
         return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;
     }
