@@ -17,7 +17,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/Accumulation2D.hpp
       title: Library/Container/Accumulation2D.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Container/DisjointSparseTable.hpp
       title: Library/Container/DisjointSparseTable.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/Accumulation_xor.test.cpp
       title: Test/Container/Accumulation_xor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Container/DisjointSparseTable.test.cpp
       title: Test/Container/DisjointSparseTable.test.cpp
     - icon: ':heavy_check_mark:'
