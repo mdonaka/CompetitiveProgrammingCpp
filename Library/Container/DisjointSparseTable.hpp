@@ -57,8 +57,8 @@ public:
     }
 };
 template<
-    class S,// —v‘f‚ÌŒ^
-    class T // 2€‰‰Zq
+    class S,// è¦ç´ ã®å‹
+    class T // 2é …æ¼”ç®—å­
 >
 struct SemiGroup {
     static inline auto Type() { return S(); }
