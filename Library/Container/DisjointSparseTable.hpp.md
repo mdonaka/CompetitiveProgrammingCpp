@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Container/DisjointSparseTable.test.cpp
     title: Test/Container/DisjointSparseTable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Container/DisjointSparseTable.hpp\"\n#include <vector>\r\
@@ -35,8 +35,8 @@ data:
     \ std::vector<S>& a) :m_n(n), m_table(constructTable(n, a)) {}\r\n\r\n    auto\
     \ get(int l, int r)const {\r\n        if(r < l) { throw std::runtime_error(\"\
     ERROR! `l` must less than `r`\"); }\r\n        l = std::max(l, 0); r = std::min(r,\
-    \ m_n - 1);\r\n        if(l == r) { return m_table[idx][l].m_val; }\r\n      \
-    \  auto idx = msb(l ^ r);\r\n        return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;\r\
+    \ m_n - 1);\r\n        if(l == r) { return m_table[0][l].m_val; }\r\n        auto\
+    \ idx = msb(l ^ r);\r\n        return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;\r\
     \n    }\r\n};\r\ntemplate<\r\n    class S,// \u8981\u7D20\u306E\u578B\r\n    class\
     \ T // 2\u9805\u6F14\u7B97\u5B50\r\n>\r\nstruct SemiGroup {\r\n    static inline\
     \ auto Type() { return S(); }\r\n    S m_val;\r\n    SemiGroup(S val) :m_val(val)\
@@ -67,9 +67,9 @@ data:
     \ :m_n(n), m_table(constructTable(n, a)) {}\r\n\r\n    auto get(int l, int r)const\
     \ {\r\n        if(r < l) { throw std::runtime_error(\"ERROR! `l` must less than\
     \ `r`\"); }\r\n        l = std::max(l, 0); r = std::min(r, m_n - 1);\r\n     \
-    \   if(l == r) { return m_table[idx][l].m_val; }\r\n        auto idx = msb(l ^\
-    \ r);\r\n        return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;\r\
-    \n    }\r\n};\r\ntemplate<\r\n    class S,// \u8981\u7D20\u306E\u578B\r\n    class\
+    \   if(l == r) { return m_table[0][l].m_val; }\r\n        auto idx = msb(l ^ r);\r\
+    \n        return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;\r\n \
+    \   }\r\n};\r\ntemplate<\r\n    class S,// \u8981\u7D20\u306E\u578B\r\n    class\
     \ T // 2\u9805\u6F14\u7B97\u5B50\r\n>\r\nstruct SemiGroup {\r\n    static inline\
     \ auto Type() { return S(); }\r\n    S m_val;\r\n    SemiGroup(S val) :m_val(val)\
     \ {}\r\n    SemiGroup binaryOperation(const SemiGroup& m2)const { return T()(m_val,\
@@ -80,7 +80,7 @@ data:
   path: Library/Container/DisjointSparseTable.hpp
   requiredBy: []
   timestamp: '2023-01-13 03:43:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Container/DisjointSparseTable.test.cpp
 documentation_of: Library/Container/DisjointSparseTable.hpp
