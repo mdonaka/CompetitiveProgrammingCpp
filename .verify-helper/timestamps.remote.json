@@ -4,6 +4,7 @@
 "Test/Container/Accumulation2D_sum.test.cpp": "2022-09-03 18:35:04 +0900",
 "Test/Container/Accumulation_sum.test.cpp": "2022-08-31 03:56:31 +0900",
 "Test/Container/Accumulation_xor.test.cpp": "2022-08-31 03:49:06 +0900",
+"Test/Container/DisjointSparseTable.test.cpp": "2023-01-13 03:22:03 +0900",
 "Test/Container/LazySegmentTree_RAQRMQ.test.cpp": "2022-09-05 21:54:33 +0900",
 "Test/Container/LazySegmentTree_RAQRSQ.test.cpp": "2022-09-05 21:54:33 +0900",
 "Test/Container/LazySegmentTree_RUQRMQ.test.cpp": "2022-09-05 21:54:33 +0900",
