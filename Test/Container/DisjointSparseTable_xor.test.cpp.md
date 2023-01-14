@@ -11,13 +11,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
+    PROBLEM: https://yukicoder.me/problems/no/1456
     links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"Test/Container/DisjointSparseTable.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include <iostream>\r\n\
-    #include <map>\r\n#line 2 \"Library/Container/DisjointSparseTable.hpp\"\n#include\
-    \ <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
+    - https://yukicoder.me/problems/no/1456
+  bundledCode: "#line 1 \"Test/Container/DisjointSparseTable_xor.test.cpp\"\n#define\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include <iostream>\r\
+    \n#include <unordered_set>\r\n\r\n#line 2 \"Library/Container/DisjointSparseTable.hpp\"\
+    \n#include <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
     \ {\r\n\r\n    using S = decltype(SG::Type());\r\n\r\n    const int m_n;\r\n \
     \   const std::vector<std::vector<SG>> m_table;\r\n\r\n    static auto accumulation(int\
     \ n, const std::vector<S>& a, int l, int r) {\r\n        auto mid = (r + l) >>\
@@ -48,36 +48,43 @@ data:
     \ {}\r\n    SemiGroup binaryOperation(const SemiGroup& m2)const { return T()(m_val,\
     \ m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream& os, const\
     \ SemiGroup<S, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\n#line\
-    \ 6 \"Test/Container/DisjointSparseTable.test.cpp\"\n\r\nusing ll = long long;\r\
+    \ 7 \"Test/Container/DisjointSparseTable_xor.test.cpp\"\n\r\nusing ll = long long;\r\
     \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
-    struct Functor { auto operator()(int a, int b)const { return std::min(a, b); }\
-    \ };\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n    std::vector<int>\
-    \ a; a.reserve(n);\r\n    for(int i = 0; i < n; ++i) { int x; cin >> x; a.emplace_back(x);\
-    \ }\r\n\r\n    using SG = SemiGroup<int, Functor>;\r\n    auto dst = DisjointSparseTable<SG>(n,\
-    \ a);\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll l, r;\r\n        cin >>\
-    \ l >> r;\r\n        cout << dst.get(l, r - 1) << endl;\r\n    }\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <map>\r\n#include \"./../../Library/Container/DisjointSparseTable.hpp\"\
+    struct F { auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing SG = SemiGroup<ll,\
+    \ F>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n    cin >> n >> k;\r\n\r\n   \
+    \ std::vector<ll> a; a.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n   \
+    \     ll x; cin >> x;\r\n        a.emplace_back(x);\r\n    }\r\n\r\n    auto dst\
+    \ = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll> st;\r\n    for(int\
+    \ i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i) ^ k);\r\n    }\r\n\r\
+    \n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n  \
+    \  for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0, i)) != st.end())\
+    \ { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout << \"No\" << endl;\r\
+    \n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <unordered_set>\r\n\r\n#include \"./../../Library/Container/DisjointSparseTable.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct Functor { auto operator()(int a, int b)const\
-    \ { return std::min(a, b); } };\r\n\r\nsigned main() {\r\n    ll n, q;\r\n   \
-    \ cin >> n >> q;\r\n    std::vector<int> a; a.reserve(n);\r\n    for(int i = 0;\
-    \ i < n; ++i) { int x; cin >> x; a.emplace_back(x); }\r\n\r\n    using SG = SemiGroup<int,\
-    \ Functor>;\r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    for(int _\
-    \ = 0; _ < q; ++_) {\r\n        ll l, r;\r\n        cin >> l >> r;\r\n       \
-    \ cout << dst.get(l, r - 1) << endl;\r\n    }\r\n}"
+    \ char endl = '\\n';\r\n\r\nstruct F { auto operator()(ll x, ll y) { return x\
+    \ ^ y; } };\r\nusing SG = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n    ll n,\
+    \ k;\r\n    cin >> n >> k;\r\n\r\n    std::vector<ll> a; a.reserve(n);\r\n   \
+    \ for(int _ = 0; _ < n; ++_) {\r\n        ll x; cin >> x;\r\n        a.emplace_back(x);\r\
+    \n    }\r\n\r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll>\
+    \ st;\r\n    for(int i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i)\
+    \ ^ k);\r\n    }\r\n\r\n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl;\
+    \ return 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0,\
+    \ i)) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout\
+    \ << \"No\" << endl;\r\n}"
   dependsOn:
   - Library/Container/DisjointSparseTable.hpp
   isVerificationFile: true
-  path: Test/Container/DisjointSparseTable.test.cpp
+  path: Test/Container/DisjointSparseTable_xor.test.cpp
   requiredBy: []
-  timestamp: '2023-01-13 03:43:50+09:00'
+  timestamp: '2023-01-14 04:15:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/DisjointSparseTable.test.cpp
+documentation_of: Test/Container/DisjointSparseTable_xor.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/DisjointSparseTable.test.cpp
-- /verify/Test/Container/DisjointSparseTable.test.cpp.html
-title: Test/Container/DisjointSparseTable.test.cpp
+- /verify/Test/Container/DisjointSparseTable_xor.test.cpp
+- /verify/Test/Container/DisjointSparseTable_xor.test.cpp.html
+title: Test/Container/DisjointSparseTable_xor.test.cpp
 ---

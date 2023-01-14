@@ -175,8 +175,11 @@ data:
       path: Test/Container/Accumulation_xor.test.cpp
       title: Test/Container/Accumulation_xor.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/DisjointSparseTable.test.cpp
-      title: Test/Container/DisjointSparseTable.test.cpp
+      path: Test/Container/DisjointSparseTable_RMQ.test.cpp
+      title: Test/Container/DisjointSparseTable_RMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/DisjointSparseTable_xor.test.cpp
+      title: Test/Container/DisjointSparseTable_xor.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
       title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
