@@ -2,7 +2,7 @@
 
 #include <deque>
 
-class ConvexHullTrickOrder {
+class ConvexHullTrickFast {
     using T = long long;
     std::deque<std::pair<T, T>> lines;
 
@@ -17,7 +17,7 @@ class ConvexHullTrickOrder {
     }
 
 public:
-    ConvexHullTrickOrder() {}
+    ConvexHullTrickFast() {}
 
     auto add(const std::pair<T, T>& line) {
         while(lines.size() > 1 &&
@@ -36,3 +36,4 @@ public:
         return func(*lines.begin(), x);
     }
 };
+
