@@ -34,5 +34,5 @@ signed main() {
         return ans;
     });
 
-    cout << std::fixed << std::setprecision(12) << f(n) << endl;
+    cout << f(n) << endl;
 }
