@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "./../../Library/String/LCPArray.hpp"
-#include "./../../Library/Container/SegmentTree.hpp"
+#include "./../../Library/DataStructure/SegmentTree.hpp"
 
 using ll = long long;
 using std::cout;
