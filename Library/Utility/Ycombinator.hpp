@@ -1,3 +1,4 @@
+#pragma once
 
 auto Y = [](auto f) {
     return [=](auto&&... args) {
