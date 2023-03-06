@@ -113,8 +113,8 @@ data:
   timestamp: '2022-09-05 22:20:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/SegmentTree_RMQ.test.cpp
   - Test/Container/SegmentTree_RSQ.test.cpp
+  - Test/Container/SegmentTree_RMQ.test.cpp
   - Test/String/LCPArray.test.cpp
 documentation_of: Library/Container/SegmentTree.hpp
 layout: document

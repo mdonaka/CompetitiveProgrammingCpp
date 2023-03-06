@@ -17,12 +17,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Container/Accumulation2D.hpp
       title: Library/Container/Accumulation2D.hpp
+    - icon: ':warning:'
+      path: Library/Container/ConvecHullTrick.hpp
+      title: Library/Container/ConvecHullTrick.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Container/DisjointSparseTable.hpp
       title: Library/Container/DisjointSparseTable.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Container/LazySegmentTree.hpp
       title: Library/Container/LazySegmentTree.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Container/LiChaoTree.hpp
+      title: Library/Container/LiChaoTree.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Container/SegmentMap.hpp
       title: Library/Container/SegmentMap.hpp
@@ -192,6 +198,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
       title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Container/LiChaoTree.test.cpp
+      title: Test/Container/LiChaoTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Container/SegmentMap.test.cpp
       title: Test/Container/SegmentMap.test.cpp
