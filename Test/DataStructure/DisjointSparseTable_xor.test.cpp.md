@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/DisjointSparseTable.hpp
-    title: Library/Container/DisjointSparseTable.hpp
+    path: Library/DataStructure/DisjointSparseTable.hpp
+    title: Library/DataStructure/DisjointSparseTable.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,9 +14,9 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/1456
     links:
     - https://yukicoder.me/problems/no/1456
-  bundledCode: "#line 1 \"Test/Container/DisjointSparseTable_xor.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include <iostream>\r\
-    \n#include <unordered_set>\r\n\r\n#line 2 \"Library/Container/DisjointSparseTable.hpp\"\
+  bundledCode: "#line 1 \"Test/DataStructure/DisjointSparseTable_xor.test.cpp\"\n\
+    #define PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include <iostream>\r\
+    \n#include <unordered_set>\r\n\r\n#line 2 \"Library/DataStructure/DisjointSparseTable.hpp\"\
     \n#include <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
     \ {\r\n\r\n    using S = decltype(SG::Type());\r\n\r\n    const int m_n;\r\n \
     \   const std::vector<std::vector<SG>> m_table;\r\n\r\n    static auto accumulation(int\
@@ -48,20 +48,20 @@ data:
     \ {}\r\n    SemiGroup binaryOperation(const SemiGroup& m2)const { return T()(m_val,\
     \ m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream& os, const\
     \ SemiGroup<S, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\n#line\
-    \ 7 \"Test/Container/DisjointSparseTable_xor.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
-    struct F { auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing SG = SemiGroup<ll,\
-    \ F>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n    cin >> n >> k;\r\n\r\n   \
-    \ std::vector<ll> a; a.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n   \
-    \     ll x; cin >> x;\r\n        a.emplace_back(x);\r\n    }\r\n\r\n    auto dst\
-    \ = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll> st;\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i) ^ k);\r\n    }\r\n\r\
-    \n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n  \
-    \  for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0, i)) != st.end())\
-    \ { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout << \"No\" << endl;\r\
-    \n}\n"
+    \ 7 \"Test/DataStructure/DisjointSparseTable_xor.test.cpp\"\n\r\nusing ll = long\
+    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nstruct F { auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing SG\
+    \ = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n    cin >> n >>\
+    \ k;\r\n\r\n    std::vector<ll> a; a.reserve(n);\r\n    for(int _ = 0; _ < n;\
+    \ ++_) {\r\n        ll x; cin >> x;\r\n        a.emplace_back(x);\r\n    }\r\n\
+    \r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll>\
+    \ st;\r\n    for(int i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i)\
+    \ ^ k);\r\n    }\r\n\r\n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl;\
+    \ return 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0,\
+    \ i)) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout\
+    \ << \"No\" << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <unordered_set>\r\n\r\n#include \"./../../Library/Container/DisjointSparseTable.hpp\"\
+    \ <iostream>\r\n#include <unordered_set>\r\n\r\n#include \"./../../Library/DataStructure/DisjointSparseTable.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct F { auto operator()(ll x, ll y) { return x\
     \ ^ y; } };\r\nusing SG = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n    ll n,\
@@ -74,17 +74,17 @@ data:
     \ i)) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout\
     \ << \"No\" << endl;\r\n}"
   dependsOn:
-  - Library/Container/DisjointSparseTable.hpp
+  - Library/DataStructure/DisjointSparseTable.hpp
   isVerificationFile: true
-  path: Test/Container/DisjointSparseTable_xor.test.cpp
+  path: Test/DataStructure/DisjointSparseTable_xor.test.cpp
   requiredBy: []
-  timestamp: '2023-01-14 04:15:05+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/DisjointSparseTable_xor.test.cpp
+documentation_of: Test/DataStructure/DisjointSparseTable_xor.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/DisjointSparseTable_xor.test.cpp
-- /verify/Test/Container/DisjointSparseTable_xor.test.cpp.html
-title: Test/Container/DisjointSparseTable_xor.test.cpp
+- /verify/Test/DataStructure/DisjointSparseTable_xor.test.cpp
+- /verify/Test/DataStructure/DisjointSparseTable_xor.test.cpp.html
+title: Test/DataStructure/DisjointSparseTable_xor.test.cpp
 ---

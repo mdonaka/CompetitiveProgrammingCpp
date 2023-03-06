@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/LazySegmentTree.hpp
-    title: Library/Container/LazySegmentTree.hpp
+    path: Library/DataStructure/LazySegmentTree.hpp
+    title: Library/DataStructure/LazySegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -11,12 +11,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F
-  bundledCode: "#line 1 \"Test/Container/LazySegmentTree_RUQRMQ.test.cpp\"\n#define\
-    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F\"\
-    \r\n\r\n#include <iostream>\r\n#line 3 \"Library/Container/LazySegmentTree.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G
+  bundledCode: "#line 1 \"Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp\"\n#define\
+    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G\"\
+    \r\n\r\n#include <iostream>\r\n#line 3 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n#include <vector>\r\n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class\
     \ T>\r\nclass isMonoid {\r\n    template <class U>\r\n    static auto check(U\
     \ x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n    static std::false_type\
@@ -88,38 +88,40 @@ data:
     \ long, long long>{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});\r\
     \n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto operator()(const M_M& m, const\
     \ M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\n    }\r\n};\r\n#line\
-    \ 5 \"Test/Container/LazySegmentTree_RUQRMQ.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
-    signed main() {\r\n    int n, q;\r\n    cin >> n >> q;\r\n\r\n    std::vector<long\
-    \ long> v(n, (1LL << 31) - 1);\r\n    auto segtree = LazySegmentTree<M_M, M_U,\
-    \ OP_RUQ_RMQ>(n, v);\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k;\r\
+    \ 5 \"Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp\"\n\r\nusing ll = long\
+    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >> q;\r\n\r\n    std::vector<std::pair<long\
+    \ long, long long>> v(n, {0,1});\r\n    auto segtree = LazySegmentTree<M_S, M_A,\
+    \ OP_RAQ_RSQ>(n, v);\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k;\r\
     \n        cin >> k;\r\n        if(k == 0) {\r\n            int s, t, x;;\r\n \
-    \           cin >> s >> t >> x;\r\n            segtree.update(s, t, x);\r\n  \
-    \      } else {\r\n            int s, t;\r\n            cin >> s >> t;\r\n   \
-    \         cout << segtree.query(s, t) << endl;\r\n        }\r\n    }\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../Library/Container/LazySegmentTree.hpp\"\
+    \           cin >> s >> t >> x;\r\n            --s; --t;\r\n            segtree.update(s,\
+    \ t, x);\r\n        } else {\r\n            int s, t;\r\n            cin >> s\
+    \ >> t;\r\n            --s; --t;\r\n            cout << segtree.query(s, t).first\
+    \ << endl;\r\n        }\r\n    }\r\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G\"\
+    \r\n\r\n#include <iostream>\r\n#include \"./../../Library/DataStructure/LazySegmentTree.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >>\
-    \ q;\r\n\r\n    std::vector<long long> v(n, (1LL << 31) - 1);\r\n    auto segtree\
-    \ = LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>(n, v);\r\n\r\n    for(int _ = 0; _ <\
-    \ q; ++_) {\r\n        int k;\r\n        cin >> k;\r\n        if(k == 0) {\r\n\
-    \            int s, t, x;;\r\n            cin >> s >> t >> x;\r\n            segtree.update(s,\
-    \ t, x);\r\n        } else {\r\n            int s, t;\r\n            cin >> s\
-    \ >> t;\r\n            cout << segtree.query(s, t) << endl;\r\n        }\r\n \
-    \   }\r\n}"
+    \ q;\r\n\r\n    std::vector<std::pair<long long, long long>> v(n, {0,1});\r\n\
+    \    auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n, v);\r\n\r\n    for(int\
+    \ _ = 0; _ < q; ++_) {\r\n        int k;\r\n        cin >> k;\r\n        if(k\
+    \ == 0) {\r\n            int s, t, x;;\r\n            cin >> s >> t >> x;\r\n\
+    \            --s; --t;\r\n            segtree.update(s, t, x);\r\n        } else\
+    \ {\r\n            int s, t;\r\n            cin >> s >> t;\r\n            --s;\
+    \ --t;\r\n            cout << segtree.query(s, t).first << endl;\r\n        }\r\
+    \n    }\r\n}"
   dependsOn:
-  - Library/Container/LazySegmentTree.hpp
+  - Library/DataStructure/LazySegmentTree.hpp
   isVerificationFile: true
-  path: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+  path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 21:54:33+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+documentation_of: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/LazySegmentTree_RUQRMQ.test.cpp
-- /verify/Test/Container/LazySegmentTree_RUQRMQ.test.cpp.html
-title: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+- /verify/Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
+- /verify/Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp.html
+title: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
 ---

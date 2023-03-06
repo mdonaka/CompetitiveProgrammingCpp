@@ -4,23 +4,23 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
-    title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+    path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
+    title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
-    title: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+    path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
+    title: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
-    title: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+    path: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+    title: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
-    title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+    path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
+    title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/LazySegmentTree.hpp\"\n#include <iostream>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\n#include <iostream>\r\
     \n#include <vector>\r\n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class\
     \ T>\r\nclass isMonoid {\r\n    template <class U>\r\n    static auto check(U\
     \ x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n    static std::false_type\
@@ -166,19 +166,19 @@ data:
     \ M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/LazySegmentTree.hpp
+  path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-09-03 18:54:43+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/LazySegmentTree_RAQRSQ.test.cpp
-  - Test/Container/LazySegmentTree_RUQRSQ.test.cpp
-  - Test/Container/LazySegmentTree_RUQRMQ.test.cpp
-  - Test/Container/LazySegmentTree_RAQRMQ.test.cpp
-documentation_of: Library/Container/LazySegmentTree.hpp
+  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
+documentation_of: Library/DataStructure/LazySegmentTree.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/LazySegmentTree.hpp
-- /library/Library/Container/LazySegmentTree.hpp.html
-title: Library/Container/LazySegmentTree.hpp
+- /library/Library/DataStructure/LazySegmentTree.hpp
+- /library/Library/DataStructure/LazySegmentTree.hpp.html
+title: Library/DataStructure/LazySegmentTree.hpp
 ---

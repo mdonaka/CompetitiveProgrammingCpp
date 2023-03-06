@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/SegmentMap.test.cpp
-    title: Test/Container/SegmentMap.test.cpp
+    path: Test/DataStructure/SegmentMap.test.cpp
+    title: Test/DataStructure/SegmentMap.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/SegmentMap.hpp\"\n#include <iostream>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/SegmentMap.hpp\"\n#include <iostream>\r\
     \n#include <map>\r\n#include <stdexcept>\r\n#include <deque>\r\n\r\n\r\ntemplate<class\
     \ ValType = long long, class SizeType = long long>\r\nclass SegmentMap {\r\n\r\
     \n    const SizeType n;\r\n    std::map<SizeType, ValType> mp;\r\n\r\n    auto\
@@ -82,16 +82,16 @@ data:
     \n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/SegmentMap.hpp
+  path: Library/DataStructure/SegmentMap.hpp
   requiredBy: []
-  timestamp: '2022-09-05 21:17:52+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/SegmentMap.test.cpp
-documentation_of: Library/Container/SegmentMap.hpp
+  - Test/DataStructure/SegmentMap.test.cpp
+documentation_of: Library/DataStructure/SegmentMap.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/SegmentMap.hpp
-- /library/Library/Container/SegmentMap.hpp.html
-title: Library/Container/SegmentMap.hpp
+- /library/Library/DataStructure/SegmentMap.hpp
+- /library/Library/DataStructure/SegmentMap.hpp.html
+title: Library/DataStructure/SegmentMap.hpp
 ---

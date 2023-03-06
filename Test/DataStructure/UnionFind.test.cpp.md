@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/UnionFind.hpp
-    title: Library/Container/UnionFind.hpp
+    path: Library/DataStructure/UnionFind.hpp
+    title: Library/DataStructure/UnionFind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,9 +14,9 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/1390
     links:
     - https://yukicoder.me/problems/no/1390
-  bundledCode: "#line 1 \"Test/Container/UnionFind.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/1390\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <vector>\r\n#include <deque>\r\n\r\n#line 3 \"Library/Container/UnionFind.hpp\"\
+  bundledCode: "#line 1 \"Test/DataStructure/UnionFind.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/1390\"\r\n\r\n#include <iostream>\r\n#include\
+    \ <vector>\r\n#include <deque>\r\n\r\n#line 3 \"Library/DataStructure/UnionFind.hpp\"\
     \n#include <numeric>\r\n/**\r\n *\tUnionFind\u6728\u3092\u69CB\u6210\u3059\u308B\
     \r\n *\tnode\u306E\u6DF1\u3055\uFF0C\u6728\u306E\u30B5\u30A4\u30BA\u3092\u53D6\
     \u5F97\u53EF\u80FD\r\n */\r\nclass UnionFind {\r\n    std::vector<int> m_root;\r\
@@ -31,7 +31,7 @@ data:
     \n    }\r\n    int root(int x) {\r\n        if(m_root[x] == x) { return x; }\r\
     \n        return m_root[x] = root(m_root[x]);\r\n    }\r\n    int size(int x)\
     \ {\r\n        if(m_root[x] == x) { return m_size[x]; }\r\n        return size(m_root[x]\
-    \ = root(m_root[x]));\r\n    }\r\n};\r\n#line 8 \"Test/Container/UnionFind.test.cpp\"\
+    \ = root(m_root[x]));\r\n    }\r\n};\r\n#line 8 \"Test/DataStructure/UnionFind.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    ll n, m;\r\n    cin >> n >>\
     \ m;\r\n    std::vector<std::deque<ll>> cv(n);\r\n    for(int _ = 0; _ < n; ++_)\
@@ -42,7 +42,7 @@ data:
     \ {\r\n                dsu.unite(base, tg);\r\n                ++ans;\r\n    \
     \        }\r\n        }\r\n    }\r\n    cout << ans << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1390\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include \"./../../Library/Container/UnionFind.hpp\"\
+    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include \"./../../Library/DataStructure/UnionFind.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    ll n, m;\r\n    cin >> n >>\
     \ m;\r\n    std::vector<std::deque<ll>> cv(n);\r\n    for(int _ = 0; _ < n; ++_)\
@@ -53,17 +53,17 @@ data:
     \ {\r\n                dsu.unite(base, tg);\r\n                ++ans;\r\n    \
     \        }\r\n        }\r\n    }\r\n    cout << ans << endl;\r\n}"
   dependsOn:
-  - Library/Container/UnionFind.hpp
+  - Library/DataStructure/UnionFind.hpp
   isVerificationFile: true
-  path: Test/Container/UnionFind.test.cpp
+  path: Test/DataStructure/UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2022-09-04 13:22:32+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/UnionFind.test.cpp
+documentation_of: Test/DataStructure/UnionFind.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/UnionFind.test.cpp
-- /verify/Test/Container/UnionFind.test.cpp.html
-title: Test/Container/UnionFind.test.cpp
+- /verify/Test/DataStructure/UnionFind.test.cpp
+- /verify/Test/DataStructure/UnionFind.test.cpp.html
+title: Test/DataStructure/UnionFind.test.cpp
 ---

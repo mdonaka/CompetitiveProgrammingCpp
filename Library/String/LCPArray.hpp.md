@@ -8,13 +8,10 @@ data:
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/String/LCPArray.test.cpp
-    title: Test/String/LCPArray.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/Search/binarySearch.hpp\"\
@@ -186,9 +183,8 @@ data:
   path: Library/String/LCPArray.hpp
   requiredBy: []
   timestamp: '2022-09-13 03:54:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/String/LCPArray.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/String/LCPArray.hpp
 layout: document
 redirect_from:

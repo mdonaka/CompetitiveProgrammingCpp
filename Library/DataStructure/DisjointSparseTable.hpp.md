@@ -4,20 +4,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/DisjointSparseTable_RMQ.test.cpp
-    title: Test/Container/DisjointSparseTable_RMQ.test.cpp
+    path: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
+    title: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/DisjointSparseTable_xor.test.cpp
-    title: Test/Container/DisjointSparseTable_xor.test.cpp
+    path: Test/DataStructure/DisjointSparseTable_xor.test.cpp
+    title: Test/DataStructure/DisjointSparseTable_xor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/DisjointSparseTable.hpp\"\n#include <vector>\r\
-    \n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable {\r\
-    \n\r\n    using S = decltype(SG::Type());\r\n\r\n    const int m_n;\r\n    const\
-    \ std::vector<std::vector<SG>> m_table;\r\n\r\n    static auto accumulation(int\
+  bundledCode: "#line 2 \"Library/DataStructure/DisjointSparseTable.hpp\"\n#include\
+    \ <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
+    \ {\r\n\r\n    using S = decltype(SG::Type());\r\n\r\n    const int m_n;\r\n \
+    \   const std::vector<std::vector<SG>> m_table;\r\n\r\n    static auto accumulation(int\
     \ n, const std::vector<S>& a, int l, int r) {\r\n        auto mid = (r + l) >>\
     \ 1;\r\n        r = std::min(n, r);\r\n        int size = r - l;\r\n        std::vector<SG>\
     \ acc; acc.reserve(size);\r\n        for(int i = l; i < r; ++i) { acc.emplace_back(a[i]);\
@@ -80,17 +80,17 @@ data:
     \ SemiGroup<S, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/DisjointSparseTable.hpp
+  path: Library/DataStructure/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2023-01-13 03:43:50+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/DisjointSparseTable_RMQ.test.cpp
-  - Test/Container/DisjointSparseTable_xor.test.cpp
-documentation_of: Library/Container/DisjointSparseTable.hpp
+  - Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
+  - Test/DataStructure/DisjointSparseTable_xor.test.cpp
+documentation_of: Library/DataStructure/DisjointSparseTable.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/DisjointSparseTable.hpp
-- /library/Library/Container/DisjointSparseTable.hpp.html
-title: Library/Container/DisjointSparseTable.hpp
+- /library/Library/DataStructure/DisjointSparseTable.hpp
+- /library/Library/DataStructure/DisjointSparseTable.hpp.html
+title: Library/DataStructure/DisjointSparseTable.hpp
 ---

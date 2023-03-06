@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"Library/Container/UnionFindWeight.cpp\"\nclass UnionFindWeight\
+  bundledCode: "#line 1 \"Library/DataStructure/UnionFindWeight.cpp\"\nclass UnionFindWeight\
     \ {\r\npublic:\r\n\tstd::vector<ll> m_root;\r\n\tstd::vector<ll> m_rank;\r\n\t\
     std::vector<ll> m_weight;\r\n\r\n\tll root(ll x) {\r\n\t\tif (m_root[x] == x)\
     \ { return x; }\r\n\t\tll r = root(m_root[x]);\r\n\t\tm_weight[x] += m_weight[m_root[x]];\r\
@@ -37,15 +37,15 @@ data:
     \ weight(y) - weight(x);\r\n\t}\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/UnionFindWeight.cpp
+  path: Library/DataStructure/UnionFindWeight.cpp
   requiredBy: []
-  timestamp: '2019-06-01 18:40:04+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Library/Container/UnionFindWeight.cpp
+documentation_of: Library/DataStructure/UnionFindWeight.cpp
 layout: document
 redirect_from:
-- /library/Library/Container/UnionFindWeight.cpp
-- /library/Library/Container/UnionFindWeight.cpp.html
-title: Library/Container/UnionFindWeight.cpp
+- /library/Library/DataStructure/UnionFindWeight.cpp
+- /library/Library/DataStructure/UnionFindWeight.cpp.html
+title: Library/DataStructure/UnionFindWeight.cpp
 ---

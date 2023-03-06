@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/DisjointSparseTable.hpp
-    title: Library/Container/DisjointSparseTable.hpp
+    path: Library/DataStructure/DisjointSparseTable.hpp
+    title: Library/DataStructure/DisjointSparseTable.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,10 +14,10 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
     - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"Test/Container/DisjointSparseTable_RMQ.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include <iostream>\r\
-    \n#include <map>\r\n#line 2 \"Library/Container/DisjointSparseTable.hpp\"\n#include\
-    \ <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
+  bundledCode: "#line 1 \"Test/DataStructure/DisjointSparseTable_RMQ.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <map>\r\n#line 2 \"Library/DataStructure/DisjointSparseTable.hpp\"\
+    \n#include <vector>\r\n#include <cmath>\r\n\r\ntemplate <class SG>\r\nclass DisjointSparseTable\
     \ {\r\n\r\n    using S = decltype(SG::Type());\r\n\r\n    const int m_n;\r\n \
     \   const std::vector<std::vector<SG>> m_table;\r\n\r\n    static auto accumulation(int\
     \ n, const std::vector<S>& a, int l, int r) {\r\n        auto mid = (r + l) >>\
@@ -48,16 +48,17 @@ data:
     \ {}\r\n    SemiGroup binaryOperation(const SemiGroup& m2)const { return T()(m_val,\
     \ m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream& os, const\
     \ SemiGroup<S, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\n#line\
-    \ 6 \"Test/Container/DisjointSparseTable_RMQ.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
-    struct Functor { auto operator()(int a, int b)const { return std::min(a, b); }\
-    \ };\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n    std::vector<int>\
-    \ a; a.reserve(n);\r\n    for(int i = 0; i < n; ++i) { int x; cin >> x; a.emplace_back(x);\
-    \ }\r\n\r\n    using SG = SemiGroup<int, Functor>;\r\n    auto dst = DisjointSparseTable<SG>(n,\
-    \ a);\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll l, r;\r\n        cin >>\
-    \ l >> r;\r\n        cout << dst.get(l, r - 1) << endl;\r\n    }\r\n}\n"
+    \ 6 \"Test/DataStructure/DisjointSparseTable_RMQ.test.cpp\"\n\r\nusing ll = long\
+    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nstruct Functor { auto operator()(int a, int b)const { return std::min(a,\
+    \ b); } };\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n  \
+    \  std::vector<int> a; a.reserve(n);\r\n    for(int i = 0; i < n; ++i) { int x;\
+    \ cin >> x; a.emplace_back(x); }\r\n\r\n    using SG = SemiGroup<int, Functor>;\r\
+    \n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    for(int _ = 0; _ < q; ++_)\
+    \ {\r\n        ll l, r;\r\n        cin >> l >> r;\r\n        cout << dst.get(l,\
+    \ r - 1) << endl;\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <map>\r\n#include \"./../../Library/Container/DisjointSparseTable.hpp\"\
+    \ <iostream>\r\n#include <map>\r\n#include \"./../../Library/DataStructure/DisjointSparseTable.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct Functor { auto operator()(int a, int b)const\
     \ { return std::min(a, b); } };\r\n\r\nsigned main() {\r\n    ll n, q;\r\n   \
@@ -67,17 +68,17 @@ data:
     \ = 0; _ < q; ++_) {\r\n        ll l, r;\r\n        cin >> l >> r;\r\n       \
     \ cout << dst.get(l, r - 1) << endl;\r\n    }\r\n}"
   dependsOn:
-  - Library/Container/DisjointSparseTable.hpp
+  - Library/DataStructure/DisjointSparseTable.hpp
   isVerificationFile: true
-  path: Test/Container/DisjointSparseTable_RMQ.test.cpp
+  path: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-01-14 04:15:05+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/DisjointSparseTable_RMQ.test.cpp
+documentation_of: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/DisjointSparseTable_RMQ.test.cpp
-- /verify/Test/Container/DisjointSparseTable_RMQ.test.cpp.html
-title: Test/Container/DisjointSparseTable_RMQ.test.cpp
+- /verify/Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
+- /verify/Test/DataStructure/DisjointSparseTable_RMQ.test.cpp.html
+title: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
 ---

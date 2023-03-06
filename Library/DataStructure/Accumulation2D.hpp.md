@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/Accumulation2D_sum.test.cpp
-    title: Test/Container/Accumulation2D_sum.test.cpp
+    path: Test/DataStructure/Accumulation2D_sum.test.cpp
+    title: Test/DataStructure/Accumulation2D_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/Accumulation2D.hpp\"\n#include <vector>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/Accumulation2D.hpp\"\n#include <vector>\r\
     \n\r\ntemplate<\r\n    class S,   // \u8981\u7D20\u306E\u578B\r\n    S element,\
     \ // \u5143\r\n    class T, // 2\u9805\u6F14\u7B97\u5B50\r\n    class U // \u9006\
     \u5143\r\n>\r\nstruct Group {\r\n    S m_val;\r\n    Group() :m_val(element) {}\r\
@@ -67,16 +67,16 @@ data:
     \ + 1].inverse()).m_val;\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/Accumulation2D.hpp
+  path: Library/DataStructure/Accumulation2D.hpp
   requiredBy: []
-  timestamp: '2022-09-03 18:35:04+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/Accumulation2D_sum.test.cpp
-documentation_of: Library/Container/Accumulation2D.hpp
+  - Test/DataStructure/Accumulation2D_sum.test.cpp
+documentation_of: Library/DataStructure/Accumulation2D.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/Accumulation2D.hpp
-- /library/Library/Container/Accumulation2D.hpp.html
-title: Library/Container/Accumulation2D.hpp
+- /library/Library/DataStructure/Accumulation2D.hpp
+- /library/Library/DataStructure/Accumulation2D.hpp.html
+title: Library/DataStructure/Accumulation2D.hpp
 ---

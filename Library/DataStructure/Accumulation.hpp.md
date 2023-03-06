@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/Accumulation_sum.test.cpp
-    title: Test/Container/Accumulation_sum.test.cpp
+    path: Test/DataStructure/Accumulation_sum.test.cpp
+    title: Test/DataStructure/Accumulation_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/Accumulation_xor.test.cpp
-    title: Test/Container/Accumulation_xor.test.cpp
+    path: Test/DataStructure/Accumulation_xor.test.cpp
+    title: Test/DataStructure/Accumulation_xor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/Accumulation.hpp\"\n#include <vector>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/Accumulation.hpp\"\n#include <vector>\r\
     \n#include <algorithm>\r\n\r\ntemplate<\r\n    class S,   // \u8981\u7D20\u306E\
     \u578B\r\n    S element, // \u5143\r\n    class T, // 2\u9805\u6F14\u7B97\u5B50\
     \r\n    class U // \u9006\u5143\r\n>\r\nstruct Group {\r\n    S m_val;\r\n   \
@@ -58,17 +58,17 @@ data:
     \n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/Accumulation.hpp
+  path: Library/DataStructure/Accumulation.hpp
   requiredBy: []
-  timestamp: '2022-08-31 03:38:57+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/Accumulation_sum.test.cpp
-  - Test/Container/Accumulation_xor.test.cpp
-documentation_of: Library/Container/Accumulation.hpp
+  - Test/DataStructure/Accumulation_sum.test.cpp
+  - Test/DataStructure/Accumulation_xor.test.cpp
+documentation_of: Library/DataStructure/Accumulation.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/Accumulation.hpp
-- /library/Library/Container/Accumulation.hpp.html
-title: Library/Container/Accumulation.hpp
+- /library/Library/DataStructure/Accumulation.hpp
+- /library/Library/DataStructure/Accumulation.hpp.html
+title: Library/DataStructure/Accumulation.hpp
 ---

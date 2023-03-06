@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/SegmentMap.hpp
-    title: Library/Container/SegmentMap.hpp
+    path: Library/DataStructure/SegmentMap.hpp
+    title: Library/DataStructure/SegmentMap.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,10 +14,10 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/674
     links:
     - https://yukicoder.me/problems/no/674
-  bundledCode: "#line 1 \"Test/Container/SegmentMap.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/674\"\r\n\r\n#include <iostream>\r\n#line 3 \"\
-    Library/Container/SegmentMap.hpp\"\n#include <map>\r\n#include <stdexcept>\r\n\
-    #include <deque>\r\n\r\n\r\ntemplate<class ValType = long long, class SizeType\
+  bundledCode: "#line 1 \"Test/DataStructure/SegmentMap.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/674\"\r\n\r\n#include <iostream>\r\n#line\
+    \ 3 \"Library/DataStructure/SegmentMap.hpp\"\n#include <map>\r\n#include <stdexcept>\r\
+    \n#include <deque>\r\n\r\n\r\ntemplate<class ValType = long long, class SizeType\
     \ = long long>\r\nclass SegmentMap {\r\n\r\n    const SizeType n;\r\n    std::map<SizeType,\
     \ ValType> mp;\r\n\r\n    auto add(SizeType i, ValType val, bool left = true,\
     \ bool right = true) {\r\n        auto it = std::prev(mp.upper_bound(i));\r\n\
@@ -49,17 +49,17 @@ data:
     \n    }\r\n\r\n    auto get(SizeType i) {\r\n        auto it = std::prev(mp.upper_bound(i));\r\
     \n        auto nx = std::next(it)->first;\r\n        auto nr = nx - 1;\r\n   \
     \     auto nl = it->first;\r\n        return std::pair{it->second,std::pair{nl,nr}};\r\
-    \n    }\r\n};\r\n#line 5 \"Test/Container/SegmentMap.test.cpp\"\n\r\nusing ll\
-    \ = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl =\
-    \ '\\n';\r\n\r\nsigned main() {\r\n    ll d, q;\r\n    cin >> d >> q;\r\n\r\n\
+    \n    }\r\n};\r\n#line 5 \"Test/DataStructure/SegmentMap.test.cpp\"\n\r\nusing\
+    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
+    \ = '\\n';\r\n\r\nsigned main() {\r\n    ll d, q;\r\n    cin >> d >> q;\r\n\r\n\
     \    auto segmap = SegmentMap(d);\r\n\r\n    ll ans = 0;\r\n    for(int _ = 0;\
     \ _ < q; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n        segmap.update(a,\
     \ b, 1);\r\n\r\n        auto [__, range] = segmap.get(a);\r\n        ans = std::max(ans,\
     \ range.second - range.first + 1);\r\n        cout << ans << endl;\r\n    }\r\n\
     }\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/674\"\r\n\r\n#include\
-    \ <iostream>\r\n#include \"./../../Library/Container/SegmentMap.hpp\"\r\n\r\n\
-    using ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
+    \ <iostream>\r\n#include \"./../../Library/DataStructure/SegmentMap.hpp\"\r\n\r\
+    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
     \ endl = '\\n';\r\n\r\nsigned main() {\r\n    ll d, q;\r\n    cin >> d >> q;\r\
     \n\r\n    auto segmap = SegmentMap(d);\r\n\r\n    ll ans = 0;\r\n    for(int _\
     \ = 0; _ < q; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n       \
@@ -67,17 +67,17 @@ data:
     \        ans = std::max(ans, range.second - range.first + 1);\r\n        cout\
     \ << ans << endl;\r\n    }\r\n}"
   dependsOn:
-  - Library/Container/SegmentMap.hpp
+  - Library/DataStructure/SegmentMap.hpp
   isVerificationFile: true
-  path: Test/Container/SegmentMap.test.cpp
+  path: Test/DataStructure/SegmentMap.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 21:17:52+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/SegmentMap.test.cpp
+documentation_of: Test/DataStructure/SegmentMap.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/SegmentMap.test.cpp
-- /verify/Test/Container/SegmentMap.test.cpp.html
-title: Test/Container/SegmentMap.test.cpp
+- /verify/Test/DataStructure/SegmentMap.test.cpp
+- /verify/Test/DataStructure/SegmentMap.test.cpp.html
+title: Test/DataStructure/SegmentMap.test.cpp
 ---

@@ -4,20 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/SegmentTree_RMQ.test.cpp
-    title: Test/Container/SegmentTree_RMQ.test.cpp
+    path: Test/DataStructure/SegmentTree_RMQ.test.cpp
+    title: Test/DataStructure/SegmentTree_RMQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Container/SegmentTree_RSQ.test.cpp
-    title: Test/Container/SegmentTree_RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/String/LCPArray.test.cpp
-    title: Test/String/LCPArray.test.cpp
+    path: Test/DataStructure/SegmentTree_RSQ.test.cpp
+    title: Test/DataStructure/SegmentTree_RSQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/SegmentTree.hpp\"\n\r\n#include <vector>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n#include <vector>\r\
     \n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class T>\r\nclass isMonoid\
     \ {\r\n    template <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x),\
     \ std::true_type{});\r\n    static std::false_type check(...);\r\npublic:\r\n\
@@ -108,18 +105,17 @@ data:
     \   }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/SegmentTree.hpp
+  path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-09-05 22:20:42+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/SegmentTree_RSQ.test.cpp
-  - Test/Container/SegmentTree_RMQ.test.cpp
-  - Test/String/LCPArray.test.cpp
-documentation_of: Library/Container/SegmentTree.hpp
+  - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - Test/DataStructure/SegmentTree_RMQ.test.cpp
+documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/SegmentTree.hpp
-- /library/Library/Container/SegmentTree.hpp.html
-title: Library/Container/SegmentTree.hpp
+- /library/Library/DataStructure/SegmentTree.hpp
+- /library/Library/DataStructure/SegmentTree.hpp.html
+title: Library/DataStructure/SegmentTree.hpp
 ---

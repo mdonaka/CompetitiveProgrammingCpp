@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/LiChaoTree.hpp
-    title: Library/Container/LiChaoTree.hpp
+    path: Library/DataStructure/LiChaoTree.hpp
+    title: Library/DataStructure/LiChaoTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,13 +14,13 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
     links:
     - https://judge.yosupo.jp/problem/line_add_get_min
-  bundledCode: "#line 1 \"Test/Container/LiChaoTree.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include <iostream>\r\
-    \n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/Container/LiChaoTree.hpp\"\
-    \n\r\n#line 4 \"Library/Container/LiChaoTree.hpp\"\n#include <algorithm>\r\n#include\
-    \ <unordered_map>\r\n\r\nclass LiChaoTree {\r\n    using T = long long;\r\n  \
-    \  using Line = std::pair<T, T>;\r\n    constexpr static T mul_mx = 1e9;\r\n \
-    \   constexpr static T add_mx = 1e18;\r\n\r\n    int m_size;\r\n    std::vector<T>\
+  bundledCode: "#line 1 \"Test/DataStructure/LiChaoTree.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include <iostream>\r\
+    \n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
+    \n\r\n#line 4 \"Library/DataStructure/LiChaoTree.hpp\"\n#include <algorithm>\r\
+    \n#include <unordered_map>\r\n\r\nclass LiChaoTree {\r\n    using T = long long;\r\
+    \n    using Line = std::pair<T, T>;\r\n    constexpr static T mul_mx = 1e9;\r\n\
+    \    constexpr static T add_mx = 1e18;\r\n\r\n    int m_size;\r\n    std::vector<T>\
     \ m_x;\r\n    std::vector<Line> m_node;\r\n    std::unordered_map<T, T> m_xtoi;\r\
     \n\r\n    static inline int calcSize(int n) { int size = 1; while(size < n) {\
     \ size <<= 1; }return size; }\r\n    auto f(const Line& line, const T& x)const\
@@ -41,7 +41,7 @@ data:
     \r\n    auto query(const T& x) {\r\n        auto k = m_xtoi[x] + m_size - 1;\r\
     \n        auto ret = add_mx << 1;\r\n        while(k >= 0) {\r\n            ret\
     \ = std::min(ret, f(m_node[k], x));\r\n            k = (k - 1) >> 1;\r\n     \
-    \   }\r\n        return ret;\r\n    }\r\n};\r\n#line 8 \"Test/Container/LiChaoTree.test.cpp\"\
+    \   }\r\n        return ret;\r\n    }\r\n};\r\n#line 8 \"Test/DataStructure/LiChaoTree.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b;\r\n \
     \   Query(int k, ll a, ll b) :k(k), a(a), b(b) {}\r\n    Query(int k, ll x) :Query(k,\
@@ -60,9 +60,9 @@ data:
     \ << lct.query(query.a) << endl;\r\n        }\r\n    }\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\
     \n#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include\
-    \ \"./../../Library/Container/LiChaoTree.hpp\"\r\n\r\nusing ll = long long;\r\n\
-    using std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\nstruct\
-    \ Query {\r\n    int k;\r\n    ll a, b;\r\n    Query(int k, ll a, ll b) :k(k),\
+    \ \"./../../Library/DataStructure/LiChaoTree.hpp\"\r\n\r\nusing ll = long long;\r\
+    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
+    struct Query {\r\n    int k;\r\n    ll a, b;\r\n    Query(int k, ll a, ll b) :k(k),\
     \ a(a), b(b) {}\r\n    Query(int k, ll x) :Query(k, x, 0) {}\r\n};\r\n\r\nsigned\
     \ main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n    std::vector<std::pair<ll,\
     \ ll>> v; v.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        ll a, b;\r\
@@ -78,17 +78,17 @@ data:
     \ query.b);\r\n        } else {\r\n            cout << lct.query(query.a) << endl;\r\
     \n        }\r\n    }\r\n}\r\n"
   dependsOn:
-  - Library/Container/LiChaoTree.hpp
+  - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
-  path: Test/Container/LiChaoTree.test.cpp
+  path: Test/DataStructure/LiChaoTree.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:33:21+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/LiChaoTree.test.cpp
+documentation_of: Test/DataStructure/LiChaoTree.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/LiChaoTree.test.cpp
-- /verify/Test/Container/LiChaoTree.test.cpp.html
-title: Test/Container/LiChaoTree.test.cpp
+- /verify/Test/DataStructure/LiChaoTree.test.cpp
+- /verify/Test/DataStructure/LiChaoTree.test.cpp.html
+title: Test/DataStructure/LiChaoTree.test.cpp
 ---

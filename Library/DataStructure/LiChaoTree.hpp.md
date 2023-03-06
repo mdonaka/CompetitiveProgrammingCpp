@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Container/LiChaoTree.test.cpp
-    title: Test/Container/LiChaoTree.test.cpp
+    path: Test/DataStructure/LiChaoTree.test.cpp
+    title: Test/DataStructure/LiChaoTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Container/LiChaoTree.hpp\"\n\r\n#include <vector>\r\
+  bundledCode: "#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n#include <vector>\r\
     \n#include <algorithm>\r\n#include <unordered_map>\r\n\r\nclass LiChaoTree {\r\
     \n    using T = long long;\r\n    using Line = std::pair<T, T>;\r\n    constexpr\
     \ static T mul_mx = 1e9;\r\n    constexpr static T add_mx = 1e18;\r\n\r\n    int\
@@ -63,16 +63,16 @@ data:
     \   }\r\n        return ret;\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Container/LiChaoTree.hpp
+  path: Library/DataStructure/LiChaoTree.hpp
   requiredBy: []
-  timestamp: '2023-03-07 04:33:21+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Container/LiChaoTree.test.cpp
-documentation_of: Library/Container/LiChaoTree.hpp
+  - Test/DataStructure/LiChaoTree.test.cpp
+documentation_of: Library/DataStructure/LiChaoTree.hpp
 layout: document
 redirect_from:
-- /library/Library/Container/LiChaoTree.hpp
-- /library/Library/Container/LiChaoTree.hpp.html
-title: Library/Container/LiChaoTree.hpp
+- /library/Library/DataStructure/LiChaoTree.hpp
+- /library/Library/DataStructure/LiChaoTree.hpp.html
+title: Library/DataStructure/LiChaoTree.hpp
 ---

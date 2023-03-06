@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Container/SegmentTree.hpp
-    title: Library/Container/SegmentTree.hpp
+    path: Library/DataStructure/SegmentTree.hpp
+    title: Library/DataStructure/SegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -11,15 +11,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
-  bundledCode: "#line 1 \"Test/Container/SegmentTree_RSQ.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\r\n\r\n\
-    #include <iostream>\r\n#line 2 \"Library/Container/SegmentTree.hpp\"\n\r\n#include\
-    \ <vector>\r\n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class T>\r\
-    \nclass isMonoid {\r\n    template <class U>\r\n    static auto check(U x) ->\
-    \ decltype(x.binaryOperation(x), std::true_type{});\r\n    static std::false_type\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+  bundledCode: "#line 1 \"Test/DataStructure/SegmentTree_RMQ.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\r\n\r\n\
+    #include <iostream>\r\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n\
+    #include <vector>\r\n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class\
+    \ T>\r\nclass isMonoid {\r\n    template <class U>\r\n    static auto check(U\
+    \ x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n    static std::false_type\
     \ check(...);\r\npublic:\r\n    static bool const value = decltype(check(std::declval<T>()))::value;\r\
     \n};\r\n\r\ntemplate<class Monoid, std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t>\
     \ = nullptr >\r\nclass SegmentTree {\r\nprivate:\r\n    const int m_size;\r\n\
@@ -60,37 +60,37 @@ data:
     \ {}\r\n    Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid&\
     \ m2)const { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
-    \   }\r\n};\r\n#line 5 \"Test/Container/SegmentTree_RSQ.test.cpp\"\n\r\nusing\
+    \   }\r\n};\r\n#line 5 \"Test/DataStructure/SegmentTree_RMQ.test.cpp\"\n\r\nusing\
     \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
     \ = '\\n';\r\n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >> q;\r\n\r\
-    \n    struct F { auto operator()(ll a, ll b)const { return a + b; } };\r\n   \
-    \ using M = Monoid<ll, 0, F>;\r\n    auto segtree = SegmentTree<M>(n);\r\n\r\n\
-    \    for(int _ = 0; _ < q; ++_) {\r\n        int k, x, y;\r\n        cin >> k\
-    \ >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x - 1, y);\r\n\
-    \        } else {\r\n            cout << segtree.query(x - 1, y - 1) << endl;\r\
-    \n        }\r\n    }\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../Library/Container/SegmentTree.hpp\"\
+    \n    struct F { auto operator()(ll a, ll b)const { return std::min(a, b); } };\r\
+    \n    using M = Monoid<ll, (1LL << 31) - 1, F>;\r\n    auto segtree = SegmentTree<M>(n);\r\
+    \n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k, x, y;\r\n        cin\
+    \ >> k >> x >> y;\r\n        if(k == 0) {\r\n            segtree.update(x, y);\r\
+    \n        } else {\r\n            cout << segtree.query(x, y) << endl;\r\n   \
+    \     }\r\n    }\r\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
+    \r\n\r\n#include <iostream>\r\n#include \"./../../Library/DataStructure/SegmentTree.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >>\
-    \ q;\r\n\r\n    struct F { auto operator()(ll a, ll b)const { return a + b; }\
-    \ };\r\n    using M = Monoid<ll, 0, F>;\r\n    auto segtree = SegmentTree<M>(n);\r\
-    \n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k, x, y;\r\n        cin\
-    \ >> k >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x - 1, y);\r\
-    \n        } else {\r\n            cout << segtree.query(x - 1, y - 1) << endl;\r\
-    \n        }\r\n    }\r\n}"
+    \ q;\r\n\r\n    struct F { auto operator()(ll a, ll b)const { return std::min(a,\
+    \ b); } };\r\n    using M = Monoid<ll, (1LL << 31) - 1, F>;\r\n    auto segtree\
+    \ = SegmentTree<M>(n);\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int\
+    \ k, x, y;\r\n        cin >> k >> x >> y;\r\n        if(k == 0) {\r\n        \
+    \    segtree.update(x, y);\r\n        } else {\r\n            cout << segtree.query(x,\
+    \ y) << endl;\r\n        }\r\n    }\r\n}"
   dependsOn:
-  - Library/Container/SegmentTree.hpp
+  - Library/DataStructure/SegmentTree.hpp
   isVerificationFile: true
-  path: Test/Container/SegmentTree_RSQ.test.cpp
+  path: Test/DataStructure/SegmentTree_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-09-05 22:41:10+09:00'
+  timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Container/SegmentTree_RSQ.test.cpp
+documentation_of: Test/DataStructure/SegmentTree_RMQ.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Container/SegmentTree_RSQ.test.cpp
-- /verify/Test/Container/SegmentTree_RSQ.test.cpp.html
-title: Test/Container/SegmentTree_RSQ.test.cpp
+- /verify/Test/DataStructure/SegmentTree_RMQ.test.cpp
+- /verify/Test/DataStructure/SegmentTree_RMQ.test.cpp.html
+title: Test/DataStructure/SegmentTree_RMQ.test.cpp
 ---

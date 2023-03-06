@@ -9,38 +9,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/Mo.hpp
       title: Library/Algorithms/Mo.hpp
-  - name: Library/Container
+  - name: Library/DataStructure
     pages:
     - icon: ':heavy_check_mark:'
-      path: Library/Container/Accumulation.hpp
-      title: Library/Container/Accumulation.hpp
+      path: Library/DataStructure/Accumulation.hpp
+      title: Library/DataStructure/Accumulation.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/Accumulation2D.hpp
-      title: Library/Container/Accumulation2D.hpp
+      path: Library/DataStructure/Accumulation2D.hpp
+      title: Library/DataStructure/Accumulation2D.hpp
     - icon: ':warning:'
-      path: Library/Container/ConvecHullTrick.hpp
-      title: Library/Container/ConvecHullTrick.hpp
+      path: Library/DataStructure/ConvecHullTrick.hpp
+      title: Library/DataStructure/ConvecHullTrick.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/DisjointSparseTable.hpp
-      title: Library/Container/DisjointSparseTable.hpp
+      path: Library/DataStructure/DisjointSparseTable.hpp
+      title: Library/DataStructure/DisjointSparseTable.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/LazySegmentTree.hpp
-      title: Library/Container/LazySegmentTree.hpp
+      path: Library/DataStructure/LazySegmentTree.hpp
+      title: Library/DataStructure/LazySegmentTree.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/LiChaoTree.hpp
-      title: Library/Container/LiChaoTree.hpp
+      path: Library/DataStructure/LiChaoTree.hpp
+      title: Library/DataStructure/LiChaoTree.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/SegmentMap.hpp
-      title: Library/Container/SegmentMap.hpp
+      path: Library/DataStructure/SegmentMap.hpp
+      title: Library/DataStructure/SegmentMap.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/SegmentTree.hpp
-      title: Library/Container/SegmentTree.hpp
+      path: Library/DataStructure/SegmentTree.hpp
+      title: Library/DataStructure/SegmentTree.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Container/UnionFind.hpp
-      title: Library/Container/UnionFind.hpp
+      path: Library/DataStructure/UnionFind.hpp
+      title: Library/DataStructure/UnionFind.hpp
     - icon: ':warning:'
-      path: Library/Container/UnionFindWeight.cpp
-      title: Library/Container/UnionFindWeight.cpp
+      path: Library/DataStructure/UnionFindWeight.cpp
+      title: Library/DataStructure/UnionFindWeight.cpp
   - name: Library/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
     - icon: ':heavy_check_mark:'
@@ -169,50 +169,50 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/Mo.test.cpp
       title: Test/Algorithms/Mo.test.cpp
-  - name: Test/Container
+  - name: Test/DataStructure
     pages:
     - icon: ':heavy_check_mark:'
-      path: Test/Container/Accumulation2D_sum.test.cpp
-      title: Test/Container/Accumulation2D_sum.test.cpp
+      path: Test/DataStructure/Accumulation2D_sum.test.cpp
+      title: Test/DataStructure/Accumulation2D_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/Accumulation_sum.test.cpp
-      title: Test/Container/Accumulation_sum.test.cpp
+      path: Test/DataStructure/Accumulation_sum.test.cpp
+      title: Test/DataStructure/Accumulation_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/Accumulation_xor.test.cpp
-      title: Test/Container/Accumulation_xor.test.cpp
+      path: Test/DataStructure/Accumulation_xor.test.cpp
+      title: Test/DataStructure/Accumulation_xor.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/DisjointSparseTable_RMQ.test.cpp
-      title: Test/Container/DisjointSparseTable_RMQ.test.cpp
+      path: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
+      title: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/DisjointSparseTable_xor.test.cpp
-      title: Test/Container/DisjointSparseTable_xor.test.cpp
+      path: Test/DataStructure/DisjointSparseTable_xor.test.cpp
+      title: Test/DataStructure/DisjointSparseTable_xor.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
-      title: Test/Container/LazySegmentTree_RAQRMQ.test.cpp
+      path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
+      title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
-      title: Test/Container/LazySegmentTree_RAQRSQ.test.cpp
+      path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
+      title: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
-      title: Test/Container/LazySegmentTree_RUQRMQ.test.cpp
+      path: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+      title: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
-      title: Test/Container/LazySegmentTree_RUQRSQ.test.cpp
+      path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
+      title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/LiChaoTree.test.cpp
-      title: Test/Container/LiChaoTree.test.cpp
+      path: Test/DataStructure/LiChaoTree.test.cpp
+      title: Test/DataStructure/LiChaoTree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/SegmentMap.test.cpp
-      title: Test/Container/SegmentMap.test.cpp
+      path: Test/DataStructure/SegmentMap.test.cpp
+      title: Test/DataStructure/SegmentMap.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/SegmentTree_RMQ.test.cpp
-      title: Test/Container/SegmentTree_RMQ.test.cpp
+      path: Test/DataStructure/SegmentTree_RMQ.test.cpp
+      title: Test/DataStructure/SegmentTree_RMQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/SegmentTree_RSQ.test.cpp
-      title: Test/Container/SegmentTree_RSQ.test.cpp
+      path: Test/DataStructure/SegmentTree_RSQ.test.cpp
+      title: Test/DataStructure/SegmentTree_RSQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: Test/Container/UnionFind.test.cpp
-      title: Test/Container/UnionFind.test.cpp
+      path: Test/DataStructure/UnionFind.test.cpp
+      title: Test/DataStructure/UnionFind.test.cpp
   - name: Test/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -239,7 +239,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
     - icon: ':heavy_check_mark:'
