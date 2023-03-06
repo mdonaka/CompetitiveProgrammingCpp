@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RSQ.test.cpp
     title: Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/String/LCPArray.test.cpp
+    title: Test/String/LCPArray.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -112,6 +115,7 @@ data:
   verifiedWith:
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:

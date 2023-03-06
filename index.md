@@ -109,7 +109,7 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
     - icon: ':heavy_check_mark:'
@@ -239,7 +239,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
     - icon: ':heavy_check_mark:'
