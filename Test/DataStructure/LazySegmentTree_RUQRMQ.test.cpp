@@ -1,7 +1,7 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 
 #include <iostream>
-#include "./../../Library/Container/LazySegmentTree.hpp"
+#include "./../../Library/DataStructure/LazySegmentTree.hpp"
 
 using ll = long long;
 using std::cout;
@@ -12,8 +12,8 @@ signed main() {
     int n, q;
     cin >> n >> q;
 
-    std::vector<std::pair<long long, long long>> v(n, {0,1});
-    auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n, v);
+    std::vector<long long> v(n, (1LL << 31) - 1);
+    auto segtree = LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>(n, v);
 
     for(int _ = 0; _ < q; ++_) {
         int k;
@@ -21,13 +21,11 @@ signed main() {
         if(k == 0) {
             int s, t, x;;
             cin >> s >> t >> x;
-            --s; --t;
             segtree.update(s, t, x);
         } else {
             int s, t;
             cin >> s >> t;
-            --s; --t;
-            cout << segtree.query(s, t).first << endl;
+            cout << segtree.query(s, t) << endl;
         }
     }
 }

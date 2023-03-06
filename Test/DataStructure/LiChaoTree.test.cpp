@@ -4,7 +4,7 @@
 #include <vector>
 #include <deque>
 
-#include "./../../Library/Container/LiChaoTree.hpp"
+#include "./../../Library/DataStructure/LiChaoTree.hpp"
 
 using ll = long long;
 using std::cout;
