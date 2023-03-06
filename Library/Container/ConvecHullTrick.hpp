@@ -2,7 +2,11 @@
 
 #include <deque>
 
-class ConvexHullTrickFast {
+/*
+ * 直線は傾きについて広義単調減少(最大値クエリの場合は広義単調増加)
+ * クエリは広義単調増加
+ */
+class ConvexHullTrick {
     using T = long long;
     std::deque<std::pair<T, T>> lines;
 
@@ -17,7 +21,7 @@ class ConvexHullTrickFast {
     }
 
 public:
-    ConvexHullTrickFast() {}
+    ConvexHullTrick() {}
 
     auto add(const std::pair<T, T>& line) {
         while(lines.size() > 1 &&
