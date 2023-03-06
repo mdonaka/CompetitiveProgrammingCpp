@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <map>
-#include "./../../Library/Container/DisjointSparseTable.hpp"
+#include "./../../Library/DataStructure/DisjointSparseTable.hpp"
 
 using ll = long long;
 using std::cout;

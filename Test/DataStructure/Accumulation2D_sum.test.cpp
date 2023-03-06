@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1623"
 
 #include <iostream>
-#include "./../../Library/Container/Accumulation2D.hpp"
+#include "./../../Library/DataStructure/Accumulation2D.hpp"
 
 using ll = long long;
 using std::cout;

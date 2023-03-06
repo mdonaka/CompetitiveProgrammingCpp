@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H"
 
 #include <iostream>
-#include "./../../Library/Container/LazySegmentTree.hpp"
+#include "./../../Library/DataStructure/LazySegmentTree.hpp"
 
 using ll = long long;
 using std::cout;

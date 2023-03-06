@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/674"
 
 #include <iostream>
-#include "./../../Library/Container/SegmentMap.hpp"
+#include "./../../Library/DataStructure/SegmentMap.hpp"
 
 using ll = long long;
 using std::cout;

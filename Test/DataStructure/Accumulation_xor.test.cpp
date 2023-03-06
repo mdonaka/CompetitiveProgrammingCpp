@@ -3,15 +3,16 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "./../../Library/Container/DisjointSparseTable.hpp"
+#include "./../../Library/DataStructure/Accumulation.hpp"
 
 using ll = long long;
 using std::cout;
 using std::cin;
 constexpr char endl = '\n';
 
-struct F { auto operator()(ll x, ll y) { return x ^ y; } };
-using SG = SemiGroup<ll, F>;
+struct F_inv { auto operator()(ll x) { return x; } };
+struct F_xor { auto operator()(ll x, ll y) { return x ^ y; } };
+using G = Group<ll, 0, F_xor, F_inv>;
 
 signed main() {
     ll n, k;
@@ -23,15 +24,15 @@ signed main() {
         a.emplace_back(x);
     }
 
-    auto dst = DisjointSparseTable<SG>(n, a);
+    auto acc = Accumulation<G>(a);
     std::unordered_set<ll> st;
     for(int i = 0; i < n; ++i) {
-        st.emplace(dst.get(0, i) ^ k);
+        st.emplace(acc.get(i) ^ k);
     }
 
     if(st.find(0) != st.end()) { cout << "Yes" << endl; return 0; }
     for(int i = 0; i < n; ++i) {
-        if(st.find(dst.get(0, i)) != st.end()) { cout << "Yes" << endl; return 0; }
+        if(st.find(acc.get(i)) != st.end()) { cout << "Yes" << endl; return 0; }
     }
     cout << "No" << endl;
 }
