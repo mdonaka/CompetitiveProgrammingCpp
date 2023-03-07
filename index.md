@@ -135,7 +135,7 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
   - name: Main
@@ -262,6 +262,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator.test.cpp
       title: Test/Utility/ModCalculator.test.cpp
+    - icon: ':x:'
+      path: Test/Utility/Ycombinator.test.cpp
+      title: Test/Utility/Ycombinator.test.cpp
   - name: Test/sample
     pages:
     - icon: ':heavy_check_mark:'
