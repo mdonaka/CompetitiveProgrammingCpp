@@ -26,7 +26,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/LazySegmentTree.hpp
       title: Library/DataStructure/LazySegmentTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/LiChaoTree.hpp
       title: Library/DataStructure/LiChaoTree.hpp
     - icon: ':heavy_check_mark:'
@@ -201,10 +201,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
       title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LiChaoTree.test.cpp
       title: Test/DataStructure/LiChaoTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LiChaoTree_bias.test.cpp
       title: Test/DataStructure/LiChaoTree_bias.test.cpp
     - icon: ':heavy_check_mark:'
