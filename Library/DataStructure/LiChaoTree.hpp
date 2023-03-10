@@ -2,8 +2,10 @@
 
 #include <limits>
 #include <vector>
+#include <memory>
 #include <algorithm>
 #include <unordered_map>
+#include<iostream>
 
 class LiChaoTree {
     using T = long long;
@@ -57,4 +59,78 @@ public:
         }
         return ret;
     }
+};
+
+class DynamicLiChaoTree {
+    using T = long long;
+
+    constexpr static long long X_MAX = 1e9;
+    constexpr static T INF = 2e18;
+
+    class Line {
+        T a, b;
+    public:
+        Line(const T& a, const T& b) :a(a), b(b) {}
+        Line() :Line(0, INF) {}
+        Line(const Line& other) noexcept :Line(other.a, other.b) {}
+        Line(Line&& other) noexcept :Line(other) {}
+        Line& operator=(Line&& other) noexcept {
+            if(this != &other) { a = other.a; b = other.b; }
+            return *this;
+        }
+        auto operator<(const Line& line)const { return a < line.a; }
+        auto operator>(const Line& line)const { return line.operator<(*this); }
+
+        auto f(const T& x)const { return a * x + b; }
+        auto debug()const { std::cerr << "(" << a << " " << b << ")" << std::endl; }
+    };
+
+    struct Node {
+        Line line;
+        std::unique_ptr<Node> left;
+        std::unique_ptr<Node> right;
+
+        Node(const Line& line) :line(line) {}
+        auto f(const T& x)const { return line.f(x); }
+    };
+
+    std::unique_ptr<Node> m_root;
+
+    auto add(std::unique_ptr<Node>& node, Line&& line, long long l, long long r) {
+        if(!node) { node = std::make_unique<Node>(line); return; }
+
+        auto m = (l + r) / 2;
+        if(line.f(m) < node->f(m)) { std::swap(node->line, line); }
+        if(l + 1 == r) { return; }
+        if(line > node->line) {
+            add(node->left, std::move(line), l, m);
+        } else if(line < node->line) {
+            add(node->right, std::move(line), m, r);
+        }
+    }
+
+    auto query(const std::unique_ptr<Node>& node, const T& x, long long l, long long r) const {
+        if(!node) { return Line().f(x); }
+        auto m = (l + r) / 2;
+        return std::min(
+            node->f(x),
+            (x < m) ? query(node->left, x, l, m) : query(node->right, x, m, r)
+        );
+    }
+public:
+    DynamicLiChaoTree() {}
+
+    auto add(const T& a, const T& b) { add(m_root, Line(a, b), -X_MAX, X_MAX); }
+    auto add(const std::pair<T, T>& line) { add(line.first, line.second); }
+    auto query(const T& x) const { return query(m_root, x, -X_MAX, X_MAX); }
+
+    auto debug(const std::unique_ptr<Node>& node, int size)const {
+        if(size == 0) { std::cerr << "-- li chao tree --" << std::endl; }
+        if(!node) { return; }
+        for(int i = 0; i < size; ++i) { std::cerr << "- "; }
+        node->line.debug();
+        if(node->left) { std::cout << "L"; debug(node->left, size + 1); }
+        if(node->right) { std::cout << "R"; debug(node->right, size + 1); }
+    }
+    auto debug()const { debug(m_root, 0); }
 };
