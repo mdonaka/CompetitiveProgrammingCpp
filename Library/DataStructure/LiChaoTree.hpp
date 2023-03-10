@@ -5,7 +5,7 @@
 #include <memory>
 #include <algorithm>
 #include <unordered_map>
-#include<iostream>
+#include <iostream>
 
 class LiChaoTree {
     using T = long long;
@@ -61,10 +61,9 @@ public:
     }
 };
 
+// X_MAX: ax+bÇ≈Ç†ÇÈxÇ∆ÇµÇƒéÊÇËÇ§ÇÈç≈ëÂíl
+template<long long X_MAX, class T = long long>
 class DynamicLiChaoTree {
-    using T = long long;
-
-    constexpr static long long X_MAX = 1e9;
     constexpr static T INF = 2e18;
 
     class Line {
