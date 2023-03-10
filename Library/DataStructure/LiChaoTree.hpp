@@ -61,7 +61,7 @@ public:
     }
 };
 
-// X_MAX: ax+b‚Å‚ ‚éx‚Æ‚µ‚Äæ‚è‚¤‚éÅ‘å’l
+// X_MAX: ax+bã§ã‚ã‚‹xã¨ã—ã¦å–ã‚Šã†ã‚‹æœ€å¤§å€¤
 template<long long X_MAX, class T = long long>
 class DynamicLiChaoTree {
     constexpr static T INF = 2e18;
