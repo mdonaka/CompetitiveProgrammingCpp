@@ -190,6 +190,9 @@ data:
       path: Test/DataStructure/DisjointSparseTable_xor.test.cpp
       title: Test/DataStructure/DisjointSparseTable_xor.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DynamicLiChaoTree.test.cpp
+      title: Test/DataStructure/DynamicLiChaoTree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
       title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
     - icon: ':heavy_check_mark:'

@@ -14,9 +14,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
     links:
     - https://judge.yosupo.jp/problem/line_add_get_min
-  bundledCode: "#line 1 \"Test/DataStructure/LiChaoTree.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include <iostream>\r\
-    \n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
+  bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
     \n\r\n#include <limits>\r\n#line 5 \"Library/DataStructure/LiChaoTree.hpp\"\n\
     #include <memory>\r\n#include <algorithm>\r\n#include <unordered_map>\r\n#line\
     \ 9 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\nclass LiChaoTree {\r\n    using\
@@ -79,54 +79,40 @@ data:
     \ << \"- \"; }\r\n        node->line.debug();\r\n        if(node->left) { std::cout\
     \ << \"L\"; debug(node->left, size + 1); }\r\n        if(node->right) { std::cout\
     \ << \"R\"; debug(node->right, size + 1); }\r\n    }\r\n    auto debug()const\
-    \ { debug(m_root, 0); }\r\n};\r\n#line 8 \"Test/DataStructure/LiChaoTree.test.cpp\"\
+    \ { debug(m_root, 0); }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b;\r\n \
-    \   Query(int k, ll a, ll b) :k(k), a(a), b(b) {}\r\n    Query(int k, ll x) :Query(k,\
-    \ x, 0) {}\r\n};\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\
-    \n    std::vector<std::pair<ll, ll>> v; v.reserve(n);\r\n    for(int _ = 0; _\
-    \ < n; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n        v.emplace_back(a,\
-    \ b);\r\n    }\r\n    std::vector<Query> queries; queries.reserve(q);\r\n    std::vector<ll>\
-    \ xs; xs.reserve(q);\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n\
-    \        cin >> k;\r\n        if(k == 0) {\r\n            ll a, b;\r\n       \
-    \     cin >> a >> b;\r\n            queries.emplace_back(k, a, b);\r\n       \
-    \ } else {\r\n            ll x;\r\n            cin >> x;\r\n            queries.emplace_back(k,\
-    \ x);\r\n            xs.emplace_back(x);\r\n        }\r\n    }\r\n\r\n    auto\
-    \ lct = LiChaoTree(xs);\r\n    for(const auto& [a, b] : v) { lct.add(a, b); }\r\
-    \n\r\n    for(const auto& query : queries) {\r\n        if(query.k == 0) {\r\n\
-    \            lct.add(query.a, query.b);\r\n        } else {\r\n            cout\
-    \ << lct.query(query.a) << endl;\r\n        }\r\n    }\r\n}\r\n"
+    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >>\
+    \ n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n\
+    \    for(int _ = 0; _ < n; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\
+    \n        lct.add(a, b);\r\n    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n\
+    \        ll k;\r\n        cin >> k;\r\n        if(k == 0) {\r\n            ll\
+    \ a, b;\r\n            cin >> a >> b;\r\n            lct.add(a, b);\r\n      \
+    \  } else {\r\n            ll x;\r\n            cin >> x;\r\n            cout\
+    \ << lct.query(x) << endl;\r\n        }\r\n    }\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\
     \n#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include\
     \ \"./../../Library/DataStructure/LiChaoTree.hpp\"\r\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
-    struct Query {\r\n    int k;\r\n    ll a, b;\r\n    Query(int k, ll a, ll b) :k(k),\
-    \ a(a), b(b) {}\r\n    Query(int k, ll x) :Query(k, x, 0) {}\r\n};\r\n\r\nsigned\
-    \ main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n    std::vector<std::pair<ll,\
-    \ ll>> v; v.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        ll a, b;\r\
-    \n        cin >> a >> b;\r\n        v.emplace_back(a, b);\r\n    }\r\n    std::vector<Query>\
-    \ queries; queries.reserve(q);\r\n    std::vector<ll> xs; xs.reserve(q);\r\n \
-    \   for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n   \
-    \     if(k == 0) {\r\n            ll a, b;\r\n            cin >> a >> b;\r\n \
-    \           queries.emplace_back(k, a, b);\r\n        } else {\r\n           \
-    \ ll x;\r\n            cin >> x;\r\n            queries.emplace_back(k, x);\r\n\
-    \            xs.emplace_back(x);\r\n        }\r\n    }\r\n\r\n    auto lct = LiChaoTree(xs);\r\
-    \n    for(const auto& [a, b] : v) { lct.add(a, b); }\r\n\r\n    for(const auto&\
-    \ query : queries) {\r\n        if(query.k == 0) {\r\n            lct.add(query.a,\
-    \ query.b);\r\n        } else {\r\n            cout << lct.query(query.a) << endl;\r\
-    \n        }\r\n    }\r\n}\r\n"
+    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
+    \nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct =\
+    \ DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n    for(int _ = 0; _ < n; ++_)\
+    \ {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n        lct.add(a, b);\r\n\
+    \    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin\
+    \ >> k;\r\n        if(k == 0) {\r\n            ll a, b;\r\n            cin >>\
+    \ a >> b;\r\n            lct.add(a, b);\r\n        } else {\r\n            ll\
+    \ x;\r\n            cin >> x;\r\n            cout << lct.query(x) << endl;\r\n\
+    \        }\r\n    }\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
-  path: Test/DataStructure/LiChaoTree.test.cpp
+  path: Test/DataStructure/DynamicLiChaoTree.test.cpp
   requiredBy: []
   timestamp: '2023-03-10 17:00:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/DataStructure/LiChaoTree.test.cpp
+documentation_of: Test/DataStructure/DynamicLiChaoTree.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/DataStructure/LiChaoTree.test.cpp
-- /verify/Test/DataStructure/LiChaoTree.test.cpp.html
-title: Test/DataStructure/LiChaoTree.test.cpp
+- /verify/Test/DataStructure/DynamicLiChaoTree.test.cpp
+- /verify/Test/DataStructure/DynamicLiChaoTree.test.cpp.html
+title: Test/DataStructure/DynamicLiChaoTree.test.cpp
 ---
