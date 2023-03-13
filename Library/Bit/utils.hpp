@@ -2,9 +2,12 @@
 #include <deque>
 
 unsigned ctz(unsigned int n) {
+    #ifdef __GNUC__
+    return __builtin_ctz(bit);
+    #endif
     if(!n) return -1;
     unsigned int c = 32;
-    n &= -(signed)n;
+    n &= -static_cast<signed int>(n);
     if(n) c--;
     if(n & 0x0000FFFF) c -= 16;
     if(n & 0x00FF00FF) c -= 8;
@@ -17,18 +20,14 @@ unsigned ctz(unsigned int n) {
 auto all_index(unsigned int bit) {
     std::deque<int> dq;
     while(bit) {
-        #ifdef __GNUC__ 
-        auto i = __builtin_ctz(bit);
-        #else
         auto i = ctz(bit);
-        #endif
         bit ^= (1LL << i);
         dq.emplace_back(i);
     }
     return dq;
 }
 
-auto count(long long bit) {
+auto count(unsigned int bit) {
     bit = (bit & 0x55555555) + (bit >> 1 & 0x55555555);
     bit = (bit & 0x33333333) + (bit >> 2 & 0x33333333);
     bit = (bit & 0x0f0f0f0f) + (bit >> 4 & 0x0f0f0f0f);
