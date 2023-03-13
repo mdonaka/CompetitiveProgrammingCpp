@@ -9,6 +9,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/Mo.hpp
       title: Library/Algorithms/Mo.hpp
+  - name: Library/Bit
+    pages:
+    - icon: ':warning:'
+      path: Library/Bit/utils.hpp
+      title: Library/Bit/utils.hpp
   - name: Library/DataStructure
     pages:
     - icon: ':heavy_check_mark:'
