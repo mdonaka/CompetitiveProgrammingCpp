@@ -3,7 +3,7 @@
 
 unsigned ctz(unsigned int n) {
     #ifdef __GNUC__
-    return __builtin_ctz(bit);
+    return __builtin_ctz(n);
     #endif
     if(!n) return -1;
     unsigned int c = 32;
