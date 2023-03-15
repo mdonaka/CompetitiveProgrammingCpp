@@ -148,9 +148,9 @@ data:
   timestamp: '2023-03-10 17:00:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/DataStructure/LiChaoTree.test.cpp
   - Test/DataStructure/LiChaoTree_bias.test.cpp
   - Test/DataStructure/DynamicLiChaoTree.test.cpp
-  - Test/DataStructure/LiChaoTree.test.cpp
 documentation_of: Library/DataStructure/LiChaoTree.hpp
 layout: document
 redirect_from:

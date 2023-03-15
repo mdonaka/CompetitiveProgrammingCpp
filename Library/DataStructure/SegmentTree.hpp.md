@@ -113,9 +113,9 @@ data:
   timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/String/LCPArray.test.cpp
-  - Test/DataStructure/SegmentTree_RMQ.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - Test/DataStructure/SegmentTree_RMQ.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:
