@@ -1,11 +1,13 @@
 #pragma once
 
 #include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
 #include <stack>
 #include <vector>
 #include <list>
 
-class SCC {
+class StronglyConnectedComponents {
 
     struct HashPair {
         template<class T1, class T2>
@@ -84,7 +86,7 @@ class SCC {
         return groupNodes;
     }
 public:
-    SCC(int n, const std::unordered_multimap<int, int>& graph) :
+    StronglyConnectedComponents(int n, const std::unordered_multimap<int, int>& graph) :
         m_n(n),
         m_graph(graph),
         m_revGraph(reverse()),
