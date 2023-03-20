@@ -3,9 +3,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
-#include <stack>
 #include <vector>
 #include <deque>
+#include "./../../../Utils/Timer.hpp"
 
 class StronglyConnectedComponents {
 
@@ -21,59 +21,49 @@ class StronglyConnectedComponents {
         }
     };
 
+    using Graph = std::unordered_multimap<int, int>;
+
     const int m_n;
-    const std::unordered_multimap<int, int> m_graph;
-    const std::unordered_multimap<int, int> m_revGraph;
+    const Graph m_graph;
+    const Graph m_revGraph;
     const std::vector<int> m_group;
     const std::vector<std::deque<int>> m_groupNodes;
 
     auto reverse()const {
-        std::unordered_multimap<int, int> graph;
+        Graph graph;
         for(const auto& [f, t] : m_graph) { graph.emplace(t, f); }
         return graph;
     }
 
-    auto dfs(const std::unordered_multimap<int, int>& graph,
-             int from,
-             std::vector<int>& isUsed,
-             std::deque<int>& visit)->void {
-
+    template <class F>
+    auto dfs(const Graph& graph, int from,
+             std::vector<bool>& is_used,
+             const F& f)->void {
+        is_used[from] = true;
         auto range = graph.equal_range(from);
         for(auto itr = range.first; itr != range.second; ++itr) {
             auto to = itr->second;
-            if(!isUsed[to]) {
-                isUsed[to] = true;
-                dfs(graph, to, isUsed, visit);
-            }
+            if(is_used[to]) { continue; }
+            dfs(graph, to, is_used, f);
         }
-        visit.emplace_back(from);
+        f(from);
     }
 
     auto constructGroup() {
-        std::deque<int> order;
-        {
-            std::vector<int> used(m_n);
-            for(int from = 0; from < m_n; ++from) if(!used[from]) {
-                std::deque<int> localOrder;
-                used[from] = true;
-                dfs(m_graph, from, used, localOrder);
-                for(const auto& x : localOrder) {
-                    order.emplace_front(x);
-                }
-            }
+        std::vector<int> order; order.reserve(m_n);
+        std::vector<bool> is_used(m_n);
+        for(int from = 0; from < m_n; ++from) if(!is_used[from]) {
+            dfs(m_graph, from, is_used, [&](int f) {
+                order.emplace_back(f);
+            });
         }
-        std::vector<int> group(m_n);
-        {
-            std::vector<int> used(m_n);
 
-            int g = 0;
-            for(const auto& from : order) if(!used[from]) {
-                used[from] = true;
-                std::deque<int> visit;
-                dfs(m_revGraph, from, used, visit);
-                for(const auto& f : visit) { group[f] = g; };
-                ++g;
-            }
+        int g = 0;
+        std::vector<int> group(m_n);
+        std::vector<bool> is_used2(m_n);
+        for(int i = m_n - 1; i >= 0; --i)if(!is_used2[order[i]]) {
+            dfs(m_revGraph, order[i], is_used2, [&](int f) {group[f] = g; });
+            ++g;
         }
         return group;
     }
@@ -104,16 +94,10 @@ public:
         return m_groupNodes[gi];
     }
     auto getGroupGraph()const {
-        std::unordered_multimap<int, int> graph;
         std::unordered_set<std::pair<int, int>, HashPair> st;
-        for(const auto& [f, t] : m_graph) {
-            if(isSameGroup(f, t)) { continue; }
-            auto gf = m_group[f];
-            auto gt = m_group[t];
-            if(st.find({gf,gt}) != st.end()) { continue; }
-            graph.emplace(gf, gt);
-            st.emplace(gf, gt);
+        for(const auto& [f, t] : m_graph) if(!isSameGroup(f, t)) {
+            st.emplace(m_group[f], m_group[t]);
         }
-        return graph;
+        return std::unordered_multimap<int, int>(st.begin(), st.end());
     }
 };
