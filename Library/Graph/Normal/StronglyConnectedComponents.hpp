@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <stack>
 #include <vector>
-#include <list>
+#include <deque>
 
 class StronglyConnectedComponents {
 
@@ -36,7 +36,7 @@ class StronglyConnectedComponents {
     auto dfs(const std::unordered_multimap<int, int>& graph,
              int from,
              std::vector<int>& isUsed,
-             std::list<int>& visit)->void {
+             std::deque<int>& visit)->void {
 
         auto range = graph.equal_range(from);
         for(auto itr = range.first; itr != range.second; ++itr) {
@@ -50,11 +50,11 @@ class StronglyConnectedComponents {
     }
 
     auto constructGroup() {
-        std::list<int> order;
+        std::deque<int> order;
         {
             std::vector<int> used(m_n);
             for(int from = 0; from < m_n; ++from) if(!used[from]) {
-                std::list<int> localOrder;
+                std::deque<int> localOrder;
                 used[from] = true;
                 dfs(m_graph, from, used, localOrder);
                 for(const auto& x : localOrder) {
@@ -69,7 +69,7 @@ class StronglyConnectedComponents {
             int g = 0;
             for(const auto& from : order) if(!used[from]) {
                 used[from] = true;
-                std::list<int> visit;
+                std::deque<int> visit;
                 dfs(m_revGraph, from, used, visit);
                 for(const auto& f : visit) { group[f] = g; };
                 ++g;
