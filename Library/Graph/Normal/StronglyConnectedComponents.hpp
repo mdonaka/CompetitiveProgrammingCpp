@@ -25,20 +25,18 @@ class StronglyConnectedComponents {
 
     const int m_n;
     const Graph m_graph;
-    const Graph m_revGraph;
     const std::vector<int> m_group;
-    const std::vector<std::deque<int>> m_groupNodes;
 
-    auto reverse()const {
-        Graph graph;
-        for(const auto& [f, t] : m_graph) { graph.emplace(t, f); }
-        return graph;
+    static inline auto reverse(const Graph& graph) {
+        Graph ret;
+        for(const auto& [f, t] : graph) { ret.emplace(t, f); }
+        return ret;
     }
 
     template <class F>
-    auto dfs(const Graph& graph, int from,
-             std::vector<bool>& is_used,
-             const F& f)->void {
+    static inline auto dfs(const Graph& graph, int from,
+                           std::vector<bool>& is_used,
+                           const F& f)->void {
         is_used[from] = true;
         auto range = graph.equal_range(from);
         for(auto itr = range.first; itr != range.second; ++itr) {
@@ -49,49 +47,44 @@ class StronglyConnectedComponents {
         f(from);
     }
 
-    auto constructGroup() {
-        std::vector<int> order; order.reserve(m_n);
-        std::vector<bool> is_used(m_n);
-        for(int from = 0; from < m_n; ++from) if(!is_used[from]) {
-            dfs(m_graph, from, is_used, [&](int f) {
+    static inline auto constructGroup(int n, const Graph& graph) {
+        std::vector<int> order; order.reserve(n);
+        std::vector<bool> is_used(n);
+        for(int from = 0; from < n; ++from) if(!is_used[from]) {
+            dfs(graph, from, is_used, [&](int f) {
                 order.emplace_back(f);
             });
         }
 
         int g = 0;
-        std::vector<int> group(m_n);
-        std::vector<bool> is_used2(m_n);
-        for(int i = m_n - 1; i >= 0; --i)if(!is_used2[order[i]]) {
-            dfs(m_revGraph, order[i], is_used2, [&](int f) {group[f] = g; });
+        std::vector<int> group(n);
+        std::vector<bool> is_used2(n);
+        auto rev = reverse(graph);
+        for(int i = n - 1; i >= 0; --i)if(!is_used2[order[i]]) {
+            dfs(rev, order[i], is_used2, [&](int f) {group[f] = g; });
             ++g;
         }
         return group;
     }
     auto constructGroupNodes() const {
+    }
+public:
+    StronglyConnectedComponents(int n, Graph& graph) :
+        m_n(n),
+        m_graph(graph),
+        m_group(constructGroup(n, m_graph)) {
+    }
+
+    auto isSameGroup(int a, int b)const {
+        return m_group[a] == m_group[b];
+    }
+    auto getGroupNodes()const {
         auto size = *std::max_element(m_group.begin(), m_group.end()) + 1;
         std::vector<std::deque<int>> groupNodes(size);
         for(int gi = 0; gi < m_n; ++gi) {
             groupNodes[m_group[gi]].emplace_back(gi);
         }
         return groupNodes;
-    }
-public:
-    StronglyConnectedComponents(int n, const std::unordered_multimap<int, int>& graph) :
-        m_n(n),
-        m_graph(graph),
-        m_revGraph(reverse()),
-        m_group(constructGroup()),
-        m_groupNodes(constructGroupNodes()) {
-    }
-
-    auto isSameGroup(int a, int b)const {
-        return m_group[a] == m_group[b];
-    }
-    auto getGroupNodes(int gi)const {
-        if(gi < 0 || gi >= static_cast<int>(m_groupNodes.size())) {
-            return std::deque<int>();
-        }
-        return m_groupNodes[gi];
     }
     auto getGroupGraph()const {
         std::unordered_set<std::pair<int, int>, HashPair> st;
