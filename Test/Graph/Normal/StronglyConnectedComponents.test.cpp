@@ -12,11 +12,11 @@ constexpr char endl = '\n';
 signed main() {
     int n, m;
     cin >> n >> m;
-    std::unordered_multimap<int, int> graph;
+    std::vector<std::vector<int>> graph(n);
     for(int _ = 0; _ < m; ++_) {
         int f, t;
         cin >> f >> t;
-        graph.emplace(f, t);
+        graph[f].emplace_back(t);
     }
 
     auto scc = StronglyConnectedComponents(n, graph);

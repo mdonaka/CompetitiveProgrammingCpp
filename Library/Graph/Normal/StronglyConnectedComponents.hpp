@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <vector>
 #include <deque>
-#include "./../../../Utils/Timer.hpp"
 
 class StronglyConnectedComponents {
 
@@ -21,26 +20,25 @@ class StronglyConnectedComponents {
         }
     };
 
-    using Graph = std::unordered_multimap<int, int>;
+    using Graph = std::vector<std::vector<int>>;
 
     const int m_n;
     const Graph m_graph;
     const std::vector<int> m_group;
 
-    static inline auto reverse(const Graph& graph) {
-        Graph ret; ret.reserve(graph.size());
-        for(const auto& [f, t] : graph) { ret.emplace(t, f); }
+    static inline auto reverse(int n, const Graph& graph) {
+        std::vector<std::vector<int>> ret(n);
+        for(int f = 0; f < n; ++f) for(const auto& t : graph[f]) {
+            ret[t].emplace_back(f);
+        }
         return ret;
     }
-
     template <class F>
-    static inline auto dfs(const Graph& graph, int from,
+    static inline auto dfs(const std::vector<std::vector<int>>& graph, int from,
                            std::vector<bool>& is_used,
                            const F& f)->void {
         is_used[from] = true;
-        auto range = graph.equal_range(from);
-        for(auto itr = range.first; itr != range.second; ++itr) {
-            auto to = itr->second;
+        for(const auto& to : graph[from]) {
             if(is_used[to]) { continue; }
             dfs(graph, to, is_used, f);
         }
@@ -59,7 +57,7 @@ class StronglyConnectedComponents {
         int g = 0;
         std::vector<int> group(n);
         std::vector<bool> is_used2(n);
-        auto rev = reverse(graph);
+        auto rev = reverse(n, graph);
         for(int i = n - 1; i >= 0; --i)if(!is_used2[order[i]]) {
             dfs(rev, order[i], is_used2, [&](int f) {group[f] = g; });
             ++g;
@@ -95,9 +93,11 @@ public:
     auto getGroupGraph()const {
         std::unordered_set<std::pair<int, int>, HashPair> st;
         st.reserve(m_graph.size());
-        for(const auto& [f, t] : m_graph) if(!isSameGroup(f, t)) {
+        for(int f = 0; f < m_n; ++f) for(const auto& t : m_graph[f]) if(!isSameGroup(f, t)) {
             st.emplace(m_group[f], m_group[t]);
         }
-        return Graph(st.begin(), st.end());
+        Graph ret(m_n);
+        for(const auto& [f, t] : st) { ret[f].emplace_back(t); }
+        return ret;
     }
 };
