@@ -28,7 +28,7 @@ class StronglyConnectedComponents {
     const std::vector<int> m_group;
 
     static inline auto reverse(const Graph& graph) {
-        Graph ret;
+        Graph ret; ret.reserve(graph.size());
         for(const auto& [f, t] : graph) { ret.emplace(t, f); }
         return ret;
     }
@@ -69,9 +69,15 @@ class StronglyConnectedComponents {
     auto constructGroupNodes() const {
     }
 public:
-    StronglyConnectedComponents(int n, Graph& graph) :
+    StronglyConnectedComponents(int n, const Graph& graph) :
         m_n(n),
         m_graph(graph),
+        m_group(constructGroup(n, m_graph)) {
+    }
+    // graphのコピーコストが大きいのでこっち推奨
+    StronglyConnectedComponents(int n, Graph&& graph) :
+        m_n(n),
+        m_graph(std::move(graph)),
         m_group(constructGroup(n, m_graph)) {
     }
 
@@ -88,9 +94,10 @@ public:
     }
     auto getGroupGraph()const {
         std::unordered_set<std::pair<int, int>, HashPair> st;
+        st.reserve(m_graph.size());
         for(const auto& [f, t] : m_graph) if(!isSameGroup(f, t)) {
             st.emplace(m_group[f], m_group[t]);
         }
-        return std::unordered_multimap<int, int>(st.begin(), st.end());
+        return Graph(st.begin(), st.end());
     }
 };
