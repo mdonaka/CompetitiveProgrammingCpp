@@ -21,6 +21,7 @@
 "Test/Graph/Flow/Dinic.test.cpp": "2022-09-25 18:43:24 +0900",
 "Test/Graph/Flow/FordFulkerson.test.cpp": "2022-09-25 18:43:24 +0900",
 "Test/Graph/Flow/SuccessiveShortestPath.test.cpp": "2022-09-25 18:52:30 +0900",
+"Test/Graph/Normal/StronglyConnectedComponents.test.cpp": "2023-03-21 10:05:57 +0900",
 "Test/Graph/Normal/WarshallFloyd.test.cpp": "2022-09-27 23:19:11 +0900",
 "Test/Graph/Normal/dijkstra.test.cpp": "2022-09-27 22:37:37 +0900",
 "Test/PlaneGeometry/ConvexHull.test.cpp": "2022-09-08 21:53:34 +0900",
