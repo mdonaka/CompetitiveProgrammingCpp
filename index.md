@@ -68,7 +68,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Normal/Prim.cpp
       title: Library/Graph/Normal/Prim.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
     - icon: ':heavy_check_mark:'
@@ -240,6 +240,9 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+      title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp

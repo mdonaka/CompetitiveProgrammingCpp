@@ -2,116 +2,114 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\
-    \r\n#include <unordered_map>\r\n#include <stack>\r\n#include <vector>\r\n#include\
-    \ <list>\r\n\r\nclass SCC {\r\n\r\n    struct HashPair {\r\n        template<class\
-    \ T1, class T2>\r\n        size_t operator()(const std::pair<T1, T2>& p) const\
-    \ {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n            auto\
-    \ hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed = 0;\r\n     \
-    \       seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n          \
-    \  seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n            return\
-    \ seed;\r\n        }\r\n    };\r\n\r\n    const int m_n;\r\n    const std::unordered_multimap<int,\
-    \ int> m_graph;\r\n    const std::unordered_multimap<int, int> m_revGraph;\r\n\
-    \    const std::vector<int> m_group;\r\n    const std::vector<std::deque<int>>\
-    \ m_groupNodes;\r\n\r\n    auto reverse()const {\r\n        std::unordered_multimap<int,\
-    \ int> graph;\r\n        for(const auto& [f, t] : m_graph) { graph.emplace(t,\
-    \ f); }\r\n        return graph;\r\n    }\r\n\r\n    auto dfs(const std::unordered_multimap<int,\
-    \ int>& graph,\r\n             int from,\r\n             std::vector<int>& isUsed,\r\
-    \n             std::list<int>& visit)->void {\r\n\r\n        auto range = graph.equal_range(from);\r\
-    \n        for(auto itr = range.first; itr != range.second; ++itr) {\r\n      \
-    \      auto to = itr->second;\r\n            if(!isUsed[to]) {\r\n           \
-    \     isUsed[to] = true;\r\n                dfs(graph, to, isUsed, visit);\r\n\
-    \            }\r\n        }\r\n        visit.emplace_back(from);\r\n    }\r\n\r\
-    \n    auto constructGroup() {\r\n        std::list<int> order;\r\n        {\r\n\
-    \            std::vector<int> used(m_n);\r\n            for(int from = 0; from\
-    \ < m_n; ++from) if(!used[from]) {\r\n                std::list<int> localOrder;\r\
-    \n                used[from] = true;\r\n                dfs(m_graph, from, used,\
-    \ localOrder);\r\n                for(const auto& x : localOrder) {\r\n      \
-    \              order.emplace_front(x);\r\n                }\r\n            }\r\
-    \n        }\r\n        std::vector<int> group(m_n);\r\n        {\r\n         \
-    \   std::vector<int> used(m_n);\r\n\r\n            int g = 0;\r\n            for(const\
-    \ auto& from : order) if(!used[from]) {\r\n                used[from] = true;\r\
-    \n                std::list<int> visit;\r\n                dfs(m_revGraph, from,\
-    \ used, visit);\r\n                for(const auto& f : visit) { group[f] = g;\
-    \ };\r\n                ++g;\r\n            }\r\n        }\r\n        return group;\r\
-    \n    }\r\n    auto constructGroupNodes() const {\r\n        auto size = *std::max_element(m_group.begin(),\
+    \r\n#include <unordered_map>\r\n#include <unordered_set>\r\n#include <algorithm>\r\
+    \n#include <vector>\r\n#include <deque>\r\n\r\nclass StronglyConnectedComponents\
+    \ {\r\n\r\n    struct HashPair {\r\n        template<class T1, class T2>\r\n \
+    \       size_t operator()(const std::pair<T1, T2>& p) const {\r\n            auto\
+    \ hash1 = std::hash<T1>{}(p.first);\r\n            auto hash2 = std::hash<T2>{}(p.second);\r\
+    \n            size_t seed = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed\
+    \ << 6) + (seed >> 2);\r\n            seed ^= hash2 + 0x9e3779b9 + (seed << 6)\
+    \ + (seed >> 2);\r\n            return seed;\r\n        }\r\n    };\r\n\r\n  \
+    \  using Graph = std::vector<std::vector<int>>;\r\n\r\n    const int m_n;\r\n\
+    \    const Graph m_graph;\r\n    const std::vector<int> m_group;\r\n\r\n    static\
+    \ inline auto reverse(int n, const Graph& graph) {\r\n        std::vector<std::vector<int>>\
+    \ ret(n);\r\n        for(int f = 0; f < n; ++f) for(const auto& t : graph[f])\
+    \ {\r\n            ret[t].emplace_back(f);\r\n        }\r\n        return ret;\r\
+    \n    }\r\n    template <class F>\r\n    static inline auto dfs(const std::vector<std::vector<int>>&\
+    \ graph, int from,\r\n                           std::vector<bool>& is_used,\r\
+    \n                           const F& f)->void {\r\n        is_used[from] = true;\r\
+    \n        for(const auto& to : graph[from]) {\r\n            if(is_used[to]) {\
+    \ continue; }\r\n            dfs(graph, to, is_used, f);\r\n        }\r\n    \
+    \    f(from);\r\n    }\r\n\r\n    static inline auto constructGroup(int n, const\
+    \ Graph& graph) {\r\n        std::vector<int> order; order.reserve(n);\r\n   \
+    \     std::vector<bool> is_used(n);\r\n        for(int from = 0; from < n; ++from)\
+    \ if(!is_used[from]) {\r\n            dfs(graph, from, is_used, [&](int f) {\r\
+    \n                order.emplace_back(f);\r\n            });\r\n        }\r\n\r\
+    \n        int g = 0;\r\n        std::vector<int> group(n);\r\n        std::vector<bool>\
+    \ is_used2(n);\r\n        auto rev = reverse(n, graph);\r\n        for(int i =\
+    \ n - 1; i >= 0; --i)if(!is_used2[order[i]]) {\r\n            dfs(rev, order[i],\
+    \ is_used2, [&](int f) {group[f] = g; });\r\n            ++g;\r\n        }\r\n\
+    \        return group;\r\n    }\r\n    auto constructGroupNodes() const {\r\n\
+    \    }\r\npublic:\r\n    StronglyConnectedComponents(int n, const Graph& graph)\
+    \ :\r\n        m_n(n),\r\n        m_graph(graph),\r\n        m_group(constructGroup(n,\
+    \ m_graph)) {\r\n    }\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\
+    \u304C\u5927\u304D\u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    StronglyConnectedComponents(int\
+    \ n, Graph&& graph) :\r\n        m_n(n),\r\n        m_graph(std::move(graph)),\r\
+    \n        m_group(constructGroup(n, m_graph)) {\r\n    }\r\n\r\n    auto isSameGroup(int\
+    \ a, int b)const {\r\n        return m_group[a] == m_group[b];\r\n    }\r\n  \
+    \  auto getGroupNodes()const {\r\n        auto size = *std::max_element(m_group.begin(),\
     \ m_group.end()) + 1;\r\n        std::vector<std::deque<int>> groupNodes(size);\r\
     \n        for(int gi = 0; gi < m_n; ++gi) {\r\n            groupNodes[m_group[gi]].emplace_back(gi);\r\
-    \n        }\r\n        return groupNodes;\r\n    }\r\npublic:\r\n    SCC(int n,\
-    \ const std::unordered_multimap<int, int>& graph) :\r\n        m_n(n),\r\n   \
-    \     m_graph(graph),\r\n        m_revGraph(reverse()),\r\n        m_group(constructGroup()),\r\
-    \n        m_groupNodes(constructGroupNodes()) {\r\n    }\r\n\r\n    auto isSameGroup(int\
+    \n        }\r\n        return groupNodes;\r\n    }\r\n    auto getGroupGraph()const\
+    \ {\r\n        std::unordered_set<std::pair<int, int>, HashPair> st;\r\n     \
+    \   st.reserve(m_graph.size());\r\n        for(int f = 0; f < m_n; ++f) for(const\
+    \ auto& t : m_graph[f]) if(!isSameGroup(f, t)) {\r\n            st.emplace(m_group[f],\
+    \ m_group[t]);\r\n        }\r\n        Graph ret(m_n);\r\n        for(const auto&\
+    \ [f, t] : st) { ret[f].emplace_back(t); }\r\n        return ret;\r\n    }\r\n\
+    };\r\n"
+  code: "#pragma once\r\n\r\n#include <unordered_map>\r\n#include <unordered_set>\r\
+    \n#include <algorithm>\r\n#include <vector>\r\n#include <deque>\r\n\r\nclass StronglyConnectedComponents\
+    \ {\r\n\r\n    struct HashPair {\r\n        template<class T1, class T2>\r\n \
+    \       size_t operator()(const std::pair<T1, T2>& p) const {\r\n            auto\
+    \ hash1 = std::hash<T1>{}(p.first);\r\n            auto hash2 = std::hash<T2>{}(p.second);\r\
+    \n            size_t seed = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed\
+    \ << 6) + (seed >> 2);\r\n            seed ^= hash2 + 0x9e3779b9 + (seed << 6)\
+    \ + (seed >> 2);\r\n            return seed;\r\n        }\r\n    };\r\n\r\n  \
+    \  using Graph = std::vector<std::vector<int>>;\r\n\r\n    const int m_n;\r\n\
+    \    const Graph m_graph;\r\n    const std::vector<int> m_group;\r\n\r\n    static\
+    \ inline auto reverse(int n, const Graph& graph) {\r\n        std::vector<std::vector<int>>\
+    \ ret(n);\r\n        for(int f = 0; f < n; ++f) for(const auto& t : graph[f])\
+    \ {\r\n            ret[t].emplace_back(f);\r\n        }\r\n        return ret;\r\
+    \n    }\r\n    template <class F>\r\n    static inline auto dfs(const std::vector<std::vector<int>>&\
+    \ graph, int from,\r\n                           std::vector<bool>& is_used,\r\
+    \n                           const F& f)->void {\r\n        is_used[from] = true;\r\
+    \n        for(const auto& to : graph[from]) {\r\n            if(is_used[to]) {\
+    \ continue; }\r\n            dfs(graph, to, is_used, f);\r\n        }\r\n    \
+    \    f(from);\r\n    }\r\n\r\n    static inline auto constructGroup(int n, const\
+    \ Graph& graph) {\r\n        std::vector<int> order; order.reserve(n);\r\n   \
+    \     std::vector<bool> is_used(n);\r\n        for(int from = 0; from < n; ++from)\
+    \ if(!is_used[from]) {\r\n            dfs(graph, from, is_used, [&](int f) {\r\
+    \n                order.emplace_back(f);\r\n            });\r\n        }\r\n\r\
+    \n        int g = 0;\r\n        std::vector<int> group(n);\r\n        std::vector<bool>\
+    \ is_used2(n);\r\n        auto rev = reverse(n, graph);\r\n        for(int i =\
+    \ n - 1; i >= 0; --i)if(!is_used2[order[i]]) {\r\n            dfs(rev, order[i],\
+    \ is_used2, [&](int f) {group[f] = g; });\r\n            ++g;\r\n        }\r\n\
+    \        return group;\r\n    }\r\n    auto constructGroupNodes() const {\r\n\
+    \    }\r\npublic:\r\n    StronglyConnectedComponents(int n, const Graph& graph)\
+    \ :\r\n        m_n(n),\r\n        m_graph(graph),\r\n        m_group(constructGroup(n,\
+    \ m_graph)) {\r\n    }\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\
+    \u304C\u5927\u304D\u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    StronglyConnectedComponents(int\
+    \ n, Graph&& graph) :\r\n        m_n(n),\r\n        m_graph(std::move(graph)),\r\
+    \n        m_group(constructGroup(n, m_graph)) {\r\n    }\r\n\r\n    auto isSameGroup(int\
     \ a, int b)const {\r\n        return m_group[a] == m_group[b];\r\n    }\r\n  \
-    \  auto getGroupNodes(int gi)const {\r\n        if(gi < 0 || gi >= static_cast<int>(m_groupNodes.size()))\
-    \ {\r\n            return std::deque<int>();\r\n        }\r\n        return m_groupNodes[gi];\r\
-    \n    }\r\n    auto getGroupGraph()const {\r\n        std::unordered_multimap<int,\
-    \ int> graph;\r\n        std::unordered_set<std::pair<int, int>, HashPair> st;\r\
-    \n        for(const auto& [f, t] : m_graph) {\r\n            if(isSameGroup(f,\
-    \ t)) { continue; }\r\n            auto gf = m_group[f];\r\n            auto gt\
-    \ = m_group[t];\r\n            if(st.find({gf,gt}) != st.end()) { continue; }\r\
-    \n            graph.emplace(gf, gt);\r\n            st.emplace(gf, gt);\r\n  \
-    \      }\r\n        return graph;\r\n    }\r\n};\n"
-  code: "#pragma once\r\n\r\n#include <unordered_map>\r\n#include <stack>\r\n#include\
-    \ <vector>\r\n#include <list>\r\n\r\nclass SCC {\r\n\r\n    struct HashPair {\r\
-    \n        template<class T1, class T2>\r\n        size_t operator()(const std::pair<T1,\
-    \ T2>& p) const {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n  \
-    \          auto hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed\
-    \ = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\
-    \n            seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n    \
-    \        return seed;\r\n        }\r\n    };\r\n\r\n    const int m_n;\r\n   \
-    \ const std::unordered_multimap<int, int> m_graph;\r\n    const std::unordered_multimap<int,\
-    \ int> m_revGraph;\r\n    const std::vector<int> m_group;\r\n    const std::vector<std::deque<int>>\
-    \ m_groupNodes;\r\n\r\n    auto reverse()const {\r\n        std::unordered_multimap<int,\
-    \ int> graph;\r\n        for(const auto& [f, t] : m_graph) { graph.emplace(t,\
-    \ f); }\r\n        return graph;\r\n    }\r\n\r\n    auto dfs(const std::unordered_multimap<int,\
-    \ int>& graph,\r\n             int from,\r\n             std::vector<int>& isUsed,\r\
-    \n             std::list<int>& visit)->void {\r\n\r\n        auto range = graph.equal_range(from);\r\
-    \n        for(auto itr = range.first; itr != range.second; ++itr) {\r\n      \
-    \      auto to = itr->second;\r\n            if(!isUsed[to]) {\r\n           \
-    \     isUsed[to] = true;\r\n                dfs(graph, to, isUsed, visit);\r\n\
-    \            }\r\n        }\r\n        visit.emplace_back(from);\r\n    }\r\n\r\
-    \n    auto constructGroup() {\r\n        std::list<int> order;\r\n        {\r\n\
-    \            std::vector<int> used(m_n);\r\n            for(int from = 0; from\
-    \ < m_n; ++from) if(!used[from]) {\r\n                std::list<int> localOrder;\r\
-    \n                used[from] = true;\r\n                dfs(m_graph, from, used,\
-    \ localOrder);\r\n                for(const auto& x : localOrder) {\r\n      \
-    \              order.emplace_front(x);\r\n                }\r\n            }\r\
-    \n        }\r\n        std::vector<int> group(m_n);\r\n        {\r\n         \
-    \   std::vector<int> used(m_n);\r\n\r\n            int g = 0;\r\n            for(const\
-    \ auto& from : order) if(!used[from]) {\r\n                used[from] = true;\r\
-    \n                std::list<int> visit;\r\n                dfs(m_revGraph, from,\
-    \ used, visit);\r\n                for(const auto& f : visit) { group[f] = g;\
-    \ };\r\n                ++g;\r\n            }\r\n        }\r\n        return group;\r\
-    \n    }\r\n    auto constructGroupNodes() const {\r\n        auto size = *std::max_element(m_group.begin(),\
+    \  auto getGroupNodes()const {\r\n        auto size = *std::max_element(m_group.begin(),\
     \ m_group.end()) + 1;\r\n        std::vector<std::deque<int>> groupNodes(size);\r\
     \n        for(int gi = 0; gi < m_n; ++gi) {\r\n            groupNodes[m_group[gi]].emplace_back(gi);\r\
-    \n        }\r\n        return groupNodes;\r\n    }\r\npublic:\r\n    SCC(int n,\
-    \ const std::unordered_multimap<int, int>& graph) :\r\n        m_n(n),\r\n   \
-    \     m_graph(graph),\r\n        m_revGraph(reverse()),\r\n        m_group(constructGroup()),\r\
-    \n        m_groupNodes(constructGroupNodes()) {\r\n    }\r\n\r\n    auto isSameGroup(int\
-    \ a, int b)const {\r\n        return m_group[a] == m_group[b];\r\n    }\r\n  \
-    \  auto getGroupNodes(int gi)const {\r\n        if(gi < 0 || gi >= static_cast<int>(m_groupNodes.size()))\
-    \ {\r\n            return std::deque<int>();\r\n        }\r\n        return m_groupNodes[gi];\r\
-    \n    }\r\n    auto getGroupGraph()const {\r\n        std::unordered_multimap<int,\
-    \ int> graph;\r\n        std::unordered_set<std::pair<int, int>, HashPair> st;\r\
-    \n        for(const auto& [f, t] : m_graph) {\r\n            if(isSameGroup(f,\
-    \ t)) { continue; }\r\n            auto gf = m_group[f];\r\n            auto gt\
-    \ = m_group[t];\r\n            if(st.find({gf,gt}) != st.end()) { continue; }\r\
-    \n            graph.emplace(gf, gt);\r\n            st.emplace(gf, gt);\r\n  \
-    \      }\r\n        return graph;\r\n    }\r\n};"
+    \n        }\r\n        return groupNodes;\r\n    }\r\n    auto getGroupGraph()const\
+    \ {\r\n        std::unordered_set<std::pair<int, int>, HashPair> st;\r\n     \
+    \   st.reserve(m_graph.size());\r\n        for(int f = 0; f < m_n; ++f) for(const\
+    \ auto& t : m_graph[f]) if(!isSameGroup(f, t)) {\r\n            st.emplace(m_group[f],\
+    \ m_group[t]);\r\n        }\r\n        Graph ret(m_n);\r\n        for(const auto&\
+    \ [f, t] : st) { ret[f].emplace_back(t); }\r\n        return ret;\r\n    }\r\n\
+    };\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Normal/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2022-07-29 18:42:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-03-21 10:05:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 documentation_of: Library/Graph/Normal/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:
