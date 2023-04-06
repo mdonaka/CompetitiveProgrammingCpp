@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/ModCalculator.hpp
     title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []
@@ -37,23 +37,23 @@ data:
     \n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\n    }\r\
     \n\r\n    auto perm(int n, int r) const {\r\n        auto val = fact(n) * factInv(n\
     \ - r);\r\n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\
-    \n    }\r\n\r\n};\r\n#line 3 \"Library/Utility/Combination.hpp\"\n\r\n#line 5\
-    \ \"Library/Utility/Combination.hpp\"\n\r\n\r\n/**\r\n*\tMOD\u306A\u3057combination\r\
-    \n*\tn< 51, r<51\r\n*/\r\nlong long combFast(long long a, long long b) {\r\n \
-    \   ++a;\r\n    static long long now = 1;\r\n    static std::vector<std::vector<long\
-    \ long>> pascalComb(1);\r\n    pascalComb.reserve(51);\r\n    if(a < now) {\r\n\
-    \        return pascalComb[a][b];\r\n    }\r\n    for(; now < a + 1; ++now) {\r\
-    \n        std::vector<long long> v(now);\r\n        v[0] = v[now - 1] = 1;\r\n\
-    \        for(long long j = 1; j < now - 1; ++j) {\r\n            v[j] = pascalComb[now\
-    \ - 1][j - 1] + pascalComb[now - 1][j];\r\n        }\r\n        pascalComb.emplace_back(v);\r\
-    \n    }\r\n    return pascalComb[a][b];\r\n}\r\n\r\n/**\r\n*\t\u30B7\u30F3\u30D7\
-    \u30EBcombination\r\n*\tO(r)\r\n*/\r\nlong long combSimple(long long a, long long\
-    \ b, long long MOD) {\r\n    if(b > a - b) { return combSimple(a, a - b, MOD);\
-    \ }\r\n    long long ans = 1;\r\n    for(long long i = 0; i < b; ++i) {\r\n  \
-    \      ans *= a - i;\r\n        ans %= MOD;\r\n    }\r\n    long long t = 1;\r\
-    \n    for(long long i = 1; i < b + 1; ++i) {\r\n        t *= i;\r\n        t %=\
-    \ MOD;\r\n    }\r\n    ans *= calc.pow(t, MOD - 2);\r\n    ans %= MOD;\r\n   \
-    \ return ans;\r\n}\n"
+    \n    }\r\n\r\n    auto inv(int n) const {\r\n        return pow(n, m_mod - 2);\r\
+    \n    }\r\n};\r\n#line 3 \"Library/Utility/Combination.hpp\"\n\r\n#line 5 \"Library/Utility/Combination.hpp\"\
+    \n\r\n\r\n/**\r\n*\tMOD\u306A\u3057combination\r\n*\tn< 51, r<51\r\n*/\r\nlong\
+    \ long combFast(long long a, long long b) {\r\n    ++a;\r\n    static long long\
+    \ now = 1;\r\n    static std::vector<std::vector<long long>> pascalComb(1);\r\n\
+    \    pascalComb.reserve(51);\r\n    if(a < now) {\r\n        return pascalComb[a][b];\r\
+    \n    }\r\n    for(; now < a + 1; ++now) {\r\n        std::vector<long long> v(now);\r\
+    \n        v[0] = v[now - 1] = 1;\r\n        for(long long j = 1; j < now - 1;\
+    \ ++j) {\r\n            v[j] = pascalComb[now - 1][j - 1] + pascalComb[now - 1][j];\r\
+    \n        }\r\n        pascalComb.emplace_back(v);\r\n    }\r\n    return pascalComb[a][b];\r\
+    \n}\r\n\r\n/**\r\n*\t\u30B7\u30F3\u30D7\u30EBcombination\r\n*\tO(r)\r\n*/\r\n\
+    long long combSimple(long long a, long long b, long long MOD) {\r\n    if(b >\
+    \ a - b) { return combSimple(a, a - b, MOD); }\r\n    long long ans = 1;\r\n \
+    \   for(long long i = 0; i < b; ++i) {\r\n        ans *= a - i;\r\n        ans\
+    \ %= MOD;\r\n    }\r\n    long long t = 1;\r\n    for(long long i = 1; i < b +\
+    \ 1; ++i) {\r\n        t *= i;\r\n        t %= MOD;\r\n    }\r\n    ans *= calc.pow(t,\
+    \ MOD - 2);\r\n    ans %= MOD;\r\n    return ans;\r\n}\n"
   code: "#pragma once\r\n#include \"./ModCalculator.hpp\"\r\n\r\n#include <vector>\r\
     \n\r\n\r\n/**\r\n*\tMOD\u306A\u3057combination\r\n*\tn< 51, r<51\r\n*/\r\nlong\
     \ long combFast(long long a, long long b) {\r\n    ++a;\r\n    static long long\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: Library/Utility/Combination.hpp
   requiredBy: []
-  timestamp: '2022-12-01 01:44:45+09:00'
+  timestamp: '2023-04-07 03:18:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Utility/Combination.hpp

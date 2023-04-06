@@ -9,9 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Utility/ModCalculator.test.cpp
     title: Test/Utility/ModCalculator.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: Test/Utility/ModCalculator_inv.test.cpp
+    title: Test/Utility/ModCalculator_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Utility/ModCalculator_pow.test.cpp
+    title: Test/Utility/ModCalculator_pow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/ModCalculator.hpp\"\n#include <vector>\r\
@@ -40,7 +46,8 @@ data:
     \n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\n    }\r\
     \n\r\n    auto perm(int n, int r) const {\r\n        auto val = fact(n) * factInv(n\
     \ - r);\r\n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\
-    \n    }\r\n\r\n};\r\n"
+    \n    }\r\n\r\n    auto inv(int n) const {\r\n        return pow(n, m_mod - 2);\r\
+    \n    }\r\n};\r\n"
   code: "#pragma once\r\n#include <vector>\r\n\r\nclass ModCalculator {\r\n    const\
     \ long long m_mod;\r\n    const std::vector<long long> m_fac;\r\n    const std::vector<long\
     \ long> m_finv;\r\n\r\n    auto constructFac(long long s) {\r\n        std::vector<long\
@@ -66,16 +73,19 @@ data:
     \        val *= factInv(n - r);\r\n        if(val >= m_mod) { val %= m_mod; }\r\
     \n        return val;\r\n    }\r\n\r\n    auto perm(int n, int r) const {\r\n\
     \        auto val = fact(n) * factInv(n - r);\r\n        if(val >= m_mod) { val\
-    \ %= m_mod; }\r\n        return val;\r\n    }\r\n\r\n};\r\n"
+    \ %= m_mod; }\r\n        return val;\r\n    }\r\n\r\n    auto inv(int n) const\
+    \ {\r\n        return pow(n, m_mod - 2);\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Utility/ModCalculator.hpp
   requiredBy:
   - Library/Utility/Combination.hpp
-  timestamp: '2022-12-01 01:44:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-07 03:18:12+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Utility/ModCalculator.test.cpp
+  - Test/Utility/ModCalculator_pow.test.cpp
+  - Test/Utility/ModCalculator_inv.test.cpp
 documentation_of: Library/Utility/ModCalculator.hpp
 layout: document
 redirect_from:

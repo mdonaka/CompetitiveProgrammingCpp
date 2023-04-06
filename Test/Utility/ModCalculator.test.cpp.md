@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/ModCalculator.hpp
     title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []
@@ -42,9 +42,10 @@ data:
     \n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\n    }\r\
     \n\r\n    auto perm(int n, int r) const {\r\n        auto val = fact(n) * factInv(n\
     \ - r);\r\n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\
-    \n    }\r\n\r\n};\r\n#line 7 \"Test/Utility/ModCalculator.test.cpp\"\n\r\nusing\
-    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
-    \ = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
+    \n    }\r\n\r\n    auto inv(int n) const {\r\n        return pow(n, m_mod - 2);\r\
+    \n    }\r\n};\r\n#line 7 \"Test/Utility/ModCalculator.test.cpp\"\n\r\nusing ll\
+    \ = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl =\
+    \ '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
     \ }; }_Preprocessing;\r\n\r\nauto parse(const std::string s) {\r\n    ll a = 0,\
     \ b = 0;\r\n    bool isa = true;\r\n    for(unsigned int i = 2; i < s.size() -\
     \ 1; ++i) {\r\n        if(s[i] == ',') { isa = false; continue; }\r\n        auto&\
@@ -78,7 +79,7 @@ data:
   isVerificationFile: true
   path: Test/Utility/ModCalculator.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 01:44:45+09:00'
+  timestamp: '2023-04-07 03:18:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Utility/ModCalculator.test.cpp
