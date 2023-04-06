@@ -19,7 +19,7 @@ auto binarySearch(double mn, double mx, int rep, const Lambda& judge,
 
 template <class Lambda>
 auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev = false) {
-    auto ok = mx;
+    auto ok = mx + rev;
     auto ng = mn - 1;
     while(ok - ng > 1) {
         auto mid = (ok + ng) / 2;
@@ -30,5 +30,5 @@ auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev = fa
             ng = mid;
         }
     }
-    return ok;
+    return ok - rev;
 }
