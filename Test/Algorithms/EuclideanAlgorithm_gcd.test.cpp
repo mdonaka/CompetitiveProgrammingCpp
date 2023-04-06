@@ -1,6 +1,6 @@
-#define IGNORE
 // TODO: いい問題を探す
-// #define PROBLEM ""
+#define PROBLEM ""
+#define IGNORE
 
 #include <iostream>
 
