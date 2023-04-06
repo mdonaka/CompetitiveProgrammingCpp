@@ -36,16 +36,14 @@ private:
         _l = std::max(_l, 0); _r = std::min(_r, m_size - 1);
         auto l = _l + m_size;
         int r = _r + m_size;
-        std::deque<Monoid> ldq, rdq;
+        auto lm = Monoid();
+        auto rm = Monoid();
         while(l <= r) {
-            if(l & 1) { ldq.emplace_back(m_node[l - 1]); ++l; }
-            if(!(r & 1)) { rdq.emplace_front(m_node[r - 1]); --r; }
+            if(l & 1) { lm = lm.binaryOperation(m_node[l - 1]); ++l; }
+            if(!(r & 1)) { rm = m_node[r - 1].binaryOperation(rm); --r; }
             l >>= 1, r >>= 1;
         }
-        auto res = Monoid();
-        for(auto&& m : ldq) { res = res.binaryOperation(m); }
-        for(auto&& m : rdq) { res = res.binaryOperation(m); }
-        return res;
+        return lm.binaryOperation(rm);
     }
 
     auto _construct(const std::vector<S>& vec) {
@@ -65,6 +63,7 @@ public:
     auto update(int itr, Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid&, const Monoid& m2) {return m2; }); }
     auto add(int itr, Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid& m1, const Monoid& m2) {return Monoid(m1.m_val + m2.m_val); }); }
     auto query(int l, int r)const { return _query(l, r).m_val; }
+    auto query_all()const { return m_node[0].m_val; }
 
     auto output()const {
         for(int i = 0; i < m_size; ++i) { std::cout << m_node[m_size + i - 1] << " "; }
