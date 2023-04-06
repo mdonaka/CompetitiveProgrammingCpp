@@ -1,4 +1,5 @@
 #define PROBLEM "https://yukicoder.me/problems/no/67"
+#define ERROR "1e-9"
 
 #include <iostream>
 #include <iomanip>
