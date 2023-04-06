@@ -64,4 +64,7 @@ public:
         return val;
     }
 
+    auto inv(int n) const {
+        return pow(n, m_mod - 2);
+    }
 };
