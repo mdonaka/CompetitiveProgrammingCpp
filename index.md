@@ -134,7 +134,7 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Combination.hpp
       title: Library/Utility/Combination.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
     - icon: ':warning:'
@@ -290,7 +290,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator.test.cpp
       title: Test/Utility/ModCalculator.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_inv.test.cpp
       title: Test/Utility/ModCalculator_inv.test.cpp
     - icon: ':heavy_check_mark:'
