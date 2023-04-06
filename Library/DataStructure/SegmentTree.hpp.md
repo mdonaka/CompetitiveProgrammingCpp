@@ -33,13 +33,11 @@ data:
     \ << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n        }\r\n    }\r\n\r\
     \n    auto _query(int _l, int _r) const {\r\n        _l = std::max(_l, 0); _r\
     \ = std::min(_r, m_size - 1);\r\n        auto l = _l + m_size;\r\n        int\
-    \ r = _r + m_size;\r\n        std::deque<Monoid> ldq, rdq;\r\n        while(l\
-    \ <= r) {\r\n            if(l & 1) { ldq.emplace_back(m_node[l - 1]); ++l; }\r\
-    \n            if(!(r & 1)) { rdq.emplace_front(m_node[r - 1]); --r; }\r\n    \
-    \        l >>= 1, r >>= 1;\r\n        }\r\n        auto res = Monoid();\r\n  \
-    \      for(auto&& m : ldq) { res = res.binaryOperation(m); }\r\n        for(auto&&\
-    \ m : rdq) { res = res.binaryOperation(m); }\r\n        return res;\r\n    }\r\
-    \n\r\n    auto _construct(const std::vector<S>& vec) {\r\n        for(unsigned\
+    \ r = _r + m_size;\r\n        auto lm = Monoid();\r\n        auto rm = Monoid();\r\
+    \n        while(l <= r) {\r\n            if(l & 1) { lm = lm.binaryOperation(m_node[l\
+    \ - 1]); ++l; }\r\n            if(!(r & 1)) { rm = m_node[r - 1].binaryOperation(rm);\
+    \ --r; }\r\n            l >>= 1, r >>= 1;\r\n        }\r\n        return lm.binaryOperation(rm);\r\
+    \n    }\r\n\r\n    auto _construct(const std::vector<S>& vec) {\r\n        for(unsigned\
     \ int i = 0; i < vec.size(); ++i) {\r\n            m_node[i + m_size - 1] = Monoid(vec[i]);\r\
     \n        }\r\n        for(int i = m_size - 2; i >= 0; --i) {\r\n            m_node[i]\
     \ = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n        }\r\
@@ -51,15 +49,16 @@ data:
     \ [](const Monoid&, const Monoid& m2) {return m2; }); }\r\n    auto add(int itr,\
     \ Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid&\
     \ m1, const Monoid& m2) {return Monoid(m1.m_val + m2.m_val); }); }\r\n    auto\
-    \ query(int l, int r)const { return _query(l, r).m_val; }\r\n\r\n    auto output()const\
-    \ {\r\n        for(int i = 0; i < m_size; ++i) { std::cout << m_node[m_size +\
-    \ i - 1] << \" \"; }\r\n        std::cout << std::endl;\r\n    }\r\n};\r\n\r\n\
-    \r\ntemplate<\r\n    class S,   // \u8981\u7D20\u306E\u578B\r\n    S element,\
-    \ // \u5143\r\n    class T // lambda\u306FC++20\u3058\u3083\u306A\u3044\u3068\u6E21\
-    \u305B\u306A\u304B\u3063\u305F\uFF0E\uFF0E\uFF0E\r\n    // S T(S, S)  // 2\u9805\
-    \u6F14\u7B97\u5B50\r\n>\r\nstruct Monoid {\r\n    S m_val;\r\n    Monoid() :m_val(element)\
-    \ {}\r\n    Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid&\
-    \ m2)const { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
+    \ query(int l, int r)const { return _query(l, r).m_val; }\r\n    auto query_all()const\
+    \ { return m_node[0].m_val; }\r\n\r\n    auto output()const {\r\n        for(int\
+    \ i = 0; i < m_size; ++i) { std::cout << m_node[m_size + i - 1] << \" \"; }\r\n\
+    \        std::cout << std::endl;\r\n    }\r\n};\r\n\r\n\r\ntemplate<\r\n    class\
+    \ S,   // \u8981\u7D20\u306E\u578B\r\n    S element, // \u5143\r\n    class T\
+    \ // lambda\u306FC++20\u3058\u3083\u306A\u3044\u3068\u6E21\u305B\u306A\u304B\u3063\
+    \u305F\uFF0E\uFF0E\uFF0E\r\n    // S T(S, S)  // 2\u9805\u6F14\u7B97\u5B50\r\n\
+    >\r\nstruct Monoid {\r\n    S m_val;\r\n    Monoid() :m_val(element) {}\r\n  \
+    \  Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid& m2)const\
+    \ { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
     \   }\r\n};\r\n"
   code: "#pragma once\r\n\r\n#include <vector>\r\n#include <deque>\r\n#include <utility>\r\
@@ -77,13 +76,12 @@ data:
     \ (i - 1) >> 1;\r\n            m_node[i] = m_node[(i << 1) | 1].binaryOperation(m_node[(i\
     \ + 1) << 1]);\r\n        }\r\n    }\r\n\r\n    auto _query(int _l, int _r) const\
     \ {\r\n        _l = std::max(_l, 0); _r = std::min(_r, m_size - 1);\r\n      \
-    \  auto l = _l + m_size;\r\n        int r = _r + m_size;\r\n        std::deque<Monoid>\
-    \ ldq, rdq;\r\n        while(l <= r) {\r\n            if(l & 1) { ldq.emplace_back(m_node[l\
-    \ - 1]); ++l; }\r\n            if(!(r & 1)) { rdq.emplace_front(m_node[r - 1]);\
-    \ --r; }\r\n            l >>= 1, r >>= 1;\r\n        }\r\n        auto res = Monoid();\r\
-    \n        for(auto&& m : ldq) { res = res.binaryOperation(m); }\r\n        for(auto&&\
-    \ m : rdq) { res = res.binaryOperation(m); }\r\n        return res;\r\n    }\r\
-    \n\r\n    auto _construct(const std::vector<S>& vec) {\r\n        for(unsigned\
+    \  auto l = _l + m_size;\r\n        int r = _r + m_size;\r\n        auto lm =\
+    \ Monoid();\r\n        auto rm = Monoid();\r\n        while(l <= r) {\r\n    \
+    \        if(l & 1) { lm = lm.binaryOperation(m_node[l - 1]); ++l; }\r\n      \
+    \      if(!(r & 1)) { rm = m_node[r - 1].binaryOperation(rm); --r; }\r\n     \
+    \       l >>= 1, r >>= 1;\r\n        }\r\n        return lm.binaryOperation(rm);\r\
+    \n    }\r\n\r\n    auto _construct(const std::vector<S>& vec) {\r\n        for(unsigned\
     \ int i = 0; i < vec.size(); ++i) {\r\n            m_node[i + m_size - 1] = Monoid(vec[i]);\r\
     \n        }\r\n        for(int i = m_size - 2; i >= 0; --i) {\r\n            m_node[i]\
     \ = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n        }\r\
@@ -95,22 +93,23 @@ data:
     \ [](const Monoid&, const Monoid& m2) {return m2; }); }\r\n    auto add(int itr,\
     \ Monoid&& val) { return update_op(itr, std::forward<Monoid>(val), [](const Monoid&\
     \ m1, const Monoid& m2) {return Monoid(m1.m_val + m2.m_val); }); }\r\n    auto\
-    \ query(int l, int r)const { return _query(l, r).m_val; }\r\n\r\n    auto output()const\
-    \ {\r\n        for(int i = 0; i < m_size; ++i) { std::cout << m_node[m_size +\
-    \ i - 1] << \" \"; }\r\n        std::cout << std::endl;\r\n    }\r\n};\r\n\r\n\
-    \r\ntemplate<\r\n    class S,   // \u8981\u7D20\u306E\u578B\r\n    S element,\
-    \ // \u5143\r\n    class T // lambda\u306FC++20\u3058\u3083\u306A\u3044\u3068\u6E21\
-    \u305B\u306A\u304B\u3063\u305F\uFF0E\uFF0E\uFF0E\r\n    // S T(S, S)  // 2\u9805\
-    \u6F14\u7B97\u5B50\r\n>\r\nstruct Monoid {\r\n    S m_val;\r\n    Monoid() :m_val(element)\
-    \ {}\r\n    Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid&\
-    \ m2)const { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
+    \ query(int l, int r)const { return _query(l, r).m_val; }\r\n    auto query_all()const\
+    \ { return m_node[0].m_val; }\r\n\r\n    auto output()const {\r\n        for(int\
+    \ i = 0; i < m_size; ++i) { std::cout << m_node[m_size + i - 1] << \" \"; }\r\n\
+    \        std::cout << std::endl;\r\n    }\r\n};\r\n\r\n\r\ntemplate<\r\n    class\
+    \ S,   // \u8981\u7D20\u306E\u578B\r\n    S element, // \u5143\r\n    class T\
+    \ // lambda\u306FC++20\u3058\u3083\u306A\u3044\u3068\u6E21\u305B\u306A\u304B\u3063\
+    \u305F\uFF0E\uFF0E\uFF0E\r\n    // S T(S, S)  // 2\u9805\u6F14\u7B97\u5B50\r\n\
+    >\r\nstruct Monoid {\r\n    S m_val;\r\n    Monoid() :m_val(element) {}\r\n  \
+    \  Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid& m2)const\
+    \ { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
     \   }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
+  timestamp: '2023-04-07 02:20:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SegmentTree_RSQ.test.cpp

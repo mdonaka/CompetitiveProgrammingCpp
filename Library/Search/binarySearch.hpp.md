@@ -9,7 +9,7 @@ data:
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Search/binarySearch_double_rev.test.cpp
     title: Test/Search/binarySearch_double_rev.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/String/SuffixArray.test.cpp
     title: Test/String/SuffixArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Search/binarySearch.hpp\"\n\r\ntemplate <class Lambda>\r\
@@ -61,7 +61,7 @@ data:
   - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
   timestamp: '2023-04-06 23:12:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Search/binarySearch_int.test.cpp
   - Test/Search/binarySearch_double_rev.test.cpp

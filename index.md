@@ -101,7 +101,7 @@ data:
     - icon: ':warning:'
       path: Library/Search/bfs.hpp
       title: Library/Search/bfs.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Search/binarySearch.hpp
       title: Library/Search/binarySearch.hpp
     - icon: ':warning:'
@@ -256,7 +256,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/Search
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Search/binarySearch_double_rev.test.cpp
       title: Test/Search/binarySearch_double_rev.test.cpp
     - icon: ':heavy_check_mark:'
