@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Search/binarySearch.hpp
     title: Library/Search/binarySearch.hpp
   _extendedRequiredBy:
@@ -28,11 +28,11 @@ data:
     \ {\r\n            ok = mid;\r\n        } else {\r\n            ng = mid;\r\n\
     \        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\n\
     auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev =\
-    \ false) {\r\n    auto ok = mx;\r\n    auto ng = mn - 1;\r\n    while(ok - ng\
-    \ > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
+    \ false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn - 1;\r\n    while(ok\
+    \ - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
     \n        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n\
     \        } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
-    \ ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include <iostream>\r\
+    \ ok - rev;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n#include <list>\r\n#include <string>\r\n#include <set>\r\
     \n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\
     \r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\
@@ -254,11 +254,11 @@ data:
   path: Library/String/SuffixArray.hpp
   requiredBy:
   - Library/String/LCPArray.hpp
-  timestamp: '2022-09-11 19:59:41+09:00'
+  timestamp: '2023-04-06 23:12:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/String/LCPArray.test.cpp
   - Test/String/SuffixArray.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/String/SuffixArray.hpp
 layout: document
 redirect_from:

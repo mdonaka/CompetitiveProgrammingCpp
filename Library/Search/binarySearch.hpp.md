@@ -9,15 +9,24 @@ data:
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Search/binarySearch_double_rev.test.cpp
+    title: Test/Search/binarySearch_double_rev.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Search/binarySearch_int.test.cpp
+    title: Test/Search/binarySearch_int.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Search/binarySearch_int_rev.test.cpp
+    title: Test/Search/binarySearch_int_rev.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/String/SuffixArray.test.cpp
     title: Test/String/SuffixArray.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Search/binarySearch.hpp\"\n\r\ntemplate <class Lambda>\r\
@@ -28,11 +37,11 @@ data:
     \ {\r\n            ok = mid;\r\n        } else {\r\n            ng = mid;\r\n\
     \        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\n\
     auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev =\
-    \ false) {\r\n    auto ok = mx;\r\n    auto ng = mn - 1;\r\n    while(ok - ng\
-    \ > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
+    \ false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn - 1;\r\n    while(ok\
+    \ - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
     \n        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n\
     \        } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
-    \ ok;\r\n}\r\n"
+    \ ok - rev;\r\n}\r\n"
   code: "#pragma once\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double mn,\
     \ double mx, int rep, const Lambda& judge,\r\n                  bool rev = false)\
     \ {\r\n    auto ok = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_)\
@@ -40,22 +49,25 @@ data:
     \        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n \
     \       } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
     \ ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long long mn, long\
-    \ long mx, const Lambda& judge, bool rev = false) {\r\n    auto ok = mx;\r\n \
-    \   auto ng = mn - 1;\r\n    while(ok - ng > 1) {\r\n        auto mid = (ok +\
-    \ ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk && !rev) ||\
+    \ long mx, const Lambda& judge, bool rev = false) {\r\n    auto ok = mx + rev;\r\
+    \n    auto ng = mn - 1;\r\n    while(ok - ng > 1) {\r\n        auto mid = (ok\
+    \ + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk && !rev) ||\
     \ (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\n         \
-    \   ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n"
+    \   ng = mid;\r\n        }\r\n    }\r\n    return ok - rev;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Search/binarySearch.hpp
   requiredBy:
   - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
-  timestamp: '2022-09-11 19:45:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-04-06 23:12:09+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/String/LCPArray.test.cpp
+  - Test/Search/binarySearch_int.test.cpp
+  - Test/Search/binarySearch_double_rev.test.cpp
+  - Test/Search/binarySearch_int_rev.test.cpp
   - Test/String/SuffixArray.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/Search/binarySearch.hpp
 layout: document
 redirect_from:

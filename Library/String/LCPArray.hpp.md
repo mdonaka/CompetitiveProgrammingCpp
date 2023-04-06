@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Search/binarySearch.hpp
     title: Library/Search/binarySearch.hpp
   - icon: ':heavy_check_mark:'
@@ -25,24 +25,24 @@ data:
     \ && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\
     \n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate\
     \ <class Lambda>\r\nauto binarySearch(long long mn, long long mx, const Lambda&\
-    \ judge, bool rev = false) {\r\n    auto ok = mx;\r\n    auto ng = mn - 1;\r\n\
-    \    while(ok - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto\
-    \ isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk && rev)) {\r\n   \
-    \         ok = mid;\r\n        } else {\r\n            ng = mid;\r\n        }\r\
-    \n    }\r\n    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\
-    \r\n#include <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include <string>\r\
-    \n#include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\
-    \u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306E\
-    suffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\
-    \u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n\
-    \ * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass SuffixArray\
-    \ {\r\n    enum class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n    const std::string\
-    \ m_str;\r\n    const std::vector<int> m_suffixArray;\r\n\r\n    /* string to\
-    \ vector<int> */\r\n    static std::vector<int> toIntVec(const std::string& str)\
-    \ {\r\n        std::vector<int> vec;\r\n        vec.reserve(str.size() + 1);\r\
-    \n        for(const auto& c : str) {\r\n            vec.emplace_back(c - '0' +\
-    \ 1);\r\n        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\n\
-    \    }\r\n\r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE>\
+    \ judge, bool rev = false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn -\
+    \ 1;\r\n    while(ok - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n    \
+    \    auto isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk && rev)) {\r\
+    \n            ok = mid;\r\n        } else {\r\n            ng = mid;\r\n     \
+    \   }\r\n    }\r\n    return ok - rev;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\
+    \n\r\n#include <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include\
+    \ <string>\r\n#include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\
+    \u69CB\u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\
+    \u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\
+    \u308C\u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n\
+    \ *\r\n * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass\
+    \ SuffixArray {\r\n    enum class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n\
+    \    const std::string m_str;\r\n    const std::vector<int> m_suffixArray;\r\n\
+    \r\n    /* string to vector<int> */\r\n    static std::vector<int> toIntVec(const\
+    \ std::string& str) {\r\n        std::vector<int> vec;\r\n        vec.reserve(str.size()\
+    \ + 1);\r\n        for(const auto& c : str) {\r\n            vec.emplace_back(c\
+    \ - '0' + 1);\r\n        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\
+    \n    }\r\n\r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE>\
     \ classifying(const std::vector<int>& str) {\r\n        auto sz = str.size();\r\
     \n        auto typeArray = std::vector<TYPE>(sz);\r\n        typeArray[sz - 1]\
     \ = TYPE::S;\r\n        for(int i = sz - 2; i >= 0; --i) {\r\n            if(str[i]\
@@ -185,7 +185,7 @@ data:
   isVerificationFile: false
   path: Library/String/LCPArray.hpp
   requiredBy: []
-  timestamp: '2022-09-13 03:54:07+09:00'
+  timestamp: '2023-04-06 23:12:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
