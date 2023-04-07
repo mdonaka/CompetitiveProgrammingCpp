@@ -106,7 +106,7 @@ ex) 区間最小値，区間更新
 LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>
 */
 //---- 要素 ----
-std::pair<long long, long long> base_s{0,1};
+std::pair<long long, long long> base_s{0,0};
 struct F_RSQ {
     auto operator()(const std::pair<long long, long long>& a, const std::pair<long long, long long>& b)const {
         return std::pair<long long, long long>{a.first + b.first, a.second + b.second};
