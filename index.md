@@ -85,7 +85,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - name: Library/PlaneGeometry
@@ -254,7 +254,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - name: Test/PlaneGeometry

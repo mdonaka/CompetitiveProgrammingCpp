@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/LowestCommonAncestor.hpp\"\n#include\
@@ -76,8 +79,9 @@ data:
   path: Library/Graph/Tree/LowestCommonAncestor.hpp
   requiredBy: []
   timestamp: '2023-04-08 04:07:52+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
 documentation_of: Library/Graph/Tree/LowestCommonAncestor.hpp
 layout: document
 redirect_from:
