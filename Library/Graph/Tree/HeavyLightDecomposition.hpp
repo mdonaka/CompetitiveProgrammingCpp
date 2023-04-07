@@ -4,7 +4,7 @@
 #include <queue>
 #include <stack>
 
-class HLD {
+class HeavyLightDecomposition {
 
     using node_t = int;
     using Graph_f = std::unordered_multimap<node_t, node_t>;
@@ -176,7 +176,7 @@ class HLD {
 
 public:
 
-    HLD(node_t n, const Graph_f& tree) :
+    HeavyLightDecomposition(node_t n, const Graph_f& tree) :
         m_n(n),
         m_size(constructSize(n, tree)),
         m_tree(constructGraph(n, tree)),
