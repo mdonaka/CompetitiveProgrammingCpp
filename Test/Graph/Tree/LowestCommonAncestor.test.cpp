@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C"
 
 #include <iostream>
-#include "./../../../Library/Graph/Tree/LCA.hpp"
+#include "./../../../Library/Graph/Tree/LowestCommonAncestor.hpp"
 
 using ll = long long;
 using std::cout;
