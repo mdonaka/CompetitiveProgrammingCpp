@@ -24,6 +24,7 @@
 "Test/Graph/Normal/StronglyConnectedComponents.test.cpp": "2023-03-21 10:05:57 +0900",
 "Test/Graph/Normal/WarshallFloyd.test.cpp": "2022-09-27 23:19:11 +0900",
 "Test/Graph/Normal/dijkstra.test.cpp": "2022-09-27 22:37:37 +0900",
+"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp": "2023-04-08 04:07:52 +0900",
 "Test/PlaneGeometry/ConvexHull.test.cpp": "2022-09-08 21:53:34 +0900",
 "Test/Search/binarySearch_double_rev.test.cpp": "2023-04-07 02:50:47 +0900",
 "Test/Search/binarySearch_int.test.cpp": "2023-04-06 23:22:23 +0900",
