@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Graph/Tree/HLD.hpp\"\n\r\n#include <unordered_map>\r\
-    \n#include <queue>\r\n#include <stack>\r\n\r\nclass HLD {\r\n\r\n    using node_t\
-    \ = int;\r\n    using Graph_f = std::unordered_multimap<node_t, node_t>;\r\n \
-    \   using Graph = std::unordered_map<node_t, std::deque<node_t>>;\r\n\r\n    const\
-    \ node_t m_n;\r\n    const std::vector<node_t> m_size;\r\n    const Graph m_tree;\r\
-    \n    const std::vector<node_t> m_height;\r\n    const std::vector<std::pair<node_t,\
+  bundledCode: "#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\n#include\
+    \ <unordered_map>\r\n#include <queue>\r\n#include <stack>\r\n\r\nclass HeavyLightDecomposition\
+    \ {\r\n\r\n    using node_t = int;\r\n    using Graph_f = std::unordered_multimap<node_t,\
+    \ node_t>;\r\n    using Graph = std::unordered_map<node_t, std::deque<node_t>>;\r\
+    \n\r\n    const node_t m_n;\r\n    const std::vector<node_t> m_size;\r\n    const\
+    \ Graph m_tree;\r\n    const std::vector<node_t> m_height;\r\n    const std::vector<std::pair<node_t,\
     \ node_t>> m_root_par;\r\n    const std::vector<node_t> m_ids;\r\n    const std::vector<node_t>\
     \ m_order;\r\n    const std::vector<node_t> m_edge_ids;\r\n\r\n    static auto\
     \ constructGraph(node_t n, const Graph_f& tree) {\r\n        std::deque<std::pair<node_t,\
@@ -85,9 +88,9 @@ data:
     \   stk.pop();\r\n            if(f > edge_size) { edge_ids[f] = val; ++val; }\r\
     \n            if(m_tree.find(f) == m_tree.end()) { continue; }\r\n           \
     \ for(const auto& t : m_tree.at(f)) { stk.emplace(t); }\r\n        }\r\n     \
-    \   return edge_ids;\r\n    }\r\n\r\npublic:\r\n\r\n    HLD(node_t n, const Graph_f&\
-    \ tree) :\r\n        m_n(n),\r\n        m_size(constructSize(n, tree)),\r\n  \
-    \      m_tree(constructGraph(n, tree)),\r\n        m_root_par(constructRootPar(n,\
+    \   return edge_ids;\r\n    }\r\n\r\npublic:\r\n\r\n    HeavyLightDecomposition(node_t\
+    \ n, const Graph_f& tree) :\r\n        m_n(n),\r\n        m_size(constructSize(n,\
+    \ tree)),\r\n        m_tree(constructGraph(n, tree)),\r\n        m_root_par(constructRootPar(n,\
     \ m_tree)),\r\n        m_height(constructHeight(n, m_tree)),\r\n        m_ids(constructIds()),\r\
     \n        m_order(constructOrder()),\r\n        m_edge_ids(constructEdgeIds())\
     \ {\r\n    }\r\n\r\n    auto getId(node_t i)const { return m_ids[i]; }\r\n   \
@@ -124,32 +127,33 @@ data:
     \n        return std::pair<node_t, node_t>{\r\n            m_ids[f], m_ids[f]\
     \ + m_size[f] - 1\r\n        };\r\n    }\r\n};\r\n"
   code: "#pragma once\r\n\r\n#include <unordered_map>\r\n#include <queue>\r\n#include\
-    \ <stack>\r\n\r\nclass HLD {\r\n\r\n    using node_t = int;\r\n    using Graph_f\
-    \ = std::unordered_multimap<node_t, node_t>;\r\n    using Graph = std::unordered_map<node_t,\
-    \ std::deque<node_t>>;\r\n\r\n    const node_t m_n;\r\n    const std::vector<node_t>\
-    \ m_size;\r\n    const Graph m_tree;\r\n    const std::vector<node_t> m_height;\r\
-    \n    const std::vector<std::pair<node_t, node_t>> m_root_par;\r\n    const std::vector<node_t>\
-    \ m_ids;\r\n    const std::vector<node_t> m_order;\r\n    const std::vector<node_t>\
-    \ m_edge_ids;\r\n\r\n    static auto constructGraph(node_t n, const Graph_f& tree)\
-    \ {\r\n        std::deque<std::pair<node_t, node_t>> order;\r\n        std::vector<node_t>\
-    \ used(n);\r\n        std::stack<std::pair<node_t, node_t>> stk;\r\n        stk.emplace(0,\
-    \ -1); used[0] = true;\r\n        while(!stk.empty()) {\r\n            auto [f,\
-    \ p] = stk.top();\r\n            order.emplace_front(f, p);\r\n            stk.pop();\r\
-    \n            auto range = tree.equal_range(f);\r\n            for(auto itr =\
-    \ range.first; itr != range.second; ++itr) {\r\n                auto t = itr->second;\r\
-    \n                if(!used[t]) {\r\n                    used[t] = true;\r\n  \
-    \                  stk.emplace(t, f);\r\n                }\r\n            }\r\n\
-    \        }\r\n\r\n        std::vector<node_t> size(n, 1);\r\n        Graph hld_tree;\r\
-    \n        for(const auto& [f, p] : order) {\r\n            auto range = tree.equal_range(f);\r\
-    \n            node_t size_sum = 1;\r\n            node_t size_max = 0;\r\n   \
-    \         std::deque<node_t> to_list;\r\n            for(auto itr = range.first;\
-    \ itr != range.second; ++itr) {\r\n                auto t = itr->second;\r\n \
-    \               if(t == p) { continue; }\r\n                if(size[t] > size_max)\
-    \ {\r\n                    size_max = size[t];\r\n                    to_list.emplace_back(t);\r\
-    \n                } else {\r\n                    to_list.emplace_front(t);\r\n\
-    \                }\r\n                size_sum += size[t];\r\n            }\r\n\
-    \            if(!to_list.empty()) {\r\n                hld_tree.emplace(f, to_list);\r\
-    \n            }\r\n            size[f] = size_sum;\r\n        }\r\n        return\
+    \ <stack>\r\n\r\nclass HeavyLightDecomposition {\r\n\r\n    using node_t = int;\r\
+    \n    using Graph_f = std::unordered_multimap<node_t, node_t>;\r\n    using Graph\
+    \ = std::unordered_map<node_t, std::deque<node_t>>;\r\n\r\n    const node_t m_n;\r\
+    \n    const std::vector<node_t> m_size;\r\n    const Graph m_tree;\r\n    const\
+    \ std::vector<node_t> m_height;\r\n    const std::vector<std::pair<node_t, node_t>>\
+    \ m_root_par;\r\n    const std::vector<node_t> m_ids;\r\n    const std::vector<node_t>\
+    \ m_order;\r\n    const std::vector<node_t> m_edge_ids;\r\n\r\n    static auto\
+    \ constructGraph(node_t n, const Graph_f& tree) {\r\n        std::deque<std::pair<node_t,\
+    \ node_t>> order;\r\n        std::vector<node_t> used(n);\r\n        std::stack<std::pair<node_t,\
+    \ node_t>> stk;\r\n        stk.emplace(0, -1); used[0] = true;\r\n        while(!stk.empty())\
+    \ {\r\n            auto [f, p] = stk.top();\r\n            order.emplace_front(f,\
+    \ p);\r\n            stk.pop();\r\n            auto range = tree.equal_range(f);\r\
+    \n            for(auto itr = range.first; itr != range.second; ++itr) {\r\n  \
+    \              auto t = itr->second;\r\n                if(!used[t]) {\r\n   \
+    \                 used[t] = true;\r\n                    stk.emplace(t, f);\r\n\
+    \                }\r\n            }\r\n        }\r\n\r\n        std::vector<node_t>\
+    \ size(n, 1);\r\n        Graph hld_tree;\r\n        for(const auto& [f, p] : order)\
+    \ {\r\n            auto range = tree.equal_range(f);\r\n            node_t size_sum\
+    \ = 1;\r\n            node_t size_max = 0;\r\n            std::deque<node_t> to_list;\r\
+    \n            for(auto itr = range.first; itr != range.second; ++itr) {\r\n  \
+    \              auto t = itr->second;\r\n                if(t == p) { continue;\
+    \ }\r\n                if(size[t] > size_max) {\r\n                    size_max\
+    \ = size[t];\r\n                    to_list.emplace_back(t);\r\n             \
+    \   } else {\r\n                    to_list.emplace_front(t);\r\n            \
+    \    }\r\n                size_sum += size[t];\r\n            }\r\n          \
+    \  if(!to_list.empty()) {\r\n                hld_tree.emplace(f, to_list);\r\n\
+    \            }\r\n            size[f] = size_sum;\r\n        }\r\n        return\
     \ hld_tree;\r\n    }\r\n\r\n    static auto constructSize(node_t n, const Graph_f&\
     \ tree) {\r\n        std::deque<std::pair<node_t, node_t>> order;\r\n        std::vector<node_t>\
     \ used(n);\r\n        std::stack<std::pair<node_t, node_t>> stk;\r\n        stk.emplace(0,\
@@ -199,9 +203,9 @@ data:
     \   stk.pop();\r\n            if(f > edge_size) { edge_ids[f] = val; ++val; }\r\
     \n            if(m_tree.find(f) == m_tree.end()) { continue; }\r\n           \
     \ for(const auto& t : m_tree.at(f)) { stk.emplace(t); }\r\n        }\r\n     \
-    \   return edge_ids;\r\n    }\r\n\r\npublic:\r\n\r\n    HLD(node_t n, const Graph_f&\
-    \ tree) :\r\n        m_n(n),\r\n        m_size(constructSize(n, tree)),\r\n  \
-    \      m_tree(constructGraph(n, tree)),\r\n        m_root_par(constructRootPar(n,\
+    \   return edge_ids;\r\n    }\r\n\r\npublic:\r\n\r\n    HeavyLightDecomposition(node_t\
+    \ n, const Graph_f& tree) :\r\n        m_n(n),\r\n        m_size(constructSize(n,\
+    \ tree)),\r\n        m_tree(constructGraph(n, tree)),\r\n        m_root_par(constructRootPar(n,\
     \ m_tree)),\r\n        m_height(constructHeight(n, m_tree)),\r\n        m_ids(constructIds()),\r\
     \n        m_order(constructOrder()),\r\n        m_edge_ids(constructEdgeIds())\
     \ {\r\n    }\r\n\r\n    auto getId(node_t i)const { return m_ids[i]; }\r\n   \
@@ -239,15 +243,16 @@ data:
     \ + m_size[f] - 1\r\n        };\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Graph/Tree/HLD.hpp
+  path: Library/Graph/Tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-08-30 04:52:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: Library/Graph/Tree/HLD.hpp
+  timestamp: '2023-04-08 04:07:52+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:
-- /library/Library/Graph/Tree/HLD.hpp
-- /library/Library/Graph/Tree/HLD.hpp.html
-title: Library/Graph/Tree/HLD.hpp
+- /library/Library/Graph/Tree/HeavyLightDecomposition.hpp
+- /library/Library/Graph/Tree/HeavyLightDecomposition.hpp.html
+title: Library/Graph/Tree/HeavyLightDecomposition.hpp
 ---

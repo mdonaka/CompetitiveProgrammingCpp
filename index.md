@@ -82,12 +82,12 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Graph/Tree/HeavyLightDecomposition.hpp
+      title: Library/Graph/Tree/HeavyLightDecomposition.hpp
     - icon: ':warning:'
-      path: Library/Graph/Tree/HLD.hpp
-      title: Library/Graph/Tree/HLD.hpp
-    - icon: ':warning:'
-      path: Library/Graph/Tree/LCA.hpp
-      title: Library/Graph/Tree/LCA.hpp
+      path: Library/Graph/Tree/LowestCommonAncestor.hpp
+      title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - name: Library/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -249,6 +249,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/dijkstra.test.cpp
       title: Test/Graph/Normal/dijkstra.test.cpp
+  - name: Test/Graph/Tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+      title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+    - icon: ':x:'
+      path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+      title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

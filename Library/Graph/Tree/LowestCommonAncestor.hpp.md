@@ -8,22 +8,22 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Graph/Tree/LCA.hpp\"\n#include <vector>\r\n#include\
-    \ <queue>\r\n#include <cmath>\r\n#include <unordered_map>\r\n\r\n\r\nclass LowestCommonAncestor\
-    \ {\r\n\tconst std::vector<std::vector<int>> m_parent;\r\n\tconst std::vector<int>\
-    \ m_depth;\r\n\r\n\tauto constructParent(int n, const std::unordered_multimap<int,\
-    \ int>& tree, int root) const {\r\n\t\tint toSize = std::log2(n) + 1;\r\n\t\t\
-    std::vector<std::vector<int>> parent(n, std::vector<int>(toSize, root));\r\n\t\
-    \tstd::queue<int> q;\r\n\t\tq.emplace(root);\r\n\t\tstd::vector<int> used(n);\r\
-    \n\t\tused[root] = true;\r\n\t\twhile (!q.empty()) {\r\n\t\t\tauto from = q.front();\r\
-    \n\t\t\tq.pop();\r\n\t\t\tauto range = tree.equal_range(from);\r\n\t\t\tfor (auto\
-    \ it = range.first; it != range.second; ++it) {\r\n\t\t\t\tauto to = it->second;\r\
-    \n\t\t\t\tif (!used[to]) {\r\n\t\t\t\t\tq.emplace(to);\r\n\t\t\t\t\tused[to] =\
-    \ true;\r\n\t\t\t\t\tparent[to][0] = from;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\
-    \t\tfor (int p2 = 1; p2 < toSize; ++p2)for (int f = 0; f < n; ++f) {\r\n\t\t\t\
-    parent[f][p2] = parent[parent[f][p2 - 1]][p2 - 1];\r\n\t\t}\r\n\t\treturn parent;\r\
-    \n\t}\r\n\tauto constructDepth(int n, const std::unordered_multimap<int, int>&\
-    \ tree, int root)const {\r\n\t\tstd::vector<int> depth(n);\r\n\t\tstd::queue<int>\
+  bundledCode: "#line 2 \"Library/Graph/Tree/LowestCommonAncestor.hpp\"\n#include\
+    \ <vector>\r\n#include <queue>\r\n#include <cmath>\r\n#include <unordered_map>\r\
+    \n\r\n\r\nclass LowestCommonAncestor {\r\n\tconst std::vector<std::vector<int>>\
+    \ m_parent;\r\n\tconst std::vector<int> m_depth;\r\n\r\n\tauto constructParent(int\
+    \ n, const std::unordered_multimap<int, int>& tree, int root) const {\r\n\t\t\
+    int toSize = std::log2(n) + 1;\r\n\t\tstd::vector<std::vector<int>> parent(n,\
+    \ std::vector<int>(toSize, root));\r\n\t\tstd::queue<int> q;\r\n\t\tq.emplace(root);\r\
+    \n\t\tstd::vector<int> used(n);\r\n\t\tused[root] = true;\r\n\t\twhile (!q.empty())\
+    \ {\r\n\t\t\tauto from = q.front();\r\n\t\t\tq.pop();\r\n\t\t\tauto range = tree.equal_range(from);\r\
+    \n\t\t\tfor (auto it = range.first; it != range.second; ++it) {\r\n\t\t\t\tauto\
+    \ to = it->second;\r\n\t\t\t\tif (!used[to]) {\r\n\t\t\t\t\tq.emplace(to);\r\n\
+    \t\t\t\t\tused[to] = true;\r\n\t\t\t\t\tparent[to][0] = from;\r\n\t\t\t\t}\r\n\
+    \t\t\t}\r\n\t\t}\r\n\t\tfor (int p2 = 1; p2 < toSize; ++p2)for (int f = 0; f <\
+    \ n; ++f) {\r\n\t\t\tparent[f][p2] = parent[parent[f][p2 - 1]][p2 - 1];\r\n\t\t\
+    }\r\n\t\treturn parent;\r\n\t}\r\n\tauto constructDepth(int n, const std::unordered_multimap<int,\
+    \ int>& tree, int root)const {\r\n\t\tstd::vector<int> depth(n);\r\n\t\tstd::queue<int>\
     \ q;\r\n\t\tq.emplace(root);\r\n\t\tstd::vector<int> used(n);\r\n\t\tused[root]\
     \ = true;\r\n\t\twhile (!q.empty()) {\r\n\t\t\tauto from = q.front();\r\n\t\t\t\
     q.pop();\r\n\t\t\tauto range = tree.equal_range(from);\r\n\t\t\tfor (auto it =\
@@ -73,15 +73,15 @@ data:
     \n\t\t}\r\n\t\treturn m_parent[l][0];\r\n\t}\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Graph/Tree/LCA.hpp
+  path: Library/Graph/Tree/LowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2021-09-20 16:59:32+09:00'
+  timestamp: '2023-04-08 04:07:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Library/Graph/Tree/LCA.hpp
+documentation_of: Library/Graph/Tree/LowestCommonAncestor.hpp
 layout: document
 redirect_from:
-- /library/Library/Graph/Tree/LCA.hpp
-- /library/Library/Graph/Tree/LCA.hpp.html
-title: Library/Graph/Tree/LCA.hpp
+- /library/Library/Graph/Tree/LowestCommonAncestor.hpp
+- /library/Library/Graph/Tree/LowestCommonAncestor.hpp.html
+title: Library/Graph/Tree/LowestCommonAncestor.hpp
 ---
