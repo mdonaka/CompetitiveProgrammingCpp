@@ -65,7 +65,7 @@ data:
     \n\r\n/*\r\n\u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB\r\nex) \u533A\u9593\
     \u6700\u5C0F\u5024\uFF0C\u533A\u9593\u66F4\u65B0\r\nLazySegmentTree<M_M, M_U,\
     \ OP_RUQ_RMQ>\r\n*/\r\n//---- \u8981\u7D20 ----\r\nstd::pair<long long, long long>\
-    \ base_s{0,1};\r\nstruct F_RSQ {\r\n    auto operator()(const std::pair<long long,\
+    \ base_s{0,0};\r\nstruct F_RSQ {\r\n    auto operator()(const std::pair<long long,\
     \ long long>& a, const std::pair<long long, long long>& b)const {\r\n        return\
     \ std::pair<long long, long long>{a.first + b.first, a.second + b.second};\r\n\
     \    }\r\n};\r\nusing M_S = Monoid<std::pair<long long, long long>, base_s, F_RSQ>;\r\
@@ -115,7 +115,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
+  timestamp: '2023-04-08 05:34:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
