@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -171,6 +174,7 @@ data:
   timestamp: '2023-04-08 05:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp

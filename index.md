@@ -255,6 +255,9 @@ data:
       path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+      title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - name: Test/PlaneGeometry

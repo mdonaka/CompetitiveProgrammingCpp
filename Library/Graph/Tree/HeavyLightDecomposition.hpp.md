@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -249,6 +252,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:
