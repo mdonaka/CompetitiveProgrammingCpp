@@ -11,37 +11,37 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
+    PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
     links:
-    - https://judge.yosupo.jp/problem/line_add_get_min
-  bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
-    \n\r\n#include <limits>\r\n#line 5 \"Library/DataStructure/LiChaoTree.hpp\"\n\
-    #include <memory>\r\n#include <algorithm>\r\n#include <unordered_map>\r\n#line\
-    \ 9 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\
-    \u8AAD\u307F\u304C\u5FC5\u8981\r\n * \u30AF\u30A8\u30EA\u3067\u547C\u3070\u308C\
-    \u308Bx\u3068\u7DDA\u5206\u306E\u7AEF\u70B9\u3092\u5168\u3066\u30B3\u30F3\u30B9\
-    \u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\r\n */\r\nclass LiChaoTree {\r\n  \
-    \  using T = long long;\r\n    using Line = std::pair<T, T>;\r\n    constexpr\
-    \ static T INF = std::numeric_limits< T >::max() / 2;\r\n\r\n    int m_size;\r\
-    \n    std::vector<T> m_x;\r\n    std::vector<Line> m_node;\r\n    std::unordered_map<T,\
-    \ T> m_xtoi;\r\n\r\n    static inline int calcSize(int n) { int size = 1; while(size\
-    \ < n) { size <<= 1; }return size; }\r\n    auto f(const Line& line, const T&\
-    \ x)const { return line.first * x + line.second; }\r\n\r\n    auto addLine(const\
-    \ Line& line_, int k, int l, int r) {\r\n        auto line = line_;\r\n\r\n  \
-    \      auto m = (l + r) / 2;\r\n        if(f(line, m_x[m]) < f(m_node[k], m_x[m]))\
-    \ { std::swap(line, m_node[k]); }\r\n        if(l + 1 == r) { return; }\r\n  \
-    \      if(line.first > m_node[k].first) {\r\n            addLine(line, (k << 1)\
-    \ + 1, l, m);\r\n        } else if(line.first < m_node[k].first) {\r\n       \
-    \     addLine(line, (k << 1) + 2, m, r);\r\n        }\r\n    }\r\n\r\npublic:\r\
-    \n    LiChaoTree(const std::vector<T>& x_) :m_size(calcSize(x_.size())) {\r\n\
-    \        auto x = x_;\r\n        std::sort(x.begin(), x.end());\r\n        x.erase(std::unique(x.begin(),\
-    \ x.end()), x.end());\r\n        m_x = decltype(m_x)(m_size);\r\n        for(size_t\
-    \ i = 0; i < x.size(); ++i) {\r\n            m_x[i] = x[i];\r\n            m_xtoi.emplace(x[i],\
-    \ i);\r\n        }\r\n        for(size_t i = x.size(); i < m_size; ++i) { m_x[i]\
-    \ = m_x[i - 1] + 1; }\r\n        m_node = decltype(m_node)(m_size << 1, {0,INF});\r\
-    \n    }\r\n\r\n    auto addLine(const Line& line) { addLine(line, 0, 0, m_size);\
+    - https://judge.yosupo.jp/problem/segment_add_get_min
+  bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\r\n\r\n\
+    #include <iostream>\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n\
+    #include <limits>\r\n#include <vector>\r\n#include <memory>\r\n#include <algorithm>\r\
+    \n#include <unordered_map>\r\n#line 9 \"Library/DataStructure/LiChaoTree.hpp\"\
+    \n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u304C\u5FC5\u8981\r\n * \u30AF\
+    \u30A8\u30EA\u3067\u547C\u3070\u308C\u308Bx\u3068\u7DDA\u5206\u306E\u7AEF\u70B9\
+    \u3092\u5168\u3066\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u306B\u6E21\u3059\
+    \r\n */\r\nclass LiChaoTree {\r\n    using T = long long;\r\n    using Line =\
+    \ std::pair<T, T>;\r\n    constexpr static T INF = std::numeric_limits< T >::max()\
+    \ / 2;\r\n\r\n    int m_size;\r\n    std::vector<T> m_x;\r\n    std::vector<Line>\
+    \ m_node;\r\n    std::unordered_map<T, T> m_xtoi;\r\n\r\n    static inline int\
+    \ calcSize(int n) { int size = 1; while(size < n) { size <<= 1; }return size;\
+    \ }\r\n    auto f(const Line& line, const T& x)const { return line.first * x +\
+    \ line.second; }\r\n\r\n    auto addLine(const Line& line_, int k, int l, int\
+    \ r) {\r\n        auto line = line_;\r\n\r\n        auto m = (l + r) / 2;\r\n\
+    \        if(f(line, m_x[m]) < f(m_node[k], m_x[m])) { std::swap(line, m_node[k]);\
+    \ }\r\n        if(l + 1 == r) { return; }\r\n        if(line.first > m_node[k].first)\
+    \ {\r\n            addLine(line, (k << 1) + 1, l, m);\r\n        } else if(line.first\
+    \ < m_node[k].first) {\r\n            addLine(line, (k << 1) + 2, m, r);\r\n \
+    \       }\r\n    }\r\n\r\npublic:\r\n    LiChaoTree(const std::vector<T>& x_)\
+    \ :m_size(calcSize(x_.size())) {\r\n        auto x = x_;\r\n        std::sort(x.begin(),\
+    \ x.end());\r\n        x.erase(std::unique(x.begin(), x.end()), x.end());\r\n\
+    \        m_x = decltype(m_x)(m_size);\r\n        for(size_t i = 0; i < x.size();\
+    \ ++i) {\r\n            m_x[i] = x[i];\r\n            m_xtoi.emplace(x[i], i);\r\
+    \n        }\r\n        for(size_t i = x.size(); i < m_size; ++i) { m_x[i] = m_x[i\
+    \ - 1] + 1; }\r\n        m_node = decltype(m_node)(m_size << 1, {0,INF});\r\n\
+    \    }\r\n\r\n    auto addLine(const Line& line) { addLine(line, 0, 0, m_size);\
     \ }\r\n    auto addLine(const T& a, const T& b) { addLine({a,b}); }\r\n    auto\
     \ add_segment(const Line& line, const T& l_, const T& r_) {\r\n        auto l\
     \ = m_xtoi[l_], r = m_xtoi[r_];\r\n        auto lk = l + m_size - 1;\r\n     \
@@ -112,40 +112,49 @@ data:
     \ }\r\n        node->line.debug();\r\n        if(node->left) { std::cout << \"\
     L\"; debug(node->left, size + 1); }\r\n        if(node->right) { std::cout <<\
     \ \"R\"; debug(node->right, size + 1); }\r\n    }\r\n    auto debug()const { debug(m_root,\
-    \ 0); }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\n\r\
-    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >>\
-    \ q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n    for(int\
-    \ _ = 0; _ < n; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n     \
-    \   lct.addLine(a, b);\r\n    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n  \
-    \      ll k;\r\n        cin >> k;\r\n        if(k == 0) {\r\n            ll a,\
-    \ b;\r\n            cin >> a >> b;\r\n            lct.addLine(a, b);\r\n     \
-    \   } else {\r\n            ll x;\r\n            cin >> x;\r\n            cout\
-    \ << lct.query(x) << endl;\r\n        }\r\n    }\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\
-    \n#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include\
-    \ \"./../../Library/DataStructure/LiChaoTree.hpp\"\r\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct =\
-    \ DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n    for(int _ = 0; _ < n; ++_)\
-    \ {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n        lct.addLine(a, b);\r\
-    \n    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin\
-    \ >> k;\r\n        if(k == 0) {\r\n            ll a, b;\r\n            cin >>\
-    \ a >> b;\r\n            lct.addLine(a, b);\r\n        } else {\r\n          \
-    \  ll x;\r\n            cin >> x;\r\n            cout << lct.query(x) << endl;\r\
-    \n        }\r\n    }\r\n}\r\n"
+    \ 0); }\r\n};\r\n#line 5 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b, l, r;\r\
+    \n    Query(int k, ll l, ll r, ll a, ll b) :k(k), a(a), b(b), l(l), r(r) {}\r\n\
+    \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
+    \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
+    \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
+    \ l >> r >> a >> b; --r;\r\n        lct.add_segment(a, b, l, r);\r\n    }\r\n\r\
+    \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
+    \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
+    \ r >> a >> b; --r;\r\n            lct.add_segment(a, b, l, r);\r\n        } else\
+    \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
+    \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
+    \n            } else {\r\n                cout << ans << endl;\r\n           \
+    \ }\r\n        }\r\n    }\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\r\
+    \n\r\n#include <iostream>\r\n#include \"./../../Library/DataStructure/LiChaoTree.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b, l, r;\r\
+    \n    Query(int k, ll l, ll r, ll a, ll b) :k(k), a(a), b(b), l(l), r(r) {}\r\n\
+    \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
+    \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
+    \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
+    \ l >> r >> a >> b; --r;\r\n        lct.add_segment(a, b, l, r);\r\n    }\r\n\r\
+    \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
+    \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
+    \ r >> a >> b; --r;\r\n            lct.add_segment(a, b, l, r);\r\n        } else\
+    \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
+    \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
+    \n            } else {\r\n                cout << ans << endl;\r\n           \
+    \ }\r\n        }\r\n    }\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
-  path: Test/DataStructure/DynamicLiChaoTree.test.cpp
+  path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
   requiredBy: []
   timestamp: '2023-04-11 03:45:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/DataStructure/DynamicLiChaoTree.test.cpp
+documentation_of: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/DataStructure/DynamicLiChaoTree.test.cpp
-- /verify/Test/DataStructure/DynamicLiChaoTree.test.cpp.html
-title: Test/DataStructure/DynamicLiChaoTree.test.cpp
+- /verify/Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
+- /verify/Test/DataStructure/DynamicLiChaoTree_segment.test.cpp.html
+title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
 ---

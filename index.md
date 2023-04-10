@@ -198,6 +198,9 @@ data:
       path: Test/DataStructure/DynamicLiChaoTree.test.cpp
       title: Test/DataStructure/DynamicLiChaoTree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
+      title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
       title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
     - icon: ':heavy_check_mark:'
@@ -215,6 +218,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LiChaoTree_bias.test.cpp
       title: Test/DataStructure/LiChaoTree_bias.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/LiChaoTree_segment.test.cpp
+      title: Test/DataStructure/LiChaoTree_segment.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentMap.test.cpp
       title: Test/DataStructure/SegmentMap.test.cpp
