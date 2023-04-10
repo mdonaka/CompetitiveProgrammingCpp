@@ -7,6 +7,10 @@
 #include <unordered_map>
 #include <iostream>
 
+/*
+ * クエリ先読みが必要
+ * クエリで呼ばれるxと線分の端点を全てコンストラクタに渡す
+ */
 class LiChaoTree {
     using T = long long;
     using Line = std::pair<T, T>;
@@ -20,16 +24,16 @@ class LiChaoTree {
     static inline int calcSize(int n) { int size = 1; while(size < n) { size <<= 1; }return size; }
     auto f(const Line& line, const T& x)const { return line.first * x + line.second; }
 
-    auto add(const Line& line_, int k, int l, int r) {
+    auto addLine(const Line& line_, int k, int l, int r) {
         auto line = line_;
 
         auto m = (l + r) / 2;
         if(f(line, m_x[m]) < f(m_node[k], m_x[m])) { std::swap(line, m_node[k]); }
         if(l + 1 == r) { return; }
         if(line.first > m_node[k].first) {
-            add(line, (k << 1) + 1, l, m);
+            addLine(line, (k << 1) + 1, l, m);
         } else if(line.first < m_node[k].first) {
-            add(line, (k << 1) + 2, m, r);
+            addLine(line, (k << 1) + 2, m, r);
         }
     }
 
@@ -47,8 +51,8 @@ public:
         m_node = decltype(m_node)(m_size << 1, {0,INF});
     }
 
-    auto add(const Line& line) { add(line, 0, 0, m_size); }
-    auto add(const T& a, const T& b) { add({a,b}); }
+    auto addLine(const Line& line) { addLine(line, 0, 0, m_size); }
+    auto addLine(const T& a, const T& b) { addLine({a,b}); }
     auto add_segment(const Line& line, const T& l_, const T& r_) {
         auto l = m_xtoi[l_], r = m_xtoi[r_];
         auto lk = l + m_size - 1;
@@ -56,13 +60,13 @@ public:
         auto len = 1;
         while(lk <= rk) {
             if(!(lk & 1)) {
-                add(line, lk, l, l + len);
+                addLine(line, lk, l, l + len);
                 l += len;
                 ++lk;
             }
             if(rk & 1) {
                 r -= len;
-                add(line, rk, r + 1, r + len + 1);
+                addLine(line, rk, r + 1, r + len + 1);
                 --rk;
             }
             lk = (lk - 1) >> 1;
@@ -91,7 +95,12 @@ public:
     }
 };
 
-// X_MAX: ax+bであるxとして取りうる最大値
+/*
+ * クエリ先読みが不要なLiChaoTree
+ * 線分追加は非常に遅いため非推奨
+ * 
+ * X_MAX: ax+bであるxとして取りうる最大値
+ */
 template<long long X_MAX, class T = long long>
 class DynamicLiChaoTree {
     constexpr static T INF = 2e18;
@@ -131,21 +140,21 @@ class DynamicLiChaoTree {
 
     std::unique_ptr<Node> m_root;
 
-    auto add(std::unique_ptr<Node>& node, Line&& line, long long l, long long r) {
+    auto addLine(std::unique_ptr<Node>& node, Line&& line, long long l, long long r) {
         if(!node) { node = std::make_unique<Node>(line); return; }
 
         auto m = (l + 1 == r) ? l : (l + r) / 2;
         if(line.f(m) < node->f(m)) { std::swap(node->line, line); }
         if(l + 1 == r) { return; }
         if(line > node->line) {
-            add(node->left, std::move(line), l, m);
+            addLine(node->left, std::move(line), l, m);
         } else if(line < node->line) {
-            add(node->right, std::move(line), m, r);
+            addLine(node->right, std::move(line), m, r);
         }
     }
     auto add_segment(std::unique_ptr<Node>& node, const Line& line, T l, T r, T sl, T sr) {
         if(sr <= l || r <= sl) { return; }
-        if(l <= sl && sr <= r) { add(node, Line(line), sl, sr); return; }
+        if(l <= sl && sr <= r) { addLine(node, Line(line), sl, sr); return; }
         auto m = (sl + sr) / 2;
         if(!node) { node = std::make_unique<Node>(Line()); }
         add_segment(node->left, line, l, r, sl, m);
@@ -163,8 +172,9 @@ class DynamicLiChaoTree {
 public:
     DynamicLiChaoTree() {}
 
-    auto add(const T& a, const T& b) { add(m_root, Line(a, b), -X_MAX, X_MAX + 1); }
-    auto add(const std::pair<T, T>& line) { add(line.first, line.second); }
+    auto addLine(const T& a, const T& b) { addLine(m_root, Line(a, b), -X_MAX, X_MAX + 1); }
+    auto addLine(const std::pair<T, T>& line) { addLine(line.first, line.second); }
+    [[deprecated("This method is too slow. Please use LiChaoTree and not DynamicLiChaoTree.")]]
     auto add_segment(const T& a, const T& b, const T& l, const T& r) { add_segment(m_root, Line(a, b), l, r + 1, -X_MAX, X_MAX + 1); }
     auto add_segment(const std::pair<T, T>& line, const T& l, const T& r) { add_segment(line.first, line.second, l, r); }
     auto query(const T& x) const { return query(m_root, x, -X_MAX, X_MAX + 1); }

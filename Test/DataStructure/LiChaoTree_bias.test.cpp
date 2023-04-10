@@ -30,7 +30,7 @@ signed main() {
         dp[i] = x;
         auto pa = -b * i;
         auto pb = a * i + i * (i + 1) / 2 * b + dp[i];
-        lct.add(pa, pb);
+        lct.addLine(pa, pb);
     };
 
     update(0, w);
