@@ -49,6 +49,28 @@ public:
 
     auto add(const Line& line) { add(line, 0, 0, m_size); }
     auto add(const T& a, const T& b) { add({a,b}); }
+    auto add_segment(const Line& line, const T& l_, const T& r_) {
+        auto l = m_xtoi[l_], r = m_xtoi[r_];
+        auto lk = l + m_size - 1;
+        auto rk = r + m_size - 1;
+        auto len = 1;
+        while(lk <= rk) {
+            if(!(lk & 1)) {
+                add(line, lk, l, l + len);
+                l += len;
+                ++lk;
+            }
+            if(rk & 1) {
+                r -= len;
+                add(line, rk, r + 1, r + len + 1);
+                --rk;
+            }
+            lk = (lk - 1) >> 1;
+            rk = (rk - 1) >> 1;
+            len <<= 1;
+        }
+    }
+    auto add_segment(const T& a, const T& b, const T& l, const T& r) { add_segment({a,b}, l, r); }
 
     auto query(const T& x) {
         auto k = m_xtoi[x] + m_size;
@@ -58,6 +80,14 @@ public:
             k >>= 1;
         }
         return ret;
+    }
+
+    auto debug()const {
+        std::cerr << "-- Li Chao Tree --" << std::endl;
+        for(unsigned int i = 0; i < m_node.size(); ++i) {
+            std::cerr << i << ": (" << m_node[i].first
+                << " " << m_node[i].second << ")" << std::endl;
+        }
     }
 };
 
