@@ -111,7 +111,13 @@ class DynamicLiChaoTree {
         auto operator>(const Line& line)const { return line.operator<(*this); }
 
         auto f(const T& x)const { return a * x + b; }
-        auto debug()const { std::cerr << "(" << a << " " << b << ")" << std::endl; }
+        auto debug()const {
+            if(b == INF) {
+                std::cerr << "(" << a << " inf)" << std::endl;
+            } else {
+                std::cerr << "(" << a << " " << b << ")" << std::endl;
+            }
+        }
     };
 
     struct Node {
@@ -128,7 +134,7 @@ class DynamicLiChaoTree {
     auto add(std::unique_ptr<Node>& node, Line&& line, long long l, long long r) {
         if(!node) { node = std::make_unique<Node>(line); return; }
 
-        auto m = (l + r) / 2;
+        auto m = (l + 1 == r) ? l : (l + r) / 2;
         if(line.f(m) < node->f(m)) { std::swap(node->line, line); }
         if(l + 1 == r) { return; }
         if(line > node->line) {
@@ -136,6 +142,14 @@ class DynamicLiChaoTree {
         } else if(line < node->line) {
             add(node->right, std::move(line), m, r);
         }
+    }
+    auto add_segment(std::unique_ptr<Node>& node, const Line& line, T l, T r, T sl, T sr) {
+        if(sr <= l || r <= sl) { return; }
+        if(l <= sl && sr <= r) { add(node, Line(line), sl, sr); return; }
+        auto m = (sl + sr) / 2;
+        if(!node) { node = std::make_unique<Node>(Line()); }
+        add_segment(node->left, line, l, r, sl, m);
+        add_segment(node->right, line, l, r, m, sr);
     }
 
     auto query(const std::unique_ptr<Node>& node, const T& x, long long l, long long r) const {
@@ -149,9 +163,11 @@ class DynamicLiChaoTree {
 public:
     DynamicLiChaoTree() {}
 
-    auto add(const T& a, const T& b) { add(m_root, Line(a, b), -X_MAX, X_MAX); }
+    auto add(const T& a, const T& b) { add(m_root, Line(a, b), -X_MAX, X_MAX + 1); }
     auto add(const std::pair<T, T>& line) { add(line.first, line.second); }
-    auto query(const T& x) const { return query(m_root, x, -X_MAX, X_MAX); }
+    auto add_segment(const T& a, const T& b, const T& l, const T& r) { add_segment(m_root, Line(a, b), l, r + 1, -X_MAX, X_MAX + 1); }
+    auto add_segment(const std::pair<T, T>& line, const T& l, const T& r) { add_segment(line.first, line.second, l, r); }
+    auto query(const T& x) const { return query(m_root, x, -X_MAX, X_MAX + 1); }
 
     auto debug(const std::unique_ptr<Node>& node, int size)const {
         if(size == 0) { std::cerr << "-- li chao tree --" << std::endl; }
