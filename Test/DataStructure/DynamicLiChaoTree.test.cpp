@@ -20,7 +20,7 @@ signed main() {
     for(int _ = 0; _ < n; ++_) {
         ll a, b;
         cin >> a >> b;
-        lct.add(a, b);
+        lct.addLine(a, b);
     }
 
     for(int _ = 0; _ < q; ++_) {
@@ -29,7 +29,7 @@ signed main() {
         if(k == 0) {
             ll a, b;
             cin >> a >> b;
-            lct.add(a, b);
+            lct.addLine(a, b);
         } else {
             ll x;
             cin >> x;

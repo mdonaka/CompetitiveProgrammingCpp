@@ -45,11 +45,11 @@ signed main() {
     }
 
     auto lct = LiChaoTree(xs);
-    for(const auto& [a, b] : v) { lct.add(a, b); }
+    for(const auto& [a, b] : v) { lct.addLine(a, b); }
 
     for(const auto& query : queries) {
         if(query.k == 0) {
-            lct.add(query.a, query.b);
+            lct.addLine(query.a, query.b);
         } else {
             cout << lct.query(query.a) << endl;
         }
