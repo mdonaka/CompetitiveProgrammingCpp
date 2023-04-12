@@ -23,7 +23,7 @@ signed main() {
     for(int _ = 0; _ < n; ++_) {
         ll l, r, a, b;
         cin >> l >> r >> a >> b; --r;
-        lct.add_segment(a, b, l, r);
+        lct.addSegment(a, b, l, r);
     }
 
     for(int _ = 0; _ < q; ++_) {
@@ -32,7 +32,7 @@ signed main() {
         if(k == 0) {
             ll l, r, a, b;
             cin >> l >> r >> a >> b; --r;
-            lct.add_segment(a, b, l, r);
+            lct.addSegment(a, b, l, r);
         } else {
             ll x;
             cin >> x;
