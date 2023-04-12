@@ -8,12 +8,12 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.2/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.11.2/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
-    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.2/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
+    \  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus.py\"\
+    , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.11.3/x64/lib/python3.11/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
     \ Main/interactive.cpp: line 29: unable to process #include in #if / #ifdef /\
@@ -65,14 +65,21 @@ data:
     template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec)\
     \ { for(T& x : vec) is >> x; return is; }\r\n\r\n/* constant value */\r\n// constexpr\
     \ ll MOD = 1000000007;\r\nconstexpr ll MOD = 998244353;\r\n\r\n//=============================================================================================\r\
-    \n\r\n#ifdef _WIN32\r\nauto _main()\r\n#else\r\nsigned main()\r\n#endif\r\n{\r\
-    \n    ll seed = std::random_device()();\r\n    auto gen = Sample::SampleGenerator(seed);\r\
-    \n}\r\n\r\n\r\n"
+    \n\r\nauto interactive(ll x) {\r\n    constexpr ll QUERY_LIMIT = 26;\r\n    REP(_,\
+    \ QUERY_LIMIT) {\r\n\r\n    }\r\n    return false;\r\n}\r\n\r\n#ifdef _WIN32\r\
+    \nauto _main()\r\n#else\r\nsigned main()\r\n#endif\r\n{\r\n    // seed settings\r\
+    \n    auto seed = std::random_device()();\r\n    auto gen = Sample::SampleGenerator(seed);\r\
+    \n\r\n    // paramete settings\r\n    constexpr ll MAX = 1e6;\r\n    auto [x]\
+    \ = gen.generate(PAIR{1,MAX});\r\n\r\n    // run\r\n    if(!interactive(x)) {\r\
+    \n        cerr << \"-- internal data --\" << endl;\r\n        cerr << x << endl;\r\
+    \n        cerr << \"-------------------\" << endl;\r\n        cerr << \"seed:\
+    \ \" << seed << endl;\r\n        cerr << \"-------------------\" << endl;\r\n\
+    \        throw std::runtime_error(\"Failed\");\r\n    }\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: Main/interactive.cpp
   requiredBy: []
-  timestamp: '2023-04-13 05:03:12+09:00'
+  timestamp: '2023-04-13 05:14:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/interactive.cpp
