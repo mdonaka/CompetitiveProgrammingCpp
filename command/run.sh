@@ -31,14 +31,14 @@ function interactive {
   for i in `seq 1 100`
   do
     echo "-------- " $i "th run --------"
-    oj t/r ./judge 2> judge_log
-    if [ $? != 0 ]; then
-      cat judge_log
-      cat judge_log > i
-      exit 1
+    (unbuffer oj t/r ./judge; echo $? > status_file) | tee i
+    status=`cat status_file`
+    rm -f status_file
+    if [ $status != 0 ]; then
+      exit $status
     fi
   done
-  rm judge_log judge
+  rm judge
 }
 
 if [ $# = 0 ]; then
