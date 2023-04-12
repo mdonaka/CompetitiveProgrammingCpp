@@ -53,7 +53,7 @@ public:
 
     auto addLine(const Line& line) { addLine(line, 0, 0, m_size); }
     auto addLine(const T& a, const T& b) { addLine({a,b}); }
-    auto add_segment(const Line& line, const T& l_, const T& r_) {
+    auto addSegment(const Line& line, const T& l_, const T& r_) {
         auto l = m_xtoi[l_], r = m_xtoi[r_];
         auto lk = l + m_size - 1;
         auto rk = r + m_size - 1;
@@ -74,7 +74,7 @@ public:
             len <<= 1;
         }
     }
-    auto add_segment(const T& a, const T& b, const T& l, const T& r) { add_segment({a,b}, l, r); }
+    auto addSegment(const T& a, const T& b, const T& l, const T& r) { addSegment({a,b}, l, r); }
 
     auto query(const T& x) {
         auto k = m_xtoi[x] + m_size;
@@ -152,13 +152,13 @@ class DynamicLiChaoTree {
             addLine(node->right, std::move(line), m, r);
         }
     }
-    auto add_segment(std::unique_ptr<Node>& node, const Line& line, T l, T r, T sl, T sr) {
+    auto addSegment(std::unique_ptr<Node>& node, const Line& line, T l, T r, T sl, T sr) {
         if(sr <= l || r <= sl) { return; }
         if(l <= sl && sr <= r) { addLine(node, Line(line), sl, sr); return; }
         auto m = (sl + sr) / 2;
         if(!node) { node = std::make_unique<Node>(Line()); }
-        add_segment(node->left, line, l, r, sl, m);
-        add_segment(node->right, line, l, r, m, sr);
+        addSegment(node->left, line, l, r, sl, m);
+        addSegment(node->right, line, l, r, m, sr);
     }
 
     auto query(const std::unique_ptr<Node>& node, const T& x, long long l, long long r) const {
@@ -175,8 +175,8 @@ public:
     auto addLine(const T& a, const T& b) { addLine(m_root, Line(a, b), -X_MAX, X_MAX + 1); }
     auto addLine(const std::pair<T, T>& line) { addLine(line.first, line.second); }
     [[deprecated("This method is too slow. Please use LiChaoTree and not DynamicLiChaoTree.")]]
-    auto add_segment(const T& a, const T& b, const T& l, const T& r) { add_segment(m_root, Line(a, b), l, r + 1, -X_MAX, X_MAX + 1); }
-    auto add_segment(const std::pair<T, T>& line, const T& l, const T& r) { add_segment(line.first, line.second, l, r); }
+    auto addSegment(const T& a, const T& b, const T& l, const T& r) { addSegment(m_root, Line(a, b), l, r + 1, -X_MAX, X_MAX + 1); }
+    auto addSegment(const std::pair<T, T>& line, const T& l, const T& r) { addSegment(line.first, line.second, l, r); }
     auto query(const T& x) const { return query(m_root, x, -X_MAX, X_MAX + 1); }
 
     auto debug(const std::unique_ptr<Node>& node, int size)const {

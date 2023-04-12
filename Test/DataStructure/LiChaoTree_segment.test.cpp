@@ -48,12 +48,12 @@ signed main() {
 
     auto lct = LiChaoTree(xs);
     for(const auto& s : v) {
-        lct.add_segment(s[2], s[3], s[0], s[1]);
+        lct.addSegment(s[2], s[3], s[0], s[1]);
     }
 
     for(const auto& query : queries) {
         if(query.k == 0) {
-            lct.add_segment(query.a, query.b, query.l, query.r);
+            lct.addSegment(query.a, query.b, query.l, query.r);
         } else {
             auto ans = lct.query(query.a);
             if(ans >= 2e18) {
