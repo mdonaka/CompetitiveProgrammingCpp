@@ -1,2 +1,0 @@
-#!/bin/sh
-g++-10 -std=c++2a -O2 -D DEBUG main.cpp
