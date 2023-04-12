@@ -43,57 +43,56 @@ data:
     \ - 1] + 1; }\r\n        m_node = decltype(m_node)(m_size << 1, {0,INF});\r\n\
     \    }\r\n\r\n    auto addLine(const Line& line) { addLine(line, 0, 0, m_size);\
     \ }\r\n    auto addLine(const T& a, const T& b) { addLine({a,b}); }\r\n    auto\
-    \ add_segment(const Line& line, const T& l_, const T& r_) {\r\n        auto l\
-    \ = m_xtoi[l_], r = m_xtoi[r_];\r\n        auto lk = l + m_size - 1;\r\n     \
-    \   auto rk = r + m_size - 1;\r\n        auto len = 1;\r\n        while(lk <=\
-    \ rk) {\r\n            if(!(lk & 1)) {\r\n                addLine(line, lk, l,\
-    \ l + len);\r\n                l += len;\r\n                ++lk;\r\n        \
-    \    }\r\n            if(rk & 1) {\r\n                r -= len;\r\n          \
-    \      addLine(line, rk, r + 1, r + len + 1);\r\n                --rk;\r\n   \
-    \         }\r\n            lk = (lk - 1) >> 1;\r\n            rk = (rk - 1) >>\
-    \ 1;\r\n            len <<= 1;\r\n        }\r\n    }\r\n    auto add_segment(const\
-    \ T& a, const T& b, const T& l, const T& r) { add_segment({a,b}, l, r); }\r\n\r\
-    \n    auto query(const T& x) {\r\n        auto k = m_xtoi[x] + m_size;\r\n   \
-    \     auto ret = INF;\r\n        while(k > 0) {\r\n            ret = std::min(ret,\
-    \ f(m_node[k - 1], x));\r\n            k >>= 1;\r\n        }\r\n        return\
-    \ ret;\r\n    }\r\n\r\n    auto debug()const {\r\n        std::cerr << \"-- Li\
-    \ Chao Tree --\" << std::endl;\r\n        for(unsigned int i = 0; i < m_node.size();\
-    \ ++i) {\r\n            std::cerr << i << \": (\" << m_node[i].first\r\n     \
-    \           << \" \" << m_node[i].second << \")\" << std::endl;\r\n        }\r\
-    \n    }\r\n};\r\n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u304C\u4E0D\
-    \u8981\u306ALiChaoTree\r\n * \u7DDA\u5206\u8FFD\u52A0\u306F\u975E\u5E38\u306B\u9045\
-    \u3044\u305F\u3081\u975E\u63A8\u5968\r\n * \r\n * X_MAX: ax+b\u3067\u3042\u308B\
-    x\u3068\u3057\u3066\u53D6\u308A\u3046\u308B\u6700\u5927\u5024\r\n */\r\ntemplate<long\
-    \ long X_MAX, class T = long long>\r\nclass DynamicLiChaoTree {\r\n    constexpr\
-    \ static T INF = 2e18;\r\n\r\n    class Line {\r\n        T a, b;\r\n    public:\r\
-    \n        Line(const T& a, const T& b) :a(a), b(b) {}\r\n        Line() :Line(0,\
-    \ INF) {}\r\n        Line(const Line& other) noexcept :Line(other.a, other.b)\
-    \ {}\r\n        Line(Line&& other) noexcept :Line(other) {}\r\n        Line& operator=(Line&&\
-    \ other) noexcept {\r\n            if(this != &other) { a = other.a; b = other.b;\
-    \ }\r\n            return *this;\r\n        }\r\n        auto operator<(const\
-    \ Line& line)const { return a < line.a; }\r\n        auto operator>(const Line&\
-    \ line)const { return line.operator<(*this); }\r\n\r\n        auto f(const T&\
-    \ x)const { return a * x + b; }\r\n        auto debug()const {\r\n           \
-    \ if(b == INF) {\r\n                std::cerr << \"(\" << a << \" inf)\" << std::endl;\r\
-    \n            } else {\r\n                std::cerr << \"(\" << a << \" \" <<\
-    \ b << \")\" << std::endl;\r\n            }\r\n        }\r\n    };\r\n\r\n   \
-    \ struct Node {\r\n        Line line;\r\n        std::unique_ptr<Node> left;\r\
-    \n        std::unique_ptr<Node> right;\r\n\r\n        Node(const Line& line) :line(line)\
-    \ {}\r\n        auto f(const T& x)const { return line.f(x); }\r\n    };\r\n\r\n\
-    \    std::unique_ptr<Node> m_root;\r\n\r\n    auto addLine(std::unique_ptr<Node>&\
-    \ node, Line&& line, long long l, long long r) {\r\n        if(!node) { node =\
-    \ std::make_unique<Node>(line); return; }\r\n\r\n        auto m = (l + 1 == r)\
-    \ ? l : (l + r) / 2;\r\n        if(line.f(m) < node->f(m)) { std::swap(node->line,\
-    \ line); }\r\n        if(l + 1 == r) { return; }\r\n        if(line > node->line)\
-    \ {\r\n            addLine(node->left, std::move(line), l, m);\r\n        } else\
-    \ if(line < node->line) {\r\n            addLine(node->right, std::move(line),\
-    \ m, r);\r\n        }\r\n    }\r\n    auto add_segment(std::unique_ptr<Node>&\
+    \ addSegment(const Line& line, const T& l_, const T& r_) {\r\n        auto l =\
+    \ m_xtoi[l_], r = m_xtoi[r_];\r\n        auto lk = l + m_size - 1;\r\n       \
+    \ auto rk = r + m_size - 1;\r\n        auto len = 1;\r\n        while(lk <= rk)\
+    \ {\r\n            if(!(lk & 1)) {\r\n                addLine(line, lk, l, l +\
+    \ len);\r\n                l += len;\r\n                ++lk;\r\n            }\r\
+    \n            if(rk & 1) {\r\n                r -= len;\r\n                addLine(line,\
+    \ rk, r + 1, r + len + 1);\r\n                --rk;\r\n            }\r\n     \
+    \       lk = (lk - 1) >> 1;\r\n            rk = (rk - 1) >> 1;\r\n           \
+    \ len <<= 1;\r\n        }\r\n    }\r\n    auto addSegment(const T& a, const T&\
+    \ b, const T& l, const T& r) { addSegment({a,b}, l, r); }\r\n\r\n    auto query(const\
+    \ T& x) {\r\n        auto k = m_xtoi[x] + m_size;\r\n        auto ret = INF;\r\
+    \n        while(k > 0) {\r\n            ret = std::min(ret, f(m_node[k - 1], x));\r\
+    \n            k >>= 1;\r\n        }\r\n        return ret;\r\n    }\r\n\r\n  \
+    \  auto debug()const {\r\n        std::cerr << \"-- Li Chao Tree --\" << std::endl;\r\
+    \n        for(unsigned int i = 0; i < m_node.size(); ++i) {\r\n            std::cerr\
+    \ << i << \": (\" << m_node[i].first\r\n                << \" \" << m_node[i].second\
+    \ << \")\" << std::endl;\r\n        }\r\n    }\r\n};\r\n\r\n/*\r\n * \u30AF\u30A8\
+    \u30EA\u5148\u8AAD\u307F\u304C\u4E0D\u8981\u306ALiChaoTree\r\n * \u7DDA\u5206\u8FFD\
+    \u52A0\u306F\u975E\u5E38\u306B\u9045\u3044\u305F\u3081\u975E\u63A8\u5968\r\n *\
+    \ \r\n * X_MAX: ax+b\u3067\u3042\u308Bx\u3068\u3057\u3066\u53D6\u308A\u3046\u308B\
+    \u6700\u5927\u5024\r\n */\r\ntemplate<long long X_MAX, class T = long long>\r\n\
+    class DynamicLiChaoTree {\r\n    constexpr static T INF = 2e18;\r\n\r\n    class\
+    \ Line {\r\n        T a, b;\r\n    public:\r\n        Line(const T& a, const T&\
+    \ b) :a(a), b(b) {}\r\n        Line() :Line(0, INF) {}\r\n        Line(const Line&\
+    \ other) noexcept :Line(other.a, other.b) {}\r\n        Line(Line&& other) noexcept\
+    \ :Line(other) {}\r\n        Line& operator=(Line&& other) noexcept {\r\n    \
+    \        if(this != &other) { a = other.a; b = other.b; }\r\n            return\
+    \ *this;\r\n        }\r\n        auto operator<(const Line& line)const { return\
+    \ a < line.a; }\r\n        auto operator>(const Line& line)const { return line.operator<(*this);\
+    \ }\r\n\r\n        auto f(const T& x)const { return a * x + b; }\r\n        auto\
+    \ debug()const {\r\n            if(b == INF) {\r\n                std::cerr <<\
+    \ \"(\" << a << \" inf)\" << std::endl;\r\n            } else {\r\n          \
+    \      std::cerr << \"(\" << a << \" \" << b << \")\" << std::endl;\r\n      \
+    \      }\r\n        }\r\n    };\r\n\r\n    struct Node {\r\n        Line line;\r\
+    \n        std::unique_ptr<Node> left;\r\n        std::unique_ptr<Node> right;\r\
+    \n\r\n        Node(const Line& line) :line(line) {}\r\n        auto f(const T&\
+    \ x)const { return line.f(x); }\r\n    };\r\n\r\n    std::unique_ptr<Node> m_root;\r\
+    \n\r\n    auto addLine(std::unique_ptr<Node>& node, Line&& line, long long l,\
+    \ long long r) {\r\n        if(!node) { node = std::make_unique<Node>(line); return;\
+    \ }\r\n\r\n        auto m = (l + 1 == r) ? l : (l + r) / 2;\r\n        if(line.f(m)\
+    \ < node->f(m)) { std::swap(node->line, line); }\r\n        if(l + 1 == r) { return;\
+    \ }\r\n        if(line > node->line) {\r\n            addLine(node->left, std::move(line),\
+    \ l, m);\r\n        } else if(line < node->line) {\r\n            addLine(node->right,\
+    \ std::move(line), m, r);\r\n        }\r\n    }\r\n    auto addSegment(std::unique_ptr<Node>&\
     \ node, const Line& line, T l, T r, T sl, T sr) {\r\n        if(sr <= l || r <=\
     \ sl) { return; }\r\n        if(l <= sl && sr <= r) { addLine(node, Line(line),\
     \ sl, sr); return; }\r\n        auto m = (sl + sr) / 2;\r\n        if(!node) {\
-    \ node = std::make_unique<Node>(Line()); }\r\n        add_segment(node->left,\
-    \ line, l, r, sl, m);\r\n        add_segment(node->right, line, l, r, m, sr);\r\
-    \n    }\r\n\r\n    auto query(const std::unique_ptr<Node>& node, const T& x, long\
+    \ node = std::make_unique<Node>(Line()); }\r\n        addSegment(node->left, line,\
+    \ l, r, sl, m);\r\n        addSegment(node->right, line, l, r, m, sr);\r\n   \
+    \ }\r\n\r\n    auto query(const std::unique_ptr<Node>& node, const T& x, long\
     \ long l, long long r) const {\r\n        if(!node) { return Line().f(x); }\r\n\
     \        auto m = (l + r) / 2;\r\n        return std::min(\r\n            node->f(x),\r\
     \n            (x < m) ? query(node->left, x, l, m) : query(node->right, x, m,\
@@ -101,10 +100,10 @@ data:
     \   auto addLine(const T& a, const T& b) { addLine(m_root, Line(a, b), -X_MAX,\
     \ X_MAX + 1); }\r\n    auto addLine(const std::pair<T, T>& line) { addLine(line.first,\
     \ line.second); }\r\n    [[deprecated(\"This method is too slow. Please use LiChaoTree\
-    \ and not DynamicLiChaoTree.\")]]\r\n    auto add_segment(const T& a, const T&\
-    \ b, const T& l, const T& r) { add_segment(m_root, Line(a, b), l, r + 1, -X_MAX,\
-    \ X_MAX + 1); }\r\n    auto add_segment(const std::pair<T, T>& line, const T&\
-    \ l, const T& r) { add_segment(line.first, line.second, l, r); }\r\n    auto query(const\
+    \ and not DynamicLiChaoTree.\")]]\r\n    auto addSegment(const T& a, const T&\
+    \ b, const T& l, const T& r) { addSegment(m_root, Line(a, b), l, r + 1, -X_MAX,\
+    \ X_MAX + 1); }\r\n    auto addSegment(const std::pair<T, T>& line, const T& l,\
+    \ const T& r) { addSegment(line.first, line.second, l, r); }\r\n    auto query(const\
     \ T& x) const { return query(m_root, x, -X_MAX, X_MAX + 1); }\r\n\r\n    auto\
     \ debug(const std::unique_ptr<Node>& node, int size)const {\r\n        if(size\
     \ == 0) { std::cerr << \"-- li chao tree --\" << std::endl; }\r\n        if(!node)\
@@ -119,10 +118,10 @@ data:
     \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
     \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
     \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
-    \ l >> r >> a >> b; --r;\r\n        lct.add_segment(a, b, l, r);\r\n    }\r\n\r\
+    \ l >> r >> a >> b; --r;\r\n        lct.addSegment(a, b, l, r);\r\n    }\r\n\r\
     \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
     \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
-    \ r >> a >> b; --r;\r\n            lct.add_segment(a, b, l, r);\r\n        } else\
+    \ r >> a >> b; --r;\r\n            lct.addSegment(a, b, l, r);\r\n        } else\
     \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
     \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
     \n            } else {\r\n                cout << ans << endl;\r\n           \
@@ -135,10 +134,10 @@ data:
     \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
     \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
     \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
-    \ l >> r >> a >> b; --r;\r\n        lct.add_segment(a, b, l, r);\r\n    }\r\n\r\
+    \ l >> r >> a >> b; --r;\r\n        lct.addSegment(a, b, l, r);\r\n    }\r\n\r\
     \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
     \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
-    \ r >> a >> b; --r;\r\n            lct.add_segment(a, b, l, r);\r\n        } else\
+    \ r >> a >> b; --r;\r\n            lct.addSegment(a, b, l, r);\r\n        } else\
     \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
     \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
     \n            } else {\r\n                cout << ans << endl;\r\n           \
@@ -148,7 +147,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
   requiredBy: []
-  timestamp: '2023-04-11 03:45:54+09:00'
+  timestamp: '2023-04-13 03:52:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp

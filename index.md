@@ -146,6 +146,9 @@ data:
   - name: Main
     pages:
     - icon: ':warning:'
+      path: Main/interactive.cpp
+      title: Main/interactive.cpp
+    - icon: ':warning:'
       path: Main/main.cpp
       title: Main/main.cpp
     - icon: ':warning:'
