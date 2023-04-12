@@ -115,14 +115,35 @@ constexpr ll MOD = 998244353;
 
 //=============================================================================================
 
+auto interactive(ll x) {
+    constexpr ll QUERY_LIMIT = 26;
+    REP(_, QUERY_LIMIT) {
+
+    }
+    return false;
+}
+
 #ifdef _WIN32
 auto _main()
 #else
 signed main()
 #endif
 {
-    ll seed = std::random_device()();
+    // seed settings
+    auto seed = std::random_device()();
     auto gen = Sample::SampleGenerator(seed);
+
+    // paramete settings
+    constexpr ll MAX = 1e6;
+    auto [x] = gen.generate(PAIR{1,MAX});
+
+    // run
+    if(!interactive(x)) {
+        cerr << "-- internal data --" << endl;
+        cerr << x << endl;
+        cerr << "-------------------" << endl;
+        cerr << "seed: " << seed << endl;
+        cerr << "-------------------" << endl;
+        throw std::runtime_error("Failed");
+    }
 }
-
-
