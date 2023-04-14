@@ -58,7 +58,8 @@ while getopts hcrti OPT; do
     run
     ;;
   t)
-    run > i 2>&1 && cat i
+    compile main.cpp -D TEST
+    run | tee i
     ;;
   i)
     interactive
