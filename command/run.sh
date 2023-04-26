@@ -15,7 +15,7 @@ EOF
 }
 
 function compile {
-  g++-11 -std=c++2a -O2 -D DEBUG $1 $2 $3
+  g++-11 -std=c++2a -O2 -D DEBUG -I ./ac-library $1 $2 $3
   if [ $? != 0 ]; then
     echo "ERROR! compile main.cpp is failed"
     exit 1
