@@ -1,7 +1,7 @@
 #pragma once
 #include <concepts>
 #include <iostream>
-#include <list>
+#include <deque>
 #include <string_view>
 
 template<class T>constexpr inline auto d_val(T a, T b) { return b; }
@@ -21,13 +21,14 @@ std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) {
 }
 // split
 inline auto split(std::string_view str, char del = ' ') {
-    std::list<std::string_view> sList;
-    int from = -1;
+    std::deque<std::string_view> sList;
+    int from = 0;
     for(int i = 0; auto && c : str) {
-        if(c == ' ') {
-            sList.emplace_back(str.substr(from + 1, i - from - 2));
+        if(c == del) {
+            sList.emplace_back(str.substr(from, i - from));
             from = i;
         }
+        if(c == ' ') { ++from; }
         ++i;
     }
     sList.emplace_back(str.substr(from + 1, str.size() - from));
