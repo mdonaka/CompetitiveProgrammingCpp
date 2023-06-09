@@ -13,12 +13,6 @@ template<class T>constexpr inline auto d_val(T a, T b) { return b; }
     splitVariables(std::move(__DUMP_NAME_LIST__), __VA_ARGS__); \
   } while (false)
 
-// 出力できる種類の追加
-template<class S, class T>
-std::ostream& operator<<(std::ostream& os, const std::pair<S, T>& p) {
-    os << "(" << p.first << ", " << p.second << ")";
-    return os;
-}
 // split
 inline auto split(std::string_view str, char del = ' ') {
     std::deque<std::string_view> sList;
@@ -49,13 +43,30 @@ concept Printable = requires(T x) {
 constexpr auto print(const auto&) {
     std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
 }
-inline auto print(const std::string& s) { std::cerr << s << ' '; }
-constexpr auto print(const Printable auto& p) { std::cerr << p << ' '; }
-constexpr auto print(const Container auto& c) {
-    for(auto&& x : c) {
-        print(x);
-    }
-    std::cerr << '\n';
+// 宣言
+template<class S, class T>
+constexpr auto print(const std::pair<S, T>&, bool);
+inline auto print(const std::string&, bool);
+constexpr auto print(const Printable auto&, bool);
+constexpr auto print(const Container auto&, bool);
+// 定義
+template<class S, class T>
+constexpr auto print(const std::pair<S, T>& p, bool b = true) {
+    std::cerr << "("; print(p.first, false);
+    std::cerr << ", "; print(p.second, false);
+    std::cerr << ")"; if(b) { std::cerr << " "; }
+}
+inline auto print(const std::string& s, bool b = true) {
+    std::cerr << s;
+    if(b) { std::cerr << " "; }
+}
+constexpr auto print(const Printable auto& p, bool b = true) {
+    std::cerr << p;
+    if(b) { std::cerr << " "; }
+}
+constexpr auto print(const Container auto& c, bool b = true) {
+    for(auto&& x : c) { print(x); }
+    if(b) { std::cerr << '\n'; }
 }
 
 // 変数の出力
