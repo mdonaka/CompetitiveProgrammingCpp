@@ -39,32 +39,31 @@ concept Printable = requires(T x) {
     std::cerr << x;
 };
 
-// 出力
-constexpr auto print(const auto&) {
-    std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
-}
 // 宣言
 template<class S, class T>
-constexpr auto print(const std::pair<S, T>&, bool);
-inline auto print(const std::string&, bool);
-constexpr auto print(const Printable auto&, bool);
-constexpr auto print(const Container auto&, bool);
+constexpr auto print(const std::pair<S, T>&, bool b = true);
+inline auto print(const std::string&, bool b = true);
+constexpr auto print(const Printable auto&, bool b = true);
+constexpr auto print(const Container auto&, bool b = true);
 // 定義
+constexpr auto print(const auto&, bool) {
+    std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
+}
 template<class S, class T>
-constexpr auto print(const std::pair<S, T>& p, bool b = true) {
-    std::cerr << "("; print(p.first, false);
+constexpr auto print(const std::pair<S, T>& p, bool b) {
+    std::cerr << '('; print(p.first, false);
     std::cerr << ", "; print(p.second, false);
-    std::cerr << ")"; if(b) { std::cerr << " "; }
+    std::cerr << ')'; if(b) { std::cerr << " "; }
 }
-inline auto print(const std::string& s, bool b = true) {
+inline auto print(const std::string& s, bool b) {
     std::cerr << s;
-    if(b) { std::cerr << " "; }
+    if(b) { std::cerr << ' '; }
 }
-constexpr auto print(const Printable auto& p, bool b = true) {
+constexpr auto print(const Printable auto& p, bool b) {
     std::cerr << p;
-    if(b) { std::cerr << " "; }
+    if(b) { std::cerr << ' '; }
 }
-constexpr auto print(const Container auto& c, bool b = true) {
+constexpr auto print(const Container auto& c, bool b) {
     for(auto&& x : c) { print(x); }
     if(b) { std::cerr << '\n'; }
 }
