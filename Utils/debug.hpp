@@ -26,12 +26,12 @@ inline auto split(std::string_view str, char del = ' ') {
     for(int i = 0; auto && c : str) {
         if(c == del) {
             sList.emplace_back(str.substr(from, i - from));
-            from = i;
+            from = i + 1;
         }
         if(c == ' ') { ++from; }
         ++i;
     }
-    sList.emplace_back(str.substr(from + 1, str.size() - from));
+    sList.emplace_back(str.substr(from, str.size() - from));
     return sList;
 }
 // 制約
