@@ -1,23 +1,23 @@
 #pragma once
-#include <unordered_map>
 #include <queue>
 #include <vector>
+#include "../Graph.hpp"
 
-std::vector<long long> dijkstra(int n, const std::unordered_multimap<int, std::pair<int, long long>>& graph, int begin) {
-    std::vector<long long> cost(n, 1e18);
+template<class Node, class Cost>
+auto dijkstra(const Graph<Node, Cost>& graph, const Node& begin, const Cost& lim = std::numeric_limits<Cost>::max()) {
+    std::vector<Cost> cost(graph.size(), lim);
     cost[begin] = 0;
-    using P = std::pair<long long, int>;
+
+    using P = std::pair<Cost, Node>;
     std::priority_queue<P, std::vector<P>, std::greater<P>> q;
-    q.emplace(0, begin);
+    q.emplace(cost[begin], begin);
     while(!q.empty()) {
-        auto [nowCost, from] = q.top();
+        auto [now_cost, from] = q.top();
         q.pop();
-        if(cost[from] < nowCost) { continue; }
-        auto range = graph.equal_range(from);
-        for(auto itr = range.first; itr != range.second; ++itr) {
-            auto [to, c] = itr->second;
-            if(nowCost + c < cost[to]) {
-                cost[to] = nowCost + c;
+        if(cost[from] < now_cost) { continue; }
+        for(const auto& [to, c] : graph.getEdges(from)) {
+            if(now_cost + c < cost[to]) {
+                cost[to] = now_cost + c;
                 q.emplace(cost[to], to);
             }
         }

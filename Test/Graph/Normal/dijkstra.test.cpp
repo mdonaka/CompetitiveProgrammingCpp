@@ -2,26 +2,27 @@
 
 #include <iostream>
 #include "./../../../Library/Graph/Normal/dijkstra.hpp"
+#include "./../../../Library/Graph/Graph.hpp"
 
 using ll = long long;
 using std::cout;
 using std::cin;
 constexpr char endl = '\n';
-template<class T, class S = T>
-using P = std::pair<T, S>;
+
 
 signed main() {
     int n, m, r;
     cin >> n >> m >> r;
-    std::unordered_multimap<int, P<int, ll>> graph;
+
+    auto graph = Graph(n);
     for(int i = 0; i < m; ++i) {
         int u, v, c;
         cin >> u >> v >> c;
-        graph.emplace(u, P<int>{v, c});
+        graph.addEdge(u, v, c);
     }
 
-    auto min_cost = dijkstra(n, graph, r);
-
+    auto min_cost = dijkstra(graph, r);
+    
     for(const auto x : min_cost) {
         if(x > 1e17) {
             cout << "INF" << endl;
