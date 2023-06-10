@@ -1,10 +1,9 @@
 #pragma once
 
-#include <unordered_map>
 #include <unordered_set>
 #include <algorithm>
 #include <vector>
-#include <deque>
+#include "./../Graph.hpp"
 
 class StronglyConnectedComponents {
 
@@ -20,32 +19,25 @@ class StronglyConnectedComponents {
         }
     };
 
-    using Graph = std::vector<std::vector<int>>;
+    using Graph = Graph<int, long long>;
 
-    const int m_n;
     const Graph m_graph;
     const std::vector<int> m_group;
 
-    static inline auto reverse(int n, const Graph& graph) {
-        std::vector<std::vector<int>> ret(n);
-        for(int f = 0; f < n; ++f) for(const auto& t : graph[f]) {
-            ret[t].emplace_back(f);
-        }
-        return ret;
-    }
     template <class F>
-    static inline auto dfs(const std::vector<std::vector<int>>& graph, int from,
+    static inline auto dfs(const Graph& graph, int from,
                            std::vector<bool>& is_used,
                            const F& f)->void {
         is_used[from] = true;
-        for(const auto& to : graph[from]) {
+        for(const auto& [to, _] : graph.getEdges(from)) {
             if(is_used[to]) { continue; }
             dfs(graph, to, is_used, f);
         }
         f(from);
     }
 
-    static inline auto constructGroup(int n, const Graph& graph) {
+    static inline auto constructGroup(const Graph& graph) {
+        int n = graph.size();
         std::vector<int> order; order.reserve(n);
         std::vector<bool> is_used(n);
         for(int from = 0; from < n; ++from) if(!is_used[from]) {
@@ -57,7 +49,7 @@ class StronglyConnectedComponents {
         int g = 0;
         std::vector<int> group(n);
         std::vector<bool> is_used2(n);
-        auto rev = reverse(n, graph);
+        auto rev = graph.reverse();
         for(int i = n - 1; i >= 0; --i)if(!is_used2[order[i]]) {
             dfs(rev, order[i], is_used2, [&](int f) {group[f] = g; });
             ++g;
@@ -67,16 +59,14 @@ class StronglyConnectedComponents {
     auto constructGroupNodes() const {
     }
 public:
-    StronglyConnectedComponents(int n, const Graph& graph) :
-        m_n(n),
+    StronglyConnectedComponents(const Graph& graph) :
         m_graph(graph),
-        m_group(constructGroup(n, m_graph)) {
+        m_group(constructGroup(m_graph)) {
     }
     // graphのコピーコストが大きいのでこっち推奨
-    StronglyConnectedComponents(int n, Graph&& graph) :
-        m_n(n),
+    StronglyConnectedComponents(Graph&& graph) :
         m_graph(std::move(graph)),
-        m_group(constructGroup(n, m_graph)) {
+        m_group(constructGroup(m_graph)) {
     }
 
     auto isSameGroup(int a, int b)const {
@@ -84,8 +74,8 @@ public:
     }
     auto getGroupNodes()const {
         auto size = *std::max_element(m_group.begin(), m_group.end()) + 1;
-        std::vector<std::deque<int>> groupNodes(size);
-        for(int gi = 0; gi < m_n; ++gi) {
+        std::vector<std::vector<int>> groupNodes(size);
+        for(int gi = 0; gi < m_graph.size(); ++gi) {
             groupNodes[m_group[gi]].emplace_back(gi);
         }
         return groupNodes;
@@ -93,11 +83,11 @@ public:
     auto getGroupGraph()const {
         std::unordered_set<std::pair<int, int>, HashPair> st;
         st.reserve(m_graph.size());
-        for(int f = 0; f < m_n; ++f) for(const auto& t : m_graph[f]) if(!isSameGroup(f, t)) {
+        for(int f = 0; f < m_graph.size(); ++f) for(const auto& [t, _] : m_graph.getEdges(f)) if(!isSameGroup(f, t)) {
             st.emplace(m_group[f], m_group[t]);
         }
-        Graph ret(m_n);
-        for(const auto& [f, t] : st) { ret[f].emplace_back(t); }
+        Graph ret(m_graph.size());
+        for(const auto& [f, t] : st) { ret.addEdge(f, t); }
         return ret;
     }
 };

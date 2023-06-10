@@ -1,12 +1,13 @@
 #pragma once
 
 #include <vector>
-#include <unordered_map>
+#include "./../Graph.hpp"
 
-std::vector<std::vector<long long>> warshallFloyd(int n, const std::unordered_multimap<int, std::pair<int, long long>>& graph) {
-    std::vector<std::vector<long long>> cost(n, std::vector<long long>(n, 1e18));
-    for(const auto& [from, p] : graph) {
-        auto [to, c] = p;
+template<class Node, class Cost>
+auto warshallFloyd(int n, const Graph<Node, Cost>& graph, const Cost& lim = 1LL << 60) {
+    std::vector<std::vector<Cost>> cost(n, std::vector<Cost>(n, lim));
+    for(const auto& [from, edge] : graph.getEdgesAll()) {
+        auto [to, c] = edge;
         cost[from][to] = c;
     }
     for(int i = 0; i < n; ++i) { cost[i][i] = 0; }
