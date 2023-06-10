@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class Node, class Cost>
-auto dijkstra(const Graph<Node, Cost>& graph, const Node& begin, const Cost& lim = std::numeric_limits<Cost>::max()) {
+auto dijkstra(const Graph<Node, Cost>& graph, const Node& begin, const Cost& lim = 1LL << 62) {
     std::vector<Cost> cost(graph.size(), lim);
     cost[begin] = 0;
 

@@ -22,7 +22,7 @@ signed main() {
     }
 
     auto min_cost = dijkstra(graph, r);
-    
+
     for(const auto x : min_cost) {
         if(x > 1e17) {
             cout << "INF" << endl;
