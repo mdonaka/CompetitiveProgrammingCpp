@@ -1,12 +1,13 @@
 #pragma once
 #include <vector>
-#include <type_traits>
+#include <deque>
 
 template<class Node = int, class Cost = long long>
 class Graph {
     //using Node = int;
     //using Cost = long long;
-    using Edges = std::vector<std::pair<Node, Cost>>;
+    using Edge = std::pair<Node, Cost>;
+    using Edges = std::vector<Edge>;
 
     const int m_n;
     std::vector<Edges> m_graph;
@@ -29,6 +30,21 @@ public:
             auto end()const { return e; }
         };
         return EdgesRange(m_graph[from]);
+    }
+    auto getEdgesAll()const {
+        std::deque<std::pair<Node, Edge>> edges;
+        for(Node from = 0; from < m_n; ++from) for(const auto& edge : getEdges(from)) {
+            edges.emplace_back(from, edge);
+        }
+        return edges;
+    }
+    auto reverse()const {
+        auto rev = Graph<Node, Cost>(m_n);
+        for(const auto& [from, edge] : getEdgesAll()) {
+            auto [to, c] = edge;
+            rev.addEdge(to, from, c);
+        }
+        return rev;
     }
     auto size()const { return m_n; };
 };

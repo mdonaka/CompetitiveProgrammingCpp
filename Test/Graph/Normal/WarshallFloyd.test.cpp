@@ -13,11 +13,11 @@ using P = std::pair<T, S>;
 signed main() {
     int n, m;
     cin >> n >> m;
-    std::unordered_multimap<int, P<int, ll>> graph;
+    auto graph = Graph(n);
     for(int i = 0; i < m; ++i) {
         int u, v, c;
         cin >> u >> v >> c;
-        graph.emplace(u, P<int>{v, c});
+        graph.addEdge(u, v, c);
     }
 
     auto min_cost = warshallFloyd(n, graph);
