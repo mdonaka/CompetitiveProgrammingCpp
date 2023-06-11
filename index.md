@@ -59,7 +59,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Normal/Prim.cpp
       title: Library/Graph/Normal/Prim.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
     - icon: ':heavy_check_mark:'
@@ -257,15 +257,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Graph/Normal/dijkstra.test.cpp
-      title: Test/Graph/Normal/dijkstra.test.cpp
   - name: Test/Graph/Tree
     pages:
     - icon: ':heavy_check_mark:'
