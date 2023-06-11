@@ -255,6 +255,9 @@ data:
   - name: Test/Graph/Normal
     pages:
     - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/Dijkstra.test.cpp
+      title: Test/Graph/Normal/Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     - icon: ':heavy_check_mark:'

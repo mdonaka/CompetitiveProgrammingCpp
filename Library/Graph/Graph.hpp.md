@@ -7,6 +7,9 @@ data:
     title: Library/Graph/Normal/dijkstra.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Dijkstra.test.cpp
+    title: Test/Graph/Normal/Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/dijkstra.test.cpp
     title: Test/Graph/Normal/dijkstra.test.cpp
   _isVerificationFailed: false
@@ -51,6 +54,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/dijkstra.test.cpp
+  - Test/Graph/Normal/Dijkstra.test.cpp
 documentation_of: Library/Graph/Graph.hpp
 layout: document
 redirect_from:
