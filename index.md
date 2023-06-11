@@ -57,6 +57,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/SuccessiveShortestPath.hpp
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
+  - name: Library/Graph
+    pages:
+    - icon: ':x:'
+      path: Library/Graph/Graph.hpp
+      title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
     - icon: ':warning:'
@@ -74,7 +79,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/WarshallFloyd.hpp
       title: Library/Graph/Normal/WarshallFloyd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/dijkstra.hpp
       title: Library/Graph/Normal/dijkstra.hpp
   - name: Library/Graph/Tree
@@ -255,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/dijkstra.test.cpp
       title: Test/Graph/Normal/dijkstra.test.cpp
   - name: Test/Graph/Tree

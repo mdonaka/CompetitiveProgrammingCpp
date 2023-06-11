@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
     path: Library/Graph/Normal/dijkstra.hpp
     title: Library/Graph/Normal/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
@@ -16,45 +19,57 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
   bundledCode: "#line 1 \"Test/Graph/Normal/dijkstra.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <unordered_map>\n\
-    #include <queue>\n#include <vector>\n\nstd::vector<long long> dijkstra(int n,\
-    \ const std::unordered_multimap<int, std::pair<int, long long>>& graph, int begin)\
-    \ {\n    std::vector<long long> cost(n, 1e18);\n    cost[begin] = 0;\n    using\
-    \ P = std::pair<long long, int>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>>\
-    \ q;\n    q.emplace(0, begin);\n    while(!q.empty()) {\n        auto [nowCost,\
-    \ from] = q.top();\n        q.pop();\n        if(cost[from] < nowCost) { continue;\
-    \ }\n        auto range = graph.equal_range(from);\n        for(auto itr = range.first;\
-    \ itr != range.second; ++itr) {\n            auto [to, c] = itr->second;\n   \
-    \         if(nowCost + c < cost[to]) {\n                cost[to] = nowCost + c;\n\
-    \                q.emplace(cost[to], to);\n            }\n        }\n    }\n \
-    \   return cost;\n}\n#line 5 \"Test/Graph/Normal/dijkstra.test.cpp\"\n\r\nusing\
-    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
-    \ = '\\n';\r\ntemplate<class T, class S = T>\r\nusing P = std::pair<T, S>;\r\n\
-    \r\nsigned main() {\r\n    int n, m, r;\r\n    cin >> n >> m >> r;\r\n    std::unordered_multimap<int,\
-    \ P<int, ll>> graph;\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v,\
-    \ c;\r\n        cin >> u >> v >> c;\r\n        graph.emplace(u, P<int>{v, c});\r\
-    \n    }\r\n\r\n    auto min_cost = dijkstra(n, graph, r);\r\n\r\n    for(const\
-    \ auto x : min_cost) {\r\n        if(x > 1e17) {\r\n            cout << \"INF\"\
-    \ << endl;\r\n        } else {\r\n            cout << x << endl;\r\n        }\r\
-    \n    }\r\n}\n"
+    \ <iostream>\r\n#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <queue>\n\
+    #include <vector>\n#line 3 \"Library/Graph/Graph.hpp\"\n#include <type_traits>\r\
+    \n\r\ntemplate<class Node = int, class Cost = long long>\r\nclass Graph {\r\n\
+    \    //using Node = int;\r\n    //using Cost = long long;\r\n    using Edges =\
+    \ std::vector<std::pair<Node, Cost>>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto\
+    \ addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t,\
+    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
+    \ Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t, f, c);\r\n    }\r\n \
+    \   const auto& getEdges(const Node& from)const {\r\n        class EdgesRange\
+    \ {\r\n            const Edges::const_iterator b, e;\r\n        public:\r\n  \
+    \          EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end()) {}\r\
+    \n            auto begin()const { return b; }\r\n            auto end()const {\
+    \ return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n \
+    \   }\r\n    auto size()const { return m_n; };\r\n};\n#line 5 \"Library/Graph/Normal/dijkstra.hpp\"\
+    \n\ntemplate<class Node, class Cost>\nauto dijkstra(const Graph<Node, Cost>& graph,\
+    \ const Node& begin, const Cost& lim = std::numeric_limits<Cost>::max()) {\n \
+    \   std::vector<Cost> cost(graph.size(), lim);\n    cost[begin] = 0;\n\n    using\
+    \ P = std::pair<Cost, Node>;\n    std::priority_queue<P, std::vector<P>, std::greater<P>>\
+    \ q;\n    q.emplace(cost[begin], begin);\n    while(!q.empty()) {\n        auto\
+    \ [now_cost, from] = q.top();\n        q.pop();\n        if(cost[from] < now_cost)\
+    \ { continue; }\n        for(const auto& [to, c] : graph.getEdges(from)) {\n \
+    \           if(now_cost + c < cost[to]) {\n                cost[to] = now_cost\
+    \ + c;\n                q.emplace(cost[to], to);\n            }\n        }\n \
+    \   }\n    return cost;\n}\n#line 6 \"Test/Graph/Normal/dijkstra.test.cpp\"\n\r\
+    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
+    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    int n, m, r;\r\n    cin >> n\
+    \ >> m >> r;\r\n\r\n    auto graph = Graph(n);\r\n    for(int i = 0; i < m; ++i)\
+    \ {\r\n        int u, v, c;\r\n        cin >> u >> v >> c;\r\n        graph.addEdge(u,\
+    \ v, c);\r\n    }\r\n\r\n    auto min_cost = dijkstra(graph, r);\r\n    \r\n \
+    \   for(const auto x : min_cost) {\r\n        if(x > 1e17) {\r\n            cout\
+    \ << \"INF\" << endl;\r\n        } else {\r\n            cout << x << endl;\r\n\
+    \        }\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\
     \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Normal/dijkstra.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\ntemplate<class T, class S = T>\r\nusing P = std::pair<T,\
-    \ S>;\r\n\r\nsigned main() {\r\n    int n, m, r;\r\n    cin >> n >> m >> r;\r\n\
-    \    std::unordered_multimap<int, P<int, ll>> graph;\r\n    for(int i = 0; i <\
-    \ m; ++i) {\r\n        int u, v, c;\r\n        cin >> u >> v >> c;\r\n       \
-    \ graph.emplace(u, P<int>{v, c});\r\n    }\r\n\r\n    auto min_cost = dijkstra(n,\
-    \ graph, r);\r\n\r\n    for(const auto x : min_cost) {\r\n        if(x > 1e17)\
-    \ {\r\n            cout << \"INF\" << endl;\r\n        } else {\r\n          \
-    \  cout << x << endl;\r\n        }\r\n    }\r\n}"
+    \r\n#include \"./../../../Library/Graph/Graph.hpp\"\r\n\r\nusing ll = long long;\r\
+    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
+    \nsigned main() {\r\n    int n, m, r;\r\n    cin >> n >> m >> r;\r\n\r\n    auto\
+    \ graph = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\
+    \n        cin >> u >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\
+    \n    auto min_cost = dijkstra(graph, r);\r\n    \r\n    for(const auto x : min_cost)\
+    \ {\r\n        if(x > 1e17) {\r\n            cout << \"INF\" << endl;\r\n    \
+    \    } else {\r\n            cout << x << endl;\r\n        }\r\n    }\r\n}"
   dependsOn:
   - Library/Graph/Normal/dijkstra.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-09-27 22:37:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-06-10 16:48:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/dijkstra.test.cpp
 layout: document
