@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Graph/Normal/Kruskal.hpp
+    title: Library/Graph/Normal/Kruskal.hpp
+  - icon: ':warning:'
+    path: Library/Graph/Normal/Prim.hpp
+    title: Library/Graph/Normal/Prim.hpp
   - icon: ':x:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
@@ -14,6 +20,12 @@ data:
   - icon: ':warning:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
+  - icon: ':warning:'
+    path: Test/Graph/Normal/Kruskal_test.cpp
+    title: Test/Graph/Normal/Kruskal_test.cpp
+  - icon: ':warning:'
+    path: Test/Graph/Normal/Prim_test.cpp
+    title: Test/Graph/Normal/Prim_test.cpp
   - icon: ':warning:'
     path: Test/Graph/Tree/TreeDP_test.cpp
     title: Test/Graph/Tree/TreeDP_test.cpp
@@ -86,10 +98,14 @@ data:
   path: Library/Graph/Graph.hpp
   requiredBy:
   - Library/Graph/Tree/TreeDP.hpp
+  - Library/Graph/Normal/Prim.hpp
+  - Library/Graph/Normal/Kruskal.hpp
   - Library/Graph/Normal/dijkstra.hpp
   - Library/Graph/Normal/WarshallFloyd.hpp
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
   - Test/Graph/Tree/TreeDP_test.cpp
+  - Test/Graph/Normal/Prim_test.cpp
+  - Test/Graph/Normal/Kruskal_test.cpp
   timestamp: '2023-06-14 03:49:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

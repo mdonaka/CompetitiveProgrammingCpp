@@ -68,11 +68,11 @@ data:
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
     - icon: ':warning:'
-      path: Library/Graph/Normal/Kruskal.cpp
-      title: Library/Graph/Normal/Kruskal.cpp
+      path: Library/Graph/Normal/Kruskal.hpp
+      title: Library/Graph/Normal/Kruskal.hpp
     - icon: ':warning:'
-      path: Library/Graph/Normal/Prim.cpp
-      title: Library/Graph/Normal/Prim.cpp
+      path: Library/Graph/Normal/Prim.hpp
+      title: Library/Graph/Normal/Prim.hpp
     - icon: ':x:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
@@ -162,6 +162,14 @@ data:
     - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
+  - name: Test/Graph/Normal
+    pages:
+    - icon: ':warning:'
+      path: Test/Graph/Normal/Kruskal_test.cpp
+      title: Test/Graph/Normal/Kruskal_test.cpp
+    - icon: ':warning:'
+      path: Test/Graph/Normal/Prim_test.cpp
+      title: Test/Graph/Normal/Prim_test.cpp
   - name: Test/Graph/Tree
     pages:
     - icon: ':warning:'

@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Graph/Normal/Kruskal.hpp
+    title: Library/Graph/Normal/Kruskal.hpp
+  - icon: ':warning:'
+    path: Test/Graph/Normal/Kruskal_test.cpp
+    title: Test/Graph/Normal/Kruskal_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/UnionFind.test.cpp
@@ -45,7 +51,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/DataStructure/UnionFind.hpp
-  requiredBy: []
+  requiredBy:
+  - Library/Graph/Normal/Kruskal.hpp
+  - Test/Graph/Normal/Kruskal_test.cpp
   timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
