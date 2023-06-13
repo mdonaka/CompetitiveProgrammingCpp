@@ -38,6 +38,13 @@ public:
         }
         return edges;
     }
+    auto getEdgesAll2()const {
+        std::deque<std::pair<Node, Node>> edges;
+        for(Node from = 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {
+            edges.emplace_back(from, to);
+        }
+        return edges;
+    }
     auto reverse()const {
         auto rev = Graph<Node, Cost>(m_n);
         for(const auto& [from, edge] : getEdgesAll()) {
