@@ -2,6 +2,8 @@
 #include <vector> 
 #include <queue>
 
+#include "./../Graph.hpp"
+
 template<class Node, class Cost, class Lambda>
 auto treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {
     auto n = tree.size();
