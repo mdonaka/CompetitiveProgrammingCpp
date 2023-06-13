@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: Library/Graph/Normal/Prim.hpp
     title: Library/Graph/Normal/Prim.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
   - icon: ':heavy_check_mark:'
@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\n#include\
@@ -107,7 +107,7 @@ data:
   - Test/Graph/Normal/Prim_test.cpp
   - Test/Graph/Normal/Kruskal_test.cpp
   timestamp: '2023-06-14 03:49:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Graph/Normal/Dijkstra.test.cpp
