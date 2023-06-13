@@ -1,7 +1,6 @@
 #pragma once
 
 #include <queue>
-
 #include "./../Graph.hpp"
 
 template<class Node, class Cost>
