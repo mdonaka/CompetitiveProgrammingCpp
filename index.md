@@ -96,7 +96,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/PlaneGeometry
@@ -162,11 +162,6 @@ data:
     - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
-  - name: Test/Graph/Tree
-    pages:
-    - icon: ':warning:'
-      path: Test/Graph/Tree/TreeDP_test.cpp
-      title: Test/Graph/Tree/TreeDP_test.cpp
   - name: Utils
     pages:
     - icon: ':warning:'
@@ -288,6 +283,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Tree/TreeDP.test.cpp
+      title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

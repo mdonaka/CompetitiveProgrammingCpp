@@ -4,18 +4,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/763
     links:
     - https://yukicoder.me/problems/no/763
-  bundledCode: "#line 1 \"Test/Graph/Tree/TreeDP_test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/763\"\
+  bundledCode: "#line 1 \"Test/Graph/Tree/TreeDP.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/763\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include <queue>\r\n\r\nusing\
     \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
     \ = '\\n';\r\n\r\n#line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n\r\n\
@@ -53,7 +55,7 @@ data:
     \ = true;\r\n\r\n        for(const auto& [to, _] : tree.getEdges(from)) {\r\n\
     \            if(used[to]) { continue; }\r\n            lambda(from, to);\r\n \
     \           --in[to];\r\n            if(in[to] == 1) { q.emplace(to); }\r\n  \
-    \      }\r\n    }\r\n}\r\n#line 14 \"Test/Graph/Tree/TreeDP_test.cpp\"\n\r\nsigned\
+    \      }\r\n    }\r\n}\r\n#line 14 \"Test/Graph/Tree/TreeDP.test.cpp\"\n\r\nsigned\
     \ main() {\r\n    ll n;\r\n    cin >> n;\r\n    Graph<int, bool> tree(n);\r\n\
     \    for(int f = 0; f < n - 1; ++f) {\r\n        int u, v;\r\n        cin >> u\
     \ >> v;\r\n        --u; --v;\r\n        tree.addEdgeUndirected(u, v);\r\n    }\r\
@@ -75,16 +77,16 @@ data:
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Tree/TreeDP.hpp
-  isVerificationFile: false
-  path: Test/Graph/Tree/TreeDP_test.cpp
+  isVerificationFile: true
+  path: Test/Graph/Tree/TreeDP.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 03:50:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-06-14 04:30:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Graph/Tree/TreeDP_test.cpp
+documentation_of: Test/Graph/Tree/TreeDP.test.cpp
 layout: document
 redirect_from:
-- /library/Test/Graph/Tree/TreeDP_test.cpp
-- /library/Test/Graph/Tree/TreeDP_test.cpp.html
-title: Test/Graph/Tree/TreeDP_test.cpp
+- /verify/Test/Graph/Tree/TreeDP.test.cpp
+- /verify/Test/Graph/Tree/TreeDP.test.cpp.html
+title: Test/Graph/Tree/TreeDP.test.cpp
 ---
