@@ -5,6 +5,7 @@
 #include <vector>
 #include "./../Graph.hpp"
 
+template<class Node, class Cost>
 class StronglyConnectedComponents {
 
     struct HashPair {
@@ -19,13 +20,11 @@ class StronglyConnectedComponents {
         }
     };
 
-    using Graph = Graph<int, long long>;
-
-    const Graph m_graph;
+    const Graph<Node, Cost> m_graph;
     const std::vector<int> m_group;
 
     template <class F>
-    static inline auto dfs(const Graph& graph, int from,
+    static inline auto dfs(const Graph<Node, Cost>& graph, int from,
                            std::vector<bool>& is_used,
                            const F& f)->void {
         is_used[from] = true;
@@ -36,7 +35,7 @@ class StronglyConnectedComponents {
         f(from);
     }
 
-    static inline auto constructGroup(const Graph& graph) {
+    static inline auto constructGroup(const Graph<Node, Cost>& graph) {
         int n = graph.size();
         std::vector<int> order; order.reserve(n);
         std::vector<bool> is_used(n);
@@ -59,12 +58,12 @@ class StronglyConnectedComponents {
     auto constructGroupNodes() const {
     }
 public:
-    StronglyConnectedComponents(const Graph& graph) :
+    StronglyConnectedComponents(const Graph<Node, Cost>& graph) :
         m_graph(graph),
         m_group(constructGroup(m_graph)) {
     }
     // graphのコピーコストが大きいのでこっち推奨
-    StronglyConnectedComponents(Graph&& graph) :
+    StronglyConnectedComponents(Graph<Node, Cost>&& graph) :
         m_graph(std::move(graph)),
         m_group(constructGroup(m_graph)) {
     }
@@ -86,7 +85,7 @@ public:
         for(int f = 0; f < m_graph.size(); ++f) for(const auto& [t, _] : m_graph.getEdges(f)) if(!isSameGroup(f, t)) {
             st.emplace(m_group[f], m_group[t]);
         }
-        Graph ret(m_graph.size());
+        Graph<Node, Cost> ret(m_graph.size());
         for(const auto& [f, t] : st) { ret.addEdge(f, t); }
         return ret;
     }
