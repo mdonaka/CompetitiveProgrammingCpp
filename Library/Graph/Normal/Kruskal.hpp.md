@@ -7,14 +7,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Test/Graph/Normal/Kruskal_test.cpp
-    title: Test/Graph/Normal/Kruskal_test.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Kruskal.test.cpp
+    title: Test/Graph/Normal/Kruskal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Kruskal.hpp\"\n\r\n#include <queue>\r\
@@ -84,11 +84,11 @@ data:
   - Library/DataStructure/UnionFind.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/Kruskal.hpp
-  requiredBy:
-  - Test/Graph/Normal/Kruskal_test.cpp
+  requiredBy: []
   timestamp: '2023-06-14 04:14:29+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Normal/Kruskal.test.cpp
 documentation_of: Library/Graph/Normal/Kruskal.hpp
 layout: document
 redirect_from:

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
-  - icon: ':warning:'
-    path: Test/Graph/Normal/Kruskal_test.cpp
-    title: Test/Graph/Normal/Kruskal_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/UnionFind.test.cpp
     title: Test/DataStructure/UnionFind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Kruskal.test.cpp
+    title: Test/Graph/Normal/Kruskal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -53,10 +53,10 @@ data:
   path: Library/DataStructure/UnionFind.hpp
   requiredBy:
   - Library/Graph/Normal/Kruskal.hpp
-  - Test/Graph/Normal/Kruskal_test.cpp
   timestamp: '2023-03-07 04:44:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Normal/Kruskal.test.cpp
   - Test/DataStructure/UnionFind.test.cpp
 documentation_of: Library/DataStructure/UnionFind.hpp
 layout: document

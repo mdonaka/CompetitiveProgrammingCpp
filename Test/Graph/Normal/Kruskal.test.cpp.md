@@ -7,18 +7,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
-  bundledCode: "#line 1 \"Test/Graph/Normal/Kruskal_test.cpp\"\n#define PROBLEM \"\
+  bundledCode: "#line 1 \"Test/Graph/Normal/Kruskal.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\n#include\
     \ <deque>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\nclass Graph\
@@ -71,7 +73,7 @@ data:
     \ to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from, to)) { continue;\
     \ }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
     \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n}\r\n#line 6 \"\
-    Test/Graph/Normal/Kruskal_test.cpp\"\n\r\nusing ll = long long;\r\nusing std::cout;\r\
+    Test/Graph/Normal/Kruskal.test.cpp\"\n\r\nusing ll = long long;\r\nusing std::cout;\r\
     \nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\
     \n    int n, m;\r\n    cin >> n >> m;\r\n\r\n    auto graph = Graph(n);\r\n  \
     \  for(int i = 0; i < m; ++i) {\r\n        int s, t, w;\r\n        cin >> s >>\
@@ -95,16 +97,16 @@ data:
   - Library/Graph/Graph.hpp
   - Library/Graph/Normal/Kruskal.hpp
   - Library/DataStructure/UnionFind.hpp
-  isVerificationFile: false
-  path: Test/Graph/Normal/Kruskal_test.cpp
+  isVerificationFile: true
+  path: Test/Graph/Normal/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 04:14:29+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-06-14 04:26:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Graph/Normal/Kruskal_test.cpp
+documentation_of: Test/Graph/Normal/Kruskal.test.cpp
 layout: document
 redirect_from:
-- /library/Test/Graph/Normal/Kruskal_test.cpp
-- /library/Test/Graph/Normal/Kruskal_test.cpp.html
-title: Test/Graph/Normal/Kruskal_test.cpp
+- /verify/Test/Graph/Normal/Kruskal.test.cpp
+- /verify/Test/Graph/Normal/Kruskal.test.cpp.html
+title: Test/Graph/Normal/Kruskal.test.cpp
 ---

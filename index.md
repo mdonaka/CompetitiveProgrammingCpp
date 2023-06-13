@@ -67,10 +67,10 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Prim.hpp
       title: Library/Graph/Normal/Prim.hpp
     - icon: ':heavy_check_mark:'
@@ -162,14 +162,6 @@ data:
     - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
-  - name: Test/Graph/Normal
-    pages:
-    - icon: ':warning:'
-      path: Test/Graph/Normal/Kruskal_test.cpp
-      title: Test/Graph/Normal/Kruskal_test.cpp
-    - icon: ':warning:'
-      path: Test/Graph/Normal/Prim_test.cpp
-      title: Test/Graph/Normal/Prim_test.cpp
   - name: Test/Graph/Tree
     pages:
     - icon: ':warning:'
@@ -273,6 +265,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/Kruskal.test.cpp
+      title: Test/Graph/Normal/Kruskal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/Prim.test.cpp
+      title: Test/Graph/Normal/Prim.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp

@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Prim.hpp
     title: Library/Graph/Normal/Prim.hpp
   - icon: ':heavy_check_mark:'
@@ -21,18 +21,18 @@ data:
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   - icon: ':warning:'
-    path: Test/Graph/Normal/Kruskal_test.cpp
-    title: Test/Graph/Normal/Kruskal_test.cpp
-  - icon: ':warning:'
-    path: Test/Graph/Normal/Prim_test.cpp
-    title: Test/Graph/Normal/Prim_test.cpp
-  - icon: ':warning:'
     path: Test/Graph/Tree/TreeDP_test.cpp
     title: Test/Graph/Tree/TreeDP_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Kruskal.test.cpp
+    title: Test/Graph/Normal/Kruskal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Prim.test.cpp
+    title: Test/Graph/Normal/Prim.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
@@ -97,21 +97,21 @@ data:
   isVerificationFile: false
   path: Library/Graph/Graph.hpp
   requiredBy:
-  - Library/Graph/Tree/TreeDP.hpp
-  - Library/Graph/Normal/Prim.hpp
-  - Library/Graph/Normal/Kruskal.hpp
   - Library/Graph/Normal/dijkstra.hpp
   - Library/Graph/Normal/WarshallFloyd.hpp
+  - Library/Graph/Normal/Kruskal.hpp
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
+  - Library/Graph/Normal/Prim.hpp
+  - Library/Graph/Tree/TreeDP.hpp
   - Test/Graph/Tree/TreeDP_test.cpp
-  - Test/Graph/Normal/Prim_test.cpp
-  - Test/Graph/Normal/Kruskal_test.cpp
   timestamp: '2023-06-14 03:49:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Graph/Normal/Dijkstra.test.cpp
   - Test/Graph/Normal/WarshallFloyd.test.cpp
+  - Test/Graph/Normal/Kruskal.test.cpp
+  - Test/Graph/Normal/Dijkstra.test.cpp
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - Test/Graph/Normal/Prim.test.cpp
 documentation_of: Library/Graph/Graph.hpp
 layout: document
 redirect_from:
