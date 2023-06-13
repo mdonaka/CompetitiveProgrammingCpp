@@ -93,6 +93,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
+    - icon: ':warning:'
+      path: Library/Graph/Tree/ReRootingDP.hpp
+      title: Library/Graph/Tree/ReRootingDP.hpp
+    - icon: ':warning:'
+      path: Library/Graph/Tree/TreeDP.hpp
+      title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -109,9 +115,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Search/binarySearch.hpp
       title: Library/Search/binarySearch.hpp
-    - icon: ':warning:'
-      path: Library/Search/treeDP.hpp
-      title: Library/Search/treeDP.hpp
   - name: Library/Simd
     pages:
     - icon: ':warning:'
@@ -159,6 +162,11 @@ data:
     - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
+  - name: Test/Graph/Tree
+    pages:
+    - icon: ':warning:'
+      path: Test/Graph/Tree/TreeDP_test.cpp
+      title: Test/Graph/Tree/TreeDP_test.cpp
   - name: Utils
     pages:
     - icon: ':warning:'

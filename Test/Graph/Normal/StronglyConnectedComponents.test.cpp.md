@@ -37,31 +37,34 @@ data:
     \n    }\r\n    auto getEdgesAll()const {\r\n        std::deque<std::pair<Node,\
     \ Edge>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
     \ edge : getEdges(from)) {\r\n            edges.emplace_back(from, edge);\r\n\
-    \        }\r\n        return edges;\r\n    }\r\n    auto reverse()const {\r\n\
-    \        auto rev = Graph<Node, Cost>(m_n);\r\n        for(const auto& [from,\
-    \ edge] : getEdgesAll()) {\r\n            auto [to, c] = edge;\r\n           \
-    \ rev.addEdge(to, from, c);\r\n        }\r\n        return rev;\r\n    }\r\n \
-    \   auto size()const { return m_n; };\r\n};\n#line 7 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
-    \n\r\nclass StronglyConnectedComponents {\r\n\r\n    struct HashPair {\r\n   \
-    \     template<class T1, class T2>\r\n        size_t operator()(const std::pair<T1,\
-    \ T2>& p) const {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n  \
-    \          auto hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed\
-    \ = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\
-    \n            seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n    \
-    \        return seed;\r\n        }\r\n    };\r\n\r\n    using Graph = Graph<int,\
-    \ long long>;\r\n\r\n    const Graph m_graph;\r\n    const std::vector<int> m_group;\r\
-    \n\r\n    template <class F>\r\n    static inline auto dfs(const Graph& graph,\
-    \ int from,\r\n                           std::vector<bool>& is_used,\r\n    \
-    \                       const F& f)->void {\r\n        is_used[from] = true;\r\
-    \n        for(const auto& [to, _] : graph.getEdges(from)) {\r\n            if(is_used[to])\
-    \ { continue; }\r\n            dfs(graph, to, is_used, f);\r\n        }\r\n  \
-    \      f(from);\r\n    }\r\n\r\n    static inline auto constructGroup(const Graph&\
-    \ graph) {\r\n        int n = graph.size();\r\n        std::vector<int> order;\
-    \ order.reserve(n);\r\n        std::vector<bool> is_used(n);\r\n        for(int\
-    \ from = 0; from < n; ++from) if(!is_used[from]) {\r\n            dfs(graph, from,\
-    \ is_used, [&](int f) {\r\n                order.emplace_back(f);\r\n        \
-    \    });\r\n        }\r\n\r\n        int g = 0;\r\n        std::vector<int> group(n);\r\
-    \n        std::vector<bool> is_used2(n);\r\n        auto rev = graph.reverse();\r\
+    \        }\r\n        return edges;\r\n    }\r\n    auto getEdgesAll2()const {\r\
+    \n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from =\
+    \ 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n     \
+    \       edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\n\
+    \    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
+    \n        for(const auto& [from, edge] : getEdgesAll()) {\r\n            auto\
+    \ [to, c] = edge;\r\n            rev.addEdge(to, from, c);\r\n        }\r\n  \
+    \      return rev;\r\n    }\r\n    auto size()const { return m_n; };\r\n};\n#line\
+    \ 7 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\r\nclass StronglyConnectedComponents\
+    \ {\r\n\r\n    struct HashPair {\r\n        template<class T1, class T2>\r\n \
+    \       size_t operator()(const std::pair<T1, T2>& p) const {\r\n            auto\
+    \ hash1 = std::hash<T1>{}(p.first);\r\n            auto hash2 = std::hash<T2>{}(p.second);\r\
+    \n            size_t seed = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed\
+    \ << 6) + (seed >> 2);\r\n            seed ^= hash2 + 0x9e3779b9 + (seed << 6)\
+    \ + (seed >> 2);\r\n            return seed;\r\n        }\r\n    };\r\n\r\n  \
+    \  using Graph = Graph<int, long long>;\r\n\r\n    const Graph m_graph;\r\n  \
+    \  const std::vector<int> m_group;\r\n\r\n    template <class F>\r\n    static\
+    \ inline auto dfs(const Graph& graph, int from,\r\n                          \
+    \ std::vector<bool>& is_used,\r\n                           const F& f)->void\
+    \ {\r\n        is_used[from] = true;\r\n        for(const auto& [to, _] : graph.getEdges(from))\
+    \ {\r\n            if(is_used[to]) { continue; }\r\n            dfs(graph, to,\
+    \ is_used, f);\r\n        }\r\n        f(from);\r\n    }\r\n\r\n    static inline\
+    \ auto constructGroup(const Graph& graph) {\r\n        int n = graph.size();\r\
+    \n        std::vector<int> order; order.reserve(n);\r\n        std::vector<bool>\
+    \ is_used(n);\r\n        for(int from = 0; from < n; ++from) if(!is_used[from])\
+    \ {\r\n            dfs(graph, from, is_used, [&](int f) {\r\n                order.emplace_back(f);\r\
+    \n            });\r\n        }\r\n\r\n        int g = 0;\r\n        std::vector<int>\
+    \ group(n);\r\n        std::vector<bool> is_used2(n);\r\n        auto rev = graph.reverse();\r\
     \n        for(int i = n - 1; i >= 0; --i)if(!is_used2[order[i]]) {\r\n       \
     \     dfs(rev, order[i], is_used2, [&](int f) {group[f] = g; });\r\n         \
     \   ++g;\r\n        }\r\n        return group;\r\n    }\r\n    auto constructGroupNodes()\
@@ -106,7 +109,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2023-06-11 00:18:37+09:00'
+  timestamp: '2023-06-14 03:49:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/StronglyConnectedComponents.test.cpp

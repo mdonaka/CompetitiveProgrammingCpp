@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Graph/Tree/ReRootingDP.hpp
+    title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -29,7 +32,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Search/BFSonGraph.hpp
-  requiredBy: []
+  requiredBy:
+  - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2020-04-20 10:46:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
