@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Prime.hpp
     title: Library/Utility/Prime.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
@@ -39,7 +39,7 @@ data:
     \  for(const auto& [x, c] : fc)for(int i = 0; i < c; ++i) {\r\n        ans.emplace_back(x);\r\
     \n    }\r\n    std::sort(ans.begin(), ans.end());\r\n\r\n    cout << n << \":\
     \ \";\r\n    for(unsigned int i = 0; i < ans.size(); ++i) {\r\n        cout <<\
-    \ ans[i] << (i + 1 < ans.size() ? \" \" : \"\");\r\n    }\r\n}\n"
+    \ ans[i] << (i + 1 < ans.size() ? \" \" : \"\\n\");\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \r\n\r\n#include <iostream>\r\n#include <algorithm>\r\n\r\n#include \"./../../Library/Utility/Prime.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
@@ -49,14 +49,14 @@ data:
     \ i < c; ++i) {\r\n        ans.emplace_back(x);\r\n    }\r\n    std::sort(ans.begin(),\
     \ ans.end());\r\n\r\n    cout << n << \": \";\r\n    for(unsigned int i = 0; i\
     \ < ans.size(); ++i) {\r\n        cout << ans[i] << (i + 1 < ans.size() ? \" \"\
-    \ : \"\");\r\n    }\r\n}"
+    \ : \"\\n\");\r\n    }\r\n}"
   dependsOn:
   - Library/Utility/Prime.hpp
   isVerificationFile: true
   path: Test/Utility/Prime.test.cpp
   requiredBy: []
-  timestamp: '2023-06-17 05:39:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-17 05:41:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Utility/Prime.test.cpp
 layout: document
