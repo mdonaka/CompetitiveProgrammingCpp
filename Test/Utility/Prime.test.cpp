@@ -25,5 +25,7 @@ signed main() {
     std::sort(ans.begin(), ans.end());
 
     cout << n << ": ";
-    for(const auto x : ans) { cout << x << " "; }
+    for(unsigned int i = 0; i < ans.size(); ++i) {
+        cout << ans[i] << (i + 1 < ans.size() ? " " : "");
+    }
 }
