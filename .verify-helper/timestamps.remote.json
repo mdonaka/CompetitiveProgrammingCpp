@@ -45,6 +45,7 @@
 "Test/Utility/ModCalculator.test.cpp": "2023-04-07 03:18:12 +0900",
 "Test/Utility/ModCalculator_inv.test.cpp": "2023-04-07 03:36:31 +0900",
 "Test/Utility/ModCalculator_pow.test.cpp": "2023-04-07 03:18:12 +0900",
+"Test/Utility/Prime.test.cpp": "2023-06-17 05:41:35 +0900",
 "Test/Utility/Ycombinator.test.cpp": "2023-03-07 08:05:00 +0900",
 "Test/sample/sample1.test.cpp": "2022-08-30 04:27:36 +0900"
 }
