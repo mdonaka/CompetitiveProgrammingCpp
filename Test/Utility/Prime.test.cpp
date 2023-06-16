@@ -26,6 +26,6 @@ signed main() {
 
     cout << n << ": ";
     for(unsigned int i = 0; i < ans.size(); ++i) {
-        cout << ans[i] << (i + 1 < ans.size() ? " " : "");
+        cout << ans[i] << (i + 1 < ans.size() ? " " : "\n");
     }
 }
