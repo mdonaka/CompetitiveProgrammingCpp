@@ -38,7 +38,8 @@ data:
     \n    auto fc = prime.factorization(n);\r\n\r\n    std::vector<ll> ans;\r\n  \
     \  for(const auto& [x, c] : fc)for(int i = 0; i < c; ++i) {\r\n        ans.emplace_back(x);\r\
     \n    }\r\n    std::sort(ans.begin(), ans.end());\r\n\r\n    cout << n << \":\
-    \ \";\r\n    for(const auto x : ans) { cout << x << \" \"; }\r\n}\n"
+    \ \";\r\n    for(unsigned int i = 0; i < ans.size(); ++i) {\r\n        cout <<\
+    \ ans[i] << (i + 1 < ans.size() ? \" \" : \"\");\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \r\n\r\n#include <iostream>\r\n#include <algorithm>\r\n\r\n#include \"./../../Library/Utility/Prime.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
@@ -46,14 +47,15 @@ data:
     \n\r\n    auto prime = Prime(1e5);\r\n    auto fc = prime.factorization(n);\r\n\
     \r\n    std::vector<ll> ans;\r\n    for(const auto& [x, c] : fc)for(int i = 0;\
     \ i < c; ++i) {\r\n        ans.emplace_back(x);\r\n    }\r\n    std::sort(ans.begin(),\
-    \ ans.end());\r\n\r\n    cout << n << \": \";\r\n    for(const auto x : ans) {\
-    \ cout << x << \" \"; }\r\n}"
+    \ ans.end());\r\n\r\n    cout << n << \": \";\r\n    for(unsigned int i = 0; i\
+    \ < ans.size(); ++i) {\r\n        cout << ans[i] << (i + 1 < ans.size() ? \" \"\
+    \ : \"\");\r\n    }\r\n}"
   dependsOn:
   - Library/Utility/Prime.hpp
   isVerificationFile: true
   path: Test/Utility/Prime.test.cpp
   requiredBy: []
-  timestamp: '2023-06-17 05:34:27+09:00'
+  timestamp: '2023-06-17 05:39:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/Prime.test.cpp
