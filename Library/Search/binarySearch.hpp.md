@@ -58,13 +58,13 @@ data:
   isVerificationFile: false
   path: Library/Search/binarySearch.hpp
   requiredBy:
-  - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
+  - Library/String/SuffixArray.hpp
   timestamp: '2023-04-06 23:12:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Search/binarySearch_int.test.cpp
   - Test/Search/binarySearch_double_rev.test.cpp
+  - Test/Search/binarySearch_int.test.cpp
   - Test/Search/binarySearch_int_rev.test.cpp
   - Test/String/LCPArray.test.cpp
   - Test/String/SuffixArray.test.cpp

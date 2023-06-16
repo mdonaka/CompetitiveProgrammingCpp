@@ -145,7 +145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
     - icon: ':heavy_check_mark:'
@@ -333,6 +333,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_pow.test.cpp
       title: Test/Utility/ModCalculator_pow.test.cpp
+    - icon: ':x:'
+      path: Test/Utility/Prime.test.cpp
+      title: Test/Utility/Prime.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Utility/Ycombinator.test.cpp
       title: Test/Utility/Ycombinator.test.cpp
