@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Flow/Dinic.hpp
+    title: Library/Graph/Flow/Dinic.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Flow/FordFulkerson.hpp
+    title: Library/Graph/Flow/FordFulkerson.hpp
+  - icon: ':x:'
+    path: Library/Graph/Flow/SuccessiveShortestPath.hpp
+    title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - icon: ':x:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
@@ -30,6 +39,15 @@ data:
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Flow/Dinic.test.cpp
+    title: Test/Graph/Flow/Dinic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Flow/FordFulkerson.test.cpp
+    title: Test/Graph/Flow/FordFulkerson.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+    title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
@@ -121,6 +139,9 @@ data:
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
   - Library/Graph/Normal/Prim.hpp
   - Library/Graph/Normal/BFS.hpp
+  - Library/Graph/Flow/SuccessiveShortestPath.hpp
+  - Library/Graph/Flow/FordFulkerson.hpp
+  - Library/Graph/Flow/Dinic.hpp
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/TreeDP.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
@@ -132,6 +153,9 @@ data:
   - Test/Graph/Normal/Dijkstra.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Graph/Normal/Prim.test.cpp
+  - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+  - Test/Graph/Flow/Dinic.test.cpp
+  - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
