@@ -57,17 +57,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/SuccessiveShortestPath.hpp
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
@@ -96,7 +96,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
     - icon: ':warning:'
@@ -256,12 +256,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/FordFulkerson.test.cpp
       title: Test/Graph/Flow/FordFulkerson.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
     - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/BFS.test.cpp
+    title: Test/Graph/Normal/BFS.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <vector>\r\n\
@@ -67,8 +70,9 @@ data:
   requiredBy:
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   timestamp: '2023-06-18 06:04:34+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document

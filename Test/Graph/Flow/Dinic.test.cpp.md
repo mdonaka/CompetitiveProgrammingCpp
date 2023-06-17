@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/Dinic.hpp
     title: Library/Graph/Flow/Dinic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
