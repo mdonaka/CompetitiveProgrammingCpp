@@ -48,14 +48,13 @@ data:
     \nusing VS = V<std::string>;\r\nusing VL = V<ll>;\r\nusing VVL = V<VL>;\r\ntemplate<class\
     \ T = ll, class U = T>\r\nusing P = std::pair<T, U>;\r\nusing PAIR = P<ll>;\r\n\
     \r\n/* using std */\r\nusing std::cout;\r\nusing std::cin;\r\nusing std::cerr;\r\
-    \nconstexpr char endl = '\\n';\r\n\r\n/* Initial processing  */\r\nstruct Preprocessing\
-    \ { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\
-    \n\r\n/* define hash */\r\nnamespace std {\r\ntemplate <>\tclass hash<std::pair<ll,\
-    \ ll>> { public:\tsize_t operator()(const std::pair<ll, ll>& x) const { return\
-    \ std::hash<ll>()(x.first << 31 | x.second); } };\r\n}\r\n\r\n/* input */\r\n\
-    template<class T> std::istream& operator >> (std::istream& is, std::vector<T>&\
-    \ vec) { for(T& x : vec) is >> x; return is; }\r\n\r\n/* constant value */\r\n\
-    // constexpr ll MOD = 1000000007;\r\nconstexpr ll MOD = 998244353;\r\n\r\n//=============================================================================================\r\
+    \nconstexpr char endl = '\\n';\r\n\r\n/* define hash */\r\nnamespace std {\r\n\
+    template <>\tclass hash<std::pair<ll, ll>> { public:\tsize_t operator()(const\
+    \ std::pair<ll, ll>& x) const { return std::hash<ll>()(x.first << 31 | x.second);\
+    \ } };\r\n}\r\n\r\n/* input */\r\ntemplate<class T> std::istream& operator >>\
+    \ (std::istream& is, std::vector<T>& vec) { for(T& x : vec) is >> x; return is;\
+    \ }\r\n\r\n/* constant value */\r\n// constexpr ll MOD = 1000000007;\r\nconstexpr\
+    \ ll MOD = 998244353;\r\n\r\n//=============================================================================================\r\
     \n\r\nauto interactive(ll x) {\r\n    constexpr ll QUERY_LIMIT = 26;\r\n    REP(_,\
     \ QUERY_LIMIT) {\r\n\r\n    }\r\n    return false;\r\n}\r\n\r\n#ifdef _WIN32\r\
     \nauto _main()\r\n#else\r\nsigned main()\r\n#endif\r\n{\r\n    // seed settings\r\
@@ -70,7 +69,7 @@ data:
   isVerificationFile: false
   path: Main/interactive.cpp
   requiredBy: []
-  timestamp: '2023-06-18 08:45:27+09:00'
+  timestamp: '2023-06-18 08:41:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/interactive.cpp
