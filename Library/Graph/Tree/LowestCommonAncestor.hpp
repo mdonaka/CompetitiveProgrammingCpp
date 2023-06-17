@@ -12,7 +12,7 @@ class LowestCommonAncestor {
 
     static inline auto constructParent(const Graph<Node, Cost>& tree, const Node& root) {
         auto n = tree.size();
-        auto size = std::log2(n) + 1;
+        auto size = static_cast<int>(std::log2(n) + 1);
         std::vector<std::vector<Node>> parent(n, std::vector<Node>(size, root));
         bfs(tree, root, [&](const Node& from, const Node& to) {
             parent[to][0] = from;
