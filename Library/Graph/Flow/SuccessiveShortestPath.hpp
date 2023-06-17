@@ -10,47 +10,28 @@
 
 #include "./../Graph.hpp"
 
-using Node = int;
-using Cap = long long;
-using Cost = long long;
-
-
+template<class Node, class Cap, class Cost>
 class SuccessiveShortestPath {
 
-    using GraphInput = Graph<Node, std::pair<Cost, Cap>>;
+    using GraphCap = std::vector<std::vector<Cap>>;
+    using GraphCost = std::vector<std::vector<Cost>>;
 
-    using GraphTo = std::vector<std::deque<Node>>;
-    using CapV = std::vector<Cost>;
-    using GraphCap = std::vector<CapV>;
-    using CostV = std::vector<Cost>;
-    using GraphCost = std::vector<CostV>;
+    const Graph<Node, std::pair<Cap, Cost>> m_graph;
 
-    const int m_n;
-    const GraphTo m_graph_to;
-    const GraphCap m_graph_cap;
-    const GraphCost m_graph_cost;
-
-    auto construct_graph_to(const GraphInput& graph)const {
-        GraphTo graphTo(m_n);
-        for(const auto& [f, t] : graph.getEdgesAll2()) {
-            graphTo[f].emplace_back(t);
-            graphTo[t].emplace_back(f);
-        }
-        return graphTo;
-    }
-
-    auto construct_graph_cap(const GraphInput& graph)const {
-        GraphCap graph_cap(m_n, CapV(m_n));
-        for(const auto& [f, tcc] : graph.getEdgesAll()) {
+    auto construct_graph_cap()const {
+        auto n = m_graph.size();
+        GraphCap graph_cap(n, std::vector<Cap>(n));
+        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {
             auto [t, cc] = tcc;
             auto [cap, _] = cc;
             graph_cap[f][t] += cap;
         }
         return graph_cap;
     }
-    auto construct_graph_cost(const GraphInput& graph) const {
-        GraphCost graph_cost(m_n, CostV(m_n));
-        for(const auto& [f, tcc] : graph.getEdgesAll()) {
+    auto construct_graph_cost() const {
+        auto n = m_graph.size();
+        GraphCost graph_cost(n, std::vector<Cost>(n));
+        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {
             auto [t, cc] = tcc;
             auto [_, cost] = cc;
             graph_cost[f][t] = cost;
@@ -83,11 +64,12 @@ class SuccessiveShortestPath {
     auto shortest_path_allow_minus(Node s,
                                    const GraphCap& residual_cap,
                                    const GraphCost& residual_cost) const {
-        CostV cost(m_n, 1e18);
+        auto n = m_graph.size();
+        std::vector<Cost> cost(n, 1e18);
         cost[s] = 0;
-        for(int _ = 0; _ < m_n; ++_) {
-            for(int from = 0; from < m_n; ++from) {
-                for(const auto& to : m_graph_to[from]) {
+        for(int _ = 0; _ < n; ++_) {
+            for(int from = 0; from < n; ++from) {
+                for(const auto& [to, _] : m_graph.getEdges(from)) {
                     if(residual_cap[from][to] > 0) {
                         cost[to] = std::min(cost[to], cost[from] + residual_cost[from][to]);
                     }
@@ -103,7 +85,7 @@ class SuccessiveShortestPath {
                        const std::vector<Cost>& p) const {
         using P = std::pair<Cost, Node>;
         std::priority_queue<P, std::vector<P>, std::greater<P>> q;
-        std::vector<std::pair<Cost, Node>> min(m_n, {1e18,-1});
+        std::vector<std::pair<Cost, Node>> min(m_graph.size(), {1e18,-1});
         auto add = [&](Node node, Cost cst, Node from) {
             if(cst >= min[node].first) { return; }
             min[node].first = cst;
@@ -115,7 +97,7 @@ class SuccessiveShortestPath {
             auto [nowCost, from] = q.top();
             q.pop();
             if(min[from].first < nowCost) { continue; }
-            for(const auto& to : m_graph_to[from]) {
+            for(const auto& [to, _] : m_graph.getEdges(from)) {
                 if(residual_cap[from][to] == 0) { continue; }
                 auto potential = residual_cost[from][to] + p[from] - p[to];
                 add(to, nowCost + potential, from);
@@ -135,27 +117,25 @@ class SuccessiveShortestPath {
     }
 public:
     /* 単純グラフを仮定 */
-    SuccessiveShortestPath(const GraphInput& graph) :
-        m_n(graph.size()),
-        m_graph_to(construct_graph_to(graph)),
-        m_graph_cap(construct_graph_cap(graph)),
-        m_graph_cost(construct_graph_cost(graph)) {
+    SuccessiveShortestPath(const Graph<Node, std::pair<Cost, Cap>>& graph) :
+        m_graph(graph) {
     }
 
     auto slope(Node s, Node t, Cap c = 1e18)const {
-        auto residual_cap = m_graph_cap;
-        auto residual_cost = m_graph_cost;
+        auto residual_cap = construct_graph_cap();
+        auto residual_cost = construct_graph_cost();
+        auto default_cost = residual_cost;
         std::deque<std::pair<Cost, Cap>> sl;
-        CostV p = shortest_path_allow_minus(s, residual_cap, residual_cost);
-        Cap rem = c;
+        auto p = shortest_path_allow_minus(s, residual_cap, residual_cost);
+        auto rem = c;
         while(rem > 0) {
-            auto sp = shortest_path(s, residual_cap, m_graph_cost, p);
+            auto sp = shortest_path(s, residual_cap, default_cost, p);
             auto route = restore_route(t, sp);
             auto [use, cst] = update_residual(s, rem, residual_cap, residual_cost, route);
             if(use == 0) { break; }
             sl.emplace_back(use, cst);
             rem -= use;
-            for(int i = 0; i < m_n; ++i) { p[i] += sp[i].first; }
+            for(int i = 0; i < m_graph.size(); ++i) { p[i] += sp[i].first; }
         }
         return sl;
     }
