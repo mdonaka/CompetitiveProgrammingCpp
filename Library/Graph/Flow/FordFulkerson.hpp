@@ -7,6 +7,9 @@
 #include <unordered_set>
 #include <map>
 
+#include "./../Graph.hpp"
+
+template<class Node, class Cost>
 class FordFulkerson {
 
     struct HashPair {
@@ -21,36 +24,33 @@ class FordFulkerson {
         }
     };
 
-    using node_t = int;
-    using cost_t = long long;
-    using Graph_f = std::unordered_multimap<node_t, std::pair<node_t, cost_t>>;
-    using Graph = std::unordered_map<std::pair<node_t, node_t>, cost_t, HashPair>;
+    using PairGraph = std::unordered_map<std::pair<Node, Node>, Cost, HashPair>;
 
-    const node_t m_n;
-    const Graph m_graph;
-    const std::vector<std::unordered_set<node_t>> m_to_list;
+    const Node m_n;
+    const PairGraph m_graph;
+    const std::vector<std::unordered_set<Node>> m_to_list;
 
-    static auto construct_to_list(node_t n, const Graph_f& graph_f) {
-        std::vector<std::unordered_set<node_t>> to_list(n);
-        for(const auto& [f, tc] : graph_f) {
+    static auto construct_to_list(const Graph<Node, Cost>& graph) {
+        std::vector<std::unordered_set<Node>> to_list(graph.size());
+        for(const auto& [f, tc] : graph.getEdgesAll()) {
             auto [t, c] = tc;
             to_list[f].emplace(t);
             to_list[t].emplace(f);
         }
         return to_list;
     }
-    static auto construct_graph(const Graph_f& graph_f) {
-        Graph graph;
-        for(const auto& [f, tc] : graph_f) {
+    static auto construct_graph(const Graph<Node, Cost>& graph) {
+        PairGraph pair_graph;
+        for(const auto& [f, tc] : graph.getEdgesAll()) {
             auto [t, c] = tc;
-            graph[std::pair<node_t, node_t>{f, t}] += c;
+            pair_graph[std::pair<Node, Node>{f, t}] += c;
         }
-        return graph;
+        return pair_graph;
     }
 
-    auto get_route(node_t s, node_t t, const Graph& graph) const {
-        std::unordered_set<node_t> visited;
-        auto f = [&](auto&& f, node_t now, std::list<node_t>& route)->bool {
+    auto get_route(Node s, Node t, const PairGraph& graph) const {
+        std::unordered_set<Node> visited;
+        auto f = [&](auto&& f, Node now, std::list<Node>& route)->bool {
             route.emplace_back(now);
             for(const auto& to : m_to_list[now]) {
                 if(graph.find({now, to}) == graph.end()) { continue; }
@@ -63,21 +63,21 @@ class FordFulkerson {
             route.pop_back();
             return false;
         };
-        std::list<node_t> route;
+        std::list<Node> route;
         visited.emplace(s);
         auto ok = f(f, s, route);
-        if(ok) { return route; } else { return std::list<node_t>{}; }
+        if(ok) { return route; } else { return std::list<Node>{}; }
     }
 
 
-    auto construct_residual(node_t s, node_t t)const {
+    auto construct_residual(Node s, Node t)const {
         auto residual = m_graph;
         while(true) {
             auto route = get_route(s, t, residual);
             if(route.empty()) { break; }
 
-            cost_t mn = 1e9;
-            node_t from = s;
+            Cost mn = 1e9;
+            Node from = s;
             for(const auto& to : route)if(from != to) {
                 mn = std::min(mn, residual[{from, to}]);
                 from = to;
@@ -95,16 +95,16 @@ class FordFulkerson {
         return residual;
     }
 public:
-    FordFulkerson(node_t n, const Graph_f& graph) :
-        m_n(n),
+    FordFulkerson(const Graph<Node, Cost>& graph) :
+        m_n(graph.size()),
         m_graph(construct_graph(graph)),
-        m_to_list(construct_to_list(n, graph)) {
+        m_to_list(construct_to_list(graph)) {
     }
 
-    auto max_flow(node_t s, node_t t)const {
+    auto max_flow(Node s, Node t)const {
         auto residual = construct_residual(s, t);
 
-        cost_t val = 0;
+        Cost val = 0;
         for(const auto& to : m_to_list[s]) {
             if(m_graph.find({s,to}) == m_graph.end()) { continue; }
             val += m_graph.at({s, to}) - residual[{s, to}];
@@ -113,19 +113,19 @@ public:
     }
 
 
-    auto get_cut_list(node_t s, node_t t) const {
+    auto get_cut_list(Node s, Node t) const {
         // 残余グラフで始点から到達できる集合
-        std::unordered_set<node_t> st;
+        std::unordered_set<Node> st;
 
         auto residual = construct_residual(s, t);
-        std::queue<node_t> q;
-        auto add = [&](node_t t) {
+        std::queue<Node> q;
+        auto add = [&](Node t) {
             if(st.find(t) != st.end()) { return; }
             q.emplace(t);
             st.emplace(t);
         };
         add(s);
-        std::deque<node_t> ans;
+        std::deque<Node> ans;
         while(!q.empty()) {
             auto f = q.front();
             q.pop();
@@ -135,7 +135,7 @@ public:
             }
         }
 
-        std::deque<std::pair<node_t, node_t>> cut;
+        std::deque<std::pair<Node, Node>> cut;
         for(const auto& f : st) for(const auto& t : m_to_list[f]) {
             if(st.find(t) == st.end() &&
                m_graph.find({f,t}) != m_graph.end()) {
@@ -147,15 +147,15 @@ public:
     }
 
 
-    auto get_edge(node_t s, node_t t)const {
+    auto get_edge(Node s, Node t)const {
         auto residual = construct_residual(s, t);
 
-        Graph_f edge;
-        for(node_t from = 0; from < m_n; ++from) {
+        auto edge = Graph<Node, Cost>(m_n);
+        for(Node from = 0; from < m_n; ++from) {
             for(const auto& to : m_to_list[from]) {
                 if(m_graph.find({from,to}) == m_graph.end()) { continue; }
                 auto val = m_graph.at({from, to}) - residual[{from, to}];
-                if(val > 0) { edge.emplace(from, std::pair<node_t, cost_t>{to, val}); }
+                if(val > 0) { edge.addEdge(from, to, val); }
             }
         }
         return edge;
