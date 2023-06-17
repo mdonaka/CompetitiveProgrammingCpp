@@ -5,7 +5,7 @@
 
 #include "./../../../Library/Graph/Graph.hpp"
 #include "./../../../Library/Graph/Normal/BFS.hpp"
-#include "./../../../Library/Algorithms/binarySearch.hpp"
+#include "./../../../Library/Algorithms/BinarySearch.hpp"
 
 using ll = long long;
 using std::cout;
