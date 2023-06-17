@@ -1,5 +1,4 @@
-#define PROBLEM "https://yukicoder.me/problems/no/67"
-#define ERROR "1e-9"
+#define PROBLEM "https://yukicoder.me/problems/no/1473"
 
 #include <iostream>
 #include <vector>
