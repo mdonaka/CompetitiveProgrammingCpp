@@ -7,6 +7,9 @@
 #include <unordered_set>
 #include <map>
 
+#include "./../Graph.hpp"
+
+template<class Node, class Cost>
 class Dinic {
 
     struct HashPair {
@@ -21,37 +24,33 @@ class Dinic {
         }
     };
 
+    using PairGraph = std::unordered_map<std::pair<Node, Node>, Cost, HashPair>;
 
-    using node_t = int;
-    using cost_t = long long;
-    using Graph_f = std::unordered_multimap<node_t, std::pair<node_t, cost_t>>;
-    using Graph = std::unordered_map<std::pair<node_t, node_t>, cost_t, HashPair>;
+    const Node m_n;
+    const PairGraph m_graph;
+    const std::vector<std::unordered_set<Node>> m_to_list;
 
-    const node_t m_n;
-    const Graph m_graph;
-    const std::vector<std::unordered_set<node_t>> m_to_list;
-
-    static auto construct_to_list(node_t n, const Graph_f& graph_f) {
-        std::vector<std::unordered_set<node_t>> to_list(n);
-        for(const auto& [f, tc] : graph_f) {
+    static auto construct_to_list(const Graph<Node, Cost>& graph) {
+        std::vector<std::unordered_set<Node>> to_list(graph.size());
+        for(const auto& [f, tc] : graph.getEdgesAll()) {
             auto [t, c] = tc;
             to_list[f].emplace(t);
             to_list[t].emplace(f);
         }
         return to_list;
     }
-    static auto construct_graph(const Graph_f& graph_f) {
-        Graph graph;
-        for(const auto& [f, tc] : graph_f) {
+    static auto construct_graph(const Graph<Node, Cost>& graph) {
+        PairGraph pair_graph;
+        for(const auto& [f, tc] : graph.getEdgesAll()) {
             auto [t, c] = tc;
-            graph[std::pair<node_t, node_t>{f, t}] += c;
+            pair_graph[std::pair<Node, Node>{f, t}] += c;
         }
-        return graph;
+        return pair_graph;
     }
 
-    auto get_depth(node_t s, const Graph& graph) const {
-        std::vector<node_t> depth(m_n, -1);
-        std::queue<node_t> q;
+    auto get_depth(Node s, const PairGraph& graph) const {
+        std::vector<Node> depth(m_n, -1);
+        std::queue<Node> q;
         q.emplace(s);
         depth[s] = 0;
         while(!q.empty()) {
@@ -67,8 +66,8 @@ class Dinic {
         return depth;
     }
 
-    auto update_residual(node_t s, Graph& residual, const std::list<node_t>& route)const {
-        cost_t mn = 1e18;
+    auto update_residual(Node s, PairGraph& residual, const std::list<Node>& route)const {
+        Cost mn = 1e18;
         auto from = s;
         for(const auto& to : route)if(from != to) {
             mn = std::min(mn, residual[{from, to}]);
@@ -84,7 +83,7 @@ class Dinic {
             from = to;
         }
     }
-    auto construct_residual(node_t s, node_t t)const {
+    auto construct_residual(Node s, Node t)const {
         auto residual = m_graph;
         while(true) {
             // BFS
@@ -92,8 +91,8 @@ class Dinic {
 
             // DFS
             bool run = false;
-            std::vector<node_t> visited(m_n);
-            auto f = [&](auto&& f, node_t now, std::list<node_t>& route)->void {
+            std::vector<Node> visited(m_n);
+            auto f = [&](auto&& f, Node now, std::list<Node>& route)->void {
                 route.emplace_back(now);
 
                 // tに到達していれば流す
@@ -108,7 +107,7 @@ class Dinic {
                 }
                 route.pop_back();
             };
-            std::list<node_t> route;
+            std::list<Node> route;
             visited[s] = true;
             f(f, s, route);
             if(!run) { break; }
@@ -117,16 +116,16 @@ class Dinic {
     }
 
 public:
-    Dinic(node_t n, const Graph_f& graph) :
-        m_n(n),
+    Dinic(const Graph<Node, Cost>& graph) :
+        m_n(graph.size()),
         m_graph(construct_graph(graph)),
-        m_to_list(construct_to_list(n, graph)) {
+        m_to_list(construct_to_list(graph)) {
     }
 
-    auto max_flow(node_t s, node_t t)const {
+    auto max_flow(Node s, Node t)const {
         auto residual = construct_residual(s, t);
 
-        cost_t val = 0;
+        Cost val = 0;
         for(const auto& to : m_to_list[s]) {
             if(m_graph.find({s,to}) == m_graph.end()) { continue; }
             val += m_graph.at({s, to}) - residual[{s, to}];
@@ -134,19 +133,19 @@ public:
         return val;
     }
 
-    auto get_cut_list(node_t s, node_t t) const {
+    auto get_cut_list(Node s, Node t) const {
         // 残余グラフで始点から到達できる集合
-        std::unordered_set<node_t> st;
+        std::unordered_set<Node> st;
 
         auto residual = construct_residual(s, t);
-        std::queue<node_t> q;
-        auto add = [&](node_t t) {
+        std::queue<Node> q;
+        auto add = [&](Node t) {
             if(st.find(t) != st.end()) { return; }
             q.emplace(t);
             st.emplace(t);
         };
         add(s);
-        std::deque<node_t> ans;
+        std::deque<Node> ans;
         while(!q.empty()) {
             auto f = q.front();
             q.pop();
@@ -156,7 +155,7 @@ public:
             }
         }
 
-        std::deque<std::pair<node_t, node_t>> cut;
+        std::deque<std::pair<Node, Node>> cut;
         for(const auto& f : st) for(const auto& t : m_to_list[f]) {
             if(st.find(t) == st.end() &&
                m_graph.find({f,t}) != m_graph.end()) {
@@ -167,15 +166,15 @@ public:
         return cut;
     }
 
-    auto get_edge(node_t s, node_t t)const {
+    auto get_edge(Node s, Node t)const {
         auto residual = construct_residual(s, t);
 
-        Graph_f edge;
-        for(node_t from = 0; from < m_n; ++from) {
+        auto edge = Graph<Node, Cost>(m_n);
+        for(Node from = 0; from < m_n; ++from) {
             for(const auto& to : m_to_list[from]) {
                 if(m_graph.find({from,to}) == m_graph.end()) { continue; }
                 auto val = m_graph.at({from, to}) - residual[{from, to}];
-                if(val > 0) { edge.emplace(from, std::pair<node_t, cost_t>{to, val}); }
+                if(val > 0) { edge.addEdge(from, to, val); }
             }
         }
         return edge;
