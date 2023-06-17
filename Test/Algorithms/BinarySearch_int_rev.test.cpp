@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "./../../Library/Algorithms/binarySearch.hpp"
+#include "./../../Library/Algorithms/BinarySearch.hpp"
 
 using ll = long long;
 using std::cout;
