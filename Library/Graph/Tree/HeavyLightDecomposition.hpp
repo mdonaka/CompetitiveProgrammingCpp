@@ -4,49 +4,46 @@
 #include <queue>
 #include <stack>
 
+#include "../Graph.hpp"
+
+template<class Node, class Cost>
 class HeavyLightDecomposition {
 
-    using node_t = int;
-    using Graph_f = std::unordered_multimap<node_t, node_t>;
-    using Graph = std::unordered_map<node_t, std::deque<node_t>>;
+    using GraphOrderd = std::unordered_map<Node, std::deque<Node>>;
 
-    const node_t m_n;
-    const std::vector<node_t> m_size;
-    const Graph m_tree;
-    const std::vector<node_t> m_height;
-    const std::vector<std::pair<node_t, node_t>> m_root_par;
-    const std::vector<node_t> m_ids;
-    const std::vector<node_t> m_order;
-    const std::vector<node_t> m_edge_ids;
+    const Node m_n;
+    const std::vector<Node> m_size;
+    const GraphOrderd m_tree;
+    const std::vector<Node> m_height;
+    const std::vector<std::pair<Node, Node>> m_root_par;
+    const std::vector<Node> m_ids;
+    const std::vector<Node> m_order;
+    const std::vector<Node> m_edge_ids;
 
-    static auto constructGraph(node_t n, const Graph_f& tree) {
-        std::deque<std::pair<node_t, node_t>> order;
-        std::vector<node_t> used(n);
-        std::stack<std::pair<node_t, node_t>> stk;
+    static auto constructGraph(const Graph<Node, Cost>& tree) {
+        auto n = tree.size();
+        std::deque<std::pair<Node, Node>> order;
+        std::vector<Node> used(n);
+        std::stack<std::pair<Node, Node>> stk;
         stk.emplace(0, -1); used[0] = true;
         while(!stk.empty()) {
             auto [f, p] = stk.top();
             order.emplace_front(f, p);
             stk.pop();
-            auto range = tree.equal_range(f);
-            for(auto itr = range.first; itr != range.second; ++itr) {
-                auto t = itr->second;
-                if(!used[t]) {
-                    used[t] = true;
-                    stk.emplace(t, f);
-                }
+            for(const auto& [t, _] : tree.getEdges(f)) {
+                if(used[t]) { continue;; }
+                used[t] = true;
+                stk.emplace(t, f);
             }
         }
 
-        std::vector<node_t> size(n, 1);
-        Graph hld_tree;
+        std::vector<Node> size(n, 1);
+        GraphOrderd hld_tree;
         for(const auto& [f, p] : order) {
-            auto range = tree.equal_range(f);
-            node_t size_sum = 1;
-            node_t size_max = 0;
-            std::deque<node_t> to_list;
-            for(auto itr = range.first; itr != range.second; ++itr) {
-                auto t = itr->second;
+            Node size_sum = 1;
+            Node size_max = 0;
+            std::deque<Node> to_list;
+            for(const auto& [t, _] : tree.getEdges(f)) {
                 if(t == p) { continue; }
                 if(size[t] > size_max) {
                     size_max = size[t];
@@ -64,31 +61,27 @@ class HeavyLightDecomposition {
         return hld_tree;
     }
 
-    static auto constructSize(node_t n, const Graph_f& tree) {
-        std::deque<std::pair<node_t, node_t>> order;
-        std::vector<node_t> used(n);
-        std::stack<std::pair<node_t, node_t>> stk;
+    static auto constructSize(const Graph<Node, Cost>& tree) {
+        auto n = tree.size();
+        std::deque<std::pair<Node, Node>> order;
+        std::vector<Node> used(n);
+        std::stack<std::pair<Node, Node>> stk;
         stk.emplace(0, -1); used[0] = true;
         while(!stk.empty()) {
             auto [f, p] = stk.top();
             order.emplace_front(f, p);
             stk.pop();
-            auto range = tree.equal_range(f);
-            for(auto itr = range.first; itr != range.second; ++itr) {
-                auto t = itr->second;
-                if(!used[t]) {
-                    used[t] = true;
-                    stk.emplace(t, f);
-                }
+            for(const auto& [t, _] : tree.getEdges(f)) {
+                if(used[t]) { continue;; }
+                used[t] = true;
+                stk.emplace(t, f);
             }
         }
 
-        std::vector<node_t> size(n, 1);
+        std::vector<Node> size(n, 1);
         for(const auto& [f, p] : order) {
-            auto range = tree.equal_range(f);
-            node_t size_sum = 1;
-            for(auto itr = range.first; itr != range.second; ++itr) {
-                auto t = itr->second;
+            Node size_sum = 1;
+            for(const auto& [t, _] : tree.getEdges(f)) {
                 if(t == p) { continue; }
                 size_sum += size[t];
             }
@@ -98,9 +91,9 @@ class HeavyLightDecomposition {
 
     }
 
-    static auto constructRootPar(node_t n, const Graph& tree) {
-        std::vector<std::pair<node_t, node_t>> root_par(n);
-        std::stack<std::tuple<node_t, node_t, node_t>> stk;
+    static auto constructRootPar(Node n, const GraphOrderd& tree) {
+        std::vector<std::pair<Node, Node>> root_par(n);
+        std::stack<std::tuple<Node, Node, Node>> stk;
         stk.emplace(0, 0, -1);
         while(!stk.empty()) {
             auto [f, root, par] = stk.top();
@@ -116,9 +109,9 @@ class HeavyLightDecomposition {
         }
         return root_par;
     }
-    static auto constructHeight(node_t n, const Graph& tree) {
-        std::vector<node_t> height(n);
-        std::queue<node_t> q;
+    static auto constructHeight(Node n, const GraphOrderd& tree) {
+        std::vector<Node> height(n);
+        std::queue<Node> q;
         q.emplace(0);
         while(!q.empty()) {
             auto f = q.front();
@@ -133,9 +126,9 @@ class HeavyLightDecomposition {
     }
 
     auto constructIds() const {
-        std::vector<node_t> ids(m_n);
-        node_t val = 0;
-        std::stack<node_t> stk;
+        std::vector<Node> ids(m_n);
+        Node val = 0;
+        std::stack<Node> stk;
         stk.emplace(0);
         while(!stk.empty()) {
             auto f = stk.top();
@@ -148,7 +141,7 @@ class HeavyLightDecomposition {
     }
 
     auto constructOrder()const {
-        std::vector<node_t> order(m_n);
+        std::vector<Node> order(m_n);
         for(int i = 0; i < m_n; ++i) { order[m_ids[i]] = i; }
         return order;
     }
@@ -159,10 +152,10 @@ class HeavyLightDecomposition {
      * [-1, -1, 0]
      */
     auto constructEdgeIds() const {
-        node_t edge_size = (m_n >> 1);
-        std::vector<node_t> edge_ids(m_n, -1);
-        node_t val = 0;
-        std::stack<node_t> stk;
+        Node edge_size = (m_n >> 1);
+        std::vector<Node> edge_ids(m_n, -1);
+        Node val = 0;
+        std::stack<Node> stk;
         stk.emplace(0);
         while(!stk.empty()) {
             auto f = stk.top();
@@ -176,22 +169,22 @@ class HeavyLightDecomposition {
 
 public:
 
-    HeavyLightDecomposition(node_t n, const Graph_f& tree) :
-        m_n(n),
-        m_size(constructSize(n, tree)),
-        m_tree(constructGraph(n, tree)),
-        m_root_par(constructRootPar(n, m_tree)),
-        m_height(constructHeight(n, m_tree)),
+    HeavyLightDecomposition(const Graph<Node, Cost>& tree) :
+        m_n(tree.size()),
+        m_size(constructSize(tree)),
+        m_tree(constructGraph(tree)),
+        m_root_par(constructRootPar(m_n, m_tree)),
+        m_height(constructHeight(m_n, m_tree)),
         m_ids(constructIds()),
         m_order(constructOrder()),
         m_edge_ids(constructEdgeIds()) {
     }
 
-    auto getId(node_t i)const { return m_ids[i]; }
-    auto getEdgeId(node_t i)const { return m_edge_ids[i]; }
-    auto getOrder(node_t i)const { return m_order[i]; }
+    auto getId(Node i)const { return m_ids[i]; }
+    auto getEdgeId(Node i)const { return m_edge_ids[i]; }
+    auto getOrder(Node i)const { return m_order[i]; }
 
-    auto lca(node_t f, node_t t)const {
+    auto lca(Node f, Node t)const {
         do {
             auto [fr, fp] = m_root_par[f];
             auto [tr, tp] = m_root_par[t];
@@ -203,9 +196,9 @@ public:
         return (m_height[f] < m_height[t]) ? f : t;
     }
 
-    auto range(node_t f, node_t t)const {
-        std::deque<std::pair<node_t, node_t>> ret;
-        auto add = [&](node_t f, node_t t) {
+    auto range(Node f, Node t)const {
+        std::deque<std::pair<Node, Node>> ret;
+        auto add = [&](Node f, Node t) {
             auto l = std::min(m_ids[f], m_ids[t]);
             auto r = std::max(m_ids[f], m_ids[t]);
             ret.emplace_back(l, r);
@@ -221,10 +214,10 @@ public:
         return ret;
     }
 
-    auto rangeEdge(node_t f, node_t t)const {
-        node_t edge_size = (m_n >> 1);
-        std::deque<std::pair<node_t, node_t>> ret;
-        auto add = [&](node_t f, node_t t) {
+    auto rangeEdge(Node f, Node t)const {
+        Node edge_size = (m_n >> 1);
+        std::deque<std::pair<Node, Node>> ret;
+        auto add = [&](Node f, Node t) {
             auto l = std::min(m_ids[f], m_ids[t]);
             auto r = std::max(m_ids[f], m_ids[t]);
             if(m_order[l] <= edge_size) { ++l; }
@@ -245,8 +238,8 @@ public:
         return ret;
     }
 
-    auto rangeSubTree(node_t f)const {
-        return std::pair<node_t, node_t>{
+    auto rangeSubTree(Node f)const {
+        return std::pair<Node, Node>{
             m_ids[f], m_ids[f] + m_size[f] - 1
         };
     }
