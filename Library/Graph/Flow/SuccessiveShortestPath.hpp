@@ -17,6 +17,16 @@ class SuccessiveShortestPath {
     using GraphCost = std::vector<std::vector<Cost>>;
 
     const Graph<Node, std::pair<Cap, Cost>> m_graph;
+    const Graph<Node, bool> m_graph_undirected;
+
+
+    auto construct_graph_undirected()const {
+        auto graph_undirected = Graph<Node, bool>(m_graph.size());
+        for(const auto& [f, t] : m_graph.getEdgesAll2()) {
+            graph_undirected.addEdgeUndirected(f, t);
+        }
+        return graph_undirected;
+    }
 
     auto construct_graph_cap()const {
         auto n = m_graph.size();
@@ -69,7 +79,7 @@ class SuccessiveShortestPath {
         cost[s] = 0;
         for(int _ = 0; _ < n; ++_) {
             for(int from = 0; from < n; ++from) {
-                for(const auto& [to, _] : m_graph.getEdges(from)) {
+                for(const auto& [to, _] : m_graph_undirected.getEdges(from)) {
                     if(residual_cap[from][to] > 0) {
                         cost[to] = std::min(cost[to], cost[from] + residual_cost[from][to]);
                     }
@@ -97,7 +107,7 @@ class SuccessiveShortestPath {
             auto [nowCost, from] = q.top();
             q.pop();
             if(min[from].first < nowCost) { continue; }
-            for(const auto& [to, _] : m_graph.getEdges(from)) {
+            for(const auto& [to, _] : m_graph_undirected.getEdges(from)) {
                 if(residual_cap[from][to] == 0) { continue; }
                 auto potential = residual_cost[from][to] + p[from] - p[to];
                 add(to, nowCost + potential, from);
@@ -118,7 +128,8 @@ class SuccessiveShortestPath {
 public:
     /* 単純グラフを仮定 */
     SuccessiveShortestPath(const Graph<Node, std::pair<Cost, Cap>>& graph) :
-        m_graph(graph) {
+        m_graph(graph),
+        m_graph_undirected(construct_graph_undirected()) {
     }
 
     auto slope(Node s, Node t, Cap c = 1e18)const {
