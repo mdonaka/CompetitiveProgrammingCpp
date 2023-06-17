@@ -4,6 +4,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/CoordinateCompression_comp.test.cpp
+    title: Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/CoordinateCompression_to.test.cpp
+    title: Test/Algorithms/CoordinateCompression_to.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RMQ.test.cpp
     title: Test/DataStructure/SegmentTree_RMQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -113,6 +119,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
+  - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/Algorithms/CoordinateCompression_to.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp

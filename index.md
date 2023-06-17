@@ -7,6 +7,9 @@ data:
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/Algorithms/CoordinateCompression.hpp
+      title: Library/Algorithms/CoordinateCompression.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/EuclideanAlgorithm.hpp
       title: Library/Algorithms/EuclideanAlgorithm.hpp
     - icon: ':heavy_check_mark:'
@@ -180,6 +183,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/BinarySearch_int_rev.test.cpp
       title: Test/Algorithms/BinarySearch_int_rev.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Algorithms/CoordinateCompression_comp.test.cpp
+      title: Test/Algorithms/CoordinateCompression_comp.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Algorithms/CoordinateCompression_to.test.cpp
+      title: Test/Algorithms/CoordinateCompression_to.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/EuclideanAlgorithm.test.cpp
       title: Test/Algorithms/EuclideanAlgorithm.test.cpp
