@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/Graph/Tree/LowestCommonAncestor.hpp
+    title: Library/Graph/Tree/LowestCommonAncestor.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <vector>\r\n\
@@ -38,7 +44,7 @@ data:
     \ rev.addEdge(to, from, c);\r\n        }\r\n        return rev;\r\n    }\r\n \
     \   auto size()const { return m_n; };\r\n};\n#line 7 \"Library/Graph/Normal/BFS.hpp\"\
     \n\r\ntemplate<class Node, class Cost, class Lambda>\r\nauto bfs(const Graph<Node,\
-    \ Cost>& graph, Node root, const Lambda& lambda) {\r\n    auto n = graph.size();\r\
+    \ Cost>& graph, const Node& root, const Lambda& lambda) {\r\n    auto n = graph.size();\r\
     \n    std::vector<bool> used(n); used[root] = true;\r\n    std::queue<Node> q;\
     \ q.emplace(root);\r\n    while(!q.empty()) {\r\n        auto from = q.front();\r\
     \n        q.pop();\r\n        for(const auto& [to, _] : graph.getEdges(from))\
@@ -47,21 +53,23 @@ data:
     \    }\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include <vector>\r\n#include <queue>\r\n\r\n#include\
     \ \"./../Graph.hpp\" \r\n\r\ntemplate<class Node, class Cost, class Lambda>\r\n\
-    auto bfs(const Graph<Node, Cost>& graph, Node root, const Lambda& lambda) {\r\n\
-    \    auto n = graph.size();\r\n    std::vector<bool> used(n); used[root] = true;\r\
-    \n    std::queue<Node> q; q.emplace(root);\r\n    while(!q.empty()) {\r\n    \
-    \    auto from = q.front();\r\n        q.pop();\r\n        for(const auto& [to,\
-    \ _] : graph.getEdges(from)) {\r\n            if(used[to]) { continue; }\r\n \
-    \           q.emplace(to);\r\n            used[to] = true;\r\n            lambda(from,\
-    \ to);\r\n        }\r\n    }\r\n}\r\n"
+    auto bfs(const Graph<Node, Cost>& graph, const Node& root, const Lambda& lambda)\
+    \ {\r\n    auto n = graph.size();\r\n    std::vector<bool> used(n); used[root]\
+    \ = true;\r\n    std::queue<Node> q; q.emplace(root);\r\n    while(!q.empty())\
+    \ {\r\n        auto from = q.front();\r\n        q.pop();\r\n        for(const\
+    \ auto& [to, _] : graph.getEdges(from)) {\r\n            if(used[to]) { continue;\
+    \ }\r\n            q.emplace(to);\r\n            used[to] = true;\r\n        \
+    \    lambda(from, to);\r\n        }\r\n    }\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/BFS.hpp
-  requiredBy: []
-  timestamp: '2023-06-18 05:43:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Library/Graph/Tree/LowestCommonAncestor.hpp
+  timestamp: '2023-06-18 06:04:34+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   - icon: ':heavy_check_mark:'
@@ -20,6 +20,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/dijkstra.hpp
     title: Library/Graph/Normal/dijkstra.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Tree/HeavyLightDecomposition.hpp
+    title: Library/Graph/Tree/HeavyLightDecomposition.hpp
+  - icon: ':x:'
+    path: Library/Graph/Tree/LowestCommonAncestor.hpp
+    title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
@@ -40,11 +46,20 @@ data:
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\n#include\
@@ -106,16 +121,21 @@ data:
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
   - Library/Graph/Normal/Prim.hpp
   - Library/Graph/Normal/BFS.hpp
+  - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/TreeDP.hpp
+  - Library/Graph/Tree/HeavyLightDecomposition.hpp
   timestamp: '2023-06-14 03:49:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Normal/WarshallFloyd.test.cpp
   - Test/Graph/Normal/Kruskal.test.cpp
   - Test/Graph/Normal/Dijkstra.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Graph/Normal/Prim.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
+  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
 documentation_of: Library/Graph/Graph.hpp
 layout: document
 redirect_from:

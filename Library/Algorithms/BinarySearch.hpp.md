@@ -1,11 +1,32 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Library/String/LCPArray.hpp
+    title: Library/String/LCPArray.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/String/SuffixArray.hpp
+    title: Library/String/SuffixArray.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_double_rev.test.cpp
+    title: Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_int.test.cpp
+    title: Test/Algorithms/BinarySearch_int.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_int_rev.test.cpp
+    title: Test/Algorithms/BinarySearch_int_rev.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/String/LCPArray.test.cpp
+    title: Test/String/LCPArray.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/String/SuffixArray.test.cpp
+    title: Test/String/SuffixArray.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n\r\ntemplate <class\
@@ -36,10 +57,17 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Algorithms/BinarySearch.hpp
-  requiredBy: []
+  requiredBy:
+  - Library/String/LCPArray.hpp
+  - Library/String/SuffixArray.hpp
   timestamp: '2023-06-18 05:18:39+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/String/LCPArray.test.cpp
+  - Test/String/SuffixArray.test.cpp
+  - Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp
 layout: document
 redirect_from:
