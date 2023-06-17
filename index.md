@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: Library/Algorithms
     pages:
+    - icon: ':warning:'
+      path: Library/Algorithms/BinarySearch.hpp
+      title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/EuclideanAlgorithm.hpp
       title: Library/Algorithms/EuclideanAlgorithm.hpp
@@ -65,6 +68,9 @@ data:
   - name: Library/Graph/Normal
     pages:
     - icon: ':warning:'
+      path: Library/Graph/Normal/BFS.hpp
+      title: Library/Graph/Normal/BFS.hpp
+    - icon: ':warning:'
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
     - icon: ':heavy_check_mark:'
@@ -104,17 +110,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
-  - name: Library/Search
-    pages:
-    - icon: ':warning:'
-      path: Library/Search/BFSonGraph.hpp
-      title: Library/Search/BFSonGraph.hpp
-    - icon: ':warning:'
-      path: Library/Search/bfs.hpp
-      title: Library/Search/bfs.hpp
-    - icon: ':heavy_check_mark:'
-      path: Library/Search/binarySearch.hpp
-      title: Library/Search/binarySearch.hpp
   - name: Library/Simd
     pages:
     - icon: ':warning:'
@@ -122,13 +117,13 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
     - icon: ':heavy_check_mark:'
@@ -176,6 +171,15 @@ data:
   verificationCategories:
   - name: Test/Algorithms
     pages:
+    - icon: ':x:'
+      path: Test/Algorithms/BinarySearch_double_rev.test.cpp
+      title: Test/Algorithms/BinarySearch_double_rev.test.cpp
+    - icon: ':x:'
+      path: Test/Algorithms/BinarySearch_int.test.cpp
+      title: Test/Algorithms/BinarySearch_int.test.cpp
+    - icon: ':x:'
+      path: Test/Algorithms/BinarySearch_int_rev.test.cpp
+      title: Test/Algorithms/BinarySearch_int_rev.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/EuclideanAlgorithm.test.cpp
       title: Test/Algorithms/EuclideanAlgorithm.test.cpp
@@ -257,6 +261,9 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
+    - icon: ':x:'
+      path: Test/Graph/Normal/BFS.test.cpp
+      title: Test/Graph/Normal/BFS.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
@@ -291,20 +298,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/PlaneGeometry/ConvexHull.test.cpp
       title: Test/PlaneGeometry/ConvexHull.test.cpp
-  - name: Test/Search
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: Test/Search/binarySearch_double_rev.test.cpp
-      title: Test/Search/binarySearch_double_rev.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Search/binarySearch_int.test.cpp
-      title: Test/Search/binarySearch_int.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Search/binarySearch_int_rev.test.cpp
-      title: Test/Search/binarySearch_int_rev.test.cpp
   - name: Test/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
     - icon: ':heavy_check_mark:'
@@ -313,7 +309,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
     - icon: ':heavy_check_mark:'

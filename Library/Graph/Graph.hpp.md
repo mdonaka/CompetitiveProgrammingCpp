@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Graph/Normal/BFS.hpp
+    title: Library/Graph/Normal/BFS.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
@@ -102,6 +105,7 @@ data:
   - Library/Graph/Normal/Kruskal.hpp
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
   - Library/Graph/Normal/Prim.hpp
+  - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Tree/TreeDP.hpp
   timestamp: '2023-06-14 03:49:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
