@@ -1,5 +1,5 @@
 #pragma once
-#include "./../Search/binarySearch.hpp"
+#include "./../Algorithms/binarySearch.hpp"
 
 #include <iostream>
 #include <vector>
