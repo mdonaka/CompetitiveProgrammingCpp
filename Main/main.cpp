@@ -45,14 +45,11 @@ template<class T>constexpr inline auto d_val(T a, T b) { return a; }
 #define REPI_ERACE2(it, b, e) for(auto it = (b); it != (e);)
 #define REPI_ERACE(it, c) REPI_ERACE2(it, (c).begin(), (c).end())
 #define ALL(x) (x).begin(),(x).end()
-#define cauto const auto&
 /* macro func */
 template<class T>
 inline auto sort(T& t) { std::sort(ALL(t)); }
 template<class T>
 inline auto rsort(T& t) { std::sort((t).rbegin(), (t).rend()); }
-template<class T>
-inline auto unique(T& t) { (t).erase(unique((t).begin(), (t).end()), (t).end()); }
 template<class T, class S>
 inline auto chmax(T& t, const S& s) { if(s > t) { t = s; return true; } return false; }
 template<class T, class S>
@@ -61,51 +58,31 @@ inline auto BR() { std::cout << "\n"; }
 
 /* type define */
 using ll = long long;
-using VS = std::vector<std::string>;
-using VL = std::vector<long long>;
-using VVL = std::vector<VL>;
-using VVVL = std::vector<VVL>;
-using VVVVL = std::vector<VVVL>;
-using VVVVVL = std::vector<VVVVL>;
-using VD = std::vector<double>;
 template<class T>
 using V = std::vector<T>;
+using VS = V<std::string>;
+using VL = V<ll>;
+using VVL = V<VL>;
 template<class T = ll, class U = T>
 using P = std::pair<T, U>;
 using PAIR = P<ll>;
 
 /* using std */
 using std::cout;
-constexpr char endl = '\n';
 using std::cin;
-using std::pair;
-using std::string;
-using std::stack;
-using std::queue;
-using std::deque;
-using std::vector;
-using std::list;
-using std::map;
-using std::unordered_map;
-using std::multimap;
-using std::unordered_multimap;
-using std::set;
-using std::unordered_set;
-using std::unordered_multiset;
-using std::multiset;
-using std::bitset;
-using std::priority_queue;
+using std::cerr;
+constexpr char endl = '\n';
 
 /* Initial processing  */
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
 /* define hash */
 namespace std {
-template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return hash<ll>()(1000000000 * x.first + x.second); } };
+template <>	class hash<std::pair<ll, ll>> { public:	size_t operator()(const std::pair<ll, ll>& x) const { return std::hash<ll>()(x.first << 31 | x.second); } };
 }
 
 /* input */
-template<class T> std::istream& operator >> (std::istream& is, vector<T>& vec) { for(T& x : vec) is >> x; return is; }
+template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T& x : vec) is >> x; return is; }
 
 /* constant value */
 // constexpr ll MOD = 1000000007;
