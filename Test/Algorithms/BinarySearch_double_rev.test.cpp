@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "./../../Library/Search/binarySearch.hpp"
+#include "./../../Library/Algorithms/binarySearch.hpp"
 
 using ll = long long;
 using std::cout;
