@@ -25,7 +25,7 @@ auto treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {
             if(used[to]) { continue; }
             lambda(from, to);
             --in[to];
-            if(in[to] == 1) { q.emplace(to); }
+            if(to != root && in[to] == 1) { q.emplace(to); }
         }
     }
 }
