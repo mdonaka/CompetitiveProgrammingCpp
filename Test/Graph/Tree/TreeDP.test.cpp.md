@@ -54,15 +54,15 @@ data:
     \ {\r\n        auto from = q.front();\r\n        q.pop();\r\n        used[from]\
     \ = true;\r\n\r\n        for(const auto& [to, _] : tree.getEdges(from)) {\r\n\
     \            if(used[to]) { continue; }\r\n            lambda(from, to);\r\n \
-    \           --in[to];\r\n            if(in[to] == 1) { q.emplace(to); }\r\n  \
-    \      }\r\n    }\r\n}\r\n#line 14 \"Test/Graph/Tree/TreeDP.test.cpp\"\n\r\nsigned\
-    \ main() {\r\n    ll n;\r\n    cin >> n;\r\n    Graph<int, bool> tree(n);\r\n\
-    \    for(int f = 0; f < n - 1; ++f) {\r\n        int u, v;\r\n        cin >> u\
-    \ >> v;\r\n        --u; --v;\r\n        tree.addEdgeUndirected(u, v);\r\n    }\r\
-    \n\r\n    std::vector<int> dp1(n);\r\n    std::vector<int> dp2(n, 1);\r\n    treeDP(tree,\
-    \ 0, [&](int f, int t) {\r\n        dp1[t] += std::max(dp1[f], dp2[f]);\r\n  \
-    \      dp2[t] += std::max(dp1[f], dp2[f] - 1);\r\n    });\r\n\r\n    auto ans\
-    \ = std::max(dp1[0], dp2[0]);\r\n    cout << ans << endl;\r\n}\n"
+    \           --in[to];\r\n            if(to != root && in[to] == 1) { q.emplace(to);\
+    \ }\r\n        }\r\n    }\r\n}\r\n#line 14 \"Test/Graph/Tree/TreeDP.test.cpp\"\
+    \n\r\nsigned main() {\r\n    ll n;\r\n    cin >> n;\r\n    Graph<int, bool> tree(n);\r\
+    \n    for(int f = 0; f < n - 1; ++f) {\r\n        int u, v;\r\n        cin >>\
+    \ u >> v;\r\n        --u; --v;\r\n        tree.addEdgeUndirected(u, v);\r\n  \
+    \  }\r\n\r\n    std::vector<int> dp1(n);\r\n    std::vector<int> dp2(n, 1);\r\n\
+    \    treeDP(tree, 0, [&](int f, int t) {\r\n        dp1[t] += std::max(dp1[f],\
+    \ dp2[f]);\r\n        dp2[t] += std::max(dp1[f], dp2[f] - 1);\r\n    });\r\n\r\
+    \n    auto ans = std::max(dp1[0], dp2[0]);\r\n    cout << ans << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/763\"\r\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n#include <queue>\r\n\r\nusing ll = long long;\r\
     \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/TreeDP.test.cpp
   requiredBy: []
-  timestamp: '2023-06-14 04:30:44+09:00'
+  timestamp: '2023-06-19 03:24:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/TreeDP.test.cpp

@@ -49,8 +49,8 @@ data:
     \ {\r\n        auto from = q.front();\r\n        q.pop();\r\n        used[from]\
     \ = true;\r\n\r\n        for(const auto& [to, _] : tree.getEdges(from)) {\r\n\
     \            if(used[to]) { continue; }\r\n            lambda(from, to);\r\n \
-    \           --in[to];\r\n            if(in[to] == 1) { q.emplace(to); }\r\n  \
-    \      }\r\n    }\r\n}\r\n"
+    \           --in[to];\r\n            if(to != root && in[to] == 1) { q.emplace(to);\
+    \ }\r\n        }\r\n    }\r\n}\r\n"
   code: "#pragma once\r\n#include <vector> \r\n#include <queue>\r\n\r\n#include \"\
     ./../Graph.hpp\"\r\n\r\ntemplate<class Node, class Cost, class Lambda>\r\nauto\
     \ treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {\r\n\
@@ -61,14 +61,14 @@ data:
     \    }\r\n    while(!q.empty()) {\r\n        auto from = q.front();\r\n      \
     \  q.pop();\r\n        used[from] = true;\r\n\r\n        for(const auto& [to,\
     \ _] : tree.getEdges(from)) {\r\n            if(used[to]) { continue; }\r\n  \
-    \          lambda(from, to);\r\n            --in[to];\r\n            if(in[to]\
-    \ == 1) { q.emplace(to); }\r\n        }\r\n    }\r\n}\r\n"
+    \          lambda(from, to);\r\n            --in[to];\r\n            if(to !=\
+    \ root && in[to] == 1) { q.emplace(to); }\r\n        }\r\n    }\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/TreeDP.hpp
   requiredBy: []
-  timestamp: '2023-06-14 03:50:55+09:00'
+  timestamp: '2023-06-19 03:24:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/TreeDP.test.cpp
