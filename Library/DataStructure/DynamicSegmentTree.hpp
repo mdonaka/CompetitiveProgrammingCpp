@@ -14,7 +14,7 @@ public:
     static bool const value = decltype(check(std::declval<T>()))::value;
 };
 
-template<class Monoid, int size = static_cast<int>(1e9), std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr>
+template<class Monoid, int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr>
 class DynamicSegmentTree {
 private:
     std::unordered_map<int, Monoid> m_node;
