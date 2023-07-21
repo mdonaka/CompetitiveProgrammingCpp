@@ -67,10 +67,10 @@ public:
 
 
 template<
-    class S,   // —v‘f‚ÌŒ^
-    S element, // Œ³
-    class T // lambda‚ÍC++20‚¶‚á‚È‚¢‚Æ“n‚¹‚È‚©‚Á‚½DDD
-    // S T(S, S)  // 2€‰‰ŽZŽq
+    class S,   // è¦ç´ ã®åž‹
+    S element, // å…ƒ
+    class T // lambdaã¯C++20ã˜ã‚ƒãªã„ã¨æ¸¡ã›ãªã‹ã£ãŸï¼Žï¼Žï¼Ž
+    // S T(S, S)  // 2é …æ¼”ç®—å­
 >
 struct Monoid {
     S m_val;
