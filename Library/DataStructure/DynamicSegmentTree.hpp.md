@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DynamicSegmentTree.test.cpp
     title: Test/DataStructure/DynamicSegmentTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
     title: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n\r\n#include\
@@ -23,7 +23,7 @@ data:
     \ auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n   \
     \ static std::false_type check(...);\r\npublic:\r\n    static bool const value\
     \ = decltype(check(std::declval<T>()))::value;\r\n};\r\n\r\ntemplate<class Monoid,\
-    \ int size = static_cast<int>(1e9), std::enable_if_t<isMonoid<Monoid>::value,\
+    \ int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value,\
     \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n   \
     \ std::unordered_map<int, Monoid> m_node;\r\n    using S = decltype(Monoid().m_val);\r\
     \n\r\n    auto _get(int i)const { return (m_node.find(i) == m_node.end()) ? Monoid()\
@@ -63,7 +63,7 @@ data:
     \  template <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x),\
     \ std::true_type{});\r\n    static std::false_type check(...);\r\npublic:\r\n\
     \    static bool const value = decltype(check(std::declval<T>()))::value;\r\n\
-    };\r\n\r\ntemplate<class Monoid, int size = static_cast<int>(1e9), std::enable_if_t<isMonoid<Monoid>::value,\
+    };\r\n\r\ntemplate<class Monoid, int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value,\
     \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n   \
     \ std::unordered_map<int, Monoid> m_node;\r\n    using S = decltype(Monoid().m_val);\r\
     \n\r\n    auto _get(int i)const { return (m_node.find(i) == m_node.end()) ? Monoid()\
@@ -102,8 +102,8 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-07-22 05:10:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-07-22 05:28:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp

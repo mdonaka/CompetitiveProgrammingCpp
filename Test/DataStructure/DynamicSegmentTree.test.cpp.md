@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1282
@@ -22,7 +22,7 @@ data:
     class isMonoid {\r\n    template <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x),\
     \ std::true_type{});\r\n    static std::false_type check(...);\r\npublic:\r\n\
     \    static bool const value = decltype(check(std::declval<T>()))::value;\r\n\
-    };\r\n\r\ntemplate<class Monoid, int size = static_cast<int>(1e9), std::enable_if_t<isMonoid<Monoid>::value,\
+    };\r\n\r\ntemplate<class Monoid, int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value,\
     \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n   \
     \ std::unordered_map<int, Monoid> m_node;\r\n    using S = decltype(Monoid().m_val);\r\
     \n\r\n    auto _get(int i)const { return (m_node.find(i) == m_node.end()) ? Monoid()\
@@ -84,8 +84,8 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2023-07-22 05:15:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-22 05:28:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree.test.cpp
 layout: document
