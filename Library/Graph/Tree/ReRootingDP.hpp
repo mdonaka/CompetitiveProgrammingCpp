@@ -1,6 +1,7 @@
 #pragma once
+#include <unordered_map>
 
-#include "../../Search/BFSonGraph.hpp"
+#include "../../Graph/Normal/BFS.hpp"
 
 /*
  * 部分木の情報をマージするMonoid
