@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []

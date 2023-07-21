@@ -1,18 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1282
     links:
     - https://yukicoder.me/problems/no/1282
-  bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree_test.cpp\"\n#define\
+  bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#include <iostream>\r\
     \n#include <algorithm>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
     \n\r\n#line 4 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n#include <deque>\r\
@@ -54,7 +56,7 @@ data:
     \ {}\r\n    Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid&\
     \ m2)const { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
-    \   }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicSegmentTree_test.cpp\"\n\r\n\
+    \   }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n\r\n\
     using ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
     \ endl = '\\n';\r\n\r\nstruct Functor { auto operator()(ll a, ll b)const { return\
     \ a + b; } };\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n\
@@ -79,16 +81,16 @@ data:
     \ a[i] - 1);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/DynamicSegmentTree.hpp
-  isVerificationFile: false
-  path: Test/DataStructure/DynamicSegmentTree_test.cpp
+  isVerificationFile: true
+  path: Test/DataStructure/DynamicSegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2023-07-22 05:10:41+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-07-22 05:15:52+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: Test/DataStructure/DynamicSegmentTree_test.cpp
+documentation_of: Test/DataStructure/DynamicSegmentTree.test.cpp
 layout: document
 redirect_from:
-- /library/Test/DataStructure/DynamicSegmentTree_test.cpp
-- /library/Test/DataStructure/DynamicSegmentTree_test.cpp.html
-title: Test/DataStructure/DynamicSegmentTree_test.cpp
+- /verify/Test/DataStructure/DynamicSegmentTree.test.cpp
+- /verify/Test/DataStructure/DynamicSegmentTree.test.cpp.html
+title: Test/DataStructure/DynamicSegmentTree.test.cpp
 ---
