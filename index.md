@@ -35,6 +35,9 @@ data:
       path: Library/DataStructure/DisjointSparseTable.hpp
       title: Library/DataStructure/DisjointSparseTable.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/DataStructure/DynamicSegmentTree.hpp
+      title: Library/DataStructure/DynamicSegmentTree.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/LazySegmentTree.hpp
       title: Library/DataStructure/LazySegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -160,6 +163,11 @@ data:
     - icon: ':warning:'
       path: Main/main_srm.cpp
       title: Main/main_srm.cpp
+  - name: Test/DataStructure
+    pages:
+    - icon: ':warning:'
+      path: Test/DataStructure/DynamicSegmentTree_test.cpp
+      title: Test/DataStructure/DynamicSegmentTree_test.cpp
   - name: Utils
     pages:
     - icon: ':warning:'
@@ -224,6 +232,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
       title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
+      title: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
+      title: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
       title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp

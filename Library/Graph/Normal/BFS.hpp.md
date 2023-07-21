@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
+  - icon: ':warning:'
+    path: Library/Graph/Tree/ReRootingDP.hpp
+    title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/BFS.test.cpp
@@ -69,6 +72,7 @@ data:
   path: Library/Graph/Normal/BFS.hpp
   requiredBy:
   - Library/Graph/Tree/LowestCommonAncestor.hpp
+  - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2023-06-18 06:04:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
