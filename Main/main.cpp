@@ -77,7 +77,7 @@ constexpr char endl = '\n';
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
 /* define hash */
-constexpr unsigned int static_random() { return __TIME__[0] * __TIME__[1] * __TIME__[3] * __TIME__[4] * __TIME__[6] * __TIME__[7]; }
+constexpr unsigned int static_random() { return 1u * __TIME__[0] * __TIME__[1] * __TIME__[3] * __TIME__[4] * __TIME__[6] * __TIME__[7]; }
 template<class T> struct Hash { auto operator()(T x) const { return std::hash<T>()(x) ^ static_random(); } };
 template<> struct Hash<std::pair<int, int>> { auto operator()(const std::pair<int, int>& x) const { return Hash<long long>()(x.first << 31 | x.second); } };
 
