@@ -1,7 +1,7 @@
 #pragma once
 #include <random>
 #include <vector>
-#include<iostream>
+#include <iostream>
 
 namespace Sample {
 
@@ -13,6 +13,8 @@ namespace Sample {
     public:
         Range(int_fast64_t l, int_fast64_t u) :l(l), u(u) {}
         Range(int_fast64_t u) :l(0), u(u) {}
+        template<class S, class T>
+        Range(const std::pair<S, T>& p) : Range(p.first, p.second) {}
 
         auto normalize(uint_fast64_t val)const {
             return static_cast<int_fast64_t>(val % (u + 1 - l)) + l;
@@ -90,9 +92,9 @@ namespace Sample {
     public:
         auto run(int conut,
                  const auto& gen,
+                 const auto& outputer,
                  const auto& solver1,
                  const auto& solver2,
-                 const auto& outputer,
                  int output_itr = 1000) {
             for(int i = 1; i <= conut; ++i) {
                 if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr << "-- " << i << "th run -" << endl; }
@@ -100,11 +102,11 @@ namespace Sample {
                 if(Inner::apply(solver1, args) != Inner::apply(solver2, args)) {
                     std::cerr << "Failed test" << std::endl;
                     Inner::apply(outputer, args);
-                    return args;
+                    return false;
                 }
             }
             std::cerr << "All test are success!" << std::endl;
-            return decltype(gen()){};
+            return true;
         }
     };
 
