@@ -62,4 +62,50 @@ namespace Sample {
             return rnd_p;
         }
     };
+
+    namespace Inner {
+        template <int N>
+        struct Expand {
+            template <typename F, typename Tuple, typename... Args>
+            static auto apply(F& f, Tuple& t, Args&... args) {
+                return Expand<N - 1>::apply(f, t, std::get<N - 1>(t), args...);
+            }
+        };
+
+        template <>
+        struct Expand<0> {
+            template <typename F, typename Tuple, typename... Args>
+            static auto apply(F& f, Tuple& t, Args&... args) {
+                return f(args...);
+            }
+        };
+
+        template <typename F, typename Tuple>
+        auto apply(F& f, Tuple& t) {
+            return Expand<std::tuple_size<Tuple>::value>::apply(f, t);
+        }
+    };
+
+    class RandomCaseDebugger {
+    public:
+        auto run(int conut,
+                 const auto& gen,
+                 const auto& solver1,
+                 const auto& solver2,
+                 const auto& outputer,
+                 int output_itr = 1000) {
+            for(int i = 1; i <= conut; ++i) {
+                if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr << "-- " << i << "th run -" << endl; }
+                auto args = gen();
+                if(Inner::apply(solver1, args) != Inner::apply(solver2, args)) {
+                    std::cerr << "Failed test" << std::endl;
+                    Inner::apply(outputer, args);
+                    return args;
+                }
+            }
+            std::cerr << "All test are success!" << std::endl;
+            return decltype(gen()){};
+        }
+    };
+
 }
