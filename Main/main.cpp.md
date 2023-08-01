@@ -50,9 +50,9 @@ data:
     \r\n/* using std */\r\nusing std::cout;\r\nusing std::cin;\r\nusing std::cerr;\r\
     \nconstexpr char endl = '\\n';\r\n\r\n/* Initial processing  */\r\nstruct Preprocessing\
     \ { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\
-    \n\r\n/* define hash */\r\nconstexpr unsigned int static_random() { return __TIME__[0]\
-    \ * __TIME__[1] * __TIME__[3] * __TIME__[4] * __TIME__[6] * __TIME__[7]; }\r\n\
-    template<class T> struct Hash { auto operator()(T x) const { return std::hash<T>()(x)\
+    \n\r\n/* define hash */\r\nconstexpr unsigned int static_random() { return 1u\
+    \ * __TIME__[0] * __TIME__[1] * __TIME__[3] * __TIME__[4] * __TIME__[6] * __TIME__[7];\
+    \ }\r\ntemplate<class T> struct Hash { auto operator()(T x) const { return std::hash<T>()(x)\
     \ ^ static_random(); } };\r\ntemplate<> struct Hash<std::pair<int, int>> { auto\
     \ operator()(const std::pair<int, int>& x) const { return Hash<long long>()(x.first\
     \ << 31 | x.second); } };\r\n\r\n/* input */\r\ntemplate<class T> std::istream&\
@@ -64,7 +64,7 @@ data:
   isVerificationFile: false
   path: Main/main.cpp
   requiredBy: []
-  timestamp: '2023-07-22 04:00:32+09:00'
+  timestamp: '2023-07-23 00:17:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main.cpp
