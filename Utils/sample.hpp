@@ -2,6 +2,7 @@
 #include <random>
 #include <vector>
 #include <iostream>
+#include <string>
 
 namespace Sample {
 
@@ -40,7 +41,8 @@ namespace Sample {
         auto generate_random(const Range& range) {
             return rnd.random(range);
         }
-        auto generate_random(const std::pair<int_fast64_t, int_fast64_t>& pair) { return rnd.random(Range(pair.first, pair.second)); }
+        template<class T>
+        auto generate_random(const std::pair<T, T>& pair) { return rnd.random(Range(pair.first, pair.second)); }
         template<class T>
         auto generate_random(const std::vector<T>& ranges) {
             std::vector<long long> v;
@@ -62,6 +64,14 @@ namespace Sample {
             std::iota(rnd_p.begin(), rnd_p.end(), 0);
             std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());
             return rnd_p;
+        }
+
+        auto generate_string(const Range& range, int csize = 26) {
+            auto size = generate_random(range);
+            auto v = generate_random(std::vector<Range>(size, {0,csize - 1}));
+            std::string s = "";
+            for(const auto& c : v) { s += c + 'a'; }
+            return std::make_tuple(size, s);
         }
     };
 
