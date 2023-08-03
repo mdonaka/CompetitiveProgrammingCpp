@@ -75,6 +75,13 @@ namespace Sample {
             for(const auto& c : v) { s += c + 'a'; }
             return std::make_tuple(size, s);
         }
+
+        template<class T>
+        auto shuffle(const std::vector<T>& v_) {
+            auto v = v_;
+            std::shuffle(v.begin(), v.end(), rnd.get_gen());
+            return v;
+        }
     };
 
     namespace Inner {
