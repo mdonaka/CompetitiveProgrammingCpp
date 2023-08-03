@@ -80,27 +80,29 @@ data:
     \n            auto v = generate_random(std::vector<Range>(size, {0,csize - 1}));\r\
     \n            std::string s = \"\";\r\n            for(const auto& c : v) { s\
     \ += c + 'a'; }\r\n            return std::make_tuple(size, s);\r\n        }\r\
-    \n    };\r\n\r\n    namespace Inner {\r\n        template <int N>\r\n        struct\
-    \ Expand {\r\n            template <typename F, typename Tuple, typename... Args>\r\
-    \n            static auto apply(F& f, Tuple& t, Args&... args) {\r\n         \
-    \       return Expand<N - 1>::apply(f, t, std::get<N - 1>(t), args...);\r\n  \
-    \          }\r\n        };\r\n\r\n        template <>\r\n        struct Expand<0>\
-    \ {\r\n            template <typename F, typename Tuple, typename... Args>\r\n\
-    \            static auto apply(F& f, Tuple& t, Args&... args) {\r\n          \
-    \      return f(args...);\r\n            }\r\n        };\r\n\r\n        template\
-    \ <typename F, typename Tuple>\r\n        auto apply(F& f, Tuple& t) {\r\n   \
-    \         return Expand<std::tuple_size<Tuple>::value>::apply(f, t);\r\n     \
-    \   }\r\n    };\r\n\r\n    class RandomCaseDebugger {\r\n    public:\r\n     \
-    \   auto compare(int conut,\r\n                     const auto& gen,\r\n     \
-    \                const auto& outputer,\r\n                     const auto& solver1,\r\
-    \n                     const auto& solver2,\r\n                     int output_itr\
-    \ = 1000) {\r\n            for(int i = 1; i <= conut; ++i) {\r\n             \
-    \   if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr << \"-- \" << i <<\
-    \ \"th run -\" << endl; }\r\n                auto args = gen();\r\n          \
-    \      if(Inner::apply(solver1, args) != Inner::apply(solver2, args)) {\r\n  \
-    \                  std::cerr << \"Failed test\" << std::endl;\r\n            \
-    \        Inner::apply(outputer, args);\r\n                    return false;\r\n\
-    \                }\r\n            }\r\n            std::cerr << \"All test are\
+    \n\r\n        template<class T>\r\n        auto shuffle(const std::vector<T>&\
+    \ v_) {\r\n            auto v = v_;\r\n            std::shuffle(v.begin(), v.end(),\
+    \ rnd.get_gen());\r\n            return v;\r\n        }\r\n    };\r\n\r\n    namespace\
+    \ Inner {\r\n        template <int N>\r\n        struct Expand {\r\n         \
+    \   template <typename F, typename Tuple, typename... Args>\r\n            static\
+    \ auto apply(F& f, Tuple& t, Args&... args) {\r\n                return Expand<N\
+    \ - 1>::apply(f, t, std::get<N - 1>(t), args...);\r\n            }\r\n       \
+    \ };\r\n\r\n        template <>\r\n        struct Expand<0> {\r\n            template\
+    \ <typename F, typename Tuple, typename... Args>\r\n            static auto apply(F&\
+    \ f, Tuple& t, Args&... args) {\r\n                return f(args...);\r\n    \
+    \        }\r\n        };\r\n\r\n        template <typename F, typename Tuple>\r\
+    \n        auto apply(F& f, Tuple& t) {\r\n            return Expand<std::tuple_size<Tuple>::value>::apply(f,\
+    \ t);\r\n        }\r\n    };\r\n\r\n    class RandomCaseDebugger {\r\n    public:\r\
+    \n        auto compare(int conut,\r\n                     const auto& gen,\r\n\
+    \                     const auto& outputer,\r\n                     const auto&\
+    \ solver1,\r\n                     const auto& solver2,\r\n                  \
+    \   int output_itr = 1000) {\r\n            for(int i = 1; i <= conut; ++i) {\r\
+    \n                if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr <<\
+    \ \"-- \" << i << \"th run -\" << endl; }\r\n                auto args = gen();\r\
+    \n                if(Inner::apply(solver1, args) != Inner::apply(solver2, args))\
+    \ {\r\n                    std::cerr << \"Failed test\" << std::endl;\r\n    \
+    \                Inner::apply(outputer, args);\r\n                    return false;\r\
+    \n                }\r\n            }\r\n            std::cerr << \"All test are\
     \ success!\" << std::endl;\r\n            return true;\r\n        }\r\n      \
     \  auto run(int conut,\r\n                 const auto& gen,\r\n              \
     \   const auto& solver) {\r\n            auto tm = Timer::LapTimer();\r\n    \
@@ -141,27 +143,29 @@ data:
     \n            auto v = generate_random(std::vector<Range>(size, {0,csize - 1}));\r\
     \n            std::string s = \"\";\r\n            for(const auto& c : v) { s\
     \ += c + 'a'; }\r\n            return std::make_tuple(size, s);\r\n        }\r\
-    \n    };\r\n\r\n    namespace Inner {\r\n        template <int N>\r\n        struct\
-    \ Expand {\r\n            template <typename F, typename Tuple, typename... Args>\r\
-    \n            static auto apply(F& f, Tuple& t, Args&... args) {\r\n         \
-    \       return Expand<N - 1>::apply(f, t, std::get<N - 1>(t), args...);\r\n  \
-    \          }\r\n        };\r\n\r\n        template <>\r\n        struct Expand<0>\
-    \ {\r\n            template <typename F, typename Tuple, typename... Args>\r\n\
-    \            static auto apply(F& f, Tuple& t, Args&... args) {\r\n          \
-    \      return f(args...);\r\n            }\r\n        };\r\n\r\n        template\
-    \ <typename F, typename Tuple>\r\n        auto apply(F& f, Tuple& t) {\r\n   \
-    \         return Expand<std::tuple_size<Tuple>::value>::apply(f, t);\r\n     \
-    \   }\r\n    };\r\n\r\n    class RandomCaseDebugger {\r\n    public:\r\n     \
-    \   auto compare(int conut,\r\n                     const auto& gen,\r\n     \
-    \                const auto& outputer,\r\n                     const auto& solver1,\r\
-    \n                     const auto& solver2,\r\n                     int output_itr\
-    \ = 1000) {\r\n            for(int i = 1; i <= conut; ++i) {\r\n             \
-    \   if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr << \"-- \" << i <<\
-    \ \"th run -\" << endl; }\r\n                auto args = gen();\r\n          \
-    \      if(Inner::apply(solver1, args) != Inner::apply(solver2, args)) {\r\n  \
-    \                  std::cerr << \"Failed test\" << std::endl;\r\n            \
-    \        Inner::apply(outputer, args);\r\n                    return false;\r\n\
-    \                }\r\n            }\r\n            std::cerr << \"All test are\
+    \n\r\n        template<class T>\r\n        auto shuffle(const std::vector<T>&\
+    \ v_) {\r\n            auto v = v_;\r\n            std::shuffle(v.begin(), v.end(),\
+    \ rnd.get_gen());\r\n            return v;\r\n        }\r\n    };\r\n\r\n    namespace\
+    \ Inner {\r\n        template <int N>\r\n        struct Expand {\r\n         \
+    \   template <typename F, typename Tuple, typename... Args>\r\n            static\
+    \ auto apply(F& f, Tuple& t, Args&... args) {\r\n                return Expand<N\
+    \ - 1>::apply(f, t, std::get<N - 1>(t), args...);\r\n            }\r\n       \
+    \ };\r\n\r\n        template <>\r\n        struct Expand<0> {\r\n            template\
+    \ <typename F, typename Tuple, typename... Args>\r\n            static auto apply(F&\
+    \ f, Tuple& t, Args&... args) {\r\n                return f(args...);\r\n    \
+    \        }\r\n        };\r\n\r\n        template <typename F, typename Tuple>\r\
+    \n        auto apply(F& f, Tuple& t) {\r\n            return Expand<std::tuple_size<Tuple>::value>::apply(f,\
+    \ t);\r\n        }\r\n    };\r\n\r\n    class RandomCaseDebugger {\r\n    public:\r\
+    \n        auto compare(int conut,\r\n                     const auto& gen,\r\n\
+    \                     const auto& outputer,\r\n                     const auto&\
+    \ solver1,\r\n                     const auto& solver2,\r\n                  \
+    \   int output_itr = 1000) {\r\n            for(int i = 1; i <= conut; ++i) {\r\
+    \n                if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr <<\
+    \ \"-- \" << i << \"th run -\" << endl; }\r\n                auto args = gen();\r\
+    \n                if(Inner::apply(solver1, args) != Inner::apply(solver2, args))\
+    \ {\r\n                    std::cerr << \"Failed test\" << std::endl;\r\n    \
+    \                Inner::apply(outputer, args);\r\n                    return false;\r\
+    \n                }\r\n            }\r\n            std::cerr << \"All test are\
     \ success!\" << std::endl;\r\n            return true;\r\n        }\r\n      \
     \  auto run(int conut,\r\n                 const auto& gen,\r\n              \
     \   const auto& solver) {\r\n            auto tm = Timer::LapTimer();\r\n    \
@@ -174,7 +178,7 @@ data:
   isVerificationFile: false
   path: Utils/sample.hpp
   requiredBy: []
-  timestamp: '2023-08-03 22:07:12+09:00'
+  timestamp: '2023-08-03 23:26:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utils/sample.hpp
