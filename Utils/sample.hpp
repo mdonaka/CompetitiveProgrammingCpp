@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "Timer.hpp"
+
 namespace Sample {
 
     using std::cout;
@@ -100,12 +102,12 @@ namespace Sample {
 
     class RandomCaseDebugger {
     public:
-        auto run(int conut,
-                 const auto& gen,
-                 const auto& outputer,
-                 const auto& solver1,
-                 const auto& solver2,
-                 int output_itr = 1000) {
+        auto compare(int conut,
+                     const auto& gen,
+                     const auto& outputer,
+                     const auto& solver1,
+                     const auto& solver2,
+                     int output_itr = 1000) {
             for(int i = 1; i <= conut; ++i) {
                 if(i == 1 || (i > 0 && i % output_itr == 0)) { std::cerr << "-- " << i << "th run -" << endl; }
                 auto args = gen();
@@ -117,6 +119,17 @@ namespace Sample {
             }
             std::cerr << "All test are success!" << std::endl;
             return true;
+        }
+        auto run(int conut,
+                 const auto& gen,
+                 const auto& solver) {
+            auto tm = Timer::LapTimer();
+            for(int i = 1; i <= conut; ++i) {
+                auto tm = Timer::SimpleTimer();
+                auto args = gen();
+                Inner::apply(solver, args);
+                tm.print<Timer::UNITS::MILLI>();
+            }
         }
     };
 
