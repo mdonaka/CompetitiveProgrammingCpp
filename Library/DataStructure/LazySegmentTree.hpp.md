@@ -174,11 +174,11 @@ data:
   timestamp: '2023-04-08 05:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
 documentation_of: Library/DataStructure/LazySegmentTree.hpp
 layout: document
 redirect_from:

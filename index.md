@@ -29,6 +29,9 @@ data:
       path: Library/DataStructure/Accumulation2D.hpp
       title: Library/DataStructure/Accumulation2D.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/DataStructure/CartesianTree.hpp
+      title: Library/DataStructure/CartesianTree.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/ConvecHullTrick.hpp
       title: Library/DataStructure/ConvecHullTrick.hpp
     - icon: ':heavy_check_mark:'
@@ -111,6 +114,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
+  - name: Library/Math
+    pages:
+    - icon: ':warning:'
+      path: Library/Math/Matrix.hpp
+      title: Library/Math/Matrix.hpp
   - name: Library/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -212,6 +220,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/Accumulation_xor.test.cpp
       title: Test/DataStructure/Accumulation_xor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/CartesianTree.test.cpp
+      title: Test/DataStructure/CartesianTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/ConvexHullTrick.test.cpp
       title: Test/DataStructure/ConvexHullTrick.test.cpp
