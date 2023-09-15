@@ -235,15 +235,17 @@ data:
     \ >> t;\r\n            tree.addEdgeUndirected(f, add);\r\n            tree.addEdgeUndirected(t,\
     \ add);\r\n            ++add;\r\n        }\r\n    }\r\n\r\n    std::vector<std::pair<ll,\
     \ ll>> v(n - 1, {0,1});\r\n    auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n\
-    \ - 1, v);\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\n    ll q;\r\
-    \n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n     \
-    \   cin >> k;\r\n        if(k == 0) {\r\n            ll v, w;\r\n            cin\
-    \ >> v >> w;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n\
-    \                segtree.update(l, r, w);\r\n            }\r\n        } else {\r\
-    \n            ll u;\r\n            cin >> u;\r\n            ll ans = 0;\r\n  \
-    \          for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n               \
-    \ ans += segtree.query(l, r).first;\r\n            }\r\n            cout << ans\
-    \ << endl;\r\n        }\r\n    }\r\n}\n"
+    \ - 1, v);\r\n    // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
+    \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n    // val[hld.getEdgeId(i\
+    \ + n)] = v[i];\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\n    ll\
+    \ q;\r\n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n\
+    \        cin >> k;\r\n        if(k == 0) {\r\n            ll v, w;\r\n       \
+    \     cin >> v >> w;\r\n            for(const auto& [l, r] : hld.rangeEdge(0,\
+    \ v)) {\r\n                segtree.update(l, r, w);\r\n            }\r\n     \
+    \   } else {\r\n            ll u;\r\n            cin >> u;\r\n            ll ans\
+    \ = 0;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n    \
+    \            ans += segtree.query(l, r).first;\r\n            }\r\n          \
+    \  cout << ans << endl;\r\n        }\r\n    }\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E\"\
     \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp\"\r\n\
@@ -256,15 +258,17 @@ data:
     \ >> t;\r\n            tree.addEdgeUndirected(f, add);\r\n            tree.addEdgeUndirected(t,\
     \ add);\r\n            ++add;\r\n        }\r\n    }\r\n\r\n    std::vector<std::pair<ll,\
     \ ll>> v(n - 1, {0,1});\r\n    auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n\
-    \ - 1, v);\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\n    ll q;\r\
-    \n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n     \
-    \   cin >> k;\r\n        if(k == 0) {\r\n            ll v, w;\r\n            cin\
-    \ >> v >> w;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n\
-    \                segtree.update(l, r, w);\r\n            }\r\n        } else {\r\
-    \n            ll u;\r\n            cin >> u;\r\n            ll ans = 0;\r\n  \
-    \          for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n               \
-    \ ans += segtree.query(l, r).first;\r\n            }\r\n            cout << ans\
-    \ << endl;\r\n        }\r\n    }\r\n}"
+    \ - 1, v);\r\n    // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
+    \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n    // val[hld.getEdgeId(i\
+    \ + n)] = v[i];\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\n    ll\
+    \ q;\r\n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n\
+    \        cin >> k;\r\n        if(k == 0) {\r\n            ll v, w;\r\n       \
+    \     cin >> v >> w;\r\n            for(const auto& [l, r] : hld.rangeEdge(0,\
+    \ v)) {\r\n                segtree.update(l, r, w);\r\n            }\r\n     \
+    \   } else {\r\n            ll u;\r\n            cin >> u;\r\n            ll ans\
+    \ = 0;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n    \
+    \            ans += segtree.query(l, r).first;\r\n            }\r\n          \
+    \  cout << ans << endl;\r\n        }\r\n    }\r\n}"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
@@ -272,7 +276,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 06:39:23+09:00'
+  timestamp: '2023-09-16 03:50:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp

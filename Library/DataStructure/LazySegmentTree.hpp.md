@@ -175,9 +175,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
 documentation_of: Library/DataStructure/LazySegmentTree.hpp
 layout: document
