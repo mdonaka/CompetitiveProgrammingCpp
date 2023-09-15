@@ -31,6 +31,8 @@ signed main() {
 
     std::vector<std::pair<ll, ll>> v(n - 1, {0,1});
     auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n - 1, v);
+    // NOTE: 初期値が含まれる場合はID順に並び変える
+    // val[hld.getEdgeId(i + n)] = v[i];
     auto hld = HeavyLightDecomposition(tree);
 
     ll q;
