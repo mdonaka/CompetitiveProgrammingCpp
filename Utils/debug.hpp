@@ -57,7 +57,7 @@ constexpr auto print(const std::pair<S, T>& p, bool b) {
 }
 inline auto print(const std::string& s, bool b) {
     std::cerr << s;
-    if(b) { std::cerr << ' '; }
+    if(b) { std::cerr << std::endl; }
 }
 constexpr auto print(const Printable auto& p, bool b) {
     std::cerr << p;
