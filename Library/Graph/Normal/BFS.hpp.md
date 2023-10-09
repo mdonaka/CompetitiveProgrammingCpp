@@ -71,13 +71,13 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/BFS.hpp
   requiredBy:
-  - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
+  - Library/Graph/Tree/LowestCommonAncestor.hpp
   timestamp: '2023-06-18 06:04:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:

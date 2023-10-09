@@ -119,10 +119,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
-  - Test/Algorithms/CoordinateCompression_to.test.cpp
-  - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
+  - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/Algorithms/CoordinateCompression_to.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:

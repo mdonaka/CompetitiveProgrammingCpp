@@ -31,20 +31,20 @@ data:
     \ std::pair<S, T>& p, bool b) {\n    std::cerr << '('; print(p.first, false);\n\
     \    std::cerr << \", \"; print(p.second, false);\n    std::cerr << ')'; if(b)\
     \ { std::cerr << \" \"; }\n}\ninline auto print(const std::string& s, bool b)\
-    \ {\n    std::cerr << s;\n    if(b) { std::cerr << ' '; }\n}\nconstexpr auto print(const\
-    \ Printable auto& p, bool b) {\n    std::cerr << p;\n    if(b) { std::cerr <<\
-    \ ' '; }\n}\nconstexpr auto print(const Container auto& c, bool b) {\n    for(auto&&\
-    \ x : c) { print(x); }\n    if(b) { std::cerr << '\\n'; }\n}\n\n// \u5909\u6570\
-    \u306E\u51FA\u529B\nconstexpr auto printVariable(auto&& name, const auto& p) {\n\
-    \    std::cerr << name << \": \";\n    print(p);\n    std::cerr << '\\n';\n}\n\
-    inline auto printVariable(auto&& name, const std::string& s) {\n    std::cerr\
-    \ << name << \": \";\n    print(s);\n    std::cerr << '\\n';\n}\nconstexpr auto\
-    \ printVariable(auto&& name, const Container auto& c) {\n    std::cerr << \"--\
-    \ \" << name << \" --\" << '\\n';\n    print(c);\n}\n\n// 1\u5909\u6570\u305A\u3064\
-    \u51E6\u7406\nconstexpr auto splitVariables(auto&& names) {}\nconstexpr auto splitVariables(auto&&\
-    \ names, const auto& x,\n                              const auto&... tail) {\n\
-    \    printVariable(names.front(), x);\n    names.pop_front();\n    splitVariables(std::forward<decltype(names)>(names),\
-    \ tail...);\n}\n"
+    \ {\n    std::cerr << s;\n    if(b) { std::cerr << std::endl; }\n}\nconstexpr\
+    \ auto print(const Printable auto& p, bool b) {\n    std::cerr << p;\n    if(b)\
+    \ { std::cerr << ' '; }\n}\nconstexpr auto print(const Container auto& c, bool\
+    \ b) {\n    for(auto&& x : c) { print(x); }\n    if(b) { std::cerr << '\\n'; }\n\
+    }\n\n// \u5909\u6570\u306E\u51FA\u529B\nconstexpr auto printVariable(auto&& name,\
+    \ const auto& p) {\n    std::cerr << name << \": \";\n    print(p);\n    std::cerr\
+    \ << '\\n';\n}\ninline auto printVariable(auto&& name, const std::string& s) {\n\
+    \    std::cerr << name << \": \";\n    print(s);\n    std::cerr << '\\n';\n}\n\
+    constexpr auto printVariable(auto&& name, const Container auto& c) {\n    std::cerr\
+    \ << \"-- \" << name << \" --\" << '\\n';\n    print(c);\n}\n\n// 1\u5909\u6570\
+    \u305A\u3064\u51E6\u7406\nconstexpr auto splitVariables(auto&& names) {}\nconstexpr\
+    \ auto splitVariables(auto&& names, const auto& x,\n                         \
+    \     const auto&... tail) {\n    printVariable(names.front(), x);\n    names.pop_front();\n\
+    \    splitVariables(std::forward<decltype(names)>(names), tail...);\n}\n"
   code: "#pragma once\n#include <concepts>\n#include <iostream>\n#include <deque>\n\
     #include <string_view>\n\ntemplate<class T>constexpr inline auto d_val(T a, T\
     \ b) { return b; }\n\n// debug\u7528\u51FA\u529B\u30DE\u30AF\u30ED\n#define dump(...)\
@@ -68,25 +68,25 @@ data:
     \ p, bool b) {\n    std::cerr << '('; print(p.first, false);\n    std::cerr <<\
     \ \", \"; print(p.second, false);\n    std::cerr << ')'; if(b) { std::cerr <<\
     \ \" \"; }\n}\ninline auto print(const std::string& s, bool b) {\n    std::cerr\
-    \ << s;\n    if(b) { std::cerr << ' '; }\n}\nconstexpr auto print(const Printable\
-    \ auto& p, bool b) {\n    std::cerr << p;\n    if(b) { std::cerr << ' '; }\n}\n\
-    constexpr auto print(const Container auto& c, bool b) {\n    for(auto&& x : c)\
-    \ { print(x); }\n    if(b) { std::cerr << '\\n'; }\n}\n\n// \u5909\u6570\u306E\
-    \u51FA\u529B\nconstexpr auto printVariable(auto&& name, const auto& p) {\n   \
-    \ std::cerr << name << \": \";\n    print(p);\n    std::cerr << '\\n';\n}\ninline\
-    \ auto printVariable(auto&& name, const std::string& s) {\n    std::cerr << name\
-    \ << \": \";\n    print(s);\n    std::cerr << '\\n';\n}\nconstexpr auto printVariable(auto&&\
-    \ name, const Container auto& c) {\n    std::cerr << \"-- \" << name << \" --\"\
-    \ << '\\n';\n    print(c);\n}\n\n// 1\u5909\u6570\u305A\u3064\u51E6\u7406\nconstexpr\
-    \ auto splitVariables(auto&& names) {}\nconstexpr auto splitVariables(auto&& names,\
-    \ const auto& x,\n                              const auto&... tail) {\n    printVariable(names.front(),\
-    \ x);\n    names.pop_front();\n    splitVariables(std::forward<decltype(names)>(names),\
+    \ << s;\n    if(b) { std::cerr << std::endl; }\n}\nconstexpr auto print(const\
+    \ Printable auto& p, bool b) {\n    std::cerr << p;\n    if(b) { std::cerr <<\
+    \ ' '; }\n}\nconstexpr auto print(const Container auto& c, bool b) {\n    for(auto&&\
+    \ x : c) { print(x); }\n    if(b) { std::cerr << '\\n'; }\n}\n\n// \u5909\u6570\
+    \u306E\u51FA\u529B\nconstexpr auto printVariable(auto&& name, const auto& p) {\n\
+    \    std::cerr << name << \": \";\n    print(p);\n    std::cerr << '\\n';\n}\n\
+    inline auto printVariable(auto&& name, const std::string& s) {\n    std::cerr\
+    \ << name << \": \";\n    print(s);\n    std::cerr << '\\n';\n}\nconstexpr auto\
+    \ printVariable(auto&& name, const Container auto& c) {\n    std::cerr << \"--\
+    \ \" << name << \" --\" << '\\n';\n    print(c);\n}\n\n// 1\u5909\u6570\u305A\u3064\
+    \u51E6\u7406\nconstexpr auto splitVariables(auto&& names) {}\nconstexpr auto splitVariables(auto&&\
+    \ names, const auto& x,\n                              const auto&... tail) {\n\
+    \    printVariable(names.front(), x);\n    names.pop_front();\n    splitVariables(std::forward<decltype(names)>(names),\
     \ tail...);\n}"
   dependsOn: []
   isVerificationFile: false
   path: Utils/debug.hpp
   requiredBy: []
-  timestamp: '2023-06-09 23:50:15+09:00'
+  timestamp: '2023-10-09 13:58:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utils/debug.hpp
