@@ -3,6 +3,7 @@
 #include <vector>
 #include <stack>
 #include <queue>
+#include <numeric>
 
 template <class T>
 class CartesianTree {
