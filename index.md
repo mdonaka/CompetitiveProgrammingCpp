@@ -28,7 +28,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/Accumulation2D.hpp
       title: Library/DataStructure/Accumulation2D.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/CartesianTree.hpp
       title: Library/DataStructure/CartesianTree.hpp
     - icon: ':heavy_check_mark:'
@@ -220,7 +220,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/Accumulation_xor.test.cpp
       title: Test/DataStructure/Accumulation_xor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/CartesianTree.test.cpp
       title: Test/DataStructure/CartesianTree.test.cpp
     - icon: ':heavy_check_mark:'
