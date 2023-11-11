@@ -27,6 +27,26 @@ auto all_index(unsigned int bit) {
     return dq;
 }
 
+auto sub_set_index(unsigned int bit) {
+    std::deque<int> dq;
+    auto sub = bit;
+    do {
+        dq.emplace_back(sub);
+        sub = (sub - 1) & bit;
+    } while(sub != bit);
+}
+
+auto comb_index(unsigned int n, unsigned int k) {
+    std::deque<int> dq;
+    auto comb = (1 << k) - 1;
+    while(comb < 1 << n) {
+        dq.emplace_back(comb);
+        auto x = comb & -comb, y = comb + x;
+        comb = ((comb & ~y) / x >> 1) | y;
+    }
+    return dq;
+}
+
 auto count(unsigned int bit) {
     bit = (bit & 0x55555555) + (bit >> 1 & 0x55555555);
     bit = (bit & 0x33333333) + (bit >> 2 & 0x33333333);
