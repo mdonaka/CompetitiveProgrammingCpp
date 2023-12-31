@@ -60,11 +60,11 @@ data:
     \ {}\r\n\r\n        // [l,u]\r\n        auto random(const Range& range) { return\
     \ range.normalize(mt()); }\r\n        auto random(int_fast64_t l, int_fast64_t\
     \ u) { return random(Range(l, u)); }\r\n        auto random(int_fast64_t u) {\
-    \ return random(Range(0LL, u)); }\r\n\r\n        auto get_gen()const { return\
-    \ mt; }\r\n    };\r\n\r\n    class SampleGenerator {\r\n        RandomGenerator\
-    \ rnd;\r\n\r\n        auto generate_random(const Range& range) {\r\n         \
-    \   return rnd.random(range);\r\n        }\r\n        template<class T>\r\n  \
-    \      auto generate_random(const std::pair<T, T>& pair) { return rnd.random(Range(pair.first,\
+    \ return random(Range(0LL, u)); }\r\n\r\n        auto& get_gen() { return mt;\
+    \ }\r\n    };\r\n\r\n    class SampleGenerator {\r\n        RandomGenerator rnd;\r\
+    \n\r\n        auto generate_random(const Range& range) {\r\n            return\
+    \ rnd.random(range);\r\n        }\r\n        template<class T>\r\n        auto\
+    \ generate_random(const std::pair<T, T>& pair) { return rnd.random(Range(pair.first,\
     \ pair.second)); }\r\n        template<class T>\r\n        auto generate_random(const\
     \ std::vector<T>& ranges) {\r\n            std::vector<long long> v;\r\n     \
     \       v.reserve(ranges.size());\r\n            for(auto&& range : ranges) {\
@@ -72,9 +72,9 @@ data:
     \   }\r\n    public:\r\n        SampleGenerator() :rnd() {}\r\n        SampleGenerator(unsigned\
     \ int seed) :rnd(seed) {}\r\n\r\n        template<class ... T>\r\n        auto\
     \ generate(T&& ...ranges) {\r\n            return std::make_tuple(generate_random(ranges)...);\r\
-    \n        }\r\n\r\n        auto generate_permutation(int size) const {\r\n   \
-    \         std::vector<int> rnd_p(size);\r\n            std::iota(rnd_p.begin(),\
-    \ rnd_p.end(), 0);\r\n            std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());\r\
+    \n        }\r\n\r\n        auto generate_permutation(int size) {\r\n         \
+    \   std::vector<int> rnd_p(size);\r\n            std::iota(rnd_p.begin(), rnd_p.end(),\
+    \ 0);\r\n            std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());\r\
     \n            return rnd_p;\r\n        }\r\n\r\n        auto generate_string(const\
     \ Range& range, int csize = 26) {\r\n            auto size = generate_random(range);\r\
     \n            auto v = generate_random(std::vector<Range>(size, {0,csize - 1}));\r\
@@ -123,7 +123,7 @@ data:
     \ : mt(std::mt19937_64(seed)) {}\r\n\r\n        // [l,u]\r\n        auto random(const\
     \ Range& range) { return range.normalize(mt()); }\r\n        auto random(int_fast64_t\
     \ l, int_fast64_t u) { return random(Range(l, u)); }\r\n        auto random(int_fast64_t\
-    \ u) { return random(Range(0LL, u)); }\r\n\r\n        auto get_gen()const { return\
+    \ u) { return random(Range(0LL, u)); }\r\n\r\n        auto& get_gen() { return\
     \ mt; }\r\n    };\r\n\r\n    class SampleGenerator {\r\n        RandomGenerator\
     \ rnd;\r\n\r\n        auto generate_random(const Range& range) {\r\n         \
     \   return rnd.random(range);\r\n        }\r\n        template<class T>\r\n  \
@@ -135,9 +135,9 @@ data:
     \   }\r\n    public:\r\n        SampleGenerator() :rnd() {}\r\n        SampleGenerator(unsigned\
     \ int seed) :rnd(seed) {}\r\n\r\n        template<class ... T>\r\n        auto\
     \ generate(T&& ...ranges) {\r\n            return std::make_tuple(generate_random(ranges)...);\r\
-    \n        }\r\n\r\n        auto generate_permutation(int size) const {\r\n   \
-    \         std::vector<int> rnd_p(size);\r\n            std::iota(rnd_p.begin(),\
-    \ rnd_p.end(), 0);\r\n            std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());\r\
+    \n        }\r\n\r\n        auto generate_permutation(int size) {\r\n         \
+    \   std::vector<int> rnd_p(size);\r\n            std::iota(rnd_p.begin(), rnd_p.end(),\
+    \ 0);\r\n            std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());\r\
     \n            return rnd_p;\r\n        }\r\n\r\n        auto generate_string(const\
     \ Range& range, int csize = 26) {\r\n            auto size = generate_random(range);\r\
     \n            auto v = generate_random(std::vector<Range>(size, {0,csize - 1}));\r\
@@ -178,7 +178,7 @@ data:
   isVerificationFile: false
   path: Utils/sample.hpp
   requiredBy: []
-  timestamp: '2023-08-03 23:26:28+09:00'
+  timestamp: '2023-12-31 17:47:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utils/sample.hpp

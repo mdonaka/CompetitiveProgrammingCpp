@@ -61,8 +61,8 @@ data:
   isVerificationFile: false
   path: Library/Algorithms/BinarySearch.hpp
   requiredBy:
-  - Library/String/LCPArray.hpp
   - Library/String/SuffixArray.hpp
+  - Library/String/LCPArray.hpp
   timestamp: '2023-06-18 05:18:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
