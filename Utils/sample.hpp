@@ -34,7 +34,7 @@ namespace Sample {
         auto random(int_fast64_t l, int_fast64_t u) { return random(Range(l, u)); }
         auto random(int_fast64_t u) { return random(Range(0LL, u)); }
 
-        auto get_gen()const { return mt; }
+        auto& get_gen() { return mt; }
     };
 
     class SampleGenerator {
@@ -61,7 +61,7 @@ namespace Sample {
             return std::make_tuple(generate_random(ranges)...);
         }
 
-        auto generate_permutation(int size) const {
+        auto generate_permutation(int size) {
             std::vector<int> rnd_p(size);
             std::iota(rnd_p.begin(), rnd_p.end(), 0);
             std::shuffle(rnd_p.begin(), rnd_p.end(), rnd.get_gen());
