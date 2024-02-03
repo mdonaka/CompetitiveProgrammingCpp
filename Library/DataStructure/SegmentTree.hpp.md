@@ -118,10 +118,10 @@ data:
   timestamp: '2023-04-07 02:20:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Algorithms/CoordinateCompression_to.test.cpp
-  - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/Algorithms/CoordinateCompression_to.test.cpp
   - Test/String/LCPArray.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document

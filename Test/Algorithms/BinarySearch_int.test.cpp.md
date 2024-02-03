@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1882
@@ -23,21 +23,18 @@ data:
     \ auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk\
     \ && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\
     \n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate\
-    \ <class Lambda>\r\nauto binarySearch(long long mn, long long mx, const Lambda&\
-    \ judge, bool rev = false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn -\
-    \ 1;\r\n    while(ok - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n    \
-    \    auto isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk && rev)) {\r\
-    \n            ok = mid;\r\n        } else {\r\n            ng = mid;\r\n     \
-    \   }\r\n    }\r\n    return ok - rev;\r\n}\r\n#line 8 \"Test/Algorithms/BinarySearch_int.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
-    \    ll n, x;\r\n    cin >> n >> x;\r\n    std::vector<ll> a(n);\r\n    for(int\
-    \ i = 0; i < n; ++i) { cin >> a[i]; }\r\n    std::sort(a.begin(), a.end());\r\n\
-    \r\n    ll ans = 0;\r\n    for(int i = 0; i < n; ++i) {\r\n        auto idx =\
-    \ binarySearch(0, n, [&](ll mid) {\r\n            return a[i] * a[mid] >= (x <<\
-    \ 1);\r\n        });\r\n        ans += n - idx;\r\n    }\r\n\r\n    cout << ans\
-    \ << endl;\r\n}\r\n"
+    \ <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda&\
+    \ is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok\
+    \ + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return\
+    \ ok;\r\n}\r\n#line 8 \"Test/Algorithms/BinarySearch_int.test.cpp\"\n\r\nusing\
+    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
+    \ = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
+    \ }; }_Preprocessing;\r\n\r\nsigned main() {\r\n    ll n, x;\r\n    cin >> n >>\
+    \ x;\r\n    std::vector<ll> a(n);\r\n    for(int i = 0; i < n; ++i) { cin >> a[i];\
+    \ }\r\n    std::sort(a.begin(), a.end());\r\n\r\n    ll ans = 0;\r\n    for(int\
+    \ i = 0; i < n; ++i) {\r\n        auto idx = binarySearch(0, n, [&](ll mid) {\r\
+    \n            return a[i] * a[mid] >= (x << 1);\r\n        });\r\n        ans\
+    \ += n - idx;\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1882\"\r\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n#include <algorithm>\r\n\r\n#include \"./../../Library/Algorithms/BinarySearch.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
@@ -54,8 +51,8 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 05:50:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-03 20:57:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int.test.cpp
 layout: document

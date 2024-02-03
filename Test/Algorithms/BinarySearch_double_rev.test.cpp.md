@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
   _extendedRequiredBy: []
@@ -25,12 +25,9 @@ data:
     \       auto isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk && rev))\
     \ {\r\n            ok = mid;\r\n        } else {\r\n            ng = mid;\r\n\
     \        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\n\
-    auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev =\
-    \ false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn - 1;\r\n    while(ok\
-    \ - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
-    \n        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n\
-    \        } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
-    \ ok - rev;\r\n}\r\n#line 8 \"Test/Algorithms/BinarySearch_double_rev.test.cpp\"\
+    auto binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n    while(std::abs(ok\
+    \ - ng) > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n        (is_ok(mid)\
+    \ ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n#line 8 \"Test/Algorithms/BinarySearch_double_rev.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
     \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
     \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
@@ -57,7 +54,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_double_rev.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 05:50:37+09:00'
+  timestamp: '2024-02-03 20:57:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_double_rev.test.cpp

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: Library/Algorithms
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
@@ -71,12 +71,12 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
@@ -137,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
     - icon: ':heavy_check_mark:'
@@ -188,10 +188,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/BinarySearch_double_rev.test.cpp
       title: Test/Algorithms/BinarySearch_double_rev.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Algorithms/BinarySearch_int.test.cpp
       title: Test/Algorithms/BinarySearch_int.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Algorithms/BinarySearch_int_rev.test.cpp
       title: Test/Algorithms/BinarySearch_int_rev.test.cpp
     - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
     - icon: ':heavy_check_mark:'
@@ -341,7 +341,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
     - icon: ':heavy_check_mark:'

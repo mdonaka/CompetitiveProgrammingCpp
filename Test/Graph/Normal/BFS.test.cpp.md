@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1473
@@ -62,24 +62,22 @@ data:
     \ 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk\
     \ && rev)) {\r\n            ok = mid;\r\n        } else {\r\n            ng =\
     \ mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\
-    \nauto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev\
-    \ = false) {\r\n    auto ok = mx + rev;\r\n    auto ng = mn - 1;\r\n    while(ok\
-    \ - ng > 1) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
-    \n        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n\
-    \        } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
-    \ ok - rev;\r\n}\r\n#line 9 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing ll =\
-    \ long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\\
-    n';\r\n\r\nsigned main() {\r\n    ll n, m;\r\n    cin >> n >> m;\r\n    auto graph_all\
-    \ = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        ll s, t, d;\r\n \
-    \       cin >> s >> t >> d;\r\n        graph_all.addEdgeUndirected(s - 1, t -\
-    \ 1, d);\r\n    }\r\n\r\n    auto solve = [&](ll w) {\r\n        auto graph =\
-    \ Graph(n);\r\n        for(const auto& [s, td] : graph_all.getEdgesAll()) {\r\n\
-    \            auto [t, d] = td;\r\n            if(w <= d) { graph.addEdge(s, t);\
-    \ }\r\n        }\r\n\r\n        std::vector<int> dv(n);\r\n        bfs(graph,\
-    \ 0, [&](ll f, ll t) {dv[t] = dv[f] + 1; });\r\n        return dv[n - 1];\r\n\
-    \    };\r\n\r\n    auto w_max = binarySearch(0, 1e9, [&](ll w) {\r\n        auto\
-    \ d = solve(w);\r\n        return d > 0;\r\n    }, true);\r\n\r\n    auto ans\
-    \ = solve(w_max);\r\n    cout << w_max << \" \" << ans << endl;\r\n}\r\n"
+    \nauto binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n   \
+    \ while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n\
+    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n#line\
+    \ 9 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing ll = long long;\r\nusing std::cout;\r\
+    \nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n \
+    \   ll n, m;\r\n    cin >> n >> m;\r\n    auto graph_all = Graph(n);\r\n    for(int\
+    \ i = 0; i < m; ++i) {\r\n        ll s, t, d;\r\n        cin >> s >> t >> d;\r\
+    \n        graph_all.addEdgeUndirected(s - 1, t - 1, d);\r\n    }\r\n\r\n    auto\
+    \ solve = [&](ll w) {\r\n        auto graph = Graph(n);\r\n        for(const auto&\
+    \ [s, td] : graph_all.getEdgesAll()) {\r\n            auto [t, d] = td;\r\n  \
+    \          if(w <= d) { graph.addEdge(s, t); }\r\n        }\r\n\r\n        std::vector<int>\
+    \ dv(n);\r\n        bfs(graph, 0, [&](ll f, ll t) {dv[t] = dv[f] + 1; });\r\n\
+    \        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max = binarySearch(0, 1e9,\
+    \ [&](ll w) {\r\n        auto d = solve(w);\r\n        return d > 0;\r\n    },\
+    \ true);\r\n\r\n    auto ans = solve(w_max);\r\n    cout << w_max << \" \" <<\
+    \ ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1473\"\r\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Normal/BFS.hpp\"\r\n#include \"./../../../Library/Algorithms/BinarySearch.hpp\"\
@@ -102,8 +100,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 07:32:18+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-03 20:57:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp
 layout: document
