@@ -18,17 +18,10 @@ auto binarySearch(double mn, double mx, int rep, const Lambda& judge,
 }
 
 template <class Lambda>
-auto binarySearch(long long mn, long long mx, const Lambda& judge, bool rev = false) {
-    auto ok = mx + rev;
-    auto ng = mn - 1;
-    while(ok - ng > 1) {
-        auto mid = (ok + ng) / 2;
-        auto isOk = judge(mid);
-        if((isOk && !rev) || (!isOk && rev)) {
-            ok = mid;
-        } else {
-            ng = mid;
-        }
+auto binarySearch(long long ok, long long ng, const Lambda& is_ok) {
+    while(std::abs(ok - ng) > 1) {
+        long long mid = (ok + ng) >> 1;
+        (is_ok(mid) ? ok : ng) = mid;
     }
-    return ok - rev;
+    return ok;
 }
