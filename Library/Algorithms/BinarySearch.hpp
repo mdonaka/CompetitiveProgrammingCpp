@@ -1,4 +1,5 @@
 #pragma once
+#include <numeric>
 
 template <class Lambda>
 auto binarySearch(double mn, double mx, int rep, const Lambda& judge,
