@@ -16,26 +16,26 @@ data:
     - https://yukicoder.me/problems/no/91
   bundledCode: "#line 1 \"Test/Algorithms/BinarySearch_int_rev.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/91\"\r\n\r\n#include <iostream>\r\
-    \n#include <vector>\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n\r\ntemplate\
-    \ <class Lambda>\r\nauto binarySearch(double mn, double mx, int rep, const Lambda&\
-    \ judge,\r\n                  bool rev = false) {\r\n    auto ok = mx;\r\n   \
-    \ auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\n        auto mid = (ok\
-    \ + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk && !rev) ||\
-    \ (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\n         \
-    \   ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class\
-    \ Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda& is_ok)\
-    \ {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok + ng)\
-    \ >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n\
-    }\r\n#line 6 \"Test/Algorithms/BinarySearch_int_rev.test.cpp\"\n\r\nusing ll =\
-    \ long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\\
-    n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nsigned main() {\r\n    std::vector<ll> a(3);\r\n\
-    \    for(int i = 0; i < 3; ++i) { cin >> a[i]; }\r\n\r\n    auto ans = binarySearch(0,\
-    \ 1e9, [&](ll mid) {\r\n        ll d = 0;\r\n        for(const auto& x : a) {\r\
-    \n            if(x >= mid) {\r\n                d += ((x - mid) >> 1);\r\n   \
-    \         } else {\r\n                d -= mid - x;\r\n            }\r\n     \
-    \   }\r\n        return d >= 0;\r\n    }, true);\r\n\r\n    cout << ans << endl;\r\
-    \n}\r\n"
+    \n#include <vector>\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include\
+    \ <numeric>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double mn, double\
+    \ mx, int rep, const Lambda& judge,\r\n                  bool rev = false) {\r\
+    \n    auto ok = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\
+    \n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\n   \
+    \     if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n    \
+    \    } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\
+    \n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long long ok, long long\
+    \ ng, const Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n       \
+    \ long long mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n\
+    \    }\r\n    return ok;\r\n}\r\n#line 6 \"Test/Algorithms/BinarySearch_int_rev.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
+    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
+    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
+    \    std::vector<ll> a(3);\r\n    for(int i = 0; i < 3; ++i) { cin >> a[i]; }\r\
+    \n\r\n    auto ans = binarySearch(0, 1e9, [&](ll mid) {\r\n        ll d = 0;\r\
+    \n        for(const auto& x : a) {\r\n            if(x >= mid) {\r\n         \
+    \       d += ((x - mid) >> 1);\r\n            } else {\r\n                d -=\
+    \ mid - x;\r\n            }\r\n        }\r\n        return d >= 0;\r\n    }, true);\r\
+    \n\r\n    cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/91\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n#include \"./../../Library/Algorithms/BinarySearch.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
@@ -52,7 +52,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int_rev.test.cpp
   requiredBy: []
-  timestamp: '2024-02-03 20:57:32+09:00'
+  timestamp: '2024-03-30 16:35:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int_rev.test.cpp

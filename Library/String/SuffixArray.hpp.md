@@ -20,44 +20,44 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n\r\ntemplate <class\
-    \ Lambda>\r\nauto binarySearch(double mn, double mx, int rep, const Lambda& judge,\r\
-    \n                  bool rev = false) {\r\n    auto ok = mx;\r\n    auto ng =\
-    \ mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\n        auto mid = (ok + ng) /\
-    \ 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk && !rev) || (!isOk\
-    \ && rev)) {\r\n            ok = mid;\r\n        } else {\r\n            ng =\
-    \ mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\
-    \nauto binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n   \
-    \ while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n\
-    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n#line\
-    \ 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include <iostream>\r\n#include <vector>\r\
-    \n#include <list>\r\n#include <string>\r\n#include <set>\r\n#include <unordered_map>\r\
-    \n/**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\
-    \u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\
-    \u5217\u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc,\
-    \ adc, badc, c, dc])\r\n *\r\n * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\
-    \u88C5\r\n */\r\nclass SuffixArray {\r\n    enum class TYPE {\r\n        L, S,\
-    \ LMS\r\n    };\r\n\r\n    const std::string m_str;\r\n    const std::vector<int>\
-    \ m_suffixArray;\r\n\r\n    /* string to vector<int> */\r\n    static std::vector<int>\
-    \ toIntVec(const std::string& str) {\r\n        std::vector<int> vec;\r\n    \
-    \    vec.reserve(str.size() + 1);\r\n        for(const auto& c : str) {\r\n  \
-    \          vec.emplace_back(c - '0' + 1);\r\n        }\r\n        vec.emplace_back(0);\r\
-    \n        return vec;\r\n    }\r\n\r\n    /* classify { L, S, LMS } */\r\n   \
-    \ static std::vector<TYPE> classifying(const std::vector<int>& str) {\r\n    \
-    \    auto sz = str.size();\r\n        auto typeArray = std::vector<TYPE>(sz);\r\
-    \n        typeArray[sz - 1] = TYPE::S;\r\n        for(int i = sz - 2; i >= 0;\
-    \ --i) {\r\n            if(str[i] == str[i + 1]) {\r\n                typeArray[i]\
-    \ = typeArray[i + 1];\r\n                continue;\r\n            }\r\n      \
-    \      typeArray[i] = (str[i] < str[i + 1]) ? TYPE::S : TYPE::L;\r\n        }\r\
-    \n        for(int i = 1; i < sz; ++i) {\r\n            if(typeArray[i - 1] ==\
-    \ TYPE::L && typeArray[i] == TYPE::S) {\r\n                typeArray[i] = TYPE::LMS;\r\
-    \n            }\r\n        }\r\n        return typeArray;\r\n    }\r\n\r\n   \
-    \ /* induced sort */\r\n    static std::vector<int> inducedSort(const std::vector<int>&\
-    \ str, const std::vector<TYPE>& type, std::list<int>& lmsList) {\r\n        auto\
-    \ sz = str.size();\r\n        auto nList = std::set<int>();\r\n        for(const\
-    \ auto& c : str) { nList.emplace(c); }\r\n\r\n        auto befCheck = [&](int\
-    \ k, auto& addList, bool rev) {\r\n            if(k == 0) { return; }\r\n    \
-    \        if(!rev && type[k - 1] == TYPE::L) {\r\n                addList[str[k\
+  bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\
+    \n\r\ntemplate <class Lambda>\r\nauto binarySearch(double mn, double mx, int rep,\
+    \ const Lambda& judge,\r\n                  bool rev = false) {\r\n    auto ok\
+    \ = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\n       \
+    \ auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk\
+    \ && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\
+    \n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate\
+    \ <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda&\
+    \ is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok\
+    \ + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return\
+    \ ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include <iostream>\r\
+    \n#include <vector>\r\n#include <list>\r\n#include <string>\r\n#include <set>\r\
+    \n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\
+    \r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\
+    \u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc\
+    \ -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n * SA-IS(Suffix Array\
+    \ - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass SuffixArray {\r\n    enum\
+    \ class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n    const std::string m_str;\r\
+    \n    const std::vector<int> m_suffixArray;\r\n\r\n    /* string to vector<int>\
+    \ */\r\n    static std::vector<int> toIntVec(const std::string& str) {\r\n   \
+    \     std::vector<int> vec;\r\n        vec.reserve(str.size() + 1);\r\n      \
+    \  for(const auto& c : str) {\r\n            vec.emplace_back(c - '0' + 1);\r\n\
+    \        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\n    }\r\n\
+    \r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE> classifying(const\
+    \ std::vector<int>& str) {\r\n        auto sz = str.size();\r\n        auto typeArray\
+    \ = std::vector<TYPE>(sz);\r\n        typeArray[sz - 1] = TYPE::S;\r\n       \
+    \ for(int i = sz - 2; i >= 0; --i) {\r\n            if(str[i] == str[i + 1]) {\r\
+    \n                typeArray[i] = typeArray[i + 1];\r\n                continue;\r\
+    \n            }\r\n            typeArray[i] = (str[i] < str[i + 1]) ? TYPE::S\
+    \ : TYPE::L;\r\n        }\r\n        for(int i = 1; i < sz; ++i) {\r\n       \
+    \     if(typeArray[i - 1] == TYPE::L && typeArray[i] == TYPE::S) {\r\n       \
+    \         typeArray[i] = TYPE::LMS;\r\n            }\r\n        }\r\n        return\
+    \ typeArray;\r\n    }\r\n\r\n    /* induced sort */\r\n    static std::vector<int>\
+    \ inducedSort(const std::vector<int>& str, const std::vector<TYPE>& type, std::list<int>&\
+    \ lmsList) {\r\n        auto sz = str.size();\r\n        auto nList = std::set<int>();\r\
+    \n        for(const auto& c : str) { nList.emplace(c); }\r\n\r\n        auto befCheck\
+    \ = [&](int k, auto& addList, bool rev) {\r\n            if(k == 0) { return;\
+    \ }\r\n            if(!rev && type[k - 1] == TYPE::L) {\r\n                addList[str[k\
     \ - 1]].emplace_back(k - 1);\r\n            }\r\n            if(rev && type[k\
     \ - 1] != TYPE::L) {\r\n                addList[str[k - 1]].emplace_front(k -\
     \ 1);\r\n            }\r\n        };\r\n\r\n        auto checkAndUpdate = [&](int\
@@ -252,11 +252,11 @@ data:
   path: Library/String/SuffixArray.hpp
   requiredBy:
   - Library/String/LCPArray.hpp
-  timestamp: '2024-02-03 20:57:32+09:00'
+  timestamp: '2024-03-30 16:35:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
+  - Test/String/SuffixArray.test.cpp
 documentation_of: Library/String/SuffixArray.hpp
 layout: document
 redirect_from:
