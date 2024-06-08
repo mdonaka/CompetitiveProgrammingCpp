@@ -222,9 +222,9 @@ data:
   verifiedWith:
   - Test/DataStructure/LiChaoTree.test.cpp
   - Test/DataStructure/LiChaoTree_segment.test.cpp
-  - Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-  - Test/DataStructure/DynamicLiChaoTree.test.cpp
   - Test/DataStructure/LiChaoTree_bias.test.cpp
+  - Test/DataStructure/DynamicLiChaoTree.test.cpp
+  - Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
 documentation_of: Library/DataStructure/LiChaoTree.hpp
 layout: document
 redirect_from:
