@@ -36,7 +36,7 @@ public:
         }
         return Matrix(ret);
     }
-    auto pow(int n) const {
+    auto pow(long long n) const {
         assert(h == w);
         auto ret = identity(h);
         auto now = *this;
