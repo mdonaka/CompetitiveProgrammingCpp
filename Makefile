@@ -3,7 +3,7 @@
 SRC := main.cpp
 BIN_RUN := bin/run.out
 BIN_TEST := bin/test.out
-OPTION := -std=c++2a -O2 -D DEBUG -I ./ac-library
+OPTION := -std=c++2b -O2 -D DEBUG -I ./ac-library
 
 $(BIN_RUN): $(SRC)
 	@g++-11 $(OPTION) $< -o $@
