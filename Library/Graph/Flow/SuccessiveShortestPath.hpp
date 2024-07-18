@@ -12,6 +12,9 @@
 
 template<class Node, class Cap, class Cost>
 class SuccessiveShortestPath {
+    //using Node = int;
+    //using Cap = int;
+    //using Cost = int;
 
     using GraphCap = std::vector<std::vector<Cap>>;
     using GraphCost = std::vector<std::vector<Cost>>;
@@ -22,7 +25,7 @@ class SuccessiveShortestPath {
 
     auto construct_graph_undirected()const {
         auto graph_undirected = Graph<Node, bool>(m_graph.size());
-        for(const auto& [f, t] : m_graph.getEdgesAll2()) {
+        for(const auto& [f, t] : m_graph.getEdgesExcludeCost()) {
             graph_undirected.addEdgeUndirected(f, t);
         }
         return graph_undirected;
@@ -31,8 +34,7 @@ class SuccessiveShortestPath {
     auto construct_graph_cap()const {
         auto n = m_graph.size();
         GraphCap graph_cap(n, std::vector<Cap>(n));
-        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {
-            auto [t, cc] = tcc;
+        for(const auto& [f, t, cc] : m_graph.getEdges()) {
             auto [cap, _] = cc;
             graph_cap[f][t] += cap;
         }
@@ -41,8 +43,7 @@ class SuccessiveShortestPath {
     auto construct_graph_cost() const {
         auto n = m_graph.size();
         GraphCost graph_cost(n, std::vector<Cost>(n));
-        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {
-            auto [t, cc] = tcc;
+        for(const auto& [f, t, cc] : m_graph.getEdges()) {
             auto [_, cost] = cc;
             graph_cost[f][t] = cost;
             graph_cost[t][f] = -cost;

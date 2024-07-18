@@ -11,6 +11,8 @@
 
 template<class Node, class Cost>
 class FordFulkerson {
+    //using Node = int;
+    //using Cost = int;
 
     struct HashPair {
         template<class T1, class T2>
@@ -32,8 +34,7 @@ class FordFulkerson {
 
     static auto construct_to_list(const Graph<Node, Cost>& graph) {
         std::vector<std::unordered_set<Node>> to_list(graph.size());
-        for(const auto& [f, tc] : graph.getEdgesAll()) {
-            auto [t, c] = tc;
+        for(const auto& [f, t, c] : graph.getEdges()) {
             to_list[f].emplace(t);
             to_list[t].emplace(f);
         }
@@ -41,8 +42,7 @@ class FordFulkerson {
     }
     static auto construct_graph(const Graph<Node, Cost>& graph) {
         PairGraph pair_graph;
-        for(const auto& [f, tc] : graph.getEdgesAll()) {
-            auto [t, c] = tc;
+        for(const auto& [f, t, c] : graph.getEdges()) {
             pair_graph[std::pair<Node, Node>{f, t}] += c;
         }
         return pair_graph;

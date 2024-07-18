@@ -24,7 +24,7 @@ signed main() {
             }
         }
         return d >= 0;
-    }, true);
+    });
 
     cout << ans << endl;
 }

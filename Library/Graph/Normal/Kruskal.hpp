@@ -12,8 +12,7 @@ auto kruskal(const Graph<Node, Cost>& graph) {
     auto dsu = UnionFind(n);
     using Type = std::pair<Cost, std::pair<Node, Node>>;
     std::priority_queue<Type, std::vector<Type>, std::greater<Type>> q;
-    for(const auto& [f, tc] : graph.getEdgesAll()) {
-        auto [t, c] = tc;
+    for(const auto& [f, t, c] : graph.getEdges()) {
         q.emplace(c, std::make_pair(f, t));
     }
 
