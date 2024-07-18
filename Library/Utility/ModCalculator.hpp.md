@@ -6,18 +6,18 @@ data:
     path: Library/Utility/Combination.hpp
     title: Library/Utility/Combination.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Utility/ModCalculator.test.cpp
     title: Test/Utility/ModCalculator.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Utility/ModCalculator_inv.test.cpp
     title: Test/Utility/ModCalculator_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Utility/ModCalculator_pow.test.cpp
     title: Test/Utility/ModCalculator_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/ModCalculator.hpp\"\n#include <vector>\r\
@@ -81,7 +81,7 @@ data:
   requiredBy:
   - Library/Utility/Combination.hpp
   timestamp: '2023-04-07 03:18:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Utility/ModCalculator_inv.test.cpp
   - Test/Utility/ModCalculator_pow.test.cpp

@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RSQ.test.cpp
     title: Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n#include <vector>\r\
@@ -116,7 +116,7 @@ data:
   path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
   timestamp: '2023-04-07 02:20:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp

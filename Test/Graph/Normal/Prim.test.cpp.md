@@ -63,9 +63,9 @@ data:
     \ n >> m;\r\n\r\n    auto graph = Graph(n);\r\n    for(int i = 0; i < m; ++i)\
     \ {\r\n        int s, t, w;\r\n        cin >> s >> t >> w;\r\n        graph.addEdgeUndirected(s,\
     \ t, w);\r\n    }\r\n\r\n    auto min_spanning_tree = prim(graph);\r\n\r\n   \
-    \ ll ans = 0;\r\n    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll())\
-    \ {\r\n        auto [t, c] = tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\
-    \n    cout << ans << endl;\r\n}\n"
+    \ ll ans = 0;\r\n    for(const auto& [f, t, c] : min_spanning_tree.getEdges())\
+    \ {\r\n        if(f < t) { ans += c; }\r\n    }\r\n    cout << ans << endl;\r\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A\"\
     \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Normal/Prim.hpp\"\r\n\r\nusing ll = long\
@@ -74,16 +74,15 @@ data:
     \ graph = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int s, t, w;\r\
     \n        cin >> s >> t >> w;\r\n        graph.addEdgeUndirected(s, t, w);\r\n\
     \    }\r\n\r\n    auto min_spanning_tree = prim(graph);\r\n\r\n    ll ans = 0;\r\
-    \n    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll()) {\r\n       \
-    \ auto [t, c] = tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\n    cout <<\
-    \ ans << endl;\r\n}"
+    \n    for(const auto& [f, t, c] : min_spanning_tree.getEdges()) {\r\n        if(f\
+    \ < t) { ans += c; }\r\n    }\r\n    cout << ans << endl;\r\n}"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Normal/Prim.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/Prim.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:38:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Prim.test.cpp

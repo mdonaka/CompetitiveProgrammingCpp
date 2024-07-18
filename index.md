@@ -40,7 +40,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DynamicSegmentTree.hpp
       title: Library/DataStructure/DynamicSegmentTree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/LazySegmentTree.hpp
       title: Library/DataStructure/LazySegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentMap.hpp
       title: Library/DataStructure/SegmentMap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
     - icon: ':question:'
@@ -76,7 +76,7 @@ data:
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
@@ -105,16 +105,16 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
     - icon: ':warning:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Math
@@ -124,7 +124,7 @@ data:
       title: Library/Math/Matrix.hpp
   - name: Library/PlaneGeometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
   - name: Library/Simd
@@ -134,19 +134,19 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/TrieTree.hpp
       title: Library/String/TrieTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/ZAlgorithm.hpp
       title: Library/String/ZAlgorithm.hpp
   - name: Library/Utility
@@ -154,13 +154,13 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Combination.hpp
       title: Library/Utility/Combination.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
   - name: Main
@@ -319,63 +319,63 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/AuxiliaryTree.test.cpp
       title: Test/Graph/Tree/AuxiliaryTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/PlaneGeometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/PlaneGeometry/ConvexHull.test.cpp
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/TrieTree.test.cpp
       title: Test/String/TrieTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/ZAlgorithm.test.cpp
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/Utility
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator.test.cpp
       title: Test/Utility/ModCalculator.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_inv.test.cpp
       title: Test/Utility/ModCalculator_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_pow.test.cpp
       title: Test/Utility/ModCalculator_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/Prime.test.cpp
       title: Test/Utility/Prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/Ycombinator.test.cpp
       title: Test/Utility/Ycombinator.test.cpp
   - name: Test/sample
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/sample/sample1.test.cpp
       title: Test/sample/sample1.test.cpp
 layout: toppage
