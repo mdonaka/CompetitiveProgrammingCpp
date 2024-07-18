@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Utility/Ycombinator.test.cpp
+    title: Test/Utility/Ycombinator.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Ycombinator.hpp\"\n\nauto Y = [](auto f)\
@@ -17,9 +20,10 @@ data:
   isVerificationFile: false
   path: Library/Utility/Ycombinator.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-03-07 08:05:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Utility/Ycombinator.test.cpp
 documentation_of: Library/Utility/Ycombinator.hpp
 layout: document
 redirect_from:

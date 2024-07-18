@@ -1,12 +1,25 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/DataStructure/LazySegmentTree.hpp
+    title: Library/DataStructure/LazySegmentTree.hpp
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':question:'
+    path: Library/Graph/Tree/HeavyLightDecomposition.hpp
+    title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
   bundledCode: "#line 1 \"Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp\"\n\
     #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
@@ -259,11 +272,14 @@ data:
     \ = 0;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n    \
     \            ans += segtree.query(l, r).first;\r\n            }\r\n          \
     \  cout << ans << endl;\r\n        }\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Tree/HeavyLightDecomposition.hpp
+  - Library/DataStructure/LazySegmentTree.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 22:46:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp

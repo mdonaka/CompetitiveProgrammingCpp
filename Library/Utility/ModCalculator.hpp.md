@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Utility/Combination.hpp
+    title: Library/Utility/Combination.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Utility/ModCalculator.test.cpp
+    title: Test/Utility/ModCalculator.test.cpp
+  - icon: ':x:'
+    path: Test/Utility/ModCalculator_inv.test.cpp
+    title: Test/Utility/ModCalculator_inv.test.cpp
+  - icon: ':x:'
+    path: Test/Utility/ModCalculator_pow.test.cpp
+    title: Test/Utility/ModCalculator_pow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/ModCalculator.hpp\"\n#include <vector>\r\
@@ -66,10 +78,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Utility/ModCalculator.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Library/Utility/Combination.hpp
+  timestamp: '2023-04-07 03:18:12+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Utility/ModCalculator_inv.test.cpp
+  - Test/Utility/ModCalculator_pow.test.cpp
+  - Test/Utility/ModCalculator.test.cpp
 documentation_of: Library/Utility/ModCalculator.hpp
 layout: document
 redirect_from:

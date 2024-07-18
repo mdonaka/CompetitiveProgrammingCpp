@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/Mo.test.cpp
+    title: Test/Algorithms/Mo.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/Mo.hpp\"\n#include <vector>\r\n#include\
@@ -48,9 +51,10 @@ data:
   isVerificationFile: false
   path: Library/Algorithms/Mo.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-02-06 05:49:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Algorithms/Mo.test.cpp
 documentation_of: Library/Algorithms/Mo.hpp
 layout: document
 redirect_from:

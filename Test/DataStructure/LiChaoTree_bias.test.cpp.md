@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/DataStructure/LiChaoTree.hpp
+    title: Library/DataStructure/LiChaoTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/409
+    links:
+    - https://yukicoder.me/problems/no/409
   bundledCode: "#line 1 \"Test/DataStructure/LiChaoTree_bias.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n#include <numeric>\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
@@ -135,12 +142,13 @@ data:
     \ ad + min);\r\n    }\r\n\r\n    ll ans = dp[n];\r\n    for(ll i = 0; i < n; ++i)\
     \ {\r\n        ll k = n - i;\r\n        ans = std::min(ans, dp[i] + -a * k + k\
     \ * (k + 1) / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/LiChaoTree_bias.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-04-13 03:52:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LiChaoTree_bias.test.cpp
 layout: document

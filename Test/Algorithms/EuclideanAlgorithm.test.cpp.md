@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/Algorithms/EuclideanAlgorithm.hpp
+    title: Library/Algorithms/EuclideanAlgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
   bundledCode: "#line 1 \"Test/Algorithms/EuclideanAlgorithm.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E\"\r\n\r\n\
     #include <iostream>\r\n#include <tuple>\r\n#line 2 \"Library/Algorithms/EuclideanAlgorithm.hpp\"\
@@ -67,12 +74,13 @@ data:
     \n    if(lsum < rsum || (lsum == rsum && la < ra)) {\r\n        cout << la <<\
     \ \" \" << lb << endl;\r\n    } else {\r\n        cout << ra << \" \" << rb <<\
     \ endl;\r\n    }\r\n\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Algorithms/EuclideanAlgorithm.hpp
   isVerificationFile: true
   path: Test/Algorithms/EuclideanAlgorithm.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-14 04:40:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/EuclideanAlgorithm.test.cpp
 layout: document

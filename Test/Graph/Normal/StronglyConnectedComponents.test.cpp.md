@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Normal/StronglyConnectedComponents.hpp
+    title: Library/Graph/Normal/StronglyConnectedComponents.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
   bundledCode: "#line 1 \"Test/Graph/Normal/StronglyConnectedComponents.test.cpp\"\
     \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
@@ -96,12 +106,14 @@ data:
     \n\r\n    int q;\r\n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n    \
     \    int u, v;\r\n        cin >> u >> v;\r\n        cout << scc.isSameGroup(u,\
     \ v) << endl;\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Normal/StronglyConnectedComponents.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 layout: document

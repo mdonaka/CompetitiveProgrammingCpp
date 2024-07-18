@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: Library/String/PalindromicTree.hpp
+    title: Library/String/PalindromicTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/263
+    links:
+    - https://yukicoder.me/problems/no/263
   bundledCode: "#line 1 \"Test/String/PalindromicTree_large.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/263\"\r\n\r\n#include <iostream>\r\n#include\
     \ <algorithm>\r\n#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <memory>\r\
@@ -134,11 +141,12 @@ data:
     \n        dp[to].second += dp[from].second;\r\n    });\r\n\r\n    ll ans = 0;\r\
     \n    for(const auto& p : dp) { ans += (p.first * p.second); }\r\n    cout <<\
     \ ans << endl;\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/String/PalindromicTree.hpp
   isVerificationFile: true
   path: Test/String/PalindromicTree_large.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2022-12-01 01:16:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/PalindromicTree_large.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/String/ZAlgorithm.test.cpp
+    title: Test/String/ZAlgorithm.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/ZAlgorithm.hpp\"\n\r\n#include <iostream>\r\
@@ -54,9 +57,10 @@ data:
   isVerificationFile: false
   path: Library/String/ZAlgorithm.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-13 03:16:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/String/ZAlgorithm.test.cpp
 documentation_of: Library/String/ZAlgorithm.hpp
 layout: document
 redirect_from:

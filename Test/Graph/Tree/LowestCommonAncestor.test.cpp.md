@@ -1,12 +1,25 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/BFS.hpp
+    title: Library/Graph/Normal/BFS.hpp
+  - icon: ':x:'
+    path: Library/Graph/Tree/LowestCommonAncestor.hpp
+    title: Library/Graph/Tree/LowestCommonAncestor.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C
   bundledCode: "#line 1 \"Test/Graph/Tree/LowestCommonAncestor.test.cpp\"\n#define\
     \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
     \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include\
@@ -91,11 +104,14 @@ data:
     \n    }\r\n\r\n    auto lca = LowestCommonAncestor(tree, 0);\r\n\r\n    int q;\r\
     \n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int u, v;\r\n \
     \       cin >> u >> v;\r\n        cout << lca.lca(u, v) << endl;\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Tree/LowestCommonAncestor.hpp
+  - Library/Graph/Normal/BFS.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 22:46:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/LowestCommonAncestor.test.cpp

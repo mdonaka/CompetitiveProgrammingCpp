@@ -1,11 +1,26 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Tree/AuxiliaryTree.hpp
+    title: Library/Graph/Tree/AuxiliaryTree.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/AuxiliaryTree.test.cpp
+    title: Test/Graph/Tree/AuxiliaryTree.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+    title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\n#include\
@@ -251,13 +266,18 @@ data:
     \n        return ret;\r\n    }\r\n\r\n    auto rangeSubTree(Node f)const {\r\n\
     \        return std::pair<Node, Node>{\r\n            m_ids[f], m_ids[f] + m_size[f]\
     \ - 1\r\n        };\r\n    }\r\n};\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/HeavyLightDecomposition.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Library/Graph/Tree/AuxiliaryTree.hpp
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/Graph/Tree/AuxiliaryTree.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

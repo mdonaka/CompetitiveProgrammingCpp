@@ -1,11 +1,17 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Tree/TreeDP.test.cpp
+    title: Test/Graph/Tree/TreeDP.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/TreeDP.hpp\"\n#include <vector> \r\n\
@@ -60,13 +66,15 @@ data:
     \ _] : tree.getEdges(from)) {\r\n            if(used[to]) { continue; }\r\n  \
     \          lambda(from, to);\r\n            --in[to];\r\n            if(to !=\
     \ root && in[to] == 1) { q.emplace(to); }\r\n        }\r\n    }\r\n}\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/TreeDP.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Graph/Tree/TreeDP.test.cpp
 documentation_of: Library/Graph/Tree/TreeDP.hpp
 layout: document
 redirect_from:

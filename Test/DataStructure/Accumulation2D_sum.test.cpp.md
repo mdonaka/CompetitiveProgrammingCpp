@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/DataStructure/Accumulation2D.hpp
+    title: Library/DataStructure/Accumulation2D.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1623
+    links:
+    - https://yukicoder.me/problems/no/1623
   bundledCode: "#line 1 \"Test/DataStructure/Accumulation2D_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/1623\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"Library/DataStructure/Accumulation2D.hpp\"\n#include <vector>\r\n\r\
@@ -62,12 +69,13 @@ data:
     \ auto acc = Accumulation2D<>(table);\r\n\r\n    ll ans = 0;\r\n    for(const\
     \ auto& r : rv) {\r\n        ans += acc.get(0, r + 1, r, 2 * size - 1);\r\n  \
     \  }\r\n    cout << ans << endl;\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/DataStructure/Accumulation2D.hpp
   isVerificationFile: true
   path: Test/DataStructure/Accumulation2D_sum.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-07 04:44:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation2D_sum.test.cpp
 layout: document

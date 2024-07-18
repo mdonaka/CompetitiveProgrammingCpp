@@ -1,11 +1,17 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Normal/WarshallFloyd.test.cpp
+    title: Test/Graph/Normal/WarshallFloyd.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/WarshallFloyd.hpp\"\n\n#include <vector>\n\
@@ -51,13 +57,15 @@ data:
     \ k = 0; k < n; ++k)for(int f = 0; f < n; ++f)for(int t = 0; t < n; ++t) {\n \
     \       cost[f][t] = std::min(cost[f][t], cost[f][k] + cost[k][t]);\n    }\n \
     \   return cost;\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Graph/Normal/WarshallFloyd.test.cpp
 documentation_of: Library/Graph/Normal/WarshallFloyd.hpp
 layout: document
 redirect_from:

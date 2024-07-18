@@ -1,11 +1,35 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/String/LCPArray.hpp
+    title: Library/String/LCPArray.hpp
+  - icon: ':x:'
+    path: Library/String/SuffixArray.hpp
+    title: Library/String/SuffixArray.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_double_rev.test.cpp
+    title: Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_int.test.cpp
+    title: Test/Algorithms/BinarySearch_int.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/BinarySearch_int_rev.test.cpp
+    title: Test/Algorithms/BinarySearch_int_rev.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Normal/BFS.test.cpp
+    title: Test/Graph/Normal/BFS.test.cpp
+  - icon: ':x:'
+    path: Test/String/LCPArray.test.cpp
+    title: Test/String/LCPArray.test.cpp
+  - icon: ':x:'
+    path: Test/String/SuffixArray.test.cpp
+    title: Test/String/SuffixArray.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\
@@ -32,10 +56,18 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Algorithms/BinarySearch.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Library/String/SuffixArray.hpp
+  - Library/String/LCPArray.hpp
+  timestamp: '2024-03-30 16:35:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - Test/String/SuffixArray.test.cpp
+  - Test/String/LCPArray.test.cpp
+  - Test/Algorithms/BinarySearch_int_rev.test.cpp
+  - Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp
 layout: document
 redirect_from:

@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':warning:'
+    path: Utils/Timer.hpp
+    title: Utils/Timer.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -170,11 +173,12 @@ data:
     \n                auto args = gen();\r\n                Inner::apply(solver, args);\r\
     \n                tm.print<Timer::UNITS::MILLI>();\r\n            }\r\n      \
     \  }\r\n    };\r\n\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Utils/Timer.hpp
   isVerificationFile: false
   path: Utils/sample.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2023-12-31 17:47:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utils/sample.hpp

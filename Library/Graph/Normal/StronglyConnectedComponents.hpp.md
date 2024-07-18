@@ -1,11 +1,17 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\
@@ -119,13 +125,15 @@ data:
     \n            st.emplace(m_group[f], m_group[t]);\r\n        }\r\n        Graph<Node,\
     \ Cost> ret(m_graph.size());\r\n        for(const auto& [f, t] : st) { ret.addEdge(f,\
     \ t); }\r\n        return ret;\r\n    }\r\n};\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 documentation_of: Library/Graph/Normal/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:

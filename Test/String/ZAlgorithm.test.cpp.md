@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: Library/String/ZAlgorithm.hpp
+    title: Library/String/ZAlgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B
   bundledCode: "#line 1 \"Test/String/ZAlgorithm.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B\"\
     \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/String/ZAlgorithm.hpp\"\n\
     \r\n#line 4 \"Library/String/ZAlgorithm.hpp\"\n#include <vector>\r\n#include <string>\r\
@@ -47,11 +54,12 @@ data:
     \  int ssz = s.size();\r\n    auto ans = za.find(tsz, ssz - 1, tsz);\r\n\r\n \
     \   for(const auto& it : ans) {\r\n        cout << it - tsz - 1 << endl;\r\n \
     \   }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/String/ZAlgorithm.hpp
   isVerificationFile: true
   path: Test/String/ZAlgorithm.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2022-09-13 03:16:39+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/ZAlgorithm.test.cpp

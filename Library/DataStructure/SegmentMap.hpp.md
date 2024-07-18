@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/SegmentMap.test.cpp
+    title: Test/DataStructure/SegmentMap.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SegmentMap.hpp\"\n#include <iostream>\r\
@@ -81,9 +84,10 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/SegmentMap.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-03-07 04:44:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/DataStructure/SegmentMap.test.cpp
 documentation_of: Library/DataStructure/SegmentMap.hpp
 layout: document
 redirect_from:

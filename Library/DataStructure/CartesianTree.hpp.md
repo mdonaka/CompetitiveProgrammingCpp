@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/CartesianTree.test.cpp
+    title: Test/DataStructure/CartesianTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/CartesianTree.hpp\"\n\r\n#include\
@@ -64,9 +67,10 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/CartesianTree.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-11-06 23:03:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/DataStructure/CartesianTree.test.cpp
 documentation_of: Library/DataStructure/CartesianTree.hpp
 layout: document
 redirect_from:

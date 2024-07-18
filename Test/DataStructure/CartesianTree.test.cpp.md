@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/DataStructure/CartesianTree.hpp
+    title: Library/DataStructure/CartesianTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
+    links:
+    - https://judge.yosupo.jp/problem/cartesian_tree
   bundledCode: "#line 1 \"Test/DataStructure/CartesianTree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/cartesian_tree\"\r\n\r\n#include <iostream>\r\
     \n#line 2 \"Library/DataStructure/CartesianTree.hpp\"\n\r\n#include <vector>\r\
@@ -53,12 +60,13 @@ data:
     \   for(int f = 0; f < n; ++f) {\r\n        int p = ct.p(f);\r\n        cout <<\
     \ (p == -1 ? f : p) << (f < n - 1 ? \" \" : \"\");\r\n    }\r\n    cout << endl;\r\
     \n}"
-  dependsOn: []
+  dependsOn:
+  - Library/DataStructure/CartesianTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/CartesianTree.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-11-06 23:03:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/CartesianTree.test.cpp
 layout: document

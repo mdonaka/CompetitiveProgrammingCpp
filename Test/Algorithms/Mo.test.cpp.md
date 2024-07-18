@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/Algorithms/Mo.hpp
+    title: Library/Algorithms/Mo.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1471
+    links:
+    - https://yukicoder.me/problems/no/1471
   bundledCode: "#line 1 \"Test/Algorithms/Mo.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1471\"\
     \r\n\r\n#include <iostream>\r\n#include <map>\r\n\r\n#line 2 \"Library/Algorithms/Mo.hpp\"\
     \n#include <vector>\r\n#include <algorithm>\r\n#include <cmath>\r\n#include <numeric>\r\
@@ -57,12 +64,13 @@ data:
     \ {\r\n            cnt += x;\r\n            if(cnt >= xv[i]) { ans[i] = c; break;\
     \ }\r\n        }\r\n    }\r\n\r\n    for(const auto& c : ans) { cout << c << endl;\
     \ }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Algorithms/Mo.hpp
   isVerificationFile: true
   path: Test/Algorithms/Mo.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-31 02:12:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/Mo.test.cpp
 layout: document

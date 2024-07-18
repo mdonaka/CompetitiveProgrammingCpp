@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: Library/Utility/ModCalculator.hpp
+    title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B
   bundledCode: "#line 1 \"Test/Utility/ModCalculator_pow.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_B\"\r\n\r\n\
     #include <iostream>\r\n#include <string>\r\n\r\n#line 2 \"Library/Utility/ModCalculator.hpp\"\
@@ -49,11 +56,12 @@ data:
     \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
     \    ll m, n;\r\n    cin >> m >> n;\r\n\r\n    auto calc = ModCalculator(1e9 +\
     \ 7);\r\n\r\n    cout << calc.pow(m, n) << endl;\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Utility/ModCalculator.hpp
   isVerificationFile: true
   path: Test/Utility/ModCalculator_pow.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2023-04-07 03:18:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/ModCalculator_pow.test.cpp

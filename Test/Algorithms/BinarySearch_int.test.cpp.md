@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Algorithms/BinarySearch.hpp
+    title: Library/Algorithms/BinarySearch.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1882
+    links:
+    - https://yukicoder.me/problems/no/1882
   bundledCode: "#line 1 \"Test/Algorithms/BinarySearch_int.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/1882\"\r\n\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n#include <ranges>\r\n#include <algorithm>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
@@ -40,12 +47,13 @@ data:
     \ val : a) {\r\n        auto idx = binarySearch(n, -1, [&](ll mid) {\r\n     \
     \       return val * a[mid] >= (x << 1);\r\n        });\r\n        ans += n -\
     \ idx;\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Algorithms/BinarySearch.hpp
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int.test.cpp
 layout: document

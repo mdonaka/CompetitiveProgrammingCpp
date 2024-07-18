@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/DataStructure/ConvecHullTrick.hpp
+    title: Library/DataStructure/ConvecHullTrick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/409
+    links:
+    - https://yukicoder.me/problems/no/409
   bundledCode: "#line 1 \"Test/DataStructure/ConvexHullTrick.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n#include <numeric>\r\n#line 2 \"Library/DataStructure/ConvecHullTrick.hpp\"\
@@ -58,12 +65,13 @@ data:
     \ i = 0; i < n; ++i) {\r\n        ll k = n - i;\r\n        ans = std::min(ans,\
     \ dp[i] + -a * k + k * (k + 1) / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\
     \n}\r\n\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/DataStructure/ConvecHullTrick.hpp
   isVerificationFile: true
   path: Test/DataStructure/ConvexHullTrick.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-03-07 11:58:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/ConvexHullTrick.test.cpp
 layout: document

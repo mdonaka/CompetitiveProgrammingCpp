@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: Library/Algorithms/CoordinateCompression.hpp
+    title: Library/Algorithms/CoordinateCompression.hpp
+  - icon: ':question:'
+    path: Library/DataStructure/SegmentTree.hpp
+    title: Library/DataStructure/SegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1282
+    links:
+    - https://yukicoder.me/problems/no/1282
   bundledCode: "#line 1 \"Test/Algorithms/CoordinateCompression_to.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#include <iostream>\r\
     \n#include <algorithm>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algorithms/CoordinateCompression.hpp\"\
@@ -98,12 +108,14 @@ data:
     \ for(int i = 0; i < n; ++i) {\r\n        segtree.add(cc.toi(b[i]), 1);\r\n  \
     \      ans += segtree.query(0, cc.toi(a[i]) - 1);\r\n    }\r\n\r\n    cout <<\
     \ ans << endl;\r\n}\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Algorithms/CoordinateCompression.hpp
+  - Library/DataStructure/SegmentTree.hpp
   isVerificationFile: true
   path: Test/Algorithms/CoordinateCompression_to.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-18 08:32:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/CoordinateCompression_to.test.cpp
 layout: document

@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: Library/Utility/ModCalculator.hpp
+    title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/117
+    links:
+    - https://yukicoder.me/problems/no/117
   bundledCode: "#line 1 \"Test/Utility/ModCalculator_inv.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/117\"\r\n\r\n#include <iostream>\r\n#include\
     \ <string>\r\n\r\n#line 2 \"Library/Utility/ModCalculator.hpp\"\n#include <vector>\r\
@@ -71,11 +78,12 @@ data:
     \ ans = calc.fact(n)\r\n                * calc.inv(calc.fact(n - k)) % MOD;\r\n\
     \            cout << ans << endl;\r\n        } else {\r\n            cout << calc.comb(std::max(0LL,\
     \ n + k - 1), k) << endl;\r\n        }\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Utility/ModCalculator.hpp
   isVerificationFile: true
   path: Test/Utility/ModCalculator_inv.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2023-04-07 03:36:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/ModCalculator_inv.test.cpp

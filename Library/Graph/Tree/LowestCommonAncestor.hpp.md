@@ -1,11 +1,20 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/BFS.hpp
+    title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/LowestCommonAncestor.hpp\"\n#include\
@@ -96,13 +105,16 @@ data:
     \ != m_parent[r][k]) {\r\n                l = m_parent[l][k];\r\n            \
     \    r = m_parent[r][k];\r\n            }\r\n        }\r\n        return m_parent[l][0];\r\
     \n    }\r\n};"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Normal/BFS.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/LowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
 documentation_of: Library/Graph/Tree/LowestCommonAncestor.hpp
 layout: document
 redirect_from:

@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/Prim.hpp
+    title: Library/Graph/Normal/Prim.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
   bundledCode: "#line 1 \"Test/Graph/Normal/Prim.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
     \n#include <deque>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\
@@ -67,11 +77,13 @@ data:
     \n    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll()) {\r\n       \
     \ auto [t, c] = tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\n    cout <<\
     \ ans << endl;\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Normal/Prim.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/Prim.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 22:46:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Prim.test.cpp

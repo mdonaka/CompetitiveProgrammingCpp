@@ -1,12 +1,25 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/DataStructure/UnionFind.hpp
+    title: Library/DataStructure/UnionFind.hpp
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/Kruskal.hpp
+    title: Library/Graph/Normal/Kruskal.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
   bundledCode: "#line 1 \"Test/Graph/Normal/Kruskal.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\n#include\
@@ -81,11 +94,14 @@ data:
     \    ll ans = 0;\r\n    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll())\
     \ {\r\n        auto [t, c] = tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\
     \n    cout << ans << endl;\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Normal/Kruskal.hpp
+  - Library/DataStructure/UnionFind.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Kruskal.test.cpp

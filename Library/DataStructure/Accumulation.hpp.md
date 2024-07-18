@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/Accumulation_sum.test.cpp
+    title: Test/DataStructure/Accumulation_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/Accumulation_xor.test.cpp
+    title: Test/DataStructure/Accumulation_xor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/Accumulation.hpp\"\n#include <vector>\r\
@@ -54,9 +60,11 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/Accumulation.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-03-07 04:44:12+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/DataStructure/Accumulation_xor.test.cpp
+  - Test/DataStructure/Accumulation_sum.test.cpp
 documentation_of: Library/DataStructure/Accumulation.hpp
 layout: document
 redirect_from:

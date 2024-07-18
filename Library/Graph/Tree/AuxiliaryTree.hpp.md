@@ -1,11 +1,20 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':question:'
+    path: Library/Graph/Tree/HeavyLightDecomposition.hpp
+    title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/AuxiliaryTree.test.cpp
+    title: Test/Graph/Tree/AuxiliaryTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\n\r\n#include <vector>\r\
@@ -211,13 +220,16 @@ data:
     \ - depth_cost[hld.lca(stk.top(), nd)] * 2;\r\n                auxiliary_tree.addEdgeUndirected(f,\
     \ t, c);\r\n            }\r\n            stk.emplace(nd);\r\n        }\r\n   \
     \     return auxiliary_tree;\r\n    }\r\n};\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Tree/HeavyLightDecomposition.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/AuxiliaryTree.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Graph/Tree/AuxiliaryTree.test.cpp
 documentation_of: Library/Graph/Tree/AuxiliaryTree.hpp
 layout: document
 redirect_from:

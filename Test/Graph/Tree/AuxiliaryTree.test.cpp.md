@@ -1,12 +1,25 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Graph/Tree/AuxiliaryTree.hpp
+    title: Library/Graph/Tree/AuxiliaryTree.hpp
+  - icon: ':question:'
+    path: Library/Graph/Tree/HeavyLightDecomposition.hpp
+    title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/901
+    links:
+    - https://yukicoder.me/problems/no/901
   bundledCode: "#line 1 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/901\"\r\n\r\n#include <iostream>\r\n#include\
     \ <ranges>\r\n\r\n#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\n\r\n#include\
@@ -202,12 +215,15 @@ data:
     \ = at.compression(v);\r\n\r\n        long long ans = 0;\r\n        for(const\
     \ auto& [f, t, c] : comp_tree.getEdges()) if(f < t) {\r\n            ans += c;\r\
     \n        }\r\n\r\n        std::cout << ans << \"\\n\";\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Tree/AuxiliaryTree.hpp
+  - Library/Graph/Tree/HeavyLightDecomposition.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/AuxiliaryTree.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/AuxiliaryTree.test.cpp
 layout: document

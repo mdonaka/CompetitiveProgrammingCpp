@@ -1,12 +1,25 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Algorithms/BinarySearch.hpp
+    title: Library/Algorithms/BinarySearch.hpp
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/BFS.hpp
+    title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://yukicoder.me/problems/no/1473
+    links:
+    - https://yukicoder.me/problems/no/1473
   bundledCode: "#line 1 \"Test/Graph/Normal/BFS.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1473\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n\r\n#line 3 \"Library/Graph/Graph.hpp\"\
     \n#include <deque>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\
@@ -82,11 +95,14 @@ data:
     \ = binarySearch(0, 1e9, [&](ll w) {\r\n        auto d = solve(w);\r\n       \
     \ return d > 0;\r\n    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout <<\
     \ w_max << \" \" << ans << endl;\r\n}\r\n"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Graph.hpp
+  - Library/Graph/Normal/BFS.hpp
+  - Library/Algorithms/BinarySearch.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp

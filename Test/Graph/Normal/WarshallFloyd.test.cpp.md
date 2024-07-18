@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: Library/Graph/Graph.hpp
+    title: Library/Graph/Graph.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/WarshallFloyd.hpp
+    title: Library/Graph/Normal/WarshallFloyd.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C
   bundledCode: "#line 1 \"Test/Graph/Normal/WarshallFloyd.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"Library/Graph/Normal/WarshallFloyd.hpp\"\n\n\
@@ -74,11 +84,13 @@ data:
     \ {\r\n                cout << *itr;\r\n            }\r\n            if(itr !=\
     \ std::prev(r.end())) { cout << \" \"; }\r\n        }\r\n        cout << endl;\r\
     \n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Graph/Normal/WarshallFloyd.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/WarshallFloyd.test.cpp

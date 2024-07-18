@@ -1,12 +1,19 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: Library/Utility/Prime.hpp
+    title: Library/Utility/Prime.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
   bundledCode: "#line 1 \"Test/Utility/Prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \r\n\r\n#include <iostream>\r\n#include <algorithm>\r\n\r\n#line 2 \"Library/Utility/Prime.hpp\"\
     \n\r\n#include <vector>\r\n#include <deque>\r\n#include <unordered_map>\r\n\r\n\
@@ -43,11 +50,12 @@ data:
     \ ans.end());\r\n\r\n    cout << n << \": \";\r\n    for(unsigned int i = 0; i\
     \ < ans.size(); ++i) {\r\n        cout << ans[i] << (i + 1 < ans.size() ? \" \"\
     \ : \"\\n\");\r\n    }\r\n}"
-  dependsOn: []
+  dependsOn:
+  - Library/Utility/Prime.hpp
   isVerificationFile: true
   path: Test/Utility/Prime.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2023-06-17 05:41:35+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/Prime.test.cpp
