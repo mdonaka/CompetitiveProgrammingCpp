@@ -6,6 +6,7 @@ template<class Node = int, class Cost = long long>
 class Graph {
     //using Node = int;
     //using Cost = long long;
+
     using Edge = std::pair<Node, Cost>;
     using Edges = std::vector<Edge>;
 
@@ -31,14 +32,14 @@ public:
         };
         return EdgesRange(m_graph[from]);
     }
-    auto getEdgesAll()const {
-        std::deque<std::pair<Node, Edge>> edges;
-        for(Node from = 0; from < m_n; ++from) for(const auto& edge : getEdges(from)) {
-            edges.emplace_back(from, edge);
+    auto getEdges()const {
+        std::deque<std::tuple<Node, Node, Cost>> edges;
+        for(Node from = 0; from < m_n; ++from) for(const auto& [to, c] : getEdges(from)) {
+            edges.emplace_back(from, to, c);
         }
         return edges;
     }
-    auto getEdgesAll2()const {
+    auto getEdgesExcludeCost()const {
         std::deque<std::pair<Node, Node>> edges;
         for(Node from = 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {
             edges.emplace_back(from, to);
@@ -47,11 +48,15 @@ public:
     }
     auto reverse()const {
         auto rev = Graph<Node, Cost>(m_n);
-        for(const auto& [from, edge] : getEdgesAll()) {
-            auto [to, c] = edge;
+        for(const auto& [from, to, c] : getEdges()) {
             rev.addEdge(to, from, c);
         }
         return rev;
     }
     auto size()const { return m_n; };
+    auto debug(bool directed = false)const {
+        for(const auto& [f, t, c] : getEdges())if(f < t || directed) {
+            std::cout << f << " -> " << t << ": " << c << std::endl;
+        }
+    }
 };
