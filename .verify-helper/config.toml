@@ -1,0 +1,2 @@
+[[languages.cpp.environments]]
+CXXFLAGS = ["-std=c++20"]
