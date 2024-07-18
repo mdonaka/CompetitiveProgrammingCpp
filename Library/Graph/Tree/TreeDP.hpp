@@ -8,7 +8,7 @@ template<class Node, class Cost, class Lambda>
 auto treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {
     auto n = tree.size();
     std::vector<Node> in(n);
-    for(const auto& [f, t] : tree.getEdgesAll2()) if(f < t) {
+    for(const auto& [f, t] : tree.getEdgesExcludeCost()) if(f < t) {
         ++in[f]; ++in[t];
     }
     std::queue<Node> q;

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <ranges>
 #include <algorithm>
 
 #include "./../../Library/Algorithms/BinarySearch.hpp"
@@ -17,12 +18,12 @@ signed main() {
     cin >> n >> x;
     std::vector<ll> a(n);
     for(int i = 0; i < n; ++i) { cin >> a[i]; }
-    std::sort(a.begin(), a.end());
+    std::ranges::sort(a);
 
     ll ans = 0;
-    for(int i = 0; i < n; ++i) {
-        auto idx = binarySearch(0, n, [&](ll mid) {
-            return a[i] * a[mid] >= (x << 1);
+    for(const auto& val : a) {
+        auto idx = binarySearch(n, -1, [&](ll mid) {
+            return val * a[mid] >= (x << 1);
         });
         ans += n - idx;
     }

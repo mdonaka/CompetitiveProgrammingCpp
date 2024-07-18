@@ -189,7 +189,7 @@ public:
         auto find = [&](const std::string& ptn) {
             int end = m_suffixArray.size();
             int ptn_sz = ptn.size();
-            auto ret = binarySearch(0, end, [&](int mid) {
+            auto ret = binarySearch(end, -1, [&](int mid) {
                 int st = m_suffixArray[mid];
                 int sub_sz = end - st;
                 for(int k = 0; k < std::min(ptn_sz, sub_sz); ++k) {

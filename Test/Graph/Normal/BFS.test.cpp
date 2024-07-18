@@ -24,8 +24,7 @@ signed main() {
 
     auto solve = [&](ll w) {
         auto graph = Graph(n);
-        for(const auto& [s, td] : graph_all.getEdgesAll()) {
-            auto [t, d] = td;
+        for(const auto& [s, t, d] : graph_all.getEdges()) {
             if(w <= d) { graph.addEdge(s, t); }
         }
 
@@ -37,7 +36,7 @@ signed main() {
     auto w_max = binarySearch(0, 1e9, [&](ll w) {
         auto d = solve(w);
         return d > 0;
-    }, true);
+    });
 
     auto ans = solve(w_max);
     cout << w_max << " " << ans << endl;
