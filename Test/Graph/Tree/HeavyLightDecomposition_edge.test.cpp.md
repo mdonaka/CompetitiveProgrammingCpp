@@ -1,25 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/LazySegmentTree.hpp
-    title: Library/DataStructure/LazySegmentTree.hpp
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
-  - icon: ':question:'
-    path: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    title: Library/Graph/Tree/HeavyLightDecomposition.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp\"\n\
     #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
@@ -272,15 +259,12 @@ data:
     \ = 0;\r\n            for(const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n    \
     \            ans += segtree.query(l, r).first;\r\n            }\r\n          \
     \  cout << ans << endl;\r\n        }\r\n    }\r\n}"
-  dependsOn:
-  - Library/Graph/Graph.hpp
-  - Library/Graph/Tree/HeavyLightDecomposition.hpp
-  - Library/DataStructure/LazySegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
 layout: document

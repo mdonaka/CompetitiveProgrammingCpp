@@ -1,17 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Graph/Normal/Prim.test.cpp
-    title: Test/Graph/Normal/Prim.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Prim.hpp\"\n\r\n#include <queue>\r\n\
@@ -66,15 +60,13 @@ data:
     \ to, cost); }\r\n        for(const auto& [nto, ncost] : graph.getEdges(to)) {\r\
     \n            if(used[nto]) { continue; }\r\n            q.emplace(ncost, std::make_pair(to,\
     \ nto));\r\n        }\r\n    }\r\n    return min_spanning_tree;\r\n}"
-  dependsOn:
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Normal/Prim.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/Graph/Normal/Prim.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Normal/Prim.hpp
 layout: document
 redirect_from:

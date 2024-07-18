@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Utility/Prime.test.cpp
-    title: Test/Utility/Prime.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Prime.hpp\"\n\r\n#include <vector>\r\n#include\
@@ -50,10 +47,9 @@ data:
   isVerificationFile: false
   path: Library/Utility/Prime.hpp
   requiredBy: []
-  timestamp: '2023-06-17 05:34:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/Utility/Prime.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Utility/Prime.hpp
 layout: document
 redirect_from:

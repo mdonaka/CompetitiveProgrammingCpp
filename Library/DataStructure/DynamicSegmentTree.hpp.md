@@ -2,19 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/DynamicSegmentTree.test.cpp
-    title: Test/DataStructure/DynamicSegmentTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
-    title: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
-    title: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n\r\n#include\
@@ -102,12 +93,9 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-07-22 05:28:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
-  - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
-  - Test/DataStructure/DynamicSegmentTree.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/DataStructure/DynamicSegmentTree.hpp
 layout: document
 redirect_from:

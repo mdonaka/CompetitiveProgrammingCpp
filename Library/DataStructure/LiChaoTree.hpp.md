@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/DynamicLiChaoTree.test.cpp
-    title: Test/DataStructure/DynamicLiChaoTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-    title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LiChaoTree.test.cpp
-    title: Test/DataStructure/LiChaoTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LiChaoTree_bias.test.cpp
-    title: Test/DataStructure/LiChaoTree_bias.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LiChaoTree_segment.test.cpp
-    title: Test/DataStructure/LiChaoTree_segment.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n#include <limits>\r\
@@ -217,14 +202,9 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/LiChaoTree.hpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/DataStructure/LiChaoTree.test.cpp
-  - Test/DataStructure/LiChaoTree_bias.test.cpp
-  - Test/DataStructure/LiChaoTree_segment.test.cpp
-  - Test/DataStructure/DynamicLiChaoTree.test.cpp
-  - Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/DataStructure/LiChaoTree.hpp
 layout: document
 redirect_from:

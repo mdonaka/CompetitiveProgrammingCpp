@@ -1,12 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
-  - icon: ':question:'
-    path: Library/Graph/Normal/BFS.hpp
-    title: Library/Graph/Normal/BFS.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -141,13 +135,11 @@ data:
     \ m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream& os, const\
     \ Monoid& m) {\r\n        os << m.m_val;\r\n        return os;\r\n    }\r\n};\r\
     \n"
-  dependsOn:
-  - Library/Graph/Normal/BFS.hpp
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Tree/ReRootingDP.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Graph/Tree/ReRootingDP.hpp

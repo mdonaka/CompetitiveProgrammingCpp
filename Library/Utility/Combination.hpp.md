@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/Utility/ModCalculator.hpp
-    title: Library/Utility/ModCalculator.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -70,12 +67,11 @@ data:
     \ %= MOD;\r\n    }\r\n    long long t = 1;\r\n    for(long long i = 1; i < b +\
     \ 1; ++i) {\r\n        t *= i;\r\n        t %= MOD;\r\n    }\r\n    ans *= calc.pow(t,\
     \ MOD - 2);\r\n    ans %= MOD;\r\n    return ans;\r\n}"
-  dependsOn:
-  - Library/Utility/ModCalculator.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Utility/Combination.hpp
   requiredBy: []
-  timestamp: '2023-04-07 03:18:12+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Utility/Combination.hpp

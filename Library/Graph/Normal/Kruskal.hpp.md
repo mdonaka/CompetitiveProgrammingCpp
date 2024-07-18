@@ -1,20 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/DataStructure/UnionFind.hpp
-    title: Library/DataStructure/UnionFind.hpp
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Graph/Normal/Kruskal.test.cpp
-    title: Test/Graph/Normal/Kruskal.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Kruskal.hpp\"\n\r\n#include <queue>\r\
@@ -81,16 +72,13 @@ data:
     \  auto [from, to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from, to))\
     \ { continue; }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
     \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n}\r\n"
-  dependsOn:
-  - Library/Graph/Graph.hpp
-  - Library/DataStructure/UnionFind.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Normal/Kruskal.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/Graph/Normal/Kruskal.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Normal/Kruskal.hpp
 layout: document
 redirect_from:

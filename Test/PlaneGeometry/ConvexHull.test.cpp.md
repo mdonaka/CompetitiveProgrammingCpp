@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/PlaneGeometry/ConvexHull.hpp
-    title: Library/PlaneGeometry/ConvexHull.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/PlaneGeometry/ConvexHull.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"Library/PlaneGeometry/ConvexHull.hpp\"\n\r\n\
@@ -66,13 +59,12 @@ data:
     \n\r\n    cout << cf.size() << endl;\r\n    for(int i = 0; i < size; ++i) {\r\n\
     \        auto p = cf[(i + idx) % size];\r\n        cout << p.real() << \" \" <<\
     \ p.imag() << endl;\r\n    }\r\n}"
-  dependsOn:
-  - Library/PlaneGeometry/ConvexHull.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/PlaneGeometry/ConvexHull.test.cpp
   requiredBy: []
-  timestamp: '2022-09-08 21:53:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/PlaneGeometry/ConvexHull.test.cpp
 layout: document

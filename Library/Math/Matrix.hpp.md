@@ -52,7 +52,7 @@ data:
   isVerificationFile: false
   path: Library/Math/Matrix.hpp
   requiredBy: []
-  timestamp: '2024-06-09 00:10:06+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Math/Matrix.hpp

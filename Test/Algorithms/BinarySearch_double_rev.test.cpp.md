@@ -1,20 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Algorithms/BinarySearch.hpp
-    title: Library/Algorithms/BinarySearch.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: 1e-9
-    PROBLEM: https://yukicoder.me/problems/no/67
-    links:
-    - https://yukicoder.me/problems/no/67
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Algorithms/BinarySearch_double_rev.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/67\"\r\n#define ERROR \"1e-9\"\r\n\
     \r\n#include <iostream>\r\n#include <iomanip>\r\n#include <vector>\r\n#line 2\
@@ -50,13 +42,12 @@ data:
     \ {\r\n            count += (1.0 * x / mid);\r\n        }\r\n        return count\
     \ >= k;\r\n    }, true);\r\n\r\n    cout << std::fixed << std::setprecision(12)\
     \ << ans << endl;\r\n}\r\n"
-  dependsOn:
-  - Library/Algorithms/BinarySearch.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_double_rev.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 16:35:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_double_rev.test.cpp
 layout: document

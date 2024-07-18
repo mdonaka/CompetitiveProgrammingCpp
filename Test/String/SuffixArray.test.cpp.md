@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Algorithms/BinarySearch.hpp
-    title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/String/SuffixArray.hpp
-    title: Library/String/SuffixArray.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/String/SuffixArray.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
     \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
     \n#include <numeric>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double\
@@ -157,14 +147,12 @@ data:
     \ sa = SuffixArray(s);\r\n\r\n    for(const auto& t : vt) {\r\n        auto [l,\
     \ r] = sa.findPattern(t);\r\n        cout << ((r - l) > 0) << endl;\r\n    }\r\
     \n}"
-  dependsOn:
-  - Library/String/SuffixArray.hpp
-  - Library/Algorithms/BinarySearch.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/String/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/SuffixArray.test.cpp
 layout: document

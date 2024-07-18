@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/Utility/Prime.hpp
-    title: Library/Utility/Prime.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Utility/Prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \r\n\r\n#include <iostream>\r\n#include <algorithm>\r\n\r\n#line 2 \"Library/Utility/Prime.hpp\"\
     \n\r\n#include <vector>\r\n#include <deque>\r\n#include <unordered_map>\r\n\r\n\
@@ -50,13 +43,12 @@ data:
     \ ans.end());\r\n\r\n    cout << n << \": \";\r\n    for(unsigned int i = 0; i\
     \ < ans.size(); ++i) {\r\n        cout << ans[i] << (i + 1 < ans.size() ? \" \"\
     \ : \"\\n\");\r\n    }\r\n}"
-  dependsOn:
-  - Library/Utility/Prime.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Utility/Prime.test.cpp
   requiredBy: []
-  timestamp: '2023-06-17 05:41:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/Prime.test.cpp
 layout: document

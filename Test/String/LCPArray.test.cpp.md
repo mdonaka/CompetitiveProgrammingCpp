@@ -1,28 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Algorithms/BinarySearch.hpp
-    title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/SegmentTree.hpp
-    title: Library/DataStructure/SegmentTree.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/String/LCPArray.hpp
-    title: Library/String/LCPArray.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/String/SuffixArray.hpp
-    title: Library/String/SuffixArray.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/599
-    links:
-    - https://yukicoder.me/problems/no/599
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/String/LCPArray.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/599\"\
     \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/String/LCPArray.hpp\"\n\r\
     \n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\n\r\n\
@@ -245,16 +229,12 @@ data:
     \ >= MOD) { dp[r + 1] -= MOD; }\r\n            }\r\n        }\r\n    }\r\n\r\n\
     \    ll ans = 0;\r\n    for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans\
     \ -= MOD; } }\r\n    cout << ans;\r\n}\r\n"
-  dependsOn:
-  - Library/String/LCPArray.hpp
-  - Library/String/SuffixArray.hpp
-  - Library/Algorithms/BinarySearch.hpp
-  - Library/DataStructure/SegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/String/LCPArray.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/LCPArray.test.cpp
 layout: document

@@ -1,23 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Algorithms/BinarySearch.hpp
-    title: Library/Algorithms/BinarySearch.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Library/String/LCPArray.hpp
-    title: Library/String/LCPArray.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/String/LCPArray.test.cpp
-    title: Test/String/LCPArray.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/String/SuffixArray.test.cpp
-    title: Test/String/SuffixArray.test.cpp
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\
@@ -246,17 +234,13 @@ data:
     \ \";\r\n        }std::cout << std::endl;\r\n        auto end = m_str.size();\r\
     \n        for(const auto& x : m_suffixArray) {\r\n            std::cout << m_str.substr(x,\
     \ end) << std::endl;\r\n        }\r\n    }\r\n};"
-  dependsOn:
-  - Library/Algorithms/BinarySearch.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/String/SuffixArray.hpp
-  requiredBy:
-  - Library/String/LCPArray.hpp
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/String/SuffixArray.test.cpp
-  - Test/String/LCPArray.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/String/SuffixArray.hpp
 layout: document
 redirect_from:

@@ -1,26 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: Library/Graph/Tree/LowestCommonAncestor.hpp
-    title: Library/Graph/Tree/LowestCommonAncestor.hpp
-  - icon: ':warning:'
-    path: Library/Graph/Tree/ReRootingDP.hpp
-    title: Library/Graph/Tree/ReRootingDP.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Graph/Normal/BFS.test.cpp
-    title: Test/Graph/Normal/BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  _isVerificationFailed: true
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <vector>\r\n\
@@ -68,18 +53,13 @@ data:
     \ auto& [to, _] : graph.getEdges(from)) {\r\n            if(used[to]) { continue;\
     \ }\r\n            q.emplace(to);\r\n            used[to] = true;\r\n        \
     \    lambda(from, to);\r\n        }\r\n    }\r\n}\r\n"
-  dependsOn:
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Normal/BFS.hpp
-  requiredBy:
-  - Library/Graph/Tree/LowestCommonAncestor.hpp
-  - Library/Graph/Tree/ReRootingDP.hpp
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  - Test/Graph/Normal/BFS.test.cpp
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:

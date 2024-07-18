@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/LiChaoTree.hpp
-    title: Library/DataStructure/LiChaoTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
-    links:
-    - https://judge.yosupo.jp/problem/segment_add_get_min
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n\
@@ -142,13 +135,12 @@ data:
     \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
     \n            } else {\r\n                cout << ans << endl;\r\n           \
     \ }\r\n        }\r\n    }\r\n}\r\n"
-  dependsOn:
-  - Library/DataStructure/LiChaoTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
 layout: document

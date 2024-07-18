@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/CoordinateCompression_comp.test.cpp
-    title: Test/Algorithms/CoordinateCompression_comp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/CoordinateCompression_to.test.cpp
-    title: Test/Algorithms/CoordinateCompression_to.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/SegmentTree_RMQ.test.cpp
-    title: Test/DataStructure/SegmentTree_RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/SegmentTree_RSQ.test.cpp
-    title: Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/String/LCPArray.test.cpp
-    title: Test/String/LCPArray.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n#include <vector>\r\
@@ -115,14 +100,9 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-04-07 02:20:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/String/LCPArray.test.cpp
-  - Test/Algorithms/CoordinateCompression_to.test.cpp
-  - Test/Algorithms/CoordinateCompression_comp.test.cpp
-  - Test/DataStructure/SegmentTree_RMQ.test.cpp
-  - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:

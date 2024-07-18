@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/LiChaoTree.hpp
-    title: Library/DataStructure/LiChaoTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
-    links:
-    - https://judge.yosupo.jp/problem/line_add_get_min
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/LiChaoTree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
@@ -147,13 +140,12 @@ data:
     \ auto& query : queries) {\r\n        if(query.k == 0) {\r\n            lct.addLine(query.a,\
     \ query.b);\r\n        } else {\r\n            cout << lct.query(query.a) << endl;\r\
     \n        }\r\n    }\r\n}\r\n"
-  dependsOn:
-  - Library/DataStructure/LiChaoTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/LiChaoTree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/LiChaoTree.test.cpp
 layout: document

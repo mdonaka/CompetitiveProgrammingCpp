@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/SegmentMap.hpp
-    title: Library/DataStructure/SegmentMap.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/674
-    links:
-    - https://yukicoder.me/problems/no/674
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/SegmentMap.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/674\"\r\n\r\n#include <iostream>\r\n#line\
     \ 3 \"Library/DataStructure/SegmentMap.hpp\"\n#include <map>\r\n#include <stdexcept>\r\
@@ -66,13 +59,12 @@ data:
     \ segmap.update(a, b, 1);\r\n\r\n        auto [__, range] = segmap.get(a);\r\n\
     \        ans = std::max(ans, range.second - range.first + 1);\r\n        cout\
     \ << ans << endl;\r\n    }\r\n}"
-  dependsOn:
-  - Library/DataStructure/SegmentMap.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/SegmentMap.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/SegmentMap.test.cpp
 layout: document

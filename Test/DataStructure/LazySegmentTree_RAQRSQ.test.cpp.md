@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/LazySegmentTree.hpp
-    title: Library/DataStructure/LazySegmentTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp\"\n#define\
     \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G\"\
     \r\n\r\n#include <iostream>\r\n#line 3 \"Library/DataStructure/LazySegmentTree.hpp\"\
@@ -110,13 +103,12 @@ data:
     \ {\r\n            int s, t;\r\n            cin >> s >> t;\r\n            --s;\
     \ --t;\r\n            cout << segtree.query(s, t).first << endl;\r\n        }\r\
     \n    }\r\n}"
-  dependsOn:
-  - Library/DataStructure/LazySegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 05:34:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
 layout: document

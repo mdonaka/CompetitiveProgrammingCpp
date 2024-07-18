@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/Graph/Tree/TreeDP.hpp
-    title: Library/Graph/Tree/TreeDP.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/763
-    links:
-    - https://yukicoder.me/problems/no/763
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Graph/Tree/TreeDP.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/763\"\
     \r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include <queue>\r\n\r\nusing\
     \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
@@ -76,14 +66,12 @@ data:
     \ 1);\r\n    treeDP(tree, 0, [&](int f, int t) {\r\n        dp1[t] += std::max(dp1[f],\
     \ dp2[f]);\r\n        dp2[t] += std::max(dp1[f], dp2[f] - 1);\r\n    });\r\n\r\
     \n    auto ans = std::max(dp1[0], dp2[0]);\r\n    cout << ans << endl;\r\n}"
-  dependsOn:
-  - Library/Graph/Graph.hpp
-  - Library/Graph/Tree/TreeDP.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Graph/Tree/TreeDP.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/TreeDP.test.cpp
 layout: document

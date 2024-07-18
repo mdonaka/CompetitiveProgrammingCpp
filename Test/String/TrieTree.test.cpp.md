@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/String/TrieTree.hpp
-    title: Library/String/TrieTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/430
-    links:
-    - https://yukicoder.me/problems/no/430
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/String/TrieTree.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/430\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/String/TrieTree.hpp\"\n\r\n#include\
     \ <vector>\r\n#include <memory>\r\n\r\nconstexpr auto nullLambda = [](int n) {};\r\
@@ -58,13 +51,12 @@ data:
     \n        for(int j = i; j < std::min(i + ss, sz); ++j) {\r\n            v.emplace_back(str[j]\
     \ - 'A');\r\n        }\r\n        tree.find(v, [&](bool) { ++ans; });\r\n    }\r\
     \n    cout << ans << endl;\r\n}"
-  dependsOn:
-  - Library/String/TrieTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/String/TrieTree.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 06:12:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/TrieTree.test.cpp
 layout: document

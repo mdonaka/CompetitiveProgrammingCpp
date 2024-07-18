@@ -1,20 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Algorithms/BinarySearch.hpp
-    title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/String/SuffixArray.hpp
-    title: Library/String/SuffixArray.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/String/LCPArray.test.cpp
-    title: Test/String/LCPArray.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
@@ -177,16 +168,13 @@ data:
     \    std::vector<int> sail(m_suffixArray.size());\r\n        for(unsigned int\
     \ i = 0; i < m_suffixArray.size(); ++i) {\r\n            sail[m_suffixArray[i]]\
     \ = i;\r\n        }\r\n        return sail;\r\n    }\r\n};"
-  dependsOn:
-  - Library/String/SuffixArray.hpp
-  - Library/Algorithms/BinarySearch.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/String/LCPArray.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/String/LCPArray.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/String/LCPArray.hpp
 layout: document
 redirect_from:

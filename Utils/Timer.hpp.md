@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Utils/sample.hpp
-    title: Utils/sample.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -84,9 +81,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Utils/Timer.hpp
-  requiredBy:
-  - Utils/sample.hpp
-  timestamp: '2022-09-11 12:54:54+09:00'
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Utils/Timer.hpp

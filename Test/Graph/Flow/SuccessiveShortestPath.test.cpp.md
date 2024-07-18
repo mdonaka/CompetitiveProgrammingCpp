@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/Graph/Flow/SuccessiveShortestPath.hpp
-    title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n#define\
     \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
@@ -140,14 +130,12 @@ data:
     \ c >> d;\r\n        graph.addEdge(u, v, std::make_pair(c, d));\r\n    }\r\n\r\
     \n    auto mcf = SuccessiveShortestPath(graph);\r\n\r\n    auto [u, c] = mcf.min_cost_max_flow(0,\
     \ n - 1, f);\r\n    cout << ((u == f) ? c : -1) << endl;\r\n}"
-  dependsOn:
-  - Library/Graph/Graph.hpp
-  - Library/Graph/Flow/SuccessiveShortestPath.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
 layout: document

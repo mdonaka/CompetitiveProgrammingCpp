@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: Main/interactive.cpp
   requiredBy: []
-  timestamp: '2023-06-18 08:41:55+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/interactive.cpp

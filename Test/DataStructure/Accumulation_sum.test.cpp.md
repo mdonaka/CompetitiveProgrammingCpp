@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/Accumulation.hpp
-    title: Library/DataStructure/Accumulation.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/Accumulation_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0516\"\r\
     \n\r\n#include <iostream>\r\n#include <map>\r\n#line 2 \"Library/DataStructure/Accumulation.hpp\"\
@@ -58,13 +51,12 @@ data:
     \        for(int i = 0; i < n - k + 1; ++i) {\r\n            auto val = acc.get(i,\
     \ i + k - 1);\r\n            ans = std::max(ans, val);\r\n        }\r\n      \
     \  cout << ans << endl;\r\n    } while(true);\r\n}"
-  dependsOn:
-  - Library/DataStructure/Accumulation.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_sum.test.cpp
 layout: document

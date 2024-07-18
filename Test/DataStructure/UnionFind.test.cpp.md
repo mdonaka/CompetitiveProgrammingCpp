@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/DataStructure/UnionFind.hpp
-    title: Library/DataStructure/UnionFind.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1390
-    links:
-    - https://yukicoder.me/problems/no/1390
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/UnionFind.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/1390\"\r\n\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n#include <deque>\r\n\r\n#line 3 \"Library/DataStructure/UnionFind.hpp\"\
@@ -52,13 +45,12 @@ data:
     \n        for(const auto& tg : dq) {\r\n            if(!dsu.isSame(base, tg))\
     \ {\r\n                dsu.unite(base, tg);\r\n                ++ans;\r\n    \
     \        }\r\n        }\r\n    }\r\n    cout << ans << endl;\r\n}"
-  dependsOn:
-  - Library/DataStructure/UnionFind.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/UnionFind.test.cpp
 layout: document

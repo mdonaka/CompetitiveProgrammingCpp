@@ -2,25 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
-    title: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
-    title: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
-    title: Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-    title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\n#include <iostream>\r\
@@ -171,14 +156,9 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-04-08 05:34:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/DataStructure/LazySegmentTree.hpp
 layout: document
 redirect_from:

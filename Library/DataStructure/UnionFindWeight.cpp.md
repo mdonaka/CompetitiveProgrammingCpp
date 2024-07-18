@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/UnionFindWeight.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/DataStructure/UnionFindWeight.cpp

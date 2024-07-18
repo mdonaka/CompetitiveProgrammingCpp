@@ -1,17 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
-    title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n#include\
@@ -191,15 +185,13 @@ data:
     \ use_all = 0;\r\n        Cost cost_all = 0;\r\n        for(const auto& [u, c]\
     \ : slope(s, t, c)) {\r\n            use_all += u; cost_all += c;\r\n        }\r\
     \n        return std::pair<Cap, Cost>{use_all, cost_all};\r\n    }\r\n};\r\n"
-  dependsOn:
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Flow/SuccessiveShortestPath.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Flow/SuccessiveShortestPath.hpp
 layout: document
 redirect_from:

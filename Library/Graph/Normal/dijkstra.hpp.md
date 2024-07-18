@@ -1,17 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Graph/Normal/Dijkstra.test.cpp
-    title: Test/Graph/Normal/Dijkstra.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <queue>\n\
@@ -61,15 +55,13 @@ data:
     \ c] : graph.getEdges(from)) {\n            if(now_cost + c < cost[to]) {\n  \
     \              cost[to] = now_cost + c;\n                q.emplace(cost[to], to);\n\
     \            }\n        }\n    }\n    return cost;\n}"
-  dependsOn:
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: Library/Graph/Normal/dijkstra.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/Graph/Normal/Dijkstra.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Normal/dijkstra.hpp
 layout: document
 redirect_from:

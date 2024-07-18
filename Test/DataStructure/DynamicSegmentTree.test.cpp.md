@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/DynamicSegmentTree.hpp
-    title: Library/DataStructure/DynamicSegmentTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1282
-    links:
-    - https://yukicoder.me/problems/no/1282
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#include <iostream>\r\
     \n#include <algorithm>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
@@ -79,13 +72,12 @@ data:
     \n\r\n    ll ans = 0;\r\n    auto segtree = DynamicSegmentTree<M>();\r\n    for(int\
     \ i = 0; i < n; ++i) {\r\n        segtree.add(b[i], 1);\r\n        ans += segtree.query(0,\
     \ a[i] - 1);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
-  dependsOn:
-  - Library/DataStructure/DynamicSegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2023-07-22 05:28:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree.test.cpp
 layout: document

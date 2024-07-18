@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/SegmentTree.hpp
-    title: Library/DataStructure/SegmentTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/SegmentTree_RSQ.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\r\n\r\n\
     #include <iostream>\r\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n\
@@ -78,13 +71,12 @@ data:
     \ >> k >> x >> y;\r\n        if(k == 0) {\r\n            segtree.add(x - 1, y);\r\
     \n        } else {\r\n            cout << segtree.query(x - 1, y - 1) << endl;\r\
     \n        }\r\n    }\r\n}"
-  dependsOn:
-  - Library/DataStructure/SegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/SegmentTree_RSQ.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 02:20:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/SegmentTree_RSQ.test.cpp
 layout: document

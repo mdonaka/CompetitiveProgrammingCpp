@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/Utility/Ycombinator.hpp
-    title: Library/Utility/Ycombinator.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2123
-    links:
-    - https://yukicoder.me/problems/no/2123
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Utility/Ycombinator.test.cpp\"\n#define PROBLEM \"\
     https://yukicoder.me/problems/no/2123\"\r\n\r\n#include <iostream>\r\n#include\
     \ <iomanip>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Utility/Ycombinator.hpp\"\
@@ -43,13 +36,12 @@ data:
     \     sum += self(self, y);\r\n        }\r\n        auto ans = sum / n + 1;\r\n\
     \        dp[n] = ans;\r\n        return ans;\r\n    });\r\n\r\n    cout << f(n)\
     \ << endl;\r\n}"
-  dependsOn:
-  - Library/Utility/Ycombinator.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Utility/Ycombinator.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 08:05:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/Ycombinator.test.cpp
 layout: document

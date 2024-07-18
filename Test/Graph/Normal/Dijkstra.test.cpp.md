@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: Library/Graph/Graph.hpp
-    title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/Graph/Normal/dijkstra.hpp
-    title: Library/Graph/Normal/dijkstra.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\r\n\r\n#include\
     \ <iostream>\r\n#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <queue>\n\
@@ -74,14 +64,12 @@ data:
     \n    auto min_cost = dijkstra(graph, r);\r\n\r\n    for(const auto x : min_cost)\
     \ {\r\n        if(x > 1e17) {\r\n            cout << \"INF\" << endl;\r\n    \
     \    } else {\r\n            cout << x << endl;\r\n        }\r\n    }\r\n}"
-  dependsOn:
-  - Library/Graph/Normal/dijkstra.hpp
-  - Library/Graph/Graph.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/Graph/Normal/Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Dijkstra.test.cpp
 layout: document

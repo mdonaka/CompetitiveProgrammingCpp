@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/EuclideanAlgorithm.test.cpp
-    title: Test/Algorithms/EuclideanAlgorithm.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/EuclideanAlgorithm.hpp\"\n\r\n#include\
@@ -92,10 +89,9 @@ data:
   isVerificationFile: false
   path: Library/Algorithms/EuclideanAlgorithm.hpp
   requiredBy: []
-  timestamp: '2022-09-14 04:40:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/Algorithms/EuclideanAlgorithm.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Algorithms/EuclideanAlgorithm.hpp
 layout: document
 redirect_from:

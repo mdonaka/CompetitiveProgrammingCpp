@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/DisjointSparseTable.hpp
-    title: Library/DataStructure/DisjointSparseTable.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
-    links:
-    - https://judge.yosupo.jp/problem/staticrmq
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/DisjointSparseTable_RMQ.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n\r\n#include\
     \ <iostream>\r\n#include <map>\r\n#line 2 \"Library/DataStructure/DisjointSparseTable.hpp\"\
@@ -67,13 +60,12 @@ data:
     \ Functor>;\r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    for(int _\
     \ = 0; _ < q; ++_) {\r\n        ll l, r;\r\n        cin >> l >> r;\r\n       \
     \ cout << dst.get(l, r - 1) << endl;\r\n    }\r\n}"
-  dependsOn:
-  - Library/DataStructure/DisjointSparseTable.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
 layout: document

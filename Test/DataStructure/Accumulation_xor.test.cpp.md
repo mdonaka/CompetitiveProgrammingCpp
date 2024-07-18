@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/Accumulation.hpp
-    title: Library/DataStructure/Accumulation.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1456
-    links:
-    - https://yukicoder.me/problems/no/1456
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/Accumulation_xor.test.cpp\"\n#define\
     \ PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include <iostream>\r\
     \n#include <unordered_set>\r\n\r\n#line 2 \"Library/DataStructure/Accumulation.hpp\"\
@@ -63,13 +56,12 @@ data:
     \ 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(acc.get(i)) !=\
     \ st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout << \"\
     No\" << endl;\r\n}"
-  dependsOn:
-  - Library/DataStructure/Accumulation.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_xor.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_xor.test.cpp
 layout: document

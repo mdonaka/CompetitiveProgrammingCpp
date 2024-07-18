@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/BellmanFord.cpp
   requiredBy: []
-  timestamp: '2021-09-20 16:59:32+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Graph/Normal/BellmanFord.cpp

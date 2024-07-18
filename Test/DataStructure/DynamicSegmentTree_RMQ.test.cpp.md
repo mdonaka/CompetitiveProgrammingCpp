@@ -1,19 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/DynamicSegmentTree.hpp
-    title: Library/DataStructure/DynamicSegmentTree.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp\"\n#define\
     \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
     \r\n\r\n#include <iostream>\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
@@ -75,13 +68,12 @@ data:
     \   int k, x, y;\r\n        cin >> k >> x >> y;\r\n        if(k == 0) {\r\n  \
     \          segtree.update(x, y);\r\n        } else {\r\n            cout << segtree.query(x,\
     \ y) << endl;\r\n        }\r\n    }\r\n}"
-  dependsOn:
-  - Library/DataStructure/DynamicSegmentTree.hpp
+  dependsOn: []
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-07-22 05:28:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
 layout: document
