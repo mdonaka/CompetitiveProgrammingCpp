@@ -18,18 +18,16 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
-    \n#include <numeric>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double\
-    \ mn, double mx, int rep, const Lambda& judge,\r\n                  bool rev =\
-    \ false) {\r\n    auto ok = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ <\
-    \ rep; ++_) {\r\n        auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\
-    \n        if((isOk && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n\
-    \        } else {\r\n            ng = mid;\r\n        }\r\n    }\r\n    return\
-    \ ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long long ok, long\
-    \ long ng, const Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n  \
-    \      long long mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\
-    \n    }\r\n    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\
-    \r\n#include <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include <string>\r\
-    \n#include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\
+    \n#include <numeric>\r\n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto\
+    \ binarySearch(double ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]]\
+    \ auto _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\
+    \n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
+    template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
+    \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
+    \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
+    \    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include <string>\r\n\
+    #include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\
     \u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306E\
     suffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\
     \u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n\
@@ -183,7 +181,7 @@ data:
   isVerificationFile: false
   path: Library/String/LCPArray.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
+  timestamp: '2024-07-19 01:34:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp

@@ -58,28 +58,26 @@ data:
     \ {\r\n            if(used[to]) { continue; }\r\n            q.emplace(to);\r\n\
     \            used[to] = true;\r\n            lambda(from, to);\r\n        }\r\n\
     \    }\r\n}\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\
-    \n\r\ntemplate <class Lambda>\r\nauto binarySearch(double mn, double mx, int rep,\
-    \ const Lambda& judge,\r\n                  bool rev = false) {\r\n    auto ok\
-    \ = mx;\r\n    auto ng = mn;\r\n    for(int _ = 0; _ < rep; ++_) {\r\n       \
-    \ auto mid = (ok + ng) / 2;\r\n        auto isOk = judge(mid);\r\n        if((isOk\
-    \ && !rev) || (!isOk && rev)) {\r\n            ok = mid;\r\n        } else {\r\
-    \n            ng = mid;\r\n        }\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate\
-    \ <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda&\
-    \ is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok\
-    \ + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return\
-    \ ok;\r\n}\r\n#line 9 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \n\r\nsigned main() {\r\n    ll n, m;\r\n    cin >> n >> m;\r\n    auto graph_all\
-    \ = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        ll s, t, d;\r\n \
-    \       cin >> s >> t >> d;\r\n        graph_all.addEdgeUndirected(s - 1, t -\
-    \ 1, d);\r\n    }\r\n\r\n    auto solve = [&](ll w) {\r\n        auto graph =\
-    \ Graph(n);\r\n        for(const auto& [s, t, d] : graph_all.getEdges()) {\r\n\
-    \            if(w <= d) { graph.addEdge(s, t); }\r\n        }\r\n\r\n        std::vector<int>\
-    \ dv(n);\r\n        bfs(graph, 0, [&](ll f, ll t) {dv[t] = dv[f] + 1; });\r\n\
-    \        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max = binarySearch(0, 1e9\
-    \ + 1, [&](ll w) {\r\n        auto d = solve(w);\r\n        return d > 0;\r\n\
-    \    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout << w_max << \" \" <<\
-    \ ans << endl;\r\n}\r\n"
+    \n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double\
+    \ ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]] auto\
+    \ _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\n\
+    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
+    template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
+    \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
+    \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
+    \    return ok;\r\n}\r\n#line 9 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing\
+    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
+    \ = '\\n';\r\n\r\nsigned main() {\r\n    ll n, m;\r\n    cin >> n >> m;\r\n  \
+    \  auto graph_all = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        ll\
+    \ s, t, d;\r\n        cin >> s >> t >> d;\r\n        graph_all.addEdgeUndirected(s\
+    \ - 1, t - 1, d);\r\n    }\r\n\r\n    auto solve = [&](ll w) {\r\n        auto\
+    \ graph = Graph(n);\r\n        for(const auto& [s, t, d] : graph_all.getEdges())\
+    \ {\r\n            if(w <= d) { graph.addEdge(s, t); }\r\n        }\r\n\r\n  \
+    \      std::vector<int> dv(n);\r\n        bfs(graph, 0, [&](ll f, ll t) {dv[t]\
+    \ = dv[f] + 1; });\r\n        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max\
+    \ = binarySearch(0, 1e9 + 1, [&](ll w) {\r\n        auto d = solve(w);\r\n   \
+    \     return d > 0;\r\n    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout\
+    \ << w_max << \" \" << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1473\"\r\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Normal/BFS.hpp\"\r\n#include \"./../../../Library/Algorithms/BinarySearch.hpp\"\
@@ -102,7 +100,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 00:11:10+09:00'
+  timestamp: '2024-07-19 01:34:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp
