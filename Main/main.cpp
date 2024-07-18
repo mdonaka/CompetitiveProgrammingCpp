@@ -42,13 +42,6 @@ inline auto chmin(T& t, const S& s) { if(s < t) { t = s; return true; } return f
 template<class S> constexpr auto vec(S x) { return x; }
 template<class S, class... T> constexpr auto vec(S x, int n, T... ns) { return std::vector(n, vec(x, ns...)); }
 
-/* type define */
-using ll = long long;
-template<class T>
-using V = std::vector<T>;
-template<class T = ll, class U = T>
-using P = std::pair<T, U>;
-
 /* Initial processing  */
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
