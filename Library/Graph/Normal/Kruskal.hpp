@@ -7,7 +7,7 @@
 template<class Node, class Cost>
 auto kruskal(const Graph<Node, Cost>& graph) {
     auto n = graph.size();
-    auto min_spanning_tree = Graph(n);
+    auto min_spanning_tree = Graph<Node, Cost>(n);
 
     auto dsu = UnionFind(n);
     using Type = std::pair<Cost, std::pair<Node, Node>>;
