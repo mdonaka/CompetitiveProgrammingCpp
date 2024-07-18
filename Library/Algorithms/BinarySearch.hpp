@@ -1,19 +1,12 @@
 #pragma once
 #include <numeric>
+#include <ranges>
 
 template <class Lambda>
-auto binarySearch(double mn, double mx, int rep, const Lambda& judge,
-                  bool rev = false) {
-    auto ok = mx;
-    auto ng = mn;
-    for(int _ = 0; _ < rep; ++_) {
-        auto mid = (ok + ng) / 2;
-        auto isOk = judge(mid);
-        if((isOk && !rev) || (!isOk && rev)) {
-            ok = mid;
-        } else {
-            ng = mid;
-        }
+auto binarySearch(double ok, double ng, int rep, const Lambda& is_ok) {
+    for([[maybe_unused]] auto _ : std::views::iota(0, rep)) {
+        double mid = (ok + ng) / 2.0;
+        (is_ok(mid) ? ok : ng) = mid;
     }
     return ok;
 }

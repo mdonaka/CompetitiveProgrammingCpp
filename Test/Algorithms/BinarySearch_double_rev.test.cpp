@@ -26,7 +26,7 @@ signed main() {
             count += (1.0 * x / mid);
         }
         return count >= k;
-    }, true);
+    });
 
     cout << std::fixed << std::setprecision(12) << ans << endl;
 }
