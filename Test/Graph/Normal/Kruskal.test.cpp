@@ -24,8 +24,7 @@ signed main() {
     auto min_spanning_tree = kruskal(graph);
 
     ll ans = 0;
-    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll()) {
-        auto [t, c] = tc;
+    for(const auto& [f, t, c] : min_spanning_tree.getEdges()) {
         if(f < t) { ans += c; }
     }
     cout << ans << endl;
