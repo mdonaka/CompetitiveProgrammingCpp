@@ -17,20 +17,20 @@ data:
   bundledCode: "#line 2 \"Library/Graph/Flow/FordFulkerson.hpp\"\n\r\n#include <vector>\r\
     \n#include <queue>\r\n#include <list>\r\n#include <unordered_map>\r\n#include\
     \ <unordered_set>\r\n#include <map>\r\n\r\n#line 3 \"Library/Graph/Graph.hpp\"\
-    \n#include <deque>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\
-    \nclass Graph {\r\n    //using Node = int;\r\n    //using Cost = long long;\r\n\
-    \r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
-    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\npublic:\r\n\
-    \    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto addEdge(const Node& f,\
-    \ const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t, c);\r\
-    \n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const Cost&\
-    \ c = 1) {\r\n        addEdge(f, t, c); addEdge(t, f, c);\r\n    }\r\n    auto\
-    \ getEdges(const Node& from)const {\r\n        class EdgesRange {\r\n        \
-    \    const typename Edges::const_iterator b, e;\r\n        public:\r\n       \
-    \     EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end()) {}\r\n\
-    \            auto begin()const { return b; }\r\n            auto end()const {\
-    \ return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n \
-    \   }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
+    \n#include <deque>\r\n#include <tuple>\r\n\r\ntemplate<class Node = int, class\
+    \ Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using\
+    \ Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
+    \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
+    \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
+    \ Node& f, const Node& t, const Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t,\
+    \ f, c);\r\n    }\r\n    auto getEdges(const Node& from)const {\r\n        class\
+    \ EdgesRange {\r\n            const typename Edges::const_iterator b, e;\r\n \
+    \       public:\r\n            EdgesRange(const Edges& edges) :b(edges.begin()),\
+    \ e(edges.end()) {}\r\n            auto begin()const { return b; }\r\n       \
+    \     auto end()const { return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\
+    \n    }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
     \ Cost>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
     \ [to, c] : getEdges(from)) {\r\n            edges.emplace_back(from, to, c);\r\
     \n        }\r\n        return edges;\r\n    }\r\n    auto getEdgesExcludeCost()const\
@@ -185,7 +185,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Flow/FordFulkerson.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
+  timestamp: '2024-07-18 23:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp

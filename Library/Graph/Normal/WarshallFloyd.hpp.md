@@ -6,22 +6,22 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/WarshallFloyd.hpp\"\n\n#include <vector>\n\
-    #line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n\r\ntemplate<class Node\
-    \ = int, class Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\
-    \n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\
-    \n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
-    \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
-    \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
-    \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
+    #line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include <tuple>\r\n\r\
+    \ntemplate<class Node = int, class Cost = long long>\r\nclass Graph {\r\n    //using\
+    \ Node = int;\r\n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node,\
+    \ Cost>;\r\n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n\
+    \    std::vector<Edges> m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n)\
+    \ {}\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n        m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t,\
     \ f, c);\r\n    }\r\n    auto getEdges(const Node& from)const {\r\n        class\
     \ EdgesRange {\r\n            const typename Edges::const_iterator b, e;\r\n \
@@ -62,8 +62,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2024-07-18 23:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-18 23:59:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/WarshallFloyd.test.cpp
 documentation_of: Library/Graph/Normal/WarshallFloyd.hpp

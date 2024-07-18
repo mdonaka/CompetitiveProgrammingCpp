@@ -16,13 +16,13 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\
     \r\n#include <unordered_set>\r\n#include <algorithm>\r\n#include <vector>\r\n\
-    #line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n\r\ntemplate<class Node\
-    \ = int, class Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\
-    \n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\
-    \n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
-    \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
-    \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
-    \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
+    #line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include <tuple>\r\n\r\
+    \ntemplate<class Node = int, class Cost = long long>\r\nclass Graph {\r\n    //using\
+    \ Node = int;\r\n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node,\
+    \ Cost>;\r\n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n\
+    \    std::vector<Edges> m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n)\
+    \ {}\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n        m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t,\
     \ f, c);\r\n    }\r\n    auto getEdges(const Node& from)const {\r\n        class\
     \ EdgesRange {\r\n            const typename Edges::const_iterator b, e;\r\n \
@@ -130,7 +130,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
