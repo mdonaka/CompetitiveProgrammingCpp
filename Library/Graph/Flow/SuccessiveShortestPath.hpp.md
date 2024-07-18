@@ -6,12 +6,12 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
     title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n#include\
@@ -19,8 +19,8 @@ data:
     #include <unordered_map>\r\n#include <unordered_set>\r\n#include <map>\r\n\r\n\
     #line 4 \"Library/Graph/Graph.hpp\"\n\r\ntemplate<class Node = int, class Cost\
     \ = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using Cost\
-    \ = long long;\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges =\
-    \ std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\
+    \ = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges\
+    \ = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\
     \n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto addEdge(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t,\
     \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
@@ -30,37 +30,39 @@ data:
     \            EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end())\
     \ {}\r\n            auto begin()const { return b; }\r\n            auto end()const\
     \ { return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n\
-    \    }\r\n    auto getEdgesAll()const {\r\n        std::deque<std::pair<Node,\
-    \ Edge>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
-    \ edge : getEdges(from)) {\r\n            edges.emplace_back(from, edge);\r\n\
-    \        }\r\n        return edges;\r\n    }\r\n    auto getEdgesAll2()const {\r\
-    \n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from =\
-    \ 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n     \
-    \       edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\n\
-    \    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
-    \n        for(const auto& [from, edge] : getEdgesAll()) {\r\n            auto\
-    \ [to, c] = edge;\r\n            rev.addEdge(to, from, c);\r\n        }\r\n  \
-    \      return rev;\r\n    }\r\n    auto size()const { return m_n; };\r\n};\n#line\
-    \ 12 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\ntemplate<class Node,\
-    \ class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\n\r\n    using GraphCap\
-    \ = std::vector<std::vector<Cap>>;\r\n    using GraphCost = std::vector<std::vector<Cost>>;\r\
-    \n\r\n    const Graph<Node, std::pair<Cap, Cost>> m_graph;\r\n    const Graph<Node,\
-    \ bool> m_graph_undirected;\r\n\r\n\r\n    auto construct_graph_undirected()const\
-    \ {\r\n        auto graph_undirected = Graph<Node, bool>(m_graph.size());\r\n\
-    \        for(const auto& [f, t] : m_graph.getEdgesAll2()) {\r\n            graph_undirected.addEdgeUndirected(f,\
-    \ t);\r\n        }\r\n        return graph_undirected;\r\n    }\r\n\r\n    auto\
-    \ construct_graph_cap()const {\r\n        auto n = m_graph.size();\r\n       \
-    \ GraphCap graph_cap(n, std::vector<Cap>(n));\r\n        for(const auto& [f, tcc]\
-    \ : m_graph.getEdgesAll()) {\r\n            auto [t, cc] = tcc;\r\n          \
-    \  auto [cap, _] = cc;\r\n            graph_cap[f][t] += cap;\r\n        }\r\n\
-    \        return graph_cap;\r\n    }\r\n    auto construct_graph_cost() const {\r\
-    \n        auto n = m_graph.size();\r\n        GraphCost graph_cost(n, std::vector<Cost>(n));\r\
+    \    }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
+    \ Cost>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
+    \ [to, c] : getEdges(from)) {\r\n            edges.emplace_back(from, to, c);\r\
+    \n        }\r\n        return edges;\r\n    }\r\n    auto getEdgesExcludeCost()const\
+    \ {\r\n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from\
+    \ = 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n   \
+    \         edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\
+    \n    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
+    \n        for(const auto& [from, to, c] : getEdges()) {\r\n            rev.addEdge(to,\
+    \ from, c);\r\n        }\r\n        return rev;\r\n    }\r\n    auto size()const\
+    \ { return m_n; };\r\n    auto debug(bool directed = false)const {\r\n       \
+    \ for(const auto& [f, t, c] : getEdges())if(f < t || directed) {\r\n         \
+    \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
+    \n    }\r\n};\n#line 12 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n\
+    template<class Node, class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\
+    \n\r\n    using GraphCap = std::vector<std::vector<Cap>>;\r\n    using GraphCost\
+    \ = std::vector<std::vector<Cost>>;\r\n\r\n    const Graph<Node, std::pair<Cap,\
+    \ Cost>> m_graph;\r\n    const Graph<Node, bool> m_graph_undirected;\r\n\r\n\r\
+    \n    auto construct_graph_undirected()const {\r\n        auto graph_undirected\
+    \ = Graph<Node, bool>(m_graph.size());\r\n        for(const auto& [f, t] : m_graph.getEdgesAll2())\
+    \ {\r\n            graph_undirected.addEdgeUndirected(f, t);\r\n        }\r\n\
+    \        return graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap()const\
+    \ {\r\n        auto n = m_graph.size();\r\n        GraphCap graph_cap(n, std::vector<Cap>(n));\r\
     \n        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {\r\n            auto\
-    \ [t, cc] = tcc;\r\n            auto [_, cost] = cc;\r\n            graph_cost[f][t]\
-    \ = cost;\r\n            graph_cost[t][f] = -cost;\r\n        }\r\n        return\
-    \ graph_cost;\r\n    }\r\n\r\n    auto update_residual(Node s, Cap rem,\r\n  \
-    \                       GraphCap& residual_cap, GraphCost& residual_cost,\r\n\
-    \                         const std::deque<Node>& route)const {\r\n        Cost\
+    \ [t, cc] = tcc;\r\n            auto [cap, _] = cc;\r\n            graph_cap[f][t]\
+    \ += cap;\r\n        }\r\n        return graph_cap;\r\n    }\r\n    auto construct_graph_cost()\
+    \ const {\r\n        auto n = m_graph.size();\r\n        GraphCost graph_cost(n,\
+    \ std::vector<Cost>(n));\r\n        for(const auto& [f, tcc] : m_graph.getEdgesAll())\
+    \ {\r\n            auto [t, cc] = tcc;\r\n            auto [_, cost] = cc;\r\n\
+    \            graph_cost[f][t] = cost;\r\n            graph_cost[t][f] = -cost;\r\
+    \n        }\r\n        return graph_cost;\r\n    }\r\n\r\n    auto update_residual(Node\
+    \ s, Cap rem,\r\n                         GraphCap& residual_cap, GraphCost& residual_cost,\r\
+    \n                         const std::deque<Node>& route)const {\r\n        Cost\
     \ mn = rem;\r\n        auto from = s;\r\n        for(const auto& to : route)if(from\
     \ != to) {\r\n            mn = std::min(mn, residual_cap[from][to]);\r\n     \
     \       from = to;\r\n        }\r\n\r\n        Cost cost_all = 0;\r\n        from\
@@ -192,8 +194,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Flow/SuccessiveShortestPath.hpp
   requiredBy: []
-  timestamp: '2023-06-18 07:43:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
 documentation_of: Library/Graph/Flow/SuccessiveShortestPath.hpp

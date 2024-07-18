@@ -4,51 +4,59 @@ data:
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/Graph/Tree/AuxiliaryTree.hpp
+    title: Library/Graph/Tree/AuxiliaryTree.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Tree/AuxiliaryTree.test.cpp
+    title: Test/Graph/Tree/AuxiliaryTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\n#include\
     \ <unordered_map>\r\n#include <queue>\r\n#include <stack>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\
     \n#include <vector>\r\n#include <deque>\r\n\r\ntemplate<class Node = int, class\
     \ Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using\
-    \ Cost = long long;\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges\
-    \ = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\
-    \n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto addEdge(const\
-    \ Node& f, const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t,\
-    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
-    \ Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t, f, c);\r\n    }\r\n \
-    \   auto getEdges(const Node& from)const {\r\n        class EdgesRange {\r\n \
-    \           const typename Edges::const_iterator b, e;\r\n        public:\r\n\
-    \            EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end())\
-    \ {}\r\n            auto begin()const { return b; }\r\n            auto end()const\
-    \ { return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n\
-    \    }\r\n    auto getEdgesAll()const {\r\n        std::deque<std::pair<Node,\
-    \ Edge>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
-    \ edge : getEdges(from)) {\r\n            edges.emplace_back(from, edge);\r\n\
-    \        }\r\n        return edges;\r\n    }\r\n    auto getEdgesAll2()const {\r\
-    \n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from =\
-    \ 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n     \
-    \       edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\n\
-    \    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
-    \n        for(const auto& [from, edge] : getEdgesAll()) {\r\n            auto\
-    \ [to, c] = edge;\r\n            rev.addEdge(to, from, c);\r\n        }\r\n  \
-    \      return rev;\r\n    }\r\n    auto size()const { return m_n; };\r\n};\n#line\
-    \ 8 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\ntemplate<class Node,\
-    \ class Cost>\r\nclass HeavyLightDecomposition {\r\n\r\n    using GraphOrderd\
-    \ = std::unordered_map<Node, std::deque<Node>>;\r\n\r\n    const Node m_n;\r\n\
-    \    const std::vector<Node> m_size;\r\n    const GraphOrderd m_tree;\r\n    const\
-    \ std::vector<Node> m_height;\r\n    const std::vector<std::pair<Node, Node>>\
-    \ m_root_par;\r\n    const std::vector<Node> m_ids;\r\n    const std::vector<Node>\
+    \ Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
+    \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
+    \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
+    \ Node& f, const Node& t, const Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t,\
+    \ f, c);\r\n    }\r\n    auto getEdges(const Node& from)const {\r\n        class\
+    \ EdgesRange {\r\n            const typename Edges::const_iterator b, e;\r\n \
+    \       public:\r\n            EdgesRange(const Edges& edges) :b(edges.begin()),\
+    \ e(edges.end()) {}\r\n            auto begin()const { return b; }\r\n       \
+    \     auto end()const { return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\
+    \n    }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
+    \ Cost>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
+    \ [to, c] : getEdges(from)) {\r\n            edges.emplace_back(from, to, c);\r\
+    \n        }\r\n        return edges;\r\n    }\r\n    auto getEdgesExcludeCost()const\
+    \ {\r\n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from\
+    \ = 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n   \
+    \         edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\
+    \n    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
+    \n        for(const auto& [from, to, c] : getEdges()) {\r\n            rev.addEdge(to,\
+    \ from, c);\r\n        }\r\n        return rev;\r\n    }\r\n    auto size()const\
+    \ { return m_n; };\r\n    auto debug(bool directed = false)const {\r\n       \
+    \ for(const auto& [f, t, c] : getEdges())if(f < t || directed) {\r\n         \
+    \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
+    \n    }\r\n};\n#line 8 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\n\
+    template<class Node, class Cost>\r\nclass HeavyLightDecomposition {\r\n\r\n  \
+    \  using GraphOrderd = std::unordered_map<Node, std::deque<Node>>;\r\n\r\n   \
+    \ const Node m_n;\r\n    const std::vector<Node> m_size;\r\n    const GraphOrderd\
+    \ m_tree;\r\n    const std::vector<Node> m_height;\r\n    const std::vector<std::pair<Node,\
+    \ Node>> m_root_par;\r\n    const std::vector<Node> m_ids;\r\n    const std::vector<Node>\
     \ m_order;\r\n    const std::vector<Node> m_edge_ids;\r\n\r\n    static auto constructGraph(const\
     \ Graph<Node, Cost>& tree) {\r\n        auto n = tree.size();\r\n        std::deque<std::pair<Node,\
     \ Node>> order;\r\n        std::vector<Node> used(n);\r\n        std::stack<std::pair<Node,\
@@ -262,12 +270,14 @@ data:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/HeavyLightDecomposition.hpp
-  requiredBy: []
-  timestamp: '2023-06-18 06:39:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - Library/Graph/Tree/AuxiliaryTree.hpp
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/Graph/Tree/AuxiliaryTree.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

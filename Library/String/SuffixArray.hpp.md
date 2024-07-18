@@ -255,8 +255,8 @@ data:
   timestamp: '2024-03-30 16:35:33+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/String/LCPArray.test.cpp
   - Test/String/SuffixArray.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/String/SuffixArray.hpp
 layout: document
 redirect_from:

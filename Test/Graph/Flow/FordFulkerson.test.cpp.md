@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Flow/FordFulkerson.hpp
     title: Library/Graph/Flow/FordFulkerson.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
@@ -22,7 +22,7 @@ data:
     #include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
     \n#include <deque>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\
     \nclass Graph {\r\n    //using Node = int;\r\n    //using Cost = long long;\r\n\
-    \    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
+    \r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
     \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\npublic:\r\n\
     \    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto addEdge(const Node& f,\
     \ const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t, c);\r\
@@ -33,27 +33,30 @@ data:
     \     EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end()) {}\r\n\
     \            auto begin()const { return b; }\r\n            auto end()const {\
     \ return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n \
-    \   }\r\n    auto getEdgesAll()const {\r\n        std::deque<std::pair<Node, Edge>>\
-    \ edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto& edge\
-    \ : getEdges(from)) {\r\n            edges.emplace_back(from, edge);\r\n     \
-    \   }\r\n        return edges;\r\n    }\r\n    auto getEdgesAll2()const {\r\n\
-    \        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from = 0;\
-    \ from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n        \
-    \    edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\n \
-    \   }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
-    \n        for(const auto& [from, edge] : getEdgesAll()) {\r\n            auto\
-    \ [to, c] = edge;\r\n            rev.addEdge(to, from, c);\r\n        }\r\n  \
-    \      return rev;\r\n    }\r\n    auto size()const { return m_n; };\r\n};\n#line\
-    \ 2 \"Library/Graph/Flow/FordFulkerson.hpp\"\n\r\n#line 4 \"Library/Graph/Flow/FordFulkerson.hpp\"\
-    \n#include <queue>\r\n#include <list>\r\n#include <unordered_map>\r\n#include\
-    \ <unordered_set>\r\n#include <map>\r\n\r\n#line 11 \"Library/Graph/Flow/FordFulkerson.hpp\"\
-    \n\r\ntemplate<class Node, class Cost>\r\nclass FordFulkerson {\r\n\r\n    struct\
-    \ HashPair {\r\n        template<class T1, class T2>\r\n        size_t operator()(const\
-    \ std::pair<T1, T2>& p) const {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\
-    \n            auto hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed\
-    \ = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\
-    \n            seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n    \
-    \        return seed;\r\n        }\r\n    };\r\n\r\n    using PairGraph = std::unordered_map<std::pair<Node,\
+    \   }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
+    \ Cost>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
+    \ [to, c] : getEdges(from)) {\r\n            edges.emplace_back(from, to, c);\r\
+    \n        }\r\n        return edges;\r\n    }\r\n    auto getEdgesExcludeCost()const\
+    \ {\r\n        std::deque<std::pair<Node, Node>> edges;\r\n        for(Node from\
+    \ = 0; from < m_n; ++from) for(const auto& [to, _] : getEdges(from)) {\r\n   \
+    \         edges.emplace_back(from, to);\r\n        }\r\n        return edges;\r\
+    \n    }\r\n    auto reverse()const {\r\n        auto rev = Graph<Node, Cost>(m_n);\r\
+    \n        for(const auto& [from, to, c] : getEdges()) {\r\n            rev.addEdge(to,\
+    \ from, c);\r\n        }\r\n        return rev;\r\n    }\r\n    auto size()const\
+    \ { return m_n; };\r\n    auto debug(bool directed = false)const {\r\n       \
+    \ for(const auto& [f, t, c] : getEdges())if(f < t || directed) {\r\n         \
+    \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
+    \n    }\r\n};\n#line 2 \"Library/Graph/Flow/FordFulkerson.hpp\"\n\r\n#line 4 \"\
+    Library/Graph/Flow/FordFulkerson.hpp\"\n#include <queue>\r\n#include <list>\r\n\
+    #include <unordered_map>\r\n#include <unordered_set>\r\n#include <map>\r\n\r\n\
+    #line 11 \"Library/Graph/Flow/FordFulkerson.hpp\"\n\r\ntemplate<class Node, class\
+    \ Cost>\r\nclass FordFulkerson {\r\n\r\n    struct HashPair {\r\n        template<class\
+    \ T1, class T2>\r\n        size_t operator()(const std::pair<T1, T2>& p) const\
+    \ {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n            auto\
+    \ hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed = 0;\r\n     \
+    \       seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n          \
+    \  seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n            return\
+    \ seed;\r\n        }\r\n    };\r\n\r\n    using PairGraph = std::unordered_map<std::pair<Node,\
     \ Node>, Cost, HashPair>;\r\n\r\n    const Node m_n;\r\n    const PairGraph m_graph;\r\
     \n    const std::vector<std::unordered_set<Node>> m_to_list;\r\n\r\n    static\
     \ auto construct_to_list(const Graph<Node, Cost>& graph) {\r\n        std::vector<std::unordered_set<Node>>\
@@ -135,8 +138,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/FordFulkerson.test.cpp
   requiredBy: []
-  timestamp: '2023-06-18 07:07:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 22:46:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Flow/FordFulkerson.test.cpp
 layout: document
