@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: Library/Algorithms
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
@@ -71,12 +71,12 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
@@ -296,7 +296,7 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
     - icon: ':heavy_check_mark:'

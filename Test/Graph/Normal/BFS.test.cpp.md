@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1473
@@ -76,10 +76,10 @@ data:
     \ Graph(n);\r\n        for(const auto& [s, t, d] : graph_all.getEdges()) {\r\n\
     \            if(w <= d) { graph.addEdge(s, t); }\r\n        }\r\n\r\n        std::vector<int>\
     \ dv(n);\r\n        bfs(graph, 0, [&](ll f, ll t) {dv[t] = dv[f] + 1; });\r\n\
-    \        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max = binarySearch(0, 1e9,\
-    \ [&](ll w) {\r\n        auto d = solve(w);\r\n        return d > 0;\r\n    });\r\
-    \n\r\n    auto ans = solve(w_max);\r\n    cout << w_max << \" \" << ans << endl;\r\
-    \n}\r\n"
+    \        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max = binarySearch(0, 1e9\
+    \ + 1, [&](ll w) {\r\n        auto d = solve(w);\r\n        return d > 0;\r\n\
+    \    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout << w_max << \" \" <<\
+    \ ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1473\"\r\n\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Normal/BFS.hpp\"\r\n#include \"./../../../Library/Algorithms/BinarySearch.hpp\"\
@@ -92,9 +92,9 @@ data:
     \ {\r\n            if(w <= d) { graph.addEdge(s, t); }\r\n        }\r\n\r\n  \
     \      std::vector<int> dv(n);\r\n        bfs(graph, 0, [&](ll f, ll t) {dv[t]\
     \ = dv[f] + 1; });\r\n        return dv[n - 1];\r\n    };\r\n\r\n    auto w_max\
-    \ = binarySearch(0, 1e9, [&](ll w) {\r\n        auto d = solve(w);\r\n       \
-    \ return d > 0;\r\n    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout <<\
-    \ w_max << \" \" << ans << endl;\r\n}\r\n"
+    \ = binarySearch(0, 1e9 + 1, [&](ll w) {\r\n        auto d = solve(w);\r\n   \
+    \     return d > 0;\r\n    });\r\n\r\n    auto ans = solve(w_max);\r\n    cout\
+    \ << w_max << \" \" << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Normal/BFS.hpp
@@ -102,8 +102,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-19 00:11:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/UnionFind.hpp
     title: Library/DataStructure/UnionFind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
