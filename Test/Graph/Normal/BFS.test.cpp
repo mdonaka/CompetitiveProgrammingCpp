@@ -33,7 +33,7 @@ signed main() {
         return dv[n - 1];
     };
 
-    auto w_max = binarySearch(0, 1e9, [&](ll w) {
+    auto w_max = binarySearch(0, 1e9 + 1, [&](ll w) {
         auto d = solve(w);
         return d > 0;
     });
