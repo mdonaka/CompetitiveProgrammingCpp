@@ -69,21 +69,20 @@ data:
     \ graph) {\r\n    auto n = graph.size();\r\n    auto min_spanning_tree = Graph(n);\r\
     \n\r\n    auto dsu = UnionFind(n);\r\n    using Type = std::pair<Cost, std::pair<Node,\
     \ Node>>;\r\n    std::priority_queue<Type, std::vector<Type>, std::greater<Type>>\
-    \ q;\r\n    for(const auto& [f, tc] : graph.getEdgesAll()) {\r\n        auto [t,\
-    \ c] = tc;\r\n        q.emplace(c, std::make_pair(f, t));\r\n    }\r\n\r\n   \
-    \ while(!q.empty()) {\r\n        auto [cost, ft] = q.top();\r\n        auto [from,\
-    \ to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from, to)) { continue;\
-    \ }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
-    \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n}\r\n#line 6 \"\
-    Test/Graph/Normal/Kruskal.test.cpp\"\n\r\nusing ll = long long;\r\nusing std::cout;\r\
-    \nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\
-    \n    int n, m;\r\n    cin >> n >> m;\r\n\r\n    auto graph = Graph(n);\r\n  \
-    \  for(int i = 0; i < m; ++i) {\r\n        int s, t, w;\r\n        cin >> s >>\
-    \ t >> w;\r\n        graph.addEdgeUndirected(s, t, w);\r\n    }\r\n\r\n    auto\
-    \ min_spanning_tree = kruskal(graph);\r\n\r\n    ll ans = 0;\r\n    for(const\
-    \ auto& [f, tc] : min_spanning_tree.getEdgesAll()) {\r\n        auto [t, c] =\
-    \ tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\n    cout << ans << endl;\r\
-    \n}\n"
+    \ q;\r\n    for(const auto& [f, t, c] : graph.getEdges()) {\r\n        q.emplace(c,\
+    \ std::make_pair(f, t));\r\n    }\r\n\r\n    while(!q.empty()) {\r\n        auto\
+    \ [cost, ft] = q.top();\r\n        auto [from, to] = ft;\r\n        q.pop();\r\
+    \n        if(dsu.isSame(from, to)) { continue; }\r\n        dsu.unite(from, to);\r\
+    \n        min_spanning_tree.addEdgeUndirected(from, to, cost);\r\n    }\r\n\r\n\
+    \    return min_spanning_tree;\r\n}\r\n#line 6 \"Test/Graph/Normal/Kruskal.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    int n, m;\r\n    cin >>\
+    \ n >> m;\r\n\r\n    auto graph = Graph(n);\r\n    for(int i = 0; i < m; ++i)\
+    \ {\r\n        int s, t, w;\r\n        cin >> s >> t >> w;\r\n        graph.addEdgeUndirected(s,\
+    \ t, w);\r\n    }\r\n\r\n    auto min_spanning_tree = kruskal(graph);\r\n\r\n\
+    \    ll ans = 0;\r\n    for(const auto& [f, tc] : min_spanning_tree.getEdgesAll())\
+    \ {\r\n        auto [t, c] = tc;\r\n        if(f < t) { ans += c; }\r\n    }\r\
+    \n    cout << ans << endl;\r\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A\"\
     \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Normal/Kruskal.hpp\"\r\n\r\nusing ll =\
@@ -102,7 +101,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Kruskal.test.cpp

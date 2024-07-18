@@ -49,16 +49,16 @@ data:
     \n    }\r\n};\n#line 5 \"Library/Graph/Normal/WarshallFloyd.hpp\"\n\ntemplate<class\
     \ Node, class Cost>\nauto warshallFloyd(int n, const Graph<Node, Cost>& graph,\
     \ const Cost& lim = 1LL << 60) {\n    std::vector<std::vector<Cost>> cost(n, std::vector<Cost>(n,\
-    \ lim));\n    for(const auto& [from, edge] : graph.getEdgesAll()) {\n        auto\
-    \ [to, c] = edge;\n        cost[from][to] = c;\n    }\n    for(int i = 0; i <\
-    \ n; ++i) { cost[i][i] = 0; }\n    for(int k = 0; k < n; ++k)for(int f = 0; f\
-    \ < n; ++f)for(int t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t],\
-    \ cost[f][k] + cost[k][t]);\n    }\n    return cost;\n}\n#line 5 \"Test/Graph/Normal/WarshallFloyd.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\ntemplate<class T, class S = T>\r\nusing P = std::pair<T,\
-    \ S>;\r\n\r\nsigned main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    auto\
-    \ graph = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\
-    \n        cin >> u >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\
+    \ lim));\n    for(const auto& [from, to, c] : graph.getEdges()) {\n        cost[from][to]\
+    \ = c;\n    }\n    for(int i = 0; i < n; ++i) { cost[i][i] = 0; }\n    for(int\
+    \ k = 0; k < n; ++k)for(int f = 0; f < n; ++f)for(int t = 0; t < n; ++t) {\n \
+    \       cost[f][t] = std::min(cost[f][t], cost[f][k] + cost[k][t]);\n    }\n \
+    \   return cost;\n}\n#line 5 \"Test/Graph/Normal/WarshallFloyd.test.cpp\"\n\r\n\
+    using ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
+    \ endl = '\\n';\r\ntemplate<class T, class S = T>\r\nusing P = std::pair<T, S>;\r\
+    \n\r\nsigned main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    auto graph\
+    \ = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\n\
+    \        cin >> u >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\
     \n    auto min_cost = warshallFloyd(n, graph);\r\n\r\n    for(int k = 0; k < n;\
     \ ++k)for(int f = 0; f < n; ++f)for(int t = 0; t < n; ++t) {\r\n        if(min_cost[f][t]\
     \ > min_cost[f][k] + min_cost[k][t]) {\r\n            cout << \"NEGATIVE CYCLE\"\
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/WarshallFloyd.test.cpp

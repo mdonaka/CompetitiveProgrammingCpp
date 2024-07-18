@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
@@ -121,9 +121,9 @@ data:
     \u73FE\u4F4D\u7F6E\u306E\u533A\u9593\u3092\u8FD4\u3059\r\n     */\r\n    std::pair<int,\
     \ int> findPattern(const std::string& pattern) const {\r\n\r\n        auto find\
     \ = [&](const std::string& ptn) {\r\n            int end = m_suffixArray.size();\r\
-    \n            int ptn_sz = ptn.size();\r\n            auto ret = binarySearch(0,\
-    \ end, [&](int mid) {\r\n                int st = m_suffixArray[mid];\r\n    \
-    \            int sub_sz = end - st;\r\n                for(int k = 0; k < std::min(ptn_sz,\
+    \n            int ptn_sz = ptn.size();\r\n            auto ret = binarySearch(end,\
+    \ -1, [&](int mid) {\r\n                int st = m_suffixArray[mid];\r\n     \
+    \           int sub_sz = end - st;\r\n                for(int k = 0; k < std::min(ptn_sz,\
     \ sub_sz); ++k) {\r\n                    if(ptn[k] < m_str[st + k]) { return true;\
     \ }\r\n                    if(ptn[k] > m_str[st + k]) { return false; }\r\n  \
     \              }\r\n                return ptn_sz <= sub_sz;\r\n            });\r\
@@ -163,8 +163,8 @@ data:
   isVerificationFile: true
   path: Test/String/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 16:35:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/String/SuffixArray.test.cpp
 layout: document

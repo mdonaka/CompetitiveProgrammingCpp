@@ -6,9 +6,9 @@ data:
     title: Library/Algorithms/BinarySearch.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/91
@@ -34,7 +34,7 @@ data:
     \n\r\n    auto ans = binarySearch(0, 1e9, [&](ll mid) {\r\n        ll d = 0;\r\
     \n        for(const auto& x : a) {\r\n            if(x >= mid) {\r\n         \
     \       d += ((x - mid) >> 1);\r\n            } else {\r\n                d -=\
-    \ mid - x;\r\n            }\r\n        }\r\n        return d >= 0;\r\n    }, true);\r\
+    \ mid - x;\r\n            }\r\n        }\r\n        return d >= 0;\r\n    });\r\
     \n\r\n    cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/91\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n#include \"./../../Library/Algorithms/BinarySearch.hpp\"\
@@ -45,15 +45,15 @@ data:
     \n\r\n    auto ans = binarySearch(0, 1e9, [&](ll mid) {\r\n        ll d = 0;\r\
     \n        for(const auto& x : a) {\r\n            if(x >= mid) {\r\n         \
     \       d += ((x - mid) >> 1);\r\n            } else {\r\n                d -=\
-    \ mid - x;\r\n            }\r\n        }\r\n        return d >= 0;\r\n    }, true);\r\
+    \ mid - x;\r\n            }\r\n        }\r\n        return d >= 0;\r\n    });\r\
     \n\r\n    cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/Algorithms/BinarySearch.hpp
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int_rev.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 16:35:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int_rev.test.cpp
 layout: document

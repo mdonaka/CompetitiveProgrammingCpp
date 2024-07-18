@@ -60,13 +60,13 @@ data:
       title: Library/DataStructure/UnionFindWeight.cpp
   - name: Library/Graph/Flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/Dinic.hpp
       title: Library/Graph/Flow/Dinic.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/SuccessiveShortestPath.hpp
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
@@ -114,7 +114,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Math
@@ -140,7 +140,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
     - icon: ':heavy_check_mark:'
@@ -194,7 +194,7 @@ data:
     - icon: ':x:'
       path: Test/Algorithms/BinarySearch_int.test.cpp
       title: Test/Algorithms/BinarySearch_int.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Algorithms/BinarySearch_int_rev.test.cpp
       title: Test/Algorithms/BinarySearch_int_rev.test.cpp
     - icon: ':heavy_check_mark:'
@@ -285,13 +285,13 @@ data:
       title: Test/DataStructure/UnionFind.test.cpp
   - name: Test/Graph/Flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/Dinic.test.cpp
       title: Test/Graph/Flow/Dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/FordFulkerson.test.cpp
       title: Test/Graph/Flow/FordFulkerson.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
@@ -328,7 +328,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/PlaneGeometry
@@ -347,7 +347,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
     - icon: ':heavy_check_mark:'

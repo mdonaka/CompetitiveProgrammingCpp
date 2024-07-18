@@ -44,25 +44,25 @@ data:
     \n    }\r\n};\n#line 5 \"Library/Graph/Normal/WarshallFloyd.hpp\"\n\ntemplate<class\
     \ Node, class Cost>\nauto warshallFloyd(int n, const Graph<Node, Cost>& graph,\
     \ const Cost& lim = 1LL << 60) {\n    std::vector<std::vector<Cost>> cost(n, std::vector<Cost>(n,\
-    \ lim));\n    for(const auto& [from, edge] : graph.getEdgesAll()) {\n        auto\
-    \ [to, c] = edge;\n        cost[from][to] = c;\n    }\n    for(int i = 0; i <\
-    \ n; ++i) { cost[i][i] = 0; }\n    for(int k = 0; k < n; ++k)for(int f = 0; f\
-    \ < n; ++f)for(int t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t],\
-    \ cost[f][k] + cost[k][t]);\n    }\n    return cost;\n}\n"
+    \ lim));\n    for(const auto& [from, to, c] : graph.getEdges()) {\n        cost[from][to]\
+    \ = c;\n    }\n    for(int i = 0; i < n; ++i) { cost[i][i] = 0; }\n    for(int\
+    \ k = 0; k < n; ++k)for(int f = 0; f < n; ++f)for(int t = 0; t < n; ++t) {\n \
+    \       cost[f][t] = std::min(cost[f][t], cost[f][k] + cost[k][t]);\n    }\n \
+    \   return cost;\n}\n"
   code: "#pragma once\n\n#include <vector>\n#include \"./../Graph.hpp\"\n\ntemplate<class\
     \ Node, class Cost>\nauto warshallFloyd(int n, const Graph<Node, Cost>& graph,\
     \ const Cost& lim = 1LL << 60) {\n    std::vector<std::vector<Cost>> cost(n, std::vector<Cost>(n,\
-    \ lim));\n    for(const auto& [from, edge] : graph.getEdgesAll()) {\n        auto\
-    \ [to, c] = edge;\n        cost[from][to] = c;\n    }\n    for(int i = 0; i <\
-    \ n; ++i) { cost[i][i] = 0; }\n    for(int k = 0; k < n; ++k)for(int f = 0; f\
-    \ < n; ++f)for(int t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t],\
-    \ cost[f][k] + cost[k][t]);\n    }\n    return cost;\n}"
+    \ lim));\n    for(const auto& [from, to, c] : graph.getEdges()) {\n        cost[from][to]\
+    \ = c;\n    }\n    for(int i = 0; i < n; ++i) { cost[i][i] = 0; }\n    for(int\
+    \ k = 0; k < n; ++k)for(int f = 0; f < n; ++f)for(int t = 0; t < n; ++t) {\n \
+    \       cost[f][t] = std::min(cost[f][t], cost[f][k] + cost[k][t]);\n    }\n \
+    \   return cost;\n}"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Normal/WarshallFloyd.test.cpp

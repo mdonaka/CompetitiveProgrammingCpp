@@ -64,22 +64,22 @@ data:
     \nauto kruskal(const Graph<Node, Cost>& graph) {\r\n    auto n = graph.size();\r\
     \n    auto min_spanning_tree = Graph(n);\r\n\r\n    auto dsu = UnionFind(n);\r\
     \n    using Type = std::pair<Cost, std::pair<Node, Node>>;\r\n    std::priority_queue<Type,\
-    \ std::vector<Type>, std::greater<Type>> q;\r\n    for(const auto& [f, tc] : graph.getEdgesAll())\
-    \ {\r\n        auto [t, c] = tc;\r\n        q.emplace(c, std::make_pair(f, t));\r\
-    \n    }\r\n\r\n    while(!q.empty()) {\r\n        auto [cost, ft] = q.top();\r\
-    \n        auto [from, to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from,\
-    \ to)) { continue; }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
+    \ std::vector<Type>, std::greater<Type>> q;\r\n    for(const auto& [f, t, c] :\
+    \ graph.getEdges()) {\r\n        q.emplace(c, std::make_pair(f, t));\r\n    }\r\
+    \n\r\n    while(!q.empty()) {\r\n        auto [cost, ft] = q.top();\r\n      \
+    \  auto [from, to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from, to))\
+    \ { continue; }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
     \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n}\r\n"
   code: "#pragma once\r\n\r\n#include <queue>\r\n#include \"./../Graph.hpp\"\r\n#include\
     \ \"./../../DataStructure/UnionFind.hpp\"\r\n\r\ntemplate<class Node, class Cost>\r\
     \nauto kruskal(const Graph<Node, Cost>& graph) {\r\n    auto n = graph.size();\r\
     \n    auto min_spanning_tree = Graph(n);\r\n\r\n    auto dsu = UnionFind(n);\r\
     \n    using Type = std::pair<Cost, std::pair<Node, Node>>;\r\n    std::priority_queue<Type,\
-    \ std::vector<Type>, std::greater<Type>> q;\r\n    for(const auto& [f, tc] : graph.getEdgesAll())\
-    \ {\r\n        auto [t, c] = tc;\r\n        q.emplace(c, std::make_pair(f, t));\r\
-    \n    }\r\n\r\n    while(!q.empty()) {\r\n        auto [cost, ft] = q.top();\r\
-    \n        auto [from, to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from,\
-    \ to)) { continue; }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
+    \ std::vector<Type>, std::greater<Type>> q;\r\n    for(const auto& [f, t, c] :\
+    \ graph.getEdges()) {\r\n        q.emplace(c, std::make_pair(f, t));\r\n    }\r\
+    \n\r\n    while(!q.empty()) {\r\n        auto [cost, ft] = q.top();\r\n      \
+    \  auto [from, to] = ft;\r\n        q.pop();\r\n        if(dsu.isSame(from, to))\
+    \ { continue; }\r\n        dsu.unite(from, to);\r\n        min_spanning_tree.addEdgeUndirected(from,\
     \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
@@ -87,7 +87,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/Kruskal.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
+  timestamp: '2024-07-18 23:06:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Normal/Kruskal.test.cpp

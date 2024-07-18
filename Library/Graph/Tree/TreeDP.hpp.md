@@ -6,12 +6,12 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/TreeDP.hpp\"\n#include <vector> \r\n\
@@ -45,20 +45,21 @@ data:
     \ \"Library/Graph/Tree/TreeDP.hpp\"\n\r\ntemplate<class Node, class Cost, class\
     \ Lambda>\r\nauto treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda&\
     \ lambda) {\r\n    auto n = tree.size();\r\n    std::vector<Node> in(n);\r\n \
-    \   for(const auto& [f, t] : tree.getEdgesAll2()) if(f < t) {\r\n        ++in[f];\
-    \ ++in[t];\r\n    }\r\n    std::queue<Node> q;\r\n    std::vector<bool> used(n);\r\
-    \n    for(Node i = 0; i < n; ++i)if(i != root && in[i] == 1) {\r\n        q.emplace(i);\r\
-    \n    }\r\n    while(!q.empty()) {\r\n        auto from = q.front();\r\n     \
-    \   q.pop();\r\n        used[from] = true;\r\n\r\n        for(const auto& [to,\
-    \ _] : tree.getEdges(from)) {\r\n            if(used[to]) { continue; }\r\n  \
-    \          lambda(from, to);\r\n            --in[to];\r\n            if(to !=\
-    \ root && in[to] == 1) { q.emplace(to); }\r\n        }\r\n    }\r\n}\r\n"
+    \   for(const auto& [f, t] : tree.getEdgesExcludeCost()) if(f < t) {\r\n     \
+    \   ++in[f]; ++in[t];\r\n    }\r\n    std::queue<Node> q;\r\n    std::vector<bool>\
+    \ used(n);\r\n    for(Node i = 0; i < n; ++i)if(i != root && in[i] == 1) {\r\n\
+    \        q.emplace(i);\r\n    }\r\n    while(!q.empty()) {\r\n        auto from\
+    \ = q.front();\r\n        q.pop();\r\n        used[from] = true;\r\n\r\n     \
+    \   for(const auto& [to, _] : tree.getEdges(from)) {\r\n            if(used[to])\
+    \ { continue; }\r\n            lambda(from, to);\r\n            --in[to];\r\n\
+    \            if(to != root && in[to] == 1) { q.emplace(to); }\r\n        }\r\n\
+    \    }\r\n}\r\n"
   code: "#pragma once\r\n#include <vector> \r\n#include <queue>\r\n\r\n#include \"\
     ./../Graph.hpp\"\r\n\r\ntemplate<class Node, class Cost, class Lambda>\r\nauto\
     \ treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {\r\n\
     \    auto n = tree.size();\r\n    std::vector<Node> in(n);\r\n    for(const auto&\
-    \ [f, t] : tree.getEdgesAll2()) if(f < t) {\r\n        ++in[f]; ++in[t];\r\n \
-    \   }\r\n    std::queue<Node> q;\r\n    std::vector<bool> used(n);\r\n    for(Node\
+    \ [f, t] : tree.getEdgesExcludeCost()) if(f < t) {\r\n        ++in[f]; ++in[t];\r\
+    \n    }\r\n    std::queue<Node> q;\r\n    std::vector<bool> used(n);\r\n    for(Node\
     \ i = 0; i < n; ++i)if(i != root && in[i] == 1) {\r\n        q.emplace(i);\r\n\
     \    }\r\n    while(!q.empty()) {\r\n        auto from = q.front();\r\n      \
     \  q.pop();\r\n        used[from] = true;\r\n\r\n        for(const auto& [to,\
@@ -70,8 +71,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Tree/TreeDP.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/TreeDP.test.cpp
 documentation_of: Library/Graph/Tree/TreeDP.hpp

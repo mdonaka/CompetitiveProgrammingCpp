@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/763
@@ -49,7 +49,7 @@ data:
     \n    }\r\n};\n#line 4 \"Library/Graph/Tree/TreeDP.hpp\"\n\r\n#line 6 \"Library/Graph/Tree/TreeDP.hpp\"\
     \n\r\ntemplate<class Node, class Cost, class Lambda>\r\nauto treeDP(const Graph<Node,\
     \ Cost>& tree, Node root, const Lambda& lambda) {\r\n    auto n = tree.size();\r\
-    \n    std::vector<Node> in(n);\r\n    for(const auto& [f, t] : tree.getEdgesAll2())\
+    \n    std::vector<Node> in(n);\r\n    for(const auto& [f, t] : tree.getEdgesExcludeCost())\
     \ if(f < t) {\r\n        ++in[f]; ++in[t];\r\n    }\r\n    std::queue<Node> q;\r\
     \n    std::vector<bool> used(n);\r\n    for(Node i = 0; i < n; ++i)if(i != root\
     \ && in[i] == 1) {\r\n        q.emplace(i);\r\n    }\r\n    while(!q.empty())\
@@ -82,8 +82,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/TreeDP.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/TreeDP.test.cpp
 layout: document

@@ -6,12 +6,12 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
     title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n#include\
@@ -45,42 +45,43 @@ data:
     \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
     \n    }\r\n};\n#line 12 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n\
     template<class Node, class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\
+    \n    //using Node = int;\r\n    //using Cap = int;\r\n    //using Cost = int;\r\
     \n\r\n    using GraphCap = std::vector<std::vector<Cap>>;\r\n    using GraphCost\
     \ = std::vector<std::vector<Cost>>;\r\n\r\n    const Graph<Node, std::pair<Cap,\
     \ Cost>> m_graph;\r\n    const Graph<Node, bool> m_graph_undirected;\r\n\r\n\r\
     \n    auto construct_graph_undirected()const {\r\n        auto graph_undirected\
-    \ = Graph<Node, bool>(m_graph.size());\r\n        for(const auto& [f, t] : m_graph.getEdgesAll2())\
+    \ = Graph<Node, bool>(m_graph.size());\r\n        for(const auto& [f, t] : m_graph.getEdgesExcludeCost())\
     \ {\r\n            graph_undirected.addEdgeUndirected(f, t);\r\n        }\r\n\
     \        return graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap()const\
     \ {\r\n        auto n = m_graph.size();\r\n        GraphCap graph_cap(n, std::vector<Cap>(n));\r\
-    \n        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {\r\n            auto\
-    \ [t, cc] = tcc;\r\n            auto [cap, _] = cc;\r\n            graph_cap[f][t]\
-    \ += cap;\r\n        }\r\n        return graph_cap;\r\n    }\r\n    auto construct_graph_cost()\
-    \ const {\r\n        auto n = m_graph.size();\r\n        GraphCost graph_cost(n,\
-    \ std::vector<Cost>(n));\r\n        for(const auto& [f, tcc] : m_graph.getEdgesAll())\
-    \ {\r\n            auto [t, cc] = tcc;\r\n            auto [_, cost] = cc;\r\n\
-    \            graph_cost[f][t] = cost;\r\n            graph_cost[t][f] = -cost;\r\
-    \n        }\r\n        return graph_cost;\r\n    }\r\n\r\n    auto update_residual(Node\
-    \ s, Cap rem,\r\n                         GraphCap& residual_cap, GraphCost& residual_cost,\r\
-    \n                         const std::deque<Node>& route)const {\r\n        Cost\
-    \ mn = rem;\r\n        auto from = s;\r\n        for(const auto& to : route)if(from\
-    \ != to) {\r\n            mn = std::min(mn, residual_cap[from][to]);\r\n     \
-    \       from = to;\r\n        }\r\n\r\n        Cost cost_all = 0;\r\n        from\
-    \ = s;\r\n        for(const auto& to : route)if(from != to) {\r\n            residual_cap[from][to]\
-    \ -= mn;\r\n            residual_cap[to][from] += mn;\r\n            cost_all\
-    \ += mn * residual_cost[from][to];\r\n            from = to;\r\n        }\r\n\
-    \        return std::pair<Cap, Cost>{mn, cost_all};\r\n    }\r\n\r\n    auto shortest_path_allow_minus(Node\
-    \ s,\r\n                                   const GraphCap& residual_cap,\r\n \
-    \                                  const GraphCost& residual_cost) const {\r\n\
-    \        auto n = m_graph.size();\r\n        std::vector<Cost> cost(n, 1e18);\r\
-    \n        cost[s] = 0;\r\n        for(int _ = 0; _ < n; ++_) {\r\n           \
-    \ for(int from = 0; from < n; ++from) {\r\n                for(const auto& [to,\
-    \ _] : m_graph_undirected.getEdges(from)) {\r\n                    if(residual_cap[from][to]\
-    \ > 0) {\r\n                        cost[to] = std::min(cost[to], cost[from] +\
-    \ residual_cost[from][to]);\r\n                    }\r\n                }\r\n\
-    \            }\r\n        }\r\n        return cost;\r\n    }\r\n\r\n    auto shortest_path(Node\
-    \ s,\r\n                       const GraphCap& residual_cap,\r\n             \
-    \          const GraphCost& residual_cost,\r\n                       const std::vector<Cost>&\
+    \n        for(const auto& [f, t, cc] : m_graph.getEdges()) {\r\n            auto\
+    \ [cap, _] = cc;\r\n            graph_cap[f][t] += cap;\r\n        }\r\n     \
+    \   return graph_cap;\r\n    }\r\n    auto construct_graph_cost() const {\r\n\
+    \        auto n = m_graph.size();\r\n        GraphCost graph_cost(n, std::vector<Cost>(n));\r\
+    \n        for(const auto& [f, t, cc] : m_graph.getEdges()) {\r\n            auto\
+    \ [_, cost] = cc;\r\n            graph_cost[f][t] = cost;\r\n            graph_cost[t][f]\
+    \ = -cost;\r\n        }\r\n        return graph_cost;\r\n    }\r\n\r\n    auto\
+    \ update_residual(Node s, Cap rem,\r\n                         GraphCap& residual_cap,\
+    \ GraphCost& residual_cost,\r\n                         const std::deque<Node>&\
+    \ route)const {\r\n        Cost mn = rem;\r\n        auto from = s;\r\n      \
+    \  for(const auto& to : route)if(from != to) {\r\n            mn = std::min(mn,\
+    \ residual_cap[from][to]);\r\n            from = to;\r\n        }\r\n\r\n    \
+    \    Cost cost_all = 0;\r\n        from = s;\r\n        for(const auto& to : route)if(from\
+    \ != to) {\r\n            residual_cap[from][to] -= mn;\r\n            residual_cap[to][from]\
+    \ += mn;\r\n            cost_all += mn * residual_cost[from][to];\r\n        \
+    \    from = to;\r\n        }\r\n        return std::pair<Cap, Cost>{mn, cost_all};\r\
+    \n    }\r\n\r\n    auto shortest_path_allow_minus(Node s,\r\n                \
+    \                   const GraphCap& residual_cap,\r\n                        \
+    \           const GraphCost& residual_cost) const {\r\n        auto n = m_graph.size();\r\
+    \n        std::vector<Cost> cost(n, 1e18);\r\n        cost[s] = 0;\r\n       \
+    \ for(int _ = 0; _ < n; ++_) {\r\n            for(int from = 0; from < n; ++from)\
+    \ {\r\n                for(const auto& [to, _] : m_graph_undirected.getEdges(from))\
+    \ {\r\n                    if(residual_cap[from][to] > 0) {\r\n              \
+    \          cost[to] = std::min(cost[to], cost[from] + residual_cost[from][to]);\r\
+    \n                    }\r\n                }\r\n            }\r\n        }\r\n\
+    \        return cost;\r\n    }\r\n\r\n    auto shortest_path(Node s,\r\n     \
+    \                  const GraphCap& residual_cap,\r\n                       const\
+    \ GraphCost& residual_cost,\r\n                       const std::vector<Cost>&\
     \ p) const {\r\n        using P = std::pair<Cost, Node>;\r\n        std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> q;\r\n        std::vector<std::pair<Cost, Node>>\
     \ min(m_graph.size(), {1e18,-1});\r\n        auto add = [&](Node node, Cost cst,\
@@ -118,43 +119,44 @@ data:
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <vector>\r\n#include\
     \ <deque>\r\n#include <queue>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\
     \n#include <map>\r\n\r\n#include \"./../Graph.hpp\"\r\n\r\ntemplate<class Node,\
-    \ class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\n\r\n    using GraphCap\
-    \ = std::vector<std::vector<Cap>>;\r\n    using GraphCost = std::vector<std::vector<Cost>>;\r\
+    \ class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\n    //using Node\
+    \ = int;\r\n    //using Cap = int;\r\n    //using Cost = int;\r\n\r\n    using\
+    \ GraphCap = std::vector<std::vector<Cap>>;\r\n    using GraphCost = std::vector<std::vector<Cost>>;\r\
     \n\r\n    const Graph<Node, std::pair<Cap, Cost>> m_graph;\r\n    const Graph<Node,\
     \ bool> m_graph_undirected;\r\n\r\n\r\n    auto construct_graph_undirected()const\
     \ {\r\n        auto graph_undirected = Graph<Node, bool>(m_graph.size());\r\n\
-    \        for(const auto& [f, t] : m_graph.getEdgesAll2()) {\r\n            graph_undirected.addEdgeUndirected(f,\
-    \ t);\r\n        }\r\n        return graph_undirected;\r\n    }\r\n\r\n    auto\
-    \ construct_graph_cap()const {\r\n        auto n = m_graph.size();\r\n       \
-    \ GraphCap graph_cap(n, std::vector<Cap>(n));\r\n        for(const auto& [f, tcc]\
-    \ : m_graph.getEdgesAll()) {\r\n            auto [t, cc] = tcc;\r\n          \
-    \  auto [cap, _] = cc;\r\n            graph_cap[f][t] += cap;\r\n        }\r\n\
-    \        return graph_cap;\r\n    }\r\n    auto construct_graph_cost() const {\r\
-    \n        auto n = m_graph.size();\r\n        GraphCost graph_cost(n, std::vector<Cost>(n));\r\
-    \n        for(const auto& [f, tcc] : m_graph.getEdgesAll()) {\r\n            auto\
-    \ [t, cc] = tcc;\r\n            auto [_, cost] = cc;\r\n            graph_cost[f][t]\
-    \ = cost;\r\n            graph_cost[t][f] = -cost;\r\n        }\r\n        return\
-    \ graph_cost;\r\n    }\r\n\r\n    auto update_residual(Node s, Cap rem,\r\n  \
-    \                       GraphCap& residual_cap, GraphCost& residual_cost,\r\n\
-    \                         const std::deque<Node>& route)const {\r\n        Cost\
-    \ mn = rem;\r\n        auto from = s;\r\n        for(const auto& to : route)if(from\
-    \ != to) {\r\n            mn = std::min(mn, residual_cap[from][to]);\r\n     \
-    \       from = to;\r\n        }\r\n\r\n        Cost cost_all = 0;\r\n        from\
-    \ = s;\r\n        for(const auto& to : route)if(from != to) {\r\n            residual_cap[from][to]\
-    \ -= mn;\r\n            residual_cap[to][from] += mn;\r\n            cost_all\
-    \ += mn * residual_cost[from][to];\r\n            from = to;\r\n        }\r\n\
-    \        return std::pair<Cap, Cost>{mn, cost_all};\r\n    }\r\n\r\n    auto shortest_path_allow_minus(Node\
-    \ s,\r\n                                   const GraphCap& residual_cap,\r\n \
-    \                                  const GraphCost& residual_cost) const {\r\n\
-    \        auto n = m_graph.size();\r\n        std::vector<Cost> cost(n, 1e18);\r\
-    \n        cost[s] = 0;\r\n        for(int _ = 0; _ < n; ++_) {\r\n           \
-    \ for(int from = 0; from < n; ++from) {\r\n                for(const auto& [to,\
-    \ _] : m_graph_undirected.getEdges(from)) {\r\n                    if(residual_cap[from][to]\
-    \ > 0) {\r\n                        cost[to] = std::min(cost[to], cost[from] +\
-    \ residual_cost[from][to]);\r\n                    }\r\n                }\r\n\
-    \            }\r\n        }\r\n        return cost;\r\n    }\r\n\r\n    auto shortest_path(Node\
-    \ s,\r\n                       const GraphCap& residual_cap,\r\n             \
-    \          const GraphCost& residual_cost,\r\n                       const std::vector<Cost>&\
+    \        for(const auto& [f, t] : m_graph.getEdgesExcludeCost()) {\r\n       \
+    \     graph_undirected.addEdgeUndirected(f, t);\r\n        }\r\n        return\
+    \ graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap()const {\r\n\
+    \        auto n = m_graph.size();\r\n        GraphCap graph_cap(n, std::vector<Cap>(n));\r\
+    \n        for(const auto& [f, t, cc] : m_graph.getEdges()) {\r\n            auto\
+    \ [cap, _] = cc;\r\n            graph_cap[f][t] += cap;\r\n        }\r\n     \
+    \   return graph_cap;\r\n    }\r\n    auto construct_graph_cost() const {\r\n\
+    \        auto n = m_graph.size();\r\n        GraphCost graph_cost(n, std::vector<Cost>(n));\r\
+    \n        for(const auto& [f, t, cc] : m_graph.getEdges()) {\r\n            auto\
+    \ [_, cost] = cc;\r\n            graph_cost[f][t] = cost;\r\n            graph_cost[t][f]\
+    \ = -cost;\r\n        }\r\n        return graph_cost;\r\n    }\r\n\r\n    auto\
+    \ update_residual(Node s, Cap rem,\r\n                         GraphCap& residual_cap,\
+    \ GraphCost& residual_cost,\r\n                         const std::deque<Node>&\
+    \ route)const {\r\n        Cost mn = rem;\r\n        auto from = s;\r\n      \
+    \  for(const auto& to : route)if(from != to) {\r\n            mn = std::min(mn,\
+    \ residual_cap[from][to]);\r\n            from = to;\r\n        }\r\n\r\n    \
+    \    Cost cost_all = 0;\r\n        from = s;\r\n        for(const auto& to : route)if(from\
+    \ != to) {\r\n            residual_cap[from][to] -= mn;\r\n            residual_cap[to][from]\
+    \ += mn;\r\n            cost_all += mn * residual_cost[from][to];\r\n        \
+    \    from = to;\r\n        }\r\n        return std::pair<Cap, Cost>{mn, cost_all};\r\
+    \n    }\r\n\r\n    auto shortest_path_allow_minus(Node s,\r\n                \
+    \                   const GraphCap& residual_cap,\r\n                        \
+    \           const GraphCost& residual_cost) const {\r\n        auto n = m_graph.size();\r\
+    \n        std::vector<Cost> cost(n, 1e18);\r\n        cost[s] = 0;\r\n       \
+    \ for(int _ = 0; _ < n; ++_) {\r\n            for(int from = 0; from < n; ++from)\
+    \ {\r\n                for(const auto& [to, _] : m_graph_undirected.getEdges(from))\
+    \ {\r\n                    if(residual_cap[from][to] > 0) {\r\n              \
+    \          cost[to] = std::min(cost[to], cost[from] + residual_cost[from][to]);\r\
+    \n                    }\r\n                }\r\n            }\r\n        }\r\n\
+    \        return cost;\r\n    }\r\n\r\n    auto shortest_path(Node s,\r\n     \
+    \                  const GraphCap& residual_cap,\r\n                       const\
+    \ GraphCost& residual_cost,\r\n                       const std::vector<Cost>&\
     \ p) const {\r\n        using P = std::pair<Cost, Node>;\r\n        std::priority_queue<P,\
     \ std::vector<P>, std::greater<P>> q;\r\n        std::vector<std::pair<Cost, Node>>\
     \ min(m_graph.size(), {1e18,-1});\r\n        auto add = [&](Node node, Cost cst,\
@@ -194,8 +196,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Flow/SuccessiveShortestPath.hpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
 documentation_of: Library/Graph/Flow/SuccessiveShortestPath.hpp

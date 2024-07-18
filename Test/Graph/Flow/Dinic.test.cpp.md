@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/Dinic.hpp
     title: Library/Graph/Flow/Dinic.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
@@ -48,22 +48,22 @@ data:
     \n    }\r\n};\n#line 2 \"Library/Graph/Flow/Dinic.hpp\"\n\r\n#line 4 \"Library/Graph/Flow/Dinic.hpp\"\
     \n#include <queue>\r\n#include <list>\r\n#include <unordered_map>\r\n#include\
     \ <unordered_set>\r\n#include <map>\r\n\r\n#line 11 \"Library/Graph/Flow/Dinic.hpp\"\
-    \n\r\ntemplate<class Node, class Cost>\r\nclass Dinic {\r\n\r\n    struct HashPair\
-    \ {\r\n        template<class T1, class T2>\r\n        size_t operator()(const\
-    \ std::pair<T1, T2>& p) const {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\
-    \n            auto hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed\
-    \ = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\
-    \n            seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n    \
-    \        return seed;\r\n        }\r\n    };\r\n\r\n    using PairGraph = std::unordered_map<std::pair<Node,\
+    \n\r\ntemplate<class Node, class Cost>\r\nclass Dinic {\r\n    //using Node =\
+    \ int;\r\n    //using Cost = int;\r\n\r\n    struct HashPair {\r\n        template<class\
+    \ T1, class T2>\r\n        size_t operator()(const std::pair<T1, T2>& p) const\
+    \ {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n            auto\
+    \ hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed = 0;\r\n     \
+    \       seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n          \
+    \  seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n            return\
+    \ seed;\r\n        }\r\n    };\r\n\r\n    using PairGraph = std::unordered_map<std::pair<Node,\
     \ Node>, Cost, HashPair>;\r\n\r\n    const Node m_n;\r\n    const PairGraph m_graph;\r\
     \n    const std::vector<std::unordered_set<Node>> m_to_list;\r\n\r\n    static\
     \ auto construct_to_list(const Graph<Node, Cost>& graph) {\r\n        std::vector<std::unordered_set<Node>>\
-    \ to_list(graph.size());\r\n        for(const auto& [f, tc] : graph.getEdgesAll())\
-    \ {\r\n            auto [t, c] = tc;\r\n            to_list[f].emplace(t);\r\n\
-    \            to_list[t].emplace(f);\r\n        }\r\n        return to_list;\r\n\
-    \    }\r\n    static auto construct_graph(const Graph<Node, Cost>& graph) {\r\n\
-    \        PairGraph pair_graph;\r\n        for(const auto& [f, tc] : graph.getEdgesAll())\
-    \ {\r\n            auto [t, c] = tc;\r\n            pair_graph[std::pair<Node,\
+    \ to_list(graph.size());\r\n        for(const auto& [f, t, c] : graph.getEdges())\
+    \ {\r\n            to_list[f].emplace(t);\r\n            to_list[t].emplace(f);\r\
+    \n        }\r\n        return to_list;\r\n    }\r\n    static auto construct_graph(const\
+    \ Graph<Node, Cost>& graph) {\r\n        PairGraph pair_graph;\r\n        for(const\
+    \ auto& [f, t, c] : graph.getEdges()) {\r\n            pair_graph[std::pair<Node,\
     \ Node>{f, t}] += c;\r\n        }\r\n        return pair_graph;\r\n    }\r\n\r\
     \n    auto get_depth(Node s, const PairGraph& graph) const {\r\n        std::vector<Node>\
     \ depth(m_n, -1);\r\n        std::queue<Node> q;\r\n        q.emplace(s);\r\n\
@@ -144,8 +144,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 22:46:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 23:06:38+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/Dinic.test.cpp
 layout: document
