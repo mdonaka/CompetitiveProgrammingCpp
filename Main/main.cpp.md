@@ -35,18 +35,16 @@ data:
     \ t, const S& s) { if(s < t) { t = s; return true; } return false; }\r\ntemplate<class\
     \ S> constexpr auto vec(S x) { return x; }\r\ntemplate<class S, class... T> constexpr\
     \ auto vec(S x, int n, T... ns) { return std::vector(n, vec(x, ns...)); }\r\n\r\
-    \n/* type define */\r\nusing ll = long long;\r\ntemplate<class T>\r\nusing V =\
-    \ std::vector<T>;\r\ntemplate<class T = ll, class U = T>\r\nusing P = std::pair<T,\
-    \ U>;\r\n\r\n/* Initial processing  */\r\nstruct Preprocessing { Preprocessing()\
-    \ { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n\
-    /* input */\r\ntemplate<class T> std::istream& operator >> (std::istream& is,\
-    \ std::vector<T>& vec) { for(T& x : vec) is >> x; return is; }\r\n\r\n//=============================================================================================\r\
+    \n/* Initial processing  */\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
+    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n/* input */\r\ntemplate<class\
+    \ T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T&\
+    \ x : vec) is >> x; return is; }\r\n\r\n//=============================================================================================\r\
     \n\r\n\r\nsigned main() {\r\n\r\n}"
   dependsOn: []
   isVerificationFile: false
   path: Main/main.cpp
   requiredBy: []
-  timestamp: '2024-06-29 03:46:14+09:00'
+  timestamp: '2024-07-19 01:36:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main.cpp
