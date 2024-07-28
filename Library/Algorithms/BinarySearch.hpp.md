@@ -60,8 +60,8 @@ data:
   verifiedWith:
   - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
-  - Test/Algorithms/BinarySearch_int_rev.test.cpp
   - Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int_rev.test.cpp
   - Test/Algorithms/BinarySearch_int.test.cpp
   - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp

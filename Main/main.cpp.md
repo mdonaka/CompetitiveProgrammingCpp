@@ -16,18 +16,18 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ Main/main.cpp: line 29: unable to process #include in #if / #ifdef / #ifndef\
+    \ Main/main.cpp: line 32: unable to process #include in #if / #ifdef / #ifndef\
     \ other than include guards\n"
   code: "#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx\")\r\n#pragma\
-    \ GCC optimize(\"O3\")\r\n#pragma GCC optimize(\"unroll-loops\")\r\n#include <algorithm>\r\
-    \n#include <bitset>\r\n#include <cassert>\r\n#include <cmath>\r\n#include <functional>\r\
-    \n#include <immintrin.h>\r\n#include <iomanip>\r\n#include <iostream>\r\n#include\
-    \ <list>\r\n#include <map>\r\n#include <memory>\r\n#include <numeric>\r\n#include\
-    \ <queue>\r\n#include <random>\r\n#include <ranges>\r\n#include <complex>\r\n\
-    #include <set>\r\n#include <stack>\r\n#include <stdexcept>\r\n#include <string>\r\
-    \n#include <unordered_map>\r\n#include <unordered_set>\r\n#include <vector>\r\n\
-    \r\n#ifdef DEBUG\r\n#include \"./CompetitiveProgrammingCpp/Utils/debug.hpp\"\r\
-    \n#include \"./CompetitiveProgrammingCpp/Utils/Timer.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Utils/sample.hpp\"\
+    \ GCC optimize(\"O3\")\r\n#pragma GCC optimize(\"unroll-loops\")\r\n\r\n#include\
+    \ <immintrin.h>\r\n\r\n#include <algorithm>\r\n#include <bitset>\r\n#include <cassert>\r\
+    \n#include <cmath>\r\n#include <complex>\r\n#include <functional>\r\n#include\
+    \ <iomanip>\r\n#include <iostream>\r\n#include <list>\r\n#include <map>\r\n#include\
+    \ <memory>\r\n#include <numeric>\r\n#include <queue>\r\n#include <random>\r\n\
+    #include <ranges>\r\n#include <set>\r\n#include <stack>\r\n#include <stdexcept>\r\
+    \n#include <string>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\n\
+    #include <vector>\r\n\r\n// clang-format off\r\n#ifdef DEBUG\r\n#include \"./CompetitiveProgrammingCpp/Utils/debug.hpp\"\
+    \r\n#include \"./CompetitiveProgrammingCpp/Utils/Timer.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Utils/sample.hpp\"\
     \r\n#else\r\n#define dump(...)\r\ntemplate<class T>constexpr inline auto d_val(T\
     \ a, T b) { return a; }\r\n#endif\r\n\r\n/* macro func */\r\ntemplate<class T,\
     \ class S>\r\ninline auto chmax(T& t, const S& s) { if(s > t) { t = s; return\
@@ -38,13 +38,14 @@ data:
     \n/* Initial processing  */\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
     \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n/* input */\r\ntemplate<class\
     \ T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T&\
-    \ x : vec) is >> x; return is; }\r\n\r\n//=============================================================================================\r\
-    \n\r\n\r\nsigned main() {\r\n\r\n}"
+    \ x : vec) is >> x; return is; }\r\n\r\n// clang-format on\r\n//=============================================================================================\r\
+    \n// tag:includes begin\r\n\r\n// tag:includes end\r\n//=============================================================================================\r\
+    \n\r\nsigned main() {}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Main/main.cpp
   requiredBy: []
-  timestamp: '2024-07-19 01:36:00+09:00'
+  timestamp: '2024-07-29 00:30:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main.cpp

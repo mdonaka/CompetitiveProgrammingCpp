@@ -185,6 +185,11 @@ data:
     - icon: ':warning:'
       path: Utils/sample.hpp
       title: Utils/sample.hpp
+  - name: command
+    pages:
+    - icon: ':warning:'
+      path: command/inline_includes.py
+      title: command/inline_includes.py
   verificationCategories:
   - name: Test/Algorithms
     pages:

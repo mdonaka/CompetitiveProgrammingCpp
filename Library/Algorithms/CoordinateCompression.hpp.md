@@ -56,8 +56,8 @@ data:
   timestamp: '2023-06-18 08:32:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Algorithms/CoordinateCompression_to.test.cpp
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/Algorithms/CoordinateCompression_to.test.cpp
 documentation_of: Library/Algorithms/CoordinateCompression.hpp
 layout: document
 redirect_from:
