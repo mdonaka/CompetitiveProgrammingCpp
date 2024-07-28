@@ -1,12 +1,15 @@
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
 #pragma GCC optimize("O3")
 #pragma GCC optimize("unroll-loops")
+
+#include <immintrin.h>
+
 #include <algorithm>
 #include <bitset>
 #include <cassert>
 #include <cmath>
+#include <complex>
 #include <functional>
-#include <immintrin.h>
 #include <iomanip>
 #include <iostream>
 #include <list>
@@ -16,7 +19,6 @@
 #include <queue>
 #include <random>
 #include <ranges>
-#include <complex>
 #include <set>
 #include <stack>
 #include <stdexcept>
@@ -25,6 +27,7 @@
 #include <unordered_set>
 #include <vector>
 
+// clang-format off
 #ifdef DEBUG
 #include "./CompetitiveProgrammingCpp/Utils/debug.hpp"
 #include "./CompetitiveProgrammingCpp/Utils/Timer.hpp"
@@ -48,9 +51,11 @@ struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_st
 /* input */
 template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T& x : vec) is >> x; return is; }
 
+// clang-format on
+//=============================================================================================
+// tag:includes begin
+
+// tag:includes end
 //=============================================================================================
 
-
-signed main() {
-
-}
+signed main() {}
