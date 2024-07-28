@@ -11,6 +11,14 @@ $(BIN_RUN): $(SRC)
 $(BIN_TEST): $(SRC)
 	@g++-11 $(OPTION) $< -D TEST -o $@
 
+.PHONY: i
+i: $(BIN_RUN) ## reset
+	@cp CompetitiveProgrammingCpp/Main/$(SRC) ./$(SRC)
+
+.PHONY: y
+y: $(BIN_RUN) ## yank
+	@python CompetitiveProgrammingCpp/command/inline_includes.py $(SRC) | xsel -bi
+
 .PHONY: r
 r: $(BIN_RUN) ## run
 	@./$^ < i
