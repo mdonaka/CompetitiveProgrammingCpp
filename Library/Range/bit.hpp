@@ -3,6 +3,50 @@
 
 namespace myranges {
 
+struct bit_index_view : public std::ranges::view_base {
+  class iterator {
+    int i;
+    int bit;
+
+    unsigned ctz(unsigned int n) {
+#ifdef __GNUC__
+      return __builtin_ctz(n);
+#endif
+      if (!n) return -1;
+      unsigned int c = 32;
+      n &= -static_cast<signed int>(n);
+      if (n) c--;
+      if (n & 0x0000FFFF) c -= 16;
+      if (n & 0x00FF00FF) c -= 8;
+      if (n & 0x0F0F0F0F) c -= 4;
+      if (n & 0x33333333) c -= 2;
+      if (n & 0x55555555) c -= 1;
+      return c;
+    }
+
+  public:
+    using difference_type = int;
+    using value_type = int;
+    using iterator_concept = std::input_iterator_tag;
+
+    explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}
+    auto operator*() const { return i; }
+    auto &operator++() {
+      bit ^= (1 << i);
+      i = ctz(bit);
+      return *this;
+    }
+    auto operator++(int) { return ++*this; }
+    auto operator==(const iterator &other) const { return bit == other.bit; }
+  };
+
+  int bit;
+
+  explicit bit_index_view(int bit) : bit(bit) {}
+  auto begin() const { return iterator(bit); }
+  auto end() const { return iterator(); }
+};
+
 struct bit_subset_view : public std::ranges::view_base {
   class iterator {
     int i;
