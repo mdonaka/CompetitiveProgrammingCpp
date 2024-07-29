@@ -3,13 +3,14 @@
 SRC := main.cpp
 BIN_RUN := bin/run.out
 BIN_TEST := bin/test.out
-OPTION := -std=c++2b -O2 -D DEBUG -I ./ac-library
+OPTION := -std=c++2a -O2 -D DEBUG -I ./ac-library
+DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 
 $(BIN_RUN): $(SRC)
-	@g++-11 $(OPTION) $< -o $@
+	@g++-11 $(OPTION) $< -MMD -MP -o $@
 
 $(BIN_TEST): $(SRC)
-	@g++-11 $(OPTION) $< -D TEST -o $@
+	@g++-11 $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: $(BIN_RUN) ## reset
@@ -30,6 +31,8 @@ t: $(BIN_TEST) ## test
 .PHONY: clean
 clean: ## clean
 	@rm -f $(BIN_RUN) $(BIN_TEST)
+
+-include $(DEPENDS)
 
 .PHONY: help
 help: ## show this help
