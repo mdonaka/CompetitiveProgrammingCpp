@@ -15,11 +15,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/Mo.hpp
       title: Library/Algorithms/Mo.hpp
-  - name: Library/Bit
-    pages:
-    - icon: ':warning:'
-      path: Library/Bit/utils.hpp
-      title: Library/Bit/utils.hpp
   - name: Library/DataStructure
     pages:
     - icon: ':heavy_check_mark:'
@@ -127,6 +122,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
+  - name: Library/Range
+    pages:
+    - icon: ':warning:'
+      path: Library/Range/bit.hpp
+      title: Library/Range/bit.hpp
+    - icon: ':warning:'
+      path: Library/Range/check.hpp
+      title: Library/Range/check.hpp
   - name: Library/Simd
     pages:
     - icon: ':warning:'
