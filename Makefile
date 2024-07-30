@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-SRC := main.cpp
+SRC ?= main.cpp
 BIN_RUN := bin/run.out
 BIN_TEST := bin/test.out
 OPTION := -std=c++2a -O2 -D DEBUG -I ./ac-library
@@ -30,7 +30,7 @@ t: $(BIN_TEST) ## test
 
 .PHONY: clean
 clean: ## clean
-	@rm -f $(BIN_RUN) $(BIN_TEST)
+	@rm -f $(BIN_RUN) $(BIN_TEST) $(DEPENDS)
 
 -include $(DEPENDS)
 
