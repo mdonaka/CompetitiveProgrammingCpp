@@ -3,7 +3,7 @@
 
 namespace myranges {
 
-struct bit_index_view : public std::ranges::view_base {
+struct bit_index_view : public std::ranges::view_interface<bit_index_view> {
   class iterator {
     int i;
     int bit;
@@ -47,7 +47,7 @@ struct bit_index_view : public std::ranges::view_base {
   auto end() const { return iterator(); }
 };
 
-struct bit_subset_view : public std::ranges::view_base {
+struct bit_subset_view : public std::ranges::view_interface<bit_subset_view> {
   class iterator {
     int i;
     int bit;
@@ -74,7 +74,7 @@ struct bit_subset_view : public std::ranges::view_base {
   auto end() const { return iterator(); }
 };
 
-struct bit_supset_view : public std::ranges::view_base {
+struct bit_supset_view : public std::ranges::view_interface<bit_supset_view> {
   class iterator {
     int i;
     int n;
@@ -105,7 +105,8 @@ struct bit_supset_view : public std::ranges::view_base {
   auto end() const { return std::default_sentinel; }
 };
 
-struct k_bit_subset_view : public std::ranges::view_base {
+struct k_bit_subset_view
+    : public std::ranges::view_interface<k_bit_subset_view> {
   class iterator {
     int i;
     int n;
