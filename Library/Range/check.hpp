@@ -1,10 +1,13 @@
 #pragma once
 
+#include <concepts>
 #include <iostream>
 #include <iterator>
 
 namespace myranges::check {
 
+// =======================================================
+//
 template <std::weakly_incrementable>
 void _is_weakly_incrementable() {
   std::cout << "weakly_incrementable: True" << std::endl;
@@ -49,6 +52,8 @@ auto iterator() {
   _is_indirectly_readable<T>();
   _is_input_iterator<T>();
 }
+
+// =======================================================
 
 template <class I, class S>
 requires std::equality_comparable_with<I, S>
@@ -114,8 +119,8 @@ void _is_input_range() {
 }
 
 template <class T>
-auto range(T x) {
-  std::cout << "-- range --" << std::endl;
+auto input_range(T x) {
+  std::cout << "-- input range --" << std::endl;
   _is_equality_comparable_with<decltype(x.begin()), decltype(x.end())>();
   _is_default_initializable<decltype(x.end())>();
   _is_copyable<decltype(x.end())>();
@@ -125,10 +130,85 @@ auto range(T x) {
   _is_input_range<T>();
 }
 
+// =======================================================
+
+template <std::ranges::view T>
+void _is_view() {
+  std::cout << "view: True" << std::endl;
+}
+template <class T>
+void _is_view() {
+  std::cout << "view: False" << std::endl;
+}
+
+template <class T>
+void _is_object_v() {
+  std::cout << "is_object_v: " << (std::is_object_v<T> ? "True" : "False")
+            << std::endl;
+}
+
+template <std::move_constructible T>
+void _is_move_constructible() {
+  std::cout << "move_constructible: True" << std::endl;
+}
+template <class T>
+void _is_move_constructible() {
+  std::cout << "move_constructible: False" << std::endl;
+}
+
+template <class T>
+requires std::assignable_from<T&, T>
+void _is_assignable_from() {
+  std::cout << "assignable_from: True" << std::endl;
+}
+template <class T>
+void _is_assignable_from() {
+  std::cout << "assignable_from: False" << std::endl;
+}
+
+template <std::swappable T>
+void _is_swappable() {
+  std::cout << "swappable: True" << std::endl;
+}
+template <class T>
+void _is_swappable() {
+  std::cout << "swappable: False" << std::endl;
+}
+
+template <std::movable T>
+void _is_movable() {
+  std::cout << "movable: True" << std::endl;
+}
+template <class T>
+void _is_movable() {
+  std::cout << "movable: False" << std::endl;
+}
+
+template <class T>
+void _is_enable_view() {
+  std::cout << "enable_view: "
+            << (std::ranges::enable_view<T> ? "True" : "False") << std::endl;
+}
+
+template <class T>
+auto view(T x) {
+  std::cout << "-- view --" << std::endl;
+  _is_object_v<T>();
+  _is_move_constructible<T>();
+  _is_assignable_from<T>();
+  _is_swappable<T>();
+  _is_movable<T>();
+  _is_enable_view<T>();
+  _is_view<T>();
+}
+
+// =======================================================
+//
 template <class T, class... Args>
 auto all(const Args... args) {
   iterator<typename T::iterator>();
-  range(T(args...));
+  input_range(T(args...));
+  view(T(args...));
 }
 
 }  // namespace myranges::check
