@@ -18,7 +18,7 @@ i: $(BIN_RUN) ## reset
 
 .PHONY: y
 y: $(BIN_RUN) ## yank
-	@python CompetitiveProgrammingCpp/command/inline_includes.py $(SRC) | xsel -bi
+	@python CompetitiveProgrammingCpp/command/inline_includes.py $(SRC) | tee main_copy.cpp | xsel -bi
 
 .PHONY: r
 r: $(BIN_RUN) ## run
