@@ -23,7 +23,11 @@ data:
     \ { return ++*this; }\n    auto operator==(const iterator& other) const { return\
     \ itr == other.itr; }\n  };\n\n  C c;\n\n  explicit enumerate_view(const C& c)\
     \ : c(c) {}\n  auto begin() const { return iterator(c.begin()); }\n  auto end()\
-    \ const { return iterator(c.end()); }\n};\n\n}  // namespace myranges\n"
+    \ const { return iterator(c.end()); }\n};\n\nstruct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \ {\n  template <std::ranges::viewable_range _Range>\n  constexpr auto operator()(_Range&&\
+    \ __r) const {\n    return enumerate_view{std::forward<_Range>(__r)};\n  }\n \
+    \ static constexpr bool _S_has_simple_call_op = true;\n};\n\ninline constexpr\
+    \ _Enumerate enumerate{};\n\n}  // namespace myranges\n"
   code: "#include <ranges>\n#include <vector>\nnamespace myranges {\n\nstruct enumerate_view\
     \ : public std::ranges::view_interface<enumerate_view> {\n  using C = std::vector<int>;\n\
     \n  class iterator {\n    size_t index;\n    C::const_iterator itr;\n\n  public:\n\
@@ -35,12 +39,16 @@ data:
     \   }\n    auto operator++(int) { return ++*this; }\n    auto operator==(const\
     \ iterator& other) const { return itr == other.itr; }\n  };\n\n  C c;\n\n  explicit\
     \ enumerate_view(const C& c) : c(c) {}\n  auto begin() const { return iterator(c.begin());\
-    \ }\n  auto end() const { return iterator(c.end()); }\n};\n\n}  // namespace myranges\n"
+    \ }\n  auto end() const { return iterator(c.end()); }\n};\n\nstruct _Enumerate\
+    \ : std::views::__adaptor::_RangeAdaptorClosure {\n  template <std::ranges::viewable_range\
+    \ _Range>\n  constexpr auto operator()(_Range&& __r) const {\n    return enumerate_view{std::forward<_Range>(__r)};\n\
+    \  }\n  static constexpr bool _S_has_simple_call_op = true;\n};\n\ninline constexpr\
+    \ _Enumerate enumerate{};\n\n}  // namespace myranges\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Range/mystd.hpp
   requiredBy: []
-  timestamp: '2024-07-30 22:13:33+09:00'
+  timestamp: '2024-08-02 16:17:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/mystd/enumerate.test.cpp
