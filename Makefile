@@ -7,10 +7,10 @@ OPTION := -std=c++2a -O2 -D DEBUG -I ./ac-library
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 
 $(BIN_RUN): $(SRC)
-	@g++-11 $(OPTION) $< -MMD -MP -o $@
+	@g++-12 $(OPTION) $< -MMD -MP -o $@
 
 $(BIN_TEST): $(SRC)
-	@g++-11 $(OPTION) $< -D TEST -MMD -MP -o $@
+	@g++-12 $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: $(BIN_RUN) ## reset

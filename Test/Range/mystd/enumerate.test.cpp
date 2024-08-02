@@ -17,7 +17,7 @@ int main() {
     v.emplace_back(x);
   }
 
-  for (auto [i, x] : myranges::enumerate_view(v) |
+  for (auto [i, x] : v | myranges::enumerate |
                          std::views::filter([](const std::tuple<int, int>& t) {
                            return std::get<1>(t) > 0;
                          })) {
