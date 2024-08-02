@@ -33,4 +33,14 @@ struct enumerate_view : public std::ranges::view_interface<enumerate_view> {
   auto end() const { return iterator(c.end()); }
 };
 
+struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure {
+  template <std::ranges::viewable_range _Range>
+  constexpr auto operator()(_Range&& __r) const {
+    return enumerate_view{std::forward<_Range>(__r)};
+  }
+  static constexpr bool _S_has_simple_call_op = true;
+};
+
+inline constexpr _Enumerate enumerate{};
+
 }  // namespace myranges
