@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Range/mystd.hpp
     title: Library/Range/mystd.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
@@ -17,29 +17,34 @@ data:
   bundledCode: "#line 1 \"Test/Range/mystd/enumerate.test.cpp\"\n#define PROBLEM \\\
     \n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\n#include\
     \ <iostream>\n\n// tag:includes begin\n#line 1 \"Library/Range/mystd.hpp\"\n#include\
-    \ <ranges>\n#include <vector>\nnamespace myranges {\n\nstruct enumerate_view :\
-    \ public std::ranges::view_interface<enumerate_view> {\n  using C = std::vector<int>;\n\
-    \n  class iterator {\n    size_t index;\n    C::const_iterator itr;\n\n  public:\n\
-    \    using difference_type = int;\n    using value_type = std::tuple<size_t, C::value_type>;\n\
-    \    using iterator_concept = std::input_iterator_tag;\n\n    explicit iterator(const\
-    \ C::const_iterator& itr = C::const_iterator{})\n        : index(0), itr(itr)\
-    \ {}\n    auto operator*() const { return std::make_tuple(index, *itr); }\n  \
-    \  auto& operator++() {\n      ++itr;\n      ++index;\n      return *this;\n \
-    \   }\n    auto operator++(int) { return ++*this; }\n    auto operator==(const\
-    \ iterator& other) const { return itr == other.itr; }\n  };\n\n  C c;\n\n  explicit\
-    \ enumerate_view(const C& c) : c(c) {}\n  auto begin() const { return iterator(c.begin());\
-    \ }\n  auto end() const { return iterator(c.end()); }\n};\n\nstruct _Enumerate\
-    \ : std::views::__adaptor::_RangeAdaptorClosure {\n  template <std::ranges::viewable_range\
-    \ _Range>\n  constexpr auto operator()(_Range&& __r) const {\n    return enumerate_view{std::forward<_Range>(__r)};\n\
-    \  }\n  static constexpr bool _S_has_simple_call_op = true;\n};\n\ninline constexpr\
-    \ _Enumerate enumerate{};\n\n}  // namespace myranges\n#line 7 \"Test/Range/mystd/enumerate.test.cpp\"\
-    \n// tag:includes end\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
-    \n  std::vector<int> v;\n  while (std::cin) {\n    int x;\n    std::cin >> x;\n\
-    \    v.emplace_back(x);\n  }\n\n  for (auto [i, x] : v | myranges::enumerate |\n\
-    \                         std::views::filter([](const std::tuple<int, int>& t)\
-    \ {\n                           return std::get<1>(t) > 0;\n                 \
-    \        })) {\n    std::cout << \"Case \" << i + 1 << \": \" << x << std::endl;\n\
-    \  }\n}\n"
+    \ <ranges>\n#include <vector>\n\nnamespace myranges {\n\n  template <std::ranges::range\
+    \ _Range>\n  struct enumerate_view\n      : public std::ranges::view_interface<enumerate_view<_Range>>\
+    \ {\n    class iterator {\n      size_t index;\n      _Range::const_iterator itr;\n\
+    \n    public:\n      using difference_type = int;\n      using value_type = std::tuple<size_t,\
+    \ typename _Range::value_type>;\n      using iterator_concept = std::input_iterator_tag;\n\
+    \n      explicit iterator(const typename _Range::const_iterator& itr =\n     \
+    \                       typename _Range::const_iterator{})\n          : index(0),\
+    \ itr(itr) {}\n      auto operator*() const { return std::make_tuple(index, *itr);\
+    \ }\n      auto& operator++() {\n        ++itr;\n        ++index;\n        return\
+    \ *this;\n      }\n      auto operator++(int) { return ++*this; }\n      auto\
+    \ operator==(const iterator& other) const { return itr == other.itr; }\n    };\n\
+    \n    _Range __r = _Range();\n\n    enumerate_view() requires std::default_initializable<_Range>\n\
+    \    = default;\n    constexpr explicit enumerate_view(const _Range& __r) : __r(__r)\
+    \ {}\n\n    auto begin() const { return iterator(__r.begin()); }\n    auto end()\
+    \ const { return iterator(__r.end()); }\n  };\n\n  namespace views {\n    namespace\
+    \ __detail {\n      struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \ {\n        template <std::ranges::viewable_range _Range>\n        constexpr\
+    \ auto operator()(_Range&& __r) const {\n          return enumerate_view{std::forward<_Range>(__r)};\n\
+    \        }\n        static constexpr bool _S_has_simple_call_op = true;\n    \
+    \  };\n    }  // namespace __detail\n\n    inline constexpr __detail::_Enumerate\
+    \ enumerate{};\n  }  // namespace views\n}  // namespace myranges\n#line 7 \"\
+    Test/Range/mystd/enumerate.test.cpp\"\n// tag:includes end\n\nint main() {\n \
+    \ std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  std::vector<int> v;\n\
+    \  while (std::cin) {\n    int x;\n    std::cin >> x;\n    v.emplace_back(x);\n\
+    \  }\n\n  for (auto [i, x] : v | myranges::enumerate |\n                     \
+    \    std::views::filter([](const std::tuple<int, int>& t) {\n                \
+    \           return std::get<1>(t) > 0;\n                         })) {\n    std::cout\
+    \ << \"Case \" << i + 1 << \": \" << x << std::endl;\n  }\n}\n"
   code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
     \n#include <iostream>\n\n// tag:includes begin\n#include \"../../../Library/Range/mystd.hpp\"\
     \n// tag:includes end\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
@@ -54,8 +59,8 @@ data:
   isVerificationFile: true
   path: Test/Range/mystd/enumerate.test.cpp
   requiredBy: []
-  timestamp: '2024-08-02 16:17:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-03 18:20:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/mystd/enumerate.test.cpp
 layout: document

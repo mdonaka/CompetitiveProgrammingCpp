@@ -16,17 +16,15 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ Main/main.cpp: line 32: unable to process #include in #if / #ifdef / #ifndef\
+    \ Main/main.cpp: line 26: unable to process #include in #if / #ifdef / #ifndef\
     \ other than include guards\n"
-  code: "#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx\")\r\n#pragma\
-    \ GCC optimize(\"O3\")\r\n#pragma GCC optimize(\"unroll-loops\")\r\n\r\n#include\
-    \ <immintrin.h>\r\n\r\n#include <algorithm>\r\n#include <bitset>\r\n#include <cassert>\r\
-    \n#include <cmath>\r\n#include <complex>\r\n#include <functional>\r\n#include\
-    \ <iomanip>\r\n#include <iostream>\r\n#include <list>\r\n#include <map>\r\n#include\
-    \ <memory>\r\n#include <numeric>\r\n#include <queue>\r\n#include <random>\r\n\
-    #include <ranges>\r\n#include <set>\r\n#include <stack>\r\n#include <stdexcept>\r\
-    \n#include <string>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\n\
-    #include <vector>\r\n\r\n// clang-format off\r\n#ifdef DEBUG\r\n#include \"./CompetitiveProgrammingCpp/Utils/debug.hpp\"\
+  code: "#include <algorithm>\r\n#include <bitset>\r\n#include <cassert>\r\n#include\
+    \ <cmath>\r\n#include <complex>\r\n#include <functional>\r\n#include <iomanip>\r\
+    \n#include <iostream>\r\n#include <list>\r\n#include <map>\r\n#include <memory>\r\
+    \n#include <numeric>\r\n#include <queue>\r\n#include <random>\r\n#include <ranges>\r\
+    \n#include <set>\r\n#include <stack>\r\n#include <stdexcept>\r\n#include <string>\r\
+    \n#include <unordered_map>\r\n#include <unordered_set>\r\n#include <vector>\r\n\
+    \r\n// clang-format off\r\n#ifdef DEBUG\r\n#include \"./CompetitiveProgrammingCpp/Utils/debug.hpp\"\
     \r\n#include \"./CompetitiveProgrammingCpp/Utils/Timer.hpp\"\r\n#include \"./CompetitiveProgrammingCpp/Utils/sample.hpp\"\
     \r\n#else\r\n#define dump(...)\r\ntemplate<class T>constexpr inline auto d_val(T\
     \ a, T b) { return a; }\r\n#endif\r\n\r\n/* macro func */\r\ntemplate<class T,\
@@ -45,7 +43,7 @@ data:
   isVerificationFile: false
   path: Main/main.cpp
   requiredBy: []
-  timestamp: '2024-07-29 00:30:56+09:00'
+  timestamp: '2024-08-02 16:31:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Main/main.cpp

@@ -130,7 +130,7 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Range/mystd.hpp
       title: Library/Range/mystd.hpp
   - name: Library/Simd
@@ -349,7 +349,7 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/Range/mystd
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Range/mystd/enumerate.test.cpp
       title: Test/Range/mystd/enumerate.test.cpp
   - name: Test/String
