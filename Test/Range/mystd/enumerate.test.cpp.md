@@ -16,9 +16,9 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
   bundledCode: "#line 1 \"Test/Range/mystd/enumerate.test.cpp\"\n#define PROBLEM \\\
     \n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\n#include\
-    \ <iostream>\n\n// tag:includes begin\n#line 1 \"Library/Range/mystd.hpp\"\n#include\
-    \ <ranges>\n#include <vector>\n\nnamespace myranges {\n\n  template <std::ranges::range\
-    \ _Range>\n  struct enumerate_view\n      : public std::ranges::view_interface<enumerate_view<_Range>>\
+    \ <iostream>\n\n// tag:includes begin\n#line 2 \"Library/Range/mystd.hpp\"\n\n\
+    #include <ranges>\n\nnamespace myranges {\n\n  template <std::ranges::range _Range>\n\
+    \  struct enumerate_view\n      : public std::ranges::view_interface<enumerate_view<_Range>>\
     \ {\n    class iterator {\n      size_t index;\n      _Range::const_iterator itr;\n\
     \n    public:\n      using difference_type = int;\n      using value_type = std::tuple<size_t,\
     \ typename _Range::value_type>;\n      using iterator_concept = std::input_iterator_tag;\n\
@@ -31,12 +31,11 @@ data:
     \n    _Range __r = _Range();\n\n    enumerate_view() requires std::default_initializable<_Range>\n\
     \    = default;\n    constexpr explicit enumerate_view(const _Range& __r) : __r(__r)\
     \ {}\n\n    auto begin() const { return iterator(__r.begin()); }\n    auto end()\
-    \ const { return iterator(__r.end()); }\n  };\n\n  namespace views {\n    namespace\
-    \ __detail {\n      struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
-    \ {\n        template <std::ranges::viewable_range _Range>\n        constexpr\
-    \ auto operator()(_Range&& __r) const {\n          return enumerate_view{std::forward<_Range>(__r)};\n\
-    \        }\n        static constexpr bool _S_has_simple_call_op = true;\n    \
-    \  };\n    }  // namespace __detail\n\n    inline constexpr __detail::_Enumerate\
+    \ const { return iterator(__r.end()); }\n  };\n\n  namespace views {\n    struct\
+    \ _Enumerate : std::views::__adaptor::_RangeAdaptorClosure {\n      template <std::ranges::viewable_range\
+    \ _Range>\n      constexpr auto operator()(_Range&& __r) const {\n        return\
+    \ enumerate_view{std::forward<_Range>(__r)};\n      }\n      static constexpr\
+    \ bool _S_has_simple_call_op = true;\n    };\n\n    inline constexpr _Enumerate\
     \ enumerate{};\n  }  // namespace views\n}  // namespace myranges\n#line 7 \"\
     Test/Range/mystd/enumerate.test.cpp\"\n// tag:includes end\n\nint main() {\n \
     \ std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  std::vector<int> v;\n\
@@ -59,7 +58,7 @@ data:
   isVerificationFile: true
   path: Test/Range/mystd/enumerate.test.cpp
   requiredBy: []
-  timestamp: '2024-08-03 18:20:53+09:00'
+  timestamp: '2024-08-03 20:25:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/mystd/enumerate.test.cpp

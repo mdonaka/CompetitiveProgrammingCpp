@@ -16,8 +16,8 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ Main/interactive.cpp: line 28: unable to process #include in #if / #ifdef /\
-    \ #ifndef other than include guards\n"
+    \ Library/Main/interactive.cpp: line 28: unable to process #include in #if / #ifdef\
+    \ / #ifndef other than include guards\n"
   code: "//#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,avx512f\"\
     )\r\n#pragma GCC target(\"sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx\")\r\n#pragma\
     \ GCC optimize(\"O3\")\r\n#pragma GCC optimize(\"unroll-loops\")\r\n#include <iostream>\r\
@@ -67,15 +67,15 @@ data:
     \        throw std::runtime_error(\"Failed\");\r\n    }\r\n}"
   dependsOn: []
   isVerificationFile: false
-  path: Main/interactive.cpp
+  path: Library/Main/interactive.cpp
   requiredBy: []
-  timestamp: '2023-06-18 08:41:55+09:00'
+  timestamp: '2024-08-03 19:08:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Main/interactive.cpp
+documentation_of: Library/Main/interactive.cpp
 layout: document
 redirect_from:
-- /library/Main/interactive.cpp
-- /library/Main/interactive.cpp.html
-title: Main/interactive.cpp
+- /library/Library/Main/interactive.cpp
+- /library/Library/Main/interactive.cpp.html
+title: Library/Main/interactive.cpp
 ---

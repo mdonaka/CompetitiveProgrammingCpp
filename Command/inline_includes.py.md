@@ -36,8 +36,8 @@ data:
     \    includes: list[Path] = dataclasses.field(default_factory=list, init=False)\n\
     \n    def __post_init__(self) -> None:\n        root = self.filepath.parent\n\
     \        for line in open_src(self.filepath):\n            if \"#include\" in\
-    \ line and \"Utils/\" not in line:\n                sp = line.split('\"')\n  \
-    \              if len(sp) > 1:\n                    filepath = root / sp[1]\n\
+    \ line and \"Library/Debug/\" not in line:\n                sp = line.split('\"\
+    ')\n                if len(sp) > 1:\n                    filepath = root / sp[1]\n\
     \                    self.includes.append(filepath.resolve())\n\n    def get_includes_graph(self,\
     \ graph_: Optional[Graph] = None) -> Graph:\n        graph = graph_ if graph_\
     \ else Graph()\n        for include_path in self.includes:\n            graph.add_edge(include_path,\
@@ -58,15 +58,15 @@ data:
     \ == 0 or flag == 3:\n            source_lst.append(line)\n\n    print(\"\".join(source_lst))\n"
   dependsOn: []
   isVerificationFile: false
-  path: command/inline_includes.py
+  path: Command/inline_includes.py
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: command/inline_includes.py
+documentation_of: Command/inline_includes.py
 layout: document
 redirect_from:
-- /library/command/inline_includes.py
-- /library/command/inline_includes.py.html
-title: command/inline_includes.py
+- /library/Command/inline_includes.py
+- /library/Command/inline_includes.py.html
+title: Command/inline_includes.py
 ---

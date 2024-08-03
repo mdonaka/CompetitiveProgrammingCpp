@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: Command
+    pages:
+    - icon: ':warning:'
+      path: Command/inline_includes.py
+      title: Command/inline_includes.py
   - name: Library/Algorithms
     pages:
     - icon: ':heavy_check_mark:'
@@ -53,6 +58,17 @@ data:
     - icon: ':warning:'
       path: Library/DataStructure/UnionFindWeight.cpp
       title: Library/DataStructure/UnionFindWeight.cpp
+  - name: Library/Debug
+    pages:
+    - icon: ':warning:'
+      path: Library/Debug/Timer.hpp
+      title: Library/Debug/Timer.hpp
+    - icon: ':warning:'
+      path: Library/Debug/debug.hpp
+      title: Library/Debug/debug.hpp
+    - icon: ':warning:'
+      path: Library/Debug/sample.hpp
+      title: Library/Debug/sample.hpp
   - name: Library/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -112,6 +128,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
+  - name: Library/Main
+    pages:
+    - icon: ':warning:'
+      path: Library/Main/interactive.cpp
+      title: Library/Main/interactive.cpp
   - name: Library/Math
     pages:
     - icon: ':warning:'
@@ -130,6 +151,9 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
+    - icon: ':warning:'
+      path: Library/Range/io.hpp
+      title: Library/Range/io.hpp
     - icon: ':x:'
       path: Library/Range/mystd.hpp
       title: Library/Range/mystd.hpp
@@ -169,33 +193,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-  - name: Main
-    pages:
-    - icon: ':warning:'
-      path: Main/interactive.cpp
-      title: Main/interactive.cpp
-    - icon: ':warning:'
-      path: Main/main.cpp
-      title: Main/main.cpp
-    - icon: ':warning:'
-      path: Main/main_srm.cpp
-      title: Main/main_srm.cpp
-  - name: Utils
-    pages:
-    - icon: ':warning:'
-      path: Utils/Timer.hpp
-      title: Utils/Timer.hpp
-    - icon: ':warning:'
-      path: Utils/debug.hpp
-      title: Utils/debug.hpp
-    - icon: ':warning:'
-      path: Utils/sample.hpp
-      title: Utils/sample.hpp
-  - name: command
-    pages:
-    - icon: ':warning:'
-      path: command/inline_includes.py
-      title: command/inline_includes.py
   verificationCategories:
   - name: Test/Algorithms
     pages:

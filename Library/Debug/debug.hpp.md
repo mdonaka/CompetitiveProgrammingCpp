@@ -8,12 +8,12 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Utils/debug.hpp\"\n#include <concepts>\n#include <iostream>\n\
-    #include <deque>\n#include <string_view>\n\ntemplate<class T>constexpr inline\
-    \ auto d_val(T a, T b) { return b; }\n\n// debug\u7528\u51FA\u529B\u30DE\u30AF\
-    \u30ED\n#define dump(...)                                               \\\n \
-    \ do {                                                          \\\n    auto __DUMP_NAME_LIST__\
-    \ = split(#__VA_ARGS__, ',');         \\\n    splitVariables(std::move(__DUMP_NAME_LIST__),\
+  bundledCode: "#line 2 \"Library/Debug/debug.hpp\"\n#include <concepts>\n#include\
+    \ <iostream>\n#include <deque>\n#include <string_view>\n\ntemplate<class T>constexpr\
+    \ inline auto d_val(T a, T b) { return b; }\n\n// debug\u7528\u51FA\u529B\u30DE\
+    \u30AF\u30ED\n#define dump(...)                                              \
+    \ \\\n  do {                                                          \\\n   \
+    \ auto __DUMP_NAME_LIST__ = split(#__VA_ARGS__, ',');         \\\n    splitVariables(std::move(__DUMP_NAME_LIST__),\
     \ __VA_ARGS__); \\\n  } while (false)\n\n// split\ninline auto split(std::string_view\
     \ str, char del = ' ') {\n    std::deque<std::string_view> sList;\n    int from\
     \ = 0;\n    for(int i = 0; auto && c : str) {\n        if(c == del) {\n      \
@@ -84,15 +84,15 @@ data:
     \ tail...);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: Utils/debug.hpp
+  path: Library/Debug/debug.hpp
   requiredBy: []
-  timestamp: '2023-10-09 13:58:17+09:00'
+  timestamp: '2024-08-03 19:08:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Utils/debug.hpp
+documentation_of: Library/Debug/debug.hpp
 layout: document
 redirect_from:
-- /library/Utils/debug.hpp
-- /library/Utils/debug.hpp.html
-title: Utils/debug.hpp
+- /library/Library/Debug/debug.hpp
+- /library/Library/Debug/debug.hpp.html
+title: Library/Debug/debug.hpp
 ---
