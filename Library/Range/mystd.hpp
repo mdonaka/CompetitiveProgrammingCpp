@@ -1,5 +1,6 @@
+#pragma once
+
 #include <ranges>
-#include <vector>
 
 namespace myranges {
 
