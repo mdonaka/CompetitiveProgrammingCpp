@@ -57,7 +57,7 @@ class Source:
     def __post_init__(self) -> None:
         root = self.filepath.parent
         for line in open_src(self.filepath):
-            if "#include" in line and "Utils/" not in line:
+            if "#include" in line and "Library/Debug/" not in line:
                 sp = line.split('"')
                 if len(sp) > 1:
                     filepath = root / sp[1]
