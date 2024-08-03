@@ -23,9 +23,9 @@
 
 // clang-format off
 #ifdef DEBUG
-#include "./CompetitiveProgrammingCpp/Utils/debug.hpp"
-#include "./CompetitiveProgrammingCpp/Utils/Timer.hpp"
-#include "./CompetitiveProgrammingCpp/Utils/sample.hpp"
+#include "./Utils/debug.hpp"
+#include "./Utils/Timer.hpp"
+#include "./Utils/sample.hpp"
 #else
 #define dump(...)
 template<class T>constexpr inline auto d_val(T a, T b) { return a; }

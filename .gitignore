@@ -1,0 +1,5 @@
+main.cpp
+main_copy.cpp
+
+bin/*
+!bin/.gitkeep

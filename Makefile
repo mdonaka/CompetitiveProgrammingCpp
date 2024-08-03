@@ -13,12 +13,12 @@ $(BIN_TEST): $(SRC)
 	@g++-12 $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
-i: $(BIN_RUN) ## reset
-	@cp CompetitiveProgrammingCpp/Main/$(SRC) ./$(SRC)
+i: ## reset
+	@cp Main/$(SRC) ./$(SRC)
 
 .PHONY: y
-y: $(BIN_RUN) ## yank
-	@python CompetitiveProgrammingCpp/command/inline_includes.py $(SRC) | tee main_copy.cpp | xsel -bi
+y: ## yank
+	@python command/inline_includes.py $(SRC) | tee main_copy.cpp | xsel -bi
 
 .PHONY: r
 r: $(BIN_RUN) ## run
