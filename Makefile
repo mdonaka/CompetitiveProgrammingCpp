@@ -1,9 +1,9 @@
 .DEFAULT_GOAL := help
 
 SRC ?= main.cpp
-BIN_RUN := bin/run.out
-BIN_TEST := bin/test.out
-OPTION := -std=c++2a -O2 -D DEBUG -I ./ac-library
+BIN_RUN := Bin/run.out
+BIN_TEST := Bin/test.out
+OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 
 $(BIN_RUN): $(SRC)
@@ -14,11 +14,11 @@ $(BIN_TEST): $(SRC)
 
 .PHONY: i
 i: ## reset
-	@cp Main/$(SRC) ./$(SRC)
+	@cp Library/Main/$(SRC) ./$(SRC)
 
 .PHONY: y
 y: ## yank
-	@python command/inline_includes.py $(SRC) | tee main_copy.cpp | xsel -bi
+	@python Command/inline_includes.py $(SRC) | tee main_copy.cpp | xsel -bi
 
 .PHONY: r
 r: $(BIN_RUN) ## run
