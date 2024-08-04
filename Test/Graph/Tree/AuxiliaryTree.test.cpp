@@ -1,40 +1,39 @@
 #define PROBLEM "https://yukicoder.me/problems/no/901"
 
+#include "../../../Library/Graph/Tree/AuxiliaryTree.hpp"
+
 #include <iostream>
 #include <ranges>
 
-#include "../../../Library/Graph/Tree/AuxiliaryTree.hpp"
-
 int main() {
-    std::cin.tie(0);
-    std::ios::sync_with_stdio(0);
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
 
-    int n;
-    std::cin >> n;
-    Graph tree(n);
-    for(auto _ : std::views::iota(0, n - 1)) {
-        int f, t, c;
-        std::cin >> f >> t >> c;
-        tree.addEdgeUndirected(f, t, c);
-    }
+  int n;
+  std::cin >> n;
+  Graph tree(n);
+  for (auto _ : std::views::iota(0, n - 1)) {
+    int f, t, c;
+    std::cin >> f >> t >> c;
+    tree.addEdgeUndirected(f, t, c);
+  }
 
-    auto at = AuxiliaryTree(tree);
+  auto at = AuxiliaryTree(tree);
 
-    int q;
-    std::cin >> q;
-    for([[maybe_unused]] auto _ : std::views::iota(0, q)) {
-        int k;
-        std::cin >> k;
-        std::vector<int> v(k);
-        for(auto i : std::views::iota(0, k)) { std::cin >> v[i]; }
+  int q;
+  std::cin >> q;
+  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {
+    int k;
+    std::cin >> k;
+    std::vector<int> v(k);
+    for (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }
 
-        auto comp_tree = at.compression(v);
+    auto comp_tree = at.compression(v);
 
-        long long ans = 0;
-        for(const auto& [f, t, c] : comp_tree.getEdges()) if(f < t) {
-            ans += c;
-        }
+    long long ans = 0;
+    for (const auto& [f, t, c] : comp_tree.getEdges())
+      if (f < t) { ans += c; }
 
-        std::cout << ans << "\n";
-    }
+    std::cout << ans << "\n";
+  }
 }

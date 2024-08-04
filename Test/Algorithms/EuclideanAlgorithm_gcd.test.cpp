@@ -5,11 +5,14 @@
 #include <iostream>
 
 using ll = long long;
-using std::cout;
 using std::cin;
+using std::cout;
 constexpr char endl = '\n';
-struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
+struct Preprocessing {
+  Preprocessing() {
+    std::cin.tie(0);
+    std::ios::sync_with_stdio(0);
+  };
+} _Preprocessing;
 
-signed main() {
-
-}
+signed main() {}
