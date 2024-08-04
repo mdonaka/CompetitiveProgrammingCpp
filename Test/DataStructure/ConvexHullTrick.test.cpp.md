@@ -16,7 +16,7 @@ data:
     - https://yukicoder.me/problems/no/409
   bundledCode: "#line 1 \"Test/DataStructure/ConvexHullTrick.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <vector>\r\n#include <numeric>\r\n#line 2 \"Library/DataStructure/ConvecHullTrick.hpp\"\
+    \ <numeric>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/ConvecHullTrick.hpp\"\
     \n\r\n#include <deque>\r\n\r\n/*\r\n * \u76F4\u7DDA\u306F\u50BE\u304D\u306B\u3064\
     \u3044\u3066\u5E83\u7FA9\u5358\u8ABF\u6E1B\u5C11(\u6700\u5927\u5024\u30AF\u30A8\
     \u30EA\u306E\u5834\u5408\u306F\u5E83\u7FA9\u5358\u8ABF\u5897\u52A0)\r\n * \u30AF\
@@ -35,42 +35,40 @@ data:
     \ T& x) {\r\n        while(lines.size() > 1 &&\r\n              func(*lines.begin(),\
     \ x) > func(*std::next(lines.begin()), x)) {\r\n            lines.pop_front();\r\
     \n        }\r\n        return func(*lines.begin(), x);\r\n    }\r\n};\r\n\r\n\
-    #line 7 \"Test/DataStructure/ConvexHullTrick.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    ll n, a, b, w;\r\n    cin >> n >> a >> b >> w;\r\n  \
-    \  std::vector<ll> d; d.reserve(n);\r\n    for(int i = 0; i < n; ++i) {\r\n  \
-    \      ll x; cin >> x;\r\n        d.emplace_back(x);\r\n    }\r\n\r\n    constexpr\
-    \ ll mx = 1e18;\r\n    auto cht = ConvexHullTrick();\r\n    std::vector<ll> dp(n\
-    \ + 1, mx);\r\n    auto update = [&](ll i, ll x) {\r\n        dp[i] = x;\r\n \
-    \       auto pa = -b * i;\r\n        auto pb = a * i + i * (i + 1) / 2 * b + dp[i];\r\
-    \n        cht.add(pa, pb);\r\n    };\r\n\r\n    update(0, w);\r\n    for(ll i\
-    \ = 1; i < n + 1; ++i) {\r\n        auto ad = d[i - 1] - a * i + a + i * (i -\
-    \ 1) / 2 * b;\r\n        auto min = cht.query(i);\r\n        update(i, ad + min);\r\
-    \n    }\r\n\r\n    ll ans = dp[n];\r\n    for(ll i = 0; i < n; ++i) {\r\n    \
-    \    ll k = n - i;\r\n        ans = std::min(ans, dp[i] + -a * k + k * (k + 1)\
-    \ / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n\r\n"
+    #line 8 \"Test/DataStructure/ConvexHullTrick.test.cpp\"\n\r\nusing ll = long long;\r\
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
+    signed main() {\r\n  ll n, a, b, w;\r\n  cin >> n >> a >> b >> w;\r\n  std::vector<ll>\
+    \ d;\r\n  d.reserve(n);\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n  \
+    \  cin >> x;\r\n    d.emplace_back(x);\r\n  }\r\n\r\n  constexpr ll mx = 1e18;\r\
+    \n  auto cht = ConvexHullTrick();\r\n  std::vector<ll> dp(n + 1, mx);\r\n  auto\
+    \ update = [&](ll i, ll x) {\r\n    dp[i] = x;\r\n    auto pa = -b * i;\r\n  \
+    \  auto pb = a * i + i * (i + 1) / 2 * b + dp[i];\r\n    cht.add(pa, pb);\r\n\
+    \  };\r\n\r\n  update(0, w);\r\n  for (ll i = 1; i < n + 1; ++i) {\r\n    auto\
+    \ ad = d[i - 1] - a * i + a + i * (i - 1) / 2 * b;\r\n    auto min = cht.query(i);\r\
+    \n    update(i, ad + min);\r\n  }\r\n\r\n  ll ans = dp[n];\r\n  for (ll i = 0;\
+    \ i < n; ++i) {\r\n    ll k = n - i;\r\n    ans = std::min(ans, dp[i] + -a * k\
+    \ + k * (k + 1) / 2 * b);\r\n  }\r\n\r\n  cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <vector>\r\n#include <numeric>\r\n#include \"./../../Library/DataStructure/ConvecHullTrick.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, a, b, w;\r\n    cin\
-    \ >> n >> a >> b >> w;\r\n    std::vector<ll> d; d.reserve(n);\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        ll x; cin >> x;\r\n        d.emplace_back(x);\r\
-    \n    }\r\n\r\n    constexpr ll mx = 1e18;\r\n    auto cht = ConvexHullTrick();\r\
-    \n    std::vector<ll> dp(n + 1, mx);\r\n    auto update = [&](ll i, ll x) {\r\n\
-    \        dp[i] = x;\r\n        auto pa = -b * i;\r\n        auto pb = a * i +\
-    \ i * (i + 1) / 2 * b + dp[i];\r\n        cht.add(pa, pb);\r\n    };\r\n\r\n \
-    \   update(0, w);\r\n    for(ll i = 1; i < n + 1; ++i) {\r\n        auto ad =\
-    \ d[i - 1] - a * i + a + i * (i - 1) / 2 * b;\r\n        auto min = cht.query(i);\r\
-    \n        update(i, ad + min);\r\n    }\r\n\r\n    ll ans = dp[n];\r\n    for(ll\
-    \ i = 0; i < n; ++i) {\r\n        ll k = n - i;\r\n        ans = std::min(ans,\
-    \ dp[i] + -a * k + k * (k + 1) / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\
-    \n}\r\n\r\n"
+    \ <iostream>\r\n#include <numeric>\r\n#include <vector>\r\n\r\n#include \"./../../Library/DataStructure/ConvecHullTrick.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n, a, b, w;\r\n  cin >> n\
+    \ >> a >> b >> w;\r\n  std::vector<ll> d;\r\n  d.reserve(n);\r\n  for (int i =\
+    \ 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    d.emplace_back(x);\r\n\
+    \  }\r\n\r\n  constexpr ll mx = 1e18;\r\n  auto cht = ConvexHullTrick();\r\n \
+    \ std::vector<ll> dp(n + 1, mx);\r\n  auto update = [&](ll i, ll x) {\r\n    dp[i]\
+    \ = x;\r\n    auto pa = -b * i;\r\n    auto pb = a * i + i * (i + 1) / 2 * b +\
+    \ dp[i];\r\n    cht.add(pa, pb);\r\n  };\r\n\r\n  update(0, w);\r\n  for (ll i\
+    \ = 1; i < n + 1; ++i) {\r\n    auto ad = d[i - 1] - a * i + a + i * (i - 1) /\
+    \ 2 * b;\r\n    auto min = cht.query(i);\r\n    update(i, ad + min);\r\n  }\r\n\
+    \r\n  ll ans = dp[n];\r\n  for (ll i = 0; i < n; ++i) {\r\n    ll k = n - i;\r\
+    \n    ans = std::min(ans, dp[i] + -a * k + k * (k + 1) / 2 * b);\r\n  }\r\n\r\n\
+    \  cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/ConvecHullTrick.hpp
   isVerificationFile: true
   path: Test/DataStructure/ConvexHullTrick.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 11:58:18+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/ConvexHullTrick.test.cpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Utility/ModCalculator.hpp
     title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -44,47 +44,47 @@ data:
     \ - r);\r\n        if(val >= m_mod) { val %= m_mod; }\r\n        return val;\r\
     \n    }\r\n\r\n    auto inv(int n) const {\r\n        return pow(n, m_mod - 2);\r\
     \n    }\r\n};\r\n#line 7 \"Test/Utility/ModCalculator_inv.test.cpp\"\n\r\nusing\
-    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
-    \ = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nauto parse(const std::string s) {\r\n    ll a = 0,\
-    \ b = 0;\r\n    bool isa = true;\r\n    for(unsigned int i = 2; i < s.size() -\
-    \ 1; ++i) {\r\n        if(s[i] == ',') { isa = false; continue; }\r\n        auto&\
-    \ x = ((isa) ? a : b);\r\n        x = 10 * x + (s[i] - '0');\r\n    }\r\n    return\
-    \ std::pair<ll, ll>{a, b};\r\n}\r\n\r\nsigned main() {\r\n    ll t;\r\n    cin\
-    \ >> t;\r\n\r\n    constexpr ll MOD = 1e9 + 7;\r\n    auto calc = ModCalculator(MOD);\r\
-    \n    for(int _ = 0; _ < t; ++_) {\r\n        std::string s;\r\n        cin >>\
-    \ s;\r\n\r\n        auto [n, k] = parse(s);\r\n        if(s[0] == 'C') {\r\n \
-    \           auto ans = calc.fact(n)\r\n                * calc.inv(calc.fact(k))\
-    \ % MOD\r\n                * calc.inv(calc.fact(n - k)) % MOD;\r\n           \
-    \ cout << ans << endl;\r\n        } else if(s[0] == 'P') {\r\n            auto\
-    \ ans = calc.fact(n)\r\n                * calc.inv(calc.fact(n - k)) % MOD;\r\n\
-    \            cout << ans << endl;\r\n        } else {\r\n            cout << calc.comb(std::max(0LL,\
-    \ n + k - 1), k) << endl;\r\n        }\r\n    }\r\n}\n"
+    \ ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl\
+    \ = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nauto parse(const\
+    \ std::string s) {\r\n  ll a = 0, b = 0;\r\n  bool isa = true;\r\n  for (unsigned\
+    \ int i = 2; i < s.size() - 1; ++i) {\r\n    if (s[i] == ',') {\r\n      isa =\
+    \ false;\r\n      continue;\r\n    }\r\n    auto& x = ((isa) ? a : b);\r\n   \
+    \ x = 10 * x + (s[i] - '0');\r\n  }\r\n  return std::pair<ll, ll>{a, b};\r\n}\r\
+    \n\r\nsigned main() {\r\n  ll t;\r\n  cin >> t;\r\n\r\n  constexpr ll MOD = 1e9\
+    \ + 7;\r\n  auto calc = ModCalculator(MOD);\r\n  for (int _ = 0; _ < t; ++_) {\r\
+    \n    std::string s;\r\n    cin >> s;\r\n\r\n    auto [n, k] = parse(s);\r\n \
+    \   if (s[0] == 'C') {\r\n      auto ans = calc.fact(n) * calc.inv(calc.fact(k))\
+    \ % MOD *\r\n                 calc.inv(calc.fact(n - k)) % MOD;\r\n      cout\
+    \ << ans << endl;\r\n    } else if (s[0] == 'P') {\r\n      auto ans = calc.fact(n)\
+    \ * calc.inv(calc.fact(n - k)) % MOD;\r\n      cout << ans << endl;\r\n    } else\
+    \ {\r\n      cout << calc.comb(std::max(0LL, n + k - 1), k) << endl;\r\n    }\r\
+    \n  }\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\r\n\r\n#include\
     \ <iostream>\r\n#include <string>\r\n\r\n#include \"./../../Library/Utility/ModCalculator.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nauto parse(const std::string\
-    \ s) {\r\n    ll a = 0, b = 0;\r\n    bool isa = true;\r\n    for(unsigned int\
-    \ i = 2; i < s.size() - 1; ++i) {\r\n        if(s[i] == ',') { isa = false; continue;\
-    \ }\r\n        auto& x = ((isa) ? a : b);\r\n        x = 10 * x + (s[i] - '0');\r\
-    \n    }\r\n    return std::pair<ll, ll>{a, b};\r\n}\r\n\r\nsigned main() {\r\n\
-    \    ll t;\r\n    cin >> t;\r\n\r\n    constexpr ll MOD = 1e9 + 7;\r\n    auto\
-    \ calc = ModCalculator(MOD);\r\n    for(int _ = 0; _ < t; ++_) {\r\n        std::string\
-    \ s;\r\n        cin >> s;\r\n\r\n        auto [n, k] = parse(s);\r\n        if(s[0]\
-    \ == 'C') {\r\n            auto ans = calc.fact(n)\r\n                * calc.inv(calc.fact(k))\
-    \ % MOD\r\n                * calc.inv(calc.fact(n - k)) % MOD;\r\n           \
-    \ cout << ans << endl;\r\n        } else if(s[0] == 'P') {\r\n            auto\
-    \ ans = calc.fact(n)\r\n                * calc.inv(calc.fact(n - k)) % MOD;\r\n\
-    \            cout << ans << endl;\r\n        } else {\r\n            cout << calc.comb(std::max(0LL,\
-    \ n + k - 1), k) << endl;\r\n        }\r\n    }\r\n}"
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nauto parse(const\
+    \ std::string s) {\r\n  ll a = 0, b = 0;\r\n  bool isa = true;\r\n  for (unsigned\
+    \ int i = 2; i < s.size() - 1; ++i) {\r\n    if (s[i] == ',') {\r\n      isa =\
+    \ false;\r\n      continue;\r\n    }\r\n    auto& x = ((isa) ? a : b);\r\n   \
+    \ x = 10 * x + (s[i] - '0');\r\n  }\r\n  return std::pair<ll, ll>{a, b};\r\n}\r\
+    \n\r\nsigned main() {\r\n  ll t;\r\n  cin >> t;\r\n\r\n  constexpr ll MOD = 1e9\
+    \ + 7;\r\n  auto calc = ModCalculator(MOD);\r\n  for (int _ = 0; _ < t; ++_) {\r\
+    \n    std::string s;\r\n    cin >> s;\r\n\r\n    auto [n, k] = parse(s);\r\n \
+    \   if (s[0] == 'C') {\r\n      auto ans = calc.fact(n) * calc.inv(calc.fact(k))\
+    \ % MOD *\r\n                 calc.inv(calc.fact(n - k)) % MOD;\r\n      cout\
+    \ << ans << endl;\r\n    } else if (s[0] == 'P') {\r\n      auto ans = calc.fact(n)\
+    \ * calc.inv(calc.fact(n - k)) % MOD;\r\n      cout << ans << endl;\r\n    } else\
+    \ {\r\n      cout << calc.comb(std::max(0LL, n + k - 1), k) << endl;\r\n    }\r\
+    \n  }\r\n}"
   dependsOn:
   - Library/Utility/ModCalculator.hpp
   isVerificationFile: true
   path: Test/Utility/ModCalculator_inv.test.cpp
   requiredBy: []
-  timestamp: '2023-04-07 03:36:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/ModCalculator_inv.test.cpp
 layout: document

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - icon: ':warning:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <vector>\r\n\
@@ -76,7 +76,7 @@ data:
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Normal/BFS.test.cpp

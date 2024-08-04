@@ -2,40 +2,40 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Flow/Dinic.hpp
     title: Library/Graph/Flow/Dinic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Flow/FordFulkerson.hpp
     title: Library/Graph/Flow/FordFulkerson.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Prim.hpp
     title: Library/Graph/Normal/Prim.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/WarshallFloyd.hpp
     title: Library/Graph/Normal/WarshallFloyd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/dijkstra.hpp
     title: Library/Graph/Normal/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - icon: ':warning:'
@@ -45,34 +45,34 @@ data:
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Flow/Dinic.test.cpp
     title: Test/Graph/Flow/Dinic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Flow/FordFulkerson.test.cpp
     title: Test/Graph/Flow/FordFulkerson.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
     title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Kruskal.test.cpp
     title: Test/Graph/Normal/Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Prim.test.cpp
     title: Test/Graph/Normal/Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/AuxiliaryTree.test.cpp
     title: Test/Graph/Tree/AuxiliaryTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,15 +81,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\n#include\
@@ -166,7 +166,7 @@ data:
   - Library/Graph/Normal/Prim.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/SuccessiveShortestPath.test.cpp

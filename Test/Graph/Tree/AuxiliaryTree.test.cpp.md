@@ -1,29 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/901
     links:
     - https://yukicoder.me/problems/no/901
   bundledCode: "#line 1 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/901\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <ranges>\r\n\r\n#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\n\r\n#include\
-    \ <vector>\r\n#include <set>\r\n\r\n#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
+    \ \"https://yukicoder.me/problems/no/901\"\r\n\r\n#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\
+    \n\r\n#include <vector>\r\n#include <set>\r\n\r\n#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
     \n\r\n#include <unordered_map>\r\n#include <queue>\r\n#include <stack>\r\n\r\n\
     #line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include <tuple>\r\n\r\
     \ntemplate<class Node = int, class Cost = long long>\r\nclass Graph {\r\n    //using\
@@ -190,31 +189,30 @@ data:
     \ t = compres_map[nd];\r\n                auto c = depth_cost[stk.top()] + depth_cost[nd]\
     \ - depth_cost[hld.lca(stk.top(), nd)] * 2;\r\n                auxiliary_tree.addEdgeUndirected(f,\
     \ t, c);\r\n            }\r\n            stk.emplace(nd);\r\n        }\r\n   \
-    \     return auxiliary_tree;\r\n    }\r\n};\r\n#line 7 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\
-    \n\r\nint main() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
-    \n\r\n    int n;\r\n    std::cin >> n;\r\n    Graph tree(n);\r\n    for(auto _\
-    \ : std::views::iota(0, n - 1)) {\r\n        int f, t, c;\r\n        std::cin\
-    \ >> f >> t >> c;\r\n        tree.addEdgeUndirected(f, t, c);\r\n    }\r\n\r\n\
-    \    auto at = AuxiliaryTree(tree);\r\n\r\n    int q;\r\n    std::cin >> q;\r\n\
-    \    for([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n        int k;\r\
-    \n        std::cin >> k;\r\n        std::vector<int> v(k);\r\n        for(auto\
-    \ i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n        auto comp_tree\
-    \ = at.compression(v);\r\n\r\n        long long ans = 0;\r\n        for(const\
-    \ auto& [f, t, c] : comp_tree.getEdges()) if(f < t) {\r\n            ans += c;\r\
-    \n        }\r\n\r\n        std::cout << ans << \"\\n\";\r\n    }\r\n}\n"
+    \     return auxiliary_tree;\r\n    }\r\n};\r\n#line 4 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\
+    \n\r\n#include <iostream>\r\n#include <ranges>\r\n\r\nint main() {\r\n  std::cin.tie(0);\r\
+    \n  std::ios::sync_with_stdio(0);\r\n\r\n  int n;\r\n  std::cin >> n;\r\n  Graph\
+    \ tree(n);\r\n  for (auto _ : std::views::iota(0, n - 1)) {\r\n    int f, t, c;\r\
+    \n    std::cin >> f >> t >> c;\r\n    tree.addEdgeUndirected(f, t, c);\r\n  }\r\
+    \n\r\n  auto at = AuxiliaryTree(tree);\r\n\r\n  int q;\r\n  std::cin >> q;\r\n\
+    \  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n    int k;\r\n\
+    \    std::cin >> k;\r\n    std::vector<int> v(k);\r\n    for (auto i : std::views::iota(0,\
+    \ k)) { std::cin >> v[i]; }\r\n\r\n    auto comp_tree = at.compression(v);\r\n\
+    \r\n    long long ans = 0;\r\n    for (const auto& [f, t, c] : comp_tree.getEdges())\r\
+    \n      if (f < t) { ans += c; }\r\n\r\n    std::cout << ans << \"\\n\";\r\n \
+    \ }\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/901\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <ranges>\r\n\r\n#include \"../../../Library/Graph/Tree/AuxiliaryTree.hpp\"\
-    \r\n\r\nint main() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
-    \n\r\n    int n;\r\n    std::cin >> n;\r\n    Graph tree(n);\r\n    for(auto _\
-    \ : std::views::iota(0, n - 1)) {\r\n        int f, t, c;\r\n        std::cin\
-    \ >> f >> t >> c;\r\n        tree.addEdgeUndirected(f, t, c);\r\n    }\r\n\r\n\
-    \    auto at = AuxiliaryTree(tree);\r\n\r\n    int q;\r\n    std::cin >> q;\r\n\
-    \    for([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n        int k;\r\
-    \n        std::cin >> k;\r\n        std::vector<int> v(k);\r\n        for(auto\
-    \ i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n        auto comp_tree\
-    \ = at.compression(v);\r\n\r\n        long long ans = 0;\r\n        for(const\
-    \ auto& [f, t, c] : comp_tree.getEdges()) if(f < t) {\r\n            ans += c;\r\
-    \n        }\r\n\r\n        std::cout << ans << \"\\n\";\r\n    }\r\n}"
+    \ \"../../../Library/Graph/Tree/AuxiliaryTree.hpp\"\r\n\r\n#include <iostream>\r\
+    \n#include <ranges>\r\n\r\nint main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
+    \n\r\n  int n;\r\n  std::cin >> n;\r\n  Graph tree(n);\r\n  for (auto _ : std::views::iota(0,\
+    \ n - 1)) {\r\n    int f, t, c;\r\n    std::cin >> f >> t >> c;\r\n    tree.addEdgeUndirected(f,\
+    \ t, c);\r\n  }\r\n\r\n  auto at = AuxiliaryTree(tree);\r\n\r\n  int q;\r\n  std::cin\
+    \ >> q;\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n    int\
+    \ k;\r\n    std::cin >> k;\r\n    std::vector<int> v(k);\r\n    for (auto i :\
+    \ std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n    auto comp_tree = at.compression(v);\r\
+    \n\r\n    long long ans = 0;\r\n    for (const auto& [f, t, c] : comp_tree.getEdges())\r\
+    \n      if (f < t) { ans += c; }\r\n\r\n    std::cout << ans << \"\\n\";\r\n \
+    \ }\r\n}"
   dependsOn:
   - Library/Graph/Tree/AuxiliaryTree.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
@@ -222,8 +220,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/AuxiliaryTree.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/AuxiliaryTree.test.cpp
 layout: document

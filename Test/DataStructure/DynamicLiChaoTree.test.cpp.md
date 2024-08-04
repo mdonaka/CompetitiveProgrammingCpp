@@ -16,7 +16,7 @@ data:
     - https://judge.yosupo.jp/problem/line_add_get_min
   bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
+    \ <deque>\r\n#include <iostream>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
     \n\r\n#include <limits>\r\n#line 5 \"Library/DataStructure/LiChaoTree.hpp\"\n\
     #include <memory>\r\n#include <algorithm>\r\n#include <unordered_map>\r\n#line\
     \ 9 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\
@@ -112,33 +112,30 @@ data:
     L\"; debug(node->left, size + 1); }\r\n        if(node->right) { std::cout <<\
     \ \"R\"; debug(node->right, size + 1); }\r\n    }\r\n    auto debug()const { debug(m_root,\
     \ 0); }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicLiChaoTree.test.cpp\"\n\r\
-    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, q;\r\n    cin >> n >>\
-    \ q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n    for(int\
-    \ _ = 0; _ < n; ++_) {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n     \
-    \   lct.addLine(a, b);\r\n    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n  \
-    \      ll k;\r\n        cin >> k;\r\n        if(k == 0) {\r\n            ll a,\
-    \ b;\r\n            cin >> a >> b;\r\n            lct.addLine(a, b);\r\n     \
-    \   } else {\r\n            ll x;\r\n            cin >> x;\r\n            cout\
-    \ << lct.query(x) << endl;\r\n        }\r\n    }\r\n}\r\n"
+    \nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char\
+    \ endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n, q;\r\n  cin >> n >> q;\r\n\r\
+    \n  auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n  for (int _ = 0;\
+    \ _ < n; ++_) {\r\n    ll a, b;\r\n    cin >> a >> b;\r\n    lct.addLine(a, b);\r\
+    \n  }\r\n\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll k;\r\n    cin >> k;\r\n\
+    \    if (k == 0) {\r\n      ll a, b;\r\n      cin >> a >> b;\r\n      lct.addLine(a,\
+    \ b);\r\n    } else {\r\n      ll x;\r\n      cin >> x;\r\n      cout << lct.query(x)\
+    \ << endl;\r\n    }\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\r\n\r\
-    \n#include <iostream>\r\n#include <vector>\r\n#include <deque>\r\n\r\n#include\
+    \n#include <deque>\r\n#include <iostream>\r\n#include <vector>\r\n\r\n#include\
     \ \"./../../Library/DataStructure/LiChaoTree.hpp\"\r\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct =\
-    \ DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\n    for(int _ = 0; _ < n; ++_)\
-    \ {\r\n        ll a, b;\r\n        cin >> a >> b;\r\n        lct.addLine(a, b);\r\
-    \n    }\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin\
-    \ >> k;\r\n        if(k == 0) {\r\n            ll a, b;\r\n            cin >>\
-    \ a >> b;\r\n            lct.addLine(a, b);\r\n        } else {\r\n          \
-    \  ll x;\r\n            cin >> x;\r\n            cout << lct.query(x) << endl;\r\
-    \n        }\r\n    }\r\n}\r\n"
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
+    signed main() {\r\n  ll n, q;\r\n  cin >> n >> q;\r\n\r\n  auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
+    \n  for (int _ = 0; _ < n; ++_) {\r\n    ll a, b;\r\n    cin >> a >> b;\r\n  \
+    \  lct.addLine(a, b);\r\n  }\r\n\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll\
+    \ k;\r\n    cin >> k;\r\n    if (k == 0) {\r\n      ll a, b;\r\n      cin >> a\
+    \ >> b;\r\n      lct.addLine(a, b);\r\n    } else {\r\n      ll x;\r\n      cin\
+    \ >> x;\r\n      cout << lct.query(x) << endl;\r\n    }\r\n  }\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/DynamicLiChaoTree.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicLiChaoTree.test.cpp

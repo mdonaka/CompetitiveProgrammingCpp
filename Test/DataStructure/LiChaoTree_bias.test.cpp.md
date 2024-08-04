@@ -16,7 +16,7 @@ data:
     - https://yukicoder.me/problems/no/409
   bundledCode: "#line 1 \"Test/DataStructure/LiChaoTree_bias.test.cpp\"\n#define PROBLEM\
     \ \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <vector>\r\n#include <numeric>\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
+    \ <numeric>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\
     \n\r\n#include <limits>\r\n#line 5 \"Library/DataStructure/LiChaoTree.hpp\"\n\
     #include <memory>\r\n#include <algorithm>\r\n#include <unordered_map>\r\n#line\
     \ 9 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\
@@ -111,43 +111,42 @@ data:
     \ }\r\n        node->line.debug();\r\n        if(node->left) { std::cout << \"\
     L\"; debug(node->left, size + 1); }\r\n        if(node->right) { std::cout <<\
     \ \"R\"; debug(node->right, size + 1); }\r\n    }\r\n    auto debug()const { debug(m_root,\
-    \ 0); }\r\n};\r\n#line 7 \"Test/DataStructure/LiChaoTree_bias.test.cpp\"\n\r\n\
-    using ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, a, b, w;\r\n    cin >>\
-    \ n >> a >> b >> w;\r\n    std::vector<ll> d; d.reserve(n);\r\n    for(int i =\
-    \ 0; i < n; ++i) {\r\n        ll x; cin >> x;\r\n        d.emplace_back(x);\r\n\
-    \    }\r\n\r\n    std::vector<ll> xs(n);\r\n    std::iota(xs.begin(), xs.end(),\
-    \ 1);\r\n    LiChaoTree lct(xs);\r\n\r\n    constexpr ll mx = 1e18;\r\n    std::vector<ll>\
-    \ dp(n + 1, mx);\r\n    auto update = [&](ll i, ll x) {\r\n        dp[i] = x;\r\
-    \n        auto pa = -b * i;\r\n        auto pb = a * i + i * (i + 1) / 2 * b +\
-    \ dp[i];\r\n        lct.addLine(pa, pb);\r\n    };\r\n\r\n    update(0, w);\r\n\
-    \    for(ll i = 1; i < n + 1; ++i) {\r\n        auto ad = d[i - 1] - a * i + a\
-    \ + i * (i - 1) / 2 * b;\r\n        auto min = lct.query(i);\r\n        update(i,\
-    \ ad + min);\r\n    }\r\n\r\n    ll ans = dp[n];\r\n    for(ll i = 0; i < n; ++i)\
-    \ {\r\n        ll k = n - i;\r\n        ans = std::min(ans, dp[i] + -a * k + k\
-    \ * (k + 1) / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n\r\n"
+    \ 0); }\r\n};\r\n#line 8 \"Test/DataStructure/LiChaoTree_bias.test.cpp\"\n\r\n\
+    using ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char\
+    \ endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n, a, b, w;\r\n  cin >> n >> a\
+    \ >> b >> w;\r\n  std::vector<ll> d;\r\n  d.reserve(n);\r\n  for (int i = 0; i\
+    \ < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    d.emplace_back(x);\r\n  }\r\
+    \n\r\n  std::vector<ll> xs(n);\r\n  std::iota(xs.begin(), xs.end(), 1);\r\n  LiChaoTree\
+    \ lct(xs);\r\n\r\n  constexpr ll mx = 1e18;\r\n  std::vector<ll> dp(n + 1, mx);\r\
+    \n  auto update = [&](ll i, ll x) {\r\n    dp[i] = x;\r\n    auto pa = -b * i;\r\
+    \n    auto pb = a * i + i * (i + 1) / 2 * b + dp[i];\r\n    lct.addLine(pa, pb);\r\
+    \n  };\r\n\r\n  update(0, w);\r\n  for (ll i = 1; i < n + 1; ++i) {\r\n    auto\
+    \ ad = d[i - 1] - a * i + a + i * (i - 1) / 2 * b;\r\n    auto min = lct.query(i);\r\
+    \n    update(i, ad + min);\r\n  }\r\n\r\n  ll ans = dp[n];\r\n  for (ll i = 0;\
+    \ i < n; ++i) {\r\n    ll k = n - i;\r\n    ans = std::min(ans, dp[i] + -a * k\
+    \ + k * (k + 1) / 2 * b);\r\n  }\r\n\r\n  cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/409\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <vector>\r\n#include <numeric>\r\n#include \"./../../Library/DataStructure/LiChaoTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    ll n, a, b, w;\r\n    cin\
-    \ >> n >> a >> b >> w;\r\n    std::vector<ll> d; d.reserve(n);\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        ll x; cin >> x;\r\n        d.emplace_back(x);\r\
-    \n    }\r\n\r\n    std::vector<ll> xs(n);\r\n    std::iota(xs.begin(), xs.end(),\
-    \ 1);\r\n    LiChaoTree lct(xs);\r\n\r\n    constexpr ll mx = 1e18;\r\n    std::vector<ll>\
-    \ dp(n + 1, mx);\r\n    auto update = [&](ll i, ll x) {\r\n        dp[i] = x;\r\
-    \n        auto pa = -b * i;\r\n        auto pb = a * i + i * (i + 1) / 2 * b +\
-    \ dp[i];\r\n        lct.addLine(pa, pb);\r\n    };\r\n\r\n    update(0, w);\r\n\
-    \    for(ll i = 1; i < n + 1; ++i) {\r\n        auto ad = d[i - 1] - a * i + a\
-    \ + i * (i - 1) / 2 * b;\r\n        auto min = lct.query(i);\r\n        update(i,\
-    \ ad + min);\r\n    }\r\n\r\n    ll ans = dp[n];\r\n    for(ll i = 0; i < n; ++i)\
-    \ {\r\n        ll k = n - i;\r\n        ans = std::min(ans, dp[i] + -a * k + k\
-    \ * (k + 1) / 2 * b);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n\r\n"
+    \ <iostream>\r\n#include <numeric>\r\n#include <vector>\r\n\r\n#include \"./../../Library/DataStructure/LiChaoTree.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n, a, b, w;\r\n  cin >> n\
+    \ >> a >> b >> w;\r\n  std::vector<ll> d;\r\n  d.reserve(n);\r\n  for (int i =\
+    \ 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    d.emplace_back(x);\r\n\
+    \  }\r\n\r\n  std::vector<ll> xs(n);\r\n  std::iota(xs.begin(), xs.end(), 1);\r\
+    \n  LiChaoTree lct(xs);\r\n\r\n  constexpr ll mx = 1e18;\r\n  std::vector<ll>\
+    \ dp(n + 1, mx);\r\n  auto update = [&](ll i, ll x) {\r\n    dp[i] = x;\r\n  \
+    \  auto pa = -b * i;\r\n    auto pb = a * i + i * (i + 1) / 2 * b + dp[i];\r\n\
+    \    lct.addLine(pa, pb);\r\n  };\r\n\r\n  update(0, w);\r\n  for (ll i = 1; i\
+    \ < n + 1; ++i) {\r\n    auto ad = d[i - 1] - a * i + a + i * (i - 1) / 2 * b;\r\
+    \n    auto min = lct.query(i);\r\n    update(i, ad + min);\r\n  }\r\n\r\n  ll\
+    \ ans = dp[n];\r\n  for (ll i = 0; i < n; ++i) {\r\n    ll k = n - i;\r\n    ans\
+    \ = std::min(ans, dp[i] + -a * k + k * (k + 1) / 2 * b);\r\n  }\r\n\r\n  cout\
+    \ << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/LiChaoTree_bias.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LiChaoTree_bias.test.cpp

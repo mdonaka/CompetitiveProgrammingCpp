@@ -38,37 +38,38 @@ data:
     \ }\r\n        l = std::max(l, 0); r = std::min(r, size - 1);\r\n        return\
     \ sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n    }\r\n};\r\
     \n#line 7 \"Test/DataStructure/Accumulation_xor.test.cpp\"\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \n\r\nstruct F_inv { auto operator()(ll x) { return x; } };\r\nstruct F_xor {\
-    \ auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing G = Group<ll, 0, F_xor,\
-    \ F_inv>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n    cin >> n >> k;\r\n\r\n\
-    \    std::vector<ll> a; a.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n\
-    \        ll x; cin >> x;\r\n        a.emplace_back(x);\r\n    }\r\n\r\n    auto\
-    \ acc = Accumulation<G>(a);\r\n    std::unordered_set<ll> st;\r\n    for(int i\
-    \ = 0; i < n; ++i) {\r\n        st.emplace(acc.get(i) ^ k);\r\n    }\r\n\r\n \
-    \   if(st.find(0) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        if(st.find(acc.get(i)) != st.end()) { cout <<\
-    \ \"Yes\" << endl; return 0; }\r\n    }\r\n    cout << \"No\" << endl;\r\n}\n"
+    \ long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nstruct F_inv {\r\n  auto operator()(ll x) { return x; }\r\n};\r\nstruct\
+    \ F_xor {\r\n  auto operator()(ll x, ll y) { return x ^ y; }\r\n};\r\nusing G\
+    \ = Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\n  ll n, k;\r\n  cin\
+    \ >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\n  for (int _ =\
+    \ 0; _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\n\
+    \  }\r\n\r\n  auto acc = Accumulation<G>(a);\r\n  std::unordered_set<ll> st;\r\
+    \n  for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }\r\n\r\n  if (st.find(0)\
+    \ != st.end()) {\r\n    cout << \"Yes\" << endl;\r\n    return 0;\r\n  }\r\n \
+    \ for (int i = 0; i < n; ++i) {\r\n    if (st.find(acc.get(i)) != st.end()) {\r\
+    \n      cout << \"Yes\" << endl;\r\n      return 0;\r\n    }\r\n  }\r\n  cout\
+    \ << \"No\" << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include\
     \ <iostream>\r\n#include <unordered_set>\r\n\r\n#include \"./../../Library/DataStructure/Accumulation.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct F_inv { auto operator()(ll x) { return x; }\
-    \ };\r\nstruct F_xor { auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing\
-    \ G = Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n \
-    \   cin >> n >> k;\r\n\r\n    std::vector<ll> a; a.reserve(n);\r\n    for(int\
-    \ _ = 0; _ < n; ++_) {\r\n        ll x; cin >> x;\r\n        a.emplace_back(x);\r\
-    \n    }\r\n\r\n    auto acc = Accumulation<G>(a);\r\n    std::unordered_set<ll>\
-    \ st;\r\n    for(int i = 0; i < n; ++i) {\r\n        st.emplace(acc.get(i) ^ k);\r\
-    \n    }\r\n\r\n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl; return\
-    \ 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(acc.get(i)) !=\
-    \ st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout << \"\
-    No\" << endl;\r\n}"
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct F_inv {\r\n  auto operator()(ll x) { return\
+    \ x; }\r\n};\r\nstruct F_xor {\r\n  auto operator()(ll x, ll y) { return x ^ y;\
+    \ }\r\n};\r\nusing G = Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\n\
+    \  ll n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\
+    \n  for (int _ = 0; _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
+    \n  }\r\n\r\n  auto acc = Accumulation<G>(a);\r\n  std::unordered_set<ll> st;\r\
+    \n  for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }\r\n\r\n  if (st.find(0)\
+    \ != st.end()) {\r\n    cout << \"Yes\" << endl;\r\n    return 0;\r\n  }\r\n \
+    \ for (int i = 0; i < n; ++i) {\r\n    if (st.find(acc.get(i)) != st.end()) {\r\
+    \n      cout << \"Yes\" << endl;\r\n      return 0;\r\n    }\r\n  }\r\n  cout\
+    \ << \"No\" << endl;\r\n}"
   dependsOn:
   - Library/DataStructure/Accumulation.hpp
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_xor.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_xor.test.cpp

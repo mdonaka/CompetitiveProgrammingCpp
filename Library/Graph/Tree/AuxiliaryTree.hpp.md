@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/AuxiliaryTree.test.cpp
     title: Test/Graph/Tree/AuxiliaryTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\n\r\n#include <vector>\r\
@@ -227,7 +227,7 @@ data:
   path: Library/Graph/Tree/AuxiliaryTree.hpp
   requiredBy: []
   timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
 documentation_of: Library/Graph/Tree/AuxiliaryTree.hpp

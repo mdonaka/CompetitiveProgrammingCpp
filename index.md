@@ -8,7 +8,7 @@ data:
       title: Command/inline_includes.py
   - name: Library/Algorithms
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
@@ -37,7 +37,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DisjointSparseTable.hpp
       title: Library/DataStructure/DisjointSparseTable.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/DataStructure/DynamicSegmentTree.hpp
       title: Library/DataStructure/DynamicSegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -49,10 +49,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentMap.hpp
       title: Library/DataStructure/SegmentMap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/DataStructure/UnionFind.hpp
       title: Library/DataStructure/UnionFind.hpp
     - icon: ':warning:'
@@ -71,10 +71,10 @@ data:
       title: Library/Debug/sample.hpp
   - name: Library/Graph/Flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Flow/Dinic.hpp
       title: Library/Graph/Flow/Dinic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
     - icon: ':heavy_check_mark:'
@@ -82,44 +82,44 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Prim.hpp
       title: Library/Graph/Normal/Prim.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/WarshallFloyd.hpp
       title: Library/Graph/Normal/WarshallFloyd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/dijkstra.hpp
       title: Library/Graph/Normal/dijkstra.hpp
   - name: Library/Graph/Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/AuxiliaryTree.hpp
       title: Library/Graph/Tree/AuxiliaryTree.hpp
     - icon: ':warning:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
     - icon: ':warning:'
@@ -164,19 +164,19 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/String/TrieTree.hpp
       title: Library/String/TrieTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/String/ZAlgorithm.hpp
       title: Library/String/ZAlgorithm.hpp
   - name: Library/Utility
@@ -184,13 +184,13 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Combination.hpp
       title: Library/Utility/Combination.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
   verificationCategories:
@@ -249,7 +249,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
       title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/DataStructure/DynamicSegmentTree.test.cpp
       title: Test/DataStructure/DynamicSegmentTree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -293,10 +293,10 @@ data:
       title: Test/DataStructure/UnionFind.test.cpp
   - name: Test/Graph/Flow
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Flow/Dinic.test.cpp
       title: Test/Graph/Flow/Dinic.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Flow/FordFulkerson.test.cpp
       title: Test/Graph/Flow/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -304,27 +304,27 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Kruskal.test.cpp
       title: Test/Graph/Normal/Kruskal.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Prim.test.cpp
       title: Test/Graph/Normal/Prim.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
   - name: Test/Graph/Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/AuxiliaryTree.test.cpp
       title: Test/Graph/Tree/AuxiliaryTree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -333,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -351,39 +351,39 @@ data:
       title: Test/Range/mystd/enumerate.test.cpp
   - name: Test/String
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/TrieTree.test.cpp
       title: Test/String/TrieTree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/String/ZAlgorithm.test.cpp
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/Utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Utility/ModCalculator.test.cpp
       title: Test/Utility/ModCalculator.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Utility/ModCalculator_inv.test.cpp
       title: Test/Utility/ModCalculator_inv.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Utility/ModCalculator_pow.test.cpp
       title: Test/Utility/ModCalculator_pow.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Utility/Prime.test.cpp
       title: Test/Utility/Prime.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Utility/Ycombinator.test.cpp
       title: Test/Utility/Ycombinator.test.cpp
   - name: Test/sample

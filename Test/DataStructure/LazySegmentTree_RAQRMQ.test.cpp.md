@@ -15,8 +15,8 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H
   bundledCode: "#line 1 \"Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp\"\n#define\
-    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H\"\
-    \r\n\r\n#include <iostream>\r\n#line 3 \"Library/DataStructure/LazySegmentTree.hpp\"\
+    \ PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H\"\
+    \r\n\r\n#include <iostream>\r\n\r\n#line 3 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n#include <vector>\r\n#include <deque>\r\n#include <utility>\r\n\r\ntemplate<class\
     \ T>\r\nclass isMonoid {\r\n    template <class U>\r\n    static auto check(U\
     \ x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n    static std::false_type\
@@ -88,31 +88,31 @@ data:
     \ long, long long>{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});\r\
     \n    }\r\n};\r\nstruct OP_RAQ_RMQ {\r\n    auto operator()(const M_M& m, const\
     \ M_A& m2) {\r\n        return M_M{m.m_val + m2.m_val};\r\n    }\r\n};\r\n#line\
-    \ 5 \"Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp\"\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >> q;\r\n\r\n    std::vector<long\
-    \ long> v(n);\r\n    auto segtree = LazySegmentTree<M_M, M_A, OP_RAQ_RMQ>(n, v);\r\
-    \n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int k;\r\n        cin >> k;\r\
-    \n        if(k == 0) {\r\n            int s, t, x;;\r\n            cin >> s >>\
-    \ t >> x;\r\n            segtree.update(s, t, x);\r\n        } else {\r\n    \
-    \        int s, t;\r\n            cin >> s >> t;\r\n            cout << segtree.query(s,\
-    \ t) << endl;\r\n        }\r\n    }\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../Library/DataStructure/LazySegmentTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    int n, q;\r\n    cin >> n >>\
-    \ q;\r\n\r\n    std::vector<long long> v(n);\r\n    auto segtree = LazySegmentTree<M_M,\
-    \ M_A, OP_RAQ_RMQ>(n, v);\r\n\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int\
-    \ k;\r\n        cin >> k;\r\n        if(k == 0) {\r\n            int s, t, x;;\r\
-    \n            cin >> s >> t >> x;\r\n            segtree.update(s, t, x);\r\n\
-    \        } else {\r\n            int s, t;\r\n            cin >> s >> t;\r\n \
-    \           cout << segtree.query(s, t) << endl;\r\n        }\r\n    }\r\n}"
+    \ 7 \"Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp\"\n\r\nusing ll = long\
+    \ long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nsigned main() {\r\n  int n, q;\r\n  cin >> n >> q;\r\n\r\n  std::vector<long\
+    \ long> v(n);\r\n  auto segtree = LazySegmentTree<M_M, M_A, OP_RAQ_RMQ>(n, v);\r\
+    \n\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int k;\r\n    cin >> k;\r\n    if\
+    \ (k == 0) {\r\n      int s, t, x;\r\n      ;\r\n      cin >> s >> t >> x;\r\n\
+    \      segtree.update(s, t, x);\r\n    } else {\r\n      int s, t;\r\n      cin\
+    \ >> s >> t;\r\n      cout << segtree.query(s, t) << endl;\r\n    }\r\n  }\r\n\
+    }\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H\"\
+    \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../Library/DataStructure/LazySegmentTree.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, q;\r\n  cin >> n >> q;\r\
+    \n\r\n  std::vector<long long> v(n);\r\n  auto segtree = LazySegmentTree<M_M,\
+    \ M_A, OP_RAQ_RMQ>(n, v);\r\n\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int k;\r\
+    \n    cin >> k;\r\n    if (k == 0) {\r\n      int s, t, x;\r\n      ;\r\n    \
+    \  cin >> s >> t >> x;\r\n      segtree.update(s, t, x);\r\n    } else {\r\n \
+    \     int s, t;\r\n      cin >> s >> t;\r\n      cout << segtree.query(s, t) <<\
+    \ endl;\r\n    }\r\n  }\r\n}"
   dependsOn:
   - Library/DataStructure/LazySegmentTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-04-08 05:34:34+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp

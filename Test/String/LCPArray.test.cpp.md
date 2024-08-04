@@ -1,80 +1,79 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/LCPArray.hpp
     title: Library/String/LCPArray.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/599
     links:
     - https://yukicoder.me/problems/no/599
   bundledCode: "#line 1 \"Test/String/LCPArray.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/599\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/String/LCPArray.hpp\"\n\r\
-    \n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\n#include\
-    \ <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double ok, double\
-    \ ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]] auto _ : std::views::iota(0,\
-    \ rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\n        (is_ok(mid) ? ok\
-    \ : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\
-    \nauto binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n   \
-    \ while(std::abs(ok - ng) > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n\
-    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n#line\
-    \ 3 \"Library/String/SuffixArray.hpp\"\n\r\n#line 5 \"Library/String/SuffixArray.hpp\"\
-    \n#include <vector>\r\n#include <list>\r\n#include <string>\r\n#include <set>\r\
-    \n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\
-    \r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\
-    \u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc\
-    \ -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n * SA-IS(Suffix Array\
-    \ - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass SuffixArray {\r\n    enum\
-    \ class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n    const std::string m_str;\r\
-    \n    const std::vector<int> m_suffixArray;\r\n\r\n    /* string to vector<int>\
-    \ */\r\n    static std::vector<int> toIntVec(const std::string& str) {\r\n   \
-    \     std::vector<int> vec;\r\n        vec.reserve(str.size() + 1);\r\n      \
-    \  for(const auto& c : str) {\r\n            vec.emplace_back(c - '0' + 1);\r\n\
-    \        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\n    }\r\n\
-    \r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE> classifying(const\
-    \ std::vector<int>& str) {\r\n        auto sz = str.size();\r\n        auto typeArray\
-    \ = std::vector<TYPE>(sz);\r\n        typeArray[sz - 1] = TYPE::S;\r\n       \
-    \ for(int i = sz - 2; i >= 0; --i) {\r\n            if(str[i] == str[i + 1]) {\r\
-    \n                typeArray[i] = typeArray[i + 1];\r\n                continue;\r\
-    \n            }\r\n            typeArray[i] = (str[i] < str[i + 1]) ? TYPE::S\
-    \ : TYPE::L;\r\n        }\r\n        for(int i = 1; i < sz; ++i) {\r\n       \
-    \     if(typeArray[i - 1] == TYPE::L && typeArray[i] == TYPE::S) {\r\n       \
-    \         typeArray[i] = TYPE::LMS;\r\n            }\r\n        }\r\n        return\
-    \ typeArray;\r\n    }\r\n\r\n    /* induced sort */\r\n    static std::vector<int>\
-    \ inducedSort(const std::vector<int>& str, const std::vector<TYPE>& type, std::list<int>&\
-    \ lmsList) {\r\n        auto sz = str.size();\r\n        auto nList = std::set<int>();\r\
-    \n        for(const auto& c : str) { nList.emplace(c); }\r\n\r\n        auto befCheck\
-    \ = [&](int k, auto& addList, bool rev) {\r\n            if(k == 0) { return;\
-    \ }\r\n            if(!rev && type[k - 1] == TYPE::L) {\r\n                addList[str[k\
-    \ - 1]].emplace_back(k - 1);\r\n            }\r\n            if(rev && type[k\
-    \ - 1] != TYPE::L) {\r\n                addList[str[k - 1]].emplace_front(k -\
-    \ 1);\r\n            }\r\n        };\r\n\r\n        auto checkAndUpdate = [&](int\
-    \ n, auto& checkList, auto& addList, bool rev) {\r\n            auto& lst = checkList[n];\r\
-    \n            if(rev) {\r\n                for(auto itr = lst.rbegin(); itr !=\
-    \ lst.rend(); ++itr) { befCheck(*itr, addList, rev); }\r\n            } else {\r\
-    \n                for(const auto& k : lst) { befCheck(k, addList, rev); }\r\n\
-    \            }\r\n        };\r\n\r\n        /* set LMS */\r\n        auto tailList\
-    \ = std::unordered_map<int, std::list<int>>();\r\n        for(const auto& i :\
-    \ lmsList) { tailList[str[i]].emplace_back(i); }\r\n\r\n        /* set L-type\
-    \ */\r\n        auto headList = std::unordered_map<int, std::list<int>>();\r\n\
-    \        for(const auto& n : nList) {\r\n            checkAndUpdate(n, headList,\
-    \ headList, false);\r\n            checkAndUpdate(n, tailList, headList, false);\r\
-    \n        }\r\n\r\n        /* set S-type*/\r\n        tailList = std::unordered_map<int,\
+    \r\n\r\n#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
+    \n#include <numeric>\r\n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto\
+    \ binarySearch(double ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]]\
+    \ auto _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\
+    \n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
+    template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
+    \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
+    \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
+    \    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include <string>\r\n\
+    #include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\
+    \u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306E\
+    suffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\
+    \u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n\
+    \ * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass SuffixArray\
+    \ {\r\n    enum class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n    const std::string\
+    \ m_str;\r\n    const std::vector<int> m_suffixArray;\r\n\r\n    /* string to\
+    \ vector<int> */\r\n    static std::vector<int> toIntVec(const std::string& str)\
+    \ {\r\n        std::vector<int> vec;\r\n        vec.reserve(str.size() + 1);\r\
+    \n        for(const auto& c : str) {\r\n            vec.emplace_back(c - '0' +\
+    \ 1);\r\n        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\n\
+    \    }\r\n\r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE>\
+    \ classifying(const std::vector<int>& str) {\r\n        auto sz = str.size();\r\
+    \n        auto typeArray = std::vector<TYPE>(sz);\r\n        typeArray[sz - 1]\
+    \ = TYPE::S;\r\n        for(int i = sz - 2; i >= 0; --i) {\r\n            if(str[i]\
+    \ == str[i + 1]) {\r\n                typeArray[i] = typeArray[i + 1];\r\n   \
+    \             continue;\r\n            }\r\n            typeArray[i] = (str[i]\
+    \ < str[i + 1]) ? TYPE::S : TYPE::L;\r\n        }\r\n        for(int i = 1; i\
+    \ < sz; ++i) {\r\n            if(typeArray[i - 1] == TYPE::L && typeArray[i] ==\
+    \ TYPE::S) {\r\n                typeArray[i] = TYPE::LMS;\r\n            }\r\n\
+    \        }\r\n        return typeArray;\r\n    }\r\n\r\n    /* induced sort */\r\
+    \n    static std::vector<int> inducedSort(const std::vector<int>& str, const std::vector<TYPE>&\
+    \ type, std::list<int>& lmsList) {\r\n        auto sz = str.size();\r\n      \
+    \  auto nList = std::set<int>();\r\n        for(const auto& c : str) { nList.emplace(c);\
+    \ }\r\n\r\n        auto befCheck = [&](int k, auto& addList, bool rev) {\r\n \
+    \           if(k == 0) { return; }\r\n            if(!rev && type[k - 1] == TYPE::L)\
+    \ {\r\n                addList[str[k - 1]].emplace_back(k - 1);\r\n          \
+    \  }\r\n            if(rev && type[k - 1] != TYPE::L) {\r\n                addList[str[k\
+    \ - 1]].emplace_front(k - 1);\r\n            }\r\n        };\r\n\r\n        auto\
+    \ checkAndUpdate = [&](int n, auto& checkList, auto& addList, bool rev) {\r\n\
+    \            auto& lst = checkList[n];\r\n            if(rev) {\r\n          \
+    \      for(auto itr = lst.rbegin(); itr != lst.rend(); ++itr) { befCheck(*itr,\
+    \ addList, rev); }\r\n            } else {\r\n                for(const auto&\
+    \ k : lst) { befCheck(k, addList, rev); }\r\n            }\r\n        };\r\n\r\
+    \n        /* set LMS */\r\n        auto tailList = std::unordered_map<int, std::list<int>>();\r\
+    \n        for(const auto& i : lmsList) { tailList[str[i]].emplace_back(i); }\r\
+    \n\r\n        /* set L-type */\r\n        auto headList = std::unordered_map<int,\
+    \ std::list<int>>();\r\n        for(const auto& n : nList) {\r\n            checkAndUpdate(n,\
+    \ headList, headList, false);\r\n            checkAndUpdate(n, tailList, headList,\
+    \ false);\r\n        }\r\n\r\n        /* set S-type*/\r\n        tailList = std::unordered_map<int,\
     \ std::list<int>>();\r\n        for(auto itr_n = nList.rbegin(); itr_n != nList.rend();\
     \ ++itr_n) {\r\n            auto n = *itr_n;\r\n            checkAndUpdate(n,\
     \ tailList, tailList, true);\r\n            checkAndUpdate(n, headList, tailList,\
@@ -161,7 +160,8 @@ data:
     \ { return m_lcpArray; }\r\n    auto getSuffixArrayIndexList()const {\r\n    \
     \    std::vector<int> sail(m_suffixArray.size());\r\n        for(unsigned int\
     \ i = 0; i < m_suffixArray.size(); ++i) {\r\n            sail[m_suffixArray[i]]\
-    \ = i;\r\n        }\r\n        return sail;\r\n    }\r\n};\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\
+    \ = i;\r\n        }\r\n        return sail;\r\n    }\r\n};\n#line 4 \"Test/String/LCPArray.test.cpp\"\
+    \n\r\n#line 6 \"Test/String/LCPArray.test.cpp\"\n\r\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\
     \n\r\n#line 4 \"Library/DataStructure/SegmentTree.hpp\"\n#include <deque>\r\n\
     #include <utility>\r\n\r\ntemplate<class T>\r\nclass isMonoid {\r\n    template\
     \ <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\
@@ -205,44 +205,43 @@ data:
     \  Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid& m2)const\
     \ { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
-    \   }\r\n};\r\n#line 7 \"Test/String/LCPArray.test.cpp\"\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nstruct F { auto operator()(int a, int b)const { return\
-    \ std::min(a, b); }; };\r\nusing M = Monoid<int, static_cast<int>(1e9), F>;\r\n\
-    \r\nconstexpr ll MOD = 1000000007;\r\n\r\nsigned main() {\r\n    std::string s;\r\
-    \n    cin >> s;\r\n\r\n    ll size = s.size();\r\n    auto lcparray = LCPArray(s);\r\
-    \n    auto segtree = SegmentTree<M>(size, lcparray.getLCPArray());\r\n    auto\
-    \ sai = lcparray.getSuffixArrayIndexList();\r\n\r\n    ll half = (size >> 1);\r\
-    \n    std::vector<ll> dp(half + 1);\r\n    dp[0] = 1;\r\n    for(int l = 0; l\
-    \ < half; ++l) {\r\n        for(int r = l; r < half; ++r) {\r\n\r\n          \
-    \  auto idx1 = sai[l];\r\n            auto idx2 = sai[size - r - 1];\r\n     \
-    \       if(idx2 < idx1) { std::swap(idx1, idx2); }\r\n            auto lcp = segtree.query(idx1,\
-    \ idx2 - 1);\r\n\r\n            int len = r - l + 1;\r\n            if(lcp >=\
-    \ len) {\r\n                dp[r + 1] += dp[l];\r\n                if(dp[r + 1]\
-    \ >= MOD) { dp[r + 1] -= MOD; }\r\n            }\r\n        }\r\n    }\r\n\r\n\
-    \    ll ans = 0;\r\n    for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans\
-    \ -= MOD; } }\r\n    cout << ans;\r\n}\r\n"
+    \   }\r\n};\r\n#line 8 \"Test/String/LCPArray.test.cpp\"\n\r\nusing ll = long\
+    \ long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\
+    \nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n  \
+    \  std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nstruct F\
+    \ {\r\n  auto operator()(int a, int b) const { return std::min(a, b); };\r\n};\r\
+    \nusing M = Monoid<int, static_cast<int>(1e9), F>;\r\n\r\nconstexpr ll MOD = 1000000007;\r\
+    \n\r\nsigned main() {\r\n  std::string s;\r\n  cin >> s;\r\n\r\n  ll size = s.size();\r\
+    \n  auto lcparray = LCPArray(s);\r\n  auto segtree = SegmentTree<M>(size, lcparray.getLCPArray());\r\
+    \n  auto sai = lcparray.getSuffixArrayIndexList();\r\n\r\n  ll half = (size >>\
+    \ 1);\r\n  std::vector<ll> dp(half + 1);\r\n  dp[0] = 1;\r\n  for (int l = 0;\
+    \ l < half; ++l) {\r\n    for (int r = l; r < half; ++r) {\r\n      auto idx1\
+    \ = sai[l];\r\n      auto idx2 = sai[size - r - 1];\r\n      if (idx2 < idx1)\
+    \ { std::swap(idx1, idx2); }\r\n      auto lcp = segtree.query(idx1, idx2 - 1);\r\
+    \n\r\n      int len = r - l + 1;\r\n      if (lcp >= len) {\r\n        dp[r +\
+    \ 1] += dp[l];\r\n        if (dp[r + 1] >= MOD) { dp[r + 1] -= MOD; }\r\n    \
+    \  }\r\n    }\r\n  }\r\n\r\n  ll ans = 0;\r\n  for (const auto& x : dp) {\r\n\
+    \    ans += x;\r\n    if (ans >= MOD) { ans -= MOD; }\r\n  }\r\n  cout << ans;\r\
+    \n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/599\"\r\n\r\n#include\
-    \ <iostream>\r\n\r\n#include \"./../../Library/String/LCPArray.hpp\"\r\n#include\
+    \ \"./../../Library/String/LCPArray.hpp\"\r\n\r\n#include <iostream>\r\n\r\n#include\
     \ \"./../../Library/DataStructure/SegmentTree.hpp\"\r\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\nstruct\
-    \ Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nstruct F { auto operator()(int a, int b)const { return\
-    \ std::min(a, b); }; };\r\nusing M = Monoid<int, static_cast<int>(1e9), F>;\r\n\
-    \r\nconstexpr ll MOD = 1000000007;\r\n\r\nsigned main() {\r\n    std::string s;\r\
-    \n    cin >> s;\r\n\r\n    ll size = s.size();\r\n    auto lcparray = LCPArray(s);\r\
-    \n    auto segtree = SegmentTree<M>(size, lcparray.getLCPArray());\r\n    auto\
-    \ sai = lcparray.getSuffixArrayIndexList();\r\n\r\n    ll half = (size >> 1);\r\
-    \n    std::vector<ll> dp(half + 1);\r\n    dp[0] = 1;\r\n    for(int l = 0; l\
-    \ < half; ++l) {\r\n        for(int r = l; r < half; ++r) {\r\n\r\n          \
-    \  auto idx1 = sai[l];\r\n            auto idx2 = sai[size - r - 1];\r\n     \
-    \       if(idx2 < idx1) { std::swap(idx1, idx2); }\r\n            auto lcp = segtree.query(idx1,\
-    \ idx2 - 1);\r\n\r\n            int len = r - l + 1;\r\n            if(lcp >=\
-    \ len) {\r\n                dp[r + 1] += dp[l];\r\n                if(dp[r + 1]\
-    \ >= MOD) { dp[r + 1] -= MOD; }\r\n            }\r\n        }\r\n    }\r\n\r\n\
-    \    ll ans = 0;\r\n    for(const auto& x : dp) { ans += x; if(ans >= MOD) { ans\
-    \ -= MOD; } }\r\n    cout << ans;\r\n}\r\n"
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct\
+    \ Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
+    \n  };\r\n} _Preprocessing;\r\n\r\nstruct F {\r\n  auto operator()(int a, int\
+    \ b) const { return std::min(a, b); };\r\n};\r\nusing M = Monoid<int, static_cast<int>(1e9),\
+    \ F>;\r\n\r\nconstexpr ll MOD = 1000000007;\r\n\r\nsigned main() {\r\n  std::string\
+    \ s;\r\n  cin >> s;\r\n\r\n  ll size = s.size();\r\n  auto lcparray = LCPArray(s);\r\
+    \n  auto segtree = SegmentTree<M>(size, lcparray.getLCPArray());\r\n  auto sai\
+    \ = lcparray.getSuffixArrayIndexList();\r\n\r\n  ll half = (size >> 1);\r\n  std::vector<ll>\
+    \ dp(half + 1);\r\n  dp[0] = 1;\r\n  for (int l = 0; l < half; ++l) {\r\n    for\
+    \ (int r = l; r < half; ++r) {\r\n      auto idx1 = sai[l];\r\n      auto idx2\
+    \ = sai[size - r - 1];\r\n      if (idx2 < idx1) { std::swap(idx1, idx2); }\r\n\
+    \      auto lcp = segtree.query(idx1, idx2 - 1);\r\n\r\n      int len = r - l\
+    \ + 1;\r\n      if (lcp >= len) {\r\n        dp[r + 1] += dp[l];\r\n        if\
+    \ (dp[r + 1] >= MOD) { dp[r + 1] -= MOD; }\r\n      }\r\n    }\r\n  }\r\n\r\n\
+    \  ll ans = 0;\r\n  for (const auto& x : dp) {\r\n    ans += x;\r\n    if (ans\
+    \ >= MOD) { ans -= MOD; }\r\n  }\r\n  cout << ans;\r\n}\r\n"
   dependsOn:
   - Library/String/LCPArray.hpp
   - Library/String/SuffixArray.hpp
@@ -251,8 +250,8 @@ data:
   isVerificationFile: true
   path: Test/String/LCPArray.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 01:34:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/LCPArray.test.cpp
 layout: document

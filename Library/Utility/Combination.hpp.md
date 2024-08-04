@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Utility/ModCalculator.hpp
     title: Library/Utility/ModCalculator.hpp
   _extendedRequiredBy: []

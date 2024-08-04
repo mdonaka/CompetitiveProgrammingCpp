@@ -1,27 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/PalindromicTree.hpp
     title: Library/String/PalindromicTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/273
     links:
     - https://yukicoder.me/problems/no/273
   bundledCode: "#line 1 \"Test/String/PalindromicTree.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/273\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <algorithm>\r\n#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <memory>\r\
-    \n#include <string>\r\n#line 5 \"Library/String/PalindromicTree.hpp\"\n#include\
-    \ <list>\r\n#include <queue>\r\n#include <stack>\r\n#include <vector>\r\n#include\
-    \ <unordered_map>\r\n\r\nauto nullLambda = [](int, const std::list<int>&) {};\r\
-    \nclass PalindromicTree {\r\n    //static constexpr auto nullLambda = [](int,\
-    \ const std::list<int>&) {};// c++17\r\n\r\n    class Node :public std::enable_shared_from_this<Node>\
+    \ \"https://yukicoder.me/problems/no/273\"\r\n\r\n#line 2 \"Library/String/PalindromicTree.hpp\"\
+    \n#include <memory>\r\n#include <string>\r\n#include <iostream>\r\n#include <list>\r\
+    \n#include <queue>\r\n#include <stack>\r\n#include <vector>\r\n#include <unordered_map>\r\
+    \n\r\nauto nullLambda = [](int, const std::list<int>&) {};\r\nclass PalindromicTree\
+    \ {\r\n    //static constexpr auto nullLambda = [](int, const std::list<int>&)\
+    \ {};// c++17\r\n\r\n    class Node :public std::enable_shared_from_this<Node>\
     \ {\r\n        // \u56DE\u6587\u306E\u53F3\u7AEFitr\r\n        std::list<int>\
     \ m_itrs;\r\n        // \u56DE\u6587\u30B5\u30A4\u30BA\r\n        const int m_size;\r\
     \n\r\n        // \u6700\u5927\u306E\u56DE\u6587\u63A5\u5C3E\u8F9E\r\n        std::weak_ptr<Node>\
@@ -113,29 +112,31 @@ data:
     \r\n    auto outputTree() {\r\n        std::cerr << m_s << std::endl;\r\n    \
     \    std::cerr << \"-- even --\\n\";\r\n        m_rootEven->outputTree(m_s);\r\
     \n        std::cerr << \"-- odd --\\n\";\r\n        m_rootOdd->outputTree(m_s);\r\
-    \n    }\r\n};\n#line 6 \"Test/String/PalindromicTree.test.cpp\"\n\r\nusing ll\
-    \ = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl =\
-    \ '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nsigned main() {\r\n    std::string s;\r\n    cin\
-    \ >> s;\r\n\r\n    auto p = PalindromicTree(s);\r\n\r\n    ll ans = 0;\r\n   \
-    \ p.dfs_edges([&](ll size, const auto& _) {\r\n        if(size < s.size()) { ans\
-    \ = std::max(ans, size); }\r\n    });\r\n    cout << ans << endl;\r\n}\n"
+    \n    }\r\n};\n#line 4 \"Test/String/PalindromicTree.test.cpp\"\n\r\n#include\
+    \ <algorithm>\r\n#line 7 \"Test/String/PalindromicTree.test.cpp\"\n\r\nusing ll\
+    \ = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl =\
+    \ '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  std::string s;\r\n  cin >> s;\r\n\r\n  auto p = PalindromicTree(s);\r\
+    \n\r\n  ll ans = 0;\r\n  p.dfs_edges([&](ll size, const auto& _) {\r\n    if (size\
+    \ < s.size()) { ans = std::max(ans, size); }\r\n  });\r\n  cout << ans << endl;\r\
+    \n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/273\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <algorithm>\r\n#include \"./../../Library/String/PalindromicTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
-    \    std::string s;\r\n    cin >> s;\r\n\r\n    auto p = PalindromicTree(s);\r\
-    \n\r\n    ll ans = 0;\r\n    p.dfs_edges([&](ll size, const auto& _) {\r\n   \
-    \     if(size < s.size()) { ans = std::max(ans, size); }\r\n    });\r\n    cout\
-    \ << ans << endl;\r\n}"
+    \ \"./../../Library/String/PalindromicTree.hpp\"\r\n\r\n#include <algorithm>\r\
+    \n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing\
+    \ std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing()\
+    \ {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\n  };\r\n}\
+    \ _Preprocessing;\r\n\r\nsigned main() {\r\n  std::string s;\r\n  cin >> s;\r\n\
+    \r\n  auto p = PalindromicTree(s);\r\n\r\n  ll ans = 0;\r\n  p.dfs_edges([&](ll\
+    \ size, const auto& _) {\r\n    if (size < s.size()) { ans = std::max(ans, size);\
+    \ }\r\n  });\r\n  cout << ans << endl;\r\n}"
   dependsOn:
   - Library/String/PalindromicTree.hpp
   isVerificationFile: true
   path: Test/String/PalindromicTree.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 01:16:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/PalindromicTree.test.cpp
 layout: document

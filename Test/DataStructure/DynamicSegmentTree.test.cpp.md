@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1282
     links:
     - https://yukicoder.me/problems/no/1282
   bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#include <iostream>\r\
-    \n#include <algorithm>\r\n#include <vector>\r\n\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
-    \n\r\n#line 4 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n#include <deque>\r\
-    \n#include <utility>\r\n#include <unordered_map>\r\n\r\ntemplate<class T>\r\n\
-    class isMonoid {\r\n    template <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x),\
-    \ std::true_type{});\r\n    static std::false_type check(...);\r\npublic:\r\n\
-    \    static bool const value = decltype(check(std::declval<T>()))::value;\r\n\
-    };\r\n\r\ntemplate<class Monoid, int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value,\
+    \ PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
+    \n\r\n#include <vector>\r\n#include <deque>\r\n#include <utility>\r\n#include\
+    \ <unordered_map>\r\n\r\ntemplate<class T>\r\nclass isMonoid {\r\n    template\
+    \ <class U>\r\n    static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\
+    \n    static std::false_type check(...);\r\npublic:\r\n    static bool const value\
+    \ = decltype(check(std::declval<T>()))::value;\r\n};\r\n\r\ntemplate<class Monoid,\
+    \ int size = static_cast<int>(1e9 + 1), std::enable_if_t<isMonoid<Monoid>::value,\
     \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n   \
     \ std::unordered_map<int, Monoid> m_node;\r\n    using S = decltype(Monoid().m_val);\r\
     \n\r\n    auto _get(int i)const { return (m_node.find(i) == m_node.end()) ? Monoid()\
@@ -56,36 +55,38 @@ data:
     \ {}\r\n    Monoid(S val) :m_val(val) {}\r\n    Monoid binaryOperation(const Monoid&\
     \ m2)const { return T()(m_val, m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream&\
     \ os, const Monoid<S, element, T>& m) {\r\n        return os << m.m_val;\r\n \
-    \   }\r\n};\r\n#line 8 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n\r\n\
-    using ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\nstruct Functor { auto operator()(ll a, ll b)const { return\
-    \ a + b; } };\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n\
-    \    ll n;\r\n    cin >> n;\r\n    std::vector<ll> a, b;\r\n    a.reserve(n);\
-    \ b.reserve(n);\r\n    for(int i = 0; i < n; ++i) {\r\n        ll x; cin >> x;\
-    \ a.emplace_back(x);\r\n    }\r\n    for(int i = 0; i < n; ++i) {\r\n        ll\
-    \ x; cin >> x; b.emplace_back(x);\r\n    }\r\n    std::sort(a.begin(), a.end());\r\
-    \n\r\n    ll ans = 0;\r\n    auto segtree = DynamicSegmentTree<M>();\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        segtree.add(b[i], 1);\r\n        ans += segtree.query(0,\
-    \ a[i] - 1);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
+    \   }\r\n};\r\n#line 4 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\n\r\n\
+    #include <algorithm>\r\n#include <iostream>\r\n#line 8 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct Functor {\r\n  auto operator()(ll a, ll b)\
+    \ const { return a + b; }\r\n};\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned\
+    \ main() {\r\n  ll n;\r\n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\
+    \n  b.reserve(n);\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >>\
+    \ x;\r\n    a.emplace_back(x);\r\n  }\r\n  for (int i = 0; i < n; ++i) {\r\n \
+    \   ll x;\r\n    cin >> x;\r\n    b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(),\
+    \ a.end());\r\n\r\n  ll ans = 0;\r\n  auto segtree = DynamicSegmentTree<M>();\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    segtree.add(b[i], 1);\r\n    ans += segtree.query(0,\
+    \ a[i] - 1);\r\n  }\r\n\r\n  cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1282\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <algorithm>\r\n#include <vector>\r\n\r\n#include \"./../../Library/DataStructure/DynamicSegmentTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct Functor { auto operator()(ll a, ll b)const\
-    \ { return a + b; } };\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main()\
-    \ {\r\n    ll n;\r\n    cin >> n;\r\n    std::vector<ll> a, b;\r\n    a.reserve(n);\
-    \ b.reserve(n);\r\n    for(int i = 0; i < n; ++i) {\r\n        ll x; cin >> x;\
-    \ a.emplace_back(x);\r\n    }\r\n    for(int i = 0; i < n; ++i) {\r\n        ll\
-    \ x; cin >> x; b.emplace_back(x);\r\n    }\r\n    std::sort(a.begin(), a.end());\r\
-    \n\r\n    ll ans = 0;\r\n    auto segtree = DynamicSegmentTree<M>();\r\n    for(int\
-    \ i = 0; i < n; ++i) {\r\n        segtree.add(b[i], 1);\r\n        ans += segtree.query(0,\
-    \ a[i] - 1);\r\n    }\r\n\r\n    cout << ans << endl;\r\n}\r\n"
+    \ \"./../../Library/DataStructure/DynamicSegmentTree.hpp\"\r\n\r\n#include <algorithm>\r\
+    \n#include <iostream>\r\n#include <vector>\r\n\r\nusing ll = long long;\r\nusing\
+    \ std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nstruct\
+    \ Functor {\r\n  auto operator()(ll a, ll b) const { return a + b; }\r\n};\r\n\
+    using M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >>\
+    \ n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\n  for\
+    \ (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
+    \n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n   \
+    \ b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(), a.end());\r\n\r\n  ll ans\
+    \ = 0;\r\n  auto segtree = DynamicSegmentTree<M>();\r\n  for (int i = 0; i < n;\
+    \ ++i) {\r\n    segtree.add(b[i], 1);\r\n    ans += segtree.query(0, a[i] - 1);\r\
+    \n  }\r\n\r\n  cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/DynamicSegmentTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2023-07-22 05:28:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree.test.cpp
 layout: document

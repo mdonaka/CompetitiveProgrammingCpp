@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
@@ -18,12 +18,12 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C
   bundledCode: "#line 1 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\n\
-    #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
-    \n#include <deque>\r\n#include <tuple>\r\n\r\ntemplate<class Node = int, class\
-    \ Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using\
-    \ Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
-    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    #define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
+    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include\
+    \ <vector>\r\n#include <deque>\r\n#include <tuple>\r\n\r\ntemplate<class Node\
+    \ = int, class Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\
+    \n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\
+    \n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
     \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
     \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
     \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
@@ -154,35 +154,31 @@ data:
     \ { add(t, tr); t = tp; } else { add(f, fr); f = fp; }\r\n        } while(true);\r\
     \n        return ret;\r\n    }\r\n\r\n    auto rangeSubTree(Node f)const {\r\n\
     \        return std::pair<Node, Node>{\r\n            m_ids[f], m_ids[f] + m_size[f]\
-    \ - 1\r\n        };\r\n    }\r\n};\r\n#line 6 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    ll n;\r\n    cin >> n;\r\n\
-    \    auto tree = Graph<int, bool>(n);\r\n    for(int f = 0; f < n; ++f) {\r\n\
-    \        ll k;\r\n        cin >> k;\r\n        for(int _ = 0; _ < k; ++_) {\r\n\
-    \            int t;\r\n            cin >> t;\r\n            tree.addEdge(f, t);\r\
-    \n        }\r\n    }\r\n\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\
-    \n    int q;\r\n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int\
-    \ u, v;\r\n        cin >> u >> v;\r\n        cout << hld.lca(u, v) << endl;\r\n\
-    \    }\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
+    \ - 1\r\n        };\r\n    }\r\n};\r\n#line 8 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
+    \ tree = Graph<int, bool>(n);\r\n  for (int f = 0; f < n; ++f) {\r\n    ll k;\r\
+    \n    cin >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n     \
+    \ cin >> t;\r\n      tree.addEdge(f, t);\r\n    }\r\n  }\r\n\r\n  auto hld = HeavyLightDecomposition(tree);\r\
+    \n\r\n  int q;\r\n  cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int u,\
+    \ v;\r\n    cin >> u >> v;\r\n    cout << hld.lca(u, v) << endl;\r\n  }\r\n}\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
+    \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp\"\r\n\
-    \r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n    ll n;\r\n    cin >> n;\r\n\
-    \    auto tree = Graph<int, bool>(n);\r\n    for(int f = 0; f < n; ++f) {\r\n\
-    \        ll k;\r\n        cin >> k;\r\n        for(int _ = 0; _ < k; ++_) {\r\n\
-    \            int t;\r\n            cin >> t;\r\n            tree.addEdge(f, t);\r\
-    \n        }\r\n    }\r\n\r\n    auto hld = HeavyLightDecomposition(tree);\r\n\r\
-    \n    int q;\r\n    cin >> q;\r\n    for(int _ = 0; _ < q; ++_) {\r\n        int\
-    \ u, v;\r\n        cin >> u >> v;\r\n        cout << hld.lca(u, v) << endl;\r\n\
-    \    }\r\n}"
+    \r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
+    \ tree = Graph<int, bool>(n);\r\n  for (int f = 0; f < n; ++f) {\r\n    ll k;\r\
+    \n    cin >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n     \
+    \ cin >> t;\r\n      tree.addEdge(f, t);\r\n    }\r\n  }\r\n\r\n  auto hld = HeavyLightDecomposition(tree);\r\
+    \n\r\n  int q;\r\n  cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int u,\
+    \ v;\r\n    cin >> u >> v;\r\n    cout << hld.lca(u, v) << endl;\r\n  }\r\n}"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp

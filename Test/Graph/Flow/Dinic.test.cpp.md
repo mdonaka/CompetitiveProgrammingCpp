@@ -1,38 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Flow/Dinic.hpp
     title: Library/Graph/Flow/Dinic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
-  bundledCode: "#line 1 \"Test/Graph/Flow/Dinic.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
-    \n#include <deque>\r\n#include <tuple>\r\n\r\ntemplate<class Node = int, class\
-    \ Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using\
-    \ Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
-    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
-    \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
-    \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
-    \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
-    \ Node& f, const Node& t, const Cost& c = 1) {\r\n        addEdge(f, t, c); addEdge(t,\
-    \ f, c);\r\n    }\r\n    auto getEdges(const Node& from)const {\r\n        class\
-    \ EdgesRange {\r\n            const typename Edges::const_iterator b, e;\r\n \
-    \       public:\r\n            EdgesRange(const Edges& edges) :b(edges.begin()),\
-    \ e(edges.end()) {}\r\n            auto begin()const { return b; }\r\n       \
-    \     auto end()const { return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\
-    \n    }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
+  bundledCode: "#line 1 \"Test/Graph/Flow/Dinic.test.cpp\"\n#define PROBLEM \\\r\n\
+    \  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A\"\r\n\r\n\
+    #line 2 \"Library/Graph/Flow/Dinic.hpp\"\n\r\n#include <vector>\r\n#include <queue>\r\
+    \n#include <list>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\n\
+    #include <map>\r\n\r\n#line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n\
+    #include <tuple>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\n\
+    class Graph {\r\n    //using Node = int;\r\n    //using Cost = long long;\r\n\r\
+    \n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
+    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\npublic:\r\n\
+    \    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n    auto addEdge(const Node& f,\
+    \ const Node& t, const Cost& c = 1) {\r\n        m_graph[f].emplace_back(t, c);\r\
+    \n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const Cost&\
+    \ c = 1) {\r\n        addEdge(f, t, c); addEdge(t, f, c);\r\n    }\r\n    auto\
+    \ getEdges(const Node& from)const {\r\n        class EdgesRange {\r\n        \
+    \    const typename Edges::const_iterator b, e;\r\n        public:\r\n       \
+    \     EdgesRange(const Edges& edges) :b(edges.begin()), e(edges.end()) {}\r\n\
+    \            auto begin()const { return b; }\r\n            auto end()const {\
+    \ return e; }\r\n        };\r\n        return EdgesRange(m_graph[from]);\r\n \
+    \   }\r\n    auto getEdges()const {\r\n        std::deque<std::tuple<Node, Node,\
     \ Cost>> edges;\r\n        for(Node from = 0; from < m_n; ++from) for(const auto&\
     \ [to, c] : getEdges(from)) {\r\n            edges.emplace_back(from, to, c);\r\
     \n        }\r\n        return edges;\r\n    }\r\n    auto getEdgesExcludeCost()const\
@@ -45,58 +48,56 @@ data:
     \ { return m_n; };\r\n    auto debug(bool directed = false)const {\r\n       \
     \ for(const auto& [f, t, c] : getEdges())if(f < t || directed) {\r\n         \
     \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
-    \n    }\r\n};\n#line 2 \"Library/Graph/Flow/Dinic.hpp\"\n\r\n#line 4 \"Library/Graph/Flow/Dinic.hpp\"\
-    \n#include <queue>\r\n#include <list>\r\n#include <unordered_map>\r\n#include\
-    \ <unordered_set>\r\n#include <map>\r\n\r\n#line 11 \"Library/Graph/Flow/Dinic.hpp\"\
-    \n\r\ntemplate<class Node, class Cost>\r\nclass Dinic {\r\n    //using Node =\
-    \ int;\r\n    //using Cost = int;\r\n\r\n    struct HashPair {\r\n        template<class\
-    \ T1, class T2>\r\n        size_t operator()(const std::pair<T1, T2>& p) const\
-    \ {\r\n            auto hash1 = std::hash<T1>{}(p.first);\r\n            auto\
-    \ hash2 = std::hash<T2>{}(p.second);\r\n            size_t seed = 0;\r\n     \
-    \       seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n          \
-    \  seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n            return\
-    \ seed;\r\n        }\r\n    };\r\n\r\n    using PairGraph = std::unordered_map<std::pair<Node,\
-    \ Node>, Cost, HashPair>;\r\n\r\n    const Node m_n;\r\n    const PairGraph m_graph;\r\
-    \n    const std::vector<std::unordered_set<Node>> m_to_list;\r\n\r\n    static\
-    \ auto construct_to_list(const Graph<Node, Cost>& graph) {\r\n        std::vector<std::unordered_set<Node>>\
-    \ to_list(graph.size());\r\n        for(const auto& [f, t, c] : graph.getEdges())\
-    \ {\r\n            to_list[f].emplace(t);\r\n            to_list[t].emplace(f);\r\
-    \n        }\r\n        return to_list;\r\n    }\r\n    static auto construct_graph(const\
-    \ Graph<Node, Cost>& graph) {\r\n        PairGraph pair_graph;\r\n        for(const\
-    \ auto& [f, t, c] : graph.getEdges()) {\r\n            pair_graph[std::pair<Node,\
-    \ Node>{f, t}] += c;\r\n        }\r\n        return pair_graph;\r\n    }\r\n\r\
-    \n    auto get_depth(Node s, const PairGraph& graph) const {\r\n        std::vector<Node>\
-    \ depth(m_n, -1);\r\n        std::queue<Node> q;\r\n        q.emplace(s);\r\n\
-    \        depth[s] = 0;\r\n        while(!q.empty()) {\r\n            auto from\
-    \ = q.front();\r\n            q.pop();\r\n            for(const auto& to : m_to_list[from])\
-    \ {\r\n                if(graph.find({from, to}) == graph.end()) { continue; }\r\
-    \n                if(depth[to] > -1) { continue; }\r\n                depth[to]\
-    \ = depth[from] + 1;\r\n                q.emplace(to);\r\n            }\r\n  \
-    \      }\r\n        return depth;\r\n    }\r\n\r\n    auto update_residual(Node\
-    \ s, PairGraph& residual, const std::list<Node>& route)const {\r\n        Cost\
-    \ mn = 1e18;\r\n        auto from = s;\r\n        for(const auto& to : route)if(from\
-    \ != to) {\r\n            mn = std::min(mn, residual[{from, to}]);\r\n       \
-    \     from = to;\r\n        }\r\n\r\n        from = s;\r\n        for(const auto&\
-    \ to : route)if(from != to) {\r\n            auto& ft = residual[{from, to}];\r\
-    \n            ft -= mn;\r\n            if(ft == 0) { residual.erase({from,to});\
-    \ }\r\n            residual[{to, from}] += mn;\r\n            from = to;\r\n \
-    \       }\r\n    }\r\n    auto construct_residual(Node s, Node t)const {\r\n \
-    \       auto residual = m_graph;\r\n        while(true) {\r\n            // BFS\r\
-    \n            auto depth = get_depth(s, residual);\r\n\r\n            // DFS\r\
-    \n            bool run = false;\r\n            std::vector<Node> visited(m_n);\r\
-    \n            auto f = [&](auto&& f, Node now, std::list<Node>& route)->void {\r\
-    \n                route.emplace_back(now);\r\n\r\n                // t\u306B\u5230\
-    \u9054\u3057\u3066\u3044\u308C\u3070\u6D41\u3059\r\n                if(now ==\
-    \ t) { update_residual(s, residual, route); run = true; }\r\n\r\n            \
-    \    for(const auto& to : m_to_list[now]) {\r\n                    if(residual.find({now,\
-    \ to}) == residual.end()) { continue; }\r\n                    if(depth[to] <=\
-    \ depth[now]) { continue; }\r\n                    if(visited[to]) { continue;\
-    \ }\r\n                    visited[to] = true;;\r\n                    f(f, to,\
-    \ route);\r\n                }\r\n                route.pop_back();\r\n      \
-    \      };\r\n            std::list<Node> route;\r\n            visited[s] = true;\r\
-    \n            f(f, s, route);\r\n            if(!run) { break; }\r\n        }\r\
-    \n        return residual;\r\n    }\r\n\r\npublic:\r\n    Dinic(const Graph<Node,\
-    \ Cost>& graph) :\r\n        m_n(graph.size()),\r\n        m_graph(construct_graph(graph)),\r\
+    \n    }\r\n};\n#line 11 \"Library/Graph/Flow/Dinic.hpp\"\n\r\ntemplate<class Node,\
+    \ class Cost>\r\nclass Dinic {\r\n    //using Node = int;\r\n    //using Cost\
+    \ = int;\r\n\r\n    struct HashPair {\r\n        template<class T1, class T2>\r\
+    \n        size_t operator()(const std::pair<T1, T2>& p) const {\r\n          \
+    \  auto hash1 = std::hash<T1>{}(p.first);\r\n            auto hash2 = std::hash<T2>{}(p.second);\r\
+    \n            size_t seed = 0;\r\n            seed ^= hash1 + 0x9e3779b9 + (seed\
+    \ << 6) + (seed >> 2);\r\n            seed ^= hash2 + 0x9e3779b9 + (seed << 6)\
+    \ + (seed >> 2);\r\n            return seed;\r\n        }\r\n    };\r\n\r\n  \
+    \  using PairGraph = std::unordered_map<std::pair<Node, Node>, Cost, HashPair>;\r\
+    \n\r\n    const Node m_n;\r\n    const PairGraph m_graph;\r\n    const std::vector<std::unordered_set<Node>>\
+    \ m_to_list;\r\n\r\n    static auto construct_to_list(const Graph<Node, Cost>&\
+    \ graph) {\r\n        std::vector<std::unordered_set<Node>> to_list(graph.size());\r\
+    \n        for(const auto& [f, t, c] : graph.getEdges()) {\r\n            to_list[f].emplace(t);\r\
+    \n            to_list[t].emplace(f);\r\n        }\r\n        return to_list;\r\
+    \n    }\r\n    static auto construct_graph(const Graph<Node, Cost>& graph) {\r\
+    \n        PairGraph pair_graph;\r\n        for(const auto& [f, t, c] : graph.getEdges())\
+    \ {\r\n            pair_graph[std::pair<Node, Node>{f, t}] += c;\r\n        }\r\
+    \n        return pair_graph;\r\n    }\r\n\r\n    auto get_depth(Node s, const\
+    \ PairGraph& graph) const {\r\n        std::vector<Node> depth(m_n, -1);\r\n \
+    \       std::queue<Node> q;\r\n        q.emplace(s);\r\n        depth[s] = 0;\r\
+    \n        while(!q.empty()) {\r\n            auto from = q.front();\r\n      \
+    \      q.pop();\r\n            for(const auto& to : m_to_list[from]) {\r\n   \
+    \             if(graph.find({from, to}) == graph.end()) { continue; }\r\n    \
+    \            if(depth[to] > -1) { continue; }\r\n                depth[to] = depth[from]\
+    \ + 1;\r\n                q.emplace(to);\r\n            }\r\n        }\r\n   \
+    \     return depth;\r\n    }\r\n\r\n    auto update_residual(Node s, PairGraph&\
+    \ residual, const std::list<Node>& route)const {\r\n        Cost mn = 1e18;\r\n\
+    \        auto from = s;\r\n        for(const auto& to : route)if(from != to) {\r\
+    \n            mn = std::min(mn, residual[{from, to}]);\r\n            from = to;\r\
+    \n        }\r\n\r\n        from = s;\r\n        for(const auto& to : route)if(from\
+    \ != to) {\r\n            auto& ft = residual[{from, to}];\r\n            ft -=\
+    \ mn;\r\n            if(ft == 0) { residual.erase({from,to}); }\r\n          \
+    \  residual[{to, from}] += mn;\r\n            from = to;\r\n        }\r\n    }\r\
+    \n    auto construct_residual(Node s, Node t)const {\r\n        auto residual\
+    \ = m_graph;\r\n        while(true) {\r\n            // BFS\r\n            auto\
+    \ depth = get_depth(s, residual);\r\n\r\n            // DFS\r\n            bool\
+    \ run = false;\r\n            std::vector<Node> visited(m_n);\r\n            auto\
+    \ f = [&](auto&& f, Node now, std::list<Node>& route)->void {\r\n            \
+    \    route.emplace_back(now);\r\n\r\n                // t\u306B\u5230\u9054\u3057\
+    \u3066\u3044\u308C\u3070\u6D41\u3059\r\n                if(now == t) { update_residual(s,\
+    \ residual, route); run = true; }\r\n\r\n                for(const auto& to :\
+    \ m_to_list[now]) {\r\n                    if(residual.find({now, to}) == residual.end())\
+    \ { continue; }\r\n                    if(depth[to] <= depth[now]) { continue;\
+    \ }\r\n                    if(visited[to]) { continue; }\r\n                 \
+    \   visited[to] = true;;\r\n                    f(f, to, route);\r\n         \
+    \       }\r\n                route.pop_back();\r\n            };\r\n         \
+    \   std::list<Node> route;\r\n            visited[s] = true;\r\n            f(f,\
+    \ s, route);\r\n            if(!run) { break; }\r\n        }\r\n        return\
+    \ residual;\r\n    }\r\n\r\npublic:\r\n    Dinic(const Graph<Node, Cost>& graph)\
+    \ :\r\n        m_n(graph.size()),\r\n        m_graph(construct_graph(graph)),\r\
     \n        m_to_list(construct_to_list(graph)) {\r\n    }\r\n\r\n    auto max_flow(Node\
     \ s, Node t)const {\r\n        auto residual = construct_residual(s, t);\r\n\r\
     \n        Cost val = 0;\r\n        for(const auto& to : m_to_list[s]) {\r\n  \
@@ -123,29 +124,29 @@ data:
     \ == m_graph.end()) { continue; }\r\n                auto val = m_graph.at({from,\
     \ to}) - residual[{from, to}];\r\n                if(val > 0) { edge.addEdge(from,\
     \ to, val); }\r\n            }\r\n        }\r\n        return edge;\r\n\r\n  \
-    \  }\r\n};\n#line 6 \"Test/Graph/Flow/Dinic.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    auto graph = Graph(n);\r\
-    \n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\n        cin >> u\
-    \ >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\n    auto mf =\
-    \ Dinic(graph);\r\n\r\n    cout << mf.max_flow(0, n - 1) << endl;\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
-    \r\n#include \"./../../../Library/Graph/Flow/Dinic.hpp\"\r\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \n\r\n\r\nsigned main() {\r\n    int n, m;\r\n    cin >> n >> m;\r\n    auto graph\
-    \ = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\n\
-    \        cin >> u >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\
-    \n    auto mf = Dinic(graph);\r\n\r\n    cout << mf.max_flow(0, n - 1) << endl;\r\
-    \n}"
+    \  }\r\n};\n#line 5 \"Test/Graph/Flow/Dinic.test.cpp\"\n\r\n#include <iostream>\r\
+    \n\r\n#line 9 \"Test/Graph/Flow/Dinic.test.cpp\"\n\r\nusing ll = long long;\r\n\
+    using std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned\
+    \ main() {\r\n  int n, m;\r\n  cin >> n >> m;\r\n  auto graph = Graph(n);\r\n\
+    \  for (int i = 0; i < m; ++i) {\r\n    int u, v, c;\r\n    cin >> u >> v >> c;\r\
+    \n    graph.addEdge(u, v, c);\r\n  }\r\n\r\n  auto mf = Dinic(graph);\r\n\r\n\
+    \  cout << mf.max_flow(0, n - 1) << endl;\r\n}\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A\"\
+    \r\n\r\n#include \"./../../../Library/Graph/Flow/Dinic.hpp\"\r\n\r\n#include <iostream>\r\
+    \n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\r\n\r\nusing ll = long long;\r\
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
+    signed main() {\r\n  int n, m;\r\n  cin >> n >> m;\r\n  auto graph = Graph(n);\r\
+    \n  for (int i = 0; i < m; ++i) {\r\n    int u, v, c;\r\n    cin >> u >> v >>\
+    \ c;\r\n    graph.addEdge(u, v, c);\r\n  }\r\n\r\n  auto mf = Dinic(graph);\r\n\
+    \r\n  cout << mf.max_flow(0, n - 1) << endl;\r\n}"
   dependsOn:
-  - Library/Graph/Graph.hpp
   - Library/Graph/Flow/Dinic.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Flow/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Flow/Dinic.test.cpp
 layout: document

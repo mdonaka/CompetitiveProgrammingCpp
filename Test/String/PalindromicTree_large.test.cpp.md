@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/PalindromicTree.hpp
     title: Library/String/PalindromicTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/263
     links:
     - https://yukicoder.me/problems/no/263
   bundledCode: "#line 1 \"Test/String/PalindromicTree_large.test.cpp\"\n#define PROBLEM\
-    \ \"https://yukicoder.me/problems/no/263\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <algorithm>\r\n#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <memory>\r\
+    \ \"https://yukicoder.me/problems/no/263\"\r\n\r\n#include <algorithm>\r\n#include\
+    \ <iostream>\r\n\r\n#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <memory>\r\
     \n#include <string>\r\n#line 5 \"Library/String/PalindromicTree.hpp\"\n#include\
     \ <list>\r\n#include <queue>\r\n#include <stack>\r\n#include <vector>\r\n#include\
     \ <unordered_map>\r\n\r\nauto nullLambda = [](int, const std::list<int>&) {};\r\
@@ -113,41 +113,40 @@ data:
     \r\n    auto outputTree() {\r\n        std::cerr << m_s << std::endl;\r\n    \
     \    std::cerr << \"-- even --\\n\";\r\n        m_rootEven->outputTree(m_s);\r\
     \n        std::cerr << \"-- odd --\\n\";\r\n        m_rootOdd->outputTree(m_s);\r\
-    \n    }\r\n};\n#line 6 \"Test/String/PalindromicTree_large.test.cpp\"\n\r\nusing\
-    \ ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl\
-    \ = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\nsigned main() {\r\n    std::string a, b;\r\n    cin\
-    \ >> a >> b;\r\n    std::string s = a + \"$%\" + b;\r\n\r\n    auto tree = PalindromicTree(s);\r\
-    \n\r\n    ll an = a.size();\r\n    std::vector<std::pair<ll, ll>> dp(s.size());\r\
-    \n    tree.dfs_edges([&](int size, const std::list<int>& ritr) {\r\n        ll\
-    \ l = 0, r = 0;\r\n        for(const auto& x : ritr) if(x != an && x != an + 1)\
-    \ {\r\n            ++((x < an) ? l : r);\r\n        }\r\n        dp[ritr.front()]\
-    \ = {l,r};\r\n    });\r\n\r\n    tree.dp_suffixLink([&](int from, int to) {\r\n\
-    \        dp[to].first += dp[from].first;\r\n        dp[to].second += dp[from].second;\r\
-    \n    });\r\n\r\n    ll ans = 0;\r\n    for(const auto& p : dp) { ans += (p.first\
-    \ * p.second); }\r\n    cout << ans << endl;\r\n}\n"
+    \n    }\r\n};\n#line 7 \"Test/String/PalindromicTree_large.test.cpp\"\n\r\nusing\
+    \ ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl\
+    \ = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  std::string a, b;\r\n  cin >> a >> b;\r\n  std::string s = a +\
+    \ \"$%\" + b;\r\n\r\n  auto tree = PalindromicTree(s);\r\n\r\n  ll an = a.size();\r\
+    \n  std::vector<std::pair<ll, ll>> dp(s.size());\r\n  tree.dfs_edges([&](int size,\
+    \ const std::list<int>& ritr) {\r\n    ll l = 0, r = 0;\r\n    for (const auto&\
+    \ x : ritr)\r\n      if (x != an && x != an + 1) { ++((x < an) ? l : r); }\r\n\
+    \    dp[ritr.front()] = {l, r};\r\n  });\r\n\r\n  tree.dp_suffixLink([&](int from,\
+    \ int to) {\r\n    dp[to].first += dp[from].first;\r\n    dp[to].second += dp[from].second;\r\
+    \n  });\r\n\r\n  ll ans = 0;\r\n  for (const auto& p : dp) { ans += (p.first *\
+    \ p.second); }\r\n  cout << ans << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/263\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <algorithm>\r\n#include \"./../../Library/String/PalindromicTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
-    \    std::string a, b;\r\n    cin >> a >> b;\r\n    std::string s = a + \"$%\"\
-    \ + b;\r\n\r\n    auto tree = PalindromicTree(s);\r\n\r\n    ll an = a.size();\r\
-    \n    std::vector<std::pair<ll, ll>> dp(s.size());\r\n    tree.dfs_edges([&](int\
-    \ size, const std::list<int>& ritr) {\r\n        ll l = 0, r = 0;\r\n        for(const\
-    \ auto& x : ritr) if(x != an && x != an + 1) {\r\n            ++((x < an) ? l\
-    \ : r);\r\n        }\r\n        dp[ritr.front()] = {l,r};\r\n    });\r\n\r\n \
-    \   tree.dp_suffixLink([&](int from, int to) {\r\n        dp[to].first += dp[from].first;\r\
-    \n        dp[to].second += dp[from].second;\r\n    });\r\n\r\n    ll ans = 0;\r\
-    \n    for(const auto& p : dp) { ans += (p.first * p.second); }\r\n    cout <<\
-    \ ans << endl;\r\n}"
+    \ <algorithm>\r\n#include <iostream>\r\n\r\n#include \"./../../Library/String/PalindromicTree.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  std::string a, b;\r\n  cin >> a >> b;\r\n  std::string s = a +\
+    \ \"$%\" + b;\r\n\r\n  auto tree = PalindromicTree(s);\r\n\r\n  ll an = a.size();\r\
+    \n  std::vector<std::pair<ll, ll>> dp(s.size());\r\n  tree.dfs_edges([&](int size,\
+    \ const std::list<int>& ritr) {\r\n    ll l = 0, r = 0;\r\n    for (const auto&\
+    \ x : ritr)\r\n      if (x != an && x != an + 1) { ++((x < an) ? l : r); }\r\n\
+    \    dp[ritr.front()] = {l, r};\r\n  });\r\n\r\n  tree.dp_suffixLink([&](int from,\
+    \ int to) {\r\n    dp[to].first += dp[from].first;\r\n    dp[to].second += dp[from].second;\r\
+    \n  });\r\n\r\n  ll ans = 0;\r\n  for (const auto& p : dp) { ans += (p.first *\
+    \ p.second); }\r\n  cout << ans << endl;\r\n}"
   dependsOn:
   - Library/String/PalindromicTree.hpp
   isVerificationFile: true
   path: Test/String/PalindromicTree_large.test.cpp
   requiredBy: []
-  timestamp: '2022-12-01 01:16:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/PalindromicTree_large.test.cpp
 layout: document

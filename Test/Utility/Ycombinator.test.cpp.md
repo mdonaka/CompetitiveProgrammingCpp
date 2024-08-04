@@ -1,55 +1,54 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Utility/Ycombinator.hpp
     title: Library/Utility/Ycombinator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/2123
     links:
     - https://yukicoder.me/problems/no/2123
   bundledCode: "#line 1 \"Test/Utility/Ycombinator.test.cpp\"\n#define PROBLEM \"\
-    https://yukicoder.me/problems/no/2123\"\r\n\r\n#include <iostream>\r\n#include\
-    \ <iomanip>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Utility/Ycombinator.hpp\"\
+    https://yukicoder.me/problems/no/2123\"\r\n\r\n#line 2 \"Library/Utility/Ycombinator.hpp\"\
     \n\nauto Y = [](auto f) {\n    return [=](auto&&... args) {\n        return f(f,\
-    \ std::forward<decltype(args)>(args)...);\n    };\n};\n\n\n#line 8 \"Test/Utility/Ycombinator.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n\r\nsigned main() {\r\
-    \n    ll n;\r\n    cin >> n;\r\n\r\n    constexpr double nil = -1.0;\r\n    std::vector<double>\
-    \ dp(n + 1, nil);\r\n    auto f = Y([&](auto&& self, ll n) -> double {\r\n   \
-    \     if(n == 0) { return 0.0; }\r\n        if(dp[n] != nil) { return dp[n]; }\r\
-    \n\r\n        double sum = 0.0;\r\n        for(int x = 0; x < n; ++x) {\r\n  \
-    \          int y = n - x - 1;\r\n            sum += self(self, x);\r\n       \
-    \     sum += self(self, y);\r\n        }\r\n        auto ans = sum / n + 1;\r\n\
-    \        dp[n] = ans;\r\n        return ans;\r\n    });\r\n\r\n    cout << f(n)\
-    \ << endl;\r\n}\n"
+    \ std::forward<decltype(args)>(args)...);\n    };\n};\n\n\n#line 4 \"Test/Utility/Ycombinator.test.cpp\"\
+    \n\r\n#include <iomanip>\r\n#include <iostream>\r\n#include <vector>\r\n\r\nusing\
+    \ ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl\
+    \ = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  ll n;\r\n  cin >> n;\r\n\r\n  constexpr double nil = -1.0;\r\n\
+    \  std::vector<double> dp(n + 1, nil);\r\n  auto f = Y([&](auto&& self, ll n)\
+    \ -> double {\r\n    if (n == 0) { return 0.0; }\r\n    if (dp[n] != nil) { return\
+    \ dp[n]; }\r\n\r\n    double sum = 0.0;\r\n    for (int x = 0; x < n; ++x) {\r\
+    \n      int y = n - x - 1;\r\n      sum += self(self, x);\r\n      sum += self(self,\
+    \ y);\r\n    }\r\n    auto ans = sum / n + 1;\r\n    dp[n] = ans;\r\n    return\
+    \ ans;\r\n  });\r\n\r\n  cout << f(n) << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/2123\"\r\n\r\n#include\
-    \ <iostream>\r\n#include <iomanip>\r\n#include <vector>\r\n\r\n#include \"./../../Library/Utility/Ycombinator.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n\r\nsigned main() {\r\
-    \n    ll n;\r\n    cin >> n;\r\n\r\n    constexpr double nil = -1.0;\r\n    std::vector<double>\
-    \ dp(n + 1, nil);\r\n    auto f = Y([&](auto&& self, ll n) -> double {\r\n   \
-    \     if(n == 0) { return 0.0; }\r\n        if(dp[n] != nil) { return dp[n]; }\r\
-    \n\r\n        double sum = 0.0;\r\n        for(int x = 0; x < n; ++x) {\r\n  \
-    \          int y = n - x - 1;\r\n            sum += self(self, x);\r\n       \
-    \     sum += self(self, y);\r\n        }\r\n        auto ans = sum / n + 1;\r\n\
-    \        dp[n] = ans;\r\n        return ans;\r\n    });\r\n\r\n    cout << f(n)\
+    \ \"./../../Library/Utility/Ycombinator.hpp\"\r\n\r\n#include <iomanip>\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\
+    \nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct Preprocessing {\r\
+    \n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
+    \n  };\r\n} _Preprocessing;\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\
+    \n\r\n  constexpr double nil = -1.0;\r\n  std::vector<double> dp(n + 1, nil);\r\
+    \n  auto f = Y([&](auto&& self, ll n) -> double {\r\n    if (n == 0) { return\
+    \ 0.0; }\r\n    if (dp[n] != nil) { return dp[n]; }\r\n\r\n    double sum = 0.0;\r\
+    \n    for (int x = 0; x < n; ++x) {\r\n      int y = n - x - 1;\r\n      sum +=\
+    \ self(self, x);\r\n      sum += self(self, y);\r\n    }\r\n    auto ans = sum\
+    \ / n + 1;\r\n    dp[n] = ans;\r\n    return ans;\r\n  });\r\n\r\n  cout << f(n)\
     \ << endl;\r\n}"
   dependsOn:
   - Library/Utility/Ycombinator.hpp
   isVerificationFile: true
   path: Test/Utility/Ycombinator.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 08:05:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Utility/Ycombinator.test.cpp
 layout: document

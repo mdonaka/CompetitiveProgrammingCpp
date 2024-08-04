@@ -49,36 +49,36 @@ data:
     \ m2.m_val); }\r\n    friend std::ostream& operator<<(std::ostream& os, const\
     \ SemiGroup<S, T>& m) {\r\n        return os << m.m_val;\r\n    }\r\n};\n#line\
     \ 7 \"Test/DataStructure/DisjointSparseTable_xor.test.cpp\"\n\r\nusing ll = long\
-    \ long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\
-    \n\r\nstruct F { auto operator()(ll x, ll y) { return x ^ y; } };\r\nusing SG\
-    \ = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n    ll n, k;\r\n    cin >> n >>\
-    \ k;\r\n\r\n    std::vector<ll> a; a.reserve(n);\r\n    for(int _ = 0; _ < n;\
-    \ ++_) {\r\n        ll x; cin >> x;\r\n        a.emplace_back(x);\r\n    }\r\n\
-    \r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll>\
-    \ st;\r\n    for(int i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i)\
-    \ ^ k);\r\n    }\r\n\r\n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl;\
-    \ return 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0,\
-    \ i)) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout\
-    \ << \"No\" << endl;\r\n}\n"
+    \ long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\
+    \n\r\nstruct F {\r\n  auto operator()(ll x, ll y) { return x ^ y; }\r\n};\r\n\
+    using SG = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n  ll n, k;\r\n  cin >>\
+    \ n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\n  for (int _ = 0;\
+    \ _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\n  }\r\
+    \n\r\n  auto dst = DisjointSparseTable<SG>(n, a);\r\n  std::unordered_set<ll>\
+    \ st;\r\n  for (int i = 0; i < n; ++i) { st.emplace(dst.get(0, i) ^ k); }\r\n\r\
+    \n  if (st.find(0) != st.end()) {\r\n    cout << \"Yes\" << endl;\r\n    return\
+    \ 0;\r\n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    if (st.find(dst.get(0, i))\
+    \ != st.end()) {\r\n      cout << \"Yes\" << endl;\r\n      return 0;\r\n    }\r\
+    \n  }\r\n  cout << \"No\" << endl;\r\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1456\"\r\n\r\n#include\
     \ <iostream>\r\n#include <unordered_set>\r\n\r\n#include \"./../../Library/DataStructure/DisjointSparseTable.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct F { auto operator()(ll x, ll y) { return x\
-    \ ^ y; } };\r\nusing SG = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n    ll n,\
-    \ k;\r\n    cin >> n >> k;\r\n\r\n    std::vector<ll> a; a.reserve(n);\r\n   \
-    \ for(int _ = 0; _ < n; ++_) {\r\n        ll x; cin >> x;\r\n        a.emplace_back(x);\r\
-    \n    }\r\n\r\n    auto dst = DisjointSparseTable<SG>(n, a);\r\n    std::unordered_set<ll>\
-    \ st;\r\n    for(int i = 0; i < n; ++i) {\r\n        st.emplace(dst.get(0, i)\
-    \ ^ k);\r\n    }\r\n\r\n    if(st.find(0) != st.end()) { cout << \"Yes\" << endl;\
-    \ return 0; }\r\n    for(int i = 0; i < n; ++i) {\r\n        if(st.find(dst.get(0,\
-    \ i)) != st.end()) { cout << \"Yes\" << endl; return 0; }\r\n    }\r\n    cout\
-    \ << \"No\" << endl;\r\n}"
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct F {\r\n  auto operator()(ll x, ll y) { return\
+    \ x ^ y; }\r\n};\r\nusing SG = SemiGroup<ll, F>;\r\n\r\nsigned main() {\r\n  ll\
+    \ n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\n\
+    \  for (int _ = 0; _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
+    \n  }\r\n\r\n  auto dst = DisjointSparseTable<SG>(n, a);\r\n  std::unordered_set<ll>\
+    \ st;\r\n  for (int i = 0; i < n; ++i) { st.emplace(dst.get(0, i) ^ k); }\r\n\r\
+    \n  if (st.find(0) != st.end()) {\r\n    cout << \"Yes\" << endl;\r\n    return\
+    \ 0;\r\n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    if (st.find(dst.get(0, i))\
+    \ != st.end()) {\r\n      cout << \"Yes\" << endl;\r\n      return 0;\r\n    }\r\
+    \n  }\r\n  cout << \"No\" << endl;\r\n}"
   dependsOn:
   - Library/DataStructure/DisjointSparseTable.hpp
   isVerificationFile: true
   path: Test/DataStructure/DisjointSparseTable_xor.test.cpp
   requiredBy: []
-  timestamp: '2023-03-07 04:44:12+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DisjointSparseTable_xor.test.cpp

@@ -16,8 +16,8 @@ data:
     - https://judge.yosupo.jp/problem/segment_add_get_min
   bundledCode: "#line 1 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\r\n\r\n\
-    #include <iostream>\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\n\
-    #include <limits>\r\n#include <vector>\r\n#include <memory>\r\n#include <algorithm>\r\
+    #include <iostream>\r\n\r\n#line 2 \"Library/DataStructure/LiChaoTree.hpp\"\n\r\
+    \n#include <limits>\r\n#include <vector>\r\n#include <memory>\r\n#include <algorithm>\r\
     \n#include <unordered_map>\r\n#line 9 \"Library/DataStructure/LiChaoTree.hpp\"\
     \n\r\n/*\r\n * \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u304C\u5FC5\u8981\r\n * \u30AF\
     \u30A8\u30EA\u3067\u547C\u3070\u308C\u308Bx\u3068\u7DDA\u5206\u306E\u7AEF\u70B9\
@@ -111,43 +111,41 @@ data:
     \ }\r\n        node->line.debug();\r\n        if(node->left) { std::cout << \"\
     L\"; debug(node->left, size + 1); }\r\n        if(node->right) { std::cout <<\
     \ \"R\"; debug(node->right, size + 1); }\r\n    }\r\n    auto debug()const { debug(m_root,\
-    \ 0); }\r\n};\r\n#line 5 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b, l, r;\r\
-    \n    Query(int k, ll l, ll r, ll a, ll b) :k(k), a(a), b(b), l(l), r(r) {}\r\n\
-    \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
-    \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
-    \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
-    \ l >> r >> a >> b; --r;\r\n        lct.addSegment(a, b, l, r);\r\n    }\r\n\r\
-    \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
-    \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
-    \ r >> a >> b; --r;\r\n            lct.addSegment(a, b, l, r);\r\n        } else\
-    \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
-    \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
-    \n            } else {\r\n                cout << ans << endl;\r\n           \
-    \ }\r\n        }\r\n    }\r\n}\r\n"
+    \ 0); }\r\n};\r\n#line 6 \"Test/DataStructure/DynamicLiChaoTree_segment.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n  int k;\r\n  ll a, b, l, r;\r\n\
+    \  Query(int k, ll l, ll r, ll a, ll b) : k(k), a(a), b(b), l(l), r(r) {}\r\n\
+    \  Query(int k, ll x) : Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
+    \n  ll n, q;\r\n  cin >> n >> q;\r\n\r\n  auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
+    \n  for (int _ = 0; _ < n; ++_) {\r\n    ll l, r, a, b;\r\n    cin >> l >> r >>\
+    \ a >> b;\r\n    --r;\r\n    lct.addSegment(a, b, l, r);\r\n  }\r\n\r\n  for (int\
+    \ _ = 0; _ < q; ++_) {\r\n    ll k;\r\n    cin >> k;\r\n    if (k == 0) {\r\n\
+    \      ll l, r, a, b;\r\n      cin >> l >> r >> a >> b;\r\n      --r;\r\n    \
+    \  lct.addSegment(a, b, l, r);\r\n    } else {\r\n      ll x;\r\n      cin >>\
+    \ x;\r\n      auto ans = lct.query(x);\r\n      if (ans >= 2e18) {\r\n       \
+    \ cout << \"INFINITY\" << endl;\r\n      } else {\r\n        cout << ans << endl;\r\
+    \n      }\r\n    }\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\r\
-    \n\r\n#include <iostream>\r\n#include \"./../../Library/DataStructure/LiChaoTree.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n    int k;\r\n    ll a, b, l, r;\r\
-    \n    Query(int k, ll l, ll r, ll a, ll b) :k(k), a(a), b(b), l(l), r(r) {}\r\n\
-    \    Query(int k, ll x) :Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
-    \n    ll n, q;\r\n    cin >> n >> q;\r\n\r\n    auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
-    \n    for(int _ = 0; _ < n; ++_) {\r\n        ll l, r, a, b;\r\n        cin >>\
-    \ l >> r >> a >> b; --r;\r\n        lct.addSegment(a, b, l, r);\r\n    }\r\n\r\
-    \n    for(int _ = 0; _ < q; ++_) {\r\n        ll k;\r\n        cin >> k;\r\n \
-    \       if(k == 0) {\r\n            ll l, r, a, b;\r\n            cin >> l >>\
-    \ r >> a >> b; --r;\r\n            lct.addSegment(a, b, l, r);\r\n        } else\
-    \ {\r\n            ll x;\r\n            cin >> x;\r\n            auto ans = lct.query(x);\r\
-    \n            if(ans >= 2e18) {\r\n                cout << \"INFINITY\" << endl;\r\
-    \n            } else {\r\n                cout << ans << endl;\r\n           \
-    \ }\r\n        }\r\n    }\r\n}\r\n"
+    \n\r\n#include <iostream>\r\n\r\n#include \"./../../Library/DataStructure/LiChaoTree.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nstruct Query {\r\n  int k;\r\n  ll a, b, l, r;\r\n\
+    \  Query(int k, ll l, ll r, ll a, ll b) : k(k), a(a), b(b), l(l), r(r) {}\r\n\
+    \  Query(int k, ll x) : Query(k, 0, 0, x, x) {}\r\n};\r\n\r\nsigned main() {\r\
+    \n  ll n, q;\r\n  cin >> n >> q;\r\n\r\n  auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();\r\
+    \n  for (int _ = 0; _ < n; ++_) {\r\n    ll l, r, a, b;\r\n    cin >> l >> r >>\
+    \ a >> b;\r\n    --r;\r\n    lct.addSegment(a, b, l, r);\r\n  }\r\n\r\n  for (int\
+    \ _ = 0; _ < q; ++_) {\r\n    ll k;\r\n    cin >> k;\r\n    if (k == 0) {\r\n\
+    \      ll l, r, a, b;\r\n      cin >> l >> r >> a >> b;\r\n      --r;\r\n    \
+    \  lct.addSegment(a, b, l, r);\r\n    } else {\r\n      ll x;\r\n      cin >>\
+    \ x;\r\n      auto ans = lct.query(x);\r\n      if (ans >= 2e18) {\r\n       \
+    \ cout << \"INFINITY\" << endl;\r\n      } else {\r\n        cout << ans << endl;\r\
+    \n      }\r\n    }\r\n  }\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LiChaoTree.hpp
   isVerificationFile: true
   path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
   requiredBy: []
-  timestamp: '2023-04-13 03:52:43+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp

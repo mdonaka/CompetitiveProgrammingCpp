@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/DataStructure/DynamicSegmentTree.test.cpp
     title: Test/DataStructure/DynamicSegmentTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
     title: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n\r\n#include\
@@ -103,7 +103,7 @@ data:
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
   timestamp: '2023-07-22 05:28:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp

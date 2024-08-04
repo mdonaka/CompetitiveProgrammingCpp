@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -18,12 +18,14 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B
   bundledCode: "#line 1 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n#define\
-    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B\"\
-    \r\n\r\n#include <iostream>\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <vector>\r\
-    \n#include <deque>\r\n#include <tuple>\r\n\r\ntemplate<class Node = int, class\
-    \ Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\n    //using\
-    \ Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
-    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B\"\
+    \r\n\r\n#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#include <deque>\r\n#include <queue>\r\n\
+    #include <unordered_map>\r\n#include <unordered_set>\r\n#include <map>\r\n\r\n\
+    #line 4 \"Library/Graph/Graph.hpp\"\n#include <tuple>\r\n\r\ntemplate<class Node\
+    \ = int, class Cost = long long>\r\nclass Graph {\r\n    //using Node = int;\r\
+    \n    //using Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\
+    \n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
     \ m_graph;\r\n\r\npublic:\r\n    Graph(int n) :m_n(n), m_graph(n) {}\r\n\r\n \
     \   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      \
     \  m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
@@ -46,20 +48,17 @@ data:
     \ { return m_n; };\r\n    auto debug(bool directed = false)const {\r\n       \
     \ for(const auto& [f, t, c] : getEdges())if(f < t || directed) {\r\n         \
     \   std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n        }\r\
-    \n    }\r\n};\n#line 2 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n\
-    #line 6 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n#include <queue>\r\n\
-    #include <unordered_map>\r\n#include <unordered_set>\r\n#include <map>\r\n\r\n\
-    #line 12 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\ntemplate<class\
-    \ Node, class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\n    //using\
-    \ Node = int;\r\n    //using Cap = int;\r\n    //using Cost = int;\r\n\r\n   \
-    \ using GraphCap = std::vector<std::vector<Cap>>;\r\n    using GraphCost = std::vector<std::vector<Cost>>;\r\
-    \n\r\n    const Graph<Node, std::pair<Cap, Cost>> m_graph;\r\n    const Graph<Node,\
-    \ bool> m_graph_undirected;\r\n\r\n\r\n    auto construct_graph_undirected()const\
-    \ {\r\n        auto graph_undirected = Graph<Node, bool>(m_graph.size());\r\n\
-    \        for(const auto& [f, t] : m_graph.getEdgesExcludeCost()) {\r\n       \
-    \     graph_undirected.addEdgeUndirected(f, t);\r\n        }\r\n        return\
-    \ graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap()const {\r\n\
-    \        auto n = m_graph.size();\r\n        GraphCap graph_cap(n, std::vector<Cap>(n));\r\
+    \n    }\r\n};\n#line 12 \"Library/Graph/Flow/SuccessiveShortestPath.hpp\"\n\r\n\
+    template<class Node, class Cap, class Cost>\r\nclass SuccessiveShortestPath {\r\
+    \n    //using Node = int;\r\n    //using Cap = int;\r\n    //using Cost = int;\r\
+    \n\r\n    using GraphCap = std::vector<std::vector<Cap>>;\r\n    using GraphCost\
+    \ = std::vector<std::vector<Cost>>;\r\n\r\n    const Graph<Node, std::pair<Cap,\
+    \ Cost>> m_graph;\r\n    const Graph<Node, bool> m_graph_undirected;\r\n\r\n\r\
+    \n    auto construct_graph_undirected()const {\r\n        auto graph_undirected\
+    \ = Graph<Node, bool>(m_graph.size());\r\n        for(const auto& [f, t] : m_graph.getEdgesExcludeCost())\
+    \ {\r\n            graph_undirected.addEdgeUndirected(f, t);\r\n        }\r\n\
+    \        return graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap()const\
+    \ {\r\n        auto n = m_graph.size();\r\n        GraphCap graph_cap(n, std::vector<Cap>(n));\r\
     \n        for(const auto& [f, t, cc] : m_graph.getEdges()) {\r\n            auto\
     \ [cap, _] = cc;\r\n            graph_cap[f][t] += cap;\r\n        }\r\n     \
     \   return graph_cap;\r\n    }\r\n    auto construct_graph_cost() const {\r\n\
@@ -122,31 +121,32 @@ data:
     \ use_all = 0;\r\n        Cost cost_all = 0;\r\n        for(const auto& [u, c]\
     \ : slope(s, t, c)) {\r\n            use_all += u; cost_all += c;\r\n        }\r\
     \n        return std::pair<Cap, Cost>{use_all, cost_all};\r\n    }\r\n};\r\n#line\
-    \ 6 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    int n, m, f;\r\n    cin >> n >> m >> f;\r\n    auto graph\
-    \ = Graph<int, std::pair<ll, ll>>(n);\r\n    for(int i = 0; i < m; ++i) {\r\n\
-    \        int u, v, c, d;\r\n        cin >> u >> v >> c >> d;\r\n        graph.addEdge(u,\
-    \ v, std::make_pair(c, d));\r\n    }\r\n\r\n    auto mcf = SuccessiveShortestPath(graph);\r\
-    \n\r\n    auto [u, c] = mcf.min_cost_max_flow(0, n - 1, f);\r\n    cout << ((u\
-    \ == f) ? c : -1) << endl;\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
-    \r\n#include \"./../../../Library/Graph/Flow/SuccessiveShortestPath.hpp\"\r\n\r\
-    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    int n, m, f;\r\n    cin >> n\
-    \ >> m >> f;\r\n    auto graph = Graph<int, std::pair<ll, ll>>(n);\r\n    for(int\
-    \ i = 0; i < m; ++i) {\r\n        int u, v, c, d;\r\n        cin >> u >> v >>\
-    \ c >> d;\r\n        graph.addEdge(u, v, std::make_pair(c, d));\r\n    }\r\n\r\
-    \n    auto mcf = SuccessiveShortestPath(graph);\r\n\r\n    auto [u, c] = mcf.min_cost_max_flow(0,\
-    \ n - 1, f);\r\n    cout << ((u == f) ? c : -1) << endl;\r\n}"
+    \ 5 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n\r\n#line 7 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\
+    \n\r\n#line 9 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n\r\nusing ll\
+    \ = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl =\
+    \ '\\n';\r\n\r\nsigned main() {\r\n  int n, m, f;\r\n  cin >> n >> m >> f;\r\n\
+    \  auto graph = Graph<int, std::pair<ll, ll>>(n);\r\n  for (int i = 0; i < m;\
+    \ ++i) {\r\n    int u, v, c, d;\r\n    cin >> u >> v >> c >> d;\r\n    graph.addEdge(u,\
+    \ v, std::make_pair(c, d));\r\n  }\r\n\r\n  auto mcf = SuccessiveShortestPath(graph);\r\
+    \n\r\n  auto [u, c] = mcf.min_cost_max_flow(0, n - 1, f);\r\n  cout << ((u ==\
+    \ f) ? c : -1) << endl;\r\n}\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B\"\
+    \r\n\r\n#include \"./../../../Library/Graph/Flow/SuccessiveShortestPath.hpp\"\r\
+    \n\r\n#include <iostream>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
+    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, m, f;\r\n  cin >> n >>\
+    \ m >> f;\r\n  auto graph = Graph<int, std::pair<ll, ll>>(n);\r\n  for (int i\
+    \ = 0; i < m; ++i) {\r\n    int u, v, c, d;\r\n    cin >> u >> v >> c >> d;\r\n\
+    \    graph.addEdge(u, v, std::make_pair(c, d));\r\n  }\r\n\r\n  auto mcf = SuccessiveShortestPath(graph);\r\
+    \n\r\n  auto [u, c] = mcf.min_cost_max_flow(0, n - 1, f);\r\n  cout << ((u ==\
+    \ f) ? c : -1) << endl;\r\n}"
   dependsOn:
-  - Library/Graph/Graph.hpp
   - Library/Graph/Flow/SuccessiveShortestPath.hpp
+  - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
+  timestamp: '2024-08-05 00:48:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/SuccessiveShortestPath.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/dijkstra.hpp
     title: Library/Graph/Normal/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A
-  bundledCode: "#line 1 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\r\n\r\n#include\
-    \ <iostream>\r\n#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <queue>\n\
-    #include <vector>\n#line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
+  bundledCode: "#line 1 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n#define PROBLEM \\\
+    \r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\r\n\
+    \r\n#line 2 \"Library/Graph/Normal/dijkstra.hpp\"\n#include <queue>\n#include\
+    \ <vector>\n#line 3 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
     \ <tuple>\r\n\r\ntemplate<class Node = int, class Cost = long long>\r\nclass Graph\
     \ {\r\n    //using Node = int;\r\n    //using Cost = long long;\r\n\r\n    using\
     \ Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\n\r\n\
@@ -56,33 +56,33 @@ data:
     \ < now_cost) { continue; }\n        for(const auto& [to, c] : graph.getEdges(from))\
     \ {\n            if(now_cost + c < cost[to]) {\n                cost[to] = now_cost\
     \ + c;\n                q.emplace(cost[to], to);\n            }\n        }\n \
-    \   }\n    return cost;\n}\n#line 6 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n\r\
-    \nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\n\r\nsigned main() {\r\n    int n, m, r;\r\n    cin >> n\
-    \ >> m >> r;\r\n\r\n    auto graph = Graph(n);\r\n    for(int i = 0; i < m; ++i)\
-    \ {\r\n        int u, v, c;\r\n        cin >> u >> v >> c;\r\n        graph.addEdge(u,\
-    \ v, c);\r\n    }\r\n\r\n    auto min_cost = dijkstra(graph, r);\r\n\r\n    for(const\
-    \ auto x : min_cost) {\r\n        if(x > 1e17) {\r\n            cout << \"INF\"\
-    \ << endl;\r\n        } else {\r\n            cout << x << endl;\r\n        }\r\
-    \n    }\r\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\
-    \r\n\r\n#include <iostream>\r\n#include \"./../../../Library/Graph/Normal/dijkstra.hpp\"\
-    \r\n#include \"./../../../Library/Graph/Graph.hpp\"\r\n\r\nusing ll = long long;\r\
-    \nusing std::cout;\r\nusing std::cin;\r\nconstexpr char endl = '\\n';\r\n\r\n\r\
-    \nsigned main() {\r\n    int n, m, r;\r\n    cin >> n >> m >> r;\r\n\r\n    auto\
-    \ graph = Graph(n);\r\n    for(int i = 0; i < m; ++i) {\r\n        int u, v, c;\r\
-    \n        cin >> u >> v >> c;\r\n        graph.addEdge(u, v, c);\r\n    }\r\n\r\
-    \n    auto min_cost = dijkstra(graph, r);\r\n\r\n    for(const auto x : min_cost)\
-    \ {\r\n        if(x > 1e17) {\r\n            cout << \"INF\" << endl;\r\n    \
-    \    } else {\r\n            cout << x << endl;\r\n        }\r\n    }\r\n}"
+    \   }\n    return cost;\n}\n#line 5 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n\r\
+    \n#include <iostream>\r\n\r\n#line 9 \"Test/Graph/Normal/Dijkstra.test.cpp\"\n\
+    \r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, m, r;\r\n  cin >> n >>\
+    \ m >> r;\r\n\r\n  auto graph = Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\
+    \n    int u, v, c;\r\n    cin >> u >> v >> c;\r\n    graph.addEdge(u, v, c);\r\
+    \n  }\r\n\r\n  auto min_cost = dijkstra(graph, r);\r\n\r\n  for (const auto x\
+    \ : min_cost) {\r\n    if (x > 1e17) {\r\n      cout << \"INF\" << endl;\r\n \
+    \   } else {\r\n      cout << x << endl;\r\n    }\r\n  }\r\n}\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A\"\
+    \r\n\r\n#include \"./../../../Library/Graph/Normal/dijkstra.hpp\"\r\n\r\n#include\
+    \ <iostream>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\r\n\r\nusing\
+    \ ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl\
+    \ = '\\n';\r\n\r\nsigned main() {\r\n  int n, m, r;\r\n  cin >> n >> m >> r;\r\
+    \n\r\n  auto graph = Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\n    int u,\
+    \ v, c;\r\n    cin >> u >> v >> c;\r\n    graph.addEdge(u, v, c);\r\n  }\r\n\r\
+    \n  auto min_cost = dijkstra(graph, r);\r\n\r\n  for (const auto x : min_cost)\
+    \ {\r\n    if (x > 1e17) {\r\n      cout << \"INF\" << endl;\r\n    } else {\r\
+    \n      cout << x << endl;\r\n    }\r\n  }\r\n}"
   dependsOn:
   - Library/Graph/Normal/dijkstra.hpp
   - Library/Graph/Graph.hpp
   isVerificationFile: true
   path: Test/Graph/Normal/Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 23:59:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Dijkstra.test.cpp
 layout: document

@@ -1,45 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D
-  bundledCode: "#line 1 \"Test/String/SuffixArray.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
-    \n#include <numeric>\r\n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto\
-    \ binarySearch(double ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]]\
-    \ auto _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\
-    \n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
+  bundledCode: "#line 1 \"Test/String/SuffixArray.test.cpp\"\n#define PROBLEM \\\r\
+    \n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\r\
+    \n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\n\
+    #include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double ok,\
+    \ double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]] auto\
+    \ _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\n\
+    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
     template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
     \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
     \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
-    \    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#line\
-    \ 5 \"Library/String/SuffixArray.hpp\"\n#include <vector>\r\n#include <list>\r\
-    \n#include <string>\r\n#include <set>\r\n#include <unordered_map>\r\n/**\r\n *\
-    \ SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\
-    \u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\
-    \u304C\u5F97\u3089\u308C\u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc,\
-    \ badc, c, dc])\r\n *\r\n * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\u88C5\
-    \r\n */\r\nclass SuffixArray {\r\n    enum class TYPE {\r\n        L, S, LMS\r\
-    \n    };\r\n\r\n    const std::string m_str;\r\n    const std::vector<int> m_suffixArray;\r\
-    \n\r\n    /* string to vector<int> */\r\n    static std::vector<int> toIntVec(const\
-    \ std::string& str) {\r\n        std::vector<int> vec;\r\n        vec.reserve(str.size()\
-    \ + 1);\r\n        for(const auto& c : str) {\r\n            vec.emplace_back(c\
-    \ - '0' + 1);\r\n        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\
-    \n    }\r\n\r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE>\
+    \    return ok;\r\n}\r\n#line 3 \"Library/String/SuffixArray.hpp\"\n\r\n#include\
+    \ <iostream>\r\n#include <vector>\r\n#include <list>\r\n#include <string>\r\n\
+    #include <set>\r\n#include <unordered_map>\r\n/**\r\n * SuffixArray\u3092\u69CB\
+    \u7BC9\u3059\u308B\r\n * O(N)\r\n * \u6587\u5B57\u5217\u306E\u5168\u3066\u306E\
+    suffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\
+    \u308B\r\n * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n *\r\n\
+    \ * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\u88C5\r\n */\r\nclass SuffixArray\
+    \ {\r\n    enum class TYPE {\r\n        L, S, LMS\r\n    };\r\n\r\n    const std::string\
+    \ m_str;\r\n    const std::vector<int> m_suffixArray;\r\n\r\n    /* string to\
+    \ vector<int> */\r\n    static std::vector<int> toIntVec(const std::string& str)\
+    \ {\r\n        std::vector<int> vec;\r\n        vec.reserve(str.size() + 1);\r\
+    \n        for(const auto& c : str) {\r\n            vec.emplace_back(c - '0' +\
+    \ 1);\r\n        }\r\n        vec.emplace_back(0);\r\n        return vec;\r\n\
+    \    }\r\n\r\n    /* classify { L, S, LMS } */\r\n    static std::vector<TYPE>\
     \ classifying(const std::vector<int>& str) {\r\n        auto sz = str.size();\r\
     \n        auto typeArray = std::vector<TYPE>(sz);\r\n        typeArray[sz - 1]\
     \ = TYPE::S;\r\n        for(int i = sz - 2; i >= 0; --i) {\r\n            if(str[i]\
@@ -133,35 +134,34 @@ data:
     \      for(const auto& x : m_suffixArray) {\r\n            std::cout << x << \"\
     \ \";\r\n        }std::cout << std::endl;\r\n        auto end = m_str.size();\r\
     \n        for(const auto& x : m_suffixArray) {\r\n            std::cout << m_str.substr(x,\
-    \ end) << std::endl;\r\n        }\r\n    }\r\n};\n#line 6 \"Test/String/SuffixArray.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
-    \    std::string s;\r\n    ll n;\r\n    cin >> s >> n;\r\n    std::vector<std::string>\
-    \ vt;\r\n    vt.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        std::string\
-    \ t;\r\n        cin >> t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto\
-    \ sa = SuffixArray(s);\r\n\r\n    for(const auto& t : vt) {\r\n        auto [l,\
-    \ r] = sa.findPattern(t);\r\n        cout << ((r - l) > 0) << endl;\r\n    }\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../Library/String/SuffixArray.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cout;\r\nusing std::cin;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\nsigned main() {\r\n\
-    \    std::string s;\r\n    ll n;\r\n    cin >> s >> n;\r\n    std::vector<std::string>\
-    \ vt;\r\n    vt.reserve(n);\r\n    for(int _ = 0; _ < n; ++_) {\r\n        std::string\
-    \ t;\r\n        cin >> t;\r\n        vt.emplace_back(t);\r\n    }\r\n\r\n    auto\
-    \ sa = SuffixArray(s);\r\n\r\n    for(const auto& t : vt) {\r\n        auto [l,\
-    \ r] = sa.findPattern(t);\r\n        cout << ((r - l) > 0) << endl;\r\n    }\r\
-    \n}"
+    \ end) << std::endl;\r\n        }\r\n    }\r\n};\n#line 5 \"Test/String/SuffixArray.test.cpp\"\
+    \n\r\n#line 7 \"Test/String/SuffixArray.test.cpp\"\n\r\nusing ll = long long;\r\
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct\
+    \ Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
+    \n  };\r\n} _Preprocessing;\r\n\r\nsigned main() {\r\n  std::string s;\r\n  ll\
+    \ n;\r\n  cin >> s >> n;\r\n  std::vector<std::string> vt;\r\n  vt.reserve(n);\r\
+    \n  for (int _ = 0; _ < n; ++_) {\r\n    std::string t;\r\n    cin >> t;\r\n \
+    \   vt.emplace_back(t);\r\n  }\r\n\r\n  auto sa = SuffixArray(s);\r\n\r\n  for\
+    \ (const auto& t : vt) {\r\n    auto [l, r] = sa.findPattern(t);\r\n    cout <<\
+    \ ((r - l) > 0) << endl;\r\n  }\r\n}\n"
+  code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_D\"\
+    \r\n\r\n#include \"./../../Library/String/SuffixArray.hpp\"\r\n\r\n#include <iostream>\r\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  std::string s;\r\n  ll n;\r\n  cin >> s >> n;\r\n  std::vector<std::string>\
+    \ vt;\r\n  vt.reserve(n);\r\n  for (int _ = 0; _ < n; ++_) {\r\n    std::string\
+    \ t;\r\n    cin >> t;\r\n    vt.emplace_back(t);\r\n  }\r\n\r\n  auto sa = SuffixArray(s);\r\
+    \n\r\n  for (const auto& t : vt) {\r\n    auto [l, r] = sa.findPattern(t);\r\n\
+    \    cout << ((r - l) > 0) << endl;\r\n  }\r\n}"
   dependsOn:
   - Library/String/SuffixArray.hpp
   - Library/Algorithms/BinarySearch.hpp
   isVerificationFile: true
   path: Test/String/SuffixArray.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 01:34:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-05 00:48:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/SuffixArray.test.cpp
 layout: document
