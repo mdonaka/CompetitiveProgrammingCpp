@@ -45,18 +45,14 @@ public:
   auto find(int l, int r, int size) const {
     std::deque<int> dq;
     for (int i = l; i <= r; ++i)
-      if (m_zArray[i] == size) {
-        dq.emplace_back(i);
-      }
+      if (m_zArray[i] == size) { dq.emplace_back(i); }
     return dq;
   }
 
   /* output for debug */
   void debugOutput() const {
     std::cerr << "-- z array --" << std::endl;
-    for (const auto& x : m_zArray) {
-      std::cerr << x << " ";
-    }
+    for (const auto& x : m_zArray) { std::cerr << x << " "; }
     std::cerr << std::endl;
   }
 

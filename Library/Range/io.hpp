@@ -41,9 +41,7 @@ namespace myranges {
       auto operator*() const { return val; }
       auto& operator++() {
         --count;
-        if (count >= 0) {
-          val = _tuple_input<Args...>();
-        }
+        if (count >= 0) { val = _tuple_input<Args...>(); }
         return *this;
       }
       auto operator++(int) { return ++*this; }
