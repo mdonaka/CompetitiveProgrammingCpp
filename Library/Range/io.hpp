@@ -70,14 +70,16 @@ namespace myranges {
   }  // namespace __detail
 
   namespace views {
+    template <class... Args>
     struct _Istream {
       template <__detail::__can_istream_view _Tp>
       constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {
-        return istream_view(std::forward<_Tp>(__e));
+        return istream_view<Args...>(std::forward<_Tp>(__e));
       }
     };
 
-    inline constexpr _Istream istream{};
+    template <class... Args>
+    inline constexpr _Istream<Args...> istream{};
   }  // namespace views
 
 }  // namespace myranges
