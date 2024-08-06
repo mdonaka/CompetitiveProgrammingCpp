@@ -1,8 +1,11 @@
 .DEFAULT_GOAL := help
 
 SRC ?= main.cpp
-BIN_RUN := Bin/run.out
-BIN_TEST := Bin/test.out
+
+BUILD_DIR := Bin/
+SRC_FLAT = $(subst /,_,$(SRC))
+BIN_RUN = $(BUILD_DIR)/$(SRC_FLAT:.cpp=.out)
+BIN_TEST := $(BUILD_DIR)/test.out
 OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 
@@ -30,7 +33,7 @@ t: $(BIN_TEST) ## test
 
 .PHONY: clean
 clean: ## clean
-	@rm -f $(BIN_RUN) $(BIN_TEST) $(DEPENDS)
+	@rm -f $(BUILD_DIR)/*
 
 -include $(DEPENDS)
 
