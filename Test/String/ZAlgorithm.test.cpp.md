@@ -31,20 +31,19 @@ data:
     \ zArray;\r\n  }\r\n\r\npublic:\r\n  ZAlgorithm(const std::string& str) : m_zArray(constrcutZArray(str))\
     \ {}\r\n\r\n  /* i\u2208[l,r]\u3067z[i]=size\u3068\u306A\u308Bindex\u3092\u8FD4\
     \u3059 */\r\n  auto find(int l, int r, int size) const {\r\n    std::deque<int>\
-    \ dq;\r\n    for (int i = l; i <= r; ++i)\r\n      if (m_zArray[i] == size) {\r\
-    \n        dq.emplace_back(i);\r\n      }\r\n    return dq;\r\n  }\r\n\r\n  /*\
-    \ output for debug */\r\n  void debugOutput() const {\r\n    std::cerr << \"--\
-    \ z array --\" << std::endl;\r\n    for (const auto& x : m_zArray) {\r\n     \
-    \ std::cerr << x << \" \";\r\n    }\r\n    std::cerr << std::endl;\r\n  }\r\n\r\
-    \n  auto get() const { return m_zArray; }\r\n};\r\n#line 5 \"Test/String/ZAlgorithm.test.cpp\"\
-    \n\r\n#line 7 \"Test/String/ZAlgorithm.test.cpp\"\n\r\nusing ll = long long;\r\
-    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct\
-    \ Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
-    \n  };\r\n} _Preprocessing;\r\n\r\nsigned main() {\r\n  std::string p, t;\r\n\
-    \  cin >> p >> t;\r\n\r\n  std::string s = t + \"$\" + p;\r\n  auto za = ZAlgorithm(s);\r\
-    \n\r\n  int tsz = t.size();\r\n  int ssz = s.size();\r\n  auto ans = za.find(tsz,\
-    \ ssz - 1, tsz);\r\n\r\n  for (const auto& it : ans) { cout << it - tsz - 1 <<\
-    \ endl; }\r\n}\n"
+    \ dq;\r\n    for (int i = l; i <= r; ++i)\r\n      if (m_zArray[i] == size) {\
+    \ dq.emplace_back(i); }\r\n    return dq;\r\n  }\r\n\r\n  /* output for debug\
+    \ */\r\n  void debugOutput() const {\r\n    std::cerr << \"-- z array --\" <<\
+    \ std::endl;\r\n    for (const auto& x : m_zArray) { std::cerr << x << \" \";\
+    \ }\r\n    std::cerr << std::endl;\r\n  }\r\n\r\n  auto get() const { return m_zArray;\
+    \ }\r\n};\r\n#line 5 \"Test/String/ZAlgorithm.test.cpp\"\n\r\n#line 7 \"Test/String/ZAlgorithm.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
+    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
+    \ main() {\r\n  std::string p, t;\r\n  cin >> p >> t;\r\n\r\n  std::string s =\
+    \ t + \"$\" + p;\r\n  auto za = ZAlgorithm(s);\r\n\r\n  int tsz = t.size();\r\n\
+    \  int ssz = s.size();\r\n  auto ans = za.find(tsz, ssz - 1, tsz);\r\n\r\n  for\
+    \ (const auto& it : ans) { cout << it - tsz - 1 << endl; }\r\n}\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B\"\
     \r\n\r\n#include \"./../../Library/String/ZAlgorithm.hpp\"\r\n\r\n#include <iostream>\r\
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
@@ -59,7 +58,7 @@ data:
   isVerificationFile: true
   path: Test/String/ZAlgorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-08-05 00:48:43+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/ZAlgorithm.test.cpp

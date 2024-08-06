@@ -34,28 +34,27 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include <numeric>\r\
     \n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double\
-    \ ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]] auto\
-    \ _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\n\
-    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
-    template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
-    \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
-    \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
-    \    return ok;\r\n}\r\n"
+    \ ok, double ng, int rep, const Lambda& is_ok) {\r\n  for ([[maybe_unused]] auto\
+    \ _ : std::views::iota(0, rep)) {\r\n    double mid = (ok + ng) / 2.0;\r\n   \
+    \ (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\n  return ok;\r\n}\r\n\r\ntemplate <class\
+    \ Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda& is_ok)\
+    \ {\r\n  while (std::abs(ok - ng) > 1) {\r\n    long long mid = (ok + ng) >> 1;\r\
+    \n    (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\n  return ok;\r\n}\r\n"
   code: "#pragma once\r\n#include <numeric>\r\n#include <ranges>\r\n\r\ntemplate <class\
     \ Lambda>\r\nauto binarySearch(double ok, double ng, int rep, const Lambda& is_ok)\
-    \ {\r\n    for([[maybe_unused]] auto _ : std::views::iota(0, rep)) {\r\n     \
-    \   double mid = (ok + ng) / 2.0;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n\
-    \    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long\
-    \ long ok, long long ng, const Lambda& is_ok) {\r\n    while(std::abs(ok - ng)\
-    \ > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok\
-    \ : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n"
+    \ {\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, rep)) {\r\n    double\
+    \ mid = (ok + ng) / 2.0;\r\n    (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\n  return\
+    \ ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long long ok, long\
+    \ long ng, const Lambda& is_ok) {\r\n  while (std::abs(ok - ng) > 1) {\r\n   \
+    \ long long mid = (ok + ng) >> 1;\r\n    (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\
+    \n  return ok;\r\n}\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Algorithms/BinarySearch.hpp
   requiredBy:
   - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
-  timestamp: '2024-07-19 01:34:00+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/String/SuffixArray.test.cpp

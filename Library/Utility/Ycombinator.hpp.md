@@ -12,15 +12,15 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Ycombinator.hpp\"\n\nauto Y = [](auto f)\
-    \ {\n    return [=](auto&&... args) {\n        return f(f, std::forward<decltype(args)>(args)...);\n\
-    \    };\n};\n\n\n"
-  code: "#pragma once\n\nauto Y = [](auto f) {\n    return [=](auto&&... args) {\n\
-    \        return f(f, std::forward<decltype(args)>(args)...);\n    };\n};\n\n\n"
+    \ {\n  return [=](auto&&... args) {\n    return f(f, std::forward<decltype(args)>(args)...);\n\
+    \  };\n};\n"
+  code: "#pragma once\n\nauto Y = [](auto f) {\n  return [=](auto&&... args) {\n \
+    \   return f(f, std::forward<decltype(args)>(args)...);\n  };\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Utility/Ycombinator.hpp
   requiredBy: []
-  timestamp: '2023-03-07 08:05:00+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Utility/Ycombinator.test.cpp

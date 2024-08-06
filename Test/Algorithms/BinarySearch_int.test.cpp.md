@@ -19,12 +19,12 @@ data:
     \ <iostream>\r\n#include <ranges>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
     \n#include <numeric>\r\n#line 4 \"Library/Algorithms/BinarySearch.hpp\"\n\r\n\
     template <class Lambda>\r\nauto binarySearch(double ok, double ng, int rep, const\
-    \ Lambda& is_ok) {\r\n    for([[maybe_unused]] auto _ : std::views::iota(0, rep))\
-    \ {\r\n        double mid = (ok + ng) / 2.0;\r\n        (is_ok(mid) ? ok : ng)\
-    \ = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto\
-    \ binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n    while(std::abs(ok\
-    \ - ng) > 1) {\r\n        long long mid = (ok + ng) >> 1;\r\n        (is_ok(mid)\
-    \ ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n#line 9 \"Test/Algorithms/BinarySearch_int.test.cpp\"\
+    \ Lambda& is_ok) {\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, rep))\
+    \ {\r\n    double mid = (ok + ng) / 2.0;\r\n    (is_ok(mid) ? ok : ng) = mid;\r\
+    \n  }\r\n  return ok;\r\n}\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(long\
+    \ long ok, long long ng, const Lambda& is_ok) {\r\n  while (std::abs(ok - ng)\
+    \ > 1) {\r\n    long long mid = (ok + ng) >> 1;\r\n    (is_ok(mid) ? ok : ng)\
+    \ = mid;\r\n  }\r\n  return ok;\r\n}\r\n#line 9 \"Test/Algorithms/BinarySearch_int.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
     \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int.test.cpp
   requiredBy: []
-  timestamp: '2024-08-05 00:48:43+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int.test.cpp

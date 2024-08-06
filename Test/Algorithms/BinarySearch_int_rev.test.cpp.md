@@ -18,21 +18,21 @@ data:
     \ PROBLEM \"https://yukicoder.me/problems/no/91\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n#include\
     \ <numeric>\r\n#include <ranges>\r\n\r\ntemplate <class Lambda>\r\nauto binarySearch(double\
-    \ ok, double ng, int rep, const Lambda& is_ok) {\r\n    for([[maybe_unused]] auto\
-    \ _ : std::views::iota(0, rep)) {\r\n        double mid = (ok + ng) / 2.0;\r\n\
-    \        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n}\r\n\r\n\
-    template <class Lambda>\r\nauto binarySearch(long long ok, long long ng, const\
-    \ Lambda& is_ok) {\r\n    while(std::abs(ok - ng) > 1) {\r\n        long long\
-    \ mid = (ok + ng) >> 1;\r\n        (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n\
-    \    return ok;\r\n}\r\n#line 7 \"Test/Algorithms/BinarySearch_int_rev.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
-    \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
-    \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
-    \ main() {\r\n  std::vector<ll> a(3);\r\n  for (int i = 0; i < 3; ++i) { cin >>\
-    \ a[i]; }\r\n\r\n  auto ans = binarySearch(0, 1e9, [&](ll mid) {\r\n    ll d =\
-    \ 0;\r\n    for (const auto& x : a) {\r\n      if (x >= mid) {\r\n        d +=\
-    \ ((x - mid) >> 1);\r\n      } else {\r\n        d -= mid - x;\r\n      }\r\n\
-    \    }\r\n    return d >= 0;\r\n  });\r\n\r\n  cout << ans << endl;\r\n}\r\n"
+    \ ok, double ng, int rep, const Lambda& is_ok) {\r\n  for ([[maybe_unused]] auto\
+    \ _ : std::views::iota(0, rep)) {\r\n    double mid = (ok + ng) / 2.0;\r\n   \
+    \ (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\n  return ok;\r\n}\r\n\r\ntemplate <class\
+    \ Lambda>\r\nauto binarySearch(long long ok, long long ng, const Lambda& is_ok)\
+    \ {\r\n  while (std::abs(ok - ng) > 1) {\r\n    long long mid = (ok + ng) >> 1;\r\
+    \n    (is_ok(mid) ? ok : ng) = mid;\r\n  }\r\n  return ok;\r\n}\r\n#line 7 \"\
+    Test/Algorithms/BinarySearch_int_rev.test.cpp\"\n\r\nusing ll = long long;\r\n\
+    using std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct\
+    \ Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
+    \n  };\r\n} _Preprocessing;\r\n\r\nsigned main() {\r\n  std::vector<ll> a(3);\r\
+    \n  for (int i = 0; i < 3; ++i) { cin >> a[i]; }\r\n\r\n  auto ans = binarySearch(0,\
+    \ 1e9, [&](ll mid) {\r\n    ll d = 0;\r\n    for (const auto& x : a) {\r\n   \
+    \   if (x >= mid) {\r\n        d += ((x - mid) >> 1);\r\n      } else {\r\n  \
+    \      d -= mid - x;\r\n      }\r\n    }\r\n    return d >= 0;\r\n  });\r\n\r\n\
+    \  cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/91\"\r\n\r\n#include <iostream>\r\
     \n#include <vector>\r\n\r\n#include \"./../../Library/Algorithms/BinarySearch.hpp\"\
     \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_int_rev.test.cpp
   requiredBy: []
-  timestamp: '2024-08-05 00:48:43+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_int_rev.test.cpp

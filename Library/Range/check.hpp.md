@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Range/enumerate.test.cpp
+    title: Test/Range/enumerate.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/check.hpp\"\n\n#include <concepts>\n#include\
@@ -165,8 +168,9 @@ data:
   path: Library/Range/check.hpp
   requiredBy: []
   timestamp: '2024-08-03 18:20:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Range/enumerate.test.cpp
 documentation_of: Library/Range/check.hpp
 layout: document
 redirect_from:

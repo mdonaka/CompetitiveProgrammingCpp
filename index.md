@@ -125,7 +125,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Main
@@ -133,6 +133,9 @@ data:
     - icon: ':warning:'
       path: Library/Main/interactive.cpp
       title: Library/Main/interactive.cpp
+    - icon: ':warning:'
+      path: Library/Main/main.cpp
+      title: Library/Main/main.cpp
   - name: Library/Math
     pages:
     - icon: ':warning:'
@@ -140,7 +143,7 @@ data:
       title: Library/Math/Matrix.hpp
   - name: Library/PlaneGeometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
   - name: Library/Range
@@ -148,10 +151,10 @@ data:
     - icon: ':warning:'
       path: Library/Range/bit.hpp
       title: Library/Range/bit.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Range/io.hpp
       title: Library/Range/io.hpp
     - icon: ':x:'
@@ -336,19 +339,19 @@ data:
     - icon: ':x:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/PlaneGeometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/PlaneGeometry/ConvexHull.test.cpp
       title: Test/PlaneGeometry/ConvexHull.test.cpp
-  - name: Test/Range/mystd
+  - name: Test/Range
     pages:
     - icon: ':x:'
-      path: Test/Range/mystd/enumerate.test.cpp
-      title: Test/Range/mystd/enumerate.test.cpp
+      path: Test/Range/enumerate.test.cpp
+      title: Test/Range/enumerate.test.cpp
   - name: Test/String
     pages:
     - icon: ':x:'

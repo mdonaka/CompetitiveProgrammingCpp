@@ -15,27 +15,25 @@ data:
     links:
     - https://yukicoder.me/problems/no/430
   bundledCode: "#line 1 \"Test/String/TrieTree.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/430\"\
-    \r\n\r\n#line 2 \"Library/String/TrieTree.hpp\"\n\r\n#include <vector>\r\n#include\
-    \ <memory>\r\n\r\nconstexpr auto nullLambda = [](int n) {};\r\ntemplate<class\
-    \ Val = bool, Val ignore = false>\r\nclass TrieTree {\r\n    Val m_val;\r\n  \
-    \  std::vector<std::unique_ptr<TrieTree>> m_next;\r\n    //static constexpr auto\
-    \ nullLambda = [](ll n) {}; c++17\r\n\r\n    auto emplace(const std::vector<int>&\
-    \ vec, Val val, int it) {\r\n        if(it == vec.size()) {\r\n            m_val\
-    \ = val;\r\n            return;\r\n        }\r\n        if(!m_next[vec[it]]) {\r\
-    \n            m_next[vec[it]] = std::make_unique<TrieTree>();\r\n        }\r\n\
-    \        m_next[vec[it]]->emplace(vec, val, it + 1);\r\n    }\r\n\r\n    template<class\
-    \ Lambda>\r\n    auto find(const std::vector<int>& vec, int it, const Lambda&\
-    \ lambda)const {\r\n        if(m_val != ignore) { lambda(m_val); }\r\n       \
-    \ if(it == vec.size()) { return m_val; }\r\n        if(!m_next[vec[it]]) { return\
-    \ ignore; }\r\n        return m_next[vec[it]]->find(vec, it + 1, lambda);\r\n\
-    \    }\r\n\r\npublic:\r\n    TrieTree() : TrieTree(ignore) {}\r\n    TrieTree(Val\
-    \ val) :m_val(val), m_next(std::vector<std::unique_ptr<TrieTree>>(26)) {}\r\n\r\
-    \n    auto emplace(const std::vector<int>& vec, Val val) { return emplace(vec,\
-    \ val, 0); }\r\n\r\n    template<class Lambda = decltype(nullLambda)>\r\n    auto\
-    \ find(const std::vector<int>& vec, const Lambda& lambda = nullLambda) { return\
-    \ find(vec, 0, lambda); }\r\n};\n#line 4 \"Test/String/TrieTree.test.cpp\"\n\r\
-    \n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing\
-    \ std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n  std::string\
+    \r\n\r\n#line 2 \"Library/String/TrieTree.hpp\"\n\r\n#include <memory>\r\n#include\
+    \ <vector>\r\n\r\nconstexpr auto nullLambda = [](int n) {};\r\ntemplate <class\
+    \ Val = bool, Val ignore = false>\r\nclass TrieTree {\r\n  Val m_val;\r\n  std::vector<std::unique_ptr<TrieTree>>\
+    \ m_next;\r\n  // static constexpr auto nullLambda = [](ll n) {}; c++17\r\n\r\n\
+    \  auto emplace(const std::vector<int>& vec, Val val, int it) {\r\n    if (it\
+    \ == vec.size()) {\r\n      m_val = val;\r\n      return;\r\n    }\r\n    if (!m_next[vec[it]])\
+    \ { m_next[vec[it]] = std::make_unique<TrieTree>(); }\r\n    m_next[vec[it]]->emplace(vec,\
+    \ val, it + 1);\r\n  }\r\n\r\n  template <class Lambda>\r\n  auto find(const std::vector<int>&\
+    \ vec, int it, const Lambda& lambda) const {\r\n    if (m_val != ignore) { lambda(m_val);\
+    \ }\r\n    if (it == vec.size()) { return m_val; }\r\n    if (!m_next[vec[it]])\
+    \ { return ignore; }\r\n    return m_next[vec[it]]->find(vec, it + 1, lambda);\r\
+    \n  }\r\n\r\npublic:\r\n  TrieTree() : TrieTree(ignore) {}\r\n  TrieTree(Val val)\r\
+    \n      : m_val(val), m_next(std::vector<std::unique_ptr<TrieTree>>(26)) {}\r\n\
+    \r\n  auto emplace(const std::vector<int>& vec, Val val) {\r\n    return emplace(vec,\
+    \ val, 0);\r\n  }\r\n\r\n  template <class Lambda = decltype(nullLambda)>\r\n\
+    \  auto find(const std::vector<int>& vec, const Lambda& lambda = nullLambda) {\r\
+    \n    return find(vec, 0, lambda);\r\n  }\r\n};\n#line 4 \"Test/String/TrieTree.test.cpp\"\
+    \n\r\n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\n\
+    using std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n  std::string\
     \ str;\r\n  cin >> str;\r\n  ll n;\r\n  cin >> n;\r\n\r\n  auto tree = TrieTree<bool,\
     \ false>();\r\n  for (int _ = 0; _ < n; ++_) {\r\n    std::string s;\r\n    cin\
     \ >> s;\r\n    std::vector<int> v(s.begin(), s.end());\r\n    for (auto&& c :\
@@ -62,7 +60,7 @@ data:
   isVerificationFile: true
   path: Test/String/TrieTree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-05 00:48:43+09:00'
+  timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/TrieTree.test.cpp
