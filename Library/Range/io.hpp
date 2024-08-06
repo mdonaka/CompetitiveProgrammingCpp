@@ -46,10 +46,11 @@ namespace myranges {
       }
       auto operator++(int) { return ++*this; }
 
-      auto operator==(std::default_sentinel_t s) {
+      auto operator==(const iterator& s) const { return count == s.count; }
+      auto operator==(std::default_sentinel_t s) const {
         return count < 0 || std::cin.eof() || std::cin.fail() || std::cin.bad();
       }
-      friend auto operator==(std::default_sentinel_t s, iterator li) {
+      friend auto operator==(std::default_sentinel_t s, const iterator& li) {
         return li == s;
       }
     };
@@ -57,9 +58,10 @@ namespace myranges {
     int count;
 
   public:
-    explicit istream_view(int count = _inf) : count(count) {}
-    auto begin() { return iterator(count); }
-    auto end() { return std::default_sentinel; }
+    constexpr explicit istream_view(int count) : count(count) {}
+    constexpr explicit istream_view() : istream_view(_inf) {}
+    auto begin() const { return iterator(count); }
+    auto end() const { return std::default_sentinel; }
   };
 
   namespace __detail {
@@ -72,9 +74,10 @@ namespace myranges {
   namespace views {
     template <class... Args>
     struct _Istream {
-      template <__detail::__can_istream_view _Tp>
-      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {
-        return istream_view<Args...>(std::forward<_Tp>(__e));
+      template <class... _Tp>
+      requires __detail::__can_istream_view<_Tp...>
+      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {
+        return istream_view<Args...>(std::forward<_Tp>(__e)...);
       }
     };
 
