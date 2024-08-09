@@ -39,9 +39,9 @@ template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& v
 // clang-format on
 //=============================================================================================
 // begin:tag debug
+#include "./Library/Debug/Dump.hpp"
+#include "./Library/Debug/Test.hpp"
 #include "./Library/Debug/Timer.hpp"
-#include "./Library/Debug/debug.hpp"
-#include "./Library/Debug/sample.hpp"
 // end:tag debug
 // begin:tag includes
 
