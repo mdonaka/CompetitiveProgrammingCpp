@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Utility/Prime.test.cpp
     title: Test/Utility/Prime.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Prime.hpp\"\n\r\n#include <deque>\r\n#include\
@@ -46,7 +46,7 @@ data:
   path: Library/Utility/Prime.hpp
   requiredBy: []
   timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Utility/Prime.test.cpp
 documentation_of: Library/Utility/Prime.hpp

@@ -4,14 +4,17 @@ data:
   - icon: ':warning:'
     path: Library/Debug/Timer.hpp
     title: Library/Debug/Timer.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Main/main.cpp
+    title: Library/Main/main.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Debug/sample.hpp\"\n#include <iostream>\r\n#include\
+  bundledCode: "#line 2 \"Library/Debug/Test.hpp\"\n#include <iostream>\r\n#include\
     \ <random>\r\n#include <string>\r\n#include <vector>\r\n\r\n#line 1 \"Library/Debug/Timer.hpp\"\
     \n\uFEFF#pragma once\r\n\r\n#include <chrono>\r\n#line 5 \"Library/Debug/Timer.hpp\"\
     \n#include <list>\r\n#include <string_view>\r\n\r\nnamespace Timer {\r\n\r\n \
@@ -46,7 +49,7 @@ data:
     \n      timer = SimpleTimer();\r\n    }\r\n\r\n    template <class UNIT = UNITS::NANO>\r\
     \n    auto print() const {\r\n      for (auto&& t : lapTimeList) { _print<UNIT>(t\
     \ / UNIT::magnification); }\r\n    }\r\n  };\r\n}  // namespace Timer\n#line 8\
-    \ \"Library/Debug/sample.hpp\"\n\r\nnamespace Sample {\r\n\r\n  using std::cout;\r\
+    \ \"Library/Debug/Test.hpp\"\n\r\nnamespace Sample {\r\n\r\n  using std::cout;\r\
     \n  constexpr char endl = '\\n';\r\n  class Range {\r\n    const int_fast64_t\
     \ l;\r\n    const int_fast64_t u;\r\n\r\n  public:\r\n    Range(int_fast64_t l,\
     \ int_fast64_t u) : l(l), u(u) {}\r\n    Range(int_fast64_t u) : l(0), u(u) {}\r\
@@ -161,15 +164,16 @@ data:
   dependsOn:
   - Library/Debug/Timer.hpp
   isVerificationFile: false
-  path: Library/Debug/sample.hpp
-  requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
+  path: Library/Debug/Test.hpp
+  requiredBy:
+  - Library/Main/main.cpp
+  timestamp: '2024-08-10 04:02:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Library/Debug/sample.hpp
+documentation_of: Library/Debug/Test.hpp
 layout: document
 redirect_from:
-- /library/Library/Debug/sample.hpp
-- /library/Library/Debug/sample.hpp.html
-title: Library/Debug/sample.hpp
+- /library/Library/Debug/Test.hpp
+- /library/Library/Debug/Test.hpp.html
+title: Library/Debug/Test.hpp
 ---

@@ -260,9 +260,9 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

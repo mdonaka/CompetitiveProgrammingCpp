@@ -3,8 +3,11 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Library/Debug/sample.hpp
-    title: Library/Debug/sample.hpp
+    path: Library/Debug/Test.hpp
+    title: Library/Debug/Test.hpp
+  - icon: ':warning:'
+    path: Library/Main/main.cpp
+    title: Library/Main/main.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -80,7 +83,8 @@ data:
   isVerificationFile: false
   path: Library/Debug/Timer.hpp
   requiredBy:
-  - Library/Debug/sample.hpp
+  - Library/Main/main.cpp
+  - Library/Debug/Test.hpp
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

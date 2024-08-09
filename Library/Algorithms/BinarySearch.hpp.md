@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/LCPArray.hpp
     title: Library/String/LCPArray.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedVerifiedWith:
@@ -21,10 +21,10 @@ data:
   - icon: ':x:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/SuffixArray.test.cpp
     title: Test/String/SuffixArray.test.cpp
   _isVerificationFailed: true
@@ -59,10 +59,10 @@ data:
   verifiedWith:
   - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
-  - Test/Graph/Normal/BFS.test.cpp
-  - Test/Algorithms/BinarySearch_double_rev.test.cpp
   - Test/Algorithms/BinarySearch_int.test.cpp
+  - Test/Algorithms/BinarySearch_double_rev.test.cpp
   - Test/Algorithms/BinarySearch_int_rev.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp
 layout: document
 redirect_from:

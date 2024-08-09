@@ -31,10 +31,10 @@ data:
     \ sumList(size + 1) {\r\n    for (int i = 0; i < size; ++i) {\r\n      sumList[i\
     \ + 1] = sumList[i].binaryOperation(v[i]);\r\n    }\r\n  }\r\n  Accumulation(const\
     \ std::vector<S>& v)\r\n      : Accumulation(std::vector<Group>(v.begin(), v.end()))\
-    \ {}\r\n\r\n  auto get(int n) { return sumList[n + 1].m_val; }\r\n  auto get(int\
-    \ l, int r) {\r\n    if (r < l) { return Group().m_val; }\r\n    l = std::max(l,\
-    \ 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\
-    \n  }\r\n};\r\n"
+    \ {}\r\n\r\n  auto get(int n) const { return sumList[n + 1].m_val; }\r\n  auto\
+    \ get(int l, int r) const {\r\n    if (r < l) { return Group().m_val; }\r\n  \
+    \  l = std::max(l, 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r\
+    \ + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n  }\r\n};\r\n"
   code: "#pragma once\r\n#include <algorithm>\r\n#include <vector>\r\n\r\ntemplate\
     \ <class S,    // \u8981\u7D20\u306E\u578B\r\n          S element,  // \u5143\r\
     \n          class T,    // 2\u9805\u6F14\u7B97\u5B50\r\n          class U    \
@@ -51,19 +51,19 @@ data:
     \ std::vector<Group>& v)\r\n      : size(v.size()), sumList(size + 1) {\r\n  \
     \  for (int i = 0; i < size; ++i) {\r\n      sumList[i + 1] = sumList[i].binaryOperation(v[i]);\r\
     \n    }\r\n  }\r\n  Accumulation(const std::vector<S>& v)\r\n      : Accumulation(std::vector<Group>(v.begin(),\
-    \ v.end())) {}\r\n\r\n  auto get(int n) { return sumList[n + 1].m_val; }\r\n \
-    \ auto get(int l, int r) {\r\n    if (r < l) { return Group().m_val; }\r\n   \
-    \ l = std::max(l, 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r\
+    \ v.end())) {}\r\n\r\n  auto get(int n) const { return sumList[n + 1].m_val; }\r\
+    \n  auto get(int l, int r) const {\r\n    if (r < l) { return Group().m_val; }\r\
+    \n    l = std::max(l, 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r\
     \ + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n  }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/DataStructure/Accumulation.hpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
+  timestamp: '2024-08-10 02:57:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/Accumulation_xor.test.cpp
   - Test/DataStructure/Accumulation_sum.test.cpp
+  - Test/DataStructure/Accumulation_xor.test.cpp
 documentation_of: Library/DataStructure/Accumulation.hpp
 layout: document
 redirect_from:

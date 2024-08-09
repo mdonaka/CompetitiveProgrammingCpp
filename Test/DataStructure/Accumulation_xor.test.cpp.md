@@ -33,9 +33,9 @@ data:
     \ std::vector<Group>& v)\r\n      : size(v.size()), sumList(size + 1) {\r\n  \
     \  for (int i = 0; i < size; ++i) {\r\n      sumList[i + 1] = sumList[i].binaryOperation(v[i]);\r\
     \n    }\r\n  }\r\n  Accumulation(const std::vector<S>& v)\r\n      : Accumulation(std::vector<Group>(v.begin(),\
-    \ v.end())) {}\r\n\r\n  auto get(int n) { return sumList[n + 1].m_val; }\r\n \
-    \ auto get(int l, int r) {\r\n    if (r < l) { return Group().m_val; }\r\n   \
-    \ l = std::max(l, 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r\
+    \ v.end())) {}\r\n\r\n  auto get(int n) const { return sumList[n + 1].m_val; }\r\
+    \n  auto get(int l, int r) const {\r\n    if (r < l) { return Group().m_val; }\r\
+    \n    l = std::max(l, 0);\r\n    r = std::min(r, size - 1);\r\n    return sumList[r\
     \ + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n  }\r\n};\r\n#line 7 \"\
     Test/DataStructure/Accumulation_xor.test.cpp\"\n\r\nusing ll = long long;\r\n\
     using std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nstruct\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_xor.test.cpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
+  timestamp: '2024-08-10 02:57:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_xor.test.cpp

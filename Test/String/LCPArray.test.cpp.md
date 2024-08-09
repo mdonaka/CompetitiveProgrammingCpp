@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/LCPArray.hpp
     title: Library/String/LCPArray.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/599
@@ -243,7 +243,7 @@ data:
   path: Test/String/LCPArray.test.cpp
   requiredBy: []
   timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/String/LCPArray.test.cpp
 layout: document

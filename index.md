@@ -6,6 +6,23 @@ data:
     - icon: ':warning:'
       path: Command/inline_includes.py
       title: Command/inline_includes.py
+  - name: Command/tags
+    pages:
+    - icon: ':warning:'
+      path: Command/tags/__init__.py
+      title: Command/tags/__init__.py
+    - icon: ':warning:'
+      path: Command/tags/debug.py
+      title: Command/tags/debug.py
+    - icon: ':warning:'
+      path: Command/tags/includes.py
+      title: Command/tags/includes.py
+    - icon: ':warning:'
+      path: Command/tags/interface.py
+      title: Command/tags/interface.py
+    - icon: ':warning:'
+      path: Command/tags/selector.py
+      title: Command/tags/selector.py
   - name: Library/Algorithms
     pages:
     - icon: ':question:'
@@ -49,7 +66,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentMap.hpp
       title: Library/DataStructure/SegmentMap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
     - icon: ':question:'
@@ -61,14 +78,14 @@ data:
   - name: Library/Debug
     pages:
     - icon: ':warning:'
+      path: Library/Debug/Dump.hpp
+      title: Library/Debug/Dump.hpp
+    - icon: ':warning:'
+      path: Library/Debug/Test.hpp
+      title: Library/Debug/Test.hpp
+    - icon: ':warning:'
       path: Library/Debug/Timer.hpp
       title: Library/Debug/Timer.hpp
-    - icon: ':warning:'
-      path: Library/Debug/debug.hpp
-      title: Library/Debug/debug.hpp
-    - icon: ':warning:'
-      path: Library/Debug/sample.hpp
-      title: Library/Debug/sample.hpp
   - name: Library/Graph/Flow
     pages:
     - icon: ':x:'
@@ -125,7 +142,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Main
@@ -143,7 +160,7 @@ data:
       title: Library/Math/Matrix.hpp
   - name: Library/PlaneGeometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/PlaneGeometry/ConvexHull.hpp
       title: Library/PlaneGeometry/ConvexHull.hpp
   - name: Library/Range
@@ -158,8 +175,8 @@ data:
       path: Library/Range/io.hpp
       title: Library/Range/io.hpp
     - icon: ':x:'
-      path: Library/Range/mystd.hpp
-      title: Library/Range/mystd.hpp
+      path: Library/Range/util.hpp
+      title: Library/Range/util.hpp
   - name: Library/Simd
     pages:
     - icon: ':warning:'
@@ -167,19 +184,19 @@ data:
       title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/LCPArray.hpp
       title: Library/String/LCPArray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/TrieTree.hpp
       title: Library/String/TrieTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/String/ZAlgorithm.hpp
       title: Library/String/ZAlgorithm.hpp
   - name: Library/Utility
@@ -187,10 +204,10 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Combination.hpp
       title: Library/Utility/Combination.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/ModCalculator.hpp
       title: Library/Utility/ModCalculator.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
     - icon: ':x:'
@@ -339,12 +356,12 @@ data:
     - icon: ':x:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/PlaneGeometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/PlaneGeometry/ConvexHull.test.cpp
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/Range
@@ -354,36 +371,36 @@ data:
       title: Test/Range/enumerate.test.cpp
   - name: Test/String
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/LCPArray.test.cpp
       title: Test/String/LCPArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree.test.cpp
       title: Test/String/PalindromicTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/PalindromicTree_large.test.cpp
       title: Test/String/PalindromicTree_large.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/SuffixArray.test.cpp
       title: Test/String/SuffixArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/TrieTree.test.cpp
       title: Test/String/TrieTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/String/ZAlgorithm.test.cpp
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/Utility
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator.test.cpp
       title: Test/Utility/ModCalculator.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_inv.test.cpp
       title: Test/Utility/ModCalculator_inv.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/ModCalculator_pow.test.cpp
       title: Test/Utility/ModCalculator_pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/Prime.test.cpp
       title: Test/Utility/Prime.test.cpp
     - icon: ':x:'

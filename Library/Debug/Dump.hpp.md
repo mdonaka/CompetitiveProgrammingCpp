@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Main/main.cpp
+    title: Library/Main/main.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Debug/debug.hpp\"\n#include <concepts>\n#include\
+  bundledCode: "#line 2 \"Library/Debug/Dump.hpp\"\n#include <concepts>\n#include\
     \ <deque>\n#include <iostream>\n#include <string_view>\n\ntemplate <class T>\n\
     constexpr inline auto d_val(T a, T b) {\n  return b;\n}\n\n// debug\u7528\u51FA\
     \u529B\u30DE\u30AF\u30ED\n#define dump(...)                                  \
@@ -85,15 +88,16 @@ data:
     \ tail...);\n}"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Debug/debug.hpp
-  requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
+  path: Library/Debug/Dump.hpp
+  requiredBy:
+  - Library/Main/main.cpp
+  timestamp: '2024-08-10 04:02:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Library/Debug/debug.hpp
+documentation_of: Library/Debug/Dump.hpp
 layout: document
 redirect_from:
-- /library/Library/Debug/debug.hpp
-- /library/Library/Debug/debug.hpp.html
-title: Library/Debug/debug.hpp
+- /library/Library/Debug/Dump.hpp
+- /library/Library/Debug/Dump.hpp.html
+title: Library/Debug/Dump.hpp
 ---
