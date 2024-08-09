@@ -22,15 +22,6 @@
 #include <vector>
 
 // clang-format off
-#ifdef DEBUG
-#include "./Library/Debug/debug.hpp"
-#include "./Library/Debug/Timer.hpp"
-#include "./Library/Debug/sample.hpp"
-#else
-#define dump(...)
-template<class T>constexpr inline auto d_val(T a, T b) { return a; }
-#endif
-
 /* macro func */
 template<class T, class S>
 inline auto chmax(T& t, const S& s) { if(s > t) { t = s; return true; } return false; }
@@ -47,9 +38,14 @@ template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& v
 
 // clang-format on
 //=============================================================================================
-// tag:includes begin
+// begin:tag debug
+#include "./Library/Debug/Timer.hpp"
+#include "./Library/Debug/debug.hpp"
+#include "./Library/Debug/sample.hpp"
+// end:tag debug
+// begin:tag includes
 
-// tag:includes end
+// end:tag includes
 //=============================================================================================
 
 using ll = long long;
