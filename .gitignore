@@ -4,3 +4,5 @@
 i
 Bin/*
 !Bin/.gitkeep
+
+__pycache__
