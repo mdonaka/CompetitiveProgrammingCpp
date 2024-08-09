@@ -4,7 +4,7 @@
 
 // tag:includes begin
 #include "../../Library/Range/io.hpp"
-#include "../../Library/Range/mystd.hpp"
+#include "../../Library/Range/util.hpp"
 // tag:includes end
 
 #include <vector>
@@ -16,7 +16,7 @@ int main() {
   std::ios::sync_with_stdio(0);
 
   for (auto [i, x] :
-       myranges::views::istream<int>() | myranges::views::enumerate |
+       mystd::views::istream<int>() | mystd::views::enumerate |
            std::views::filter([](const std::tuple<int, std::tuple<int>>& t) {
              return std::get<0>(std::get<1>(t)) > 0;
            })) {

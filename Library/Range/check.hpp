@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iterator>
 
-namespace myranges::check {
+namespace mystd::check {
 
   // =======================================================
   //
@@ -221,4 +221,4 @@ namespace myranges::check {
     view<T>();
   }
 
-}  // namespace myranges::check
+}  // namespace mystd::check
