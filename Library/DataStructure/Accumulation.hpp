@@ -44,8 +44,8 @@ public:
   Accumulation(const std::vector<S>& v)
       : Accumulation(std::vector<Group>(v.begin(), v.end())) {}
 
-  auto get(int n) { return sumList[n + 1].m_val; }
-  auto get(int l, int r) {
+  auto get(int n) const { return sumList[n + 1].m_val; }
+  auto get(int l, int r) const {
     if (r < l) { return Group().m_val; }
     l = std::max(l, 0);
     r = std::min(r, size - 1);
