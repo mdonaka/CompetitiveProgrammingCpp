@@ -92,7 +92,7 @@ class TagsIncludes(TagsInterface):
                 for line in open_src(filepath):
                     if all([ex not in line for ex in exclude_words]):
                         add_line += line[:-1].split("//")[0]
-                replace_source.append(add_line)
+                replace_source.append(add_line + "\n")
 
         graph.topological_lambda(lambda filepath: f(filepath, ret))
-        return ret + ["\n"]
+        return ret
