@@ -2,90 +2,75 @@
 
 #include <iostream>
 #include <ranges>
+#include <type_traits>
+#include <vector>
 
 namespace mystd {
-  namespace ranges {
+  namespace io {
+
+    namespace type {
+      template <class T, int Pre = 1, int Size = 0>
+      struct vec {
+        using value_type = T;
+        static constexpr int pre = Pre;
+        static constexpr int size = Size;
+      };
+      template <class T>
+      concept is_vec = requires {
+        std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;
+      };
+    }  // namespace type
+
+    template <type::is_vec T>
+    auto _input(int n) {
+      std::vector<typename T::value_type> v(n);
+      for (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }
+      return v;
+    }
 
     template <class T>
     auto _input() {
       T x;
       std::cin >> x;
-      return std::make_tuple(x);
+      return x;
     }
 
-    template <class T, class... Args>
-    auto _tuple_input() {
-      if constexpr (sizeof...(Args) == 0) {
-        return _input<T>();
+    template <int N, class Tuple, class T, class... Args>
+    auto _tuple_input(Tuple& t) {
+      if constexpr (type::is_vec<T>) {
+        if constexpr (T::size == 0) {
+          std::get<N>(t) = _input<T>(std::get<N - T::pre>(t));
+        } else {
+          std::get<N>(t) = _input<T>(T::size);
+        }
       } else {
-        auto ret = _input<T>();
-        return std::tuple_cat(ret, _tuple_input<Args...>());
+        std::get<N>(t) = _input<T>();
+      }
+      if constexpr (sizeof...(Args) > 0) {
+        _tuple_input<N + 1, Tuple, Args...>(t);
       }
     }
 
-    constexpr int _inf = 1e9;
-
-    template <class... Args>
-    struct istream_view
-        : public std::ranges::view_interface<istream_view<Args...>> {
-      class iterator {
-        int count;
-        std::tuple<Args...> val;
-
-      public:
-        using difference_type = int;
-        using value_type = std::tuple<Args...>;
-        using iterator_concept = std::input_iterator_tag;
-
-        explicit iterator(int count) : count(count) { operator++(); }
-
-        auto operator*() const { return val; }
-        auto& operator++() {
-          --count;
-          if (count >= 0) { val = _tuple_input<Args...>(); }
-          return *this;
-        }
-        auto operator++(int) { return ++*this; }
-
-        auto operator==(const iterator& s) const { return count == s.count; }
-        auto operator==(std::default_sentinel_t s) const {
-          return count < 0 || std::cin.eof() || std::cin.fail() ||
-                 std::cin.bad();
-        }
-        friend auto operator==(std::default_sentinel_t s, const iterator& li) {
-          return li == s;
-        }
-      };
-
-      int count;
-
-    public:
-      constexpr explicit istream_view(int count) : count(count) {}
-      constexpr explicit istream_view() : istream_view(_inf) {}
-      auto begin() const { return iterator(count); }
-      auto end() const { return std::default_sentinel; }
+    template <class T>
+    struct _Converter {
+      using type = int;
     };
-  }  // namespace ranges
-
-  namespace views {
-    namespace __detail {
-      template <typename... _Args>
-      concept __can_istream_view = requires {
-        ranges::istream_view(std::declval<_Args>()...);
-      };
-    }  // namespace __detail
-
-    template <class... Args>
-    struct _Istream {
-      template <class... _Tp>
-      requires __detail::__can_istream_view<_Tp...>
-      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {
-        return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);
-      }
+    template <class T, int Pre, int Size>
+    struct _Converter<type::vec<T, Pre, Size>> {
+      using type = std::vector<T>;
     };
 
     template <class... Args>
-    inline constexpr _Istream<Args...> istream{};
-  }  // namespace views
+    auto in() {
+      auto base = std::tuple<typename _Converter<Args>::type...>();
+      _tuple_input<0, decltype(base), Args...>(base);
+      return base;
+    }
+
+  }  // namespace io
+
+  template <class T, int Pre = 1, int Size = 0>
+  using tvec = io::type::vec<T, Pre, Size>;
+  using io::in;
 
 }  // namespace mystd
