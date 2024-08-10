@@ -2,7 +2,7 @@
 
 #include <ranges>
 
-namespace mystd {
+namespace mtd {
   namespace ranges {
     struct bit_index_view : public std::ranges::view_interface<bit_index_view> {
       class iterator {
@@ -197,4 +197,4 @@ namespace mystd {
     inline constexpr _KBitSubsetView k_bit_subset{};
   }  // namespace views
 
-}  // namespace mystd
+}  // namespace mtd

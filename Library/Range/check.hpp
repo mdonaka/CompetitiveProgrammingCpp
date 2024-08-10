@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iterator>
 
-namespace mystd::check {
+namespace mtd::check {
 
   // =======================================================
   //
@@ -221,4 +221,4 @@ namespace mystd::check {
     view<T>();
   }
 
-}  // namespace mystd::check
+}  // namespace mtd::check

@@ -4,7 +4,7 @@
 
 #include "./io.hpp"
 
-namespace mystd {
+namespace mtd {
   namespace ranges {
 
     constexpr int _inf = 1e9;
@@ -72,4 +72,4 @@ namespace mystd {
     inline constexpr _Istream<Args...> istream{};
   }  // namespace views
 
-}  // namespace mystd
+}  // namespace mtd

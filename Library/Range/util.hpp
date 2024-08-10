@@ -2,7 +2,7 @@
 
 #include <ranges>
 
-namespace mystd {
+namespace mtd {
   namespace ranges {
     template <std::ranges::range _Range>
     struct enumerate_view
@@ -78,4 +78,4 @@ namespace mystd {
 
     inline constexpr _Enumerate enumerate{};
   }  // namespace views
-}  // namespace mystd
+}  // namespace mtd
