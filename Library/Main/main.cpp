@@ -33,9 +33,6 @@ template<class S, class... T> constexpr auto vec(S x, int n, T... ns) { return s
 /* Initial processing  */
 struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0); }; }_Preprocessing;
 
-/* input */
-template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T& x : vec) is >> x; return is; }
-
 // clang-format on
 //=============================================================================================
 // begin:tag debug
@@ -44,6 +41,8 @@ template<class T> std::istream& operator >> (std::istream& is, std::vector<T>& v
 #include "./Library/Debug/Timer.hpp"
 // end:tag debug
 // begin:tag includes
+
+#include "./Library/Range/io.hpp"
 
 // end:tag includes
 //=============================================================================================

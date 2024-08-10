@@ -10,4 +10,4 @@ class TagsDebug(TagsInterface):
 
     def replace(self, lst: list[str], filepath: Path) -> list[str]:
         # TODO: ちゃんと分岐する
-        return ["#define dump(...)"]
+        return ["#define dump(...)\n"]
