@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <vector>
 
-namespace mystd {
+namespace mtd {
   namespace io {
 
     namespace type {
@@ -73,4 +73,4 @@ namespace mystd {
   using tvec = io::type::vec<T, Pre, Size>;
   using io::in;
 
-}  // namespace mystd
+}  // namespace mtd
