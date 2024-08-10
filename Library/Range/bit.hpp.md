@@ -9,7 +9,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/bit.hpp\"\n\n#include <ranges>\n\nnamespace\
-    \ mystd {\n  namespace ranges {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
+    \ mtd {\n  namespace ranges {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
     \ {\n      class iterator {\n        int i;\n        int bit;\n\n        unsigned\
     \ ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned int\
     \ c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
@@ -85,8 +85,8 @@ data:
     \      constexpr auto operator() [[nodiscard]] (_Tp &&...__e) const {\n      \
     \  return ranges::k_bit_subset_view(std::forward<_Tp>(__e)...);\n      }\n   \
     \ };\n    inline constexpr _KBitSubsetView k_bit_subset{};\n  }  // namespace\
-    \ views\n\n}  // namespace mystd\n"
-  code: "#pragma once\n\n#include <ranges>\n\nnamespace mystd {\n  namespace ranges\
+    \ views\n\n}  // namespace mtd\n"
+  code: "#pragma once\n\n#include <ranges>\n\nnamespace mtd {\n  namespace ranges\
     \ {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
     \ {\n      class iterator {\n        int i;\n        int bit;\n\n        unsigned\
     \ ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned int\
@@ -163,12 +163,12 @@ data:
     \      constexpr auto operator() [[nodiscard]] (_Tp &&...__e) const {\n      \
     \  return ranges::k_bit_subset_view(std::forward<_Tp>(__e)...);\n      }\n   \
     \ };\n    inline constexpr _KBitSubsetView k_bit_subset{};\n  }  // namespace\
-    \ views\n\n}  // namespace mystd\n"
+    \ views\n\n}  // namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Range/bit.hpp
   requiredBy: []
-  timestamp: '2024-08-10 03:10:04+09:00'
+  timestamp: '2024-08-10 19:46:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/bit.hpp

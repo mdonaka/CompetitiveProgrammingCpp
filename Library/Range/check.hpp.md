@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/check.hpp\"\n\n#include <concepts>\n#include\
-    \ <iostream>\n#include <iterator>\n\nnamespace mystd::check {\n\n  // =======================================================\n\
+    \ <iostream>\n#include <iterator>\n\nnamespace mtd::check {\n\n  // =======================================================\n\
     \  //\n  template <std::weakly_incrementable>\n  void _is_weakly_incrementable()\
     \ {\n    std::cout << \"weakly_incrementable: True\" << std::endl;\n  }\n  template\
     \ <class I>\n  void _is_weakly_incrementable() {\n    std::cout << \"weakly_incrementable:\
@@ -86,9 +86,9 @@ data:
     \    _is_movable<T>();\n    // _is_derived_from<T, std::ranges::view_base>();\n\
     \    _is_enable_view<T>();\n    _is_view<T>();\n  }\n\n  // =======================================================\n\
     \n  template <class T>\n  auto all() {\n    iterator<typename T::iterator>();\n\
-    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mystd::check\n"
+    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mtd::check\n"
   code: "#pragma once\n\n#include <concepts>\n#include <iostream>\n#include <iterator>\n\
-    \nnamespace mystd::check {\n\n  // =======================================================\n\
+    \nnamespace mtd::check {\n\n  // =======================================================\n\
     \  //\n  template <std::weakly_incrementable>\n  void _is_weakly_incrementable()\
     \ {\n    std::cout << \"weakly_incrementable: True\" << std::endl;\n  }\n  template\
     \ <class I>\n  void _is_weakly_incrementable() {\n    std::cout << \"weakly_incrementable:\
@@ -162,12 +162,12 @@ data:
     \    _is_movable<T>();\n    // _is_derived_from<T, std::ranges::view_base>();\n\
     \    _is_enable_view<T>();\n    _is_view<T>();\n  }\n\n  // =======================================================\n\
     \n  template <class T>\n  auto all() {\n    iterator<typename T::iterator>();\n\
-    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mystd::check\n"
+    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mtd::check\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Range/check.hpp
   requiredBy: []
-  timestamp: '2024-08-10 03:10:04+09:00'
+  timestamp: '2024-08-10 19:46:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp

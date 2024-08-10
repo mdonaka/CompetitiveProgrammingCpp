@@ -23,39 +23,31 @@ data:
   bundledCode: "#line 1 \"Test/Range/enumerate.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\n#include\
     \ <iostream>\n\n// tag:includes begin\n#line 2 \"Library/Range/io.hpp\"\n\n#line\
-    \ 4 \"Library/Range/io.hpp\"\n#include <ranges>\n\nnamespace mystd {\n  namespace\
-    \ ranges {\n\n    template <class T>\n    auto _input() {\n      T x;\n      std::cin\
-    \ >> x;\n      return std::make_tuple(x);\n    }\n\n    template <class T, class...\
-    \ Args>\n    auto _tuple_input() {\n      if constexpr (sizeof...(Args) == 0)\
-    \ {\n        return _input<T>();\n      } else {\n        auto ret = _input<T>();\n\
-    \        return std::tuple_cat(ret, _tuple_input<Args...>());\n      }\n    }\n\
-    \n    constexpr int _inf = 1e9;\n\n    template <class... Args>\n    struct istream_view\n\
-    \        : public std::ranges::view_interface<istream_view<Args...>> {\n     \
-    \ class iterator {\n        int count;\n        std::tuple<Args...> val;\n\n \
-    \     public:\n        using difference_type = int;\n        using value_type\
-    \ = std::tuple<Args...>;\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int count) : count(count) { operator++(); }\n\n  \
-    \      auto operator*() const { return val; }\n        auto& operator++() {\n\
-    \          --count;\n          if (count >= 0) { val = _tuple_input<Args...>();\
-    \ }\n          return *this;\n        }\n        auto operator++(int) { return\
-    \ ++*this; }\n\n        auto operator==(const iterator& s) const { return count\
-    \ == s.count; }\n        auto operator==(std::default_sentinel_t s) const {\n\
-    \          return count < 0 || std::cin.eof() || std::cin.fail() ||\n        \
-    \         std::cin.bad();\n        }\n        friend auto operator==(std::default_sentinel_t\
-    \ s, const iterator& li) {\n          return li == s;\n        }\n      };\n\n\
-    \      int count;\n\n    public:\n      constexpr explicit istream_view(int count)\
-    \ : count(count) {}\n      constexpr explicit istream_view() : istream_view(_inf)\
-    \ {}\n      auto begin() const { return iterator(count); }\n      auto end() const\
-    \ { return std::default_sentinel; }\n    };\n  }  // namespace ranges\n\n  namespace\
-    \ views {\n    namespace __detail {\n      template <typename... _Args>\n    \
-    \  concept __can_istream_view = requires {\n        ranges::istream_view(std::declval<_Args>()...);\n\
-    \      };\n    }  // namespace __detail\n\n    template <class... Args>\n    struct\
-    \ _Istream {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
-    \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
-    \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
-    \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
-    \ istream{};\n  }  // namespace views\n\n}  // namespace mystd\n#line 2 \"Library/Range/util.hpp\"\
-    \n\n#line 4 \"Library/Range/util.hpp\"\n\nnamespace mystd {\n  namespace ranges\
+    \ 4 \"Library/Range/io.hpp\"\n#include <ranges>\n#include <type_traits>\n#include\
+    \ <vector>\n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n    \
+    \  template <class T, int Pre = 1, int Size = 0>\n      struct vec {\n       \
+    \ using value_type = T;\n        static constexpr int pre = Pre;\n        static\
+    \ constexpr int size = Size;\n      };\n      template <class T>\n      concept\
+    \ is_vec = requires {\n        std::is_same_v<T, vec<typename T::value_type, T::pre,\
+    \ T::size>>;\n      };\n    }  // namespace type\n\n    template <type::is_vec\
+    \ T>\n    auto _input(int n) {\n      std::vector<typename T::value_type> v(n);\n\
+    \      for (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }\n      return\
+    \ v;\n    }\n\n    template <class T>\n    auto _input() {\n      T x;\n     \
+    \ std::cin >> x;\n      return x;\n    }\n\n    template <int N, class Tuple,\
+    \ class T, class... Args>\n    auto _tuple_input(Tuple& t) {\n      if constexpr\
+    \ (type::is_vec<T>) {\n        if constexpr (T::size == 0) {\n          std::get<N>(t)\
+    \ = _input<T>(std::get<N - T::pre>(t));\n        } else {\n          std::get<N>(t)\
+    \ = _input<T>(T::size);\n        }\n      } else {\n        std::get<N>(t) = _input<T>();\n\
+    \      }\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N +\
+    \ 1, Tuple, Args...>(t);\n      }\n    }\n\n    template <class T>\n    struct\
+    \ _Converter {\n      using type = int;\n    };\n    template <class T, int Pre,\
+    \ int Size>\n    struct _Converter<type::vec<T, Pre, Size>> {\n      using type\
+    \ = std::vector<T>;\n    };\n\n    template <class... Args>\n    auto in() {\n\
+    \      auto base = std::tuple<typename _Converter<Args>::type...>();\n      _tuple_input<0,\
+    \ decltype(base), Args...>(base);\n      return base;\n    }\n\n  }  // namespace\
+    \ io\n\n  template <class T, int Pre = 1, int Size = 0>\n  using tvec = io::type::vec<T,\
+    \ Pre, Size>;\n  using io::in;\n\n}  // namespace mtd\n#line 2 \"Library/Range/util.hpp\"\
+    \n\n#line 4 \"Library/Range/util.hpp\"\n\nnamespace mtd {\n  namespace ranges\
     \ {\n    template <std::ranges::range _Range>\n    struct enumerate_view\n   \
     \     : public std::ranges::view_interface<enumerate_view<_Range>> {\n      auto\
     \ flat_tuple() {}\n\n      class iterator;\n      class sentinel;\n\n      struct\
@@ -88,10 +80,10 @@ data:
     \ __r) const {\n        return ranges::enumerate_view{std::forward<_Range>(__r)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
     \    inline constexpr _Enumerate enumerate{};\n  }  // namespace views\n}  //\
-    \ namespace mystd\n#line 8 \"Test/Range/enumerate.test.cpp\"\n// tag:includes\
-    \ end\n\n#include <vector>\n\n#line 2 \"Library/Range/check.hpp\"\n\n#include\
-    \ <concepts>\n#line 5 \"Library/Range/check.hpp\"\n#include <iterator>\n\nnamespace\
-    \ mystd::check {\n\n  // =======================================================\n\
+    \ namespace mtd\n#line 8 \"Test/Range/enumerate.test.cpp\"\n// tag:includes end\n\
+    \n#line 11 \"Test/Range/enumerate.test.cpp\"\n\n#line 2 \"Library/Range/check.hpp\"\
+    \n\n#include <concepts>\n#line 5 \"Library/Range/check.hpp\"\n#include <iterator>\n\
+    \nnamespace mtd::check {\n\n  // =======================================================\n\
     \  //\n  template <std::weakly_incrementable>\n  void _is_weakly_incrementable()\
     \ {\n    std::cout << \"weakly_incrementable: True\" << std::endl;\n  }\n  template\
     \ <class I>\n  void _is_weakly_incrementable() {\n    std::cout << \"weakly_incrementable:\
@@ -165,9 +157,9 @@ data:
     \    _is_movable<T>();\n    // _is_derived_from<T, std::ranges::view_base>();\n\
     \    _is_enable_view<T>();\n    _is_view<T>();\n  }\n\n  // =======================================================\n\
     \n  template <class T>\n  auto all() {\n    iterator<typename T::iterator>();\n\
-    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mystd::check\n\
-    #line 13 \"Test/Range/enumerate.test.cpp\"\n\nint main() {\n  std::cin.tie(0);\n\
-    \  std::ios::sync_with_stdio(0);\n\n  for (auto [i, x] :\n       mystd::views::istream<int>()\
+    \    input_range<T>();\n    view<T>();\n  }\n\n}  // namespace mtd::check\n#line\
+    \ 13 \"Test/Range/enumerate.test.cpp\"\n\nint main() {\n  std::cin.tie(0);\n \
+    \ std::ios::sync_with_stdio(0);\n\n  for (auto [i, x] :\n       mystd::views::istream<int>()\
     \ | mystd::views::enumerate |\n           std::views::filter([](const std::tuple<int,\
     \ std::tuple<int>>& t) {\n             return std::get<0>(std::get<1>(t)) > 0;\n\
     \           })) {\n    std::cout << \"Case \" << i + 1 << \": \" << std::get<0>(x)\
@@ -188,7 +180,7 @@ data:
   isVerificationFile: true
   path: Test/Range/enumerate.test.cpp
   requiredBy: []
-  timestamp: '2024-08-10 03:10:04+09:00'
+  timestamp: '2024-08-10 19:46:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/enumerate.test.cpp

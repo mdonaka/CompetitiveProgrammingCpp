@@ -18,7 +18,7 @@ data:
     \ TagsInterface\n\n\n@dataclasses.dataclass(frozen=True)\nclass TagsDebug(TagsInterface):\n\
     \    tag = \"debug\"\n\n    def replace(self, lst: list[str], filepath: Path)\
     \ -> list[str]:\n        # TODO: \u3061\u3083\u3093\u3068\u5206\u5C90\u3059\u308B\
-    \n        return [\"#define dump(...)\"]\n"
+    \n        return [\"#define dump(...)\\n\"]\n"
   dependsOn: []
   isVerificationFile: false
   path: Command/tags/debug.py

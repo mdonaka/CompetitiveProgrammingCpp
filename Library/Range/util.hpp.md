@@ -12,8 +12,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <ranges>\n\nnamespace\
-    \ mystd {\n  namespace ranges {\n    template <std::ranges::range _Range>\n  \
-    \  struct enumerate_view\n        : public std::ranges::view_interface<enumerate_view<_Range>>\
+    \ mtd {\n  namespace ranges {\n    template <std::ranges::range _Range>\n    struct\
+    \ enumerate_view\n        : public std::ranges::view_interface<enumerate_view<_Range>>\
     \ {\n      auto flat_tuple() {}\n\n      class iterator;\n      class sentinel;\n\
     \n      struct iterator {\n        size_t index;\n        _Range::iterator _M_current;\n\
     \n        using difference_type = int;\n        // TODO: tuple\u304C\u6E21\u3055\
@@ -44,8 +44,8 @@ data:
     \ __r) const {\n        return ranges::enumerate_view{std::forward<_Range>(__r)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
     \    inline constexpr _Enumerate enumerate{};\n  }  // namespace views\n}  //\
-    \ namespace mystd\n"
-  code: "#pragma once\n\n#include <ranges>\n\nnamespace mystd {\n  namespace ranges\
+    \ namespace mtd\n"
+  code: "#pragma once\n\n#include <ranges>\n\nnamespace mtd {\n  namespace ranges\
     \ {\n    template <std::ranges::range _Range>\n    struct enumerate_view\n   \
     \     : public std::ranges::view_interface<enumerate_view<_Range>> {\n      auto\
     \ flat_tuple() {}\n\n      class iterator;\n      class sentinel;\n\n      struct\
@@ -78,12 +78,12 @@ data:
     \ __r) const {\n        return ranges::enumerate_view{std::forward<_Range>(__r)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
     \    inline constexpr _Enumerate enumerate{};\n  }  // namespace views\n}  //\
-    \ namespace mystd\n"
+    \ namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Range/util.hpp
   requiredBy: []
-  timestamp: '2024-08-10 03:10:04+09:00'
+  timestamp: '2024-08-10 19:46:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp

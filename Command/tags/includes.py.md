@@ -50,9 +50,9 @@ data:
     \ = [\n                    \"#pragma once\",\n                    \"#include\"\
     ,\n                ]\n                add_line = \"\"\n                for line\
     \ in open_src(filepath):\n                    if all([ex not in line for ex in\
-    \ exclude_words]):\n                        add_line += line\n               \
-    \ replace_source.append(add_line)\n\n        graph.topological_lambda(lambda filepath:\
-    \ f(filepath, ret))\n        return ret\n"
+    \ exclude_words]):\n                        add_line += line[:-1].split(\"//\"\
+    )[0]\n                replace_source.append(add_line + \"\\n\")\n\n        graph.topological_lambda(lambda\
+    \ filepath: f(filepath, ret))\n        return ret\n"
   dependsOn: []
   isVerificationFile: false
   path: Command/tags/includes.py

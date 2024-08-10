@@ -10,6 +10,9 @@ data:
   - icon: ':warning:'
     path: Library/Debug/Timer.hpp
     title: Library/Debug/Timer.hpp
+  - icon: ':x:'
+    path: Library/Range/io.hpp
+    title: Library/Range/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -31,9 +34,7 @@ data:
     \ x; }\r\ntemplate<class S, class... T> constexpr auto vec(S x, int n, T... ns)\
     \ { return std::vector(n, vec(x, ns...)); }\r\n\r\n/* Initial processing  */\r\
     \nstruct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_stdio(0);\
-    \ }; }_Preprocessing;\r\n\r\n/* input */\r\ntemplate<class T> std::istream& operator\
-    \ >> (std::istream& is, std::vector<T>& vec) { for(T& x : vec) is >> x; return\
-    \ is; }\r\n\r\n// clang-format on\r\n//=============================================================================================\r\
+    \ }; }_Preprocessing;\r\n\r\n// clang-format on\r\n//=============================================================================================\r\
     \n// begin:tag debug\r\n#line 2 \"Library/Debug/Dump.hpp\"\n#include <concepts>\n\
     #include <deque>\n#line 5 \"Library/Debug/Dump.hpp\"\n#include <string_view>\n\
     \ntemplate <class T>\nconstexpr inline auto d_val(T a, T b) {\n  return b;\n}\n\
@@ -189,9 +190,33 @@ data:
     \ {}\r\n\r\n    auto lap() {\r\n      lapTimeList.emplace_back(timer.now());\r\
     \n      timer = SimpleTimer();\r\n    }\r\n\r\n    template <class UNIT = UNITS::NANO>\r\
     \n    auto print() const {\r\n      for (auto&& t : lapTimeList) { _print<UNIT>(t\
-    \ / UNIT::magnification); }\r\n    }\r\n  };\r\n}  // namespace Timer\n#line 45\
+    \ / UNIT::magnification); }\r\n    }\r\n  };\r\n}  // namespace Timer\n#line 42\
     \ \"Library/Main/main.cpp\"\n// end:tag debug\r\n// begin:tag includes\r\n\r\n\
-    // end:tag includes\r\n//=============================================================================================\r\
+    #line 2 \"Library/Range/io.hpp\"\n\n#line 5 \"Library/Range/io.hpp\"\n#include\
+    \ <type_traits>\n#line 7 \"Library/Range/io.hpp\"\n\nnamespace mtd {\n  namespace\
+    \ io {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size\
+    \ = 0>\n      struct vec {\n        using value_type = T;\n        static constexpr\
+    \ int pre = Pre;\n        static constexpr int size = Size;\n      };\n      template\
+    \ <class T>\n      concept is_vec = requires {\n        std::is_same_v<T, vec<typename\
+    \ T::value_type, T::pre, T::size>>;\n      };\n    }  // namespace type\n\n  \
+    \  template <type::is_vec T>\n    auto _input(int n) {\n      std::vector<typename\
+    \ T::value_type> v(n);\n      for (auto i : std::views::iota(0, n)) { std::cin\
+    \ >> v[i]; }\n      return v;\n    }\n\n    template <class T>\n    auto _input()\
+    \ {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\n    template\
+    \ <int N, class Tuple, class T, class... Args>\n    auto _tuple_input(Tuple& t)\
+    \ {\n      if constexpr (type::is_vec<T>) {\n        if constexpr (T::size ==\
+    \ 0) {\n          std::get<N>(t) = _input<T>(std::get<N - T::pre>(t));\n     \
+    \   } else {\n          std::get<N>(t) = _input<T>(T::size);\n        }\n    \
+    \  } else {\n        std::get<N>(t) = _input<T>();\n      }\n      if constexpr\
+    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t);\n \
+    \     }\n    }\n\n    template <class T>\n    struct _Converter {\n      using\
+    \ type = int;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
+    \ Pre, Size>> {\n      using type = std::vector<T>;\n    };\n\n    template <class...\
+    \ Args>\n    auto in() {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
+    \      _tuple_input<0, decltype(base), Args...>(base);\n      return base;\n \
+    \   }\n\n  }  // namespace io\n\n  template <class T, int Pre = 1, int Size =\
+    \ 0>\n  using tvec = io::type::vec<T, Pre, Size>;\n  using io::in;\n\n}  // namespace\
+    \ mtd\n#line 46 \"Library/Main/main.cpp\"\n\r\n// end:tag includes\r\n//=============================================================================================\r\
     \n\r\nusing ll = long long;\r\n\r\nsigned main() {}\r\n"
   code: "#include <algorithm>\r\n#include <bitset>\r\n#include <cassert>\r\n#include\
     \ <cmath>\r\n#include <complex>\r\n#include <functional>\r\n#include <iomanip>\r\
@@ -206,21 +231,22 @@ data:
     \ auto vec(S x) { return x; }\r\ntemplate<class S, class... T> constexpr auto\
     \ vec(S x, int n, T... ns) { return std::vector(n, vec(x, ns...)); }\r\n\r\n/*\
     \ Initial processing  */\r\nstruct Preprocessing { Preprocessing() { std::cin.tie(0);\
-    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n/* input */\r\ntemplate<class\
-    \ T> std::istream& operator >> (std::istream& is, std::vector<T>& vec) { for(T&\
-    \ x : vec) is >> x; return is; }\r\n\r\n// clang-format on\r\n//=============================================================================================\r\
+    \ std::ios::sync_with_stdio(0); }; }_Preprocessing;\r\n\r\n// clang-format on\r\
+    \n//=============================================================================================\r\
     \n// begin:tag debug\r\n#include \"./Library/Debug/Dump.hpp\"\r\n#include \"./Library/Debug/Test.hpp\"\
     \r\n#include \"./Library/Debug/Timer.hpp\"\r\n// end:tag debug\r\n// begin:tag\
-    \ includes\r\n\r\n// end:tag includes\r\n//=============================================================================================\r\
+    \ includes\r\n\r\n#include \"./Library/Range/io.hpp\"\r\n\r\n// end:tag includes\r\
+    \n//=============================================================================================\r\
     \n\r\nusing ll = long long;\r\n\r\nsigned main() {}\r\n"
   dependsOn:
   - Library/Debug/Dump.hpp
   - Library/Debug/Test.hpp
   - Library/Debug/Timer.hpp
+  - Library/Range/io.hpp
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-08-10 04:02:18+09:00'
+  timestamp: '2024-08-10 19:46:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp
