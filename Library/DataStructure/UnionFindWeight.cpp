@@ -1,27 +1,29 @@
+
+
 class UnionFindWeight {
 public:
-  std::vector<ll> m_root;
-  std::vector<ll> m_rank;
-  std::vector<ll> m_weight;
+  std::vector<long long> m_root;
+  std::vector<long long> m_rank;
+  std::vector<long long> m_weight;
 
-  ll root(ll x) {
+  long long root(long long x) {
     if (m_root[x] == x) { return x; }
-    ll r = root(m_root[x]);
+    long long r = root(m_root[x]);
     m_weight[x] += m_weight[m_root[x]];
     return m_root[x] = r;
   }
-  ll weight(ll x) {
+  long long weight(long long x) {
     root(x);
     return m_weight[x];
   }
 
 public:
   UnionFindWeight() = delete;
-  UnionFindWeight(ll n) : m_root(n), m_rank(n), m_weight(n) {
+  UnionFindWeight(long long n) : m_root(n), m_rank(n), m_weight(n) {
     std::iota(m_root.begin(), m_root.end(), 0);
   }
-  bool isSame(ll x, ll y) { return root(x) == root(y); }
-  bool merge(ll x, ll y, ll w) {
+  bool isSame(long long x, long long y) { return root(x) == root(y); }
+  bool merge(long long x, long long y, long long w) {
     w += weight(x);
     w -= weight(y);
     x = root(x);
@@ -36,5 +38,7 @@ public:
     m_weight[y] = w;
     return true;
   }
-  ll diffWeight(ll x, ll y) { return weight(y) - weight(x); }
+  long long diffWeight(long long x, long long y) {
+    return weight(y) - weight(x);
+  }
 };
