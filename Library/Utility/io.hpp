@@ -69,8 +69,4 @@ namespace mtd {
 
   }  // namespace io
 
-  template <class T, int Pre = 1, int Size = 0>
-  using tvec = io::type::vec<T, Pre, Size>;
-  using io::in;
-
 }  // namespace mtd
