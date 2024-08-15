@@ -41,7 +41,7 @@ struct Preprocessing { Preprocessing() { std::cin.tie(0); std::ios::sync_with_st
 #include "./Library/Debug/Timer.hpp"
 // end:tag debug
 // begin:tag includes
-#include "./Library/Range/io.hpp"
+#include "./Library/Main/includes.hpp"
 // end:tag includes
 //=============================================================================================
 
