@@ -53,7 +53,7 @@ namespace mtd {
 
     template <class T>
     struct _Converter {
-      using type = int;
+      using type = T;
     };
     template <class T, int Pre, int Size>
     struct _Converter<type::vec<T, Pre, Size>> {
