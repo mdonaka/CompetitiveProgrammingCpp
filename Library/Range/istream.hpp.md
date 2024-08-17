@@ -2,9 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: Library/Range/io.hpp
-    title: Library/Range/io.hpp
-  _extendedRequiredBy: []
+    path: Library/Utility/io.hpp
+    title: Library/Utility/io.hpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Library/Main/includes.hpp
+    title: Library/Main/includes.hpp
+  - icon: ':warning:'
+    path: Library/Main/main.cpp
+    title: Library/Main/main.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -12,7 +18,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/istream.hpp\"\n\n#include <ranges>\n\n#line\
-    \ 2 \"Library/Range/io.hpp\"\n\n#include <iostream>\n#line 5 \"Library/Range/io.hpp\"\
+    \ 2 \"Library/Utility/io.hpp\"\n\n#include <iostream>\n#line 5 \"Library/Utility/io.hpp\"\
     \n#include <type_traits>\n#include <vector>\n\nnamespace mtd {\n  namespace io\
     \ {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size =\
     \ 0>\n      struct vec {\n        using value_type = T;\n        static constexpr\
@@ -30,15 +36,13 @@ data:
     \  } else {\n        std::get<N>(t) = _input<T>();\n      }\n      if constexpr\
     \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t);\n \
     \     }\n    }\n\n    template <class T>\n    struct _Converter {\n      using\
-    \ type = int;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
+    \ type = T;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
     \ Pre, Size>> {\n      using type = std::vector<T>;\n    };\n\n    template <class...\
     \ Args>\n    auto in() {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
     \      _tuple_input<0, decltype(base), Args...>(base);\n      return base;\n \
-    \   }\n\n  }  // namespace io\n\n  template <class T, int Pre = 1, int Size =\
-    \ 0>\n  using tvec = io::type::vec<T, Pre, Size>;\n  using io::in;\n\n}  // namespace\
-    \ mtd\n#line 6 \"Library/Range/istream.hpp\"\n\nnamespace mtd {\n  namespace ranges\
-    \ {\n\n    constexpr int _inf = 1e9;\n\n    template <class... Args>\n    struct\
-    \ istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
+    \   }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
+    \n\nnamespace mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n\
+    \    template <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
     \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
@@ -63,9 +67,9 @@ data:
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n"
-  code: "#pragma once\n\n#include <ranges>\n\n#include \"./io.hpp\"\n\nnamespace mtd\
-    \ {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n    template <class...\
-    \ Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
+  code: "#pragma once\n\n#include <ranges>\n\n#include \"../Utility/io.hpp\"\n\nnamespace\
+    \ mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n    template\
+    \ <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
     \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
@@ -91,11 +95,13 @@ data:
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n"
   dependsOn:
-  - Library/Range/io.hpp
+  - Library/Utility/io.hpp
   isVerificationFile: false
   path: Library/Range/istream.hpp
-  requiredBy: []
-  timestamp: '2024-08-10 19:46:26+09:00'
+  requiredBy:
+  - Library/Main/includes.hpp
+  - Library/Main/main.cpp
+  timestamp: '2024-08-18 00:08:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/istream.hpp

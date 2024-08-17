@@ -148,6 +148,9 @@ data:
   - name: Library/Main
     pages:
     - icon: ':warning:'
+      path: Library/Main/includes.hpp
+      title: Library/Main/includes.hpp
+    - icon: ':warning:'
       path: Library/Main/interactive.cpp
       title: Library/Main/interactive.cpp
     - icon: ':warning:'
@@ -171,9 +174,6 @@ data:
     - icon: ':x:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':x:'
-      path: Library/Range/io.hpp
-      title: Library/Range/io.hpp
     - icon: ':warning:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
@@ -216,6 +216,9 @@ data:
     - icon: ':x:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
+    - icon: ':x:'
+      path: Library/Utility/io.hpp
+      title: Library/Utility/io.hpp
   verificationCategories:
   - name: Test/Algorithms
     pages:

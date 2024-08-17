@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: Library/Main/includes.hpp
+    title: Library/Main/includes.hpp
+  - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
   - icon: ':warning:'
@@ -17,7 +20,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Range/io.hpp\"\n\n#include <iostream>\n#include\
+  bundledCode: "#line 2 \"Library/Utility/io.hpp\"\n\n#include <iostream>\n#include\
     \ <ranges>\n#include <type_traits>\n#include <vector>\n\nnamespace mtd {\n  namespace\
     \ io {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size\
     \ = 0>\n      struct vec {\n        using value_type = T;\n        static constexpr\
@@ -35,13 +38,11 @@ data:
     \  } else {\n        std::get<N>(t) = _input<T>();\n      }\n      if constexpr\
     \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t);\n \
     \     }\n    }\n\n    template <class T>\n    struct _Converter {\n      using\
-    \ type = int;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
+    \ type = T;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
     \ Pre, Size>> {\n      using type = std::vector<T>;\n    };\n\n    template <class...\
     \ Args>\n    auto in() {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
     \      _tuple_input<0, decltype(base), Args...>(base);\n      return base;\n \
-    \   }\n\n  }  // namespace io\n\n  template <class T, int Pre = 1, int Size =\
-    \ 0>\n  using tvec = io::type::vec<T, Pre, Size>;\n  using io::in;\n\n}  // namespace\
-    \ mtd\n"
+    \   }\n\n  }  // namespace io\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n#include <ranges>\n#include <type_traits>\n\
     #include <vector>\n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n\
     \      template <class T, int Pre = 1, int Size = 0>\n      struct vec {\n   \
@@ -59,27 +60,27 @@ data:
     \ = _input<T>(T::size);\n        }\n      } else {\n        std::get<N>(t) = _input<T>();\n\
     \      }\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N +\
     \ 1, Tuple, Args...>(t);\n      }\n    }\n\n    template <class T>\n    struct\
-    \ _Converter {\n      using type = int;\n    };\n    template <class T, int Pre,\
+    \ _Converter {\n      using type = T;\n    };\n    template <class T, int Pre,\
     \ int Size>\n    struct _Converter<type::vec<T, Pre, Size>> {\n      using type\
     \ = std::vector<T>;\n    };\n\n    template <class... Args>\n    auto in() {\n\
     \      auto base = std::tuple<typename _Converter<Args>::type...>();\n      _tuple_input<0,\
     \ decltype(base), Args...>(base);\n      return base;\n    }\n\n  }  // namespace\
-    \ io\n\n  template <class T, int Pre = 1, int Size = 0>\n  using tvec = io::type::vec<T,\
-    \ Pre, Size>;\n  using io::in;\n\n}  // namespace mtd\n"
+    \ io\n\n}  // namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Range/io.hpp
+  path: Library/Utility/io.hpp
   requiredBy:
   - Library/Range/istream.hpp
+  - Library/Main/includes.hpp
   - Library/Main/main.cpp
-  timestamp: '2024-08-10 19:46:26+09:00'
+  timestamp: '2024-08-18 00:08:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp
-documentation_of: Library/Range/io.hpp
+documentation_of: Library/Utility/io.hpp
 layout: document
 redirect_from:
-- /library/Library/Range/io.hpp
-- /library/Library/Range/io.hpp.html
-title: Library/Range/io.hpp
+- /library/Library/Utility/io.hpp
+- /library/Library/Utility/io.hpp.html
+title: Library/Utility/io.hpp
 ---

@@ -10,9 +10,15 @@ data:
   - icon: ':warning:'
     path: Library/Debug/Timer.hpp
     title: Library/Debug/Timer.hpp
+  - icon: ':warning:'
+    path: Library/Main/includes.hpp
+    title: Library/Main/includes.hpp
+  - icon: ':warning:'
+    path: Library/Range/istream.hpp
+    title: Library/Range/istream.hpp
   - icon: ':x:'
-    path: Library/Range/io.hpp
-    title: Library/Range/io.hpp
+    path: Library/Utility/io.hpp
+    title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -191,32 +197,63 @@ data:
     \n      timer = SimpleTimer();\r\n    }\r\n\r\n    template <class UNIT = UNITS::NANO>\r\
     \n    auto print() const {\r\n      for (auto&& t : lapTimeList) { _print<UNIT>(t\
     \ / UNIT::magnification); }\r\n    }\r\n  };\r\n}  // namespace Timer\n#line 42\
-    \ \"Library/Main/main.cpp\"\n// end:tag debug\r\n// begin:tag includes\r\n\r\n\
-    #line 2 \"Library/Range/io.hpp\"\n\n#line 5 \"Library/Range/io.hpp\"\n#include\
-    \ <type_traits>\n#line 7 \"Library/Range/io.hpp\"\n\nnamespace mtd {\n  namespace\
-    \ io {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size\
-    \ = 0>\n      struct vec {\n        using value_type = T;\n        static constexpr\
-    \ int pre = Pre;\n        static constexpr int size = Size;\n      };\n      template\
-    \ <class T>\n      concept is_vec = requires {\n        std::is_same_v<T, vec<typename\
-    \ T::value_type, T::pre, T::size>>;\n      };\n    }  // namespace type\n\n  \
-    \  template <type::is_vec T>\n    auto _input(int n) {\n      std::vector<typename\
-    \ T::value_type> v(n);\n      for (auto i : std::views::iota(0, n)) { std::cin\
-    \ >> v[i]; }\n      return v;\n    }\n\n    template <class T>\n    auto _input()\
-    \ {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\n    template\
-    \ <int N, class Tuple, class T, class... Args>\n    auto _tuple_input(Tuple& t)\
-    \ {\n      if constexpr (type::is_vec<T>) {\n        if constexpr (T::size ==\
-    \ 0) {\n          std::get<N>(t) = _input<T>(std::get<N - T::pre>(t));\n     \
-    \   } else {\n          std::get<N>(t) = _input<T>(T::size);\n        }\n    \
-    \  } else {\n        std::get<N>(t) = _input<T>();\n      }\n      if constexpr\
-    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t);\n \
-    \     }\n    }\n\n    template <class T>\n    struct _Converter {\n      using\
-    \ type = int;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
-    \ Pre, Size>> {\n      using type = std::vector<T>;\n    };\n\n    template <class...\
-    \ Args>\n    auto in() {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
-    \      _tuple_input<0, decltype(base), Args...>(base);\n      return base;\n \
-    \   }\n\n  }  // namespace io\n\n  template <class T, int Pre = 1, int Size =\
-    \ 0>\n  using tvec = io::type::vec<T, Pre, Size>;\n  using io::in;\n\n}  // namespace\
-    \ mtd\n#line 46 \"Library/Main/main.cpp\"\n\r\n// end:tag includes\r\n//=============================================================================================\r\
+    \ \"Library/Main/main.cpp\"\n// end:tag debug\r\n// begin:tag includes\r\n#line\
+    \ 2 \"Library/Main/includes.hpp\"\n\n#line 2 \"Library/Range/istream.hpp\"\n\n\
+    #line 4 \"Library/Range/istream.hpp\"\n\n#line 2 \"Library/Utility/io.hpp\"\n\n\
+    #line 5 \"Library/Utility/io.hpp\"\n#include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\
+    \n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n      template\
+    \ <class T, int Pre = 1, int Size = 0>\n      struct vec {\n        using value_type\
+    \ = T;\n        static constexpr int pre = Pre;\n        static constexpr int\
+    \ size = Size;\n      };\n      template <class T>\n      concept is_vec = requires\
+    \ {\n        std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;\n\
+    \      };\n    }  // namespace type\n\n    template <type::is_vec T>\n    auto\
+    \ _input(int n) {\n      std::vector<typename T::value_type> v(n);\n      for\
+    \ (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }\n      return v;\n \
+    \   }\n\n    template <class T>\n    auto _input() {\n      T x;\n      std::cin\
+    \ >> x;\n      return x;\n    }\n\n    template <int N, class Tuple, class T,\
+    \ class... Args>\n    auto _tuple_input(Tuple& t) {\n      if constexpr (type::is_vec<T>)\
+    \ {\n        if constexpr (T::size == 0) {\n          std::get<N>(t) = _input<T>(std::get<N\
+    \ - T::pre>(t));\n        } else {\n          std::get<N>(t) = _input<T>(T::size);\n\
+    \        }\n      } else {\n        std::get<N>(t) = _input<T>();\n      }\n \
+    \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
+    \ Args...>(t);\n      }\n    }\n\n    template <class T>\n    struct _Converter\
+    \ {\n      using type = T;\n    };\n    template <class T, int Pre, int Size>\n\
+    \    struct _Converter<type::vec<T, Pre, Size>> {\n      using type = std::vector<T>;\n\
+    \    };\n\n    template <class... Args>\n    auto in() {\n      auto base = std::tuple<typename\
+    \ _Converter<Args>::type...>();\n      _tuple_input<0, decltype(base), Args...>(base);\n\
+    \      return base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line\
+    \ 6 \"Library/Range/istream.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n\n\
+    \    constexpr int _inf = 1e9;\n\n    template <class... Args>\n    struct istream_view\n\
+    \        : public std::ranges::view_interface<istream_view<Args...>> {\n     \
+    \ class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
+    \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
+    \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
+    \n        explicit iterator(int count) : count(count) { operator++(); }\n\n  \
+    \      auto operator*() const { return val; }\n        auto& operator++() {\n\
+    \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
+    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
+    \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
+    \ }\n        auto operator==(std::default_sentinel_t s) const {\n          return\
+    \ count < 0 || std::cin.eof() || std::cin.fail() ||\n                 std::cin.bad();\n\
+    \        }\n        friend auto operator==(std::default_sentinel_t s, const iterator&\
+    \ li) {\n          return li == s;\n        }\n      };\n\n      int count;\n\n\
+    \    public:\n      constexpr explicit istream_view(int count) : count(count)\
+    \ {}\n      constexpr explicit istream_view() : istream_view(_inf) {}\n      auto\
+    \ begin() const { return iterator(count); }\n      auto end() const { return std::default_sentinel;\
+    \ }\n    };\n  }  // namespace ranges\n\n  namespace views {\n    namespace __detail\
+    \ {\n      template <typename... _Args>\n      concept __can_istream_view = requires\
+    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
+    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
+    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
+    \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
+    \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
+    \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
+    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 5 \"Library/Main/includes.hpp\"\
+    \n\nnamespace mtd {\n\n  template <class T, int Pre = 1, int Size = 0>\n  using\
+    \ tvec = mtd::io::type::vec<T, Pre, Size>;\n  using mtd::io::in;\n\n  inline constexpr\
+    \ auto i = std::views::iota;\n  template <class... Args>\n  inline constexpr auto\
+    \ ins = mtd::views::istream<Args...>;\n}  // namespace mtd\n#line 45 \"Library/Main/main.cpp\"\
+    \n// end:tag includes\r\n//=============================================================================================\r\
     \n\r\nusing ll = long long;\r\n\r\nsigned main() {}\r\n"
   code: "#include <algorithm>\r\n#include <bitset>\r\n#include <cassert>\r\n#include\
     \ <cmath>\r\n#include <complex>\r\n#include <functional>\r\n#include <iomanip>\r\
@@ -235,18 +272,20 @@ data:
     \n//=============================================================================================\r\
     \n// begin:tag debug\r\n#include \"./Library/Debug/Dump.hpp\"\r\n#include \"./Library/Debug/Test.hpp\"\
     \r\n#include \"./Library/Debug/Timer.hpp\"\r\n// end:tag debug\r\n// begin:tag\
-    \ includes\r\n\r\n#include \"./Library/Range/io.hpp\"\r\n\r\n// end:tag includes\r\
+    \ includes\r\n#include \"./Library/Main/includes.hpp\"\r\n// end:tag includes\r\
     \n//=============================================================================================\r\
     \n\r\nusing ll = long long;\r\n\r\nsigned main() {}\r\n"
   dependsOn:
   - Library/Debug/Dump.hpp
   - Library/Debug/Test.hpp
   - Library/Debug/Timer.hpp
-  - Library/Range/io.hpp
+  - Library/Main/includes.hpp
+  - Library/Range/istream.hpp
+  - Library/Utility/io.hpp
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-08-10 19:46:26+09:00'
+  timestamp: '2024-08-18 00:08:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp
