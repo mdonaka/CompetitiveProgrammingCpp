@@ -21,7 +21,7 @@ namespace mtd {
         using value_type = decltype(val);
         using iterator_concept = std::input_iterator_tag;
 
-        explicit iterator(int count) : count(count) { operator++(); }
+        explicit iterator(int count = 0) : count(count) { operator++(); }
 
         auto operator*() const { return val; }
         auto& operator++() {
