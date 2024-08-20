@@ -9,8 +9,9 @@ BIN_RUN = $(BUILD_DIR)/$(SRC_FLAT:.cpp=.out)
 BIN_TEST := $(BUILD_DIR)/test.out
 OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
+HEADERS = $(shell find ./ -name "*.hpp")
 
-$(SRC_COPY_FLAT): $(SRC)
+$(SRC_COPY_FLAT): $(SRC) $(HEADERS)
 	@python Command/inline_includes.py $< | tee $@ | xsel -bi
 
 $(BIN_RUN): $(SRC_COPY_FLAT)
