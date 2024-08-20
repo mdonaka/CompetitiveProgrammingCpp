@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/Dinic.hpp
     title: Library/Graph/Flow/Dinic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
@@ -22,35 +22,37 @@ data:
     #line 2 \"Library/Graph/Flow/Dinic.hpp\"\n\r\n#include <list>\r\n#include <map>\r\
     \n#include <queue>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\n\
     #include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\
-    \n#include <tuple>\r\n#line 5 \"Library/Graph/Graph.hpp\"\n\r\ntemplate <class\
-    \ Node = int, class Cost = long long>\r\nclass Graph {\r\n  // using Node = int;\r\
-    \n  // using Cost = long long;\r\n\r\n  using Edge = std::pair<Node, Cost>;\r\n\
-    \  using Edges = std::vector<Edge>;\r\n\r\n  const int m_n;\r\n  std::vector<Edges>\
-    \ m_graph;\r\n\r\npublic:\r\n  Graph(int n) : m_n(n), m_graph(n) {}\r\n\r\n  auto\
-    \ addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n    m_graph[f].emplace_back(t,\
-    \ c);\r\n  }\r\n  auto addEdgeUndirected(const Node& f, const Node& t, const Cost&\
-    \ c = 1) {\r\n    addEdge(f, t, c);\r\n    addEdge(t, f, c);\r\n  }\r\n  auto\
-    \ getEdges(const Node& from) const {\r\n    class EdgesRange {\r\n      const\
-    \ typename Edges::const_iterator b, e;\r\n\r\n    public:\r\n      EdgesRange(const\
-    \ Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\n      auto begin() const\
-    \ { return b; }\r\n      auto end() const { return e; }\r\n    };\r\n    return\
-    \ EdgesRange(m_graph[from]);\r\n  }\r\n  auto getEdges() const {\r\n    std::deque<std::tuple<Node,\
-    \ Node, Cost>> edges;\r\n    for (Node from = 0; from < m_n; ++from)\r\n     \
-    \ for (const auto& [to, c] : getEdges(from)) {\r\n        edges.emplace_back(from,\
-    \ to, c);\r\n      }\r\n    return edges;\r\n  }\r\n  auto getEdgesExcludeCost()\
-    \ const {\r\n    std::deque<std::pair<Node, Node>> edges;\r\n    for (Node from\
-    \ = 0; from < m_n; ++from)\r\n      for (const auto& [to, _] : getEdges(from))\
-    \ {\r\n        edges.emplace_back(from, to);\r\n      }\r\n    return edges;\r\
-    \n  }\r\n  auto reverse() const {\r\n    auto rev = Graph<Node, Cost>(m_n);\r\n\
-    \    for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to, from, c);\
-    \ }\r\n    return rev;\r\n  }\r\n  auto size() const { return m_n; };\r\n  auto\
-    \ debug(bool directed = false) const {\r\n    for (const auto& [f, t, c] : getEdges())\r\
-    \n      if (f < t || directed) {\r\n        std::cout << f << \" -> \" << t <<\
-    \ \": \" << c << std::endl;\r\n      }\r\n  }\r\n};\n#line 11 \"Library/Graph/Flow/Dinic.hpp\"\
-    \n\r\ntemplate <class Node, class Cost>\r\nclass Dinic {\r\n  // using Node =\
-    \ int;\r\n  // using Cost = int;\r\n\r\n  struct HashPair {\r\n    template <class\
-    \ T1, class T2>\r\n    size_t operator()(const std::pair<T1, T2>& p) const {\r\
-    \n      auto hash1 = std::hash<T1>{}(p.first);\r\n      auto hash2 = std::hash<T2>{}(p.second);\r\
+    \n#include <iostream>\r\n#include <ranges>\r\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
+    \n\r\ntemplate <class Node = int, class Cost = long long>\r\nclass Graph {\r\n\
+    \  // using Node = int;\r\n  // using Cost = long long;\r\n\r\n  using Edge =\
+    \ std::pair<Node, Cost>;\r\n  using Edges = std::vector<Edge>;\r\n\r\n  const\
+    \ int m_n;\r\n  std::vector<Edges> m_graph;\r\n\r\npublic:\r\n  Graph(int n) :\
+    \ m_n(n), m_graph(n) {}\r\n  Graph(const std::vector<Edges>& edges) : m_n(edges.size()),\
+    \ m_graph(edges) {}\r\n\r\n  auto addEdge(const Node& f, const Node& t, const\
+    \ Cost& c = 1) {\r\n    m_graph[f].emplace_back(t, c);\r\n  }\r\n  auto addEdgeUndirected(const\
+    \ Node& f, const Node& t, const Cost& c = 1) {\r\n    addEdge(f, t, c);\r\n  \
+    \  addEdge(t, f, c);\r\n  }\r\n  auto getEdges(const Node& from) const {\r\n \
+    \   class EdgesRange {\r\n      const typename Edges::const_iterator b, e;\r\n\
+    \r\n    public:\r\n      EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end())\
+    \ {}\r\n      auto begin() const { return b; }\r\n      auto end() const { return\
+    \ e; }\r\n    };\r\n    return EdgesRange(m_graph[from]);\r\n  }\r\n  auto getEdges()\
+    \ const {\r\n    std::deque<std::tuple<Node, Node, Cost>> edges;\r\n    for (Node\
+    \ from : std::views::iota(0, m_n)) {\r\n      for (const auto& [to, c] : getEdges(from))\
+    \ {\r\n        edges.emplace_back(from, to, c);\r\n      }\r\n    }\r\n    return\
+    \ edges;\r\n  }\r\n  auto getEdgesExcludeCost() const {\r\n    std::deque<std::pair<Node,\
+    \ Node>> edges;\r\n    for (Node from : std::views::iota(0, m_n)) {\r\n      for\
+    \ (const auto& [to, _] : getEdges(from)) {\r\n        edges.emplace_back(from,\
+    \ to);\r\n      }\r\n    }\r\n    return edges;\r\n  }\r\n  auto reverse() const\
+    \ {\r\n    auto rev = Graph<Node, Cost>(m_n);\r\n    for (const auto& [from, to,\
+    \ c] : getEdges()) { rev.addEdge(to, from, c); }\r\n    return rev;\r\n  }\r\n\
+    \  auto size() const { return m_n; };\r\n  auto debug(bool directed = false) const\
+    \ {\r\n    for (const auto& [f, t, c] : getEdges()) {\r\n      if (f < t || directed)\
+    \ {\r\n        std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n\
+    \      }\r\n    }\r\n  }\r\n};\r\n#line 11 \"Library/Graph/Flow/Dinic.hpp\"\n\r\
+    \ntemplate <class Node, class Cost>\r\nclass Dinic {\r\n  // using Node = int;\r\
+    \n  // using Cost = int;\r\n\r\n  struct HashPair {\r\n    template <class T1,\
+    \ class T2>\r\n    size_t operator()(const std::pair<T1, T2>& p) const {\r\n \
+    \     auto hash1 = std::hash<T1>{}(p.first);\r\n      auto hash2 = std::hash<T2>{}(p.second);\r\
     \n      size_t seed = 0;\r\n      seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed\
     \ >> 2);\r\n      seed ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n\
     \      return seed;\r\n    }\r\n  };\r\n\r\n  using PairGraph = std::unordered_map<std::pair<Node,\
@@ -115,10 +117,10 @@ data:
     \ { continue; }\r\n        auto val = m_graph.at({from, to}) - residual[{from,\
     \ to}];\r\n        if (val > 0) { edge.addEdge(from, to, val); }\r\n      }\r\n\
     \    }\r\n    return edge;\r\n  }\r\n};\n#line 5 \"Test/Graph/Flow/Dinic.test.cpp\"\
-    \n\r\n#include <iostream>\r\n\r\n#line 9 \"Test/Graph/Flow/Dinic.test.cpp\"\n\r\
-    \nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char\
-    \ endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, m;\r\n  cin >> n >> m;\r\n\
-    \  auto graph = Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\n    int u, v,\
+    \n\r\n#line 7 \"Test/Graph/Flow/Dinic.test.cpp\"\n\r\n#line 9 \"Test/Graph/Flow/Dinic.test.cpp\"\
+    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
+    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, m;\r\n  cin >> n >> m;\r\
+    \n  auto graph = Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\n    int u, v,\
     \ c;\r\n    cin >> u >> v >> c;\r\n    graph.addEdge(u, v, c);\r\n  }\r\n\r\n\
     \  auto mf = Dinic(graph);\r\n\r\n  cout << mf.max_flow(0, n - 1) << endl;\r\n\
     }\n"
@@ -136,8 +138,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/Dinic.test.cpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-20 12:47:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/Dinic.test.cpp
 layout: document

@@ -25,7 +25,7 @@ data:
       title: Command/tags/selector.py
   - name: Library/Algorithms
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/UnionFind.hpp
       title: Library/DataStructure/UnionFind.hpp
     - icon: ':warning:'
@@ -88,10 +88,10 @@ data:
       title: Library/Debug/Timer.hpp
   - name: Library/Graph/Flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/Dinic.hpp
       title: Library/Graph/Flow/Dinic.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
     - icon: ':heavy_check_mark:'
@@ -99,44 +99,44 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':warning:'
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Prim.hpp
       title: Library/Graph/Normal/Prim.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/WarshallFloyd.hpp
       title: Library/Graph/Normal/WarshallFloyd.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/dijkstra.hpp
       title: Library/Graph/Normal/dijkstra.hpp
   - name: Library/Graph/Tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/AuxiliaryTree.hpp
       title: Library/Graph/Tree/AuxiliaryTree.hpp
     - icon: ':warning:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
     - icon: ':warning:'
@@ -319,10 +319,10 @@ data:
       title: Test/DataStructure/UnionFind.test.cpp
   - name: Test/Graph/Flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/Dinic.test.cpp
       title: Test/Graph/Flow/Dinic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/FordFulkerson.test.cpp
       title: Test/Graph/Flow/FordFulkerson.test.cpp
     - icon: ':heavy_check_mark:'
@@ -330,27 +330,27 @@ data:
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Kruskal.test.cpp
       title: Test/Graph/Normal/Kruskal.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Prim.test.cpp
       title: Test/Graph/Normal/Prim.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
   - name: Test/Graph/Tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/AuxiliaryTree.test.cpp
       title: Test/Graph/Tree/AuxiliaryTree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -359,7 +359,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     - icon: ':heavy_check_mark:'

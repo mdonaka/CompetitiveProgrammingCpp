@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/901
@@ -24,32 +24,34 @@ data:
     \ \"https://yukicoder.me/problems/no/901\"\r\n\r\n#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\
     \n\r\n#include <set>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
     \n\r\n#include <queue>\r\n#include <stack>\r\n#include <unordered_map>\r\n\r\n\
-    #line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include <tuple>\r\n\
-    #line 5 \"Library/Graph/Graph.hpp\"\n\r\ntemplate <class Node = int, class Cost\
-    \ = long long>\r\nclass Graph {\r\n  // using Node = int;\r\n  // using Cost =\
-    \ long long;\r\n\r\n  using Edge = std::pair<Node, Cost>;\r\n  using Edges = std::vector<Edge>;\r\
-    \n\r\n  const int m_n;\r\n  std::vector<Edges> m_graph;\r\n\r\npublic:\r\n  Graph(int\
-    \ n) : m_n(n), m_graph(n) {}\r\n\r\n  auto addEdge(const Node& f, const Node&\
-    \ t, const Cost& c = 1) {\r\n    m_graph[f].emplace_back(t, c);\r\n  }\r\n  auto\
-    \ addEdgeUndirected(const Node& f, const Node& t, const Cost& c = 1) {\r\n   \
-    \ addEdge(f, t, c);\r\n    addEdge(t, f, c);\r\n  }\r\n  auto getEdges(const Node&\
-    \ from) const {\r\n    class EdgesRange {\r\n      const typename Edges::const_iterator\
-    \ b, e;\r\n\r\n    public:\r\n      EdgesRange(const Edges& edges) : b(edges.begin()),\
-    \ e(edges.end()) {}\r\n      auto begin() const { return b; }\r\n      auto end()\
-    \ const { return e; }\r\n    };\r\n    return EdgesRange(m_graph[from]);\r\n \
-    \ }\r\n  auto getEdges() const {\r\n    std::deque<std::tuple<Node, Node, Cost>>\
-    \ edges;\r\n    for (Node from = 0; from < m_n; ++from)\r\n      for (const auto&\
-    \ [to, c] : getEdges(from)) {\r\n        edges.emplace_back(from, to, c);\r\n\
-    \      }\r\n    return edges;\r\n  }\r\n  auto getEdgesExcludeCost() const {\r\
-    \n    std::deque<std::pair<Node, Node>> edges;\r\n    for (Node from = 0; from\
-    \ < m_n; ++from)\r\n      for (const auto& [to, _] : getEdges(from)) {\r\n   \
-    \     edges.emplace_back(from, to);\r\n      }\r\n    return edges;\r\n  }\r\n\
-    \  auto reverse() const {\r\n    auto rev = Graph<Node, Cost>(m_n);\r\n    for\
-    \ (const auto& [from, to, c] : getEdges()) { rev.addEdge(to, from, c); }\r\n \
-    \   return rev;\r\n  }\r\n  auto size() const { return m_n; };\r\n  auto debug(bool\
-    \ directed = false) const {\r\n    for (const auto& [f, t, c] : getEdges())\r\n\
-    \      if (f < t || directed) {\r\n        std::cout << f << \" -> \" << t <<\
-    \ \": \" << c << std::endl;\r\n      }\r\n  }\r\n};\n#line 8 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
+    #line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include <iostream>\r\
+    \n#include <ranges>\r\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
+    \n\r\ntemplate <class Node = int, class Cost = long long>\r\nclass Graph {\r\n\
+    \  // using Node = int;\r\n  // using Cost = long long;\r\n\r\n  using Edge =\
+    \ std::pair<Node, Cost>;\r\n  using Edges = std::vector<Edge>;\r\n\r\n  const\
+    \ int m_n;\r\n  std::vector<Edges> m_graph;\r\n\r\npublic:\r\n  Graph(int n) :\
+    \ m_n(n), m_graph(n) {}\r\n  Graph(const std::vector<Edges>& edges) : m_n(edges.size()),\
+    \ m_graph(edges) {}\r\n\r\n  auto addEdge(const Node& f, const Node& t, const\
+    \ Cost& c = 1) {\r\n    m_graph[f].emplace_back(t, c);\r\n  }\r\n  auto addEdgeUndirected(const\
+    \ Node& f, const Node& t, const Cost& c = 1) {\r\n    addEdge(f, t, c);\r\n  \
+    \  addEdge(t, f, c);\r\n  }\r\n  auto getEdges(const Node& from) const {\r\n \
+    \   class EdgesRange {\r\n      const typename Edges::const_iterator b, e;\r\n\
+    \r\n    public:\r\n      EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end())\
+    \ {}\r\n      auto begin() const { return b; }\r\n      auto end() const { return\
+    \ e; }\r\n    };\r\n    return EdgesRange(m_graph[from]);\r\n  }\r\n  auto getEdges()\
+    \ const {\r\n    std::deque<std::tuple<Node, Node, Cost>> edges;\r\n    for (Node\
+    \ from : std::views::iota(0, m_n)) {\r\n      for (const auto& [to, c] : getEdges(from))\
+    \ {\r\n        edges.emplace_back(from, to, c);\r\n      }\r\n    }\r\n    return\
+    \ edges;\r\n  }\r\n  auto getEdgesExcludeCost() const {\r\n    std::deque<std::pair<Node,\
+    \ Node>> edges;\r\n    for (Node from : std::views::iota(0, m_n)) {\r\n      for\
+    \ (const auto& [to, _] : getEdges(from)) {\r\n        edges.emplace_back(from,\
+    \ to);\r\n      }\r\n    }\r\n    return edges;\r\n  }\r\n  auto reverse() const\
+    \ {\r\n    auto rev = Graph<Node, Cost>(m_n);\r\n    for (const auto& [from, to,\
+    \ c] : getEdges()) { rev.addEdge(to, from, c); }\r\n    return rev;\r\n  }\r\n\
+    \  auto size() const { return m_n; };\r\n  auto debug(bool directed = false) const\
+    \ {\r\n    for (const auto& [f, t, c] : getEdges()) {\r\n      if (f < t || directed)\
+    \ {\r\n        std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n\
+    \      }\r\n    }\r\n  }\r\n};\r\n#line 8 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
     \n\r\ntemplate <class Node, class Cost>\r\nclass HeavyLightDecomposition {\r\n\
     \  using GraphOrderd = std::unordered_map<Node, std::deque<Node>>;\r\n\r\n  const\
     \ Node m_n;\r\n  const std::vector<Node> m_size;\r\n  const GraphOrderd m_tree;\r\
@@ -180,9 +182,9 @@ data:
     \ auto c = depth_cost[stk.top()] + depth_cost[nd] -\r\n                 depth_cost[hld.lca(stk.top(),\
     \ nd)] * 2;\r\n        auxiliary_tree.addEdgeUndirected(f, t, c);\r\n      }\r\
     \n      stk.emplace(nd);\r\n    }\r\n    return auxiliary_tree;\r\n  }\r\n};\r\
-    \n#line 4 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n\r\n#include <iostream>\r\
-    \n#include <ranges>\r\n\r\nint main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
-    \n\r\n  int n;\r\n  std::cin >> n;\r\n  Graph tree(n);\r\n  for (auto _ : std::views::iota(0,\
+    \n#line 4 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n\r\n#line 7 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\
+    \n\r\nint main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\
+    \r\n  int n;\r\n  std::cin >> n;\r\n  Graph tree(n);\r\n  for (auto _ : std::views::iota(0,\
     \ n - 1)) {\r\n    int f, t, c;\r\n    std::cin >> f >> t >> c;\r\n    tree.addEdgeUndirected(f,\
     \ t, c);\r\n  }\r\n\r\n  auto at = AuxiliaryTree(tree);\r\n\r\n  int q;\r\n  std::cin\
     \ >> q;\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n    int\
@@ -210,8 +212,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/AuxiliaryTree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-20 12:47:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/AuxiliaryTree.test.cpp
 layout: document

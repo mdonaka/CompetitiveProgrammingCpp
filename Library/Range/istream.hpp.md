@@ -46,8 +46,8 @@ data:
     \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int count) : count(count) { operator++(); }\n\n  \
-    \      auto operator*() const { return val; }\n        auto& operator++() {\n\
+    \n        explicit iterator(int count = 0) : count(count) { operator++(); }\n\n\
+    \        auto operator*() const { return val; }\n        auto& operator++() {\n\
     \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
     \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
     \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
@@ -73,8 +73,8 @@ data:
     \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int count) : count(count) { operator++(); }\n\n  \
-    \      auto operator*() const { return val; }\n        auto& operator++() {\n\
+    \n        explicit iterator(int count = 0) : count(count) { operator++(); }\n\n\
+    \        auto operator*() const { return val; }\n        auto& operator++() {\n\
     \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
     \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
     \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
@@ -101,7 +101,7 @@ data:
   requiredBy:
   - Library/Main/includes.hpp
   - Library/Main/main.cpp
-  timestamp: '2024-08-18 00:08:53+09:00'
+  timestamp: '2024-08-20 10:26:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/istream.hpp
