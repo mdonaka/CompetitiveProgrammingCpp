@@ -24,7 +24,8 @@ namespace mtd::check {
             return p.first.size();
           }));
 
-      std::cout << std::string(size + 12, '_') << std::endl;
+      // std::cout << std::string(size + 12, '_') << std::endl;
+      std::cout << "|" << std::string(size + 10, '-') << "|" << std::endl;
       std::cout << "| " << title << std::string(size + 9 - title.size(), ' ')
                 << "|" << std::endl;
       std::cout << "|" << std::string(size + 10, '-') << "|" << std::endl;
@@ -32,6 +33,7 @@ namespace mtd::check {
         std::cout << "| " << std::left << std::setw(size) << s << " | "
                   << (b ? "True " : "False") << " |" << std::endl;
       }
+      std::cout << "|" << std::string(size + 10, '_') << "|" << std::endl;
     }
   };
 
@@ -51,8 +53,9 @@ namespace mtd::check {
     using end = decltype(std::declval<T>().end());
 
     auto table = Table("input_range");
-    table.add("equality_comparable_with",
-              std::equality_comparable_with<begin, end>);
+    table.add("weakly-equality-comparable-with",
+              std::__detail::__weakly_eq_cmp_with<begin, end>);
+
     table.add("default_initializable", std::default_initializable<begin>);
     table.add("copyable", std::copyable<end>);
     table.add("semiregular", std::semiregular<end>);
@@ -70,9 +73,16 @@ namespace mtd::check {
     table.add("assignable_from", std::assignable_from<T&, T>);
     table.add("swappable", std::swappable<T>);
     table.add("movable", std::movable<T>);
-    table.add("derived_from", std::derived_from<T, std::ranges::view_base>);
+    // table.add("derived_from", std::derived_from<T, std::ranges::view_base>);
     table.add("enable_view", std::ranges::enable_view<T>);
     table.add("view", std::ranges::view<T>);
+    table.print();
+  }
+
+  template <class T>
+  auto viewable_range() {
+    auto table = Table("viewable_range");
+    table.add("viewable_range", std::ranges::viewable_range<T>);
     table.print();
   }
 
@@ -82,6 +92,7 @@ namespace mtd::check {
     iterator<typename T::iterator>();
     input_range<T>();
     view<T>();
+    viewable_range<T>();
   }
 
 }  // namespace mtd::check
