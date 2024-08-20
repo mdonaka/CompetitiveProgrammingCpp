@@ -179,9 +179,12 @@ namespace mtd {
             std::cerr << "-- " << i << "th run -" << endl;
           }
           auto args = gen();
-          if (Inner::apply(solver1, args) != Inner::apply(solver2, args)) {
+          auto ans1 = Inner::apply(solver1, args);
+          auto ans2 = Inner::apply(solver2, args);
+          if (ans1 != ans2) {
             std::cerr << "Failed test" << std::endl;
-            Inner::apply(outputer, args);
+            auto t = std::tuple_cat(args, std::make_tuple(ans1, ans2));
+            Inner::apply(outputer, t);
             return false;
           }
         }
