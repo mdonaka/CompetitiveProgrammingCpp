@@ -1,5 +1,7 @@
 #pragma once
 #include <deque>
+#include <iostream>
+#include <ranges>
 #include <tuple>
 #include <vector>
 
@@ -16,6 +18,7 @@ class Graph {
 
 public:
   Graph(int n) : m_n(n), m_graph(n) {}
+  Graph(const std::vector<Edges>& edges) : m_n(edges.size()), m_graph(edges) {}
 
   auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {
     m_graph[f].emplace_back(t, c);
@@ -37,18 +40,20 @@ public:
   }
   auto getEdges() const {
     std::deque<std::tuple<Node, Node, Cost>> edges;
-    for (Node from = 0; from < m_n; ++from)
+    for (Node from : std::views::iota(0, m_n)) {
       for (const auto& [to, c] : getEdges(from)) {
         edges.emplace_back(from, to, c);
       }
+    }
     return edges;
   }
   auto getEdgesExcludeCost() const {
     std::deque<std::pair<Node, Node>> edges;
-    for (Node from = 0; from < m_n; ++from)
+    for (Node from : std::views::iota(0, m_n)) {
       for (const auto& [to, _] : getEdges(from)) {
         edges.emplace_back(from, to);
       }
+    }
     return edges;
   }
   auto reverse() const {
@@ -58,9 +63,10 @@ public:
   }
   auto size() const { return m_n; };
   auto debug(bool directed = false) const {
-    for (const auto& [f, t, c] : getEdges())
+    for (const auto& [f, t, c] : getEdges()) {
       if (f < t || directed) {
         std::cout << f << " -> " << t << ": " << c << std::endl;
       }
+    }
   }
 };
