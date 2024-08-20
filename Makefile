@@ -14,20 +14,19 @@ HEADERS = $(shell find ./ -name "*.hpp")
 $(SRC_COPY_FLAT): $(SRC) $(HEADERS)
 	@python Command/inline_includes.py $< | tee $@ | xsel -bi
 
-$(BIN_RUN): $(SRC_COPY_FLAT)
+$(BIN_RUN): $(SRC) $(HEADERS)
 	@g++-12 $(OPTION) $< -MMD -MP -o $@
 
-$(BIN_TEST): $(SRC_COPY_FLAT)
+$(BIN_TEST): $(SRC) $(HEADERS)
 	@g++-12 $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: ## reset
 	@cp Library/Main/$(SRC) ./$(SRC)
 
-.PHONY: c
-c: ## compile
-	@g++-12 $(OPTION) $(SRC) -o tmp
-	@rm -r tmp
+.PHONY: y
+y: $(SRC_COPY_FLAT) ## yank
+	@g++-12 $(OPTION) $(SRC_COPY_FLAT) -o tmp && rm -r tmp
 
 .PHONY: r
 r: $(BIN_RUN) ## run
@@ -37,8 +36,8 @@ r: $(BIN_RUN) ## run
 t: $(BIN_TEST) ## test
 	@./$^ < i | tee i
 
-.PHONY: clean
-clean: ## clean
+.PHONY: c
+c: ## clean
 	@rm -f $(BUILD_DIR)/*
 
 -include $(DEPENDS)
