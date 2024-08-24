@@ -38,30 +38,89 @@ namespace mtd::check {
   };
 
   template <class T>
-  auto iterator() {
-    auto table = Table("iterator");
-    table.add("weakly_incrementable", std::weakly_incrementable<T>);
-    table.add("input_or_output_iterator", std::input_or_output_iterator<T>);
-    table.add("indirectly_readable", std::indirectly_readable<T>);
-    table.add("input_iterator", std::input_iterator<T>);
+  auto range() {
+    using iterator = std::ranges::iterator_t<T>;
+    using sentinel = std::ranges::sentinel_t<T>;
+
+    auto table = Table("range");
+    table.add("weakly-equality-comparable-with",
+              std::__detail::__weakly_eq_cmp_with<iterator, sentinel>);
+
+    table.add("default_initializable", std::default_initializable<iterator>);
+    table.add("copyable", std::copyable<sentinel>);
+    table.add("semiregular", std::semiregular<sentinel>);
+    table.add("sentinel_for", std::sentinel_for<sentinel, iterator>);
+    table.add("range", std::ranges::range<T>);
     table.print();
   }
 
   template <class T>
   auto input_range() {
-    using begin = decltype(std::declval<T>().begin());
-    using end = decltype(std::declval<T>().end());
+    using iterator = std::ranges::iterator_t<T>;
 
     auto table = Table("input_range");
-    table.add("weakly-equality-comparable-with",
-              std::__detail::__weakly_eq_cmp_with<begin, end>);
-
-    table.add("default_initializable", std::default_initializable<begin>);
-    table.add("copyable", std::copyable<end>);
-    table.add("semiregular", std::semiregular<end>);
-    table.add("sentinel_for", std::sentinel_for<end, begin>);
-    table.add("range", std::ranges::range<T>);
+    table.add("weakly_incrementable", std::weakly_incrementable<iterator>);
+    table.add("input_or_output_iterator",
+              std::input_or_output_iterator<iterator>);
+    table.add("indirectly_readable", std::indirectly_readable<iterator>);
+    table.add("input_iterator", std::input_iterator<iterator>);
     table.add("input_range", std::ranges::input_range<T>);
+    table.print();
+  }
+
+  template <class T>
+  auto forward_range() {
+    using iterator = std::ranges::iterator_t<T>;
+
+    auto table = Table("forward_range");
+    table.add("incrementable", std::incrementable<iterator>);
+    table.add("sentinel_for", std::sentinel_for<iterator, iterator>);
+    table.add("forward_range", std::ranges::forward_range<T>);
+    table.print();
+  }
+
+  template <class T>
+  auto bidirectional_range() {
+    using iterator = std::ranges::iterator_t<T>;
+
+    auto table = Table("bidirectional_range");
+    table.add(
+        "decrementable", requires(iterator t) {
+          { --t } -> std::same_as<iterator&>;
+          { t-- } -> std::same_as<iterator>;
+        });
+    table.add("bidirectional_range", std::ranges::bidirectional_range<T>);
+    table.print();
+  }
+
+  template <class T>
+  auto random_access_range() {
+    using iterator = std::ranges::iterator_t<T>;
+
+    auto table = Table("random_access_range");
+    table.add("totally_ordered", std::totally_ordered<iterator>);
+    table.add("sized_sentinel_for",
+              std::sized_sentinel_for<iterator, iterator>);
+
+    table.add(
+        "plus", requires(iterator i, const iterator j,
+                         const std::iter_difference_t<iterator> n) {
+          { i += n } -> std::same_as<iterator&>;
+          { j + n } -> std::same_as<iterator>;
+          { n + j } -> std::same_as<iterator>;
+        });
+    table.add(
+        "minus", requires(iterator i, const iterator j,
+                          const std::iter_difference_t<iterator> n) {
+          { i -= n } -> std::same_as<iterator&>;
+          { j - n } -> std::same_as<iterator>;
+        });
+    table.add(
+        "access",
+        requires(const iterator j, const std::iter_difference_t<iterator> n) {
+          { j[n] } -> std::same_as<std::iter_reference_t<iterator>>;
+        });
+    table.add("random_access_range", std::ranges::random_access_range<T>);
     table.print();
   }
 
@@ -76,23 +135,18 @@ namespace mtd::check {
     // table.add("derived_from", std::derived_from<T, std::ranges::view_base>);
     table.add("enable_view", std::ranges::enable_view<T>);
     table.add("view", std::ranges::view<T>);
-    table.print();
-  }
-
-  template <class T>
-  auto viewable_range() {
-    auto table = Table("viewable_range");
     table.add("viewable_range", std::ranges::viewable_range<T>);
     table.print();
   }
 
   template <class T>
-  requires requires(T t) { typename T::iterator; }
   auto all() {
-    iterator<typename T::iterator>();
+    range<T>();
     input_range<T>();
+    forward_range<T>();
+    bidirectional_range<T>();
+    random_access_range<T>();
     view<T>();
-    viewable_range<T>();
   }
 
 }  // namespace mtd::check
