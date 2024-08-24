@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+#include <iostream>
 #include <ranges>
 
 namespace mtd {
@@ -7,11 +9,6 @@ namespace mtd {
     template <std::ranges::range _Range>
     struct enumerate_view
         : public std::ranges::view_interface<enumerate_view<_Range>> {
-      auto flat_tuple() {}
-
-      class iterator;
-      class sentinel;
-
       struct iterator {
         size_t index;
         _Range::iterator _M_current;
@@ -109,6 +106,124 @@ namespace mtd {
         } else {
           return sentinel(__r.end());
         }
+      }
+    };
+
+    namespace __detail {
+      template <class F, class T>
+      constexpr auto __tuple_transform(F&& f, T&& t) {
+        return std::apply(
+            [&]<class... Ts>(Ts&&... elems) {
+              return std::tuple<std::invoke_result_t<F&, Ts>...>(
+                  std::invoke(f, std::forward<Ts>(elems))...);
+            },
+            std::forward<T>(t));
+      }
+      template <class F, class T>
+      constexpr auto __tuple_for_each(F&& f, T&& t) {
+        std::apply(
+            [&]<class... Ts>(Ts&&... elems) {
+              (std::invoke(f, std::forward<Ts>(elems)), ...);
+            },
+            std::forward<T>(t));
+      }
+    }  // namespace __detail
+
+    template <std::ranges::range... _Range>
+    struct zip_view : public std::ranges::view_interface<zip_view<_Range...>> {
+      struct iterator {
+      public:
+        std::tuple<std::ranges::iterator_t<_Range>...> _M_current;
+
+        using difference_type = int;
+        using value_type = std::tuple<
+            std::iter_reference_t<std::ranges::iterator_t<_Range>>...>;
+        using iterator_concept = std::input_iterator_tag;
+        // std::ranges::iterator_t<_Range>::iterator_concept;
+
+        constexpr explicit iterator(const decltype(_M_current)& __current)
+            : _M_current(__current) {}
+        auto operator*() const {
+          return __detail::__tuple_transform([](auto& __i) { return *__i; },
+                                             _M_current);
+        }
+        auto& operator++() {
+          __detail::__tuple_for_each([](auto& __i) { ++__i; }, _M_current);
+          return *this;
+        }
+        auto operator++(int) { return ++*this; }
+        auto operator==(const iterator& other) const {
+          return _M_current == other._M_current;
+        }
+        // auto& operator--() requires std::ranges::bidirectional_range<_Range>
+        // {
+        //   --_M_current;
+        //   --index;
+        //   return *this;
+        // }
+        // auto operator--(int) requires
+        // std::ranges::bidirectional_range<_Range> {
+        //   return --*this;
+        // }
+        // auto operator<=>(const iterator&)
+        //     const requires std::ranges::random_access_range<_Range>
+        // = default;
+        // auto operator-(const iterator& itr)
+        //     const requires std::ranges::random_access_range<_Range> {
+        //   return _M_current - itr._M_current;
+        // }
+        // auto operator+(const difference_type n)
+        //     const requires std::ranges::random_access_range<_Range> {
+        //   return iterator(_M_current + n, index + n);
+        // }
+        // auto& operator+=(const difference_type n) requires
+        //     std::ranges::random_access_range<_Range> {
+        //   _M_current += n;
+        //   index += n;
+        //   return *this;
+        // }
+        // friend auto operator+(const difference_type n,
+        //                       const iterator& itr) requires
+        //     std::ranges::random_access_range<_Range> {
+        //   return itr + n;
+        // }
+        // auto operator-(const difference_type n)
+        //     const requires std::ranges::random_access_range<_Range> {
+        //   return iterator(_M_current - n, index - n);
+        // }
+        // auto& operator-=(const difference_type n) requires
+        //     std::ranges::random_access_range<_Range> {
+        //   _M_current -= n;
+        //   index -= n;
+        //   return *this;
+        // }
+        // auto operator[](const difference_type n)
+        //     const requires std::ranges::random_access_range<_Range> {
+        //   return std::make_tuple(index + n, _M_current[n]);
+        // }
+      };
+
+      class sentinel {
+      public:
+        std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;
+
+      public:
+        constexpr explicit sentinel(const decltype(_M_end)& __end)
+            : _M_end(__end) {}
+
+        friend constexpr bool operator==(const iterator& __x,
+                                         const sentinel& __y) {
+          return __x._M_current == __y._M_end;
+        }
+      };
+
+      std::tuple<_Range...> __r;
+      constexpr explicit zip_view(const _Range&... __r) : __r(__r...) {}
+      auto begin() {
+        return iterator(__detail::__tuple_transform(std::ranges::begin, __r));
+      }
+      auto end() {
+        return sentinel(__detail::__tuple_transform(std::ranges::end, __r));
       }
     };
   }  // namespace ranges
