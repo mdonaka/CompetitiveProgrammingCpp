@@ -25,7 +25,7 @@ namespace mtd {
       public:
         using difference_type = int;
         using value_type = int;
-        using iterator_concept = std::input_iterator_tag;
+        using iterator_concept = std::forward_iterator_tag;
 
         explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}
         auto operator*() const { return i; }
@@ -56,7 +56,7 @@ namespace mtd {
       public:
         using difference_type = int;
         using value_type = int;
-        using iterator_concept = std::input_iterator_tag;
+        using iterator_concept = std::bidirectional_iterator_tag;
 
         explicit iterator(int bit = 0) : i(bit), bit(bit) {}
         auto operator*() const { return i; }
@@ -85,7 +85,7 @@ namespace mtd {
       public:
         using difference_type = int;
         using value_type = int;
-        using iterator_concept = std::input_iterator_tag;
+        using iterator_concept = std::bidirectional_iterator_tag;
 
         explicit iterator(int bit = 0, int n = 0) : i(bit), bit(bit), n(n) {}
         auto operator*() const { return i; }
@@ -116,7 +116,7 @@ namespace mtd {
       public:
         using difference_type = int;
         using value_type = int;
-        using iterator_concept = std::input_iterator_tag;
+        using iterator_concept = std::bidirectional_iterator_tag;
 
         explicit iterator(int n = 0, int k = 0) : i((1 << k) - 1), n(n) {}
         auto operator*() const { return i; }

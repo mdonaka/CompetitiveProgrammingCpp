@@ -20,11 +20,13 @@ namespace mtd {
         // TODO: tupleが渡された時にflatにする
         using value_type =
             std::tuple<size_t, typename _Range::iterator::value_type>;
-        using iterator_concept = std::input_iterator_tag;
+        using iterator_concept =
+            std::ranges::iterator_t<_Range>::iterator_concept;
 
         explicit iterator(const typename _Range::iterator& _M_current =
-                              typename _Range::iterator{})
-            : index(0), _M_current(_M_current) {}
+                              typename _Range::iterator{},
+                          size_t index = 0)
+            : index(index), _M_current(_M_current) {}
         auto operator*() const { return std::make_tuple(index, *_M_current); }
         auto& operator++() {
           ++_M_current;
@@ -34,6 +36,50 @@ namespace mtd {
         auto operator++(int) { return ++*this; }
         auto operator==(const iterator& other) const {
           return _M_current == other._M_current;
+        }
+        auto& operator--() requires std::ranges::bidirectional_range<_Range> {
+          --_M_current;
+          --index;
+          return *this;
+        }
+        auto operator--(int) requires std::ranges::bidirectional_range<_Range> {
+          return --*this;
+        }
+        auto operator<=>(const iterator&)
+            const requires std::ranges::random_access_range<_Range>
+        = default;
+        auto operator-(const iterator& itr)
+            const requires std::ranges::random_access_range<_Range> {
+          return _M_current - itr._M_current;
+        }
+        auto operator+(const difference_type n)
+            const requires std::ranges::random_access_range<_Range> {
+          return iterator(_M_current + n, index + n);
+        }
+        auto& operator+=(const difference_type n) requires
+            std::ranges::random_access_range<_Range> {
+          _M_current += n;
+          index += n;
+          return *this;
+        }
+        friend auto operator+(const difference_type n,
+                              const iterator& itr) requires
+            std::ranges::random_access_range<_Range> {
+          return itr + n;
+        }
+        auto operator-(const difference_type n)
+            const requires std::ranges::random_access_range<_Range> {
+          return iterator(_M_current - n, index - n);
+        }
+        auto& operator-=(const difference_type n) requires
+            std::ranges::random_access_range<_Range> {
+          _M_current -= n;
+          index -= n;
+          return *this;
+        }
+        auto operator[](const difference_type n)
+            const requires std::ranges::random_access_range<_Range> {
+          return std::make_tuple(index + n, _M_current[n]);
         }
       };
 
