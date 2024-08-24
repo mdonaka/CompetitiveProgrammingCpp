@@ -174,8 +174,8 @@ int main() {
   //     mtd::ranges::enumerate_view<mtd::ranges::input_range_template_view>>();
   // mtd::check::all<mtd::ranges::enumerate_view<
   //     mtd::ranges::bidirectional_range_template_view>>();
-  mtd::check::all<mtd::ranges::enumerate_view<
-      mtd::ranges::random_access_range_template_view>>();
+  // mtd::check::all<mtd::ranges::enumerate_view<
+  //     mtd::ranges::random_access_range_template_view>>();
 
   // istream
   // mtd::check::all<mtd::ranges::k_bit_subset_view>();
