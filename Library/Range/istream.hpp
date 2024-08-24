@@ -31,7 +31,6 @@ namespace mtd {
         }
         auto operator++(int) { return ++*this; }
 
-        auto operator==(const iterator& s) const { return count == s.count; }
         auto operator==(std::default_sentinel_t s) const {
           return count < 0 || std::cin.eof() || std::cin.fail() ||
                  std::cin.bad();
