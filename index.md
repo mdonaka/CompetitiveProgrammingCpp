@@ -177,6 +177,9 @@ data:
     - icon: ':warning:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
+    - icon: ':warning:'
+      path: Library/Range/template.cpp
+      title: Library/Range/template.cpp
     - icon: ':x:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp

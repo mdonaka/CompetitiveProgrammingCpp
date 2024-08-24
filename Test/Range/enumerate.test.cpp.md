@@ -30,19 +30,40 @@ data:
     \n        using difference_type = int;\n        // TODO: tuple\u304C\u6E21\u3055\
     \u308C\u305F\u6642\u306Bflat\u306B\u3059\u308B\n        using value_type =\n \
     \           std::tuple<size_t, typename _Range::iterator::value_type>;\n     \
-    \   using iterator_concept = std::input_iterator_tag;\n\n        explicit iterator(const\
-    \ typename _Range::iterator& _M_current =\n                              typename\
-    \ _Range::iterator{})\n            : index(0), _M_current(_M_current) {}\n   \
-    \     auto operator*() const { return std::make_tuple(index, *_M_current); }\n\
-    \        auto& operator++() {\n          ++_M_current;\n          ++index;\n \
-    \         return *this;\n        }\n        auto operator++(int) { return ++*this;\
+    \   using iterator_concept =\n            std::ranges::iterator_t<_Range>::iterator_concept;\n\
+    \n        explicit iterator(const typename _Range::iterator& _M_current =\n  \
+    \                            typename _Range::iterator{},\n                  \
+    \        size_t index = 0)\n            : index(index), _M_current(_M_current)\
+    \ {}\n        auto operator*() const { return std::make_tuple(index, *_M_current);\
+    \ }\n        auto& operator++() {\n          ++_M_current;\n          ++index;\n\
+    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
     \ }\n        auto operator==(const iterator& other) const {\n          return\
-    \ _M_current == other._M_current;\n        }\n      };\n\n      class sentinel\
-    \ {\n        std::ranges::sentinel_t<_Range> _M_end;\n\n      public:\n      \
-    \  constexpr explicit sentinel(std::ranges::sentinel_t<_Range>&& __end)\n    \
-    \        : _M_end(std::forward<std::ranges::sentinel_t<_Range>>(__end)) {}\n\n\
-    \        friend constexpr bool operator==(const iterator& __x,\n             \
-    \                            const sentinel& __y) {\n          return __x._M_current\
+    \ _M_current == other._M_current;\n        }\n        auto& operator--() requires\
+    \ std::ranges::bidirectional_range<_Range> {\n          --_M_current;\n      \
+    \    --index;\n          return *this;\n        }\n        auto operator--(int)\
+    \ requires std::ranges::bidirectional_range<_Range> {\n          return --*this;\n\
+    \        }\n        auto operator<=>(const iterator&)\n            const requires\
+    \ std::ranges::random_access_range<_Range>\n        = default;\n        auto operator-(const\
+    \ iterator& itr)\n            const requires std::ranges::random_access_range<_Range>\
+    \ {\n          return _M_current - itr._M_current;\n        }\n        auto operator+(const\
+    \ difference_type n)\n            const requires std::ranges::random_access_range<_Range>\
+    \ {\n          return iterator(_M_current + n, index + n);\n        }\n      \
+    \  auto& operator+=(const difference_type n) requires\n            std::ranges::random_access_range<_Range>\
+    \ {\n          _M_current += n;\n          index += n;\n          return *this;\n\
+    \        }\n        friend auto operator+(const difference_type n,\n         \
+    \                     const iterator& itr) requires\n            std::ranges::random_access_range<_Range>\
+    \ {\n          return itr + n;\n        }\n        auto operator-(const difference_type\
+    \ n)\n            const requires std::ranges::random_access_range<_Range> {\n\
+    \          return iterator(_M_current - n, index - n);\n        }\n        auto&\
+    \ operator-=(const difference_type n) requires\n            std::ranges::random_access_range<_Range>\
+    \ {\n          _M_current -= n;\n          index -= n;\n          return *this;\n\
+    \        }\n        auto operator[](const difference_type n)\n            const\
+    \ requires std::ranges::random_access_range<_Range> {\n          return std::make_tuple(index\
+    \ + n, _M_current[n]);\n        }\n      };\n\n      class sentinel {\n      \
+    \  std::ranges::sentinel_t<_Range> _M_end;\n\n      public:\n        constexpr\
+    \ explicit sentinel(std::ranges::sentinel_t<_Range>&& __end)\n            : _M_end(std::forward<std::ranges::sentinel_t<_Range>>(__end))\
+    \ {}\n\n        friend constexpr bool operator==(const iterator& __x,\n      \
+    \                                   const sentinel& __y) {\n          return __x._M_current\
     \ == __y._M_end;\n        }\n      };\n\n      _Range __r = _Range();\n\n    \
     \  enumerate_view() requires std::default_initializable<_Range>\n      = default;\n\
     \      constexpr explicit enumerate_view(const _Range& __r) : __r(__r) {}\n\n\
@@ -95,31 +116,54 @@ data:
     \ auto& [s, b] : table) {\n        std::cout << \"| \" << std::left << std::setw(size)\
     \ << s << \" | \"\n                  << (b ? \"True \" : \"False\") << \" |\"\
     \ << std::endl;\n      }\n      std::cout << \"|\" << std::string(size + 10, '_')\
-    \ << \"|\" << std::endl;\n    }\n  };\n\n  template <class T>\n  auto iterator()\
-    \ {\n    auto table = Table(\"iterator\");\n    table.add(\"weakly_incrementable\"\
-    , std::weakly_incrementable<T>);\n    table.add(\"input_or_output_iterator\",\
-    \ std::input_or_output_iterator<T>);\n    table.add(\"indirectly_readable\", std::indirectly_readable<T>);\n\
-    \    table.add(\"input_iterator\", std::input_iterator<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto input_range() {\n    using begin = decltype(std::declval<T>().begin());\n\
-    \    using end = decltype(std::declval<T>().end());\n\n    auto table = Table(\"\
-    input_range\");\n    table.add(\"weakly-equality-comparable-with\",\n        \
-    \      std::__detail::__weakly_eq_cmp_with<begin, end>);\n\n    table.add(\"default_initializable\"\
-    , std::default_initializable<begin>);\n    table.add(\"copyable\", std::copyable<end>);\n\
-    \    table.add(\"semiregular\", std::semiregular<end>);\n    table.add(\"sentinel_for\"\
-    , std::sentinel_for<end, begin>);\n    table.add(\"range\", std::ranges::range<T>);\n\
+    \ << \"|\" << std::endl;\n    }\n  };\n\n  template <class T>\n  auto range()\
+    \ {\n    using iterator = std::ranges::iterator_t<T>;\n    using sentinel = std::ranges::sentinel_t<T>;\n\
+    \n    auto table = Table(\"range\");\n    table.add(\"weakly-equality-comparable-with\"\
+    ,\n              std::__detail::__weakly_eq_cmp_with<iterator, sentinel>);\n\n\
+    \    table.add(\"default_initializable\", std::default_initializable<iterator>);\n\
+    \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
+    , std::semiregular<sentinel>);\n    table.add(\"sentinel_for\", std::sentinel_for<sentinel,\
+    \ iterator>);\n    table.add(\"range\", std::ranges::range<T>);\n    table.print();\n\
+    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \n    auto table = Table(\"input_range\");\n    table.add(\"weakly_incrementable\"\
+    , std::weakly_incrementable<iterator>);\n    table.add(\"input_or_output_iterator\"\
+    ,\n              std::input_or_output_iterator<iterator>);\n    table.add(\"indirectly_readable\"\
+    , std::indirectly_readable<iterator>);\n    table.add(\"input_iterator\", std::input_iterator<iterator>);\n\
     \    table.add(\"input_range\", std::ranges::input_range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto view() {\n    auto table = Table(\"view\"\
-    );\n    table.add(\"object_v\", std::is_object_v<T>);\n    table.add(\"move_constructible\"\
-    , std::move_constructible<T>);\n    table.add(\"assignable_from\", std::assignable_from<T&,\
-    \ T>);\n    table.add(\"swappable\", std::swappable<T>);\n    table.add(\"movable\"\
-    , std::movable<T>);\n    // table.add(\"derived_from\", std::derived_from<T, std::ranges::view_base>);\n\
-    \    table.add(\"enable_view\", std::ranges::enable_view<T>);\n    table.add(\"\
-    view\", std::ranges::view<T>);\n    table.print();\n  }\n\n  template <class T>\n\
-    \  auto viewable_range() {\n    auto table = Table(\"viewable_range\");\n    table.add(\"\
-    viewable_range\", std::ranges::viewable_range<T>);\n    table.print();\n  }\n\n\
-    \  template <class T>\n  requires requires(T t) { typename T::iterator; }\n  auto\
-    \ all() {\n    iterator<typename T::iterator>();\n    input_range<T>();\n    view<T>();\n\
-    \    viewable_range<T>();\n  }\n\n}  // namespace mtd::check\n#line 13 \"Test/Range/enumerate.test.cpp\"\
+    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \n    auto table = Table(\"forward_range\");\n    table.add(\"incrementable\"\
+    , std::incrementable<iterator>);\n    table.add(\"sentinel_for\", std::sentinel_for<iterator,\
+    \ iterator>);\n    table.add(\"forward_range\", std::ranges::forward_range<T>);\n\
+    \    table.print();\n  }\n\n  template <class T>\n  auto bidirectional_range()\
+    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
+    bidirectional_range\");\n    table.add(\n        \"decrementable\", requires(iterator\
+    \ t) {\n          { --t } -> std::same_as<iterator&>;\n          { t-- } -> std::same_as<iterator>;\n\
+    \        });\n    table.add(\"bidirectional_range\", std::ranges::bidirectional_range<T>);\n\
+    \    table.print();\n  }\n\n  template <class T>\n  auto random_access_range()\
+    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
+    random_access_range\");\n    table.add(\"totally_ordered\", std::totally_ordered<iterator>);\n\
+    \    table.add(\"sized_sentinel_for\",\n              std::sized_sentinel_for<iterator,\
+    \ iterator>);\n\n    table.add(\n        \"plus\", requires(iterator i, const\
+    \ iterator j,\n                         const std::iter_difference_t<iterator>\
+    \ n) {\n          { i += n } -> std::same_as<iterator&>;\n          { j + n }\
+    \ -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
+    \        });\n    table.add(\n        \"minus\", requires(iterator i, const iterator\
+    \ j,\n                          const std::iter_difference_t<iterator> n) {\n\
+    \          { i -= n } -> std::same_as<iterator&>;\n          { j - n } -> std::same_as<iterator>;\n\
+    \        });\n    table.add(\n        \"access\",\n        requires(const iterator\
+    \ j, const std::iter_difference_t<iterator> n) {\n          { j[n] } -> std::same_as<std::iter_reference_t<iterator>>;\n\
+    \        });\n    table.add(\"random_access_range\", std::ranges::random_access_range<T>);\n\
+    \    table.print();\n  }\n\n  template <class T>\n  auto view() {\n    auto table\
+    \ = Table(\"view\");\n    table.add(\"object_v\", std::is_object_v<T>);\n    table.add(\"\
+    move_constructible\", std::move_constructible<T>);\n    table.add(\"assignable_from\"\
+    , std::assignable_from<T&, T>);\n    table.add(\"swappable\", std::swappable<T>);\n\
+    \    table.add(\"movable\", std::movable<T>);\n    // table.add(\"derived_from\"\
+    , std::derived_from<T, std::ranges::view_base>);\n    table.add(\"enable_view\"\
+    , std::ranges::enable_view<T>);\n    table.add(\"view\", std::ranges::view<T>);\n\
+    \    table.add(\"viewable_range\", std::ranges::viewable_range<T>);\n    table.print();\n\
+    \  }\n\n  template <class T>\n  auto all() {\n    range<T>();\n    input_range<T>();\n\
+    \    forward_range<T>();\n    bidirectional_range<T>();\n    random_access_range<T>();\n\
+    \    view<T>();\n  }\n\n}  // namespace mtd::check\n#line 13 \"Test/Range/enumerate.test.cpp\"\
     \n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  for\
     \ (auto [i, x] :\n       mystd::views::istream<int>() | mystd::views::enumerate\
     \ |\n           std::views::filter([](const std::tuple<int, std::tuple<int>>&\
@@ -142,7 +186,7 @@ data:
   isVerificationFile: true
   path: Test/Range/enumerate.test.cpp
   requiredBy: []
-  timestamp: '2024-08-20 10:26:37+09:00'
+  timestamp: '2024-08-24 16:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/enumerate.test.cpp

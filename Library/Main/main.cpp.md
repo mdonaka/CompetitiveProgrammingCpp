@@ -266,8 +266,7 @@ data:
     \        auto operator*() const { return val; }\n        auto& operator++() {\n\
     \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
     \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
-    \ }\n        auto operator==(std::default_sentinel_t s) const {\n          return\
+    \ }\n\n        auto operator==(std::default_sentinel_t s) const {\n          return\
     \ count < 0 || std::cin.eof() || std::cin.fail() ||\n                 std::cin.bad();\n\
     \        }\n        friend auto operator==(std::default_sentinel_t s, const iterator&\
     \ li) {\n          return li == s;\n        }\n      };\n\n      int count;\n\n\
@@ -319,7 +318,7 @@ data:
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-08-20 13:07:38+09:00'
+  timestamp: '2024-08-24 16:45:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp

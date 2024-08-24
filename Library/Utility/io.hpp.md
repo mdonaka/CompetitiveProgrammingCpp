@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
+  - icon: ':warning:'
+    path: Library/Range/template.cpp
+    title: Library/Range/template.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: Test/Range/enumerate.test.cpp
@@ -70,6 +73,7 @@ data:
   isVerificationFile: false
   path: Library/Utility/io.hpp
   requiredBy:
+  - Library/Range/template.cpp
   - Library/Range/istream.hpp
   - Library/Main/includes.hpp
   - Library/Main/main.cpp

@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
+  - icon: ':warning:'
+    path: Library/Range/template.cpp
+    title: Library/Range/template.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -50,8 +53,7 @@ data:
     \        auto operator*() const { return val; }\n        auto& operator++() {\n\
     \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
     \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
-    \ }\n        auto operator==(std::default_sentinel_t s) const {\n          return\
+    \ }\n\n        auto operator==(std::default_sentinel_t s) const {\n          return\
     \ count < 0 || std::cin.eof() || std::cin.fail() ||\n                 std::cin.bad();\n\
     \        }\n        friend auto operator==(std::default_sentinel_t s, const iterator&\
     \ li) {\n          return li == s;\n        }\n      };\n\n      int count;\n\n\
@@ -77,8 +79,7 @@ data:
     \        auto operator*() const { return val; }\n        auto& operator++() {\n\
     \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
     \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n\n        auto operator==(const iterator& s) const { return count == s.count;\
-    \ }\n        auto operator==(std::default_sentinel_t s) const {\n          return\
+    \ }\n\n        auto operator==(std::default_sentinel_t s) const {\n          return\
     \ count < 0 || std::cin.eof() || std::cin.fail() ||\n                 std::cin.bad();\n\
     \        }\n        friend auto operator==(std::default_sentinel_t s, const iterator&\
     \ li) {\n          return li == s;\n        }\n      };\n\n      int count;\n\n\
@@ -99,9 +100,10 @@ data:
   isVerificationFile: false
   path: Library/Range/istream.hpp
   requiredBy:
+  - Library/Range/template.cpp
   - Library/Main/includes.hpp
   - Library/Main/main.cpp
-  timestamp: '2024-08-20 10:26:37+09:00'
+  timestamp: '2024-08-24 16:45:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/istream.hpp
