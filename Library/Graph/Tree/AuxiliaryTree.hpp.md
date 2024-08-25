@@ -159,7 +159,7 @@ data:
     \n          self(self, to);\r\n        }\r\n    };\r\n    dfs(dfs, 0);\r\n   \
     \ return depth_cost;\r\n  }\r\n\r\npublic:\r\n  AuxiliaryTree(const Graph<Node,\
     \ Cost>& tree)\r\n      : compres_map(tree.size()),\r\n        depth_cost(construct_depth(tree)),\r\
-    \n        hld(tree) {}\r\n\r\n  auto compression(const std::vector<int>& nodes)\
+    \n        hld(tree) {}\r\n\r\n  auto compression(const std::vector<Node>& nodes)\
     \ {\r\n    auto compare = [&](int a, int b) { return hld.getId(a) < hld.getId(b);\
     \ };\r\n\r\n    // \u5143\u306E\u9802\u70B9\u96C6\u5408\r\n    auto nodes_set\
     \ =\r\n        std::set<int, decltype(compare)>(nodes.begin(), nodes.end(), compare);\r\
@@ -192,7 +192,7 @@ data:
     \ to);\r\n        }\r\n    };\r\n    dfs(dfs, 0);\r\n    return depth_cost;\r\n\
     \  }\r\n\r\npublic:\r\n  AuxiliaryTree(const Graph<Node, Cost>& tree)\r\n    \
     \  : compres_map(tree.size()),\r\n        depth_cost(construct_depth(tree)),\r\
-    \n        hld(tree) {}\r\n\r\n  auto compression(const std::vector<int>& nodes)\
+    \n        hld(tree) {}\r\n\r\n  auto compression(const std::vector<Node>& nodes)\
     \ {\r\n    auto compare = [&](int a, int b) { return hld.getId(a) < hld.getId(b);\
     \ };\r\n\r\n    // \u5143\u306E\u9802\u70B9\u96C6\u5408\r\n    auto nodes_set\
     \ =\r\n        std::set<int, decltype(compare)>(nodes.begin(), nodes.end(), compare);\r\
@@ -218,7 +218,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Tree/AuxiliaryTree.hpp
   requiredBy: []
-  timestamp: '2024-08-20 12:47:46+09:00'
+  timestamp: '2024-08-26 00:06:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
