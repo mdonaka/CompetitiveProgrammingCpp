@@ -34,7 +34,7 @@ public:
         depth_cost(construct_depth(tree)),
         hld(tree) {}
 
-  auto compression(const std::vector<int>& nodes) {
+  auto compression(const std::vector<Node>& nodes) {
     auto compare = [&](int a, int b) { return hld.getId(a) < hld.getId(b); };
 
     // 元の頂点集合
