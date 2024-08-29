@@ -170,7 +170,7 @@ int main() {
   // mtd::check::all<mtd::ranges::input_range_template_view>();
   // mtd::check::all<mtd::ranges::forward_range_template_view>();
   // mtd::check::all<mtd::ranges::bidirectional_range_template_view>();
-  mtd::check::all<mtd::ranges::random_access_range_template_view>();
+  // mtd::check::all<mtd::ranges::random_access_range_template_view>();
 
   // bit
   // mtd::check::all<mtd::ranges::bit_index_view>();
