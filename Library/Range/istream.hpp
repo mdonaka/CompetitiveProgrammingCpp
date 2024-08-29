@@ -21,21 +21,26 @@ namespace mtd {
         using value_type = decltype(val);
         using iterator_concept = std::input_iterator_tag;
 
-        explicit iterator(int count = 0) : count(count) { operator++(); }
+        constexpr iterator() = default;
+        constexpr explicit iterator(int count) : count(count) { operator++(); }
 
-        auto operator*() const { return val; }
-        auto& operator++() {
+        constexpr auto operator*() const { return val; }
+        constexpr auto& operator++() {
           --count;
           if (count >= 0) { val = io::in<Args...>(); }
           return *this;
         }
-        auto operator++(int) { return ++*this; }
+        constexpr auto operator++(int) { return ++*this; }
 
-        auto operator==(std::default_sentinel_t s) const {
+        constexpr auto operator==(const iterator& s) const {
+          return count == s.count;
+        }
+        constexpr auto operator==(std::default_sentinel_t s) const {
           return count < 0 || std::cin.eof() || std::cin.fail() ||
                  std::cin.bad();
         }
-        friend auto operator==(std::default_sentinel_t s, const iterator& li) {
+        constexpr friend auto operator==(std::default_sentinel_t s,
+                                         const iterator& li) {
           return li == s;
         }
       };
@@ -45,8 +50,8 @@ namespace mtd {
     public:
       constexpr explicit istream_view(int count) : count(count) {}
       constexpr explicit istream_view() : istream_view(_inf) {}
-      auto begin() const { return iterator(count); }
-      auto end() const { return std::default_sentinel; }
+      constexpr auto begin() const { return iterator(count); }
+      constexpr auto end() const { return std::default_sentinel; }
     };
   }  // namespace ranges
 

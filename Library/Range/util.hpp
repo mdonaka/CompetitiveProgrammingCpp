@@ -84,7 +84,8 @@ namespace mtd {
         std::ranges::sentinel_t<_Range> _M_end;
 
       public:
-        constexpr explicit sentinel(std::ranges::sentinel_t<_Range>&& __end)
+        constexpr explicit sentinel(
+            std::ranges::sentinel_t<_Range>&& __end = {})
             : _M_end(std::forward<std::ranges::sentinel_t<_Range>>(__end)) {}
 
         friend constexpr bool operator==(const iterator& __x,
@@ -141,6 +142,7 @@ namespace mtd {
         using iterator_concept = std::input_iterator_tag;
         // std::ranges::iterator_t<_Range>::iterator_concept;
 
+        iterator() = default;
         constexpr explicit iterator(const decltype(_M_current)& __current)
             : _M_current(__current) {}
         auto operator*() const {
@@ -153,7 +155,12 @@ namespace mtd {
         }
         auto operator++(int) { return ++*this; }
         auto operator==(const iterator& other) const {
-          return _M_current == other._M_current;
+          return [&]<size_t... _Is>(std::index_sequence<_Is...>) {
+            return ((std::get<_Is>(_M_current) ==
+                     std::get<_Is>(other._M_current)) ||
+                    ...);
+          }
+          (std::make_index_sequence<sizeof...(_Range)>{});
         }
         // auto& operator--() requires std::ranges::bidirectional_range<_Range>
         // {
@@ -208,12 +215,17 @@ namespace mtd {
         std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;
 
       public:
-        constexpr explicit sentinel(const decltype(_M_end)& __end)
+        constexpr explicit sentinel(const decltype(_M_end)& __end = {})
             : _M_end(__end) {}
 
         friend constexpr bool operator==(const iterator& __x,
                                          const sentinel& __y) {
-          return __x._M_current == __y._M_end;
+          return [&]<size_t... _Is>(std::index_sequence<_Is...>) {
+            return (
+                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end)) ||
+                ...);
+          }
+          (std::make_index_sequence<sizeof...(_Range)>{});
         }
       };
 
