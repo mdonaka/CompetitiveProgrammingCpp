@@ -31,10 +31,10 @@ data:
     \ << s << \" | \"\n                  << (b ? \"True \" : \"False\") << \" |\"\
     \ << std::endl;\n      }\n      std::cout << \"|\" << std::string(size + 10, '_')\
     \ << \"|\" << std::endl;\n    }\n  };\n\n  template <class T>\n  auto range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n    using sentinel = std::ranges::sentinel_t<T>;\n\
-    \n    auto table = Table(\"range\");\n    table.add(\"weakly-equality-comparable-with\"\
-    ,\n              std::__detail::__weakly_eq_cmp_with<iterator, sentinel>);\n\n\
-    \    table.add(\"default_initializable\", std::default_initializable<iterator>);\n\
+    \ {\n    using iterator = decltype(std::declval<T>().begin());\n    using sentinel\
+    \ = decltype(std::declval<T>().end());\n\n    auto table = Table(\"range\");\n\
+    \    table.add(\"weakly-equality-comparable-with\",\n              std::__detail::__weakly_eq_cmp_with<iterator,\
+    \ sentinel>);\n\n    table.add(\"default_initializable\", std::default_initializable<iterator>);\n\
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
     , std::semiregular<sentinel>);\n    table.add(\"sentinel_for\", std::sentinel_for<sentinel,\
     \ iterator>);\n    table.add(\"range\", std::ranges::range<T>);\n    table.print();\n\
@@ -94,8 +94,8 @@ data:
     \    std::cout << \"| \" << std::left << std::setw(size) << s << \" | \"\n   \
     \               << (b ? \"True \" : \"False\") << \" |\" << std::endl;\n     \
     \ }\n      std::cout << \"|\" << std::string(size + 10, '_') << \"|\" << std::endl;\n\
-    \    }\n  };\n\n  template <class T>\n  auto range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
-    \    using sentinel = std::ranges::sentinel_t<T>;\n\n    auto table = Table(\"\
+    \    }\n  };\n\n  template <class T>\n  auto range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
+    \    using sentinel = decltype(std::declval<T>().end());\n\n    auto table = Table(\"\
     range\");\n    table.add(\"weakly-equality-comparable-with\",\n              std::__detail::__weakly_eq_cmp_with<iterator,\
     \ sentinel>);\n\n    table.add(\"default_initializable\", std::default_initializable<iterator>);\n\
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
@@ -146,7 +146,7 @@ data:
   path: Library/Range/check.hpp
   requiredBy:
   - Library/Range/template.cpp
-  timestamp: '2024-08-24 16:38:32+09:00'
+  timestamp: '2024-08-29 12:31:05+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp

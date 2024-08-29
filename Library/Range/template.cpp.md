@@ -25,55 +25,65 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/Range/bit.hpp\"\n\n#include <ranges>\n\nnamespace\
     \ mtd {\n  namespace ranges {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
-    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        unsigned\
-    \ ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned int\
-    \ c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        constexpr\
+    \ unsigned ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned\
+    \ int c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
     \          if (n & 0x0000FFFF) c -= 16;\n          if (n & 0x00FF00FF) c -= 8;\n\
     \          if (n & 0x0F0F0F0F) c -= 4;\n          if (n & 0x33333333) c -= 2;\n\
     \          if (n & 0x55555555) c -= 1;\n          return c;\n        }\n\n   \
     \   public:\n        using difference_type = int;\n        using value_type =\
     \ int;\n        using iterator_concept = std::forward_iterator_tag;\n\n      \
-    \  explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}\n        auto operator*()\
-    \ const { return i; }\n        auto &operator++() {\n          bit ^= (1 << i);\n\
-    \          i = ctz(bit);\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const iterator &other) const {\n\
-    \          return bit == other.bit;\n        }\n      };\n\n      int bit;\n\n\
-    \      explicit bit_index_view(int bit) : bit(bit) {}\n      auto begin() const\
-    \ { return iterator(bit); }\n      auto end() const { return iterator(); }\n \
-    \   };\n\n    struct bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
+    \  constexpr iterator() = default;\n        constexpr explicit iterator(int bit)\
+    \ : i(ctz(bit)), bit(bit) {}\n        constexpr auto operator*() const { return\
+    \ i; }\n        constexpr auto &operator++() {\n          bit ^= (1 << i);\n \
+    \         i = ctz(bit);\n          return *this;\n        }\n        constexpr\
+    \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
+    \ iterator &other) const {\n          return bit == other.bit;\n        }\n  \
+    \    };\n\n      int bit;\n\n      constexpr explicit bit_index_view(int bit)\
+    \ : bit(bit) {}\n      constexpr auto begin() const { return iterator(bit); }\n\
+    \      constexpr auto end() const { return iterator(); }\n    };\n\n    struct\
+    \ bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
     \ {\n      class iterator {\n        int i;\n        int bit;\n\n      public:\n\
     \        using difference_type = int;\n        using value_type = int;\n     \
-    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        explicit\
-    \ iterator(int bit = 0) : i(bit), bit(bit) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          i = (i - 1) & bit;\n\
-    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n        auto operator==(const iterator &other) const { return i == other.i;\
-    \ }\n      };\n\n      int bit;\n\n      explicit bit_subset_view(int bit) : bit(bit)\
-    \ {}\n      auto begin() const { return iterator(bit); }\n      auto end() const\
-    \ { return iterator(); }\n    };\n\n    struct bit_supset_view\n        : public\
-    \ std::ranges::view_interface<bit_supset_view> {\n      class iterator {\n   \
-    \     int i;\n        int bit;\n        int n;\n\n      public:\n        using\
-    \ difference_type = int;\n        using value_type = int;\n        using iterator_concept\
-    \ = std::bidirectional_iterator_tag;\n\n        explicit iterator(int bit = 0,\
-    \ int n = 0) : i(bit), bit(bit), n(n) {}\n        auto operator*() const { return\
-    \ i; }\n        auto &operator++() {\n          i = (i + 1) | bit;\n         \
-    \ return *this;\n        }\n        auto operator++(int) { return ++*this; }\n\
-    \        auto operator==(const std::default_sentinel_t &sentinel) const {\n  \
-    \        return i >= (1 << n);\n        }\n      };\n\n      int bit;\n      int\
-    \ n;\n\n      explicit bit_supset_view(int bit, int n) : bit(bit), n(n) {}\n \
-    \     auto begin() const { return iterator(bit, n); }\n      auto end() const\
-    \ { return std::default_sentinel; }\n    };\n\n    struct k_bit_subset_view\n\
-    \        : public std::ranges::view_interface<k_bit_subset_view> {\n      class\
-    \ iterator {\n        int i;\n        int n;\n\n      public:\n        using difference_type\
-    \ = int;\n        using value_type = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\
-    \n        explicit iterator(int n = 0, int k = 0) : i((1 << k) - 1), n(n) {}\n\
-    \        auto operator*() const { return i; }\n        auto &operator++() {\n\
-    \          int x = i & -i;\n          int y = i + x;\n          i = (((i & ~y)\
-    \ / x) >> 1) | y;\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const std::default_sentinel_t &sentinel)\
-    \ const {\n          return i >= (1 << n);\n        }\n      };\n\n      int n,\
-    \ k;\n\n      explicit k_bit_subset_view(int n, int k) : n(n), k(k) {}\n     \
-    \ auto begin() const { return iterator(n, k); }\n      auto end() const { return\
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int bit) : i(bit),\
+    \ bit(bit) {}\n        constexpr auto operator*() const { return i; }\n      \
+    \  constexpr auto &operator++() {\n          i = (i - 1) & bit;\n          return\
+    \ *this;\n        }\n        constexpr auto operator++(int) { return ++*this;\
+    \ }\n        constexpr auto operator==(const iterator &other) const {\n      \
+    \    return i == other.i;\n        }\n      };\n\n      int bit;\n\n      constexpr\
+    \ explicit bit_subset_view(int bit) : bit(bit) {}\n      constexpr auto begin()\
+    \ const { return iterator(bit); }\n      constexpr auto end() const { return iterator();\
+    \ }\n    };\n\n    struct bit_supset_view\n        : public std::ranges::view_interface<bit_supset_view>\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n        int n;\n\
+    \n      public:\n        using difference_type = int;\n        using value_type\
+    \ = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\n\
+    \        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ bit, int n) : i(bit), bit(bit), n(n) {}\n        constexpr auto operator*()\
+    \ const { return i; }\n        constexpr auto &operator++() {\n          i = (i\
+    \ + 1) | bit;\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n        constexpr auto operator==(const iterator &other)\
+    \ const {\n          return i == other.i && bit == other.bit && n == other.n;\n\
+    \        }\n        constexpr auto operator==(\n            const std::default_sentinel_t\
+    \ &sentinel) const {\n          return i >= (1 << n);\n        }\n      };\n\n\
+    \      int bit;\n      int n;\n\n      constexpr explicit bit_supset_view(int\
+    \ bit, int n) : bit(bit), n(n) {}\n      constexpr auto begin() const { return\
+    \ iterator(bit, n); }\n      constexpr auto end() const { return std::default_sentinel;\
+    \ }\n    };\n\n    struct k_bit_subset_view\n        : public std::ranges::view_interface<k_bit_subset_view>\
+    \ {\n      class iterator {\n        int i;\n        int n;\n\n      public:\n\
+    \        using difference_type = int;\n        using value_type = int;\n     \
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int n, int k) : i((1\
+    \ << k) - 1), n(n) {}\n        constexpr auto operator*() const { return i; }\n\
+    \        constexpr auto &operator++() {\n          int x = i & -i;\n         \
+    \ int y = i + x;\n          i = (((i & ~y) / x) >> 1) | y;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &other) const {\n          return\
+    \ i == other.i && n == other.n;\n        }\n        constexpr auto operator==(\n\
+    \            const std::default_sentinel_t &sentinel) const {\n          return\
+    \ i >= (1 << n);\n        }\n      };\n\n      int n, k;\n      constexpr explicit\
+    \ k_bit_subset_view(int n, int k) : n(n), k(k) {}\n      constexpr auto begin()\
+    \ const { return iterator(n, k); }\n      constexpr auto end() const { return\
     \ std::default_sentinel; }\n    };\n  }  // namespace ranges\n\n  namespace views\
     \ {\n    namespace __detail {\n      template <typename... _Args>\n      concept\
     \ __can_bit_index_view = requires {\n        ranges::bit_index_view(std::declval<_Args>()...);\n\
@@ -117,8 +127,8 @@ data:
     \    std::cout << \"| \" << std::left << std::setw(size) << s << \" | \"\n   \
     \               << (b ? \"True \" : \"False\") << \" |\" << std::endl;\n     \
     \ }\n      std::cout << \"|\" << std::string(size + 10, '_') << \"|\" << std::endl;\n\
-    \    }\n  };\n\n  template <class T>\n  auto range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
-    \    using sentinel = std::ranges::sentinel_t<T>;\n\n    auto table = Table(\"\
+    \    }\n  };\n\n  template <class T>\n  auto range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
+    \    using sentinel = decltype(std::declval<T>().end());\n\n    auto table = Table(\"\
     range\");\n    table.add(\"weakly-equality-comparable-with\",\n              std::__detail::__weakly_eq_cmp_with<iterator,\
     \ sentinel>);\n\n    table.add(\"default_initializable\", std::default_initializable<iterator>);\n\
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
@@ -193,263 +203,262 @@ data:
     \ class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int count = 0) : count(count) { operator++(); }\n\n\
-    \        auto operator*() const { return val; }\n        auto& operator++() {\n\
-    \          --count;\n          if (count >= 0) { val = io::in<Args...>(); }\n\
-    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n\n        auto operator==(std::default_sentinel_t s) const {\n          return\
-    \ count < 0 || std::cin.eof() || std::cin.fail() ||\n                 std::cin.bad();\n\
-    \        }\n        friend auto operator==(std::default_sentinel_t s, const iterator&\
-    \ li) {\n          return li == s;\n        }\n      };\n\n      int count;\n\n\
-    \    public:\n      constexpr explicit istream_view(int count) : count(count)\
-    \ {}\n      constexpr explicit istream_view() : istream_view(_inf) {}\n      auto\
-    \ begin() const { return iterator(count); }\n      auto end() const { return std::default_sentinel;\
-    \ }\n    };\n  }  // namespace ranges\n\n  namespace views {\n    namespace __detail\
-    \ {\n      template <typename... _Args>\n      concept __can_istream_view = requires\
-    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
-    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
-    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ count) : count(count) { operator++(); }\n\n        constexpr auto operator*()\
+    \ const { return val; }\n        constexpr auto& operator++() {\n          --count;\n\
+    \          if (count >= 0) { val = io::in<Args...>(); }\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n\n   \
+    \     constexpr auto operator==(const iterator& s) const {\n          return count\
+    \ == s.count;\n        }\n        constexpr auto operator==(std::default_sentinel_t\
+    \ s) const {\n          return count < 0 || std::cin.eof() || std::cin.fail()\
+    \ ||\n                 std::cin.bad();\n        }\n        constexpr friend auto\
+    \ operator==(std::default_sentinel_t s,\n                                    \
+    \     const iterator& li) {\n          return li == s;\n        }\n      };\n\n\
+    \      int count;\n\n    public:\n      constexpr explicit istream_view(int count)\
+    \ : count(count) {}\n      constexpr explicit istream_view() : istream_view(_inf)\
+    \ {}\n      constexpr auto begin() const { return iterator(count); }\n      constexpr\
+    \ auto end() const { return std::default_sentinel; }\n    };\n  }  // namespace\
+    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
+    \ _Args>\n      concept __can_istream_view = requires {\n        ranges::istream_view(std::declval<_Args>()...);\n\
+    \      };\n    }  // namespace __detail\n\n    template <class... Args>\n    struct\
+    \ _Istream {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 2 \"Library/Range/util.hpp\"\
-    \n\n#include <functional>\n#line 6 \"Library/Range/util.hpp\"\n\nnamespace mtd\
-    \ {\n  namespace ranges {\n    template <std::ranges::range _Range>\n    struct\
-    \ enumerate_view\n        : public std::ranges::view_interface<enumerate_view<_Range>>\
-    \ {\n      struct iterator {\n        size_t index;\n        _Range::iterator\
-    \ _M_current;\n\n        using difference_type = int;\n        // TODO: tuple\u304C\
-    \u6E21\u3055\u308C\u305F\u6642\u306Bflat\u306B\u3059\u308B\n        using value_type\
-    \ =\n            std::tuple<size_t, typename _Range::iterator::value_type>;\n\
-    \        using iterator_concept =\n            std::ranges::iterator_t<_Range>::iterator_concept;\n\
-    \n        explicit iterator(const typename _Range::iterator& _M_current =\n  \
-    \                            typename _Range::iterator{},\n                  \
-    \        size_t index = 0)\n            : index(index), _M_current(_M_current)\
-    \ {}\n        auto operator*() const { return std::make_tuple(index, *_M_current);\
-    \ }\n        auto& operator++() {\n          ++_M_current;\n          ++index;\n\
-    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n        auto operator==(const iterator& other) const {\n          return\
-    \ _M_current == other._M_current;\n        }\n        auto& operator--() requires\
-    \ std::ranges::bidirectional_range<_Range> {\n          --_M_current;\n      \
-    \    --index;\n          return *this;\n        }\n        auto operator--(int)\
-    \ requires std::ranges::bidirectional_range<_Range> {\n          return --*this;\n\
-    \        }\n        auto operator<=>(const iterator&)\n            const requires\
-    \ std::ranges::random_access_range<_Range>\n        = default;\n        auto operator-(const\
-    \ iterator& itr)\n            const requires std::ranges::random_access_range<_Range>\
-    \ {\n          return _M_current - itr._M_current;\n        }\n        auto operator+(const\
-    \ difference_type n)\n            const requires std::ranges::random_access_range<_Range>\
-    \ {\n          return iterator(_M_current + n, index + n);\n        }\n      \
-    \  auto& operator+=(const difference_type n) requires\n            std::ranges::random_access_range<_Range>\
-    \ {\n          _M_current += n;\n          index += n;\n          return *this;\n\
-    \        }\n        friend auto operator+(const difference_type n,\n         \
-    \                     const iterator& itr) requires\n            std::ranges::random_access_range<_Range>\
-    \ {\n          return itr + n;\n        }\n        auto operator-(const difference_type\
-    \ n)\n            const requires std::ranges::random_access_range<_Range> {\n\
-    \          return iterator(_M_current - n, index - n);\n        }\n        auto&\
-    \ operator-=(const difference_type n) requires\n            std::ranges::random_access_range<_Range>\
-    \ {\n          _M_current -= n;\n          index -= n;\n          return *this;\n\
-    \        }\n        auto operator[](const difference_type n)\n            const\
-    \ requires std::ranges::random_access_range<_Range> {\n          return std::make_tuple(index\
-    \ + n, _M_current[n]);\n        }\n      };\n\n      class sentinel {\n      \
-    \  std::ranges::sentinel_t<_Range> _M_end;\n\n      public:\n        constexpr\
-    \ explicit sentinel(std::ranges::sentinel_t<_Range>&& __end)\n            : _M_end(std::forward<std::ranges::sentinel_t<_Range>>(__end))\
-    \ {}\n\n        friend constexpr bool operator==(const iterator& __x,\n      \
-    \                                   const sentinel& __y) {\n          return __x._M_current\
-    \ == __y._M_end;\n        }\n      };\n\n      _Range __r = _Range();\n\n    \
-    \  enumerate_view() requires std::default_initializable<_Range>\n      = default;\n\
-    \      constexpr explicit enumerate_view(const _Range& __r) : __r(__r) {}\n\n\
-    \      auto begin() { return iterator(__r.begin()); }\n      auto end() {\n  \
-    \      if constexpr (requires() { iterator(__r.end()); }) {\n          return\
-    \ iterator(__r.end());\n        } else {\n          return sentinel(__r.end());\n\
-    \        }\n      }\n    };\n\n    namespace __detail {\n      template <class\
-    \ F, class T>\n      constexpr auto __tuple_transform(F&& f, T&& t) {\n      \
-    \  return std::apply(\n            [&]<class... Ts>(Ts&&... elems) {\n       \
-    \       return std::tuple<std::invoke_result_t<F&, Ts>...>(\n                \
-    \  std::invoke(f, std::forward<Ts>(elems))...);\n            },\n            std::forward<T>(t));\n\
-    \      }\n      template <class F, class T>\n      constexpr auto __tuple_for_each(F&&\
-    \ f, T&& t) {\n        std::apply(\n            [&]<class... Ts>(Ts&&... elems)\
-    \ {\n              (std::invoke(f, std::forward<Ts>(elems)), ...);\n         \
-    \   },\n            std::forward<T>(t));\n      }\n    }  // namespace __detail\n\
-    \n    template <std::ranges::range... _Range>\n    struct zip_view : public std::ranges::view_interface<zip_view<_Range...>>\
+    \n\n#line 4 \"Library/Range/util.hpp\"\n#include <functional>\n#line 7 \"Library/Range/util.hpp\"\
+    \n\nnamespace mtd {\n  namespace ranges {\n\n    namespace __detail {\n      template\
+    \ <class F, class T>\n      constexpr auto __tuple_transform(F&& f, T&& t) {\n\
+    \        return std::apply(\n            [&]<class... Ts>(Ts&&... elems) {\n \
+    \             return std::tuple<std::invoke_result_t<F&, Ts>...>(\n          \
+    \        std::invoke(f, std::forward<Ts>(elems))...);\n            },\n      \
+    \      std::forward<T>(t));\n      }\n      template <class F, class T>\n    \
+    \  constexpr auto __tuple_for_each(F&& f, T&& t) {\n        std::apply(\n    \
+    \        [&]<class... Ts>(Ts&&... elems) {\n              (std::invoke(f, std::forward<Ts>(elems)),\
+    \ ...);\n            },\n            std::forward<T>(t));\n      }\n      template\
+    \ <typename... T>\n      concept __all_random_access = (std::ranges::random_access_range<T>\
+    \ &&\n                                     ...);\n      template <typename...\
+    \ T>\n      concept __all_bidirectional = (std::ranges::bidirectional_range<T>\
+    \ &&\n                                     ...);\n      template <typename...\
+    \ T>\n      concept __all_forward = (std::ranges::forward_range<T> && ...);\n\n\
+    \      template <class... T>\n      constexpr auto _S_iter_concept() {\n     \
+    \   if constexpr (__all_random_access<T...>) {\n          return std::random_access_iterator_tag{};\n\
+    \        } else if constexpr (__all_bidirectional<T...>) {\n          return std::bidirectional_iterator_tag{};\n\
+    \        } else if constexpr (__all_forward<T...>) {\n          return std::forward_iterator_tag{};\n\
+    \        } else {\n          return std::input_iterator_tag{};\n        }\n  \
+    \    }\n    }  // namespace __detail\n\n    template <std::ranges::range... _Range>\n\
+    \    struct zip_view : public std::ranges::view_interface<zip_view<_Range...>>\
     \ {\n      struct iterator {\n      public:\n        std::tuple<std::ranges::iterator_t<_Range>...>\
     \ _M_current;\n\n        using difference_type = int;\n        using value_type\
     \ = std::tuple<\n            std::iter_reference_t<std::ranges::iterator_t<_Range>>...>;\n\
-    \        using iterator_concept = std::input_iterator_tag;\n        // std::ranges::iterator_t<_Range>::iterator_concept;\n\
-    \n        constexpr explicit iterator(const decltype(_M_current)& __current)\n\
-    \            : _M_current(__current) {}\n        auto operator*() const {\n  \
-    \        return __detail::__tuple_transform([](auto& __i) { return *__i; },\n\
-    \                                             _M_current);\n        }\n      \
-    \  auto& operator++() {\n          __detail::__tuple_for_each([](auto& __i) {\
-    \ ++__i; }, _M_current);\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const iterator& other) const {\n\
-    \          return _M_current == other._M_current;\n        }\n        // auto&\
-    \ operator--() requires std::ranges::bidirectional_range<_Range>\n        // {\n\
-    \        //   --_M_current;\n        //   --index;\n        //   return *this;\n\
-    \        // }\n        // auto operator--(int) requires\n        // std::ranges::bidirectional_range<_Range>\
-    \ {\n        //   return --*this;\n        // }\n        // auto operator<=>(const\
-    \ iterator&)\n        //     const requires std::ranges::random_access_range<_Range>\n\
-    \        // = default;\n        // auto operator-(const iterator& itr)\n     \
-    \   //     const requires std::ranges::random_access_range<_Range> {\n       \
-    \ //   return _M_current - itr._M_current;\n        // }\n        // auto operator+(const\
-    \ difference_type n)\n        //     const requires std::ranges::random_access_range<_Range>\
-    \ {\n        //   return iterator(_M_current + n, index + n);\n        // }\n\
-    \        // auto& operator+=(const difference_type n) requires\n        //   \
-    \  std::ranges::random_access_range<_Range> {\n        //   _M_current += n;\n\
-    \        //   index += n;\n        //   return *this;\n        // }\n        //\
-    \ friend auto operator+(const difference_type n,\n        //                 \
-    \      const iterator& itr) requires\n        //     std::ranges::random_access_range<_Range>\
-    \ {\n        //   return itr + n;\n        // }\n        // auto operator-(const\
-    \ difference_type n)\n        //     const requires std::ranges::random_access_range<_Range>\
-    \ {\n        //   return iterator(_M_current - n, index - n);\n        // }\n\
-    \        // auto& operator-=(const difference_type n) requires\n        //   \
-    \  std::ranges::random_access_range<_Range> {\n        //   _M_current -= n;\n\
-    \        //   index -= n;\n        //   return *this;\n        // }\n        //\
-    \ auto operator[](const difference_type n)\n        //     const requires std::ranges::random_access_range<_Range>\
-    \ {\n        //   return std::make_tuple(index + n, _M_current[n]);\n        //\
-    \ }\n      };\n\n      class sentinel {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...>\
+    \        using iterator_concept =\n            decltype(__detail::_S_iter_concept<_Range...>());\n\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(const\
+    \ decltype(_M_current)& __current)\n            : _M_current(__current) {}\n \
+    \       constexpr auto operator*() const {\n          return __detail::__tuple_transform([](auto&\
+    \ __i) { return *__i; },\n                                             _M_current);\n\
+    \        }\n        constexpr auto& operator++() {\n          __detail::__tuple_for_each([](auto&\
+    \ __i) { ++__i; }, _M_current);\n          return *this;\n        }\n        constexpr\
+    \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
+    \ iterator& other) const {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
+    \ {\n            return ((std::get<_Is>(_M_current) ==\n                     std::get<_Is>(other._M_current))\
+    \ ||\n                    ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
+    \        }\n        constexpr auto& operator--() requires\n            __detail::__all_bidirectional<_Range...>\
+    \ {\n          __detail::__tuple_for_each([](auto& __i) { --__i; }, _M_current);\n\
+    \          return *this;\n        }\n        constexpr auto operator--(\n    \
+    \        int) requires __detail::__all_bidirectional<_Range...> {\n          return\
+    \ --*this;\n        }\n        constexpr auto operator<=>(const iterator&)\n \
+    \           const requires __detail::__all_random_access<_Range...>\n        =\
+    \ default;\n        constexpr auto operator-(const iterator& itr)\n          \
+    \  const requires __detail::__all_random_access<_Range...> {\n          return\
+    \ [&]<size_t... _Is>(std::index_sequence<_Is...>) {\n            return std::ranges::min({difference_type(\n\
+    \                std::get<_Is>(_M_current) - std::get<_Is>(itr._M_current))...});\n\
+    \          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n   \
+    \     }\n        constexpr auto& operator+=(const difference_type n) requires\n\
+    \            __detail::__all_random_access<_Range...> {\n          __detail::__tuple_for_each([&n](auto&\
+    \ __i) { __i += n; }, _M_current);\n          return *this;\n        }\n     \
+    \   constexpr auto operator+(const difference_type n)\n            const requires\
+    \ __detail::__all_random_access<_Range...> {\n          auto __r = *this;\n  \
+    \        __r += n;\n          return __r;\n        }\n        constexpr friend\
+    \ auto operator+(const difference_type n,\n                                  \
+    \      const iterator& itr) requires\n            __detail::__all_random_access<_Range...>\
+    \ {\n          return itr + n;\n        }\n        constexpr auto& operator-=(const\
+    \ difference_type n) requires\n            __detail::__all_random_access<_Range...>\
+    \ {\n          __detail::__tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);\n\
+    \          return *this;\n        }\n        constexpr auto operator-(const difference_type\
+    \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
+    \          auto __r = *this;\n          __r -= n;\n          return __r;\n   \
+    \     }\n        constexpr auto operator[](const difference_type n)\n        \
+    \    const requires __detail::__all_random_access<_Range...> {\n          return\
+    \ __detail::__tuple_transform([&n](auto& __i) { return __i[n]; },\n          \
+    \                                   _M_current);\n        }\n      };\n\n    \
+    \  class sentinel {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...>\
     \ _M_end;\n\n      public:\n        constexpr explicit sentinel(const decltype(_M_end)&\
-    \ __end)\n            : _M_end(__end) {}\n\n        friend constexpr bool operator==(const\
-    \ iterator& __x,\n                                         const sentinel& __y)\
-    \ {\n          return __x._M_current == __y._M_end;\n        }\n      };\n\n \
-    \     std::tuple<_Range...> __r;\n      constexpr explicit zip_view(const _Range&...\
-    \ __r) : __r(__r...) {}\n      auto begin() {\n        return iterator(__detail::__tuple_transform(std::ranges::begin,\
-    \ __r));\n      }\n      auto end() {\n        return sentinel(__detail::__tuple_transform(std::ranges::end,\
-    \ __r));\n      }\n    };\n  }  // namespace ranges\n\n  namespace views {\n \
-    \   struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure {\n      template\
-    \ <std::ranges::viewable_range _Range>\n      constexpr auto operator()(_Range&&\
-    \ __r) const {\n        return ranges::enumerate_view{std::forward<_Range>(__r)};\n\
-    \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
-    \    inline constexpr _Enumerate enumerate{};\n  }  // namespace views\n}  //\
-    \ namespace mtd\n#line 5 \"Library/Range/template.cpp\"\n\nnamespace mtd {\n \
-    \ namespace ranges {\n    struct input_range_template_view\n        : public std::ranges::view_interface<input_range_template_view>\
+    \ __end = {})\n            : _M_end(__end) {}\n\n        friend constexpr bool\
+    \ operator==(const iterator& __x,\n                                         const\
+    \ sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
+    \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
+    \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
+    \        }\n      };\n\n      std::tuple<_Range...> __r;\n      constexpr explicit\
+    \ zip_view(const _Range&... __r) : __r(__r...) {}\n      constexpr auto begin()\
+    \ {\n        return iterator(__detail::__tuple_transform(std::ranges::begin, __r));\n\
+    \      }\n      constexpr auto end() {\n        return sentinel(__detail::__tuple_transform(std::ranges::end,\
+    \ __r));\n      }\n    };\n\n  }  // namespace ranges\n\n  namespace views {\n\
+    \    namespace __detail {\n      template <typename... _Args>\n      concept __can_zip_view\
+    \ = requires {\n        ranges::zip_view(std::declval<_Args>()...);\n      };\n\
+    \    }  // namespace __detail\n\n    struct _ZipView {\n      template <class...\
+    \ _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr auto\
+    \ operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
+    \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
+    \ _Tp>\n      constexpr auto operator()(_Tp&& __e) const {\n        return ranges::zip_view{std::views::iota(0),\
+    \ std::forward<_Tp>(__e)};\n      }\n      static constexpr bool _S_has_simple_call_op\
+    \ = true;\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
+    \ _Enumerate enumerate{};\n\n  }  // namespace views\n}  // namespace mtd\n#line\
+    \ 5 \"Library/Range/template.cpp\"\n\nnamespace mtd {\n  namespace ranges {\n\
+    \    struct input_range_template_view\n        : public std::ranges::view_interface<input_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto operator==(const iterator &sentinel) const {\n          return i == sentinel.i;\n\
-    \        }\n      };\n\n      int n;\n\n      explicit input_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct forward_range_template_view\n\
-    \        : public std::ranges::view_interface<forward_range_template_view> {\n\
-    \      class iterator {\n        int i;\n\n      public:\n        using difference_type\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ input_range_template_view(int n) : n(n) {}\n      constexpr auto begin() const\
+    \ { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct forward_range_template_view\n        : public std::ranges::view_interface<forward_range_template_view>\
+    \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::forward_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto operator==(const iterator &sentinel) const {\n          return i == sentinel.i;\n\
-    \        }\n      };\n\n      int n;\n\n      explicit forward_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct bidirectional_range_template_view\n\
-    \        : public std::ranges::view_interface<\n              bidirectional_range_template_view>\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ forward_range_template_view(int n) : n(n) {}\n      constexpr auto begin() const\
+    \ { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct bidirectional_range_template_view\n        : public\
+    \ std::ranges::view_interface<\n              bidirectional_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto &operator--() {\n          --i;\n          return *this;\n        }\n\
-    \        auto operator--(int) { return --*this; }\n        auto operator==(const\
-    \ iterator &sentinel) const {\n          return i == sentinel.i;\n        }\n\
-    \      };\n\n      int n;\n\n      explicit bidirectional_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct random_access_range_template_view\n\
-    \        : public std::ranges::view_interface<\n              random_access_range_template_view>\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto &operator--() {\n          --i;\n          return *this;\n\
+    \        }\n        constexpr auto operator--(int) { return --*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ bidirectional_range_template_view(int n) : n(n) {}\n      constexpr auto begin()\
+    \ const { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct random_access_range_template_view\n        : public\
+    \ std::ranges::view_interface<\n              random_access_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::random_access_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto &operator--() {\n          --i;\n          return *this;\n        }\n\
-    \        auto operator--(int) { return --*this; }\n        auto operator==(const\
-    \ iterator &sentinel) const {\n          return i == sentinel.i;\n        }\n\
-    \        auto operator<=>(const iterator &) const = default;\n        auto operator-(const\
-    \ iterator &itr) const { return i - itr.i; }\n        auto operator+(const difference_type\
-    \ n) const {\n          return iterator(i + n);\n        }\n        auto &operator+=(const\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto &operator--() {\n          --i;\n          return *this;\n\
+    \        }\n        constexpr auto operator--(int) { return --*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n        constexpr auto operator<=>(const iterator\
+    \ &) const = default;\n        constexpr auto operator-(const iterator &itr) const\
+    \ {\n          return i - itr.i;\n        }\n        constexpr auto &operator+=(const\
     \ difference_type n) {\n          i += n;\n          return *this;\n        }\n\
-    \        friend auto operator+(const difference_type n, const iterator &itr) {\n\
-    \          return itr + n;\n        }\n        auto operator-(const difference_type\
-    \ n) const {\n          return iterator(i - n);\n        }\n        auto &operator-=(const\
-    \ difference_type n) {\n          i -= n;\n          return *this;\n        }\n\
-    \        auto operator[](const difference_type n) const { return i + n; }\n  \
-    \    };\n\n      int n;\n\n      explicit random_access_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n  }  // namespace ranges\n}  // namespace\
-    \ mtd\n\nint main() {\n  // template\n  // mtd::check::all<mtd::ranges::input_range_template_view>();\n\
+    \        constexpr auto operator+(const difference_type n) const {\n         \
+    \ auto __r = *this;\n          __r += n;\n          return __r;\n        }\n \
+    \       constexpr friend auto operator+(const difference_type n,\n           \
+    \                             const iterator &itr) {\n          return itr + n;\n\
+    \        }\n        constexpr auto &operator-=(const difference_type n) {\n  \
+    \        i -= n;\n          return *this;\n        }\n        constexpr auto operator-(const\
+    \ difference_type n) const {\n          auto __r = *this;\n          __r -= n;\n\
+    \          return __r;\n        }\n        constexpr auto operator[](const difference_type\
+    \ n) const {\n          return i + n;\n        }\n      };\n\n      int n;\n\n\
+    \      constexpr explicit random_access_range_template_view(int n) : n(n) {}\n\
+    \      constexpr auto begin() const { return iterator(0); }\n      constexpr auto\
+    \ end() const { return iterator(n); }\n    };\n\n  }  // namespace ranges\n} \
+    \ // namespace mtd\n\nint main() {\n  // template\n  // mtd::check::all<mtd::ranges::input_range_template_view>();\n\
     \  // mtd::check::all<mtd::ranges::forward_range_template_view>();\n  // mtd::check::all<mtd::ranges::bidirectional_range_template_view>();\n\
     \  // mtd::check::all<mtd::ranges::random_access_range_template_view>();\n\n \
     \ // bit\n  // mtd::check::all<mtd::ranges::bit_index_view>();\n  // mtd::check::all<mtd::ranges::bit_subset_view>();\n\
     \  // mtd::check::all<mtd::ranges::bit_supset_view>();\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n\
-    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::enumerate_view<mtd::ranges::input_range_template_view>>();\n\
-    \  // mtd::check::all<mtd::ranges::enumerate_view<\n  //     mtd::ranges::bidirectional_range_template_view>>();\n\
-    \  // mtd::check::all<mtd::ranges::enumerate_view<\n  //     mtd::ranges::random_access_range_template_view>>();\n\
-    \  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::input_range_template_view,\n\
-    \  //                           mtd::ranges::input_range_template_view>>();\n\n\
-    \  // istream\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n}\n"
+    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \  //                           mtd::ranges::random_access_range_template_view>>();\n\
+    \n  // istream\n  // mtd::check::all<mtd::ranges::istream_view<int>>();\n}\n"
   code: "#include \"./bit.hpp\"\n#include \"./check.hpp\"\n#include \"./istream.hpp\"\
     \n#include \"./util.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n    struct\
     \ input_range_template_view\n        : public std::ranges::view_interface<input_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto operator==(const iterator &sentinel) const {\n          return i == sentinel.i;\n\
-    \        }\n      };\n\n      int n;\n\n      explicit input_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct forward_range_template_view\n\
-    \        : public std::ranges::view_interface<forward_range_template_view> {\n\
-    \      class iterator {\n        int i;\n\n      public:\n        using difference_type\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ input_range_template_view(int n) : n(n) {}\n      constexpr auto begin() const\
+    \ { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct forward_range_template_view\n        : public std::ranges::view_interface<forward_range_template_view>\
+    \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::forward_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto operator==(const iterator &sentinel) const {\n          return i == sentinel.i;\n\
-    \        }\n      };\n\n      int n;\n\n      explicit forward_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct bidirectional_range_template_view\n\
-    \        : public std::ranges::view_interface<\n              bidirectional_range_template_view>\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ forward_range_template_view(int n) : n(n) {}\n      constexpr auto begin() const\
+    \ { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct bidirectional_range_template_view\n        : public\
+    \ std::ranges::view_interface<\n              bidirectional_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto &operator--() {\n          --i;\n          return *this;\n        }\n\
-    \        auto operator--(int) { return --*this; }\n        auto operator==(const\
-    \ iterator &sentinel) const {\n          return i == sentinel.i;\n        }\n\
-    \      };\n\n      int n;\n\n      explicit bidirectional_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n    struct random_access_range_template_view\n\
-    \        : public std::ranges::view_interface<\n              random_access_range_template_view>\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto &operator--() {\n          --i;\n          return *this;\n\
+    \        }\n        constexpr auto operator--(int) { return --*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n      };\n\n      int n;\n\n      constexpr explicit\
+    \ bidirectional_range_template_view(int n) : n(n) {}\n      constexpr auto begin()\
+    \ const { return iterator(0); }\n      constexpr auto end() const { return iterator(n);\
+    \ }\n    };\n\n    struct random_access_range_template_view\n        : public\
+    \ std::ranges::view_interface<\n              random_access_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::random_access_iterator_tag;\n\
-    \n        explicit iterator(int i = 0) : i(i) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          ++i;\n          return\
-    \ *this;\n        }\n        auto operator++(int) { return ++*this; }\n      \
-    \  auto &operator--() {\n          --i;\n          return *this;\n        }\n\
-    \        auto operator--(int) { return --*this; }\n        auto operator==(const\
-    \ iterator &sentinel) const {\n          return i == sentinel.i;\n        }\n\
-    \        auto operator<=>(const iterator &) const = default;\n        auto operator-(const\
-    \ iterator &itr) const { return i - itr.i; }\n        auto operator+(const difference_type\
-    \ n) const {\n          return iterator(i + n);\n        }\n        auto &operator+=(const\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ i) : i(i) {}\n        constexpr auto operator*() const { return i; }\n     \
+    \   constexpr auto &operator++() {\n          ++i;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto &operator--() {\n          --i;\n          return *this;\n\
+    \        }\n        constexpr auto operator--(int) { return --*this; }\n     \
+    \   constexpr auto operator==(const iterator &sentinel) const {\n          return\
+    \ i == sentinel.i;\n        }\n        constexpr auto operator<=>(const iterator\
+    \ &) const = default;\n        constexpr auto operator-(const iterator &itr) const\
+    \ {\n          return i - itr.i;\n        }\n        constexpr auto &operator+=(const\
     \ difference_type n) {\n          i += n;\n          return *this;\n        }\n\
-    \        friend auto operator+(const difference_type n, const iterator &itr) {\n\
-    \          return itr + n;\n        }\n        auto operator-(const difference_type\
-    \ n) const {\n          return iterator(i - n);\n        }\n        auto &operator-=(const\
-    \ difference_type n) {\n          i -= n;\n          return *this;\n        }\n\
-    \        auto operator[](const difference_type n) const { return i + n; }\n  \
-    \    };\n\n      int n;\n\n      explicit random_access_range_template_view(int\
-    \ n) : n(n) {}\n      auto begin() const { return iterator(0); }\n      auto end()\
-    \ const { return iterator(n); }\n    };\n\n  }  // namespace ranges\n}  // namespace\
-    \ mtd\n\nint main() {\n  // template\n  // mtd::check::all<mtd::ranges::input_range_template_view>();\n\
+    \        constexpr auto operator+(const difference_type n) const {\n         \
+    \ auto __r = *this;\n          __r += n;\n          return __r;\n        }\n \
+    \       constexpr friend auto operator+(const difference_type n,\n           \
+    \                             const iterator &itr) {\n          return itr + n;\n\
+    \        }\n        constexpr auto &operator-=(const difference_type n) {\n  \
+    \        i -= n;\n          return *this;\n        }\n        constexpr auto operator-(const\
+    \ difference_type n) const {\n          auto __r = *this;\n          __r -= n;\n\
+    \          return __r;\n        }\n        constexpr auto operator[](const difference_type\
+    \ n) const {\n          return i + n;\n        }\n      };\n\n      int n;\n\n\
+    \      constexpr explicit random_access_range_template_view(int n) : n(n) {}\n\
+    \      constexpr auto begin() const { return iterator(0); }\n      constexpr auto\
+    \ end() const { return iterator(n); }\n    };\n\n  }  // namespace ranges\n} \
+    \ // namespace mtd\n\nint main() {\n  // template\n  // mtd::check::all<mtd::ranges::input_range_template_view>();\n\
     \  // mtd::check::all<mtd::ranges::forward_range_template_view>();\n  // mtd::check::all<mtd::ranges::bidirectional_range_template_view>();\n\
     \  // mtd::check::all<mtd::ranges::random_access_range_template_view>();\n\n \
     \ // bit\n  // mtd::check::all<mtd::ranges::bit_index_view>();\n  // mtd::check::all<mtd::ranges::bit_subset_view>();\n\
     \  // mtd::check::all<mtd::ranges::bit_supset_view>();\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n\
-    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::enumerate_view<mtd::ranges::input_range_template_view>>();\n\
-    \  // mtd::check::all<mtd::ranges::enumerate_view<\n  //     mtd::ranges::bidirectional_range_template_view>>();\n\
-    \  // mtd::check::all<mtd::ranges::enumerate_view<\n  //     mtd::ranges::random_access_range_template_view>>();\n\
-    \  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::input_range_template_view,\n\
-    \  //                           mtd::ranges::input_range_template_view>>();\n\n\
-    \  // istream\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n}\n"
+    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \  //                           mtd::ranges::random_access_range_template_view>>();\n\
+    \n  // istream\n  // mtd::check::all<mtd::ranges::istream_view<int>>();\n}\n"
   dependsOn:
   - Library/Range/bit.hpp
   - Library/Range/check.hpp
@@ -459,7 +468,7 @@ data:
   isVerificationFile: false
   path: Library/Range/template.cpp
   requiredBy: []
-  timestamp: '2024-08-24 17:51:00+09:00'
+  timestamp: '2024-08-29 15:31:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/template.cpp

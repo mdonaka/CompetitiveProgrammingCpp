@@ -13,55 +13,65 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/Range/bit.hpp\"\n\n#include <ranges>\n\nnamespace\
     \ mtd {\n  namespace ranges {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
-    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        unsigned\
-    \ ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned int\
-    \ c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        constexpr\
+    \ unsigned ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned\
+    \ int c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
     \          if (n & 0x0000FFFF) c -= 16;\n          if (n & 0x00FF00FF) c -= 8;\n\
     \          if (n & 0x0F0F0F0F) c -= 4;\n          if (n & 0x33333333) c -= 2;\n\
     \          if (n & 0x55555555) c -= 1;\n          return c;\n        }\n\n   \
     \   public:\n        using difference_type = int;\n        using value_type =\
     \ int;\n        using iterator_concept = std::forward_iterator_tag;\n\n      \
-    \  explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}\n        auto operator*()\
-    \ const { return i; }\n        auto &operator++() {\n          bit ^= (1 << i);\n\
-    \          i = ctz(bit);\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const iterator &other) const {\n\
-    \          return bit == other.bit;\n        }\n      };\n\n      int bit;\n\n\
-    \      explicit bit_index_view(int bit) : bit(bit) {}\n      auto begin() const\
-    \ { return iterator(bit); }\n      auto end() const { return iterator(); }\n \
-    \   };\n\n    struct bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
+    \  constexpr iterator() = default;\n        constexpr explicit iterator(int bit)\
+    \ : i(ctz(bit)), bit(bit) {}\n        constexpr auto operator*() const { return\
+    \ i; }\n        constexpr auto &operator++() {\n          bit ^= (1 << i);\n \
+    \         i = ctz(bit);\n          return *this;\n        }\n        constexpr\
+    \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
+    \ iterator &other) const {\n          return bit == other.bit;\n        }\n  \
+    \    };\n\n      int bit;\n\n      constexpr explicit bit_index_view(int bit)\
+    \ : bit(bit) {}\n      constexpr auto begin() const { return iterator(bit); }\n\
+    \      constexpr auto end() const { return iterator(); }\n    };\n\n    struct\
+    \ bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
     \ {\n      class iterator {\n        int i;\n        int bit;\n\n      public:\n\
     \        using difference_type = int;\n        using value_type = int;\n     \
-    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        explicit\
-    \ iterator(int bit = 0) : i(bit), bit(bit) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          i = (i - 1) & bit;\n\
-    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n        auto operator==(const iterator &other) const { return i == other.i;\
-    \ }\n      };\n\n      int bit;\n\n      explicit bit_subset_view(int bit) : bit(bit)\
-    \ {}\n      auto begin() const { return iterator(bit); }\n      auto end() const\
-    \ { return iterator(); }\n    };\n\n    struct bit_supset_view\n        : public\
-    \ std::ranges::view_interface<bit_supset_view> {\n      class iterator {\n   \
-    \     int i;\n        int bit;\n        int n;\n\n      public:\n        using\
-    \ difference_type = int;\n        using value_type = int;\n        using iterator_concept\
-    \ = std::bidirectional_iterator_tag;\n\n        explicit iterator(int bit = 0,\
-    \ int n = 0) : i(bit), bit(bit), n(n) {}\n        auto operator*() const { return\
-    \ i; }\n        auto &operator++() {\n          i = (i + 1) | bit;\n         \
-    \ return *this;\n        }\n        auto operator++(int) { return ++*this; }\n\
-    \        auto operator==(const std::default_sentinel_t &sentinel) const {\n  \
-    \        return i >= (1 << n);\n        }\n      };\n\n      int bit;\n      int\
-    \ n;\n\n      explicit bit_supset_view(int bit, int n) : bit(bit), n(n) {}\n \
-    \     auto begin() const { return iterator(bit, n); }\n      auto end() const\
-    \ { return std::default_sentinel; }\n    };\n\n    struct k_bit_subset_view\n\
-    \        : public std::ranges::view_interface<k_bit_subset_view> {\n      class\
-    \ iterator {\n        int i;\n        int n;\n\n      public:\n        using difference_type\
-    \ = int;\n        using value_type = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\
-    \n        explicit iterator(int n = 0, int k = 0) : i((1 << k) - 1), n(n) {}\n\
-    \        auto operator*() const { return i; }\n        auto &operator++() {\n\
-    \          int x = i & -i;\n          int y = i + x;\n          i = (((i & ~y)\
-    \ / x) >> 1) | y;\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const std::default_sentinel_t &sentinel)\
-    \ const {\n          return i >= (1 << n);\n        }\n      };\n\n      int n,\
-    \ k;\n\n      explicit k_bit_subset_view(int n, int k) : n(n), k(k) {}\n     \
-    \ auto begin() const { return iterator(n, k); }\n      auto end() const { return\
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int bit) : i(bit),\
+    \ bit(bit) {}\n        constexpr auto operator*() const { return i; }\n      \
+    \  constexpr auto &operator++() {\n          i = (i - 1) & bit;\n          return\
+    \ *this;\n        }\n        constexpr auto operator++(int) { return ++*this;\
+    \ }\n        constexpr auto operator==(const iterator &other) const {\n      \
+    \    return i == other.i;\n        }\n      };\n\n      int bit;\n\n      constexpr\
+    \ explicit bit_subset_view(int bit) : bit(bit) {}\n      constexpr auto begin()\
+    \ const { return iterator(bit); }\n      constexpr auto end() const { return iterator();\
+    \ }\n    };\n\n    struct bit_supset_view\n        : public std::ranges::view_interface<bit_supset_view>\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n        int n;\n\
+    \n      public:\n        using difference_type = int;\n        using value_type\
+    \ = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\n\
+    \        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ bit, int n) : i(bit), bit(bit), n(n) {}\n        constexpr auto operator*()\
+    \ const { return i; }\n        constexpr auto &operator++() {\n          i = (i\
+    \ + 1) | bit;\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n        constexpr auto operator==(const iterator &other)\
+    \ const {\n          return i == other.i && bit == other.bit && n == other.n;\n\
+    \        }\n        constexpr auto operator==(\n            const std::default_sentinel_t\
+    \ &sentinel) const {\n          return i >= (1 << n);\n        }\n      };\n\n\
+    \      int bit;\n      int n;\n\n      constexpr explicit bit_supset_view(int\
+    \ bit, int n) : bit(bit), n(n) {}\n      constexpr auto begin() const { return\
+    \ iterator(bit, n); }\n      constexpr auto end() const { return std::default_sentinel;\
+    \ }\n    };\n\n    struct k_bit_subset_view\n        : public std::ranges::view_interface<k_bit_subset_view>\
+    \ {\n      class iterator {\n        int i;\n        int n;\n\n      public:\n\
+    \        using difference_type = int;\n        using value_type = int;\n     \
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int n, int k) : i((1\
+    \ << k) - 1), n(n) {}\n        constexpr auto operator*() const { return i; }\n\
+    \        constexpr auto &operator++() {\n          int x = i & -i;\n         \
+    \ int y = i + x;\n          i = (((i & ~y) / x) >> 1) | y;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &other) const {\n          return\
+    \ i == other.i && n == other.n;\n        }\n        constexpr auto operator==(\n\
+    \            const std::default_sentinel_t &sentinel) const {\n          return\
+    \ i >= (1 << n);\n        }\n      };\n\n      int n, k;\n      constexpr explicit\
+    \ k_bit_subset_view(int n, int k) : n(n), k(k) {}\n      constexpr auto begin()\
+    \ const { return iterator(n, k); }\n      constexpr auto end() const { return\
     \ std::default_sentinel; }\n    };\n  }  // namespace ranges\n\n  namespace views\
     \ {\n    namespace __detail {\n      template <typename... _Args>\n      concept\
     \ __can_bit_index_view = requires {\n        ranges::bit_index_view(std::declval<_Args>()...);\n\
@@ -91,55 +101,65 @@ data:
     \ views\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <ranges>\n\nnamespace mtd {\n  namespace ranges\
     \ {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
-    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        unsigned\
-    \ ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned int\
-    \ c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n\n        constexpr\
+    \ unsigned ctz(unsigned int n) {\n          if (!n) return -1;\n          unsigned\
+    \ int c = 32;\n          n &= -static_cast<signed int>(n);\n          if (n) c--;\n\
     \          if (n & 0x0000FFFF) c -= 16;\n          if (n & 0x00FF00FF) c -= 8;\n\
     \          if (n & 0x0F0F0F0F) c -= 4;\n          if (n & 0x33333333) c -= 2;\n\
     \          if (n & 0x55555555) c -= 1;\n          return c;\n        }\n\n   \
     \   public:\n        using difference_type = int;\n        using value_type =\
     \ int;\n        using iterator_concept = std::forward_iterator_tag;\n\n      \
-    \  explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}\n        auto operator*()\
-    \ const { return i; }\n        auto &operator++() {\n          bit ^= (1 << i);\n\
-    \          i = ctz(bit);\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const iterator &other) const {\n\
-    \          return bit == other.bit;\n        }\n      };\n\n      int bit;\n\n\
-    \      explicit bit_index_view(int bit) : bit(bit) {}\n      auto begin() const\
-    \ { return iterator(bit); }\n      auto end() const { return iterator(); }\n \
-    \   };\n\n    struct bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
+    \  constexpr iterator() = default;\n        constexpr explicit iterator(int bit)\
+    \ : i(ctz(bit)), bit(bit) {}\n        constexpr auto operator*() const { return\
+    \ i; }\n        constexpr auto &operator++() {\n          bit ^= (1 << i);\n \
+    \         i = ctz(bit);\n          return *this;\n        }\n        constexpr\
+    \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
+    \ iterator &other) const {\n          return bit == other.bit;\n        }\n  \
+    \    };\n\n      int bit;\n\n      constexpr explicit bit_index_view(int bit)\
+    \ : bit(bit) {}\n      constexpr auto begin() const { return iterator(bit); }\n\
+    \      constexpr auto end() const { return iterator(); }\n    };\n\n    struct\
+    \ bit_subset_view\n        : public std::ranges::view_interface<bit_subset_view>\
     \ {\n      class iterator {\n        int i;\n        int bit;\n\n      public:\n\
     \        using difference_type = int;\n        using value_type = int;\n     \
-    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        explicit\
-    \ iterator(int bit = 0) : i(bit), bit(bit) {}\n        auto operator*() const\
-    \ { return i; }\n        auto &operator++() {\n          i = (i - 1) & bit;\n\
-    \          return *this;\n        }\n        auto operator++(int) { return ++*this;\
-    \ }\n        auto operator==(const iterator &other) const { return i == other.i;\
-    \ }\n      };\n\n      int bit;\n\n      explicit bit_subset_view(int bit) : bit(bit)\
-    \ {}\n      auto begin() const { return iterator(bit); }\n      auto end() const\
-    \ { return iterator(); }\n    };\n\n    struct bit_supset_view\n        : public\
-    \ std::ranges::view_interface<bit_supset_view> {\n      class iterator {\n   \
-    \     int i;\n        int bit;\n        int n;\n\n      public:\n        using\
-    \ difference_type = int;\n        using value_type = int;\n        using iterator_concept\
-    \ = std::bidirectional_iterator_tag;\n\n        explicit iterator(int bit = 0,\
-    \ int n = 0) : i(bit), bit(bit), n(n) {}\n        auto operator*() const { return\
-    \ i; }\n        auto &operator++() {\n          i = (i + 1) | bit;\n         \
-    \ return *this;\n        }\n        auto operator++(int) { return ++*this; }\n\
-    \        auto operator==(const std::default_sentinel_t &sentinel) const {\n  \
-    \        return i >= (1 << n);\n        }\n      };\n\n      int bit;\n      int\
-    \ n;\n\n      explicit bit_supset_view(int bit, int n) : bit(bit), n(n) {}\n \
-    \     auto begin() const { return iterator(bit, n); }\n      auto end() const\
-    \ { return std::default_sentinel; }\n    };\n\n    struct k_bit_subset_view\n\
-    \        : public std::ranges::view_interface<k_bit_subset_view> {\n      class\
-    \ iterator {\n        int i;\n        int n;\n\n      public:\n        using difference_type\
-    \ = int;\n        using value_type = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\
-    \n        explicit iterator(int n = 0, int k = 0) : i((1 << k) - 1), n(n) {}\n\
-    \        auto operator*() const { return i; }\n        auto &operator++() {\n\
-    \          int x = i & -i;\n          int y = i + x;\n          i = (((i & ~y)\
-    \ / x) >> 1) | y;\n          return *this;\n        }\n        auto operator++(int)\
-    \ { return ++*this; }\n        auto operator==(const std::default_sentinel_t &sentinel)\
-    \ const {\n          return i >= (1 << n);\n        }\n      };\n\n      int n,\
-    \ k;\n\n      explicit k_bit_subset_view(int n, int k) : n(n), k(k) {}\n     \
-    \ auto begin() const { return iterator(n, k); }\n      auto end() const { return\
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int bit) : i(bit),\
+    \ bit(bit) {}\n        constexpr auto operator*() const { return i; }\n      \
+    \  constexpr auto &operator++() {\n          i = (i - 1) & bit;\n          return\
+    \ *this;\n        }\n        constexpr auto operator++(int) { return ++*this;\
+    \ }\n        constexpr auto operator==(const iterator &other) const {\n      \
+    \    return i == other.i;\n        }\n      };\n\n      int bit;\n\n      constexpr\
+    \ explicit bit_subset_view(int bit) : bit(bit) {}\n      constexpr auto begin()\
+    \ const { return iterator(bit); }\n      constexpr auto end() const { return iterator();\
+    \ }\n    };\n\n    struct bit_supset_view\n        : public std::ranges::view_interface<bit_supset_view>\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n        int n;\n\
+    \n      public:\n        using difference_type = int;\n        using value_type\
+    \ = int;\n        using iterator_concept = std::bidirectional_iterator_tag;\n\n\
+    \        constexpr iterator() = default;\n        constexpr explicit iterator(int\
+    \ bit, int n) : i(bit), bit(bit), n(n) {}\n        constexpr auto operator*()\
+    \ const { return i; }\n        constexpr auto &operator++() {\n          i = (i\
+    \ + 1) | bit;\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n        constexpr auto operator==(const iterator &other)\
+    \ const {\n          return i == other.i && bit == other.bit && n == other.n;\n\
+    \        }\n        constexpr auto operator==(\n            const std::default_sentinel_t\
+    \ &sentinel) const {\n          return i >= (1 << n);\n        }\n      };\n\n\
+    \      int bit;\n      int n;\n\n      constexpr explicit bit_supset_view(int\
+    \ bit, int n) : bit(bit), n(n) {}\n      constexpr auto begin() const { return\
+    \ iterator(bit, n); }\n      constexpr auto end() const { return std::default_sentinel;\
+    \ }\n    };\n\n    struct k_bit_subset_view\n        : public std::ranges::view_interface<k_bit_subset_view>\
+    \ {\n      class iterator {\n        int i;\n        int n;\n\n      public:\n\
+    \        using difference_type = int;\n        using value_type = int;\n     \
+    \   using iterator_concept = std::bidirectional_iterator_tag;\n\n        constexpr\
+    \ iterator() = default;\n        constexpr explicit iterator(int n, int k) : i((1\
+    \ << k) - 1), n(n) {}\n        constexpr auto operator*() const { return i; }\n\
+    \        constexpr auto &operator++() {\n          int x = i & -i;\n         \
+    \ int y = i + x;\n          i = (((i & ~y) / x) >> 1) | y;\n          return *this;\n\
+    \        }\n        constexpr auto operator++(int) { return ++*this; }\n     \
+    \   constexpr auto operator==(const iterator &other) const {\n          return\
+    \ i == other.i && n == other.n;\n        }\n        constexpr auto operator==(\n\
+    \            const std::default_sentinel_t &sentinel) const {\n          return\
+    \ i >= (1 << n);\n        }\n      };\n\n      int n, k;\n      constexpr explicit\
+    \ k_bit_subset_view(int n, int k) : n(n), k(k) {}\n      constexpr auto begin()\
+    \ const { return iterator(n, k); }\n      constexpr auto end() const { return\
     \ std::default_sentinel; }\n    };\n  }  // namespace ranges\n\n  namespace views\
     \ {\n    namespace __detail {\n      template <typename... _Args>\n      concept\
     \ __can_bit_index_view = requires {\n        ranges::bit_index_view(std::declval<_Args>()...);\n\
@@ -172,7 +192,7 @@ data:
   path: Library/Range/bit.hpp
   requiredBy:
   - Library/Range/template.cpp
-  timestamp: '2024-08-24 16:38:32+09:00'
+  timestamp: '2024-08-29 12:31:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/bit.hpp
