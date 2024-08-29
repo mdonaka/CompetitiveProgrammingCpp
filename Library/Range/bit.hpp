@@ -9,7 +9,7 @@ namespace mtd {
         int i;
         int bit;
 
-        unsigned ctz(unsigned int n) {
+        constexpr unsigned ctz(unsigned int n) {
           if (!n) return -1;
           unsigned int c = 32;
           n &= -static_cast<signed int>(n);
@@ -27,24 +27,25 @@ namespace mtd {
         using value_type = int;
         using iterator_concept = std::forward_iterator_tag;
 
-        explicit iterator(int bit = 0) : i(ctz(bit)), bit(bit) {}
-        auto operator*() const { return i; }
-        auto &operator++() {
+        constexpr iterator() = default;
+        constexpr explicit iterator(int bit) : i(ctz(bit)), bit(bit) {}
+        constexpr auto operator*() const { return i; }
+        constexpr auto &operator++() {
           bit ^= (1 << i);
           i = ctz(bit);
           return *this;
         }
-        auto operator++(int) { return ++*this; }
-        auto operator==(const iterator &other) const {
+        constexpr auto operator++(int) { return ++*this; }
+        constexpr auto operator==(const iterator &other) const {
           return bit == other.bit;
         }
       };
 
       int bit;
 
-      explicit bit_index_view(int bit) : bit(bit) {}
-      auto begin() const { return iterator(bit); }
-      auto end() const { return iterator(); }
+      constexpr explicit bit_index_view(int bit) : bit(bit) {}
+      constexpr auto begin() const { return iterator(bit); }
+      constexpr auto end() const { return iterator(); }
     };
 
     struct bit_subset_view
@@ -58,21 +59,24 @@ namespace mtd {
         using value_type = int;
         using iterator_concept = std::bidirectional_iterator_tag;
 
-        explicit iterator(int bit = 0) : i(bit), bit(bit) {}
-        auto operator*() const { return i; }
-        auto &operator++() {
+        constexpr iterator() = default;
+        constexpr explicit iterator(int bit) : i(bit), bit(bit) {}
+        constexpr auto operator*() const { return i; }
+        constexpr auto &operator++() {
           i = (i - 1) & bit;
           return *this;
         }
-        auto operator++(int) { return ++*this; }
-        auto operator==(const iterator &other) const { return i == other.i; }
+        constexpr auto operator++(int) { return ++*this; }
+        constexpr auto operator==(const iterator &other) const {
+          return i == other.i;
+        }
       };
 
       int bit;
 
-      explicit bit_subset_view(int bit) : bit(bit) {}
-      auto begin() const { return iterator(bit); }
-      auto end() const { return iterator(); }
+      constexpr explicit bit_subset_view(int bit) : bit(bit) {}
+      constexpr auto begin() const { return iterator(bit); }
+      constexpr auto end() const { return iterator(); }
     };
 
     struct bit_supset_view
@@ -87,14 +91,19 @@ namespace mtd {
         using value_type = int;
         using iterator_concept = std::bidirectional_iterator_tag;
 
-        explicit iterator(int bit = 0, int n = 0) : i(bit), bit(bit), n(n) {}
-        auto operator*() const { return i; }
-        auto &operator++() {
+        constexpr iterator() = default;
+        constexpr explicit iterator(int bit, int n) : i(bit), bit(bit), n(n) {}
+        constexpr auto operator*() const { return i; }
+        constexpr auto &operator++() {
           i = (i + 1) | bit;
           return *this;
         }
-        auto operator++(int) { return ++*this; }
-        auto operator==(const std::default_sentinel_t &sentinel) const {
+        constexpr auto operator++(int) { return ++*this; }
+        constexpr auto operator==(const iterator &other) const {
+          return i == other.i && bit == other.bit && n == other.n;
+        }
+        constexpr auto operator==(
+            const std::default_sentinel_t &sentinel) const {
           return i >= (1 << n);
         }
       };
@@ -102,9 +111,9 @@ namespace mtd {
       int bit;
       int n;
 
-      explicit bit_supset_view(int bit, int n) : bit(bit), n(n) {}
-      auto begin() const { return iterator(bit, n); }
-      auto end() const { return std::default_sentinel; }
+      constexpr explicit bit_supset_view(int bit, int n) : bit(bit), n(n) {}
+      constexpr auto begin() const { return iterator(bit, n); }
+      constexpr auto end() const { return std::default_sentinel; }
     };
 
     struct k_bit_subset_view
@@ -118,25 +127,29 @@ namespace mtd {
         using value_type = int;
         using iterator_concept = std::bidirectional_iterator_tag;
 
-        explicit iterator(int n = 0, int k = 0) : i((1 << k) - 1), n(n) {}
-        auto operator*() const { return i; }
-        auto &operator++() {
+        constexpr iterator() = default;
+        constexpr explicit iterator(int n, int k) : i((1 << k) - 1), n(n) {}
+        constexpr auto operator*() const { return i; }
+        constexpr auto &operator++() {
           int x = i & -i;
           int y = i + x;
           i = (((i & ~y) / x) >> 1) | y;
           return *this;
         }
-        auto operator++(int) { return ++*this; }
-        auto operator==(const std::default_sentinel_t &sentinel) const {
+        constexpr auto operator++(int) { return ++*this; }
+        constexpr auto operator==(const iterator &other) const {
+          return i == other.i && n == other.n;
+        }
+        constexpr auto operator==(
+            const std::default_sentinel_t &sentinel) const {
           return i >= (1 << n);
         }
       };
 
       int n, k;
-
-      explicit k_bit_subset_view(int n, int k) : n(n), k(k) {}
-      auto begin() const { return iterator(n, k); }
-      auto end() const { return std::default_sentinel; }
+      constexpr explicit k_bit_subset_view(int n, int k) : n(n), k(k) {}
+      constexpr auto begin() const { return iterator(n, k); }
+      constexpr auto end() const { return std::default_sentinel; }
     };
   }  // namespace ranges
 

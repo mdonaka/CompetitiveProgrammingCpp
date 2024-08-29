@@ -39,8 +39,8 @@ namespace mtd::check {
 
   template <class T>
   auto range() {
-    using iterator = std::ranges::iterator_t<T>;
-    using sentinel = std::ranges::sentinel_t<T>;
+    using iterator = decltype(std::declval<T>().begin());
+    using sentinel = decltype(std::declval<T>().end());
 
     auto table = Table("range");
     table.add("weakly-equality-comparable-with",
