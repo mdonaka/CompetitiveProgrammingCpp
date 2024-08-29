@@ -132,23 +132,27 @@ namespace mtd {
         constexpr auto operator-(const iterator &itr) const {
           return i - itr.i;
         }
-        constexpr auto operator+(const difference_type n) const {
-          return iterator(i + n);
-        }
         constexpr auto &operator+=(const difference_type n) {
           i += n;
           return *this;
+        }
+        constexpr auto operator+(const difference_type n) const {
+          auto __r = *this;
+          __r += n;
+          return __r;
         }
         constexpr friend auto operator+(const difference_type n,
                                         const iterator &itr) {
           return itr + n;
         }
-        constexpr auto operator-(const difference_type n) const {
-          return iterator(i - n);
-        }
         constexpr auto &operator-=(const difference_type n) {
           i -= n;
           return *this;
+        }
+        constexpr auto operator-(const difference_type n) const {
+          auto __r = *this;
+          __r -= n;
+          return __r;
         }
         constexpr auto operator[](const difference_type n) const {
           return i + n;
@@ -180,15 +184,9 @@ int main() {
 
   // util
   // mtd::check::all<
-  //     mtd::ranges::enumerate_view<mtd::ranges::input_range_template_view>>();
-  // mtd::check::all<mtd::ranges::enumerate_view<
-  //     mtd::ranges::bidirectional_range_template_view>>();
-  // mtd::check::all<mtd::ranges::enumerate_view<
-  //     mtd::ranges::random_access_range_template_view>>();
-  // mtd::check::all<
-  //     mtd::ranges::zip_view<mtd::ranges::input_range_template_view,
-  //                           mtd::ranges::input_range_template_view>>();
+  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,
+  //                           mtd::ranges::random_access_range_template_view>>();
 
   // istream
-  // mtd::check::all<mtd::ranges::k_bit_subset_view>();
+  // mtd::check::all<mtd::ranges::istream_view<int>>();
 }
