@@ -1,17 +1,17 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/challenges/search/titles/1009"
+#define PROBLEM "https://yukicoder.me/problems/no/415"
 
-// tag:includes begin
-#include "../../Library/Range/istream.hpp"
-#include "./../../Library/Algorithms/EuclideanAlgorithm.hpp"
-// tag:includes end
+// begin:tag includes
+#include "../../Library/Algorithms/EuclideanAlgorithm.hpp"
+#include "../../Library/Utility/io.hpp"
+// end:tag includes
 
 #include <iostream>
 
 signed main() {
   std::cin.tie(0);
   std::ios::sync_with_stdio(0);
-  for (auto [x, y] : mtd::views::istream<int, int>()) {
-    auto ea = EuclideanAlgorithm(x, y);
-    std::cout << ea.gcd() << std::endl;
-  }
+
+  auto [n, d] = mtd::io::in<int, int>();
+  auto ea = EuclideanAlgorithm(n, d);
+  std::cout << n / ea.gcd() - 1 << std::endl;
 }
