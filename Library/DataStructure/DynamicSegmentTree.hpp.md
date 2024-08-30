@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DynamicSegmentTree.test.cpp
     title: Test/DataStructure/DynamicSegmentTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -12,21 +12,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
     title: Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n\r\n#include\
-    \ <deque>\r\n#include <unordered_map>\r\n#include <utility>\r\n#include <vector>\r\
-    \n\r\ntemplate <class T>\r\nclass isMonoid {\r\n  template <class U>\r\n  static\
-    \ auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\n  static\
-    \ std::false_type check(...);\r\n\r\npublic:\r\n  static bool const value = decltype(check(std::declval<T>()))::value;\r\
-    \n};\r\n\r\ntemplate <class Monoid, int size = static_cast<int>(1e9 + 1),\r\n\
-    \          std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr>\r\
-    \nclass DynamicSegmentTree {\r\nprivate:\r\n  std::unordered_map<int, Monoid>\
-    \ m_node;\r\n  using S = decltype(Monoid().m_val);\r\n\r\n  auto _get(int i) const\
-    \ {\r\n    return (m_node.find(i) == m_node.end()) ? Monoid() : m_node.at(i);\r\
+    \ <deque>\r\n#include <ostream>\r\n#include <unordered_map>\r\n#include <utility>\r\
+    \n#include <vector>\r\n\r\ntemplate <class T>\r\nclass isMonoid {\r\n  template\
+    \ <class U>\r\n  static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\
+    \n  static std::false_type check(...);\r\n\r\npublic:\r\n  static bool const value\
+    \ = decltype(check(std::declval<T>()))::value;\r\n};\r\n\r\ntemplate <class Monoid,\
+    \ int size = static_cast<int>(1e9 + 1),\r\n          std::enable_if_t<isMonoid<Monoid>::value,\
+    \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n  std::unordered_map<int,\
+    \ Monoid> m_node;\r\n  using S = decltype(Monoid().m_val);\r\n\r\n  auto _get(int\
+    \ i) const {\r\n    return (m_node.find(i) == m_node.end()) ? Monoid() : m_node.at(i);\r\
     \n  }\r\n\r\n  template <class Lambda>\r\n  auto _update_op(int itr, Monoid&&\
     \ val, const Lambda& op) {\r\n    int i = itr + size - 1;\r\n    m_node[i] = op(_get(i),\
     \ std::forward<decltype(val)>(val));\r\n    while (i) {\r\n      i = (i - 1) >>\
@@ -60,9 +60,9 @@ data:
     \n  }\r\n  friend std::ostream& operator<<(std::ostream& os,\r\n             \
     \                     const Monoid<S, element, T>& m) {\r\n    return os << m.m_val;\r\
     \n  }\r\n};\r\n"
-  code: "#pragma once\r\n\r\n#include <deque>\r\n#include <unordered_map>\r\n#include\
-    \ <utility>\r\n#include <vector>\r\n\r\ntemplate <class T>\r\nclass isMonoid {\r\
-    \n  template <class U>\r\n  static auto check(U x) -> decltype(x.binaryOperation(x),\
+  code: "#pragma once\r\n\r\n#include <deque>\r\n#include <ostream>\r\n#include <unordered_map>\r\
+    \n#include <utility>\r\n#include <vector>\r\n\r\ntemplate <class T>\r\nclass isMonoid\
+    \ {\r\n  template <class U>\r\n  static auto check(U x) -> decltype(x.binaryOperation(x),\
     \ std::true_type{});\r\n  static std::false_type check(...);\r\n\r\npublic:\r\n\
     \  static bool const value = decltype(check(std::declval<T>()))::value;\r\n};\r\
     \n\r\ntemplate <class Monoid, int size = static_cast<int>(1e9 + 1),\r\n      \
@@ -107,8 +107,8 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-08-30 15:22:52+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp

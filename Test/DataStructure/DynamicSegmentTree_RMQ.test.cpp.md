@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []
@@ -17,17 +17,18 @@ data:
   bundledCode: "#line 1 \"Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp\"\n#define\
     \ PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
     \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
-    \n\r\n#include <deque>\r\n#include <unordered_map>\r\n#include <utility>\r\n#include\
-    \ <vector>\r\n\r\ntemplate <class T>\r\nclass isMonoid {\r\n  template <class\
-    \ U>\r\n  static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});\r\
-    \n  static std::false_type check(...);\r\n\r\npublic:\r\n  static bool const value\
-    \ = decltype(check(std::declval<T>()))::value;\r\n};\r\n\r\ntemplate <class Monoid,\
-    \ int size = static_cast<int>(1e9 + 1),\r\n          std::enable_if_t<isMonoid<Monoid>::value,\
-    \ std::nullptr_t> = nullptr>\r\nclass DynamicSegmentTree {\r\nprivate:\r\n  std::unordered_map<int,\
-    \ Monoid> m_node;\r\n  using S = decltype(Monoid().m_val);\r\n\r\n  auto _get(int\
-    \ i) const {\r\n    return (m_node.find(i) == m_node.end()) ? Monoid() : m_node.at(i);\r\
-    \n  }\r\n\r\n  template <class Lambda>\r\n  auto _update_op(int itr, Monoid&&\
-    \ val, const Lambda& op) {\r\n    int i = itr + size - 1;\r\n    m_node[i] = op(_get(i),\
+    \n\r\n#include <deque>\r\n#include <ostream>\r\n#include <unordered_map>\r\n#include\
+    \ <utility>\r\n#include <vector>\r\n\r\ntemplate <class T>\r\nclass isMonoid {\r\
+    \n  template <class U>\r\n  static auto check(U x) -> decltype(x.binaryOperation(x),\
+    \ std::true_type{});\r\n  static std::false_type check(...);\r\n\r\npublic:\r\n\
+    \  static bool const value = decltype(check(std::declval<T>()))::value;\r\n};\r\
+    \n\r\ntemplate <class Monoid, int size = static_cast<int>(1e9 + 1),\r\n      \
+    \    std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr>\r\n\
+    class DynamicSegmentTree {\r\nprivate:\r\n  std::unordered_map<int, Monoid> m_node;\r\
+    \n  using S = decltype(Monoid().m_val);\r\n\r\n  auto _get(int i) const {\r\n\
+    \    return (m_node.find(i) == m_node.end()) ? Monoid() : m_node.at(i);\r\n  }\r\
+    \n\r\n  template <class Lambda>\r\n  auto _update_op(int itr, Monoid&& val, const\
+    \ Lambda& op) {\r\n    int i = itr + size - 1;\r\n    m_node[i] = op(_get(i),\
     \ std::forward<decltype(val)>(val));\r\n    while (i) {\r\n      i = (i - 1) >>\
     \ 1;\r\n      m_node[i] = _get((i << 1) | 1).binaryOperation(_get((i + 1) << 1LL));\r\
     \n    }\r\n  }\r\n\r\n  auto _query(int _l, int _r) const {\r\n    _l = std::max(_l,\
@@ -82,7 +83,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   requiredBy: []
-  timestamp: '2024-08-06 04:18:00+09:00'
+  timestamp: '2024-08-30 15:22:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp

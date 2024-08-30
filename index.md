@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DisjointSparseTable.hpp
       title: Library/DataStructure/DisjointSparseTable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DynamicSegmentTree.hpp
       title: Library/DataStructure/DynamicSegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -216,7 +216,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
     - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
       title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicSegmentTree.test.cpp
       title: Test/DataStructure/DynamicSegmentTree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -418,7 +418,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Utility/Prime.test.cpp
       title: Test/Utility/Prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Utility/Ycombinator.test.cpp
       title: Test/Utility/Ycombinator.test.cpp
   - name: Test/sample
