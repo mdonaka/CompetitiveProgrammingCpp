@@ -183,9 +183,14 @@ int main() {
   // mtd::check::all<mtd::ranges::k_bit_subset_view>();
 
   // util
+  // mtd::check::all<mtd::ranges::zip_view<std::ranges::iota_view<int>>>();
   // mtd::check::all<
   //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,
   //                           mtd::ranges::random_access_range_template_view>>();
+  // mtd::check::all<mtd::ranges::flatten_view<std::ranges::iota_view<int>>>();
+  // mtd::check::all<mtd::ranges::flatten_view<
+  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,
+  //                           mtd::ranges::random_access_range_template_view>>>();
 
   // istream
   // mtd::check::all<mtd::ranges::istream_view<int>>();
