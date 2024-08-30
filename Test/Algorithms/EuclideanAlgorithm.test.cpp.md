@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/EuclideanAlgorithm.hpp
     title: Library/Algorithms/EuclideanAlgorithm.hpp
   _extendedRequiredBy: []

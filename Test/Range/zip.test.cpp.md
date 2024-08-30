@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
   bundledCode: "#line 1 \"Test/Range/zip.test.cpp\"\n#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
-    \n#include <iostream>\n\n// tag:includes begin\n#line 2 \"Library/Range/istream.hpp\"\
+    \n#include <iostream>\n\n// begin:tag includes\n#line 2 \"Library/Range/istream.hpp\"\
     \n\n#include <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\
     \n#include <type_traits>\n#include <vector>\n\nnamespace mtd {\n  namespace io\
     \ {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size =\
@@ -221,14 +221,14 @@ data:
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
     \    inline constexpr _ZipView zip{};\n    inline constexpr _Enumerate enumerate{};\n\
     \    inline constexpr _Flatten flatten{};\n\n  }  // namespace views\n}  // namespace\
-    \ mtd\n#line 8 \"Test/Range/zip.test.cpp\"\n// tag:includes end\n\nint main()\
+    \ mtd\n#line 8 \"Test/Range/zip.test.cpp\"\n// end:tag includes\n\nint main()\
     \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  auto istream = mtd::views::istream<int>();\n\
     \  auto iota = std::views::iota(0);\n  for (auto [i, x] : mtd::views::zip(iota,\
     \ istream)) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout << \"Case\
     \ \" << i + 1 << \": \" << std::get<0>(x) << std::endl;\n  }\n}\n"
   code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
-    \n#include <iostream>\n\n// tag:includes begin\n#include \"../../Library/Range/istream.hpp\"\
-    \n#include \"../../Library/Range/util.hpp\"\n// tag:includes end\n\nint main()\
+    \n#include <iostream>\n\n// begin:tag includes\n#include \"../../Library/Range/istream.hpp\"\
+    \n#include \"../../Library/Range/util.hpp\"\n// end:tag includes\n\nint main()\
     \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  auto istream = mtd::views::istream<int>();\n\
     \  auto iota = std::views::iota(0);\n  for (auto [i, x] : mtd::views::zip(iota,\
     \ istream)) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout << \"Case\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: true
   path: Test/Range/zip.test.cpp
   requiredBy: []
-  timestamp: '2024-08-30 15:17:54+09:00'
+  timestamp: '2024-08-30 15:44:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Range/zip.test.cpp

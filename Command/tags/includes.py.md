@@ -46,13 +46,15 @@ data:
     \    tag = \"includes\"\n\n    def replace(self, lst: list[str], filepath: Path)\
     \ -> list[str]:\n        source = Source(filepath)\n        graph = source.get_includes_graph()\n\
     \        ret: list[str] = []\n\n        def f(filepath: Path, replace_source:\
-    \ list):\n            if \"main.cpp\" not in str(filepath):\n                exclude_words\
-    \ = [\n                    \"#pragma once\",\n                    \"#include\"\
-    ,\n                ]\n                add_line = \"\"\n                for line\
+    \ list):\n            if \".cpp\" not in str(filepath):\n                exclude_words\
+    \ = [\n                    \"#pragma once\",\n                    '#include \"\
+    ',\n                ]\n                add_line = \"\"\n                for line\
     \ in open_src(filepath):\n                    if all([ex not in line for ex in\
     \ exclude_words]):\n                        add_line += line[:-1].split(\"//\"\
-    )[0]\n                replace_source.append(add_line + \"\\n\")\n\n        graph.topological_lambda(lambda\
-    \ filepath: f(filepath, ret))\n        return ret\n"
+    )[0]\n                        if \"#include <\" in line:\n                   \
+    \         add_line += \"\\n\"\n                replace_source.append(add_line\
+    \ + \"\\n\")\n\n        graph.topological_lambda(lambda filepath: f(filepath,\
+    \ ret))\n        return ret\n"
   dependsOn: []
   isVerificationFile: false
   path: Command/tags/includes.py
