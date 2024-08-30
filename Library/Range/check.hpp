@@ -56,7 +56,7 @@ namespace mtd::check {
 
   template <class T>
   auto input_range() {
-    using iterator = std::ranges::iterator_t<T>;
+    using iterator = decltype(std::declval<T>().begin());
 
     auto table = Table("input_range");
     table.add("weakly_incrementable", std::weakly_incrementable<iterator>);
@@ -70,7 +70,7 @@ namespace mtd::check {
 
   template <class T>
   auto forward_range() {
-    using iterator = std::ranges::iterator_t<T>;
+    using iterator = decltype(std::declval<T>().begin());
 
     auto table = Table("forward_range");
     table.add("incrementable", std::incrementable<iterator>);
@@ -81,7 +81,7 @@ namespace mtd::check {
 
   template <class T>
   auto bidirectional_range() {
-    using iterator = std::ranges::iterator_t<T>;
+    using iterator = decltype(std::declval<T>().begin());
 
     auto table = Table("bidirectional_range");
     table.add(
@@ -95,7 +95,7 @@ namespace mtd::check {
 
   template <class T>
   auto random_access_range() {
-    using iterator = std::ranges::iterator_t<T>;
+    using iterator = decltype(std::declval<T>().begin());
 
     auto table = Table("random_access_range");
     table.add("totally_ordered", std::totally_ordered<iterator>);
