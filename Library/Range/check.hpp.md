@@ -5,13 +5,10 @@ data:
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Range/enumerate.test.cpp
-    title: Test/Range/enumerate.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/check.hpp\"\n\n#include <algorithm>\n#include\
@@ -147,9 +144,8 @@ data:
   requiredBy:
   - Library/Range/template.cpp
   timestamp: '2024-08-29 12:31:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/Range/enumerate.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Range/check.hpp
 layout: document
 redirect_from:

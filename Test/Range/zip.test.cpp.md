@@ -20,10 +20,9 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
-  bundledCode: "#line 1 \"Test/Range/enumerate.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\n#include\
-    \ <iostream>\n\n// tag:includes begin\n#line 2 \"Library/Range/istream.hpp\"\n\
-    \n#include <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\
+  bundledCode: "#line 1 \"Test/Range/zip.test.cpp\"\n#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
+    \n#include <iostream>\n\n// tag:includes begin\n#line 2 \"Library/Range/istream.hpp\"\
+    \n\n#include <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\
     \n#include <type_traits>\n#include <vector>\n\nnamespace mtd {\n  namespace io\
     \ {\n\n    namespace type {\n      template <class T, int Pre = 1, int Size =\
     \ 0>\n      struct vec {\n        using value_type = T;\n        static constexpr\
@@ -162,31 +161,32 @@ data:
     \ std::forward<_Tp>(__e)};\n      }\n      static constexpr bool _S_has_simple_call_op\
     \ = true;\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
     \ _Enumerate enumerate{};\n\n  }  // namespace views\n}  // namespace mtd\n#line\
-    \ 8 \"Test/Range/enumerate.test.cpp\"\n// tag:includes end\n\nint main() {\n \
-    \ std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  for (auto [i, x] : mtd::views::istream<int>()\
-    \ | mtd::views::enumerate) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout\
-    \ << \"Case \" << i + 1 << \": \" << std::get<0>(x) << std::endl;\n  }\n}\n"
+    \ 8 \"Test/Range/zip.test.cpp\"\n// tag:includes end\n\nint main() {\n  std::cin.tie(0);\n\
+    \  std::ios::sync_with_stdio(0);\n\n  auto istream = mtd::views::istream<int>();\n\
+    \  auto iota = std::views::iota(0);\n  for (auto [i, x] : mtd::views::zip(iota,\
+    \ istream)) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout << \"Case\
+    \ \" << i + 1 << \": \" << std::get<0>(x) << std::endl;\n  }\n}\n"
   code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
     \n#include <iostream>\n\n// tag:includes begin\n#include \"../../Library/Range/istream.hpp\"\
     \n#include \"../../Library/Range/util.hpp\"\n// tag:includes end\n\nint main()\
-    \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  for (auto [i, x]\
-    \ : mtd::views::istream<int>() | mtd::views::enumerate) {\n    if (std::get<0>(x)\
-    \ == 0) { break; }\n    std::cout << \"Case \" << i + 1 << \": \" << std::get<0>(x)\
-    \ << std::endl;\n  }\n}\n"
+    \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  auto istream = mtd::views::istream<int>();\n\
+    \  auto iota = std::views::iota(0);\n  for (auto [i, x] : mtd::views::zip(iota,\
+    \ istream)) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout << \"Case\
+    \ \" << i + 1 << \": \" << std::get<0>(x) << std::endl;\n  }\n}\n"
   dependsOn:
   - Library/Range/istream.hpp
   - Library/Utility/io.hpp
   - Library/Range/util.hpp
   isVerificationFile: true
-  path: Test/Range/enumerate.test.cpp
+  path: Test/Range/zip.test.cpp
   requiredBy: []
   timestamp: '2024-08-30 13:29:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Range/enumerate.test.cpp
+documentation_of: Test/Range/zip.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Range/enumerate.test.cpp
-- /verify/Test/Range/enumerate.test.cpp.html
-title: Test/Range/enumerate.test.cpp
+- /verify/Test/Range/zip.test.cpp
+- /verify/Test/Range/zip.test.cpp.html
+title: Test/Range/zip.test.cpp
 ---

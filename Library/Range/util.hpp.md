@@ -6,12 +6,15 @@ data:
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/zip.test.cpp
+    title: Test/Range/zip.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -196,9 +199,10 @@ data:
   requiredBy:
   - Library/Range/template.cpp
   timestamp: '2024-08-29 15:31:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/enumerate.test.cpp
+  - Test/Range/zip.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:

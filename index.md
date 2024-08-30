@@ -171,16 +171,16 @@ data:
     - icon: ':warning:'
       path: Library/Range/bit.hpp
       title: Library/Range/bit.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
       path: Library/Range/template.cpp
       title: Library/Range/template.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/Simd
@@ -219,7 +219,7 @@ data:
     - icon: ':x:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -375,9 +375,12 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/Range
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Range/enumerate.test.cpp
       title: Test/Range/enumerate.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Range/zip.test.cpp
+      title: Test/Range/zip.test.cpp
   - name: Test/String
     pages:
     - icon: ':heavy_check_mark:'

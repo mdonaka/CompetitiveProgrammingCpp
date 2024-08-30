@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy:
@@ -14,10 +14,16 @@ data:
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/enumerate.test.cpp
+    title: Test/Range/enumerate.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/zip.test.cpp
+    title: Test/Range/zip.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/istream.hpp\"\n\n#include <ranges>\n\n#line\
@@ -110,8 +116,10 @@ data:
   - Library/Main/includes.hpp
   - Library/Main/main.cpp
   timestamp: '2024-08-29 12:31:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/zip.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
 redirect_from:
