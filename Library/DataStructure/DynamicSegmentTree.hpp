@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+#include <ostream>
 #include <unordered_map>
 #include <utility>
 #include <vector>
