@@ -2,10 +2,10 @@
   "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B"
 #include <iostream>
 
-// tag:includes begin
+// begin:tag includes
 #include "../../Library/Range/istream.hpp"
 #include "../../Library/Range/util.hpp"
-// tag:includes end
+// end:tag includes
 
 int main() {
   std::cin.tie(0);
