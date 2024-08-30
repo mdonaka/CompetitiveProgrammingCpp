@@ -379,6 +379,9 @@ data:
       path: Test/Range/enumerate.test.cpp
       title: Test/Range/enumerate.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/Range/flatten.test.cpp
+      title: Test/Range/flatten.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Range/zip.test.cpp
       title: Test/Range/zip.test.cpp
   - name: Test/String

@@ -35,29 +35,29 @@ data:
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
     , std::semiregular<sentinel>);\n    table.add(\"sentinel_for\", std::sentinel_for<sentinel,\
     \ iterator>);\n    table.add(\"range\", std::ranges::range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"input_range\");\n    table.add(\"weakly_incrementable\"\
     , std::weakly_incrementable<iterator>);\n    table.add(\"input_or_output_iterator\"\
     ,\n              std::input_or_output_iterator<iterator>);\n    table.add(\"indirectly_readable\"\
     , std::indirectly_readable<iterator>);\n    table.add(\"input_iterator\", std::input_iterator<iterator>);\n\
     \    table.add(\"input_range\", std::ranges::input_range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"forward_range\");\n    table.add(\"incrementable\"\
     , std::incrementable<iterator>);\n    table.add(\"sentinel_for\", std::sentinel_for<iterator,\
     \ iterator>);\n    table.add(\"forward_range\", std::ranges::forward_range<T>);\n\
     \    table.print();\n  }\n\n  template <class T>\n  auto bidirectional_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    bidirectional_range\");\n    table.add(\n        \"decrementable\", requires(iterator\
-    \ t) {\n          { --t } -> std::same_as<iterator&>;\n          { t-- } -> std::same_as<iterator>;\n\
-    \        });\n    table.add(\"bidirectional_range\", std::ranges::bidirectional_range<T>);\n\
-    \    table.print();\n  }\n\n  template <class T>\n  auto random_access_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    random_access_range\");\n    table.add(\"totally_ordered\", std::totally_ordered<iterator>);\n\
-    \    table.add(\"sized_sentinel_for\",\n              std::sized_sentinel_for<iterator,\
-    \ iterator>);\n\n    table.add(\n        \"plus\", requires(iterator i, const\
-    \ iterator j,\n                         const std::iter_difference_t<iterator>\
-    \ n) {\n          { i += n } -> std::same_as<iterator&>;\n          { j + n }\
-    \ -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
+    \ {\n    using iterator = decltype(std::declval<T>().begin());\n\n    auto table\
+    \ = Table(\"bidirectional_range\");\n    table.add(\n        \"decrementable\"\
+    , requires(iterator t) {\n          { --t } -> std::same_as<iterator&>;\n    \
+    \      { t-- } -> std::same_as<iterator>;\n        });\n    table.add(\"bidirectional_range\"\
+    , std::ranges::bidirectional_range<T>);\n    table.print();\n  }\n\n  template\
+    \ <class T>\n  auto random_access_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
+    \n    auto table = Table(\"random_access_range\");\n    table.add(\"totally_ordered\"\
+    , std::totally_ordered<iterator>);\n    table.add(\"sized_sentinel_for\",\n  \
+    \            std::sized_sentinel_for<iterator, iterator>);\n\n    table.add(\n\
+    \        \"plus\", requires(iterator i, const iterator j,\n                  \
+    \       const std::iter_difference_t<iterator> n) {\n          { i += n } -> std::same_as<iterator&>;\n\
+    \          { j + n } -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
     \        });\n    table.add(\n        \"minus\", requires(iterator i, const iterator\
     \ j,\n                          const std::iter_difference_t<iterator> n) {\n\
     \          { i -= n } -> std::same_as<iterator&>;\n          { j - n } -> std::same_as<iterator>;\n\
@@ -98,29 +98,29 @@ data:
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
     , std::semiregular<sentinel>);\n    table.add(\"sentinel_for\", std::sentinel_for<sentinel,\
     \ iterator>);\n    table.add(\"range\", std::ranges::range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"input_range\");\n    table.add(\"weakly_incrementable\"\
     , std::weakly_incrementable<iterator>);\n    table.add(\"input_or_output_iterator\"\
     ,\n              std::input_or_output_iterator<iterator>);\n    table.add(\"indirectly_readable\"\
     , std::indirectly_readable<iterator>);\n    table.add(\"input_iterator\", std::input_iterator<iterator>);\n\
     \    table.add(\"input_range\", std::ranges::input_range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"forward_range\");\n    table.add(\"incrementable\"\
     , std::incrementable<iterator>);\n    table.add(\"sentinel_for\", std::sentinel_for<iterator,\
     \ iterator>);\n    table.add(\"forward_range\", std::ranges::forward_range<T>);\n\
     \    table.print();\n  }\n\n  template <class T>\n  auto bidirectional_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    bidirectional_range\");\n    table.add(\n        \"decrementable\", requires(iterator\
-    \ t) {\n          { --t } -> std::same_as<iterator&>;\n          { t-- } -> std::same_as<iterator>;\n\
-    \        });\n    table.add(\"bidirectional_range\", std::ranges::bidirectional_range<T>);\n\
-    \    table.print();\n  }\n\n  template <class T>\n  auto random_access_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    random_access_range\");\n    table.add(\"totally_ordered\", std::totally_ordered<iterator>);\n\
-    \    table.add(\"sized_sentinel_for\",\n              std::sized_sentinel_for<iterator,\
-    \ iterator>);\n\n    table.add(\n        \"plus\", requires(iterator i, const\
-    \ iterator j,\n                         const std::iter_difference_t<iterator>\
-    \ n) {\n          { i += n } -> std::same_as<iterator&>;\n          { j + n }\
-    \ -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
+    \ {\n    using iterator = decltype(std::declval<T>().begin());\n\n    auto table\
+    \ = Table(\"bidirectional_range\");\n    table.add(\n        \"decrementable\"\
+    , requires(iterator t) {\n          { --t } -> std::same_as<iterator&>;\n    \
+    \      { t-- } -> std::same_as<iterator>;\n        });\n    table.add(\"bidirectional_range\"\
+    , std::ranges::bidirectional_range<T>);\n    table.print();\n  }\n\n  template\
+    \ <class T>\n  auto random_access_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
+    \n    auto table = Table(\"random_access_range\");\n    table.add(\"totally_ordered\"\
+    , std::totally_ordered<iterator>);\n    table.add(\"sized_sentinel_for\",\n  \
+    \            std::sized_sentinel_for<iterator, iterator>);\n\n    table.add(\n\
+    \        \"plus\", requires(iterator i, const iterator j,\n                  \
+    \       const std::iter_difference_t<iterator> n) {\n          { i += n } -> std::same_as<iterator&>;\n\
+    \          { j + n } -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
     \        });\n    table.add(\n        \"minus\", requires(iterator i, const iterator\
     \ j,\n                          const std::iter_difference_t<iterator> n) {\n\
     \          { i -= n } -> std::same_as<iterator&>;\n          { j - n } -> std::same_as<iterator>;\n\
@@ -143,7 +143,7 @@ data:
   path: Library/Range/check.hpp
   requiredBy:
   - Library/Range/template.cpp
-  timestamp: '2024-08-29 12:31:05+09:00'
+  timestamp: '2024-08-30 15:17:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/check.hpp

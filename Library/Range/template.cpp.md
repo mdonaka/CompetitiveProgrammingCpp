@@ -134,29 +134,29 @@ data:
     \    table.add(\"copyable\", std::copyable<sentinel>);\n    table.add(\"semiregular\"\
     , std::semiregular<sentinel>);\n    table.add(\"sentinel_for\", std::sentinel_for<sentinel,\
     \ iterator>);\n    table.add(\"range\", std::ranges::range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto input_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"input_range\");\n    table.add(\"weakly_incrementable\"\
     , std::weakly_incrementable<iterator>);\n    table.add(\"input_or_output_iterator\"\
     ,\n              std::input_or_output_iterator<iterator>);\n    table.add(\"indirectly_readable\"\
     , std::indirectly_readable<iterator>);\n    table.add(\"input_iterator\", std::input_iterator<iterator>);\n\
     \    table.add(\"input_range\", std::ranges::input_range<T>);\n    table.print();\n\
-    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = std::ranges::iterator_t<T>;\n\
+    \  }\n\n  template <class T>\n  auto forward_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
     \n    auto table = Table(\"forward_range\");\n    table.add(\"incrementable\"\
     , std::incrementable<iterator>);\n    table.add(\"sentinel_for\", std::sentinel_for<iterator,\
     \ iterator>);\n    table.add(\"forward_range\", std::ranges::forward_range<T>);\n\
     \    table.print();\n  }\n\n  template <class T>\n  auto bidirectional_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    bidirectional_range\");\n    table.add(\n        \"decrementable\", requires(iterator\
-    \ t) {\n          { --t } -> std::same_as<iterator&>;\n          { t-- } -> std::same_as<iterator>;\n\
-    \        });\n    table.add(\"bidirectional_range\", std::ranges::bidirectional_range<T>);\n\
-    \    table.print();\n  }\n\n  template <class T>\n  auto random_access_range()\
-    \ {\n    using iterator = std::ranges::iterator_t<T>;\n\n    auto table = Table(\"\
-    random_access_range\");\n    table.add(\"totally_ordered\", std::totally_ordered<iterator>);\n\
-    \    table.add(\"sized_sentinel_for\",\n              std::sized_sentinel_for<iterator,\
-    \ iterator>);\n\n    table.add(\n        \"plus\", requires(iterator i, const\
-    \ iterator j,\n                         const std::iter_difference_t<iterator>\
-    \ n) {\n          { i += n } -> std::same_as<iterator&>;\n          { j + n }\
-    \ -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
+    \ {\n    using iterator = decltype(std::declval<T>().begin());\n\n    auto table\
+    \ = Table(\"bidirectional_range\");\n    table.add(\n        \"decrementable\"\
+    , requires(iterator t) {\n          { --t } -> std::same_as<iterator&>;\n    \
+    \      { t-- } -> std::same_as<iterator>;\n        });\n    table.add(\"bidirectional_range\"\
+    , std::ranges::bidirectional_range<T>);\n    table.print();\n  }\n\n  template\
+    \ <class T>\n  auto random_access_range() {\n    using iterator = decltype(std::declval<T>().begin());\n\
+    \n    auto table = Table(\"random_access_range\");\n    table.add(\"totally_ordered\"\
+    , std::totally_ordered<iterator>);\n    table.add(\"sized_sentinel_for\",\n  \
+    \            std::sized_sentinel_for<iterator, iterator>);\n\n    table.add(\n\
+    \        \"plus\", requires(iterator i, const iterator j,\n                  \
+    \       const std::iter_difference_t<iterator> n) {\n          { i += n } -> std::same_as<iterator&>;\n\
+    \          { j + n } -> std::same_as<iterator>;\n          { n + j } -> std::same_as<iterator>;\n\
     \        });\n    table.add(\n        \"minus\", requires(iterator i, const iterator\
     \ j,\n                          const std::iter_difference_t<iterator> n) {\n\
     \          { i -= n } -> std::same_as<iterator&>;\n          { j - n } -> std::same_as<iterator>;\n\
@@ -248,7 +248,7 @@ data:
     \        } else {\n          return std::input_iterator_tag{};\n        }\n  \
     \    }\n    }  // namespace __detail\n\n    template <std::ranges::range... _Range>\n\
     \    struct zip_view : public std::ranges::view_interface<zip_view<_Range...>>\
-    \ {\n      struct iterator {\n      public:\n        std::tuple<std::ranges::iterator_t<_Range>...>\
+    \ {\n      class iterator {\n      public:\n        std::tuple<std::ranges::iterator_t<_Range>...>\
     \ _M_current;\n\n        using difference_type = int;\n        using value_type\
     \ = std::tuple<\n            std::iter_reference_t<std::ranges::iterator_t<_Range>>...>;\n\
     \        using iterator_concept =\n            decltype(__detail::_S_iter_concept<_Range...>());\n\
@@ -292,30 +292,90 @@ data:
     \ __detail::__tuple_transform([&n](auto& __i) { return __i[n]; },\n          \
     \                                   _M_current);\n        }\n      };\n\n    \
     \  class sentinel {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...>\
-    \ _M_end;\n\n      public:\n        constexpr explicit sentinel(const decltype(_M_end)&\
-    \ __end = {})\n            : _M_end(__end) {}\n\n        friend constexpr bool\
-    \ operator==(const iterator& __x,\n                                         const\
-    \ sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
-    \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
-    \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n      };\n\n      std::tuple<_Range...> __r;\n      constexpr explicit\
-    \ zip_view(const _Range&... __r) : __r(__r...) {}\n      constexpr auto begin()\
-    \ {\n        return iterator(__detail::__tuple_transform(std::ranges::begin, __r));\n\
-    \      }\n      constexpr auto end() {\n        return sentinel(__detail::__tuple_transform(std::ranges::end,\
-    \ __r));\n      }\n    };\n\n  }  // namespace ranges\n\n  namespace views {\n\
-    \    namespace __detail {\n      template <typename... _Args>\n      concept __can_zip_view\
-    \ = requires {\n        ranges::zip_view(std::declval<_Args>()...);\n      };\n\
-    \    }  // namespace __detail\n\n    struct _ZipView {\n      template <class...\
-    \ _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr auto\
-    \ operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
+    \ _M_end;\n\n        constexpr sentinel() = default;\n        constexpr explicit\
+    \ sentinel(const decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n\
+    \        friend constexpr bool operator==(const iterator& __x,\n             \
+    \                            const sentinel& __y) {\n          return [&]<size_t...\
+    \ _Is>(std::index_sequence<_Is...>) {\n            return (\n                (std::get<_Is>(__x._M_current)\
+    \ == std::get<_Is>(__y._M_end)) ||\n                ...);\n          }\n     \
+    \     (std::make_index_sequence<sizeof...(_Range)>{});\n        }\n      };\n\n\
+    \      std::tuple<_Range...> __r;\n      constexpr explicit zip_view(const _Range&...\
+    \ __r) : __r(__r...) {}\n      constexpr auto begin() {\n        return iterator(__detail::__tuple_transform(std::ranges::begin,\
+    \ __r));\n      }\n      constexpr auto end() {\n        return sentinel(__detail::__tuple_transform(std::ranges::end,\
+    \ __r));\n      }\n    };\n\n    namespace __detail {\n      template <typename\
+    \ T>\n      auto _flatten(const T& t) {\n        return std::make_tuple(t);\n\
+    \      }\n      template <typename... T>\n      auto _flatten(const std::tuple<T...>&\
+    \ t);\n\n      template <typename Head, typename... Tail>\n      auto _flatten_impl(const\
+    \ Head& head, const Tail&... tail) {\n        return std::tuple_cat(_flatten(head),\
+    \ _flatten(tail)...);\n      }\n      template <typename... T>\n      auto _flatten(const\
+    \ std::tuple<T...>& t) {\n        return std::apply(\n            [](const auto&...\
+    \ args) { return _flatten_impl(args...); }, t);\n      }\n    }  // namespace\
+    \ __detail\n\n    template <std::ranges::range _Range>\n    struct flatten_view\n\
+    \        : public std::ranges::view_interface<flatten_view<_Range>> {\n      class\
+    \ iterator {\n      public:\n        std::ranges::iterator_t<_Range> _M_current;\n\
+    \n        using difference_type = std::ranges::range_difference_t<_Range>;\n \
+    \       using value_type = decltype(__detail::_flatten(\n            std::declval<\n\
+    \                std::iter_reference_t<std::ranges::iterator_t<_Range>>>()));\n\
+    \        using iterator_concept = decltype(__detail::_S_iter_concept<_Range>());\n\
+    \n        constexpr iterator() = default;\n        constexpr explicit iterator(decltype(_M_current)\
+    \ __current)\n            : _M_current(__current) {}\n        constexpr auto operator*()\
+    \ const {\n          return __detail::_flatten(*_M_current);\n        }\n    \
+    \    constexpr auto& operator++() {\n          ++_M_current;\n          return\
+    \ *this;\n        }\n        constexpr auto operator++(int) { return ++*this;\
+    \ }\n        constexpr auto operator==(const iterator& other) const {\n      \
+    \    return _M_current == other._M_current;\n        }\n        constexpr auto&\
+    \ operator--() requires\n            __detail::__all_bidirectional<_Range> {\n\
+    \          --_M_current;\n          return *this;\n        }\n        constexpr\
+    \ auto operator--(\n            int) requires __detail::__all_bidirectional<_Range>\
+    \ {\n          return --*this;\n        }\n        constexpr auto operator<=>(const\
+    \ iterator&)\n            const requires __detail::__all_random_access<_Range>\n\
+    \        = default;\n        constexpr auto operator-(const iterator& itr)\n \
+    \           const requires __detail::__all_random_access<_Range> {\n         \
+    \ return _M_current - itr._M_current;\n        }\n        constexpr auto& operator+=(const\
+    \ difference_type n) requires\n            __detail::__all_random_access<_Range>\
+    \ {\n          _M_current += n;\n          return *this;\n        }\n        constexpr\
+    \ auto operator+(const difference_type n)\n            const requires __detail::__all_random_access<_Range>\
+    \ {\n          auto __r = *this;\n          __r += n;\n          return __r;\n\
+    \        }\n        constexpr friend auto operator+(const difference_type n,\n\
+    \                                        const iterator& itr) requires\n     \
+    \       __detail::__all_random_access<_Range> {\n          return itr + n;\n \
+    \       }\n        constexpr auto& operator-=(const difference_type n) requires\n\
+    \            __detail::__all_random_access<_Range> {\n          _M_current -=\
+    \ n;\n          return *this;\n        }\n        constexpr auto operator-(const\
+    \ difference_type n)\n            const requires __detail::__all_random_access<_Range>\
+    \ {\n          auto __r = *this;\n          __r -= n;\n          return __r;\n\
+    \        }\n        constexpr auto operator[](const difference_type n)\n     \
+    \       const requires __detail::__all_random_access<_Range> {\n          return\
+    \ __detail::_flatten(_M_current[n]);\n        }\n      };\n\n      class sentinel\
+    \ {\n        std::ranges::sentinel_t<_Range> _M_end;\n\n      public:\n      \
+    \  constexpr sentinel() = default;\n        constexpr explicit sentinel(const\
+    \ decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n        friend constexpr\
+    \ bool operator==(const iterator& __x,\n                                     \
+    \    const sentinel& __y) {\n          return __x._M_current == __y._M_end;\n\
+    \        }\n      };\n\n      _Range __r;\n      constexpr explicit flatten_view(const\
+    \ _Range& __r) : __r(__r) {}\n      constexpr auto begin() { return iterator(std::ranges::begin(__r));\
+    \ }\n      constexpr auto end() { return sentinel(std::ranges::end(__r)); }\n\
+    \    };\n\n  }  // namespace ranges\n\n  namespace views {\n    namespace __detail\
+    \ {\n      template <typename... _Args>\n      concept __can_zip_view = requires\
+    \ {\n        ranges::zip_view(std::declval<_Args>()...);\n      };\n      template\
+    \ <typename... _Args>\n      concept __can_flatten_view = requires {\n       \
+    \ ranges::flatten_view(std::declval<_Args>()...);\n      };\n    }  // namespace\
+    \ __detail\n\n    struct _ZipView {\n      template <class... _Tp>\n      requires\
+    \ __detail::__can_zip_view<_Tp...>\n      constexpr auto operator() [[nodiscard]]\
+    \ (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
     \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
     \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
-    \ _Tp>\n      constexpr auto operator()(_Tp&& __e) const {\n        return ranges::zip_view{std::views::iota(0),\
-    \ std::forward<_Tp>(__e)};\n      }\n      static constexpr bool _S_has_simple_call_op\
-    \ = true;\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
-    \ _Enumerate enumerate{};\n\n  }  // namespace views\n}  // namespace mtd\n#line\
-    \ 5 \"Library/Range/template.cpp\"\n\nnamespace mtd {\n  namespace ranges {\n\
-    \    struct input_range_template_view\n        : public std::ranges::view_interface<input_range_template_view>\
+    \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
+    \      return ranges::zip_view{std::views::iota(0), std::forward<_Tp>(__e)};\n\
+    \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
+    \    struct _Flatten : std::views::__adaptor::_RangeAdaptorClosure {\n      template\
+    \ <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n      constexpr\
+    \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::flatten_view(std::forward<_Tp>(__e)...);\n\
+    \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\n\
+    \    inline constexpr _ZipView zip{};\n    inline constexpr _Enumerate enumerate{};\n\
+    \    inline constexpr _Flatten flatten{};\n\n  }  // namespace views\n}  // namespace\
+    \ mtd\n#line 5 \"Library/Range/template.cpp\"\n\nnamespace mtd {\n  namespace\
+    \ ranges {\n    struct input_range_template_view\n        : public std::ranges::view_interface<input_range_template_view>\
     \ {\n      class iterator {\n        int i;\n\n      public:\n        using difference_type\
     \ = int;\n        using value_type = int;\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
@@ -383,8 +443,12 @@ data:
     \  // mtd::check::all<mtd::ranges::random_access_range_template_view>();\n\n \
     \ // bit\n  // mtd::check::all<mtd::ranges::bit_index_view>();\n  // mtd::check::all<mtd::ranges::bit_subset_view>();\n\
     \  // mtd::check::all<mtd::ranges::bit_supset_view>();\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n\
-    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \n  // util\n  // mtd::check::all<mtd::ranges::zip_view<std::ranges::iota_view<int>>>();\n\
+    \  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
     \  //                           mtd::ranges::random_access_range_template_view>>();\n\
+    \  // mtd::check::all<mtd::ranges::flatten_view<std::ranges::iota_view<int>>>();\n\
+    \  // mtd::check::all<mtd::ranges::flatten_view<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \  //                           mtd::ranges::random_access_range_template_view>>>();\n\
     \n  // istream\n  // mtd::check::all<mtd::ranges::istream_view<int>>();\n}\n"
   code: "#include \"./bit.hpp\"\n#include \"./check.hpp\"\n#include \"./istream.hpp\"\
     \n#include \"./util.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n    struct\
@@ -456,8 +520,12 @@ data:
     \  // mtd::check::all<mtd::ranges::random_access_range_template_view>();\n\n \
     \ // bit\n  // mtd::check::all<mtd::ranges::bit_index_view>();\n  // mtd::check::all<mtd::ranges::bit_subset_view>();\n\
     \  // mtd::check::all<mtd::ranges::bit_supset_view>();\n  // mtd::check::all<mtd::ranges::k_bit_subset_view>();\n\
-    \n  // util\n  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \n  // util\n  // mtd::check::all<mtd::ranges::zip_view<std::ranges::iota_view<int>>>();\n\
+    \  // mtd::check::all<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
     \  //                           mtd::ranges::random_access_range_template_view>>();\n\
+    \  // mtd::check::all<mtd::ranges::flatten_view<std::ranges::iota_view<int>>>();\n\
+    \  // mtd::check::all<mtd::ranges::flatten_view<\n  //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,\n\
+    \  //                           mtd::ranges::random_access_range_template_view>>>();\n\
     \n  // istream\n  // mtd::check::all<mtd::ranges::istream_view<int>>();\n}\n"
   dependsOn:
   - Library/Range/bit.hpp
@@ -468,7 +536,7 @@ data:
   isVerificationFile: false
   path: Library/Range/template.cpp
   requiredBy: []
-  timestamp: '2024-08-29 15:31:11+09:00'
+  timestamp: '2024-08-30 15:17:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/template.cpp
