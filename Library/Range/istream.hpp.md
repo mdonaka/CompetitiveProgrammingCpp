@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy:
@@ -15,6 +15,9 @@ data:
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -24,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/istream.hpp\"\n\n#include <ranges>\n\n#line\
@@ -119,11 +122,12 @@ data:
   - Library/Main/includes.hpp
   - Library/Main/main.cpp
   timestamp: '2024-08-29 12:31:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
   - Test/Range/flatten.test.cpp
+  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
 redirect_from:

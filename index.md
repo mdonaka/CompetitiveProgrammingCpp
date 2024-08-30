@@ -31,7 +31,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/CoordinateCompression.hpp
       title: Library/Algorithms/CoordinateCompression.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algorithms/EuclideanAlgorithm.hpp
       title: Library/Algorithms/EuclideanAlgorithm.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
@@ -219,7 +219,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:

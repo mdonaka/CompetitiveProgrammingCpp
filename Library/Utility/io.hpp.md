@@ -8,13 +8,16 @@ data:
   - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -24,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/io.hpp\"\n\n#include <iostream>\n#include\
@@ -84,11 +87,12 @@ data:
   - Library/Main/includes.hpp
   - Library/Main/main.cpp
   timestamp: '2024-08-18 00:08:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
   - Test/Range/flatten.test.cpp
+  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document
 redirect_from:

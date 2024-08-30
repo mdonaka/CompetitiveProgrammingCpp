@@ -6,9 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Algorithms/EuclideanAlgorithm.test.cpp
     title: Test/Algorithms/EuclideanAlgorithm.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/EuclideanAlgorithm.hpp\"\n\r\n#include\
@@ -90,8 +93,9 @@ data:
   path: Library/Algorithms/EuclideanAlgorithm.hpp
   requiredBy: []
   timestamp: '2024-08-06 04:18:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - Test/Algorithms/EuclideanAlgorithm.test.cpp
 documentation_of: Library/Algorithms/EuclideanAlgorithm.hpp
 layout: document
