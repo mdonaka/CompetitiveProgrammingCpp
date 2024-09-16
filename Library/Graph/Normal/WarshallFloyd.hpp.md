@@ -47,23 +47,23 @@ data:
     \ Cost>& graph,\n                   const Cost& lim = 1LL << 60) {\n  std::vector<std::vector<Cost>>\
     \ cost(n, std::vector<Cost>(n, lim));\n  for (const auto& [from, to, c] : graph.getEdges())\
     \ { cost[from][to] = c; }\n  for (int i = 0; i < n; ++i) { cost[i][i] = 0; }\n\
-    \  for (int k = 0; k < n; ++k)\n    for (int f = 0; f < n; ++f)\n      for (int\
-    \ t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t], cost[f][k] +\
-    \ cost[k][t]);\n      }\n  return cost;\n}\n"
+    \  for (int k = 0; k < n; ++k) {\n    for (int f = 0; f < n; ++f) {\n      for\
+    \ (int t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t], cost[f][k]\
+    \ + cost[k][t]);\n      }\n    }\n  }\n  return cost;\n}\n"
   code: "#pragma once\n\n#include <vector>\n\n#include \"./../Graph.hpp\"\n\ntemplate\
     \ <class Node, class Cost>\nauto warshallFloyd(int n, const Graph<Node, Cost>&\
     \ graph,\n                   const Cost& lim = 1LL << 60) {\n  std::vector<std::vector<Cost>>\
     \ cost(n, std::vector<Cost>(n, lim));\n  for (const auto& [from, to, c] : graph.getEdges())\
     \ { cost[from][to] = c; }\n  for (int i = 0; i < n; ++i) { cost[i][i] = 0; }\n\
-    \  for (int k = 0; k < n; ++k)\n    for (int f = 0; f < n; ++f)\n      for (int\
-    \ t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t], cost[f][k] +\
-    \ cost[k][t]);\n      }\n  return cost;\n}"
+    \  for (int k = 0; k < n; ++k) {\n    for (int f = 0; f < n; ++f) {\n      for\
+    \ (int t = 0; t < n; ++t) {\n        cost[f][t] = std::min(cost[f][t], cost[f][k]\
+    \ + cost[k][t]);\n      }\n    }\n  }\n  return cost;\n}\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2024-08-20 12:47:46+09:00'
+  timestamp: '2024-08-31 21:47:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/WarshallFloyd.test.cpp

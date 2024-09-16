@@ -80,8 +80,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Utility/ModCalculator.test.cpp
-  - Test/Utility/ModCalculator_inv.test.cpp
   - Test/Utility/ModCalculator_pow.test.cpp
+  - Test/Utility/ModCalculator_inv.test.cpp
 documentation_of: Library/Utility/ModCalculator.hpp
 layout: document
 redirect_from:

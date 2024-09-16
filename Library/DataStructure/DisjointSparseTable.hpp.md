@@ -84,8 +84,8 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/DisjointSparseTable_xor.test.cpp
   - Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
+  - Test/DataStructure/DisjointSparseTable_xor.test.cpp
 documentation_of: Library/DataStructure/DisjointSparseTable.hpp
 layout: document
 redirect_from:

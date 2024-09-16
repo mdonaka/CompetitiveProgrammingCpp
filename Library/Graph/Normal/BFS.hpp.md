@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/BFS.hpp
   requiredBy:
-  - Library/Graph/Tree/ReRootingDP.hpp
   - Library/Graph/Tree/LowestCommonAncestor.hpp
+  - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2024-08-20 12:47:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

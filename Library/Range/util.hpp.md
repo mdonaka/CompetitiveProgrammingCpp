@@ -326,9 +326,9 @@ data:
   timestamp: '2024-08-30 15:17:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Range/flatten.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:
