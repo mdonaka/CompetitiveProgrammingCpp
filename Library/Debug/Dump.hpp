@@ -1,6 +1,7 @@
 #pragma once
 #include <concepts>
 #include <deque>
+#include <functional>
 #include <iostream>
 #include <string_view>
 
@@ -43,6 +44,8 @@ concept Printable = requires(T x) {
 };
 
 // 宣言
+template <class... T>
+constexpr auto print(const std::tuple<T...>&, bool b = true);
 template <class S, class T>
 constexpr auto print(const std::pair<S, T>&, bool b = true);
 inline auto print(const std::string&, bool b = true);
@@ -51,6 +54,19 @@ constexpr auto print(const Container auto&, bool b = true);
 // 定義
 constexpr auto print(const auto&, bool) {
   std::cerr << "<ERROR!> \"print\" of This type is not defined." << '\n';
+}
+
+template <class... T>
+constexpr auto print(const std::tuple<T...>& t, bool b) {
+  std::cerr << "{";
+  std::apply(
+      [&]<class... Ts>(Ts&&... elems) {
+        (std::invoke([](auto i) { print(i, true); }, std::forward<Ts>(elems)),
+         ...);
+      },
+      t);
+  std::cerr << "}";
+  if (b) { std::cerr << " "; }
 }
 template <class S, class T>
 constexpr auto print(const std::pair<S, T>& p, bool b) {
