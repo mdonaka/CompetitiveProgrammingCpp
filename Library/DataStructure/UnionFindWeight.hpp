@@ -1,4 +1,6 @@
-
+#pragma once
+#include <numeric>
+#include <vector>
 
 class UnionFindWeight {
 public:
