@@ -52,15 +52,15 @@ data:
   isVerificationFile: false
   path: Library/Algorithms/BinarySearch.hpp
   requiredBy:
-  - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
+  - Library/String/SuffixArray.hpp
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/BFS.test.cpp
   - Test/Algorithms/BinarySearch_int.test.cpp
-  - Test/Algorithms/BinarySearch_int_rev.test.cpp
   - Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int_rev.test.cpp
   - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp

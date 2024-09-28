@@ -199,8 +199,8 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/String/PalindromicTree_large.test.cpp
   - Test/String/PalindromicTree.test.cpp
+  - Test/String/PalindromicTree_large.test.cpp
 documentation_of: Library/String/PalindromicTree.hpp
 layout: document
 redirect_from:

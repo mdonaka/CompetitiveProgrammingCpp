@@ -115,9 +115,9 @@ data:
   isVerificationFile: false
   path: Library/Range/istream.hpp
   requiredBy:
-  - Library/Main/main.cpp
-  - Library/Main/includes.hpp
   - Library/Range/template.cpp
+  - Library/Main/includes.hpp
+  - Library/Main/main.cpp
   timestamp: '2024-08-29 12:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

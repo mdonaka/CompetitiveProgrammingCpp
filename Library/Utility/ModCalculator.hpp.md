@@ -79,8 +79,8 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Utility/ModCalculator.test.cpp
   - Test/Utility/ModCalculator_pow.test.cpp
+  - Test/Utility/ModCalculator.test.cpp
   - Test/Utility/ModCalculator_inv.test.cpp
 documentation_of: Library/Utility/ModCalculator.hpp
 layout: document

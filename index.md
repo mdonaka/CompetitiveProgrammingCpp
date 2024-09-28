@@ -73,8 +73,8 @@ data:
       path: Library/DataStructure/UnionFind.hpp
       title: Library/DataStructure/UnionFind.hpp
     - icon: ':warning:'
-      path: Library/DataStructure/UnionFindWeight.cpp
-      title: Library/DataStructure/UnionFindWeight.cpp
+      path: Library/DataStructure/UnionFindWeight.hpp
+      title: Library/DataStructure/UnionFindWeight.hpp
   - name: Library/Debug
     pages:
     - icon: ':warning:'

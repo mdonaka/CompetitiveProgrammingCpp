@@ -110,9 +110,9 @@ data:
   timestamp: '2024-08-30 15:22:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp
   - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
+  - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
 documentation_of: Library/DataStructure/DynamicSegmentTree.hpp
 layout: document
 redirect_from:

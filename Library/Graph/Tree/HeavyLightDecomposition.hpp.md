@@ -263,8 +263,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
-  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:
