@@ -32,6 +32,10 @@ y: $(SRC_COPY_FLAT) ## yank
 r: $(BIN_RUN) ## run
 	@./$^ < i
 
+.PHONY: ri
+ri: $(BIN_RUN) ## run without input
+	@./$^
+
 .PHONY: t
 t: $(BIN_TEST) ## test
 	@./$^ < i | tee i
