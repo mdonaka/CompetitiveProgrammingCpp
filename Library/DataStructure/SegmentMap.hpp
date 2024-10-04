@@ -52,26 +52,32 @@ public:
     add(l, val);
   }
 
+  /*
+   * return: [{left, right, value}, ...]
+   * */
   auto query(SizeType l, SizeType r) {
     if (l < 0 || r >= n) { throw std::runtime_error(""); }
     if (l > r) { throw std::runtime_error(""); }
     auto it = std::prev(mp.upper_bound(l));
-    std::deque<std::pair<ValType, std::pair<SizeType, SizeType>>> dq;
+    std::deque<std::tuple<SizeType, SizeType, ValType>> dq;
     while (it->first <= r) {
       auto nx = std::next(it)->first;
       auto nr = std::min(nx - 1, r);
       auto nl = std::max(l, it->first);
-      dq.emplace_back(it->second, std::pair{nl, nr});
+      dq.emplace_back(nl, nr, it->second);
       ++it;
     }
     return dq;
   }
 
+  /*
+   * return: {left, right, value}
+   * */
   auto get(SizeType i) const {
     auto it = std::prev(mp.upper_bound(i));
     auto nx = std::next(it)->first;
     auto nr = nx - 1;
     auto nl = it->first;
-    return std::pair{it->second, std::pair{nl, nr}};
+    return std::make_tuple(nl, nr, it->second);
   }
 };
