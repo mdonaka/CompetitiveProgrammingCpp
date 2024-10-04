@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <stdexcept>
 #include <vector>
 
 template <class SG>
@@ -16,14 +17,16 @@ class DisjointSparseTable {
     std::vector<SG> acc;
     acc.reserve(size);
     for (int i = l; i < r; ++i) { acc.emplace_back(a[i]); }
-    for (int i = mid - 2; i >= l; --i)
+    for (int i = mid - 2; i >= l; --i) {
       if (i - l + 1 < size) {
         acc[i - l] = acc[i - l].binaryOperation(acc[i - l + 1]);
       }
-    for (int i = mid + 1; i < r; ++i)
+    }
+    for (int i = mid + 1; i < r; ++i) {
       if (i - l - 1 >= 0) {
         acc[i - l] = acc[i - l - 1].binaryOperation(acc[i - l]);
       }
+    }
     return acc;
   }
 
@@ -37,10 +40,11 @@ class DisjointSparseTable {
       size <<= 1;
       std::vector<SG> acc;
       acc.reserve(n);
-      for (int l = 0; l < n; l += size)
+      for (int l = 0; l < n; l += size) {
         for (const auto& x : accumulation(n, a, l, l + size)) {
           acc.emplace_back(x);
         }
+      }
       table.emplace_back(acc);
     }
     return table;
