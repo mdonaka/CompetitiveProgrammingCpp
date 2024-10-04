@@ -1,8 +1,11 @@
 #define PROBLEM "https://yukicoder.me/problems/no/674"
 
+// begin:tag includes
 #include "./../../Library/DataStructure/SegmentMap.hpp"
+// end:tag includes
 
 #include <iostream>
+#include <ranges>
 
 using ll = long long;
 using std::cin;
@@ -16,13 +19,13 @@ signed main() {
   auto segmap = SegmentMap(d);
 
   ll ans = 0;
-  for (int _ = 0; _ < q; ++_) {
+  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {
     ll a, b;
     cin >> a >> b;
     segmap.update(a, b, 1);
 
-    auto [__, range] = segmap.get(a);
-    ans = std::max(ans, range.second - range.first + 1);
+    auto [l, r, __] = segmap.get(a);
+    ans = std::max(ans, r - l + 1);
     cout << ans << endl;
   }
 }
