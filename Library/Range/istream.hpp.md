@@ -116,14 +116,14 @@ data:
   path: Library/Range/istream.hpp
   requiredBy:
   - Library/Range/template.cpp
-  - Library/Main/includes.hpp
   - Library/Main/main.cpp
+  - Library/Main/includes.hpp
   timestamp: '2024-08-29 12:31:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Range/zip.test.cpp
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
-  - Test/Range/zip.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
 redirect_from:

@@ -82,16 +82,16 @@ data:
   isVerificationFile: false
   path: Library/Utility/io.hpp
   requiredBy:
-  - Library/Range/istream.hpp
   - Library/Range/template.cpp
-  - Library/Main/includes.hpp
+  - Library/Range/istream.hpp
   - Library/Main/main.cpp
+  - Library/Main/includes.hpp
   timestamp: '2024-08-18 00:08:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Range/zip.test.cpp
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
-  - Test/Range/zip.test.cpp
   - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document

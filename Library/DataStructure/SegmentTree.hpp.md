@@ -121,11 +121,11 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/SegmentTree_RMQ.test.cpp
-  - Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - Test/Algorithms/CoordinateCompression_to.test.cpp
-  - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/String/LCPArray.test.cpp
+  - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/Algorithms/CoordinateCompression_to.test.cpp
+  - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - Test/DataStructure/SegmentTree_RMQ.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:

@@ -77,8 +77,8 @@ data:
   timestamp: '2024-08-20 12:47:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:
