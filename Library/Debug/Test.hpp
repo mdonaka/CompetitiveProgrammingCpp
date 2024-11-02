@@ -19,77 +19,81 @@ namespace mtd {
     using engine = std::mt19937_64;
 
     namespace type {
+      template <class T>
       class Range {
-        const int_fast64_t l;
-        const int_fast64_t u;
+        const T l;
+        const T u;
 
       public:
-        Range(int_fast64_t l, int_fast64_t u) : l(l), u(u) {}
-        Range(int_fast64_t u) : l(0), u(u) {}
+        Range(T l, T u) : l(l), u(u) {}
+        Range(T u) : l(0), u(u) {}
         Range(const std::initializer_list<int>& v)
             : l(*v.begin()), u(*std::next(v.begin())) {}
 
         auto generate(engine& mt) const {
-          return static_cast<int_fast64_t>(mt() % (u + 1 - l)) + l;
+          return static_cast<T>(mt() % (u + 1 - l) + l);
         }
       };
 
+      template <class T, class U>
       class Vector {
-        const Range size;
-        const Range r;
+        const Range<T> size;
+        const Range<U> r;
 
       public:
-        Vector(const Range& size, const Range& r) : size(size), r(r) {}
+        Vector(const Range<T>& size, const Range<U>& r) : size(size), r(r) {}
 
         auto generate(engine& mt) const {
-          auto v_mt = std::vector<int_fast64_t>(size.generate(mt)) |
-                      std::views::transform(
-                          [&](int_fast64_t) { return r.generate(mt); });
-          return std::vector<int_fast64_t>(v_mt.begin(), v_mt.end());
+          auto v_mt = std::vector<U>(size.generate(mt)) |
+                      std::views::transform([&](U) { return r.generate(mt); });
+          return std::vector<U>(v_mt.begin(), v_mt.end());
         }
       };
 
+      template <class T>
       class Permutation {
-        const Range size;
+        const Range<T> size;
 
       public:
-        Permutation(const Range& size) : size(size) {}
+        Permutation(const Range<T>& size) : size(size) {}
         Permutation(const std::initializer_list<int>& size)
-            : Permutation(Range(size)) {}
+            : Permutation(Range<T>(size)) {}
 
         auto generate(engine& mt) const {
-          std::vector<int_fast64_t> p(size.generate(mt));
+          std::vector<T> p(size.generate(mt));
           std::iota(p.begin(), p.end(), 0);
           std::shuffle(p.begin(), p.end(), mt);
           return p;
         }
       };
 
+      template <class T>
       class String {
-        const Range size;
-        const Range r;
+        const Range<T> size;
+        const Range<T> r;
 
       public:
-        String(const Range& size, const Range& r) : size(size), r(r) {}
+        String(const Range<T>& size, const Range<T>& r) : size(size), r(r) {}
 
         auto generate(engine& mt) const {
-          auto v_mt = std::vector<int_fast64_t>(size.generate(mt)) |
-                      std::views::transform([&](int_fast64_t) {
-                        return static_cast<char>(r.generate(mt) + 'a');
-                      });
+          auto v_mt =
+              std::vector<T>(size.generate(mt)) | std::views::transform([&](T) {
+                return static_cast<char>(r.generate(mt) + 'a');
+              });
           return std::string(v_mt.begin(), v_mt.end());
         }
       };
 
-      template <bool directed, bool connected, bool loop, bool multiple>
+      template <class T, bool directed, bool connected, bool loop,
+                bool multiple>
       class Graph {
-        const Range node_size;
-        const Range edge_size;
-        const Range cost_size;
+        const Range<T> node_size;
+        const Range<T> edge_size;
+        const Range<T> cost_size;
 
       public:
-        Graph(const Range& node_size, const Range& edge_size,
-              const Range& cost_size = {1, 1})
+        Graph(const Range<T>& node_size, const Range<T>& edge_size,
+              const Range<T>& cost_size = {1, 1})
             : node_size(node_size),
               edge_size(edge_size),
               cost_size(cost_size) {}
@@ -109,14 +113,14 @@ namespace mtd {
           Map edges;
           if (connected) {
             for (auto f : std::views::iota(1, n)) {
-              auto t = Range(0, f - 1).generate(mt);
+              auto t = Range<T>(0, f - 1).generate(mt);
               auto c = cost_size.generate(mt);
               edges.emplace(std::make_pair(f, t), c);
             }
           }
           while (edges.size() < m) {
-            auto f = Range(0, n - 1).generate(mt);
-            auto t = Range(0, n - 1).generate(mt);
+            auto f = Range<T>(0, n - 1).generate(mt);
+            auto t = Range<T>(0, n - 1).generate(mt);
             auto c = cost_size.generate(mt);
             if (!loop && f == t) { continue; }
             if (!directed && f > t) { std::swap(f, t); }
@@ -203,12 +207,16 @@ namespace mtd {
     };
   }  // namespace debug
 
-  using tr = debug::type::Range;
-  using tv = debug::type::Vector;
-  using tp = debug::type::Permutation;
-  using ts = debug::type::String;
-  template <bool directed = false, bool connected = true, bool loop = false,
-            bool multiple = false>
-  using tg = debug::type::Graph<directed, connected, loop, multiple>;
+  template <class T = long long>
+  using tr = debug::type::Range<T>;
+  template <class T = int, class U = long long>
+  using tv = debug::type::Vector<T, U>;
+  template <class T = long long>
+  using tp = debug::type::Permutation<T>;
+  template <class T>
+  using ts = debug::type::String<T>;
+  template <class T, bool directed = false, bool connected = true,
+            bool loop = false, bool multiple = false>
+  using tg = debug::type::Graph<T, directed, connected, loop, multiple>;
 
 }  // namespace mtd
