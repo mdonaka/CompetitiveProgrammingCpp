@@ -119,50 +119,51 @@ data:
     \ / UNIT::magnification); }\r\n    }\r\n  };\r\n}  // namespace Timer\n#line 14\
     \ \"Library/Debug/Test.hpp\"\n\r\nnamespace mtd {\r\n  namespace debug {\r\n\r\
     \n    constexpr char endl = '\\n';\r\n    using engine = std::mt19937_64;\r\n\r\
-    \n    namespace type {\r\n      class Range {\r\n        const int_fast64_t l;\r\
-    \n        const int_fast64_t u;\r\n\r\n      public:\r\n        Range(int_fast64_t\
-    \ l, int_fast64_t u) : l(l), u(u) {}\r\n        Range(int_fast64_t u) : l(0),\
-    \ u(u) {}\r\n        Range(const std::initializer_list<int>& v)\r\n          \
-    \  : l(*v.begin()), u(*std::next(v.begin())) {}\r\n\r\n        auto generate(engine&\
-    \ mt) const {\r\n          return static_cast<int_fast64_t>(mt() % (u + 1 - l))\
-    \ + l;\r\n        }\r\n      };\r\n\r\n      class Vector {\r\n        const Range\
-    \ size;\r\n        const Range r;\r\n\r\n      public:\r\n        Vector(const\
-    \ Range& size, const Range& r) : size(size), r(r) {}\r\n\r\n        auto generate(engine&\
-    \ mt) const {\r\n          auto v_mt = std::vector<int_fast64_t>(size.generate(mt))\
-    \ |\r\n                      std::views::transform(\r\n                      \
-    \    [&](int_fast64_t) { return r.generate(mt); });\r\n          return std::vector<int_fast64_t>(v_mt.begin(),\
-    \ v_mt.end());\r\n        }\r\n      };\r\n\r\n      class Permutation {\r\n \
-    \       const Range size;\r\n\r\n      public:\r\n        Permutation(const Range&\
+    \n    namespace type {\r\n      template <class T>\r\n      class Range {\r\n\
+    \        const T l;\r\n        const T u;\r\n\r\n      public:\r\n        Range(T\
+    \ l, T u) : l(l), u(u) {}\r\n        Range(T u) : l(0), u(u) {}\r\n        Range(const\
+    \ std::initializer_list<int>& v)\r\n            : l(*v.begin()), u(*std::next(v.begin()))\
+    \ {}\r\n\r\n        auto generate(engine& mt) const {\r\n          return static_cast<T>(mt()\
+    \ % (u + 1 - l) + l);\r\n        }\r\n      };\r\n\r\n      template <class T,\
+    \ class U>\r\n      class Vector {\r\n        const Range<T> size;\r\n       \
+    \ const Range<U> r;\r\n\r\n      public:\r\n        Vector(const Range<T>& size,\
+    \ const Range<U>& r) : size(size), r(r) {}\r\n\r\n        auto generate(engine&\
+    \ mt) const {\r\n          auto v_mt = std::vector<U>(size.generate(mt)) |\r\n\
+    \                      std::views::transform([&](U) { return r.generate(mt); });\r\
+    \n          return std::vector<U>(v_mt.begin(), v_mt.end());\r\n        }\r\n\
+    \      };\r\n\r\n      template <class T>\r\n      class Permutation {\r\n   \
+    \     const Range<T> size;\r\n\r\n      public:\r\n        Permutation(const Range<T>&\
     \ size) : size(size) {}\r\n        Permutation(const std::initializer_list<int>&\
-    \ size)\r\n            : Permutation(Range(size)) {}\r\n\r\n        auto generate(engine&\
-    \ mt) const {\r\n          std::vector<int_fast64_t> p(size.generate(mt));\r\n\
-    \          std::iota(p.begin(), p.end(), 0);\r\n          std::shuffle(p.begin(),\
-    \ p.end(), mt);\r\n          return p;\r\n        }\r\n      };\r\n\r\n      class\
-    \ String {\r\n        const Range size;\r\n        const Range r;\r\n\r\n    \
-    \  public:\r\n        String(const Range& size, const Range& r) : size(size),\
-    \ r(r) {}\r\n\r\n        auto generate(engine& mt) const {\r\n          auto v_mt\
-    \ = std::vector<int_fast64_t>(size.generate(mt)) |\r\n                      std::views::transform([&](int_fast64_t)\
-    \ {\r\n                        return static_cast<char>(r.generate(mt) + 'a');\r\
-    \n                      });\r\n          return std::string(v_mt.begin(), v_mt.end());\r\
-    \n        }\r\n      };\r\n\r\n      template <bool directed, bool connected,\
-    \ bool loop, bool multiple>\r\n      class Graph {\r\n        const Range node_size;\r\
-    \n        const Range edge_size;\r\n        const Range cost_size;\r\n\r\n   \
-    \   public:\r\n        Graph(const Range& node_size, const Range& edge_size,\r\
-    \n              const Range& cost_size = {1, 1})\r\n            : node_size(node_size),\r\
-    \n              edge_size(edge_size),\r\n              cost_size(cost_size) {}\r\
-    \n\r\n        auto generate(engine& mt) const {\r\n          using Edge = std::pair<int,\
-    \ long long>;\r\n          auto n = node_size.generate(mt);\r\n          auto\
-    \ m = edge_size.generate(mt);\r\n          if (!multiple) { m = std::min(m, n\
-    \ * (n - 1) / 2); }\r\n          if (connected) { m = std::max(m, n - 1); }\r\n\
-    \r\n          using Key = std::pair<int, int>;\r\n          using Val = long long;\r\
-    \n          using Map =\r\n              typename std::conditional<multiple, std::multimap<Key,\
-    \ Val>,\r\n                                        std::map<Key, Val>>::type;\r\
-    \n          Map edges;\r\n          if (connected) {\r\n            for (auto\
-    \ f : std::views::iota(1, n)) {\r\n              auto t = Range(0, f - 1).generate(mt);\r\
-    \n              auto c = cost_size.generate(mt);\r\n              edges.emplace(std::make_pair(f,\
+    \ size)\r\n            : Permutation(Range<T>(size)) {}\r\n\r\n        auto generate(engine&\
+    \ mt) const {\r\n          std::vector<T> p(size.generate(mt));\r\n          std::iota(p.begin(),\
+    \ p.end(), 0);\r\n          std::shuffle(p.begin(), p.end(), mt);\r\n        \
+    \  return p;\r\n        }\r\n      };\r\n\r\n      template <class T>\r\n    \
+    \  class String {\r\n        const Range<T> size;\r\n        const Range<T> r;\r\
+    \n\r\n      public:\r\n        String(const Range<T>& size, const Range<T>& r)\
+    \ : size(size), r(r) {}\r\n\r\n        auto generate(engine& mt) const {\r\n \
+    \         auto v_mt =\r\n              std::vector<T>(size.generate(mt)) | std::views::transform([&](T)\
+    \ {\r\n                return static_cast<char>(r.generate(mt) + 'a');\r\n   \
+    \           });\r\n          return std::string(v_mt.begin(), v_mt.end());\r\n\
+    \        }\r\n      };\r\n\r\n      template <class T, bool directed, bool connected,\
+    \ bool loop,\r\n                bool multiple>\r\n      class Graph {\r\n    \
+    \    const Range<T> node_size;\r\n        const Range<T> edge_size;\r\n      \
+    \  const Range<T> cost_size;\r\n\r\n      public:\r\n        Graph(const Range<T>&\
+    \ node_size, const Range<T>& edge_size,\r\n              const Range<T>& cost_size\
+    \ = {1, 1})\r\n            : node_size(node_size),\r\n              edge_size(edge_size),\r\
+    \n              cost_size(cost_size) {}\r\n\r\n        auto generate(engine& mt)\
+    \ const {\r\n          using Edge = std::pair<int, long long>;\r\n          auto\
+    \ n = node_size.generate(mt);\r\n          auto m = edge_size.generate(mt);\r\n\
+    \          if (!multiple) { m = std::min(m, n * (n - 1) / 2); }\r\n          if\
+    \ (connected) { m = std::max(m, n - 1); }\r\n\r\n          using Key = std::pair<int,\
+    \ int>;\r\n          using Val = long long;\r\n          using Map =\r\n     \
+    \         typename std::conditional<multiple, std::multimap<Key, Val>,\r\n   \
+    \                                     std::map<Key, Val>>::type;\r\n         \
+    \ Map edges;\r\n          if (connected) {\r\n            for (auto f : std::views::iota(1,\
+    \ n)) {\r\n              auto t = Range<T>(0, f - 1).generate(mt);\r\n       \
+    \       auto c = cost_size.generate(mt);\r\n              edges.emplace(std::make_pair(f,\
     \ t), c);\r\n            }\r\n          }\r\n          while (edges.size() < m)\
-    \ {\r\n            auto f = Range(0, n - 1).generate(mt);\r\n            auto\
-    \ t = Range(0, n - 1).generate(mt);\r\n            auto c = cost_size.generate(mt);\r\
+    \ {\r\n            auto f = Range<T>(0, n - 1).generate(mt);\r\n            auto\
+    \ t = Range<T>(0, n - 1).generate(mt);\r\n            auto c = cost_size.generate(mt);\r\
     \n            if (!loop && f == t) { continue; }\r\n            if (!directed\
     \ && f > t) { std::swap(f, t); }\r\n            edges.emplace(std::make_pair(f,\
     \ t), c);\r\n          }\r\n\r\n          std::vector<std::vector<Edge>> graph(n);\r\
@@ -199,32 +200,35 @@ data:
     \ (int i = 1; i <= conut; ++i) {\r\n          auto tm = Timer::SimpleTimer();\r\
     \n          auto args = gen();\r\n          Inner::apply(solver, args);\r\n  \
     \        tm.print<Timer::UNITS::MILLI>();\r\n        }\r\n      }\r\n    };\r\n\
-    \  }  // namespace debug\r\n\r\n  using tr = debug::type::Range;\r\n  using tv\
-    \ = debug::type::Vector;\r\n  using tp = debug::type::Permutation;\r\n  using\
-    \ ts = debug::type::String;\r\n  template <bool directed = false, bool connected\
-    \ = true, bool loop = false,\r\n            bool multiple = false>\r\n  using\
-    \ tg = debug::type::Graph<directed, connected, loop, multiple>;\r\n\r\n}  // namespace\
-    \ mtd\r\n#line 1 \"Library/Debug/Timer.hpp\"\n\uFEFF#pragma once\r\n\r\n#line\
-    \ 7 \"Library/Debug/Timer.hpp\"\n\r\nnamespace Timer {\r\n\r\n  /**\r\n   * \u6642\
-    \u9593\u306E\u5358\u4F4D\u7FA4\r\n   */\r\n  namespace UNITS {\r\n    struct NANO\
-    \ {\r\n      using second = std::chrono::nanoseconds;\r\n      static constexpr\
-    \ long long magnification = 1;\r\n      static constexpr std::string_view str\
-    \ = \"ns\";\r\n    };\r\n    struct MICRO {\r\n      using second = std::chrono::microseconds;\r\
-    \n      static constexpr long long magnification = 1000;\r\n      static constexpr\
-    \ std::string_view str = \"\u03BCs\";\r\n    };\r\n    struct MILLI {\r\n    \
-    \  using second = std::chrono::milliseconds;\r\n      static constexpr long long\
-    \ magnification = 1000000;\r\n      static constexpr std::string_view str = \"\
-    ms\";\r\n    };\r\n    struct SECOND {\r\n      using second = std::chrono::microseconds;\r\
-    \n      static constexpr long long magnification = 1000000000;\r\n      static\
-    \ constexpr std::string_view str = \"s\";\r\n    };\r\n  }  // namespace UNITS\r\
-    \n\r\n  /**\r\n   * \u6642\u9593\u306E\u51FA\u529B\r\n   */\r\n  template <class\
-    \ UNIT>\r\n  void _print(long long time) {\r\n    std::cerr << time << UNIT::str\
-    \ << std::endl;\r\n  }\r\n\r\n  /**\r\n   * \u7C21\u6613\u6642\u9593\u8A08\u6E2C\
-    \u30AF\u30E9\u30B9\r\n   * \u958B\u59CB\u304B\u3089\u306E\u6642\u9593\u306E\u307F\
-    \u8A08\u6E2C\r\n   */\r\n  class SimpleTimer {\r\n    std::chrono::system_clock::time_point\
-    \ start;\r\n\r\n  public:\r\n    SimpleTimer() : start(std::chrono::system_clock::now())\
-    \ {}\r\n    SimpleTimer& operator=(SimpleTimer&& tm) {\r\n      start = std::move(tm.start);\r\
-    \n      return *this;\r\n    }\r\n\r\n    template <class UNIT = std::chrono::nanoseconds>\r\
+    \  }  // namespace debug\r\n\r\n  template <class T = long long>\r\n  using tr\
+    \ = debug::type::Range<T>;\r\n  template <class T = int, class U = long long>\r\
+    \n  using tv = debug::type::Vector<T, U>;\r\n  template <class T = long long>\r\
+    \n  using tp = debug::type::Permutation<T>;\r\n  template <class T>\r\n  using\
+    \ ts = debug::type::String<T>;\r\n  template <class T, bool directed = false,\
+    \ bool connected = true,\r\n            bool loop = false, bool multiple = false>\r\
+    \n  using tg = debug::type::Graph<T, directed, connected, loop, multiple>;\r\n\
+    \r\n}  // namespace mtd\r\n#line 1 \"Library/Debug/Timer.hpp\"\n\uFEFF#pragma\
+    \ once\r\n\r\n#line 7 \"Library/Debug/Timer.hpp\"\n\r\nnamespace Timer {\r\n\r\
+    \n  /**\r\n   * \u6642\u9593\u306E\u5358\u4F4D\u7FA4\r\n   */\r\n  namespace UNITS\
+    \ {\r\n    struct NANO {\r\n      using second = std::chrono::nanoseconds;\r\n\
+    \      static constexpr long long magnification = 1;\r\n      static constexpr\
+    \ std::string_view str = \"ns\";\r\n    };\r\n    struct MICRO {\r\n      using\
+    \ second = std::chrono::microseconds;\r\n      static constexpr long long magnification\
+    \ = 1000;\r\n      static constexpr std::string_view str = \"\u03BCs\";\r\n  \
+    \  };\r\n    struct MILLI {\r\n      using second = std::chrono::milliseconds;\r\
+    \n      static constexpr long long magnification = 1000000;\r\n      static constexpr\
+    \ std::string_view str = \"ms\";\r\n    };\r\n    struct SECOND {\r\n      using\
+    \ second = std::chrono::microseconds;\r\n      static constexpr long long magnification\
+    \ = 1000000000;\r\n      static constexpr std::string_view str = \"s\";\r\n  \
+    \  };\r\n  }  // namespace UNITS\r\n\r\n  /**\r\n   * \u6642\u9593\u306E\u51FA\
+    \u529B\r\n   */\r\n  template <class UNIT>\r\n  void _print(long long time) {\r\
+    \n    std::cerr << time << UNIT::str << std::endl;\r\n  }\r\n\r\n  /**\r\n   *\
+    \ \u7C21\u6613\u6642\u9593\u8A08\u6E2C\u30AF\u30E9\u30B9\r\n   * \u958B\u59CB\u304B\
+    \u3089\u306E\u6642\u9593\u306E\u307F\u8A08\u6E2C\r\n   */\r\n  class SimpleTimer\
+    \ {\r\n    std::chrono::system_clock::time_point start;\r\n\r\n  public:\r\n \
+    \   SimpleTimer() : start(std::chrono::system_clock::now()) {}\r\n    SimpleTimer&\
+    \ operator=(SimpleTimer&& tm) {\r\n      start = std::move(tm.start);\r\n    \
+    \  return *this;\r\n    }\r\n\r\n    template <class UNIT = std::chrono::nanoseconds>\r\
     \n    auto now() const {\r\n      const auto now = std::chrono::system_clock::now();\r\
     \n      return std::chrono::duration_cast<UNIT>(now - start).count();\r\n    }\r\
     \n\r\n    template <class UNIT = UNITS::NANO>\r\n    auto print() const {\r\n\
@@ -326,7 +330,7 @@ data:
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-09-16 09:45:07+09:00'
+  timestamp: '2024-11-02 22:12:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp

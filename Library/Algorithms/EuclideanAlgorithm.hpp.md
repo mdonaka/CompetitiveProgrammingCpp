@@ -95,8 +95,8 @@ data:
   timestamp: '2024-08-06 04:18:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - Test/Algorithms/EuclideanAlgorithm.test.cpp
+  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
 documentation_of: Library/Algorithms/EuclideanAlgorithm.hpp
 layout: document
 redirect_from:

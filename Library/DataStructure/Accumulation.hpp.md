@@ -62,8 +62,8 @@ data:
   timestamp: '2024-08-10 02:57:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/Accumulation_xor.test.cpp
   - Test/DataStructure/Accumulation_sum.test.cpp
+  - Test/DataStructure/Accumulation_xor.test.cpp
 documentation_of: Library/DataStructure/Accumulation.hpp
 layout: document
 redirect_from:
