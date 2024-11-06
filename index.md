@@ -77,7 +77,7 @@ data:
       title: Library/DataStructure/UnionFindWeight.hpp
   - name: Library/Debug
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Debug/Dump.hpp
       title: Library/Debug/Dump.hpp
     - icon: ':warning:'
@@ -158,19 +158,19 @@ data:
       title: Library/Main/main.cpp
   - name: Library/Math
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Math/Bit.hpp
       title: Library/Math/Bit.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Math/Convolution.hpp
       title: Library/Math/Convolution.hpp
     - icon: ':warning:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Math/Mobius.hpp
       title: Library/Math/Mobius.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Math/Zeta.hpp
       title: Library/Math/Zeta.hpp
   - name: Library/PlaneGeometry
@@ -186,7 +186,7 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
@@ -231,7 +231,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -380,6 +380,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
+  - name: Test/Math
+    pages:
+    - icon: ':x:'
+      path: Test/Math/convolution_and.test.cpp
+      title: Test/Math/convolution_and.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/Math/Convolution.hpp
+    title: Library/Math/Convolution.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Math/convolution_and.test.cpp
+    title: Test/Math/convolution_and.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Zeta.hpp\"\n\n#include <ranges>\n#include <vector>\n\
@@ -31,7 +37,12 @@ data:
     \ = a;\n    int size = clz(a.size());\n    for (auto b : std::views::iota(0, size))\
     \ {\n      for (auto bit : std::views::iota(0, 1LL << size)) {\n        if (((bit\
     \ >> b) & 1) && bit < a.size()) {\n          ret[bit] += ret[bit ^ (1LL << b)];\n\
-    \        }\n      }\n    }\n    return ret;\n  }\n\n}  // namespace mtd::zeta\n"
+    \        }\n      }\n    }\n    return ret;\n  }\n\n  template <class T>\n  auto\
+    \ bit_supset(const std::vector<T>& a) {\n    auto ret = a;\n    int size = clz(a.size());\n\
+    \    for (auto b : std::views::iota(0, size)) {\n      for (auto bit : std::views::iota(0,\
+    \ 1LL << size)) {\n        if (((bit >> b) & 1) && bit < a.size()) {\n       \
+    \   ret[bit ^ (1LL << b)] += ret[bit];\n        }\n      }\n    }\n    return\
+    \ ret;\n  }\n}  // namespace mtd::zeta\n"
   code: "#pragma once\n\n#include <ranges>\n#include <vector>\n\n#include \"./Bit.hpp\"\
     \n\nnamespace mtd::zeta {\n\n  template <class T>\n  auto n(const std::vector<T>&\
     \ a) {\n    auto ret = a;\n    for (auto i : std::views::iota(static_cast<size_t>(1),\
@@ -40,15 +51,22 @@ data:
     \ = a;\n    int size = clz(a.size());\n    for (auto b : std::views::iota(0, size))\
     \ {\n      for (auto bit : std::views::iota(0, 1LL << size)) {\n        if (((bit\
     \ >> b) & 1) && bit < a.size()) {\n          ret[bit] += ret[bit ^ (1LL << b)];\n\
-    \        }\n      }\n    }\n    return ret;\n  }\n\n}  // namespace mtd::zeta\n"
+    \        }\n      }\n    }\n    return ret;\n  }\n\n  template <class T>\n  auto\
+    \ bit_supset(const std::vector<T>& a) {\n    auto ret = a;\n    int size = clz(a.size());\n\
+    \    for (auto b : std::views::iota(0, size)) {\n      for (auto bit : std::views::iota(0,\
+    \ 1LL << size)) {\n        if (((bit >> b) & 1) && bit < a.size()) {\n       \
+    \   ret[bit ^ (1LL << b)] += ret[bit];\n        }\n      }\n    }\n    return\
+    \ ret;\n  }\n}  // namespace mtd::zeta\n"
   dependsOn:
   - Library/Math/Bit.hpp
   isVerificationFile: false
   path: Library/Math/Zeta.hpp
-  requiredBy: []
-  timestamp: '2024-11-06 14:52:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - Library/Math/Convolution.hpp
+  timestamp: '2024-11-06 16:04:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Math/convolution_and.test.cpp
 documentation_of: Library/Math/Zeta.hpp
 layout: document
 redirect_from:

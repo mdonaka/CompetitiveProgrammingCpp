@@ -2,7 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: Library/Math/Convolution.hpp
+    title: Library/Math/Convolution.hpp
+  - icon: ':x:'
+    path: Library/Math/Mobius.hpp
+    title: Library/Math/Mobius.hpp
+  - icon: ':x:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
   - icon: ':warning:'
@@ -11,10 +17,13 @@ data:
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Math/convolution_and.test.cpp
+    title: Test/Math/convolution_and.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace mtd {\n\n  constexpr\
@@ -47,9 +56,12 @@ data:
   - Library/Range/bit.hpp
   - Library/Range/template.cpp
   - Library/Math/Zeta.hpp
+  - Library/Math/Mobius.hpp
+  - Library/Math/Convolution.hpp
   timestamp: '2024-11-06 14:52:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Math/convolution_and.test.cpp
 documentation_of: Library/Math/Bit.hpp
 layout: document
 redirect_from:
