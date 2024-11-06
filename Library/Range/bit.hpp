@@ -2,25 +2,14 @@
 
 #include <ranges>
 
+#include "./../Math/Bit.hpp"
+
 namespace mtd {
   namespace ranges {
     struct bit_index_view : public std::ranges::view_interface<bit_index_view> {
       class iterator {
         int i;
         int bit;
-
-        constexpr unsigned ctz(unsigned int n) {
-          if (!n) return -1;
-          unsigned int c = 32;
-          n &= -static_cast<signed int>(n);
-          if (n) c--;
-          if (n & 0x0000FFFF) c -= 16;
-          if (n & 0x00FF00FF) c -= 8;
-          if (n & 0x0F0F0F0F) c -= 4;
-          if (n & 0x33333333) c -= 2;
-          if (n & 0x55555555) c -= 1;
-          return c;
-        }
 
       public:
         using difference_type = int;
