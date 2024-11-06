@@ -5,13 +5,10 @@ data:
   - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Math/convolution_and.test.cpp
-    title: Test/Math/convolution_and.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Debug/Dump.hpp\"\n#include <concepts>\n#include\
@@ -105,9 +102,8 @@ data:
   requiredBy:
   - Library/Main/main.cpp
   timestamp: '2024-09-16 09:45:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/Math/convolution_and.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Debug/Dump.hpp
 layout: document
 redirect_from:

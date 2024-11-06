@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: Library/Debug/Dump.hpp
-    title: Library/Debug/Dump.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: Library/Math/Modint.hpp
+    title: Library/Math/Modint.hpp
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
-  bundledCode: "#line 1 \"Test/Math/convolution_and.test.cpp\"\n#define PROBLEM \\\
-    \n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\n#include\
-    \ <iostream>\n\n// begin:tag includes\n#line 2 \"Library/Math/Convolution.hpp\"\
-    \n\n#include <ranges>\n#include <vector>\n\n#line 1 \"Library/Math/Mobius.hpp\"\
-    \n\n#line 4 \"Library/Math/Mobius.hpp\"\n\n#line 2 \"Library/Math/Bit.hpp\"\n\n\
-    namespace mtd {\n\n  constexpr unsigned clz(unsigned int x) {\n    int c = 0;\n\
-    \    if (x == 0) { return 0; }\n    if (x & 0xffff0000) {\n      x &= 0xffff0000;\n\
+    - https://judge.yosupo.jp/problem/bitwise_and_convolution
+  bundledCode: "#line 1 \"Test/Math/convolution_and.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n#include <iostream>\n\
+    \n// begin:tag includes\n#line 2 \"Library/Math/Convolution.hpp\"\n\n#include\
+    \ <ranges>\n#include <vector>\n\n#line 1 \"Library/Math/Mobius.hpp\"\n\n#line\
+    \ 4 \"Library/Math/Mobius.hpp\"\n\n#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace\
+    \ mtd {\n\n  constexpr unsigned clz(unsigned int x) {\n    int c = 0;\n    if\
+    \ (x == 0) { return 0; }\n    if (x & 0xffff0000) {\n      x &= 0xffff0000;\n\
     \      c |= 0x10;\n    }\n    if (x & 0xff00ff00) {\n      x &= 0xff00ff00;\n\
     \      c |= 0x08;\n    }\n    if (x & 0xf0f0f0f0) {\n      x &= 0xf0f0f0f0;\n\
     \      c |= 0x04;\n    }\n    if (x & 0xcccccccc) {\n      x &= 0xcccccccc;\n\
@@ -81,33 +81,52 @@ data:
     \   for (auto i : std::views::iota(static_cast<size_t>(0), a.size())) {\n    \
     \  zab.emplace_back(za[i] * zb[i]);\n    }\n    auto zma = mtd::mobius::bit_supset(za);\n\
     \    return mtd::mobius::bit_supset(zab);\n  }\n\n}  // namespace mtd::convolution\n\
-    #line 2 \"Library/Range/istream.hpp\"\n\n#line 4 \"Library/Range/istream.hpp\"\
-    \n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\n\
-    #include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\n\nnamespace mtd {\n\
-    \  namespace io {\n\n    namespace type {\n      template <class T, int Pre =\
-    \ 1, int Size = 0>\n      struct vec {\n        using value_type = T;\n      \
-    \  static constexpr int pre = Pre;\n        static constexpr int size = Size;\n\
-    \      };\n      template <class T>\n      concept is_vec = requires {\n     \
-    \   std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;\n      };\n\
-    \    }  // namespace type\n\n    template <type::is_vec T>\n    auto _input(int\
-    \ n) {\n      std::vector<typename T::value_type> v(n);\n      for (auto i : std::views::iota(0,\
-    \ n)) { std::cin >> v[i]; }\n      return v;\n    }\n\n    template <class T>\n\
-    \    auto _input() {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\
-    \n    template <int N, class Tuple, class T, class... Args>\n    auto _tuple_input(Tuple&\
-    \ t) {\n      if constexpr (type::is_vec<T>) {\n        if constexpr (T::size\
-    \ == 0) {\n          std::get<N>(t) = _input<T>(std::get<N - T::pre>(t));\n  \
-    \      } else {\n          std::get<N>(t) = _input<T>(T::size);\n        }\n \
-    \     } else {\n        std::get<N>(t) = _input<T>();\n      }\n      if constexpr\
-    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t);\n \
-    \     }\n    }\n\n    template <class T>\n    struct _Converter {\n      using\
-    \ type = T;\n    };\n    template <class T, int Pre, int Size>\n    struct _Converter<type::vec<T,\
-    \ Pre, Size>> {\n      using type = std::vector<T>;\n    };\n\n    template <class...\
-    \ Args>\n    auto in() {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
-    \      _tuple_input<0, decltype(base), Args...>(base);\n      return base;\n \
-    \   }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
-    \n\nnamespace mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n\
-    \    template <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
-    \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
+    #line 2 \"Library/Math/Modint.hpp\"\n\n#line 4 \"Library/Math/Modint.hpp\"\n#include\
+    \ <iterator>\n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n\
+    \  class ModInt {\n    T x;\n\n  public:\n    constexpr ModInt(T x) : x(x % MOD)\
+    \ {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\
+    \n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n      x += m.x;\n\
+    \      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n    constexpr\
+    \ auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n      if (x <\
+    \ 0) { x += MOD; }\n      return *this;\n    }\n    constexpr auto& operator*=(const\
+    \ ModInt<MOD, T>& m) {\n      x *= m.x;\n      if (x >= MOD) { x %= MOD; }\n \
+    \     return *this;\n    }\n\n    constexpr auto operator+(const ModInt<MOD, T>&\
+    \ m) const {\n      auto t = *this;\n      t += m;\n      return t;\n    }\n \
+    \   constexpr auto operator-(const ModInt<MOD, T>& m) const {\n      auto t =\
+    \ *this;\n      t -= m;\n      return t;\n    }\n    constexpr auto operator*(const\
+    \ ModInt<MOD, T>& m) const {\n      auto t = *this;\n      t *= m;\n      return\
+    \ t;\n    }\n\n    // \u5165\u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream&\
+    \ os,\n                                              const ModInt<MOD, T>& m)\
+    \ {\n      return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \ is,\n                                              ModInt<MOD, T>& m) {\n  \
+    \    return is >> m.x;\n    }\n  };\n\n}  // namespace mtd\n#line 2 \"Library/Range/istream.hpp\"\
+    \n\n#line 4 \"Library/Range/istream.hpp\"\n\n#line 2 \"Library/Utility/io.hpp\"\
+    \n\n#line 5 \"Library/Utility/io.hpp\"\n#include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\
+    \n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n      template\
+    \ <class T, int Pre = 1, int Size = 0>\n      struct vec {\n        using value_type\
+    \ = T;\n        static constexpr int pre = Pre;\n        static constexpr int\
+    \ size = Size;\n      };\n      template <class T>\n      concept is_vec = requires\
+    \ {\n        std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;\n\
+    \      };\n    }  // namespace type\n\n    template <type::is_vec T>\n    auto\
+    \ _input(int n) {\n      std::vector<typename T::value_type> v(n);\n      for\
+    \ (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }\n      return v;\n \
+    \   }\n\n    template <class T>\n    auto _input() {\n      T x;\n      std::cin\
+    \ >> x;\n      return x;\n    }\n\n    template <int N, class Tuple, class T,\
+    \ class... Args>\n    auto _tuple_input(Tuple& t) {\n      if constexpr (type::is_vec<T>)\
+    \ {\n        if constexpr (T::size == 0) {\n          std::get<N>(t) = _input<T>(std::get<N\
+    \ - T::pre>(t));\n        } else {\n          std::get<N>(t) = _input<T>(T::size);\n\
+    \        }\n      } else {\n        std::get<N>(t) = _input<T>();\n      }\n \
+    \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
+    \ Args...>(t);\n      }\n    }\n\n    template <class T>\n    struct _Converter\
+    \ {\n      using type = T;\n    };\n    template <class T, int Pre, int Size>\n\
+    \    struct _Converter<type::vec<T, Pre, Size>> {\n      using type = std::vector<T>;\n\
+    \    };\n\n    template <class... Args>\n    auto in() {\n      auto base = std::tuple<typename\
+    \ _Converter<Args>::type...>();\n      _tuple_input<0, decltype(base), Args...>(base);\n\
+    \      return base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line\
+    \ 6 \"Library/Range/istream.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n\n\
+    \    constexpr int _inf = 1e9;\n\n    template <class... Args>\n    struct istream_view\n\
+    \        : public std::ranges::view_interface<istream_view<Args...>> {\n     \
+    \ class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
@@ -133,74 +152,32 @@ data:
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 8 \"Test/Math/convolution_and.test.cpp\"\
-    \n// end:tag includes\n#line 2 \"Library/Debug/Dump.hpp\"\n#include <concepts>\n\
-    #include <deque>\n#include <functional>\n#line 6 \"Library/Debug/Dump.hpp\"\n\
-    #include <string_view>\n\ntemplate <class T>\nconstexpr inline auto d_val(T a,\
-    \ T b) {\n  return b;\n}\n\n// debug\u7528\u51FA\u529B\u30DE\u30AF\u30ED\n#define\
-    \ dump(...)                                               \\\n  do {         \
-    \                                                 \\\n    auto __DUMP_NAME_LIST__\
-    \ = split(#__VA_ARGS__, ',');         \\\n    splitVariables(std::move(__DUMP_NAME_LIST__),\
-    \ __VA_ARGS__); \\\n  } while (false)\n\n// split\ninline auto split(std::string_view\
-    \ str, char del = ' ') {\n  std::deque<std::string_view> sList;\n  int from =\
-    \ 0;\n  for (int i = 0; auto&& c : str) {\n    if (c == del) {\n      sList.emplace_back(str.substr(from,\
-    \ i - from));\n      from = i + 1;\n    }\n    if (c == ' ') { ++from; }\n   \
-    \ ++i;\n  }\n  sList.emplace_back(str.substr(from, str.size() - from));\n  return\
-    \ sList;\n}\n// \u5236\u7D04\ntemplate <class T>\nconcept Container = requires(T\
-    \ x) {\n  x.begin();\n};\n\ntemplate <class T>\nconcept Printable = requires(T\
-    \ x) {\n  std::cerr << x;\n};\n\n// \u5BA3\u8A00\ntemplate <class... T>\nconstexpr\
-    \ auto print(const std::tuple<T...>&, bool b = true);\ntemplate <class S, class\
-    \ T>\nconstexpr auto print(const std::pair<S, T>&, bool b = true);\ninline auto\
-    \ print(const std::string&, bool b = true);\nconstexpr auto print(const Printable\
-    \ auto&, bool b = true);\nconstexpr auto print(const Container auto&, bool b =\
-    \ true);\n// \u5B9A\u7FA9\nconstexpr auto print(const auto&, bool) {\n  std::cerr\
-    \ << \"<ERROR!> \\\"print\\\" of This type is not defined.\" << '\\n';\n}\n\n\
-    template <class... T>\nconstexpr auto print(const std::tuple<T...>& t, bool b)\
-    \ {\n  std::cerr << \"{\";\n  std::apply(\n      [&]<class... Ts>(Ts&&... elems)\
-    \ {\n        (std::invoke([](auto i) { print(i, true); }, std::forward<Ts>(elems)),\n\
-    \         ...);\n      },\n      t);\n  std::cerr << \"}\";\n  if (b) { std::cerr\
-    \ << \" \"; }\n}\ntemplate <class S, class T>\nconstexpr auto print(const std::pair<S,\
-    \ T>& p, bool b) {\n  std::cerr << '(';\n  print(p.first, false);\n  std::cerr\
-    \ << \", \";\n  print(p.second, false);\n  std::cerr << ')';\n  if (b) { std::cerr\
-    \ << \" \"; }\n}\ninline auto print(const std::string& s, bool b) {\n  std::cerr\
-    \ << s;\n  if (b) { std::cerr << std::endl; }\n}\nconstexpr auto print(const Printable\
-    \ auto& p, bool b) {\n  std::cerr << p;\n  if (b) { std::cerr << ' '; }\n}\nconstexpr\
-    \ auto print(const Container auto& c, bool b) {\n  for (auto&& x : c) { print(x);\
-    \ }\n  if (b) { std::cerr << '\\n'; }\n}\n\n// \u5909\u6570\u306E\u51FA\u529B\n\
-    constexpr auto printVariable(auto&& name, const auto& p) {\n  std::cerr << name\
-    \ << \": \";\n  print(p);\n  std::cerr << '\\n';\n}\ninline auto printVariable(auto&&\
-    \ name, const std::string& s) {\n  std::cerr << name << \": \";\n  print(s);\n\
-    \  std::cerr << '\\n';\n}\nconstexpr auto printVariable(auto&& name, const Container\
-    \ auto& c) {\n  std::cerr << \"-- \" << name << \" --\" << '\\n';\n  print(c);\n\
-    }\n\n// 1\u5909\u6570\u305A\u3064\u51E6\u7406\nconstexpr auto splitVariables(auto&&\
-    \ names) {}\nconstexpr auto splitVariables(auto&& names, const auto& x,\n    \
-    \                          const auto&... tail) {\n  printVariable(names.front(),\
-    \ x);\n  names.pop_front();\n  splitVariables(std::forward<decltype(names)>(names),\
-    \ tail...);\n}\n#line 10 \"Test/Math/convolution_and.test.cpp\"\n\nint main()\
-    \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  auto [n] = mtd::io::in<int>();\n\
-    \  auto a = mtd::io::_input<mtd::io::type::vec<int>>(1LL << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<int>>(1LL\
+    \n// end:tag includes\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
+    \n  using mint = mtd::ModInt<998244353>;\n\n  auto [n] = mtd::io::in<int>();\n\
+    \  auto a = mtd::io::_input<mtd::io::type::vec<mint>>(1LL << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<mint>>(1LL\
     \ << n);\n\n  auto ans = mtd::convolution::bitwise_and(a, b);\n  for (auto x :\
     \ ans) { std::cout << x << \" \"; }\n  std::cout << std::endl;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n#include <iostream>\n\n// begin:tag includes\n#include \"../../Library/Math/Convolution.hpp\"\
-    \n#include \"../../Library/Range/istream.hpp\"\n// end:tag includes\n#include\
-    \ \"../../Library/Debug/Dump.hpp\"\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
-    \n  auto [n] = mtd::io::in<int>();\n  auto a = mtd::io::_input<mtd::io::type::vec<int>>(1LL\
-    \ << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<int>>(1LL << n);\n\n \
-    \ auto ans = mtd::convolution::bitwise_and(a, b);\n  for (auto x : ans) { std::cout\
-    \ << x << \" \"; }\n  std::cout << std::endl;\n}\n"
+    \n#include \"../../Library/Math/Modint.hpp\"\n#include \"../../Library/Range/istream.hpp\"\
+    \n// end:tag includes\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
+    \n  using mint = mtd::ModInt<998244353>;\n\n  auto [n] = mtd::io::in<int>();\n\
+    \  auto a = mtd::io::_input<mtd::io::type::vec<mint>>(1LL << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<mint>>(1LL\
+    \ << n);\n\n  auto ans = mtd::convolution::bitwise_and(a, b);\n  for (auto x :\
+    \ ans) { std::cout << x << \" \"; }\n  std::cout << std::endl;\n}\n"
   dependsOn:
   - Library/Math/Convolution.hpp
   - Library/Math/Mobius.hpp
   - Library/Math/Bit.hpp
   - Library/Math/Zeta.hpp
+  - Library/Math/Modint.hpp
   - Library/Range/istream.hpp
   - Library/Utility/io.hpp
-  - Library/Debug/Dump.hpp
   isVerificationFile: true
   path: Test/Math/convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2024-11-06 16:04:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-06 16:42:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/convolution_and.test.cpp
 layout: document

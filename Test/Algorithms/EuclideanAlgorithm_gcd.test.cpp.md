@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Algorithms/EuclideanAlgorithm.hpp
     title: Library/Algorithms/EuclideanAlgorithm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []

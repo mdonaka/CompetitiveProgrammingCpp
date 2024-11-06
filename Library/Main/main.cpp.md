@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: Library/Debug/Dump.hpp
     title: Library/Debug/Dump.hpp
   - icon: ':warning:'
@@ -13,10 +13,10 @@ data:
   - icon: ':warning:'
     path: Library/Main/includes.hpp
     title: Library/Main/includes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
