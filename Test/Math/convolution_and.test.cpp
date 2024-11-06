@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B"
+#define PROBLEM "https://judge.yosupo.jp/problem/bitwise_and_convolution"
 #include <iostream>
 
 // begin:tag includes
