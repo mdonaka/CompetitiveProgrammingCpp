@@ -159,8 +159,20 @@ data:
   - name: Library/Math
     pages:
     - icon: ':warning:'
+      path: Library/Math/Bit.hpp
+      title: Library/Math/Bit.hpp
+    - icon: ':warning:'
+      path: Library/Math/Convolution.hpp
+      title: Library/Math/Convolution.hpp
+    - icon: ':warning:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
+    - icon: ':warning:'
+      path: Library/Math/Mobius.hpp
+      title: Library/Math/Mobius.hpp
+    - icon: ':warning:'
+      path: Library/Math/Zeta.hpp
+      title: Library/Math/Zeta.hpp
   - name: Library/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
