@@ -2,6 +2,8 @@
 #include <ranges>
 #include <vector>
 
+#include "./Bit.hpp"
+
 namespace mtd::mobius {
 
   template <class T>
@@ -21,6 +23,20 @@ namespace mtd::mobius {
       for (auto bit : std::views::iota(0, 1LL << size)) {
         if (((bit >> b) & 1) && bit < a.size()) {
           ret[bit] -= ret[bit ^ (1LL << b)];
+        }
+      }
+    }
+    return ret;
+  }
+
+  template <class T>
+  auto bit_supset(const std::vector<T>& a) {
+    auto ret = a;
+    int size = clz(a.size());
+    for (auto b : std::views::iota(0, size)) {
+      for (auto bit : std::views::iota(0, 1LL << size)) {
+        if (((bit >> b) & 1) && bit < a.size()) {
+          ret[bit ^ (1LL << b)] -= ret[bit];
         }
       }
     }
