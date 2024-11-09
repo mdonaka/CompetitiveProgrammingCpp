@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: Test/Math/convolution_and.test.cpp
-    title: Test/Math/convolution_and.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Zeta.hpp\"\n\n#include <ranges>\n#include <vector>\n\
@@ -29,9 +26,13 @@ data:
     \  n &= -static_cast<signed int>(n);\n    if (n) c--;\n    if (n & 0x0000FFFF)\
     \ c -= 16;\n    if (n & 0x00FF00FF) c -= 8;\n    if (n & 0x0F0F0F0F) c -= 4;\n\
     \    if (n & 0x33333333) c -= 2;\n    if (n & 0x55555555) c -= 1;\n    return\
-    \ c;\n  }\n}  // namespace mtd\n#line 7 \"Library/Math/Zeta.hpp\"\n\nnamespace\
-    \ mtd::zeta {\n\n  template <class T>\n  auto n(const std::vector<T>& a) {\n \
-    \   auto ret = a;\n    for (auto i : std::views::iota(static_cast<size_t>(1),\
+    \ c;\n  }\n\n  constexpr unsigned long long popcount(unsigned long long x) {\n\
+    \    x = x - ((x >> 1) & 0x5555555555555555);\n    x = (x & 0x3333333333333333)\
+    \ + ((x >> 2) & 0x3333333333333333);\n    x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f;\n\
+    \    x = x + (x >> 8);\n    x = x + (x >> 16);\n    x = x + (x >> 32);\n    return\
+    \ x & 0x0000007f;\n  }\n\n}  // namespace mtd\n#line 7 \"Library/Math/Zeta.hpp\"\
+    \n\nnamespace mtd::zeta {\n\n  template <class T>\n  auto n(const std::vector<T>&\
+    \ a) {\n    auto ret = a;\n    for (auto i : std::views::iota(static_cast<size_t>(1),\
     \ a.size())) {\n      ret[i] += ret[i - 1];\n    }\n    return ret;\n  }\n\n \
     \ template <class T>\n  auto bit_subset(const std::vector<T>& a) {\n    auto ret\
     \ = a;\n    int size = clz(a.size());\n    for (auto b : std::views::iota(0, size))\
@@ -63,10 +64,9 @@ data:
   path: Library/Math/Zeta.hpp
   requiredBy:
   - Library/Math/Convolution.hpp
-  timestamp: '2024-11-06 16:04:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - Test/Math/convolution_and.test.cpp
+  timestamp: '2024-11-09 15:39:47+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Math/Zeta.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
   - icon: ':warning:'
@@ -37,12 +37,16 @@ data:
     \ int n) {\n    if (!n) return -1;\n    unsigned int c = 32;\n    n &= -static_cast<signed\
     \ int>(n);\n    if (n) c--;\n    if (n & 0x0000FFFF) c -= 16;\n    if (n & 0x00FF00FF)\
     \ c -= 8;\n    if (n & 0x0F0F0F0F) c -= 4;\n    if (n & 0x33333333) c -= 2;\n\
-    \    if (n & 0x55555555) c -= 1;\n    return c;\n  }\n}  // namespace mtd\n#line\
-    \ 6 \"Library/Range/bit.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n    struct\
-    \ bit_index_view : public std::ranges::view_interface<bit_index_view> {\n    \
-    \  class iterator {\n        int i;\n        int bit;\n\n      public:\n     \
-    \   using difference_type = int;\n        using value_type = int;\n        using\
-    \ iterator_concept = std::forward_iterator_tag;\n\n        constexpr iterator()\
+    \    if (n & 0x55555555) c -= 1;\n    return c;\n  }\n\n  constexpr unsigned long\
+    \ long popcount(unsigned long long x) {\n    x = x - ((x >> 1) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);\n    x =\
+    \ (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f;\n    x = x + (x >> 8);\n    x = x + (x\
+    \ >> 16);\n    x = x + (x >> 32);\n    return x & 0x0000007f;\n  }\n\n}  // namespace\
+    \ mtd\n#line 6 \"Library/Range/bit.hpp\"\n\nnamespace mtd {\n  namespace ranges\
+    \ {\n    struct bit_index_view : public std::ranges::view_interface<bit_index_view>\
+    \ {\n      class iterator {\n        int i;\n        int bit;\n\n      public:\n\
+    \        using difference_type = int;\n        using value_type = int;\n     \
+    \   using iterator_concept = std::forward_iterator_tag;\n\n        constexpr iterator()\
     \ = default;\n        constexpr explicit iterator(int bit) : i(ctz(bit)), bit(bit)\
     \ {}\n        constexpr auto operator*() const { return i; }\n        constexpr\
     \ auto &operator++() {\n          bit ^= (1 << i);\n          i = ctz(bit);\n\
@@ -547,7 +551,7 @@ data:
   isVerificationFile: false
   path: Library/Range/template.cpp
   requiredBy: []
-  timestamp: '2024-11-06 14:52:36+09:00'
+  timestamp: '2024-11-09 15:39:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Range/template.cpp

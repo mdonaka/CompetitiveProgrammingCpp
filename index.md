@@ -64,6 +64,9 @@ data:
       path: Library/DataStructure/LiChaoTree.hpp
       title: Library/DataStructure/LiChaoTree.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/DataStructure/RunLengthEncoding.hpp
+      title: Library/DataStructure/RunLengthEncoding.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentMap.hpp
       title: Library/DataStructure/SegmentMap.hpp
     - icon: ':heavy_check_mark:'
@@ -158,22 +161,22 @@ data:
       title: Library/Main/main.cpp
   - name: Library/Math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/Math/Bit.hpp
       title: Library/Math/Bit.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/Math/Convolution.hpp
       title: Library/Math/Convolution.hpp
     - icon: ':warning:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/Math/Mobius.hpp
       title: Library/Math/Mobius.hpp
-    - icon: ':heavy_check_mark:'
-      path: Library/Math/Modint.hpp
-      title: Library/Math/Modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: Library/Math/ModInt.hpp
+      title: Library/Math/ModInt.hpp
+    - icon: ':warning:'
       path: Library/Math/Zeta.hpp
       title: Library/Math/Zeta.hpp
   - name: Library/PlaneGeometry
@@ -324,6 +327,9 @@ data:
       path: Test/DataStructure/LiChaoTree_segment.test.cpp
       title: Test/DataStructure/LiChaoTree_segment.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/RunLengthEncoding.test.cpp
+      title: Test/DataStructure/RunLengthEncoding.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentMap.test.cpp
       title: Test/DataStructure/SegmentMap.test.cpp
     - icon: ':heavy_check_mark:'
@@ -385,7 +391,7 @@ data:
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/Math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Math/convolution_and.test.cpp
       title: Test/Math/convolution_and.test.cpp
   - name: Test/PlaneGeometry

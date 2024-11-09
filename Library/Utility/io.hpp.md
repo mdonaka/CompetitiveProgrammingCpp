@@ -19,8 +19,8 @@ data:
     path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
     title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Math/convolution_and.test.cpp
-    title: Test/Math/convolution_and.test.cpp
+    path: Test/DataStructure/RunLengthEncoding.test.cpp
+    title: Test/DataStructure/RunLengthEncoding.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -95,7 +95,7 @@ data:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Math/convolution_and.test.cpp
+  - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document

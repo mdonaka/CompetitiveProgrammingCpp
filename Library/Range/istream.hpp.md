@@ -16,8 +16,8 @@ data:
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Math/convolution_and.test.cpp
-    title: Test/Math/convolution_and.test.cpp
+    path: Test/DataStructure/RunLengthEncoding.test.cpp
+    title: Test/DataStructure/RunLengthEncoding.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -127,7 +127,7 @@ data:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Math/convolution_and.test.cpp
+  - Test/DataStructure/RunLengthEncoding.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
 redirect_from:
