@@ -46,6 +46,34 @@ namespace mtd {
       return t;
     }
 
+    constexpr auto& operator+=(const T& t) {
+      return *this += ModInt<MOD, T>(t);
+    }
+    constexpr auto& operator-=(const T& t) {
+      return *this -= ModInt<MOD, T>(t);
+    }
+    constexpr auto& operator*=(const T& n) {
+      return *this *= ModInt<MOD, T>(n);
+    }
+    constexpr auto operator+(const T& t) const {
+      return *this + ModInt<MOD, T>(t);
+    }
+    constexpr auto operator-(const T& t) const {
+      return *this - ModInt<MOD, T>(t);
+    }
+    constexpr auto operator*(const T& t) const {
+      return *this * ModInt<MOD, T>(t);
+    }
+    constexpr friend auto operator+(const T& t, const ModInt<MOD, T>& m) {
+      return m + t;
+    }
+    constexpr friend auto operator-(const T& t, const ModInt<MOD, T>& m) {
+      return m - t;
+    }
+    constexpr friend auto operator*(const T& t, const ModInt<MOD, T>& m) {
+      return m * t;
+    }
+
     // 入出力
     constexpr friend std::ostream& operator<<(std::ostream& os,
                                               const ModInt<MOD, T>& m) {
@@ -55,6 +83,8 @@ namespace mtd {
                                               ModInt<MOD, T>& m) {
       return is >> m.x;
     }
+
+    constexpr auto val() const { return x; }
   };
 
 }  // namespace mtd

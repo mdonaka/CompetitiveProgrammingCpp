@@ -37,4 +37,15 @@ namespace mtd {
     if (n & 0x55555555) c -= 1;
     return c;
   }
+
+  constexpr unsigned long long popcount(unsigned long long x) {
+    x = x - ((x >> 1) & 0x5555555555555555);
+    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);
+    x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f;
+    x = x + (x >> 8);
+    x = x + (x >> 16);
+    x = x + (x >> 32);
+    return x & 0x0000007f;
+  }
+
 }  // namespace mtd
