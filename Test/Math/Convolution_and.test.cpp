@@ -3,7 +3,7 @@
 
 // begin:tag includes
 #include "../../Library/Math/Convolution.hpp"
-#include "../../Library/Math/Modint.hpp"
+#include "../../Library/Math/ModInt.hpp"
 #include "../../Library/Range/istream.hpp"
 // end:tag includes
 
