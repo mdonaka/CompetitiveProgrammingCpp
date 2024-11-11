@@ -167,13 +167,16 @@ data:
     - icon: ':warning:'
       path: Library/Math/Convolution.hpp
       title: Library/Math/Convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Math/Math.hpp
+      title: Library/Math/Math.hpp
     - icon: ':warning:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
     - icon: ':warning:'
       path: Library/Math/Mobius.hpp
       title: Library/Math/Mobius.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/ModInt.hpp
       title: Library/Math/ModInt.hpp
     - icon: ':warning:'
@@ -228,9 +231,6 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Combination.hpp
       title: Library/Utility/Combination.hpp
-    - icon: ':heavy_check_mark:'
-      path: Library/Utility/ModCalculator.hpp
-      title: Library/Utility/ModCalculator.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
@@ -391,6 +391,12 @@ data:
       title: Test/Graph/Tree/TreeDP.test.cpp
   - name: Test/Math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Math.test.cpp
+      title: Test/Math/Math.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Math_pow.test.cpp
+      title: Test/Math/Math_pow.test.cpp
     - icon: ':x:'
       path: Test/Math/convolution_and.test.cpp
       title: Test/Math/convolution_and.test.cpp
@@ -432,15 +438,6 @@ data:
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/Utility
     pages:
-    - icon: ':heavy_check_mark:'
-      path: Test/Utility/ModCalculator.test.cpp
-      title: Test/Utility/ModCalculator.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Utility/ModCalculator_inv.test.cpp
-      title: Test/Utility/ModCalculator_inv.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Utility/ModCalculator_pow.test.cpp
-      title: Test/Utility/ModCalculator_pow.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Utility/Prime.test.cpp
       title: Test/Utility/Prime.test.cpp

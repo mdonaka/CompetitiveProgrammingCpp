@@ -19,6 +19,12 @@ data:
     path: Test/DataStructure/RunLengthEncoding.test.cpp
     title: Test/DataStructure/RunLengthEncoding.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Math/Math.test.cpp
+    title: Test/Math/Math.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow.test.cpp
+    title: Test/Math/Math_pow.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,6 +133,8 @@ data:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
+  - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
