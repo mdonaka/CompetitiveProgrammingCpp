@@ -20,7 +20,7 @@ struct Preprocessing {
 struct F {
   auto operator()(int a, int b) const { return std::min(a, b); };
 };
-using M = Monoid<int, static_cast<int>(1e9), F>;
+using M = mtd::Monoid<int, static_cast<int>(1e9), F>;
 
 constexpr ll MOD = 1000000007;
 
@@ -29,8 +29,8 @@ signed main() {
   cin >> s;
 
   ll size = s.size();
-  auto lcparray = LCPArray(s);
-  auto segtree = SegmentTree<M>(size, lcparray.getLCPArray());
+  auto lcparray = mtd::LCPArray(s);
+  auto segtree = mtd::SegmentTree<M>(size, lcparray.getLCPArray());
   auto sai = lcparray.getSuffixArrayIndexList();
 
   ll half = (size >> 1);

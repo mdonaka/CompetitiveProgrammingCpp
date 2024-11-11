@@ -15,14 +15,14 @@ using P = std::pair<T, S>;
 signed main() {
   int n, m;
   cin >> n >> m;
-  auto graph = Graph(n);
+  auto graph = mtd::Graph(n);
   for (int i = 0; i < m; ++i) {
     int u, v, c;
     cin >> u >> v >> c;
     graph.addEdge(u, v, c);
   }
 
-  auto min_cost = warshallFloyd(n, graph);
+  auto min_cost = mtd::warshallFloyd(n, graph);
 
   for (int k = 0; k < n; ++k)
     for (int f = 0; f < n; ++f)

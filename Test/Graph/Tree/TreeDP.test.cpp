@@ -15,7 +15,7 @@ constexpr char endl = '\n';
 signed main() {
   ll n;
   cin >> n;
-  Graph<int, bool> tree(n);
+  mtd::Graph<int, bool> tree(n);
   for (int f = 0; f < n - 1; ++f) {
     int u, v;
     cin >> u >> v;
@@ -26,7 +26,7 @@ signed main() {
 
   std::vector<int> dp1(n);
   std::vector<int> dp2(n, 1);
-  treeDP(tree, 0, [&](int f, int t) {
+  mtd::treeDP(tree, 0, [&](int f, int t) {
     dp1[t] += std::max(dp1[f], dp2[f]);
     dp2[t] += std::max(dp1[f], dp2[f] - 1);
   });

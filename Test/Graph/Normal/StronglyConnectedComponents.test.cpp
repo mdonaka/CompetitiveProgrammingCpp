@@ -13,14 +13,14 @@ constexpr char endl = '\n';
 signed main() {
   int n, m;
   cin >> n >> m;
-  auto graph = Graph(n);
+  auto graph = mtd::Graph(n);
   for (int _ = 0; _ < m; ++_) {
     int f, t;
     cin >> f >> t;
     graph.addEdge(f, t);
   }
 
-  auto scc = StronglyConnectedComponents(std::move(graph));
+  auto scc = mtd::StronglyConnectedComponents(std::move(graph));
 
   int q;
   cin >> q;

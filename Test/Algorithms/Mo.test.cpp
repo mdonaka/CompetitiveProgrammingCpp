@@ -32,7 +32,7 @@ signed main() {
     xv.emplace_back(x);
   }
 
-  auto mo = Mo(q, lq, rq);
+  auto mo = mtd::Mo(q, lq, rq);
 
   std::map<char, int> mp;
   std::vector<char> ans(q);

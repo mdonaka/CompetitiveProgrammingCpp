@@ -16,7 +16,7 @@ signed main() {
   ll d, q;
   cin >> d >> q;
 
-  auto segmap = SegmentMap(d);
+  auto segmap = mtd::SegmentMap(d);
 
   ll ans = 0;
   for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {

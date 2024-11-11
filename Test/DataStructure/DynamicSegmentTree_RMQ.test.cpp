@@ -17,8 +17,8 @@ signed main() {
   struct F {
     auto operator()(ll a, ll b) const { return std::min(a, b); }
   };
-  using M = Monoid<ll, (1LL << 31) - 1, F>;
-  auto segtree = DynamicSegmentTree<M>();
+  using M = mtd::Monoid<ll, (1LL << 31) - 1, F>;
+  auto segtree = mtd::DynamicSegmentTree<M>();
 
   for (int _ = 0; _ < q; ++_) {
     int k, x, y;

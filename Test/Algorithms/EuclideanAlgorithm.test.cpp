@@ -15,7 +15,7 @@ signed main() {
   ll x, y;
   cin >> x >> y;
 
-  auto ea = EuclideanAlgorithm(x, y);
+  auto ea = mtd::EuclideanAlgorithm(x, y);
   auto [kl, kr] = ea.getMin();
   auto [la, lb] = ea.get(kl);
   auto [ra, rb] = ea.get(kr);

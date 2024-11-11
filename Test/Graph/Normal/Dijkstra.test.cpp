@@ -16,14 +16,14 @@ signed main() {
   int n, m, r;
   cin >> n >> m >> r;
 
-  auto graph = Graph(n);
+  auto graph = mtd::Graph(n);
   for (int i = 0; i < m; ++i) {
     int u, v, c;
     cin >> u >> v >> c;
     graph.addEdge(u, v, c);
   }
 
-  auto min_cost = dijkstra(graph, r);
+  auto min_cost = mtd::dijkstra(graph, r);
 
   for (const auto x : min_cost) {
     if (x > 1e17) {

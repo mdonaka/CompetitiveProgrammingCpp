@@ -12,6 +12,6 @@ signed main() {
   std::ios::sync_with_stdio(0);
 
   auto [n, d] = mtd::io::in<int, int>();
-  auto ea = EuclideanAlgorithm(n, d);
+  auto ea = mtd::EuclideanAlgorithm(n, d);
   std::cout << n / ea.gcd() - 1 << std::endl;
 }

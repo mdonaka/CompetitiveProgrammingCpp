@@ -16,14 +16,14 @@ signed main() {
   int n, m;
   cin >> n >> m;
 
-  auto graph = Graph(n);
+  auto graph = mtd::Graph(n);
   for (int i = 0; i < m; ++i) {
     int s, t, w;
     cin >> s >> t >> w;
     graph.addEdgeUndirected(s, t, w);
   }
 
-  auto min_spanning_tree = kruskal(graph);
+  auto min_spanning_tree = mtd::kruskal(graph);
 
   ll ans = 0;
   for (const auto& [f, t, c] : min_spanning_tree.getEdges()) {

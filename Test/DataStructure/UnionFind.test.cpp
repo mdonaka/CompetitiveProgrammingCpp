@@ -21,7 +21,7 @@ signed main() {
     cv[c - 1].emplace_back(b - 1);
   }
 
-  auto dsu = UnionFind(m);
+  auto dsu = mtd::UnionFind(m);
 
   ll ans = 0;
   for (const auto& dq : cv)

@@ -52,7 +52,7 @@ signed main() {
     }
   }
 
-  auto lct = LiChaoTree(xs);
+  auto lct = mtd::LiChaoTree(xs);
   for (const auto& s : v) { lct.addSegment(s[2], s[3], s[0], s[1]); }
 
   for (const auto& query : queries) {

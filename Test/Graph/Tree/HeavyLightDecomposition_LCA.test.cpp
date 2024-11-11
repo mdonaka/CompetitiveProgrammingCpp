@@ -14,7 +14,7 @@ constexpr char endl = '\n';
 signed main() {
   ll n;
   cin >> n;
-  auto tree = Graph<int, bool>(n);
+  auto tree = mtd::Graph<int, bool>(n);
   for (int f = 0; f < n; ++f) {
     ll k;
     cin >> k;
@@ -25,7 +25,7 @@ signed main() {
     }
   }
 
-  auto hld = HeavyLightDecomposition(tree);
+  auto hld = mtd::HeavyLightDecomposition(tree);
 
   int q;
   cin >> q;

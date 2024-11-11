@@ -15,14 +15,14 @@ constexpr char endl = '\n';
 signed main() {
   int n, m;
   cin >> n >> m;
-  auto graph = Graph(n);
+  auto graph = mtd::Graph(n);
   for (int i = 0; i < m; ++i) {
     int u, v, c;
     cin >> u >> v >> c;
     graph.addEdge(u, v, c);
   }
 
-  auto mf = Dinic(graph);
+  auto mf = mtd::Dinic(graph);
 
   cout << mf.max_flow(0, n - 1) << endl;
 }

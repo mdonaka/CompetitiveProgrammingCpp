@@ -23,7 +23,7 @@ signed main() {
 
   constexpr double nil = -1.0;
   std::vector<double> dp(n + 1, nil);
-  auto f = Y([&](auto&& self, ll n) -> double {
+  auto f = mtd::Y([&](auto&& self, ll n) -> double {
     if (n == 0) { return 0.0; }
     if (dp[n] != nil) { return dp[n]; }
 

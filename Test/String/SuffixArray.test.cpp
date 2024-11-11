@@ -28,7 +28,7 @@ signed main() {
     vt.emplace_back(t);
   }
 
-  auto sa = SuffixArray(s);
+  auto sa = mtd::SuffixArray(s);
 
   for (const auto& t : vt) {
     auto [l, r] = sa.findPattern(t);

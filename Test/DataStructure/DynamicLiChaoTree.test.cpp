@@ -15,7 +15,7 @@ signed main() {
   ll n, q;
   cin >> n >> q;
 
-  auto lct = DynamicLiChaoTree<static_cast<ll>(1e9)>();
+  auto lct = mtd::DynamicLiChaoTree<static_cast<ll>(1e9)>();
   for (int _ = 0; _ < n; ++_) {
     ll a, b;
     cin >> a >> b;

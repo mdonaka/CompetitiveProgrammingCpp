@@ -21,7 +21,7 @@ signed main() {
   cin >> a >> b;
   std::string s = a + "$%" + b;
 
-  auto tree = PalindromicTree(s);
+  auto tree = mtd::PalindromicTree(s);
 
   ll an = a.size();
   std::vector<std::pair<ll, ll>> dp(s.size());

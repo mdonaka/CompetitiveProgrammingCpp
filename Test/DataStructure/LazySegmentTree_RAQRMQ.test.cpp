@@ -15,7 +15,8 @@ signed main() {
   cin >> n >> q;
 
   std::vector<long long> v(n);
-  auto segtree = LazySegmentTree<M_M, M_A, OP_RAQ_RMQ>(n, v);
+  auto segtree =
+      mtd::LazySegmentTree<mtd::M_M, mtd::M_A, mtd::OP_RAQ_RMQ>(n, v);
 
   for (int _ = 0; _ < q; ++_) {
     int k;

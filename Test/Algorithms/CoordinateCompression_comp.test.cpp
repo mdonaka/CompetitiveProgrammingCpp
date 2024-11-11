@@ -37,7 +37,7 @@ signed main() {
 
   auto ab = a;
   for (const auto& x : b) { ab.emplace_back(x); }
-  auto cc = CoordinateCompression(ab);
+  auto cc = mtd::CoordinateCompression(ab);
   auto v = cc.c();
 
   ll ans = 0;

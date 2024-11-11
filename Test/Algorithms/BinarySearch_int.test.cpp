@@ -27,8 +27,8 @@ signed main() {
 
   ll ans = 0;
   for (const auto& val : a) {
-    auto idx =
-        binarySearch(n, -1, [&](ll mid) { return val * a[mid] >= (x << 1); });
+    auto idx = mtd::binarySearch(
+        n, -1, [&](ll mid) { return val * a[mid] >= (x << 1); });
     ans += n - idx;
   }
 
