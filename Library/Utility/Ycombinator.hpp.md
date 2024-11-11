@@ -3,25 +3,26 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Utility/Ycombinator.test.cpp
     title: Test/Utility/Ycombinator.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Ycombinator.hpp\"\n\n#include <utility>\n\
-    \nauto Y = [](auto f) {\n  return [=](auto&&... args) {\n    return f(f, std::forward<decltype(args)>(args)...);\n\
-    \  };\n};\n"
-  code: "#pragma once\n\n#include <utility>\n\nauto Y = [](auto f) {\n  return [=](auto&&...\
-    \ args) {\n    return f(f, std::forward<decltype(args)>(args)...);\n  };\n};\n"
+    \nnamespace mtd {\n  auto Y = [](auto f) {\n    return [=](auto&&... args) {\n\
+    \      return f(f, std::forward<decltype(args)>(args)...);\n    };\n  };\n}\n"
+  code: "#pragma once\n\n#include <utility>\n\nnamespace mtd {\n  auto Y = [](auto\
+    \ f) {\n    return [=](auto&&... args) {\n      return f(f, std::forward<decltype(args)>(args)...);\n\
+    \    };\n  };\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Utility/Ycombinator.hpp
   requiredBy: []
-  timestamp: '2024-08-30 15:21:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-12 00:26:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Utility/Ycombinator.test.cpp
 documentation_of: Library/Utility/Ycombinator.hpp

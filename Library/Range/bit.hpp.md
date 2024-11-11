@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
   _extendedRequiredBy:

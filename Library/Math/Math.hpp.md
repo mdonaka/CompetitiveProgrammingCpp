@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Math/Convolution_and.test.cpp
+    title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math.test.cpp
     title: Test/Math/Math.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Math.hpp\"\n\r\n#include <vector>\r\n\r\nnamespace\
@@ -59,8 +62,9 @@ data:
   requiredBy:
   - Library/Math/ModInt.hpp
   timestamp: '2024-11-11 23:25:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/Math.hpp

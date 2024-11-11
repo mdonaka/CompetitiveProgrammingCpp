@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Math/Convolution_and.test.cpp
+    title: Test/Math/Convolution_and.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Convolution.hpp\"\n\n#include <ranges>\n#include\
@@ -84,8 +87,9 @@ data:
   path: Library/Math/Convolution.hpp
   requiredBy: []
   timestamp: '2024-11-09 15:39:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - Test/Math/Convolution_and.test.cpp
 documentation_of: Library/Math/Convolution.hpp
 layout: document
 redirect_from:
