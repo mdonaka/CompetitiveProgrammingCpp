@@ -15,7 +15,7 @@ constexpr char endl = '\n';
 signed main() {
   ll n;
   cin >> n;
-  Graph tree(n);
+  mtd::Graph tree(n);
   for (int f = 0; f < n; ++f) {
     ll k;
     cin >> k;
@@ -26,7 +26,7 @@ signed main() {
     }
   }
 
-  auto lca = LowestCommonAncestor(tree, 0);
+  auto lca = mtd::LowestCommonAncestor(tree, 0);
 
   int q;
   cin >> q;

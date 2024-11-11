@@ -26,7 +26,7 @@ signed main() {
   ll k;
   cin >> k;
 
-  auto ans = binarySearch(1e-9, 1e9, 100, [&](double mid) {
+  auto ans = mtd::binarySearch(1e-9, 1e9, 100, [&](double mid) {
     ll count = 0;
     for (const auto& x : a) { count += (1.0 * x / mid); }
     return count >= k;

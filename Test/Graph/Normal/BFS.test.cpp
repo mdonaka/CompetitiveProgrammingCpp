@@ -16,7 +16,7 @@ constexpr char endl = '\n';
 signed main() {
   ll n, m;
   cin >> n >> m;
-  auto graph_all = Graph(n);
+  auto graph_all = mtd::Graph(n);
   for (int i = 0; i < m; ++i) {
     ll s, t, d;
     cin >> s >> t >> d;
@@ -24,7 +24,7 @@ signed main() {
   }
 
   auto solve = [&](ll w) {
-    auto graph = Graph(n);
+    auto graph = mtd::Graph(n);
     for (const auto& [s, t, d] : graph_all.getEdges()) {
       if (w <= d) { graph.addEdge(s, t); }
     }
@@ -34,7 +34,7 @@ signed main() {
     return dv[n - 1];
   };
 
-  auto w_max = binarySearch(0, 1e9 + 1, [&](ll w) {
+  auto w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w) {
     auto d = solve(w);
     return d > 0;
   });

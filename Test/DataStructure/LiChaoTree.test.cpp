@@ -47,7 +47,7 @@ signed main() {
     }
   }
 
-  auto lct = LiChaoTree(xs);
+  auto lct = mtd::LiChaoTree(xs);
   for (const auto& [a, b] : v) { lct.addLine(a, b); }
 
   for (const auto& query : queries) {

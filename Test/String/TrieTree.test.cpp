@@ -15,7 +15,7 @@ signed main() {
   ll n;
   cin >> n;
 
-  auto tree = TrieTree<bool, false>();
+  auto tree = mtd::TrieTree<bool, false>();
   for (int _ = 0; _ < n; ++_) {
     std::string s;
     cin >> s;

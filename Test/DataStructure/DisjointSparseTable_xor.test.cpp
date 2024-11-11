@@ -13,7 +13,7 @@ constexpr char endl = '\n';
 struct F {
   auto operator()(ll x, ll y) { return x ^ y; }
 };
-using SG = SemiGroup<ll, F>;
+using SG = mtd::SemiGroup<ll, F>;
 
 signed main() {
   ll n, k;
@@ -27,7 +27,7 @@ signed main() {
     a.emplace_back(x);
   }
 
-  auto dst = DisjointSparseTable<SG>(n, a);
+  auto dst = mtd::DisjointSparseTable<SG>(n, a);
   std::unordered_set<ll> st;
   for (int i = 0; i < n; ++i) { st.emplace(dst.get(0, i) ^ k); }
 

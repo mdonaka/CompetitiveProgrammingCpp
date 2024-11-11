@@ -15,14 +15,14 @@ constexpr char endl = '\n';
 signed main() {
   int n, m, f;
   cin >> n >> m >> f;
-  auto graph = Graph<int, std::pair<ll, ll>>(n);
+  auto graph = mtd::Graph<int, std::pair<ll, ll>>(n);
   for (int i = 0; i < m; ++i) {
     int u, v, c, d;
     cin >> u >> v >> c >> d;
     graph.addEdge(u, v, std::make_pair(c, d));
   }
 
-  auto mcf = SuccessiveShortestPath(graph);
+  auto mcf = mtd::SuccessiveShortestPath(graph);
 
   auto [u, c] = mcf.min_cost_max_flow(0, n - 1, f);
   cout << ((u == f) ? c : -1) << endl;

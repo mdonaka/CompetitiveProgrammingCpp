@@ -21,7 +21,7 @@ signed main() {
   std::vector<int> a(n);
   for (int i = 0; i < n; ++i) { cin >> a[i]; }
 
-  auto ct = CartesianTree(a);
+  auto ct = mtd::CartesianTree(a);
   for (int f = 0; f < n; ++f) {
     int p = ct.p(f);
     cout << (p == -1 ? f : p) << (f < n - 1 ? " " : "");

@@ -23,7 +23,7 @@ signed main() {
   }
 
   constexpr ll mx = 1e18;
-  auto cht = ConvexHullTrick();
+  auto cht = mtd::ConvexHullTrick();
   std::vector<ll> dp(n + 1, mx);
   auto update = [&](ll i, ll x) {
     dp[i] = x;

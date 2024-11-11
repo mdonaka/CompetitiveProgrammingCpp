@@ -21,7 +21,7 @@ signed main() {
   cin >> p >> t;
 
   std::string s = t + "$" + p;
-  auto za = ZAlgorithm(s);
+  auto za = mtd::ZAlgorithm(s);
 
   int tsz = t.size();
   int ssz = s.size();

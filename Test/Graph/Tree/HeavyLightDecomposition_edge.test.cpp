@@ -16,7 +16,7 @@ signed main() {
   ll n;
   cin >> n;
   auto size = n + n - 1;
-  auto tree = Graph<int, bool>(size);
+  auto tree = mtd::Graph<int, bool>(size);
   ll add = n;
   for (int f = 0; f < n; ++f) {
     int k;
@@ -31,10 +31,11 @@ signed main() {
   }
 
   std::vector<std::pair<ll, ll>> v(n - 1, {0, 1});
-  auto segtree = LazySegmentTree<M_S, M_A, OP_RAQ_RSQ>(n - 1, v);
+  auto segtree =
+      mtd::LazySegmentTree<mtd::M_S, mtd::M_A, mtd::OP_RAQ_RSQ>(n - 1, v);
   // NOTE: 初期値が含まれる場合はID順に並び変える
   // val[hld.getEdgeId(i + n)] = v[i];
-  auto hld = HeavyLightDecomposition(tree);
+  auto hld = mtd::HeavyLightDecomposition(tree);
 
   ll q;
   cin >> q;

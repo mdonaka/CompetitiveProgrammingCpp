@@ -30,7 +30,7 @@ signed main() {
     a.emplace_back(x);
   }
 
-  auto acc = Accumulation<G>(a);
+  auto acc = mtd::Accumulation<G>(a);
   std::unordered_set<ll> st;
   for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }
 

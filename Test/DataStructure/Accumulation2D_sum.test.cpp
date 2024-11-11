@@ -39,7 +39,7 @@ signed main() {
     for (int j = 0; j < size; ++j) {
       table[std::max(i, j)][i + j] += gc[i] * bc[j];
     }
-  auto acc = Accumulation2D<>(table);
+  auto acc = mtd::Accumulation2D<>(table);
 
   ll ans = 0;
   for (const auto& r : rv) { ans += acc.get(0, r + 1, r, 2 * size - 1); }

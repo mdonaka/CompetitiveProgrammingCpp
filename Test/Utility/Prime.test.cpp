@@ -15,7 +15,7 @@ signed main() {
   ll n;
   cin >> n;
 
-  auto prime = Prime(1e5);
+  auto prime = mtd::Prime(1e5);
   auto fc = prime.factorization(n);
 
   std::vector<ll> ans;

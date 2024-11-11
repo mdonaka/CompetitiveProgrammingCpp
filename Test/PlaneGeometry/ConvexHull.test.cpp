@@ -21,7 +21,7 @@ signed main() {
     points.emplace_back(x, y);
   }
 
-  auto cf = ConvexHull::grahamScan(points);
+  auto cf = mtd::ConvexHull::grahamScan(points);
   int size = cf.size();
 
   int idx = 0;

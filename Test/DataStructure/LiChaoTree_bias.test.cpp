@@ -24,7 +24,7 @@ signed main() {
 
   std::vector<ll> xs(n);
   std::iota(xs.begin(), xs.end(), 1);
-  LiChaoTree lct(xs);
+  mtd::LiChaoTree lct(xs);
 
   constexpr ll mx = 1e18;
   std::vector<ll> dp(n + 1, mx);

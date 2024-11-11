@@ -24,7 +24,7 @@ signed main() {
       a.emplace_back(x);
     }
 
-    auto acc = Accumulation<>(a);
+    auto acc = mtd::Accumulation<>(a);
 
     ll ans = -1e18;
     for (int i = 0; i < n - k + 1; ++i) {

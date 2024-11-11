@@ -25,8 +25,8 @@ signed main() {
     a.emplace_back(x);
   }
 
-  using SG = SemiGroup<int, Functor>;
-  auto dst = DisjointSparseTable<SG>(n, a);
+  using SG = mtd::SemiGroup<int, Functor>;
+  auto dst = mtd::DisjointSparseTable<SG>(n, a);
   for (int _ = 0; _ < q; ++_) {
     ll l, r;
     cin >> l >> r;

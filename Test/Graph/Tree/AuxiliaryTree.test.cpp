@@ -11,14 +11,14 @@ int main() {
 
   int n;
   std::cin >> n;
-  Graph tree(n);
+  mtd::Graph tree(n);
   for (auto _ : std::views::iota(0, n - 1)) {
     int f, t, c;
     std::cin >> f >> t >> c;
     tree.addEdgeUndirected(f, t, c);
   }
 
-  auto at = AuxiliaryTree(tree);
+  auto at = mtd::AuxiliaryTree(tree);
 
   int q;
   std::cin >> q;

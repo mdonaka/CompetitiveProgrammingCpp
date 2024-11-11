@@ -35,7 +35,7 @@ signed main() {
   std::sort(a.begin(), a.end());
 
   ll ans = 0;
-  auto segtree = DynamicSegmentTree<M>();
+  auto segtree = mtd::DynamicSegmentTree<M>();
   for (int i = 0; i < n; ++i) {
     segtree.add(b[i], 1);
     ans += segtree.query(0, a[i] - 1);

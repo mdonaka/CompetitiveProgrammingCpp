@@ -20,7 +20,7 @@ signed main() {
   std::string s;
   cin >> s;
 
-  auto p = PalindromicTree(s);
+  auto p = mtd::PalindromicTree(s);
 
   ll ans = 0;
   p.dfs_edges([&](ll size, const auto& _) {
