@@ -16,7 +16,7 @@ struct F_inv {
 struct F_xor {
   auto operator()(ll x, ll y) { return x ^ y; }
 };
-using G = Group<ll, 0, F_xor, F_inv>;
+using G = mtd::Group<ll, 0, F_xor, F_inv>;
 
 signed main() {
   ll n, k;
