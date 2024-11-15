@@ -95,6 +95,11 @@ namespace mtd {
       return ModInt<MOD, T>(1) / m * t;
     }
 
+    // 比較演算
+    constexpr auto operator!=(const ModInt<MOD, T>& m) const {
+      return x != m.x;
+    }
+
     // 入出力
     constexpr friend std::ostream& operator<<(std::ostream& os,
                                               const ModInt<MOD, T>& m) {
