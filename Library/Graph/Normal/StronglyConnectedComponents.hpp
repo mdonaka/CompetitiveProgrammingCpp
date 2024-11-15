@@ -59,7 +59,7 @@ namespace mtd {
     auto constructGroupNodes() const {}
 
   public:
-    StronglyConnectedComponents(const Graph<Node, Cost>& graph)
+    [[deprecated]] StronglyConnectedComponents(const Graph<Node, Cost>& graph)
         : m_graph(graph), m_group(constructGroup(m_graph)) {}
     // graphのコピーコストが大きいのでこっち推奨
     StronglyConnectedComponents(Graph<Node, Cost>&& graph)
