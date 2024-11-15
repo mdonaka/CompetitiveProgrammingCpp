@@ -42,16 +42,19 @@ namespace mtd {
         : h(v.size()),
           w(v[0].size()),
           sumList(h + 1, std::vector<Group>(w + 1)) {
-      for (int i = 0; i < h; ++i)
+      for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w; ++j) { sumList[i + 1][j + 1] = v[i][j]; }
-      for (int i = 0; i < h; ++i)
+      }
+      for (int i = 0; i < h; ++i) {
         for (int j = 0; j < w + 1; ++j) {
           sumList[i + 1][j] = sumList[i + 1][j].binaryOperation(sumList[i][j]);
         }
-      for (int i = 0; i < h + 1; ++i)
+      }
+      for (int i = 0; i < h + 1; ++i) {
         for (int j = 0; j < w; ++j) {
           sumList[i][j + 1] = sumList[i][j + 1].binaryOperation(sumList[i][j]);
         }
+      }
     }
     S get(int y, int x) { return sumList[y + 1][x + 1].m_val; }
     S get(int y1, int x1, int y2, int x2) {
@@ -68,4 +71,4 @@ namespace mtd {
     }
   };
 
-  namespace mtd {
+}  // namespace mtd
