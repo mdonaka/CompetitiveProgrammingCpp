@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/ModInt.hpp\"\n\n#include <iostream>\n#include\
@@ -71,9 +71,11 @@ data:
     \ + t;\n    }\n    constexpr friend auto operator*(const T& t, const ModInt<MOD,\
     \ T>& m) {\n      return m * t;\n    }\n    constexpr friend auto operator/(const\
     \ T& t, const ModInt<MOD, T>& m) {\n      return ModInt<MOD, T>(1) / m * t;\n\
-    \    }\n\n    // \u5165\u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream&\
-    \ os,\n                                              const ModInt<MOD, T>& m)\
-    \ {\n      return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \    }\n\n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const\
+    \ ModInt<MOD, T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\u51FA\
+    \u529B\n    constexpr friend std::ostream& operator<<(std::ostream& os,\n    \
+    \                                          const ModInt<MOD, T>& m) {\n      return\
+    \ os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
     \ is,\n                                              ModInt<MOD, T>& m) {\n  \
     \    return is >> m.x;\n    }\n\n    constexpr auto val() const { return x; }\n\
     \  };\n\n}  // namespace mtd\n"
@@ -110,9 +112,11 @@ data:
     \ + t;\n    }\n    constexpr friend auto operator*(const T& t, const ModInt<MOD,\
     \ T>& m) {\n      return m * t;\n    }\n    constexpr friend auto operator/(const\
     \ T& t, const ModInt<MOD, T>& m) {\n      return ModInt<MOD, T>(1) / m * t;\n\
-    \    }\n\n    // \u5165\u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream&\
-    \ os,\n                                              const ModInt<MOD, T>& m)\
-    \ {\n      return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \    }\n\n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const\
+    \ ModInt<MOD, T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\u51FA\
+    \u529B\n    constexpr friend std::ostream& operator<<(std::ostream& os,\n    \
+    \                                          const ModInt<MOD, T>& m) {\n      return\
+    \ os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
     \ is,\n                                              ModInt<MOD, T>& m) {\n  \
     \    return is >> m.x;\n    }\n\n    constexpr auto val() const { return x; }\n\
     \  };\n\n}  // namespace mtd\n"
@@ -121,8 +125,8 @@ data:
   isVerificationFile: false
   path: Library/Math/ModInt.hpp
   requiredBy: []
-  timestamp: '2024-11-11 23:25:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-11-15 09:30:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp

@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RSQ.test.cpp
     title: Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
   _isVerificationFailed: true

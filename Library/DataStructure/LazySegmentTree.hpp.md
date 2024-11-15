@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\n#include <deque>\r\
@@ -185,7 +185,7 @@ data:
   path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp

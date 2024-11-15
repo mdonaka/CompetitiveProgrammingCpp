@@ -5,7 +5,7 @@ data:
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
   - icon: ':warning:'
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <queue>\r\n\
@@ -79,7 +79,7 @@ data:
   - Library/Graph/Tree/ReRootingDP.hpp
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp

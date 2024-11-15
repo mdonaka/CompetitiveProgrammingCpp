@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/ZAlgorithm.test.cpp
     title: Test/String/ZAlgorithm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/ZAlgorithm.hpp\"\n\r\n#include <deque>\r\n\
@@ -61,7 +61,7 @@ data:
   path: Library/String/ZAlgorithm.hpp
   requiredBy: []
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/ZAlgorithm.test.cpp
 documentation_of: Library/String/ZAlgorithm.hpp

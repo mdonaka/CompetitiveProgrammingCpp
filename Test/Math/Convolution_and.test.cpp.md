@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -139,9 +139,11 @@ data:
     \ + t;\n    }\n    constexpr friend auto operator*(const T& t, const ModInt<MOD,\
     \ T>& m) {\n      return m * t;\n    }\n    constexpr friend auto operator/(const\
     \ T& t, const ModInt<MOD, T>& m) {\n      return ModInt<MOD, T>(1) / m * t;\n\
-    \    }\n\n    // \u5165\u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream&\
-    \ os,\n                                              const ModInt<MOD, T>& m)\
-    \ {\n      return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \    }\n\n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const\
+    \ ModInt<MOD, T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\u51FA\
+    \u529B\n    constexpr friend std::ostream& operator<<(std::ostream& os,\n    \
+    \                                          const ModInt<MOD, T>& m) {\n      return\
+    \ os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
     \ is,\n                                              ModInt<MOD, T>& m) {\n  \
     \    return is >> m.x;\n    }\n\n    constexpr auto val() const { return x; }\n\
     \  };\n\n}  // namespace mtd\n#line 2 \"Library/Range/istream.hpp\"\n\n#line 4\
@@ -222,8 +224,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:13:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-15 09:30:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/Convolution_and.test.cpp
 layout: document
