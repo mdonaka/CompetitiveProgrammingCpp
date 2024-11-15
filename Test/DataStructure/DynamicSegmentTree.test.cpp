@@ -14,7 +14,7 @@ constexpr char endl = '\n';
 struct Functor {
   auto operator()(ll a, ll b) const { return a + b; }
 };
-using M = Monoid<ll, 0, Functor>;
+using M = mtd::Monoid<ll, 0, Functor>;
 
 signed main() {
   ll n;

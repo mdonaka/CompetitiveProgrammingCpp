@@ -15,7 +15,7 @@ constexpr char endl = '\n';
 struct Functor {
   auto operator()(ll a, ll b) const { return a + b; }
 };
-using M = Monoid<ll, 0, Functor>;
+using M = mtd::Monoid<ll, 0, Functor>;
 
 signed main() {
   ll n;
@@ -41,7 +41,7 @@ signed main() {
   auto v = cc.c();
 
   ll ans = 0;
-  auto segtree = SegmentTree<M>(cc.size());
+  auto segtree = mtd::SegmentTree<M>(cc.size());
   for (int i = 0; i < n; ++i) {
     segtree.add(v[i + n], 1);
     ans += segtree.query(0, v[i] - 1);
