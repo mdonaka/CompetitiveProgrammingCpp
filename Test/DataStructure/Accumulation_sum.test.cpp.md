@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/Accumulation.hpp
     title: Library/DataStructure/Accumulation.hpp
   _extendedRequiredBy: []

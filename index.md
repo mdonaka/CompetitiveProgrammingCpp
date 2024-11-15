@@ -28,7 +28,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/CoordinateCompression.hpp
       title: Library/Algorithms/CoordinateCompression.hpp
     - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
       title: Library/Algorithms/Mo.hpp
   - name: Library/DataStructure
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/Accumulation.hpp
       title: Library/DataStructure/Accumulation.hpp
     - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DisjointSparseTable.hpp
       title: Library/DataStructure/DisjointSparseTable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DynamicSegmentTree.hpp
       title: Library/DataStructure/DynamicSegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentMap.hpp
       title: Library/DataStructure/SegmentMap.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -249,10 +249,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/BinarySearch_int_rev.test.cpp
       title: Test/Algorithms/BinarySearch_int_rev.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Algorithms/CoordinateCompression_comp.test.cpp
       title: Test/Algorithms/CoordinateCompression_comp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Algorithms/CoordinateCompression_to.test.cpp
       title: Test/Algorithms/CoordinateCompression_to.test.cpp
     - icon: ':heavy_check_mark:'
@@ -272,7 +272,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/Accumulation_sum.test.cpp
       title: Test/DataStructure/Accumulation_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/Accumulation_xor.test.cpp
       title: Test/DataStructure/Accumulation_xor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
       title: Test/DataStructure/DynamicLiChaoTree_segment.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DynamicSegmentTree.test.cpp
       title: Test/DataStructure/DynamicSegmentTree.test.cpp
     - icon: ':heavy_check_mark:'

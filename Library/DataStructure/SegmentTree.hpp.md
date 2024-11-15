@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Algorithms/CoordinateCompression_comp.test.cpp
     title: Test/Algorithms/CoordinateCompression_comp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Algorithms/CoordinateCompression_to.test.cpp
     title: Test/Algorithms/CoordinateCompression_to.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n#include <deque>\r\
@@ -127,7 +127,7 @@ data:
   path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp

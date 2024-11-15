@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DynamicSegmentTree.hpp
     title: Library/DataStructure/DynamicSegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1282
@@ -65,8 +65,8 @@ data:
     \n#include <iostream>\r\n#line 8 \"Test/DataStructure/DynamicSegmentTree.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct Functor {\r\n  auto operator()(ll a, ll b)\
-    \ const { return a + b; }\r\n};\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned\
-    \ main() {\r\n  ll n;\r\n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\
+    \ const { return a + b; }\r\n};\r\nusing M = mtd::Monoid<ll, 0, Functor>;\r\n\r\
+    \nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\
     \n  b.reserve(n);\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >>\
     \ x;\r\n    a.emplace_back(x);\r\n  }\r\n  for (int i = 0; i < n; ++i) {\r\n \
     \   ll x;\r\n    cin >> x;\r\n    b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(),\
@@ -78,9 +78,9 @@ data:
     \n#include <iostream>\r\n#include <vector>\r\n\r\nusing ll = long long;\r\nusing\
     \ std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nstruct\
     \ Functor {\r\n  auto operator()(ll a, ll b) const { return a + b; }\r\n};\r\n\
-    using M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >>\
-    \ n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\n  for\
-    \ (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
+    using M = mtd::Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n  ll n;\r\n \
+    \ cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
     \n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n   \
     \ b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(), a.end());\r\n\r\n  ll ans\
     \ = 0;\r\n  auto segtree = mtd::DynamicSegmentTree<M>();\r\n  for (int i = 0;\
@@ -91,8 +91,8 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/DynamicSegmentTree.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-16 03:44:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DynamicSegmentTree.test.cpp
 layout: document

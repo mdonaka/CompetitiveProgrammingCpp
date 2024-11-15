@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/CoordinateCompression.hpp
     title: Library/Algorithms/CoordinateCompression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1282
@@ -90,13 +90,13 @@ data:
     \ \"Test/Algorithms/CoordinateCompression_to.test.cpp\"\n\r\nusing ll = long long;\r\
     \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
     struct Functor {\r\n  auto operator()(ll a, ll b) const { return a + b; }\r\n\
-    };\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n  ll n;\r\n\
-    \  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\
+    };\r\nusing M = mtd::Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\n  ll n;\r\
+    \n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\
     \n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
     \n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n   \
     \ b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(), a.end());\r\n\r\n  auto\
     \ ab = a;\r\n  for (const auto& x : b) { ab.emplace_back(x); }\r\n  auto cc =\
-    \ mtd::CoordinateCompression(ab);\r\n\r\n  ll ans = 0;\r\n  auto segtree = SegmentTree<M>(cc.size());\r\
+    \ mtd::CoordinateCompression(ab);\r\n\r\n  ll ans = 0;\r\n  auto segtree = mtd::SegmentTree<M>(cc.size());\r\
     \n  for (int i = 0; i < n; ++i) {\r\n    segtree.add(cc.toi(b[i]), 1);\r\n   \
     \ ans += segtree.query(0, cc.toi(a[i]) - 1);\r\n  }\r\n\r\n  cout << ans << endl;\r\
     \n}\r\n"
@@ -105,24 +105,24 @@ data:
     \r\n#include \"./../../Library/DataStructure/SegmentTree.hpp\"\r\n\r\nusing ll\
     \ = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl =\
     \ '\\n';\r\n\r\nstruct Functor {\r\n  auto operator()(ll a, ll b) const { return\
-    \ a + b; }\r\n};\r\nusing M = Monoid<ll, 0, Functor>;\r\n\r\nsigned main() {\r\
-    \n  ll n;\r\n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n  b.reserve(n);\r\
-    \n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
-    \n  }\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >> x;\r\n   \
-    \ b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(), a.end());\r\n\r\n  auto\
-    \ ab = a;\r\n  for (const auto& x : b) { ab.emplace_back(x); }\r\n  auto cc =\
-    \ mtd::CoordinateCompression(ab);\r\n\r\n  ll ans = 0;\r\n  auto segtree = SegmentTree<M>(cc.size());\r\
-    \n  for (int i = 0; i < n; ++i) {\r\n    segtree.add(cc.toi(b[i]), 1);\r\n   \
-    \ ans += segtree.query(0, cc.toi(a[i]) - 1);\r\n  }\r\n\r\n  cout << ans << endl;\r\
-    \n}\r\n"
+    \ a + b; }\r\n};\r\nusing M = mtd::Monoid<ll, 0, Functor>;\r\n\r\nsigned main()\
+    \ {\r\n  ll n;\r\n  cin >> n;\r\n  std::vector<ll> a, b;\r\n  a.reserve(n);\r\n\
+    \  b.reserve(n);\r\n  for (int i = 0; i < n; ++i) {\r\n    ll x;\r\n    cin >>\
+    \ x;\r\n    a.emplace_back(x);\r\n  }\r\n  for (int i = 0; i < n; ++i) {\r\n \
+    \   ll x;\r\n    cin >> x;\r\n    b.emplace_back(x);\r\n  }\r\n  std::sort(a.begin(),\
+    \ a.end());\r\n\r\n  auto ab = a;\r\n  for (const auto& x : b) { ab.emplace_back(x);\
+    \ }\r\n  auto cc = mtd::CoordinateCompression(ab);\r\n\r\n  ll ans = 0;\r\n  auto\
+    \ segtree = mtd::SegmentTree<M>(cc.size());\r\n  for (int i = 0; i < n; ++i) {\r\
+    \n    segtree.add(cc.toi(b[i]), 1);\r\n    ans += segtree.query(0, cc.toi(a[i])\
+    \ - 1);\r\n  }\r\n\r\n  cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/Algorithms/CoordinateCompression.hpp
   - Library/DataStructure/SegmentTree.hpp
   isVerificationFile: true
   path: Test/Algorithms/CoordinateCompression_to.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-16 03:44:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/CoordinateCompression_to.test.cpp
 layout: document

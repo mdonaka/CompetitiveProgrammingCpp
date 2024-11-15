@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Algorithms/CoordinateCompression_comp.test.cpp
     title: Test/Algorithms/CoordinateCompression_comp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Algorithms/CoordinateCompression_to.test.cpp
     title: Test/Algorithms/CoordinateCompression_to.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/CoordinateCompression.hpp\"\n\r\n#include\
@@ -55,7 +55,7 @@ data:
   path: Library/Algorithms/CoordinateCompression.hpp
   requiredBy: []
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp

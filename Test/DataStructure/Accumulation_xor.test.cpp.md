@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/Accumulation.hpp
     title: Library/DataStructure/Accumulation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1456
@@ -42,8 +42,8 @@ data:
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct F_inv {\r\n  auto operator()(ll x) { return\
     \ x; }\r\n};\r\nstruct F_xor {\r\n  auto operator()(ll x, ll y) { return x ^ y;\
-    \ }\r\n};\r\nusing G = Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\n\
-    \  ll n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\
+    \ }\r\n};\r\nusing G = mtd::Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\
+    \n  ll n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\
     \n  for (int _ = 0; _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
     \n  }\r\n\r\n  auto acc = mtd::Accumulation<G>(a);\r\n  std::unordered_set<ll>\
     \ st;\r\n  for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }\r\n\r\n\
@@ -56,8 +56,8 @@ data:
     \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nstruct F_inv {\r\n  auto operator()(ll x) { return\
     \ x; }\r\n};\r\nstruct F_xor {\r\n  auto operator()(ll x, ll y) { return x ^ y;\
-    \ }\r\n};\r\nusing G = Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\n\
-    \  ll n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\
+    \ }\r\n};\r\nusing G = mtd::Group<ll, 0, F_xor, F_inv>;\r\n\r\nsigned main() {\r\
+    \n  ll n, k;\r\n  cin >> n >> k;\r\n\r\n  std::vector<ll> a;\r\n  a.reserve(n);\r\
     \n  for (int _ = 0; _ < n; ++_) {\r\n    ll x;\r\n    cin >> x;\r\n    a.emplace_back(x);\r\
     \n  }\r\n\r\n  auto acc = mtd::Accumulation<G>(a);\r\n  std::unordered_set<ll>\
     \ st;\r\n  for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }\r\n\r\n\
@@ -70,8 +70,8 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_xor.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-16 03:44:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_xor.test.cpp
 layout: document
