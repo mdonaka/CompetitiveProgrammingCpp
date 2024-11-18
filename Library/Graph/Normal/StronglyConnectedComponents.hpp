@@ -29,18 +29,12 @@ namespace mtd {
     constexpr static inline auto dfs(const Graph<Node, Cost>& graph, int from,
                                      std::vector<bool>& is_used, const F& f)
         -> void {
-      std::vector<Node> stk{from};
       is_used[from] = true;
-      while (!stk.empty()) {
-        auto fr = stk.back();
-        stk.pop_back();
-        f(fr);
-        for (const auto& [to, _] : graph.getEdges(fr)) {
-          if (is_used[to]) { continue; }
-          is_used[to] = true;
-          stk.emplace_back(to);
-        }
+      for (const auto& [to, _] : graph.getEdges(from)) {
+        if (is_used[to]) { continue; }
+        dfs(graph, to, is_used, f);
       }
+      f(from);
     }
 
     constexpr static auto constructGroup(const Graph<Node, Cost>& graph) {
@@ -56,7 +50,7 @@ namespace mtd {
       std::vector<Node> group(n);
       std::vector<bool> is_used2(n);
       auto rev = graph.reverse();
-      for (auto from : order) {
+      for (auto from : order | std::views::reverse) {
         if (is_used2[from]) { continue; }
         dfs(rev, from, is_used2, [&](int f) { group[f] = g; });
         ++g;

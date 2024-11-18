@@ -1,32 +1,24 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C"
 
-#include "./../../../Library/Graph/Normal/StronglyConnectedComponents.hpp"
+// begin:tag includes
+#include "../../../Library/Graph/Normal/StronglyConnectedComponents.hpp"
 
-#include <iostream>
-
-#include "./../../../Library/Graph/Graph.hpp"
-using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
+#include "../../../Library/Graph/Graph.hpp"
+#include "../../../Library/Range/istream.hpp"
+// end:tag includes
 
 signed main() {
-  int n, m;
-  cin >> n >> m;
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
+  auto [n, m] = mtd::io::in<int, int>();
   auto graph = mtd::Graph(n);
-  for (int _ = 0; _ < m; ++_) {
-    int f, t;
-    cin >> f >> t;
-    graph.addEdge(f, t);
-  }
+  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addEdge(f, t); }
 
   auto scc = mtd::StronglyConnectedComponents(std::move(graph));
 
-  int q;
-  cin >> q;
-  for (int _ = 0; _ < q; ++_) {
-    int u, v;
-    cin >> u >> v;
-    cout << scc.isSameGroup(u, v) << endl;
+  auto [q] = mtd::io::in<int>();
+  for (auto [u, v] : mtd::views::istream<int, int>(q)) {
+    std::cout << scc.isSameGroup(u, v) << std::endl;
   }
 }
