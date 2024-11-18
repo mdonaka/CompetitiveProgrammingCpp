@@ -12,7 +12,7 @@ namespace mtd {
     T x;
 
   public:
-    constexpr ModInt(T x) : x(x % MOD) {}
+    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}
     constexpr ModInt() : ModInt(0) {}
 
     // 四則演算
@@ -94,6 +94,9 @@ namespace mtd {
     constexpr friend auto operator/(const T& t, const ModInt<MOD, T>& m) {
       return ModInt<MOD, T>(1) / m * t;
     }
+
+    // 単項演算
+    constexpr auto operator-() const { return ModInt<MOD, T>(0 - x); }
 
     // 比較演算
     constexpr auto operator!=(const ModInt<MOD, T>& m) const {
