@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\
@@ -56,21 +56,19 @@ data:
     \n      }\r\n    };\r\n\r\n    const Graph<Node, Cost> m_graph;\r\n    const std::vector<int>\
     \ m_group;\r\n\r\n    template <class F>\r\n    constexpr static inline auto dfs(const\
     \ Graph<Node, Cost>& graph, int from,\r\n                                    \
-    \ std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      std::vector<Node>\
-    \ stk{from};\r\n      is_used[from] = true;\r\n      while (!stk.empty()) {\r\n\
-    \        auto fr = stk.back();\r\n        stk.pop_back();\r\n        f(fr);\r\n\
-    \        for (const auto& [to, _] : graph.getEdges(fr)) {\r\n          if (is_used[to])\
-    \ { continue; }\r\n          is_used[to] = true;\r\n          stk.emplace_back(to);\r\
-    \n        }\r\n      }\r\n    }\r\n\r\n    constexpr static auto constructGroup(const\
+    \ std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      is_used[from]\
+    \ = true;\r\n      for (const auto& [to, _] : graph.getEdges(from)) {\r\n    \
+    \    if (is_used[to]) { continue; }\r\n        dfs(graph, to, is_used, f);\r\n\
+    \      }\r\n      f(from);\r\n    }\r\n\r\n    constexpr static auto constructGroup(const\
     \ Graph<Node, Cost>& graph) {\r\n      int n = graph.size();\r\n      std::vector<Node>\
     \ order;\r\n      std::vector<bool> is_used(n);\r\n      for (auto from : std::views::iota(0,\
     \ n)) {\r\n        if (is_used[from]) { continue; }\r\n        dfs(graph, from,\
     \ is_used, [&](int f) { order.emplace_back(f); });\r\n      }\r\n\r\n      int\
     \ g = 0;\r\n      std::vector<Node> group(n);\r\n      std::vector<bool> is_used2(n);\r\
-    \n      auto rev = graph.reverse();\r\n      for (auto from : order) {\r\n   \
-    \     if (is_used2[from]) { continue; }\r\n        dfs(rev, from, is_used2, [&](int\
-    \ f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\n\
-    \    }\r\n\r\n  public:\r\n    [[deprecated]] constexpr StronglyConnectedComponents(\r\
+    \n      auto rev = graph.reverse();\r\n      for (auto from : order | std::views::reverse)\
+    \ {\r\n        if (is_used2[from]) { continue; }\r\n        dfs(rev, from, is_used2,\
+    \ [&](int f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\
+    \n    }\r\n\r\n  public:\r\n    [[deprecated]] constexpr StronglyConnectedComponents(\r\
     \n        const Graph<Node, Cost>& graph)\r\n        : m_graph(graph), m_group(constructGroup(m_graph))\
     \ {}\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\u304C\u5927\u304D\
     \u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    constexpr StronglyConnectedComponents(Graph<Node,\
@@ -99,21 +97,19 @@ data:
     \n      }\r\n    };\r\n\r\n    const Graph<Node, Cost> m_graph;\r\n    const std::vector<int>\
     \ m_group;\r\n\r\n    template <class F>\r\n    constexpr static inline auto dfs(const\
     \ Graph<Node, Cost>& graph, int from,\r\n                                    \
-    \ std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      std::vector<Node>\
-    \ stk{from};\r\n      is_used[from] = true;\r\n      while (!stk.empty()) {\r\n\
-    \        auto fr = stk.back();\r\n        stk.pop_back();\r\n        f(fr);\r\n\
-    \        for (const auto& [to, _] : graph.getEdges(fr)) {\r\n          if (is_used[to])\
-    \ { continue; }\r\n          is_used[to] = true;\r\n          stk.emplace_back(to);\r\
-    \n        }\r\n      }\r\n    }\r\n\r\n    constexpr static auto constructGroup(const\
+    \ std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      is_used[from]\
+    \ = true;\r\n      for (const auto& [to, _] : graph.getEdges(from)) {\r\n    \
+    \    if (is_used[to]) { continue; }\r\n        dfs(graph, to, is_used, f);\r\n\
+    \      }\r\n      f(from);\r\n    }\r\n\r\n    constexpr static auto constructGroup(const\
     \ Graph<Node, Cost>& graph) {\r\n      int n = graph.size();\r\n      std::vector<Node>\
     \ order;\r\n      std::vector<bool> is_used(n);\r\n      for (auto from : std::views::iota(0,\
     \ n)) {\r\n        if (is_used[from]) { continue; }\r\n        dfs(graph, from,\
     \ is_used, [&](int f) { order.emplace_back(f); });\r\n      }\r\n\r\n      int\
     \ g = 0;\r\n      std::vector<Node> group(n);\r\n      std::vector<bool> is_used2(n);\r\
-    \n      auto rev = graph.reverse();\r\n      for (auto from : order) {\r\n   \
-    \     if (is_used2[from]) { continue; }\r\n        dfs(rev, from, is_used2, [&](int\
-    \ f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\n\
-    \    }\r\n\r\n  public:\r\n    [[deprecated]] constexpr StronglyConnectedComponents(\r\
+    \n      auto rev = graph.reverse();\r\n      for (auto from : order | std::views::reverse)\
+    \ {\r\n        if (is_used2[from]) { continue; }\r\n        dfs(rev, from, is_used2,\
+    \ [&](int f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\
+    \n    }\r\n\r\n  public:\r\n    [[deprecated]] constexpr StronglyConnectedComponents(\r\
     \n        const Graph<Node, Cost>& graph)\r\n        : m_graph(graph), m_group(constructGroup(m_graph))\
     \ {}\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\u304C\u5927\u304D\
     \u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    constexpr StronglyConnectedComponents(Graph<Node,\
@@ -136,8 +132,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2024-11-16 03:31:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-11-19 07:35:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 documentation_of: Library/Graph/Normal/StronglyConnectedComponents.hpp

@@ -22,6 +22,9 @@ data:
     path: Test/DataStructure/RunLengthEncoding.test.cpp
     title: Test/DataStructure/RunLengthEncoding.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -109,6 +112,7 @@ data:
   - Test/Math/Math_pow.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document
 redirect_from:
