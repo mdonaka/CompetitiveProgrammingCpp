@@ -102,7 +102,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -122,7 +122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: Library/Graph/Normal/Topological.hpp
       title: Library/Graph/Normal/Topological.hpp
     - icon: ':heavy_check_mark:'
@@ -201,13 +201,13 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
       path: Library/Range/template.cpp
       title: Library/Range/template.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/Simd
@@ -240,7 +240,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -372,9 +372,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-    - icon: ':x:'
-      path: Test/Graph/Normal/Topological.test.cpp
-      title: Test/Graph/Normal/Topological.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp

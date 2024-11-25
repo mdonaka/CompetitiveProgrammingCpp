@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: Test/Graph/Normal/Topological.test.cpp
-    title: Test/Graph/Normal/Topological.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Topological.hpp\"\n\r\n#include <deque>\r\
@@ -223,9 +220,8 @@ data:
   path: Library/Graph/Normal/Topological.hpp
   requiredBy: []
   timestamp: '2024-11-26 08:23:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - Test/Graph/Normal/Topological.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: Library/Graph/Normal/Topological.hpp
 layout: document
 redirect_from:

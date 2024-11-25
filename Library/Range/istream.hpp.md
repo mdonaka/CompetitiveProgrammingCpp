@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy:
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
-    path: Test/Graph/Normal/Topological.test.cpp
-    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
@@ -48,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/istream.hpp\"\n\n#include <ranges>\n\n#line\
@@ -143,7 +140,7 @@ data:
   - Library/Main/main.cpp
   - Library/Range/template.cpp
   timestamp: '2024-08-29 12:31:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
@@ -155,7 +152,6 @@ data:
   - Test/Math/Math_pow.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Graph/Normal/Topological.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
 redirect_from:

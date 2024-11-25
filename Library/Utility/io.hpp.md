@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
   - icon: ':warning:'
@@ -24,9 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
-    path: Test/Graph/Normal/Topological.test.cpp
-    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
@@ -51,9 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/io.hpp\"\n\n#include <iostream>\n#include\
@@ -111,7 +108,7 @@ data:
   - Library/Range/istream.hpp
   - Library/Range/template.cpp
   timestamp: '2024-08-18 00:08:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
@@ -124,7 +121,6 @@ data:
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Graph/Normal/Topological.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document
 redirect_from:
