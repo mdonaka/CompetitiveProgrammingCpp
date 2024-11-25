@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/Graph/Normal/Topological.hpp
+    title: Library/Graph/Normal/Topological.hpp
+  - icon: ':warning:'
+    path: Library/Main/main.cpp
+    title: Library/Main/main.cpp
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -15,9 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -322,13 +331,16 @@ data:
   isVerificationFile: false
   path: Library/Range/util.hpp
   requiredBy:
+  - Library/Main/main.cpp
   - Library/Range/template.cpp
+  - Library/Graph/Normal/Topological.hpp
   timestamp: '2024-08-30 15:17:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:

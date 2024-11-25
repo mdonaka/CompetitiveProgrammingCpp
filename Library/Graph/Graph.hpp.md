@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
+  - icon: ':x:'
+    path: Library/Graph/Normal/Topological.hpp
+    title: Library/Graph/Normal/Topological.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/WarshallFloyd.hpp
     title: Library/Graph/Normal/WarshallFloyd.hpp
@@ -69,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
@@ -87,9 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -164,6 +170,7 @@ data:
   - Library/Graph/Normal/dijkstra.hpp
   - Library/Graph/Normal/StronglyConnectedComponents.hpp
   - Library/Graph/Normal/Prim.hpp
+  - Library/Graph/Normal/Topological.hpp
   - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
   - Library/Graph/Tree/AuxiliaryTree.hpp
@@ -171,7 +178,7 @@ data:
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Flow/Dinic.test.cpp
   - Test/Graph/Flow/FordFulkerson.test.cpp
@@ -181,6 +188,7 @@ data:
   - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Normal/Kruskal.test.cpp
   - Test/Graph/Normal/Prim.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/WarshallFloyd.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp

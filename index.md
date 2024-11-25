@@ -102,7 +102,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -122,6 +122,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
+    - icon: ':x:'
+      path: Library/Graph/Normal/Topological.hpp
+      title: Library/Graph/Normal/Topological.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/WarshallFloyd.hpp
       title: Library/Graph/Normal/WarshallFloyd.hpp
@@ -168,6 +171,9 @@ data:
       path: Library/Math/Convolution.hpp
       title: Library/Math/Convolution.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/Math/DynamicModInt.hpp
+      title: Library/Math/DynamicModInt.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Math.hpp
       title: Library/Math/Math.hpp
     - icon: ':warning:'
@@ -195,13 +201,13 @@ data:
     - icon: ':warning:'
       path: Library/Range/check.hpp
       title: Library/Range/check.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
       path: Library/Range/template.cpp
       title: Library/Range/template.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/Simd
@@ -234,7 +240,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -366,6 +372,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    - icon: ':x:'
+      path: Test/Graph/Normal/Topological.test.cpp
+      title: Test/Graph/Normal/Topological.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
@@ -395,8 +404,14 @@ data:
       path: Test/Math/Math.test.cpp
       title: Test/Math/Math.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/Math/Math_dynamic.test.cpp
+      title: Test/Math/Math_dynamic.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Math/Math_pow.test.cpp
       title: Test/Math/Math_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Math_pow_dynamic.test.cpp
+      title: Test/Math/Math_pow_dynamic.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'

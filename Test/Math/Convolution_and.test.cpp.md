@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []

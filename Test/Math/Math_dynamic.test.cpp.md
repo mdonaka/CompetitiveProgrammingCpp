@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Library/Math/DynamicModInt.hpp
+    title: Library/Math/DynamicModInt.hpp
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/Math/ModInt.hpp
-    title: Library/Math/ModInt.hpp
   - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
@@ -23,10 +23,10 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/117
     links:
     - https://yukicoder.me/problems/no/117
-  bundledCode: "#line 1 \"Test/Math/Math.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/117\"\
+  bundledCode: "#line 1 \"Test/Math/Math_dynamic.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/117\"\
     \r\n\r\n#include <iostream>\r\n#include <string>\r\n\r\n// begin:tag includes\r\
-    \n#line 2 \"Library/Math/ModInt.hpp\"\n\n#line 4 \"Library/Math/ModInt.hpp\"\n\
-    #include <iterator>\n\n#line 2 \"Library/Math/Math.hpp\"\n\r\n#include <vector>\r\
+    \n#line 2 \"Library/Math/DynamicModInt.hpp\"\n\n#line 4 \"Library/Math/DynamicModInt.hpp\"\
+    \n#include <iterator>\n\n#line 2 \"Library/Math/Math.hpp\"\n\r\n#include <vector>\r\
     \n\r\nnamespace mtd {\r\n  template <class T>\r\n  class Math {\r\n    const std::vector<T>\
     \ m_fac;\r\n    const std::vector<T> m_finv;\r\n\r\n    auto constructFac(int\
     \ s) {\r\n      std::vector<T> fac(s);\r\n      fac[0] = fac[1] = 1;\r\n     \
@@ -43,49 +43,50 @@ data:
     \ n) const { return (n < 0 ? 0 : m_finv[n]); }\r\n    constexpr auto comb(int\
     \ n, int r) const {\r\n      return fact(n) * factInv(r) * factInv(n - r);\r\n\
     \    }\r\n    constexpr auto perm(int n, int r) const { return fact(n) * factInv(n\
-    \ - r); }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Math/ModInt.hpp\"\
-    \n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n  class ModInt\
-    \ {\n    T x;\n\n  public:\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
-    \ + (x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\
-    \u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n    \
-    \  x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n\
-    \    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
-    \      if (x < 0) { x += MOD; }\n      return *this;\n    }\n    constexpr auto&\
-    \ operator*=(const ModInt<MOD, T>& m) {\n      x *= m.x;\n      if (x >= MOD)\
-    \ { x %= MOD; }\n      return *this;\n    }\n    constexpr auto& operator/=(const\
-    \ ModInt<MOD, T>& m) {\n      x *= mtd::Math<ModInt<MOD, T>>::pow(m.x, MOD - 2).x;\n\
-    \      if (x >= MOD) { x %= MOD; }\n      return *this;\n    }\n\n    constexpr\
-    \ auto operator+(const ModInt<MOD, T>& m) const {\n      auto t = *this;\n   \
-    \   t += m;\n      return t;\n    }\n    constexpr auto operator-(const ModInt<MOD,\
-    \ T>& m) const {\n      auto t = *this;\n      t -= m;\n      return t;\n    }\n\
-    \    constexpr auto operator*(const ModInt<MOD, T>& m) const {\n      auto t =\
-    \ *this;\n      t *= m;\n      return t;\n    }\n    constexpr auto operator/(const\
-    \ ModInt<MOD, T>& m) const {\n      auto t = *this;\n      t /= m;\n      return\
-    \ t;\n    }\n\n    constexpr auto& operator+=(const T& t) {\n      return *this\
-    \ += ModInt<MOD, T>(t);\n    }\n    constexpr auto& operator-=(const T& t) {\n\
-    \      return *this -= ModInt<MOD, T>(t);\n    }\n    constexpr auto& operator*=(const\
-    \ T& n) {\n      return *this *= ModInt<MOD, T>(n);\n    }\n    constexpr auto&\
-    \ operator/=(const T& n) {\n      return *this /= ModInt<MOD, T>(n);\n    }\n\
-    \    constexpr auto operator+(const T& t) const {\n      return *this + ModInt<MOD,\
-    \ T>(t);\n    }\n    constexpr auto operator-(const T& t) const {\n      return\
-    \ *this - ModInt<MOD, T>(t);\n    }\n    constexpr auto operator*(const T& t)\
-    \ const {\n      return *this * ModInt<MOD, T>(t);\n    }\n    constexpr auto\
-    \ operator/(const T& t) const {\n      return *this / ModInt<MOD, T>(t);\n   \
-    \ }\n    constexpr friend auto operator+(const T& t, const ModInt<MOD, T>& m)\
-    \ {\n      return m + t;\n    }\n    constexpr friend auto operator-(const T&\
-    \ t, const ModInt<MOD, T>& m) {\n      return -m + t;\n    }\n    constexpr friend\
-    \ auto operator*(const T& t, const ModInt<MOD, T>& m) {\n      return m * t;\n\
-    \    }\n    constexpr friend auto operator/(const T& t, const ModInt<MOD, T>&\
-    \ m) {\n      return ModInt<MOD, T>(1) / m * t;\n    }\n\n    // \u5358\u9805\u6F14\
-    \u7B97\n    constexpr auto operator-() const { return ModInt<MOD, T>(0 - x); }\n\
-    \n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const ModInt<MOD,\
-    \ T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\u51FA\u529B\n\
-    \    constexpr friend std::ostream& operator<<(std::ostream& os,\n           \
-    \                                   const ModInt<MOD, T>& m) {\n      return os\
-    \ << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
-    \ is,\n                                              ModInt<MOD, T>& m) {\n  \
-    \    return is >> m.x;\n    }\n\n    constexpr auto val() const { return x; }\n\
-    \  };\n\n}  // namespace mtd\n#line 2 \"Library/Range/istream.hpp\"\n\n#include\
+    \ - r); }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Math/DynamicModInt.hpp\"\
+    \n\nnamespace mtd {\n\n  template <class T = long long>\n  class DynamicModInt\
+    \ {\n    static inline T MOD = 0;\n    T x;\n\n  public:\n    constexpr static\
+    \ inline auto set_mod(T _MOD) { MOD = _MOD; }\n\n    constexpr DynamicModInt(T\
+    \ x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr DynamicModInt()\
+    \ : DynamicModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto&\
+    \ operator+=(const DynamicModInt<T>& m) {\n      x += m.x;\n      if (x >= MOD)\
+    \ { x -= MOD; }\n      return *this;\n    }\n    constexpr auto& operator-=(const\
+    \ DynamicModInt<T>& m) {\n      x -= m.x;\n      if (x < 0) { x += MOD; }\n  \
+    \    return *this;\n    }\n    constexpr auto& operator*=(const DynamicModInt<T>&\
+    \ m) {\n      x *= m.x;\n      if (x >= MOD) { x %= MOD; }\n      return *this;\n\
+    \    }\n    constexpr auto& operator/=(const DynamicModInt<T>& m) {\n      x *=\
+    \ mtd::Math<DynamicModInt<T>>::pow(m.x, MOD - 2).x;\n      if (x >= MOD) { x %=\
+    \ MOD; }\n      return *this;\n    }\n\n    constexpr auto operator+(const DynamicModInt<T>&\
+    \ m) const {\n      auto t = *this;\n      t += m;\n      return t;\n    }\n \
+    \   constexpr auto operator-(const DynamicModInt<T>& m) const {\n      auto t\
+    \ = *this;\n      t -= m;\n      return t;\n    }\n    constexpr auto operator*(const\
+    \ DynamicModInt<T>& m) const {\n      auto t = *this;\n      t *= m;\n      return\
+    \ t;\n    }\n    constexpr auto operator/(const DynamicModInt<T>& m) const {\n\
+    \      auto t = *this;\n      t /= m;\n      return t;\n    }\n\n    constexpr\
+    \ auto& operator+=(const T& t) {\n      return *this += DynamicModInt<T>(t);\n\
+    \    }\n    constexpr auto& operator-=(const T& t) {\n      return *this -= DynamicModInt<T>(t);\n\
+    \    }\n    constexpr auto& operator*=(const T& n) {\n      return *this *= DynamicModInt<T>(n);\n\
+    \    }\n    constexpr auto& operator/=(const T& n) {\n      return *this /= DynamicModInt<T>(n);\n\
+    \    }\n    constexpr auto operator+(const T& t) const {\n      return *this +\
+    \ DynamicModInt<T>(t);\n    }\n    constexpr auto operator-(const T& t) const\
+    \ {\n      return *this - DynamicModInt<T>(t);\n    }\n    constexpr auto operator*(const\
+    \ T& t) const {\n      return *this * DynamicModInt<T>(t);\n    }\n    constexpr\
+    \ auto operator/(const T& t) const {\n      return *this / DynamicModInt<T>(t);\n\
+    \    }\n    constexpr friend auto operator+(const T& t, const DynamicModInt<T>&\
+    \ m) {\n      return m + t;\n    }\n    constexpr friend auto operator-(const\
+    \ T& t, const DynamicModInt<T>& m) {\n      return -m + t;\n    }\n    constexpr\
+    \ friend auto operator*(const T& t, const DynamicModInt<T>& m) {\n      return\
+    \ m * t;\n    }\n    constexpr friend auto operator/(const T& t, const DynamicModInt<T>&\
+    \ m) {\n      return DynamicModInt<T>(1) / m * t;\n    }\n\n    // \u5358\u9805\
+    \u6F14\u7B97\n    constexpr auto operator-() const { return DynamicModInt<T>(0\
+    \ - x); }\n\n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const\
+    \ DynamicModInt<T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\
+    \u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream& os,\n\
+    \                                              const DynamicModInt<T>& m) {\n\
+    \      return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \ is,\n                                              DynamicModInt<T>& m) {\n\
+    \      return is >> m.x;\n    }\n\n    constexpr auto val() const { return x;\
+    \ }\n  };\n\n}  // namespace mtd\n#line 2 \"Library/Range/istream.hpp\"\n\n#include\
     \ <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\
     \n#include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\n\nnamespace mtd\
     \ {\n  namespace io {\n\n    namespace type {\n      template <class T, int Pre\
@@ -136,49 +137,51 @@ data:
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
-    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 9 \"Test/Math/Math.test.cpp\"\
+    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 9 \"Test/Math/Math_dynamic.test.cpp\"\
     \n// end:tag includes\r\n\r\nauto parse(const std::string s) {\r\n  long long\
     \ a = 0, b = 0;\r\n  bool isa = true;\r\n  for (unsigned int i = 2; i < s.size()\
     \ - 1; ++i) {\r\n    if (s[i] == ',') {\r\n      isa = false;\r\n      continue;\r\
     \n    }\r\n    auto& x = ((isa) ? a : b);\r\n    x = 10 * x + (s[i] - '0');\r\n\
     \  }\r\n  return std::make_pair(a, b);\r\n}\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\
     \n  std::ios::sync_with_stdio(0);\r\n\r\n  auto [t] = mtd::io::in<int>();\r\n\r\
-    \n  constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::ModInt<MOD>;\r\n\
-    \  auto math = mtd::Math<mint>();\r\n  for (auto [s] : mtd::views::istream<std::string>(t))\
-    \ {\r\n    auto [n, k] = parse(s);\r\n    if (s[0] == 'C') {\r\n      std::cout\
-    \ << math.comb(n, k) << std::endl;\r\n    } else if (s[0] == 'P') {\r\n      std::cout\
-    \ << math.perm(n, k) << std::endl;\r\n    } else {\r\n      std::cout << math.comb(std::max(0LL,\
-    \ n + k - 1), k) << std::endl;\r\n    }\r\n  }\r\n}\r\n"
+    \n  constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::DynamicModInt<>;\r\
+    \n  mint::set_mod(MOD);\r\n  auto math = mtd::Math<mint>();\r\n  for (auto [s]\
+    \ : mtd::views::istream<std::string>(t)) {\r\n    auto [n, k] = parse(s);\r\n\
+    \    if (s[0] == 'C') {\r\n      std::cout << math.comb(n, k) << std::endl;\r\n\
+    \    } else if (s[0] == 'P') {\r\n      std::cout << math.perm(n, k) << std::endl;\r\
+    \n    } else {\r\n      std::cout << math.comb(std::max(0LL, n + k - 1), k) <<\
+    \ std::endl;\r\n    }\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\r\n\r\n#include\
     \ <iostream>\r\n#include <string>\r\n\r\n// begin:tag includes\r\n#include \"\
-    ../../Library/Math/ModInt.hpp\"\r\n#include \"../../Library/Range/istream.hpp\"\
+    ../../Library/Math/DynamicModInt.hpp\"\r\n#include \"../../Library/Range/istream.hpp\"\
     \r\n// end:tag includes\r\n\r\nauto parse(const std::string s) {\r\n  long long\
     \ a = 0, b = 0;\r\n  bool isa = true;\r\n  for (unsigned int i = 2; i < s.size()\
     \ - 1; ++i) {\r\n    if (s[i] == ',') {\r\n      isa = false;\r\n      continue;\r\
     \n    }\r\n    auto& x = ((isa) ? a : b);\r\n    x = 10 * x + (s[i] - '0');\r\n\
     \  }\r\n  return std::make_pair(a, b);\r\n}\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\
     \n  std::ios::sync_with_stdio(0);\r\n\r\n  auto [t] = mtd::io::in<int>();\r\n\r\
-    \n  constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::ModInt<MOD>;\r\n\
-    \  auto math = mtd::Math<mint>();\r\n  for (auto [s] : mtd::views::istream<std::string>(t))\
-    \ {\r\n    auto [n, k] = parse(s);\r\n    if (s[0] == 'C') {\r\n      std::cout\
-    \ << math.comb(n, k) << std::endl;\r\n    } else if (s[0] == 'P') {\r\n      std::cout\
-    \ << math.perm(n, k) << std::endl;\r\n    } else {\r\n      std::cout << math.comb(std::max(0LL,\
-    \ n + k - 1), k) << std::endl;\r\n    }\r\n  }\r\n}\r\n"
+    \n  constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::DynamicModInt<>;\r\
+    \n  mint::set_mod(MOD);\r\n  auto math = mtd::Math<mint>();\r\n  for (auto [s]\
+    \ : mtd::views::istream<std::string>(t)) {\r\n    auto [n, k] = parse(s);\r\n\
+    \    if (s[0] == 'C') {\r\n      std::cout << math.comb(n, k) << std::endl;\r\n\
+    \    } else if (s[0] == 'P') {\r\n      std::cout << math.perm(n, k) << std::endl;\r\
+    \n    } else {\r\n      std::cout << math.comb(std::max(0LL, n + k - 1), k) <<\
+    \ std::endl;\r\n    }\r\n  }\r\n}\r\n"
   dependsOn:
-  - Library/Math/ModInt.hpp
+  - Library/Math/DynamicModInt.hpp
   - Library/Math/Math.hpp
   - Library/Range/istream.hpp
   - Library/Utility/io.hpp
   isVerificationFile: true
-  path: Test/Math/Math.test.cpp
+  path: Test/Math/Math_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2024-11-19 06:52:50+09:00'
+  timestamp: '2024-11-26 08:27:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Math/Math.test.cpp
+documentation_of: Test/Math/Math_dynamic.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Math/Math.test.cpp
-- /verify/Test/Math/Math.test.cpp.html
-title: Test/Math/Math.test.cpp
+- /verify/Test/Math/Math_dynamic.test.cpp
+- /verify/Test/Math/Math_dynamic.test.cpp.html
+title: Test/Math/Math_dynamic.test.cpp
 ---

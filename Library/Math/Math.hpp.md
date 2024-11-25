@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: Library/Math/DynamicModInt.hpp
+    title: Library/Math/DynamicModInt.hpp
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedVerifiedWith:
@@ -13,8 +16,14 @@ data:
     path: Test/Math/Math.test.cpp
     title: Test/Math/Math.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_dynamic.test.cpp
+    title: Test/Math/Math_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow_dynamic.test.cpp
+    title: Test/Math/Math_pow_dynamic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,12 +69,15 @@ data:
   isVerificationFile: false
   path: Library/Math/Math.hpp
   requiredBy:
+  - Library/Math/DynamicModInt.hpp
   - Library/Math/ModInt.hpp
   timestamp: '2024-11-11 23:25:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/Math.hpp
 layout: document
