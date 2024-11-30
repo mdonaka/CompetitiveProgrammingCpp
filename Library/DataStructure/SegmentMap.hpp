@@ -47,7 +47,11 @@ namespace mtd {
     }
 
     auto update(SizeType l, SizeType r, ValType val) {
-      if (l < 0 || r >= n) { throw std::runtime_error(""); }
+      if (l < 0 || r >= n) {
+        throw std::runtime_error("out of range: (" + std::to_string(l) +
+                                 " < 0) or (" + std::to_string(r) +
+                                 " >= " + std::to_string(n) + ")");
+      }
       if (l > r) { throw std::runtime_error(""); }
       remove(l, r);
       add(l, val);
