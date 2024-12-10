@@ -1,24 +1,14 @@
 #pragma once
+
 #include <deque>
 #include <iostream>
 #include <utility>
 #include <vector>
 
+#include "../Algebraic/Monoid.hpp"
+
 namespace mtd {
-  template <class T>
-  class isMonoid {
-    template <class U>
-    static auto check(U x) -> decltype(x.binaryOperation(x), std::true_type{});
-    static std::false_type check(...);
-
-  public:
-    static bool const value = decltype(check(std::declval<T>()))::value;
-  };
-
-  template <class Monoid, class MonoidOp, class op,
-            std::enable_if_t<isMonoid<Monoid>::value, std::nullptr_t> = nullptr,
-            std::enable_if_t<isMonoid<MonoidOp>::value, std::nullptr_t> =
-                nullptr>
+  template <monoid Monoid, monoid MonoidOp, class op>
   class LazySegmentTree {
   private:
     const int m_size;
@@ -26,25 +16,26 @@ namespace mtd {
     std::vector<MonoidOp> m_lazy;
     using S = decltype(Monoid().m_val);
 
-    int calcSize(int n) const {
+    constexpr int calcSize(int n) const {
       int size = 1;
       while (size < n) { size <<= 1; }
       return size;
     }
 
-    auto _lazy_update(int i, const MonoidOp& val) {
+    constexpr auto _lazy_update(int i, const MonoidOp& val) {
       if (i >= (m_size << 1) - 1) { return; }
       m_lazy[i] = m_lazy[i].binaryOperation(val);
     }
 
-    auto _propagate(int i) {
+    constexpr auto _propagate(int i) {
       m_node[i] = op()(m_node[i], m_lazy[i]);
       _lazy_update((i << 1) + 1, m_lazy[i]);
       _lazy_update((i << 1) + 2, m_lazy[i]);
       m_lazy[i] = MonoidOp();
     }
 
-    auto _update(int l, int r, int k, int nl, int nr, const MonoidOp& m) {
+    constexpr auto _update(int l, int r, int k, int nl, int nr,
+                           const MonoidOp& m) {
       _propagate(k);
       if (nr < l || r < nl) { return; }
       if (l <= nl && nr <= r) {
@@ -57,7 +48,7 @@ namespace mtd {
       m_node[k] = m_node[(k << 1) + 1].binaryOperation(m_node[(k << 1) + 2]);
     }
 
-    auto _query(int l, int r, int k, int nl, int nr) {
+    constexpr auto _query(int l, int r, int k, int nl, int nr) {
       _propagate(k);
       if (nr < l || r < nl) { return Monoid(); }
       if (l <= nl && nr <= r) { return m_node[k]; }
@@ -66,7 +57,7 @@ namespace mtd {
       return l_val.binaryOperation(r_val);
     }
 
-    auto _construct(const std::vector<S>& vec) {
+    constexpr auto _construct(const std::vector<S>& vec) {
       for (unsigned int i = 0; i < vec.size(); ++i) {
         m_node[i + m_size - 1] = Monoid(vec[i]);
       }
@@ -77,21 +68,24 @@ namespace mtd {
     }
 
   public:
-    LazySegmentTree(int n)
+    constexpr LazySegmentTree(int n)
         : m_size(calcSize(n)),
           m_node((m_size << 1) - 1),
           m_lazy((m_size << 1) - 1) {}
-    LazySegmentTree(int n, const std::vector<S>& vec) : LazySegmentTree(n) {
+    constexpr LazySegmentTree(int n, const std::vector<S>& vec)
+        : LazySegmentTree(n) {
       _construct(vec);
     }
 
-    auto update(int l, int r, const MonoidOp& val) {
+    constexpr auto update(int l, int r, const MonoidOp& val) {
       _update(l, r, 0, 0, m_size - 1, val);
     }
 
-    auto query(int l, int r) { return _query(l, r, 0, 0, m_size - 1).m_val; }
+    constexpr auto query(int l, int r) {
+      return _query(l, r, 0, 0, m_size - 1).m_val;
+    }
 
-    auto output() {
+    constexpr auto output() {
       for (int i = 0; i < (m_size << 1) - 1; ++i) { _propagate(i); }
       for (int i = 0; i < m_size; ++i) {
         std::cout << m_node[m_size + i - 1] << " ";
@@ -100,84 +94,56 @@ namespace mtd {
     }
   };
 
-  template <class S,     // 要素の型
-            S& element,  // 元
-            class T      // 2項演算のFunctor
-            >
-  struct Monoid {
-    S m_val;
-    Monoid() : m_val(element) {}
-    Monoid(S val) : m_val(val) {}
-    Monoid binaryOperation(const Monoid& m2) const {
-      return T()(m_val, m2.m_val);
-    }
-    friend std::ostream& operator<<(std::ostream& os,
-                                    const Monoid<S, element, T>& m) {
-      return os << m.m_val;
-    }
-  };
+  namespace Type {
+    /* 各種頻出サンプル */
+    using P = std::pair<long long, long long>;
+    constexpr long long update_element = -1e18;
 
-  /*
-  各種頻出サンプル
-  ex) 区間最小値，区間更新
-  LazySegmentTree<M_M, M_U, OP_RUQ_RMQ>
-  */
-  //---- 要素 ----
-  std::pair<long long, long long> base_s{0, 0};
-  struct F_RSQ {
-    auto operator()(const std::pair<long long, long long>& a,
-                    const std::pair<long long, long long>& b) const {
-      return std::pair<long long, long long>{a.first + b.first,
-                                             a.second + b.second};
-    }
-  };
-  using M_S = Monoid<std::pair<long long, long long>, base_s, F_RSQ>;
+    /*---- 要素 ----*/
+    using M_SUM = Monoid<P, P{0, 0}, decltype([](const P& a, const P& b) {
+                           return P{a.first + b.first, a.second + b.second};
+                         })>;
+    using M_MIN = Monoid<long long, static_cast<long long>(1e18),
+                         decltype([](long long a, long long b) {
+                           return std::min(a, b);
+                         })>;
+    using M_MAX = Monoid<long long, static_cast<long long>(-1e18),
+                         decltype([](long long a, long long b) {
+                           return std::max(a, b);
+                         })>;
+    /*---- 作用素 ----*/
+    using M_UP = Monoid<long long, update_element,
+                        decltype([](long long a, long long b) {
+                          if (b == update_element) { return a; }
+                          return b;
+                        })>;
+    using M_ADD =
+        Monoid<long long, static_cast<long long>(0),
+               decltype([](long long a, long long b) { return a + b; })>;
 
-  long long base_m{static_cast<long long>(1e18)};
-  struct F_RMQ {
-    auto operator()(long long a, long long b) const { return std::min(a, b); }
-  };
-  using M_M = Monoid<long long, base_m, F_RMQ>;
+    /*---- 作用 ----*/
+    using OP_SUM_UP = decltype([](const M_SUM& m, const M_UP& m2) {
+      if (m2.m_val == update_element) { return m; }
+      return M_SUM(P{m.m_val.second * m2.m_val, m.m_val.second});
+    });
+    using OP_MIN_UP = decltype([](const M_MIN& m, const M_UP& m2) {
+      if (m2.m_val == update_element) { return m; }
+      return M_MIN(m2.m_val);
+    });
+    using OP_MAX_UP = decltype([](const M_MAX& m, const M_UP& m2) {
+      if (m2.m_val == update_element) { return m; }
+      return M_MAX(m2.m_val);
+    });
+    using OP_SUM_ADD = decltype([](const M_SUM& m, const M_ADD& m2) {
+      return M_SUM(
+          P{m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});
+    });
+    using OP_MIN_ADD = decltype([](const M_MIN& m, const M_ADD& m2) {
+      return M_MIN{m.m_val + m2.m_val};
+    });
+    using OP_MAX_ADD = decltype([](const M_MAX& m, const M_ADD& m2) {
+      return M_MAX{m.m_val + m2.m_val};
+    });
 
-  //---- 作用素 ----
-  long long base_u{static_cast<long long>(-1e18)};
-  struct F_RUQ {
-    auto operator()(long long a, long long b) const {
-      if (b == base_u) { return a; }
-      return b;
-    }
-  };
-  using M_U = Monoid<long long, base_u, F_RUQ>;
-
-  long long base_a{static_cast<long long>(0)};
-  struct F_RAQ {
-    auto operator()(long long a, long long b) const { return a + b; }
-  };
-  using M_A = Monoid<long long, base_a, F_RAQ>;
-
-  //---- 作用 ----
-  struct OP_RUQ_RSQ {
-    auto operator()(const M_S& m, const M_U& m2) {
-      if (m2.m_val == base_u) { return m; }
-      return M_S(std::pair<long long, long long>{m.m_val.second * m2.m_val,
-                                                 m.m_val.second});
-    }
-  };
-  struct OP_RUQ_RMQ {
-    auto operator()(const M_M& m, const M_U& m2) {
-      if (m2.m_val == base_u) { return m; }
-      return M_M(m2.m_val);
-    }
-  };
-  struct OP_RAQ_RSQ {
-    auto operator()(const M_S& m, const M_A& m2) {
-      return M_S(std::pair<long long, long long>{
-          m.m_val.first + m.m_val.second * m2.m_val, m.m_val.second});
-    }
-  };
-  struct OP_RAQ_RMQ {
-    auto operator()(const M_M& m, const M_A& m2) {
-      return M_M{m.m_val + m2.m_val};
-    }
-  };
+  }  // namespace Type
 }  // namespace mtd

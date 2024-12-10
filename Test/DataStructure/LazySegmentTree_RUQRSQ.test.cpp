@@ -3,33 +3,34 @@
 
 #include <iostream>
 
+// begin:tag includes
 #include "./../../Library/DataStructure/LazySegmentTree.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   int n, q;
-  cin >> n >> q;
+  std::cin >> n >> q;
 
   std::vector<std::pair<long long, long long>> v(n, {0, 1});
-  auto segtree =
-      mtd::LazySegmentTree<mtd::M_S, mtd::M_U, mtd::OP_RUQ_RSQ>(n, v);
+  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM, mtd::Type::M_UP,
+                                      mtd::Type::OP_SUM_UP>(n, v);
 
   for (int _ = 0; _ < q; ++_) {
     int k;
-    cin >> k;
+    std::cin >> k;
     if (k == 0) {
       int s, t, x;
-      ;
-      cin >> s >> t >> x;
+      std::cin >> s >> t >> x;
       segtree.update(s, t, x);
     } else {
       int s, t;
-      cin >> s >> t;
-      cout << segtree.query(s, t).first << endl;
+      std::cin >> s >> t;
+      std::cout << segtree.query(s, t).first << std::endl;
     }
   }
 }
