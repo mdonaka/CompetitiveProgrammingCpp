@@ -74,11 +74,11 @@ data:
   timestamp: '2024-11-11 23:25:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp
-  - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/Math.hpp
 layout: document
 redirect_from:

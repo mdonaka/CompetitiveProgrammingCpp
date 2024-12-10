@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/HeavyLightDecomposition.hpp\"\n\r\n#include\
@@ -274,11 +274,11 @@ data:
   requiredBy:
   - Library/Graph/Tree/AuxiliaryTree.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
 documentation_of: Library/Graph/Tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

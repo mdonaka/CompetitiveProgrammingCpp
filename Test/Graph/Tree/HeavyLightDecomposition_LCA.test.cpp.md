@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []

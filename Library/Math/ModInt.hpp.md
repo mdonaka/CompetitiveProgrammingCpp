@@ -132,9 +132,9 @@ data:
   timestamp: '2024-11-19 06:52:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
-  - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/ModInt.hpp
 layout: document
 redirect_from:

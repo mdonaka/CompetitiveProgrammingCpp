@@ -31,17 +31,19 @@ data:
     \ it != std::prev(mp.end()); ++it) {\r\n        std::cout << \"[\" << it->first\
     \ << \", \" << std::next(it)->first - 1\r\n                  << \"] :\" << it->second\
     \ << std::endl;\r\n      }\r\n    }\r\n\r\n    auto update(SizeType l, SizeType\
-    \ r, ValType val) {\r\n      if (l < 0 || r >= n) { throw std::runtime_error(\"\
-    \"); }\r\n      if (l > r) { throw std::runtime_error(\"\"); }\r\n      remove(l,\
-    \ r);\r\n      add(l, val);\r\n    }\r\n\r\n    /*\r\n     * return: [{left, right,\
-    \ value}, ...]\r\n     * */\r\n    auto query(SizeType l, SizeType r) {\r\n  \
-    \    if (l < 0 || r >= n) { throw std::runtime_error(\"\"); }\r\n      if (l >\
-    \ r) { throw std::runtime_error(\"\"); }\r\n      auto it = std::prev(mp.upper_bound(l));\r\
-    \n      std::deque<std::tuple<SizeType, SizeType, ValType>> dq;\r\n      while\
-    \ (it->first <= r) {\r\n        auto nx = std::next(it)->first;\r\n        auto\
-    \ nr = std::min(nx - 1, r);\r\n        auto nl = std::max(l, it->first);\r\n \
-    \       dq.emplace_back(nl, nr, it->second);\r\n        ++it;\r\n      }\r\n \
-    \     return dq;\r\n    }\r\n\r\n    /*\r\n     * return: {left, right, value}\r\
+    \ r, ValType val) {\r\n      if (l < 0 || r >= n) {\r\n        throw std::runtime_error(\"\
+    out of range: (\" + std::to_string(l) +\r\n                                 \"\
+    \ < 0) or (\" + std::to_string(r) +\r\n                                 \" >=\
+    \ \" + std::to_string(n) + \")\");\r\n      }\r\n      if (l > r) { throw std::runtime_error(\"\
+    \"); }\r\n      remove(l, r);\r\n      add(l, val);\r\n    }\r\n\r\n    /*\r\n\
+    \     * return: [{left, right, value}, ...]\r\n     * */\r\n    auto query(SizeType\
+    \ l, SizeType r) {\r\n      if (l < 0 || r >= n) { throw std::runtime_error(\"\
+    \"); }\r\n      if (l > r) { throw std::runtime_error(\"\"); }\r\n      auto it\
+    \ = std::prev(mp.upper_bound(l));\r\n      std::deque<std::tuple<SizeType, SizeType,\
+    \ ValType>> dq;\r\n      while (it->first <= r) {\r\n        auto nx = std::next(it)->first;\r\
+    \n        auto nr = std::min(nx - 1, r);\r\n        auto nl = std::max(l, it->first);\r\
+    \n        dq.emplace_back(nl, nr, it->second);\r\n        ++it;\r\n      }\r\n\
+    \      return dq;\r\n    }\r\n\r\n    /*\r\n     * return: {left, right, value}\r\
     \n     * */\r\n    auto get(SizeType i) const {\r\n      auto it = std::prev(mp.upper_bound(i));\r\
     \n      auto nx = std::next(it)->first;\r\n      auto nr = nx - 1;\r\n      auto\
     \ nl = it->first;\r\n      return std::make_tuple(nl, nr, it->second);\r\n   \
@@ -66,25 +68,28 @@ data:
     \ {\r\n        std::cout << \"[\" << it->first << \", \" << std::next(it)->first\
     \ - 1\r\n                  << \"] :\" << it->second << std::endl;\r\n      }\r\
     \n    }\r\n\r\n    auto update(SizeType l, SizeType r, ValType val) {\r\n    \
-    \  if (l < 0 || r >= n) { throw std::runtime_error(\"\"); }\r\n      if (l > r)\
-    \ { throw std::runtime_error(\"\"); }\r\n      remove(l, r);\r\n      add(l, val);\r\
-    \n    }\r\n\r\n    /*\r\n     * return: [{left, right, value}, ...]\r\n     *\
-    \ */\r\n    auto query(SizeType l, SizeType r) {\r\n      if (l < 0 || r >= n)\
-    \ { throw std::runtime_error(\"\"); }\r\n      if (l > r) { throw std::runtime_error(\"\
-    \"); }\r\n      auto it = std::prev(mp.upper_bound(l));\r\n      std::deque<std::tuple<SizeType,\
-    \ SizeType, ValType>> dq;\r\n      while (it->first <= r) {\r\n        auto nx\
-    \ = std::next(it)->first;\r\n        auto nr = std::min(nx - 1, r);\r\n      \
-    \  auto nl = std::max(l, it->first);\r\n        dq.emplace_back(nl, nr, it->second);\r\
-    \n        ++it;\r\n      }\r\n      return dq;\r\n    }\r\n\r\n    /*\r\n    \
-    \ * return: {left, right, value}\r\n     * */\r\n    auto get(SizeType i) const\
-    \ {\r\n      auto it = std::prev(mp.upper_bound(i));\r\n      auto nx = std::next(it)->first;\r\
-    \n      auto nr = nx - 1;\r\n      auto nl = it->first;\r\n      return std::make_tuple(nl,\
-    \ nr, it->second);\r\n    }\r\n  };\r\n}  // namespace mtd\r\n"
+    \  if (l < 0 || r >= n) {\r\n        throw std::runtime_error(\"out of range:\
+    \ (\" + std::to_string(l) +\r\n                                 \" < 0) or (\"\
+    \ + std::to_string(r) +\r\n                                 \" >= \" + std::to_string(n)\
+    \ + \")\");\r\n      }\r\n      if (l > r) { throw std::runtime_error(\"\"); }\r\
+    \n      remove(l, r);\r\n      add(l, val);\r\n    }\r\n\r\n    /*\r\n     * return:\
+    \ [{left, right, value}, ...]\r\n     * */\r\n    auto query(SizeType l, SizeType\
+    \ r) {\r\n      if (l < 0 || r >= n) { throw std::runtime_error(\"\"); }\r\n \
+    \     if (l > r) { throw std::runtime_error(\"\"); }\r\n      auto it = std::prev(mp.upper_bound(l));\r\
+    \n      std::deque<std::tuple<SizeType, SizeType, ValType>> dq;\r\n      while\
+    \ (it->first <= r) {\r\n        auto nx = std::next(it)->first;\r\n        auto\
+    \ nr = std::min(nx - 1, r);\r\n        auto nl = std::max(l, it->first);\r\n \
+    \       dq.emplace_back(nl, nr, it->second);\r\n        ++it;\r\n      }\r\n \
+    \     return dq;\r\n    }\r\n\r\n    /*\r\n     * return: {left, right, value}\r\
+    \n     * */\r\n    auto get(SizeType i) const {\r\n      auto it = std::prev(mp.upper_bound(i));\r\
+    \n      auto nx = std::next(it)->first;\r\n      auto nr = nx - 1;\r\n      auto\
+    \ nl = it->first;\r\n      return std::make_tuple(nl, nr, it->second);\r\n   \
+    \ }\r\n  };\r\n}  // namespace mtd\r\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/DataStructure/SegmentMap.hpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-11-30 11:22:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SegmentMap.test.cpp
