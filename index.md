@@ -25,7 +25,10 @@ data:
       title: Command/tags/selector.py
   - name: Library/Algebraic
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
+      path: Library/Algebraic/Group.hpp
+      title: Library/Algebraic/Group.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Monoid.hpp
       title: Library/Algebraic/Monoid.hpp
   - name: Library/Algorithms
@@ -62,7 +65,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DynamicSegmentTree.hpp
       title: Library/DataStructure/DynamicSegmentTree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/LazySegmentTree.hpp
       title: Library/DataStructure/LazySegmentTree.hpp
     - icon: ':heavy_check_mark:'
@@ -107,7 +110,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -144,7 +147,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
     - icon: ':heavy_check_mark:'
@@ -388,7 +391,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     - icon: ':heavy_check_mark:'

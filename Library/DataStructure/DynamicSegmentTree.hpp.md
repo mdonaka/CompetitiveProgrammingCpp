@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   _extendedRequiredBy: []
@@ -22,9 +22,9 @@ data:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DynamicSegmentTree.hpp\"\n\r\n#include\
     \ <deque>\r\n#include <ostream>\r\n#include <unordered_map>\r\n#include <utility>\r\
-    \n#include <vector>\r\n\r\n#line 1 \"Library/Algebraic/Monoid.hpp\"\n#include\
-    \ <iostream>\nnamespace mtd {\n\n  template <class S,    // set\n            S\
-    \ element,  // identity element\n            class op    // binary operation\n\
+    \n#include <vector>\r\n\r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#include\
+    \ <iostream>\n\nnamespace mtd {\n\n  template <class S,    // set\n          \
+    \  S element,  // identity element\n            class op    // binary operation\n\
     \            >\n  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid\
     \ {\n    using value_type = S;\n    constexpr static S _element = element;\n \
     \   using op_type = op;\n\n    S m_val;\n    constexpr Monoid(S val) : m_val(val)\
@@ -109,7 +109,7 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-11 01:15:34+09:00'
+  timestamp: '2024-12-11 01:55:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp

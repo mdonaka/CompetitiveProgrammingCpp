@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/LazySegmentTree.hpp
     title: Library/DataStructure/LazySegmentTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
@@ -25,32 +25,32 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E
   bundledCode: "#line 1 \"Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp\"\n\
     #define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\
+    \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n\r\n#include <deque>\r\n#line 5 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n#include <utility>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\
-    \nnamespace mtd {\n\n  template <class S,    // set\n            S element,  //\
-    \ identity element\n            class op    // binary operation\n            >\n\
-    \  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid {\n    using value_type\
-    \ = S;\n    constexpr static S _element = element;\n    using op_type = op;\n\n\
-    \    S m_val;\n    constexpr Monoid(S val) : m_val(val) {}\n    constexpr Monoid()\
-    \ : Monoid(element) {}\n    constexpr Monoid binaryOperation(const Monoid& m2)\
-    \ const {\n      return op()(m_val, m2.m_val);\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os,\n                                    const Monoid<S,\
-    \ element, op>& m) {\n      return os << m.m_val;\n    }\n  };\n\n  namespace\
-    \ __detail {\n    template <typename T, template <typename, auto, typename> typename\
-    \ S>\n    concept is_specialization_of = requires {\n      typename std::enable_if_t<std::is_same_v<\n\
-    \          T, S<typename T::value_type, T::_element, typename T::op_type>>>;\n\
-    \    };\n  }  // namespace __detail\n\n  template <typename M>\n  concept monoid\
-    \ = __detail::is_specialization_of<M, Monoid>;\n\n}  // namespace mtd\n#line 9\
-    \ \"Library/DataStructure/LazySegmentTree.hpp\"\n\r\nnamespace mtd {\r\n  template\
-    \ <monoid Monoid, monoid MonoidOp, class op>\r\n  class LazySegmentTree {\r\n\
-    \  private:\r\n    const int m_size;\r\n    std::vector<Monoid> m_node;\r\n  \
-    \  std::vector<MonoidOp> m_lazy;\r\n    using S = decltype(Monoid().m_val);\r\n\
-    \r\n    constexpr int calcSize(int n) const {\r\n      int size = 1;\r\n     \
-    \ while (size < n) { size <<= 1; }\r\n      return size;\r\n    }\r\n\r\n    constexpr\
-    \ auto _lazy_update(int i, const MonoidOp& val) {\r\n      if (i >= (m_size <<\
-    \ 1) - 1) { return; }\r\n      m_lazy[i] = m_lazy[i].binaryOperation(val);\r\n\
-    \    }\r\n\r\n    constexpr auto _propagate(int i) {\r\n      m_node[i] = op()(m_node[i],\
+    \n\n#line 4 \"Library/Algebraic/Monoid.hpp\"\n\nnamespace mtd {\n\n  template\
+    \ <class S,    // set\n            S element,  // identity element\n         \
+    \   class op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
+    \ op, S, S>\n  struct Monoid {\n    using value_type = S;\n    constexpr static\
+    \ S _element = element;\n    using op_type = op;\n\n    S m_val;\n    constexpr\
+    \ Monoid(S val) : m_val(val) {}\n    constexpr Monoid() : Monoid(element) {}\n\
+    \    constexpr Monoid binaryOperation(const Monoid& m2) const {\n      return\
+    \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ os,\n                                    const Monoid<S, element, op>& m) {\n\
+    \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
+    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
+    \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
+    \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
+    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/LazySegmentTree.hpp\"\
+    \n\r\nnamespace mtd {\r\n  template <monoid Monoid, monoid MonoidOp, class op>\r\
+    \n  class LazySegmentTree {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid>\
+    \ m_node;\r\n    std::vector<MonoidOp> m_lazy;\r\n    using S = decltype(Monoid().m_val);\r\
+    \n\r\n    constexpr int calcSize(int n) const {\r\n      int size = 1;\r\n   \
+    \   while (size < n) { size <<= 1; }\r\n      return size;\r\n    }\r\n\r\n  \
+    \  constexpr auto _lazy_update(int i, const MonoidOp& val) {\r\n      if (i >=\
+    \ (m_size << 1) - 1) { return; }\r\n      m_lazy[i] = m_lazy[i].binaryOperation(val);\r\
+    \n    }\r\n\r\n    constexpr auto _propagate(int i) {\r\n      m_node[i] = op()(m_node[i],\
     \ m_lazy[i]);\r\n      _lazy_update((i << 1) + 1, m_lazy[i]);\r\n      _lazy_update((i\
     \ << 1) + 2, m_lazy[i]);\r\n      m_lazy[i] = MonoidOp();\r\n    }\r\n\r\n   \
     \ constexpr auto _update(int l, int r, int k, int nl, int nr,\r\n            \
@@ -244,46 +244,48 @@ data:
     \      } else {\r\n          add(f, fr);\r\n          f = fp;\r\n        }\r\n\
     \      } while (true);\r\n      return ret;\r\n    }\r\n\r\n    auto rangeSubTree(Node\
     \ f) const {\r\n      return std::pair<Node, Node>{m_ids[f], m_ids[f] + m_size[f]\
-    \ - 1};\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 9 \"Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
-    \ size = n + n - 1;\r\n  auto tree = mtd::Graph<int, bool>(size);\r\n  ll add\
-    \ = n;\r\n  for (int f = 0; f < n; ++f) {\r\n    int k;\r\n    cin >> k;\r\n \
-    \   for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      cin >> t;\r\n     \
-    \ tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t, add);\r\n\
-    \      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>> v(n - 1,\
-    \ {0, 1});\r\n  auto segtree =\r\n      mtd::LazySegmentTree<mtd::M_S, mtd::M_A,\
-    \ mtd::OP_RAQ_RSQ>(n - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\
-    \u308C\u308B\u5834\u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n\
-    \  // val[hld.getEdgeId(i + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\
-    \n\r\n  ll q;\r\n  cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll k;\r\
-    \n    cin >> k;\r\n    if (k == 0) {\r\n      ll v, w;\r\n      cin >> v >> w;\r\
-    \n      for (const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n        segtree.update(l,\
-    \ r, w);\r\n      }\r\n    } else {\r\n      ll u;\r\n      cin >> u;\r\n    \
-    \  ll ans = 0;\r\n      for (const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n \
-    \       ans += segtree.query(l, r).first;\r\n      }\r\n      cout << ans << endl;\r\
-    \n    }\r\n  }\r\n}\r\n"
+    \ - 1};\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 10 \"Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp\"\
+    \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
+    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  ll n;\r\n  std::cin\
+    \ >> n;\r\n  auto size = n + n - 1;\r\n  auto tree = mtd::Graph<int, bool>(size);\r\
+    \n  ll add = n;\r\n  for (int f = 0; f < n; ++f) {\r\n    int k;\r\n    std::cin\
+    \ >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      std::cin\
+    \ >> t;\r\n      tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t,\
+    \ add);\r\n      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>>\
+    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM,\
+    \ mtd::Type::M_ADD,\r\n                                      mtd::Type::OP_SUM_ADD>(n\
+    \ - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
+    \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n  // val[hld.getEdgeId(i\
+    \ + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n  ll\
+    \ q;\r\n  std::cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll k;\r\n \
+    \   std::cin >> k;\r\n    if (k == 0) {\r\n      ll v, w;\r\n      std::cin >>\
+    \ v >> w;\r\n      for (const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n      \
+    \  segtree.update(l, r, w);\r\n      }\r\n    } else {\r\n      ll u;\r\n    \
+    \  std::cin >> u;\r\n      ll ans = 0;\r\n      for (const auto& [l, r] : hld.rangeEdge(0,\
+    \ u)) {\r\n        ans += segtree.query(l, r).first;\r\n      }\r\n      std::cout\
+    \ << ans << std::endl;\r\n    }\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../../Library/DataStructure/LazySegmentTree.hpp\"\
+    \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#include \"./../../../Library/DataStructure/LazySegmentTree.hpp\"\
     \r\n#include \"./../../../Library/Graph/Graph.hpp\"\r\n#include \"./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp\"\
-    \r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
-    \ size = n + n - 1;\r\n  auto tree = mtd::Graph<int, bool>(size);\r\n  ll add\
-    \ = n;\r\n  for (int f = 0; f < n; ++f) {\r\n    int k;\r\n    cin >> k;\r\n \
-    \   for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      cin >> t;\r\n     \
-    \ tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t, add);\r\n\
-    \      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>> v(n - 1,\
-    \ {0, 1});\r\n  auto segtree =\r\n      mtd::LazySegmentTree<mtd::M_S, mtd::M_A,\
-    \ mtd::OP_RAQ_RSQ>(n - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\
-    \u308C\u308B\u5834\u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n\
-    \  // val[hld.getEdgeId(i + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\
-    \n\r\n  ll q;\r\n  cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll k;\r\
-    \n    cin >> k;\r\n    if (k == 0) {\r\n      ll v, w;\r\n      cin >> v >> w;\r\
-    \n      for (const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n        segtree.update(l,\
-    \ r, w);\r\n      }\r\n    } else {\r\n      ll u;\r\n      cin >> u;\r\n    \
-    \  ll ans = 0;\r\n      for (const auto& [l, r] : hld.rangeEdge(0, u)) {\r\n \
-    \       ans += segtree.query(l, r).first;\r\n      }\r\n      cout << ans << endl;\r\
-    \n    }\r\n  }\r\n}\r\n"
+    \r\n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
+    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  ll n;\r\n  std::cin\
+    \ >> n;\r\n  auto size = n + n - 1;\r\n  auto tree = mtd::Graph<int, bool>(size);\r\
+    \n  ll add = n;\r\n  for (int f = 0; f < n; ++f) {\r\n    int k;\r\n    std::cin\
+    \ >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      std::cin\
+    \ >> t;\r\n      tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t,\
+    \ add);\r\n      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>>\
+    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM,\
+    \ mtd::Type::M_ADD,\r\n                                      mtd::Type::OP_SUM_ADD>(n\
+    \ - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
+    \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n  // val[hld.getEdgeId(i\
+    \ + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n  ll\
+    \ q;\r\n  std::cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    ll k;\r\n \
+    \   std::cin >> k;\r\n    if (k == 0) {\r\n      ll v, w;\r\n      std::cin >>\
+    \ v >> w;\r\n      for (const auto& [l, r] : hld.rangeEdge(0, v)) {\r\n      \
+    \  segtree.update(l, r, w);\r\n      }\r\n    } else {\r\n      ll u;\r\n    \
+    \  std::cin >> u;\r\n      ll ans = 0;\r\n      for (const auto& [l, r] : hld.rangeEdge(0,\
+    \ u)) {\r\n        ans += segtree.query(l, r).first;\r\n      }\r\n      std::cout\
+    \ << ans << std::endl;\r\n    }\r\n  }\r\n}\r\n"
   dependsOn:
   - Library/DataStructure/LazySegmentTree.hpp
   - Library/Algebraic/Monoid.hpp
@@ -292,8 +294,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 01:45:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-11 02:10:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
 layout: document

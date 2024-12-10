@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
@@ -19,19 +19,19 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C
   bundledCode: "#line 1 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\n\
     #define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include\
-    \ <deque>\r\n#line 4 \"Library/Graph/Graph.hpp\"\n#include <ranges>\r\n#include\
-    \ <tuple>\r\n#include <vector>\r\n\r\nnamespace mtd {\r\n  template <class Node\
-    \ = int, class Cost = long long>\r\n  class Graph {\r\n    // using Node = int;\r\
-    \n    // using Cost = long long;\r\n\r\n    using Edge = std::pair<Node, Cost>;\r\
-    \n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
-    \ m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n), m_graph(n) {}\r\n  \
-    \  Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()), m_graph(edges)\
-    \ {}\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
-    \ {\r\n      m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto addEdgeUndirected(const\
-    \ Node& f, const Node& t, const Cost& c = 1) {\r\n      addEdge(f, t, c);\r\n\
-    \      addEdge(t, f, c);\r\n    }\r\n    auto getEdges(const Node& from) const\
-    \ {\r\n      class EdgesRange {\r\n        const typename Edges::const_iterator\
+    \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/Graph/Graph.hpp\"\
+    \n#include <deque>\r\n#line 4 \"Library/Graph/Graph.hpp\"\n#include <ranges>\r\
+    \n#include <tuple>\r\n#include <vector>\r\n\r\nnamespace mtd {\r\n  template <class\
+    \ Node = int, class Cost = long long>\r\n  class Graph {\r\n    // using Node\
+    \ = int;\r\n    // using Cost = long long;\r\n\r\n    using Edge = std::pair<Node,\
+    \ Cost>;\r\n    using Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n\
+    \    std::vector<Edges> m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n),\
+    \ m_graph(n) {}\r\n    Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()),\
+    \ m_graph(edges) {}\r\n\r\n    auto addEdge(const Node& f, const Node& t, const\
+    \ Cost& c = 1) {\r\n      m_graph[f].emplace_back(t, c);\r\n    }\r\n    auto\
+    \ addEdgeUndirected(const Node& f, const Node& t, const Cost& c = 1) {\r\n   \
+    \   addEdge(f, t, c);\r\n      addEdge(t, f, c);\r\n    }\r\n    auto getEdges(const\
+    \ Node& from) const {\r\n      class EdgesRange {\r\n        const typename Edges::const_iterator\
     \ b, e;\r\n\r\n      public:\r\n        EdgesRange(const Edges& edges) : b(edges.begin()),\
     \ e(edges.end()) {}\r\n        auto begin() const { return b; }\r\n        auto\
     \ end() const { return e; }\r\n      };\r\n      return EdgesRange(m_graph[from]);\r\
@@ -156,33 +156,34 @@ data:
     \      } else {\r\n          add(f, fr);\r\n          f = fp;\r\n        }\r\n\
     \      } while (true);\r\n      return ret;\r\n    }\r\n\r\n    auto rangeSubTree(Node\
     \ f) const {\r\n      return std::pair<Node, Node>{m_ids[f], m_ids[f] + m_size[f]\
-    \ - 1};\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 8 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\
-    \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
-    \ tree = mtd::Graph<int, bool>(n);\r\n  for (int f = 0; f < n; ++f) {\r\n    ll\
-    \ k;\r\n    cin >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n\
-    \      cin >> t;\r\n      tree.addEdge(f, t);\r\n    }\r\n  }\r\n\r\n  auto hld\
-    \ = mtd::HeavyLightDecomposition(tree);\r\n\r\n  int q;\r\n  cin >> q;\r\n  for\
-    \ (int _ = 0; _ < q; ++_) {\r\n    int u, v;\r\n    cin >> u >> v;\r\n    cout\
-    \ << hld.lca(u, v) << endl;\r\n  }\r\n}\r\n"
+    \ - 1};\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 9 \"Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp\"\
+    \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
+    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  ll n;\r\n  std::cin\
+    \ >> n;\r\n  auto tree = mtd::Graph<int, bool>(n);\r\n  for (int f = 0; f < n;\
+    \ ++f) {\r\n    ll k;\r\n    std::cin >> k;\r\n    for (int _ = 0; _ < k; ++_)\
+    \ {\r\n      int t;\r\n      std::cin >> t;\r\n      tree.addEdge(f, t);\r\n \
+    \   }\r\n  }\r\n\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n \
+    \ int q;\r\n  std::cin >> q;\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int u,\
+    \ v;\r\n    std::cin >> u >> v;\r\n    std::cout << hld.lca(u, v) << std::endl;\r\
+    \n  }\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
-    \r\n\r\n#include <iostream>\r\n\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
+    \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#include \"./../../../Library/Graph/Graph.hpp\"\
     \r\n#include \"./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp\"\r\n\
-    \r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
-    \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\n  cin >> n;\r\n  auto\
+    // end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\
+    \n  std::ios::sync_with_stdio(0);\r\n\r\n  ll n;\r\n  std::cin >> n;\r\n  auto\
     \ tree = mtd::Graph<int, bool>(n);\r\n  for (int f = 0; f < n; ++f) {\r\n    ll\
-    \ k;\r\n    cin >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n\
-    \      cin >> t;\r\n      tree.addEdge(f, t);\r\n    }\r\n  }\r\n\r\n  auto hld\
-    \ = mtd::HeavyLightDecomposition(tree);\r\n\r\n  int q;\r\n  cin >> q;\r\n  for\
-    \ (int _ = 0; _ < q; ++_) {\r\n    int u, v;\r\n    cin >> u >> v;\r\n    cout\
-    \ << hld.lca(u, v) << endl;\r\n  }\r\n}\r\n"
+    \ k;\r\n    std::cin >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\
+    \n      std::cin >> t;\r\n      tree.addEdge(f, t);\r\n    }\r\n  }\r\n\r\n  auto\
+    \ hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n  int q;\r\n  std::cin >> q;\r\
+    \n  for (int _ = 0; _ < q; ++_) {\r\n    int u, v;\r\n    std::cin >> u >> v;\r\
+    \n    std::cout << hld.lca(u, v) << std::endl;\r\n  }\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-11 02:10:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp

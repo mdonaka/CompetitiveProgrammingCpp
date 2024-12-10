@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -43,20 +43,21 @@ data:
     \ { return c(m_v); }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\
     \n\r\n#include <deque>\r\n#line 5 \"Library/DataStructure/SegmentTree.hpp\"\n\
     #include <utility>\r\n#line 7 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n\
-    #line 2 \"Library/Algebraic/Monoid.hpp\"\nnamespace mtd {\n\n  template <class\
-    \ S,    // set\n            S element,  // identity element\n            class\
-    \ op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
-    \ op, S, S>\n  struct Monoid {\n    using value_type = S;\n    constexpr static\
-    \ S _element = element;\n    using op_type = op;\n\n    S m_val;\n    constexpr\
-    \ Monoid(S val) : m_val(val) {}\n    constexpr Monoid() : Monoid(element) {}\n\
-    \    constexpr Monoid binaryOperation(const Monoid& m2) const {\n      return\
-    \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os,\n                                    const Monoid<S, element, op>& m) {\n\
-    \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
-    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
-    \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
-    \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
-    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    #line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#line 4 \"Library/Algebraic/Monoid.hpp\"\
+    \n\nnamespace mtd {\n\n  template <class S,    // set\n            S element,\
+    \  // identity element\n            class op    // binary operation\n        \
+    \    >\n  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid {\n   \
+    \ using value_type = S;\n    constexpr static S _element = element;\n    using\
+    \ op_type = op;\n\n    S m_val;\n    constexpr Monoid(S val) : m_val(val) {}\n\
+    \    constexpr Monoid() : Monoid(element) {}\n    constexpr Monoid binaryOperation(const\
+    \ Monoid& m2) const {\n      return op()(m_val, m2.m_val);\n    }\n    friend\
+    \ std::ostream& operator<<(std::ostream& os,\n                               \
+    \     const Monoid<S, element, op>& m) {\n      return os << m.m_val;\n    }\n\
+    \  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
+    \ auto, typename> typename S>\n    concept is_specialization_of = requires {\n\
+    \      typename std::enable_if_t<std::is_same_v<\n          T, S<typename T::value_type,\
+    \ T::_element, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n\
+    \  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/SegmentTree.hpp\"\
     \n\r\nnamespace mtd {\r\n\r\n  template <monoid Monoid>\r\n  class SegmentTree\
     \ {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid> m_node;\r\
@@ -129,7 +130,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/CoordinateCompression_comp.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 00:59:34+09:00'
+  timestamp: '2024-12-11 01:55:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/CoordinateCompression_comp.test.cpp

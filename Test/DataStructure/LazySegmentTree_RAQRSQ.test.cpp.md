@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/LazySegmentTree.hpp
     title: Library/DataStructure/LazySegmentTree.hpp
   _extendedRequiredBy: []
@@ -22,29 +22,29 @@ data:
     \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n\r\n#include <deque>\r\n#line 5 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n#include <utility>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\
-    \nnamespace mtd {\n\n  template <class S,    // set\n            S element,  //\
-    \ identity element\n            class op    // binary operation\n            >\n\
-    \  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid {\n    using value_type\
-    \ = S;\n    constexpr static S _element = element;\n    using op_type = op;\n\n\
-    \    S m_val;\n    constexpr Monoid(S val) : m_val(val) {}\n    constexpr Monoid()\
-    \ : Monoid(element) {}\n    constexpr Monoid binaryOperation(const Monoid& m2)\
-    \ const {\n      return op()(m_val, m2.m_val);\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os,\n                                    const Monoid<S,\
-    \ element, op>& m) {\n      return os << m.m_val;\n    }\n  };\n\n  namespace\
-    \ __detail {\n    template <typename T, template <typename, auto, typename> typename\
-    \ S>\n    concept is_specialization_of = requires {\n      typename std::enable_if_t<std::is_same_v<\n\
-    \          T, S<typename T::value_type, T::_element, typename T::op_type>>>;\n\
-    \    };\n  }  // namespace __detail\n\n  template <typename M>\n  concept monoid\
-    \ = __detail::is_specialization_of<M, Monoid>;\n\n}  // namespace mtd\n#line 9\
-    \ \"Library/DataStructure/LazySegmentTree.hpp\"\n\r\nnamespace mtd {\r\n  template\
-    \ <monoid Monoid, monoid MonoidOp, class op>\r\n  class LazySegmentTree {\r\n\
-    \  private:\r\n    const int m_size;\r\n    std::vector<Monoid> m_node;\r\n  \
-    \  std::vector<MonoidOp> m_lazy;\r\n    using S = decltype(Monoid().m_val);\r\n\
-    \r\n    constexpr int calcSize(int n) const {\r\n      int size = 1;\r\n     \
-    \ while (size < n) { size <<= 1; }\r\n      return size;\r\n    }\r\n\r\n    constexpr\
-    \ auto _lazy_update(int i, const MonoidOp& val) {\r\n      if (i >= (m_size <<\
-    \ 1) - 1) { return; }\r\n      m_lazy[i] = m_lazy[i].binaryOperation(val);\r\n\
-    \    }\r\n\r\n    constexpr auto _propagate(int i) {\r\n      m_node[i] = op()(m_node[i],\
+    \n\n#line 4 \"Library/Algebraic/Monoid.hpp\"\n\nnamespace mtd {\n\n  template\
+    \ <class S,    // set\n            S element,  // identity element\n         \
+    \   class op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
+    \ op, S, S>\n  struct Monoid {\n    using value_type = S;\n    constexpr static\
+    \ S _element = element;\n    using op_type = op;\n\n    S m_val;\n    constexpr\
+    \ Monoid(S val) : m_val(val) {}\n    constexpr Monoid() : Monoid(element) {}\n\
+    \    constexpr Monoid binaryOperation(const Monoid& m2) const {\n      return\
+    \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ os,\n                                    const Monoid<S, element, op>& m) {\n\
+    \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
+    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
+    \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
+    \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
+    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/LazySegmentTree.hpp\"\
+    \n\r\nnamespace mtd {\r\n  template <monoid Monoid, monoid MonoidOp, class op>\r\
+    \n  class LazySegmentTree {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid>\
+    \ m_node;\r\n    std::vector<MonoidOp> m_lazy;\r\n    using S = decltype(Monoid().m_val);\r\
+    \n\r\n    constexpr int calcSize(int n) const {\r\n      int size = 1;\r\n   \
+    \   while (size < n) { size <<= 1; }\r\n      return size;\r\n    }\r\n\r\n  \
+    \  constexpr auto _lazy_update(int i, const MonoidOp& val) {\r\n      if (i >=\
+    \ (m_size << 1) - 1) { return; }\r\n      m_lazy[i] = m_lazy[i].binaryOperation(val);\r\
+    \n    }\r\n\r\n    constexpr auto _propagate(int i) {\r\n      m_node[i] = op()(m_node[i],\
     \ m_lazy[i]);\r\n      _lazy_update((i << 1) + 1, m_lazy[i]);\r\n      _lazy_update((i\
     \ << 1) + 2, m_lazy[i]);\r\n      m_lazy[i] = MonoidOp();\r\n    }\r\n\r\n   \
     \ constexpr auto _update(int l, int r, int k, int nl, int nr,\r\n            \
@@ -133,7 +133,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 01:45:58+09:00'
+  timestamp: '2024-12-11 01:55:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp

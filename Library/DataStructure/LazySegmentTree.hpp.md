@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   _extendedRequiredBy: []
@@ -18,30 +18,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/LazySegmentTree.hpp\"\n\r\n#include\
     \ <deque>\r\n#include <iostream>\r\n#include <utility>\r\n#include <vector>\r\n\
-    \r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\nnamespace mtd {\n\n  template <class\
-    \ S,    // set\n            S element,  // identity element\n            class\
-    \ op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
-    \ op, S, S>\n  struct Monoid {\n    using value_type = S;\n    constexpr static\
-    \ S _element = element;\n    using op_type = op;\n\n    S m_val;\n    constexpr\
-    \ Monoid(S val) : m_val(val) {}\n    constexpr Monoid() : Monoid(element) {}\n\
-    \    constexpr Monoid binaryOperation(const Monoid& m2) const {\n      return\
-    \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os,\n                                    const Monoid<S, element, op>& m) {\n\
-    \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
-    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
-    \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
-    \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
-    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#line 4 \"Library/Algebraic/Monoid.hpp\"\
+    \n\nnamespace mtd {\n\n  template <class S,    // set\n            S element,\
+    \  // identity element\n            class op    // binary operation\n        \
+    \    >\n  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid {\n   \
+    \ using value_type = S;\n    constexpr static S _element = element;\n    using\
+    \ op_type = op;\n\n    S m_val;\n    constexpr Monoid(S val) : m_val(val) {}\n\
+    \    constexpr Monoid() : Monoid(element) {}\n    constexpr Monoid binaryOperation(const\
+    \ Monoid& m2) const {\n      return op()(m_val, m2.m_val);\n    }\n    friend\
+    \ std::ostream& operator<<(std::ostream& os,\n                               \
+    \     const Monoid<S, element, op>& m) {\n      return os << m.m_val;\n    }\n\
+    \  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
+    \ auto, typename> typename S>\n    concept is_specialization_of = requires {\n\
+    \      typename std::enable_if_t<std::is_same_v<\n          T, S<typename T::value_type,\
+    \ T::_element, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n\
+    \  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <monoid Monoid, monoid MonoidOp, class op>\r\
     \n  class LazySegmentTree {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid>\
@@ -182,8 +183,8 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-11 01:45:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-12-11 01:55:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -22,48 +22,49 @@ data:
     \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/DataStructure/SegmentTree.hpp\"\
     \n\r\n#include <deque>\r\n#line 5 \"Library/DataStructure/SegmentTree.hpp\"\n\
     #include <utility>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algebraic/Monoid.hpp\"\
-    \nnamespace mtd {\n\n  template <class S,    // set\n            S element,  //\
-    \ identity element\n            class op    // binary operation\n            >\n\
-    \  requires std::is_invocable_r_v<S, op, S, S>\n  struct Monoid {\n    using value_type\
-    \ = S;\n    constexpr static S _element = element;\n    using op_type = op;\n\n\
-    \    S m_val;\n    constexpr Monoid(S val) : m_val(val) {}\n    constexpr Monoid()\
-    \ : Monoid(element) {}\n    constexpr Monoid binaryOperation(const Monoid& m2)\
-    \ const {\n      return op()(m_val, m2.m_val);\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os,\n                                    const Monoid<S,\
-    \ element, op>& m) {\n      return os << m.m_val;\n    }\n  };\n\n  namespace\
-    \ __detail {\n    template <typename T, template <typename, auto, typename> typename\
-    \ S>\n    concept is_specialization_of = requires {\n      typename std::enable_if_t<std::is_same_v<\n\
-    \          T, S<typename T::value_type, T::_element, typename T::op_type>>>;\n\
-    \    };\n  }  // namespace __detail\n\n  template <typename M>\n  concept monoid\
-    \ = __detail::is_specialization_of<M, Monoid>;\n\n}  // namespace mtd\n#line 9\
-    \ \"Library/DataStructure/SegmentTree.hpp\"\n\r\nnamespace mtd {\r\n\r\n  template\
-    \ <monoid Monoid>\r\n  class SegmentTree {\r\n  private:\r\n    const int m_size;\r\
-    \n    std::vector<Monoid> m_node;\r\n    using S = decltype(Monoid().m_val);\r\
-    \n\r\n    constexpr int calcSize(int n) const {\r\n      int size = 1;\r\n   \
-    \   while (size < n) { size <<= 1; }\r\n      return size;\r\n    }\r\n\r\n  \
-    \  template <class Lambda>\r\n    constexpr auto _update_op(int itr, Monoid&&\
-    \ val, const Lambda& op) {\r\n      int i = itr + m_size - 1;\r\n      m_node[i]\
-    \ = op(m_node[i], std::forward<decltype(val)>(val));\r\n      while (i) {\r\n\
-    \        i = (i - 1) >> 1;\r\n        m_node[i] = m_node[(i << 1) | 1].binaryOperation(m_node[(i\
-    \ + 1) << 1]);\r\n      }\r\n    }\r\n\r\n    constexpr auto _query(int _l, int\
-    \ _r) const {\r\n      _l = std::max(_l, 0);\r\n      _r = std::min(_r, m_size\
-    \ - 1);\r\n      auto l = _l + m_size;\r\n      auto r = _r + m_size;\r\n    \
-    \  auto lm = Monoid();\r\n      auto rm = Monoid();\r\n      while (l <= r) {\r\
-    \n        if (l & 1) {\r\n          lm = lm.binaryOperation(m_node[l - 1]);\r\n\
-    \          ++l;\r\n        }\r\n        if (!(r & 1)) {\r\n          rm = m_node[r\
-    \ - 1].binaryOperation(rm);\r\n          --r;\r\n        }\r\n        l >>= 1,\
-    \ r >>= 1;\r\n      }\r\n      return lm.binaryOperation(rm);\r\n    }\r\n\r\n\
-    \    constexpr auto _construct(const std::vector<S>& vec) {\r\n      for (unsigned\
-    \ int i = 0; i < vec.size(); ++i) {\r\n        m_node[i + m_size - 1] = Monoid(vec[i]);\r\
-    \n      }\r\n      for (int i = m_size - 2; i >= 0; --i) {\r\n        m_node[i]\
-    \ = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n\
-    \    }\r\n\r\n  public:\r\n    SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size\
-    \ << 1) - 1) {}\r\n    SegmentTree(int n, const std::vector<S>& vec) : SegmentTree(n)\
-    \ {\r\n      _construct(vec);\r\n    }\r\n\r\n    template <class Lambda>\r\n\
-    \    constexpr auto update_op(int itr, Monoid&& val, const Lambda& op) {\r\n \
-    \     return _update_op(itr, std::forward<Monoid>(val), op);\r\n    }\r\n    constexpr\
-    \ auto update(int itr, Monoid&& val) {\r\n      return update_op(itr, std::forward<Monoid>(val),\r\
-    \n                       [](const Monoid&, const Monoid& m2) { return m2; });\r\
+    \n\n#line 4 \"Library/Algebraic/Monoid.hpp\"\n\nnamespace mtd {\n\n  template\
+    \ <class S,    // set\n            S element,  // identity element\n         \
+    \   class op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
+    \ op, S, S>\n  struct Monoid {\n    using value_type = S;\n    constexpr static\
+    \ S _element = element;\n    using op_type = op;\n\n    S m_val;\n    constexpr\
+    \ Monoid(S val) : m_val(val) {}\n    constexpr Monoid() : Monoid(element) {}\n\
+    \    constexpr Monoid binaryOperation(const Monoid& m2) const {\n      return\
+    \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ os,\n                                    const Monoid<S, element, op>& m) {\n\
+    \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
+    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
+    \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
+    \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
+    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/SegmentTree.hpp\"\
+    \n\r\nnamespace mtd {\r\n\r\n  template <monoid Monoid>\r\n  class SegmentTree\
+    \ {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid> m_node;\r\
+    \n    using S = decltype(Monoid().m_val);\r\n\r\n    constexpr int calcSize(int\
+    \ n) const {\r\n      int size = 1;\r\n      while (size < n) { size <<= 1; }\r\
+    \n      return size;\r\n    }\r\n\r\n    template <class Lambda>\r\n    constexpr\
+    \ auto _update_op(int itr, Monoid&& val, const Lambda& op) {\r\n      int i =\
+    \ itr + m_size - 1;\r\n      m_node[i] = op(m_node[i], std::forward<decltype(val)>(val));\r\
+    \n      while (i) {\r\n        i = (i - 1) >> 1;\r\n        m_node[i] = m_node[(i\
+    \ << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n    }\r\n\r\n\
+    \    constexpr auto _query(int _l, int _r) const {\r\n      _l = std::max(_l,\
+    \ 0);\r\n      _r = std::min(_r, m_size - 1);\r\n      auto l = _l + m_size;\r\
+    \n      auto r = _r + m_size;\r\n      auto lm = Monoid();\r\n      auto rm =\
+    \ Monoid();\r\n      while (l <= r) {\r\n        if (l & 1) {\r\n          lm\
+    \ = lm.binaryOperation(m_node[l - 1]);\r\n          ++l;\r\n        }\r\n    \
+    \    if (!(r & 1)) {\r\n          rm = m_node[r - 1].binaryOperation(rm);\r\n\
+    \          --r;\r\n        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n     \
+    \ return lm.binaryOperation(rm);\r\n    }\r\n\r\n    constexpr auto _construct(const\
+    \ std::vector<S>& vec) {\r\n      for (unsigned int i = 0; i < vec.size(); ++i)\
+    \ {\r\n        m_node[i + m_size - 1] = Monoid(vec[i]);\r\n      }\r\n      for\
+    \ (int i = m_size - 2; i >= 0; --i) {\r\n        m_node[i] = m_node[(i << 1) |\
+    \ 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n    }\r\n\r\n  public:\r\
+    \n    SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size << 1) - 1) {}\r\
+    \n    SegmentTree(int n, const std::vector<S>& vec) : SegmentTree(n) {\r\n   \
+    \   _construct(vec);\r\n    }\r\n\r\n    template <class Lambda>\r\n    constexpr\
+    \ auto update_op(int itr, Monoid&& val, const Lambda& op) {\r\n      return _update_op(itr,\
+    \ std::forward<Monoid>(val), op);\r\n    }\r\n    constexpr auto update(int itr,\
+    \ Monoid&& val) {\r\n      return update_op(itr, std::forward<Monoid>(val),\r\n\
+    \                       [](const Monoid&, const Monoid& m2) { return m2; });\r\
     \n    }\r\n    constexpr auto add(int itr, Monoid&& val) {\r\n      return update_op(itr,\
     \ std::forward<Monoid>(val),\r\n                       [](const Monoid& m1, const\
     \ Monoid& m2) {\r\n                         return Monoid(m1.m_val + m2.m_val);\r\
@@ -97,7 +98,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/SegmentTree_RSQ.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 01:15:34+09:00'
+  timestamp: '2024-12-11 01:55:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SegmentTree_RSQ.test.cpp
