@@ -17,8 +17,8 @@ signed main() {
   std::cin >> n >> q;
 
   std::vector<std::pair<long long, long long>> v(n, {0, 1});
-  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM, mtd::Type::M_ADD,
-                                      mtd::Type::OP_SUM_ADD>(n, v);
+  auto segtree = mtd::LazySegmentTree<mtd::type::M_SUM, mtd::type::M_ADD,
+                                      mtd::type::OP_SUM_ADD>(n, v);
 
   for (int _ = 0; _ < q; ++_) {
     int k;

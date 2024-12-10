@@ -16,8 +16,8 @@ signed main() {
   std::cin >> n >> q;
 
   std::vector<long long> v(n, (1LL << 31) - 1);
-  auto segtree = mtd::LazySegmentTree<mtd::Type::M_MIN, mtd::Type::M_UP,
-                                      mtd::Type::OP_MIN_UP>(n, v);
+  auto segtree = mtd::LazySegmentTree<mtd::type::M_MIN, mtd::type::M_UP,
+                                      mtd::type::OP_MIN_UP>(n, v);
 
   for (int _ = 0; _ < q; ++_) {
     int k;
