@@ -1,17 +1,22 @@
 #pragma once
+
 #include <cmath>
 #include <stdexcept>
 #include <vector>
 
+#include "../Algebraic/SemiGroup.hpp"
+
 namespace mtd {
-  template <class SG>
+
+  template <semigroup SG>
   class DisjointSparseTable {
-    using S = decltype(SG::Type());
+    using S = typename SG::value_type;
 
     const int m_n;
     const std::vector<std::vector<SG>> m_table;
 
-    static auto accumulation(int n, const std::vector<S>& a, int l, int r) {
+    constexpr static auto accumulation(int n, const std::vector<S>& a, int l,
+                                       int r) {
       auto mid = (r + l) >> 1;
       r = std::min(n, r);
       int size = r - l;
@@ -31,7 +36,7 @@ namespace mtd {
       return acc;
     }
 
-    static auto constructTable(int n, const std::vector<S>& a) {
+    constexpr static auto constructTable(int n, const std::vector<S>& a) {
       std::vector<std::vector<SG>> table;
       table.reserve(std::log2(n) + 1);
       table.emplace_back(a.begin(), a.end());
@@ -51,7 +56,7 @@ namespace mtd {
       return table;
     }
 
-    static auto msb(int x) {
+    constexpr static auto msb(int x) {
       auto idx = 0;
       while (x > 0) {
         ++idx;
@@ -64,28 +69,13 @@ namespace mtd {
     DisjointSparseTable(int n, const std::vector<S>& a)
         : m_n(n), m_table(constructTable(n, a)) {}
 
-    auto get(int l, int r) const {
+    constexpr auto get(int l, int r) const {
       if (r < l) { throw std::runtime_error("ERROR! `l` must less than `r`"); }
       l = std::max(l, 0);
       r = std::min(r, m_n - 1);
       if (l == r) { return m_table[0][l].m_val; }
       auto idx = msb(l ^ r);
       return m_table[idx][l].binaryOperation(m_table[idx][r]).m_val;
-    }
-  };
-  template <class S,  // 要素の型
-            class T   // 2項演算子
-            >
-  struct SemiGroup {
-    static inline auto Type() { return S(); }
-    S m_val;
-    SemiGroup(S val) : m_val(val) {}
-    SemiGroup binaryOperation(const SemiGroup& m2) const {
-      return T()(m_val, m2.m_val);
-    }
-    friend std::ostream& operator<<(std::ostream& os,
-                                    const SemiGroup<S, T>& m) {
-      return os << m.m_val;
     }
   };
 }  // namespace mtd

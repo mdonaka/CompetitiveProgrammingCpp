@@ -3,43 +3,43 @@
 #include <iostream>
 #include <unordered_set>
 
+// begin:tag includes
 #include "./../../Library/DataStructure/DisjointSparseTable.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
-
-struct F {
-  auto operator()(ll x, ll y) { return x ^ y; }
-};
-using SG = mtd::SemiGroup<ll, F>;
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   ll n, k;
-  cin >> n >> k;
+  std::cin >> n >> k;
 
   std::vector<ll> a;
   a.reserve(n);
   for (int _ = 0; _ < n; ++_) {
     ll x;
-    cin >> x;
+    std::cin >> x;
     a.emplace_back(x);
   }
 
+  auto op = [](ll x, ll y) { return x ^ y; };
+  using SG = mtd::SemiGroup<ll, decltype(op)>;
   auto dst = mtd::DisjointSparseTable<SG>(n, a);
+
   std::unordered_set<ll> st;
   for (int i = 0; i < n; ++i) { st.emplace(dst.get(0, i) ^ k); }
 
   if (st.find(0) != st.end()) {
-    cout << "Yes" << endl;
+    std::cout << "Yes" << std::endl;
     return 0;
   }
   for (int i = 0; i < n; ++i) {
     if (st.find(dst.get(0, i)) != st.end()) {
-      cout << "Yes" << endl;
+      std::cout << "Yes" << std::endl;
       return 0;
     }
   }
-  cout << "No" << endl;
+  std::cout << "No" << std::endl;
 }
