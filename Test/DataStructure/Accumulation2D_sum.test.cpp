@@ -2,16 +2,18 @@
 
 #include <iostream>
 
+// begin:tag includes
 #include "./../../Library/DataStructure/Accumulation2D.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   int n;
-  cin >> n;
+  std::cin >> n;
 
   constexpr ll size = 3e3 + 1;
 
@@ -19,18 +21,18 @@ signed main() {
   rv.reserve(n);
   for (int _ = 0; _ < n; ++_) {
     int r;
-    cin >> r;
+    std::cin >> r;
     rv.emplace_back(r);
   }
   std::vector<ll> gc(size), bc(size);
   for (int _ = 0; _ < n; ++_) {
     int b;
-    cin >> b;
+    std::cin >> b;
     ++bc[b];
   }
   for (int _ = 0; _ < n; ++_) {
     int g;
-    cin >> g;
+    std::cin >> g;
     ++gc[g];
   }
 
@@ -43,5 +45,5 @@ signed main() {
 
   ll ans = 0;
   for (const auto& r : rv) { ans += acc.get(0, r + 1, r, 2 * size - 1); }
-  cout << ans << endl;
+  std::cout << ans << std::endl;
 }
