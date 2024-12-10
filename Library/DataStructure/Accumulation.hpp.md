@@ -42,10 +42,10 @@ data:
     \                      typename T::op_type, typename T::inv_type>>>;\n    };\n\
     \  }  // namespace __detail\n\n  template <typename G>\n  concept group = __detail::is_specialization_of<G,\
     \ Group>;\n\n}  // namespace mtd\n#line 7 \"Library/DataStructure/Accumulation.hpp\"\
-    \n\r\nnamespace mtd {\r\n\r\n  namespace Type {\r\n\r\n    using inv = decltype([](auto\
+    \n\r\nnamespace mtd {\r\n\r\n  namespace type {\r\n\r\n    using inv = decltype([](auto\
     \ x) { return -x; });\r\n    using op = decltype([](auto x, auto y) { return x\
     \ + y; });\r\n    template <class P>\r\n    using AdditiveGroup = Group<P, P(0),\
-    \ op, inv>;\r\n\r\n  }  // namespace Type\r\n\r\n  template <group Group = Type::AdditiveGroup<long\
+    \ op, inv>;\r\n\r\n  }  // namespace type\r\n\r\n  template <group Group = type::AdditiveGroup<long\
     \ long>>\r\n  class Accumulation {\r\n    using S = decltype(Group().m_val);\r\
     \n\r\n    const int size;\r\n    std::vector<Group> sumList;\r\n\r\n  public:\r\
     \n    constexpr Accumulation() = delete;\r\n    constexpr Accumulation(const std::vector<Group>&\
@@ -62,11 +62,11 @@ data:
     \n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n      return\
     \ os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <algorithm>\r\n#include <vector>\r\n\r\n#include\
-    \ \"../Algebraic/Group.hpp\"\r\n\r\nnamespace mtd {\r\n\r\n  namespace Type {\r\
+    \ \"../Algebraic/Group.hpp\"\r\n\r\nnamespace mtd {\r\n\r\n  namespace type {\r\
     \n\r\n    using inv = decltype([](auto x) { return -x; });\r\n    using op = decltype([](auto\
     \ x, auto y) { return x + y; });\r\n    template <class P>\r\n    using AdditiveGroup\
-    \ = Group<P, P(0), op, inv>;\r\n\r\n  }  // namespace Type\r\n\r\n  template <group\
-    \ Group = Type::AdditiveGroup<long long>>\r\n  class Accumulation {\r\n    using\
+    \ = Group<P, P(0), op, inv>;\r\n\r\n  }  // namespace type\r\n\r\n  template <group\
+    \ Group = type::AdditiveGroup<long long>>\r\n  class Accumulation {\r\n    using\
     \ S = decltype(Group().m_val);\r\n\r\n    const int size;\r\n    std::vector<Group>\
     \ sumList;\r\n\r\n  public:\r\n    constexpr Accumulation() = delete;\r\n    constexpr\
     \ Accumulation(const std::vector<Group>& v)\r\n        : size(v.size()), sumList(size\
@@ -87,7 +87,7 @@ data:
   path: Library/DataStructure/Accumulation.hpp
   requiredBy:
   - Library/DataStructure/Accumulation2D.hpp
-  timestamp: '2024-12-11 02:34:52+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/Accumulation_sum.test.cpp

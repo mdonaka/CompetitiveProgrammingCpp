@@ -43,10 +43,10 @@ data:
     \ = __detail::is_specialization_of<G, Group>;\n\n}  // namespace mtd\n#line 2\
     \ \"Library/DataStructure/Accumulation.hpp\"\n\r\n#include <algorithm>\r\n#line\
     \ 5 \"Library/DataStructure/Accumulation.hpp\"\n\r\n#line 7 \"Library/DataStructure/Accumulation.hpp\"\
-    \n\r\nnamespace mtd {\r\n\r\n  namespace Type {\r\n\r\n    using inv = decltype([](auto\
+    \n\r\nnamespace mtd {\r\n\r\n  namespace type {\r\n\r\n    using inv = decltype([](auto\
     \ x) { return -x; });\r\n    using op = decltype([](auto x, auto y) { return x\
     \ + y; });\r\n    template <class P>\r\n    using AdditiveGroup = Group<P, P(0),\
-    \ op, inv>;\r\n\r\n  }  // namespace Type\r\n\r\n  template <group Group = Type::AdditiveGroup<long\
+    \ op, inv>;\r\n\r\n  }  // namespace type\r\n\r\n  template <group Group = type::AdditiveGroup<long\
     \ long>>\r\n  class Accumulation {\r\n    using S = decltype(Group().m_val);\r\
     \n\r\n    const int size;\r\n    std::vector<Group> sumList;\r\n\r\n  public:\r\
     \n    constexpr Accumulation() = delete;\r\n    constexpr Accumulation(const std::vector<Group>&\
@@ -62,7 +62,7 @@ data:
     \                                          const Accumulation<Group>& acc) {\r\
     \n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n      return\
     \ os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 6 \"Library/DataStructure/Accumulation2D.hpp\"\
-    \n\r\nnamespace mtd {\r\n\r\n  template <group Group = Type::AdditiveGroup<long\
+    \n\r\nnamespace mtd {\r\n\r\n  template <group Group = type::AdditiveGroup<long\
     \ long>>\r\n  class Accumulation2D {\r\n  private:\r\n    using S = decltype(Group().m_val);\r\
     \n\r\n    const int h;\r\n    const int w;\r\n    std::vector<std::vector<Group>>\
     \ sumList;\r\n\r\n  public:\r\n    constexpr Accumulation2D() = delete;\r\n  \
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation2D_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:34:52+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation2D_sum.test.cpp

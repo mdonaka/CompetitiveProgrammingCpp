@@ -79,7 +79,7 @@ data:
     \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
     \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
     \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace Type {\r\n  \
+    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
     \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
     \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
     \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
@@ -108,7 +108,7 @@ data:
     \ m.m_val.second});\r\n    });\r\n    using OP_MIN_ADD = decltype([](const M_MIN&\
     \ m, const M_ADD& m2) {\r\n      return M_MIN{m.m_val + m2.m_val};\r\n    });\r\
     \n    using OP_MAX_ADD = decltype([](const M_MAX& m, const M_ADD& m2) {\r\n  \
-    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace Type\r\
+    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace type\r\
     \n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <deque>\r\n#include <iostream>\r\n#include <utility>\r\
     \n#include <vector>\r\n\r\n#include \"../Algebraic/Monoid.hpp\"\r\n\r\nnamespace\
@@ -147,7 +147,7 @@ data:
     \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
     \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
     \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace Type {\r\n  \
+    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
     \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
     \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
     \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
@@ -176,14 +176,14 @@ data:
     \ m.m_val.second});\r\n    });\r\n    using OP_MIN_ADD = decltype([](const M_MIN&\
     \ m, const M_ADD& m2) {\r\n      return M_MIN{m.m_val + m2.m_val};\r\n    });\r\
     \n    using OP_MAX_ADD = decltype([](const M_MAX& m, const M_ADD& m2) {\r\n  \
-    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace Type\r\
+    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace type\r\
     \n}  // namespace mtd\r\n"
   dependsOn:
   - Library/Algebraic/Monoid.hpp
   isVerificationFile: false
   path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-11 01:55:28+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp

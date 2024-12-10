@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
+  - icon: ':warning:'
+    path: Library/Utility/Tools.hpp
+    title: Library/Utility/Tools.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
@@ -17,11 +20,15 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Main/includes.hpp\"\n\n#line 2 \"Library/Range/istream.hpp\"\
-    \n\n#include <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#include <iostream>\n\
-    #line 5 \"Library/Utility/io.hpp\"\n#include <type_traits>\n#include <vector>\n\
-    \nnamespace mtd {\n  namespace io {\n\n    namespace type {\n      template <class\
-    \ T, int Pre = 1, int Size = 0>\n      struct vec {\n        using value_type\
+  bundledCode: "#line 2 \"Library/Main/includes.hpp\"\n\n#include <algorithm>\n#include\
+    \ <bitset>\n#include <cmath>\n#include <deque>\n#include <iomanip>\n#include <iostream>\n\
+    #include <list>\n#include <map>\n#include <memory>\n#include <numeric>\n#include\
+    \ <random>\n#include <ranges>\n#include <set>\n#include <stdexcept>\n#include\
+    \ <string>\n#include <vector>\n\n#line 2 \"Library/Range/istream.hpp\"\n\n#line\
+    \ 4 \"Library/Range/istream.hpp\"\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line\
+    \ 5 \"Library/Utility/io.hpp\"\n#include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\
+    \n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n      template\
+    \ <class T, int Pre = 1, int Size = 0>\n      struct vec {\n        using value_type\
     \ = T;\n        static constexpr int pre = Pre;\n        static constexpr int\
     \ size = Size;\n      };\n      template <class T>\n      concept is_vec = requires\
     \ {\n        std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;\n\
@@ -69,24 +76,41 @@ data:
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
-    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 5 \"Library/Main/includes.hpp\"\
-    \n\nnamespace mtd {\n\n  template <class T, int Pre = 1, int Size = 0>\n  using\
-    \ tvec = mtd::io::type::vec<T, Pre, Size>;\n  using mtd::io::in;\n\n  inline constexpr\
-    \ auto i = std::views::iota;\n  template <class... Args>\n  inline constexpr auto\
-    \ ins = mtd::views::istream<Args...>;\n}  // namespace mtd\n"
-  code: "#pragma once\n\n#include \"../Range/istream.hpp\"\n#include \"../Utility/io.hpp\"\
-    \n\nnamespace mtd {\n\n  template <class T, int Pre = 1, int Size = 0>\n  using\
+    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 2 \"Library/Utility/Tools.hpp\"\
+    \n\n#line 4 \"Library/Utility/Tools.hpp\"\n\nnamespace mtd {\n\n  template <class\
+    \ T, class S>\n  inline auto chmax(T& t, const S& s) {\n    if (s > t) {\n   \
+    \   t = s;\n      return true;\n    }\n    return false;\n  }\n\n  template <class\
+    \ T, class S>\n  inline auto chmin(T& t, const S& s) {\n    if (s < t) {\n   \
+    \   t = s;\n      return true;\n    }\n    return false;\n  }\n\n  template <class\
+    \ S>\n  constexpr auto vec(S x) {\n    return x;\n  }\n\n  template <class S,\
+    \ class... T>\n  constexpr auto vec(S x, int n, T... ns) {\n    return std::vector(n,\
+    \ vec(x, ns...));\n  }\n\n}  // namespace mtd\n#line 23 \"Library/Main/includes.hpp\"\
+    \n\nnamespace mtd {\n\n  struct Preprocessing {\n    Preprocessing() {\n     \
+    \ std::cin.tie(0);\n      std::ios::sync_with_stdio(0);\n    };\n  } _Preprocessing;\n\
+    \n  template <class T, int Pre = 1, int Size = 0>\n  using tvec = mtd::io::type::vec<T,\
+    \ Pre, Size>;\n  using mtd::io::in;\n\n  inline constexpr auto i = std::views::iota;\n\
+    \  template <class... Args>\n  inline constexpr auto ins = mtd::views::istream<Args...>;\n\
+    }  // namespace mtd\n"
+  code: "#pragma once\n\n#include <algorithm>\n#include <bitset>\n#include <cmath>\n\
+    #include <deque>\n#include <iomanip>\n#include <iostream>\n#include <list>\n#include\
+    \ <map>\n#include <memory>\n#include <numeric>\n#include <random>\n#include <ranges>\n\
+    #include <set>\n#include <stdexcept>\n#include <string>\n#include <vector>\n\n\
+    #include \"../Range/istream.hpp\"\n#include \"../Utility/Tools.hpp\"\n#include\
+    \ \"../Utility/io.hpp\"\n\nnamespace mtd {\n\n  struct Preprocessing {\n    Preprocessing()\
+    \ {\n      std::cin.tie(0);\n      std::ios::sync_with_stdio(0);\n    };\n  }\
+    \ _Preprocessing;\n\n  template <class T, int Pre = 1, int Size = 0>\n  using\
     \ tvec = mtd::io::type::vec<T, Pre, Size>;\n  using mtd::io::in;\n\n  inline constexpr\
     \ auto i = std::views::iota;\n  template <class... Args>\n  inline constexpr auto\
     \ ins = mtd::views::istream<Args...>;\n}  // namespace mtd\n"
   dependsOn:
   - Library/Range/istream.hpp
   - Library/Utility/io.hpp
+  - Library/Utility/Tools.hpp
   isVerificationFile: false
   path: Library/Main/includes.hpp
   requiredBy:
   - Library/Main/main.cpp
-  timestamp: '2024-08-29 12:31:05+09:00'
+  timestamp: '2024-12-11 03:13:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/includes.hpp

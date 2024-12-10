@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
     , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
     \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
-    \  File \"/opt/hostedtoolcache/Python/3.12.7/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/python.py\"\
+    \  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/python.py\"\
     , line 96, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "import dataclasses\nfrom collections import deque\nfrom pathlib import Path\n\
     from typing import Callable, Optional\n\nfrom tags.interface import TagsInterface\n\
@@ -45,16 +45,18 @@ data:
     \        return graph\n\n\n@dataclasses.dataclass(frozen=True)\nclass TagsIncludes(TagsInterface):\n\
     \    tag = \"includes\"\n\n    def replace(self, lst: list[str], filepath: Path)\
     \ -> list[str]:\n        source = Source(filepath)\n        graph = source.get_includes_graph()\n\
-    \        ret: list[str] = []\n\n        def f(filepath: Path, replace_source:\
-    \ list):\n            if \".cpp\" not in str(filepath):\n                exclude_words\
+    \n        def f(filepath: Path, replace_source: list, replace_include: set):\n\
+    \            if \".cpp\" not in str(filepath):\n                exclude_words\
     \ = [\n                    \"#pragma once\",\n                    '#include \"\
     ',\n                ]\n                add_line = \"\"\n                for line\
     \ in open_src(filepath):\n                    if all([ex not in line for ex in\
-    \ exclude_words]):\n                        add_line += line[:-1].split(\"//\"\
-    )[0]\n                        if \"#include <\" in line:\n                   \
-    \         add_line += \"\\n\"\n                replace_source.append(add_line\
-    \ + \"\\n\")\n\n        graph.topological_lambda(lambda filepath: f(filepath,\
-    \ ret))\n        return ret\n"
+    \ exclude_words]):\n                        if \"#include <\" in line:\n     \
+    \                       replace_include.add(line)\n                        else:\n\
+    \                            add_line += line[:-1].split(\"//\")[0]\n        \
+    \        replace_source.append(add_line + \"\\n\")\n\n        include_ret: set[str]\
+    \ = set()\n        src_ret: list[str] = []\n        graph.topological_lambda(lambda\
+    \ filepath: f(filepath, src_ret, include_ret))\n        return [line for line\
+    \ in include_ret] + src_ret\n"
   dependsOn: []
   isVerificationFile: false
   path: Command/tags/includes.py

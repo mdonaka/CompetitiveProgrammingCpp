@@ -39,10 +39,10 @@ data:
     \    };\n  }  // namespace __detail\n\n  template <typename G>\n  concept group\
     \ = __detail::is_specialization_of<G, Group>;\n\n}  // namespace mtd\n#line 7\
     \ \"Library/DataStructure/Accumulation.hpp\"\n\r\nnamespace mtd {\r\n\r\n  namespace\
-    \ Type {\r\n\r\n    using inv = decltype([](auto x) { return -x; });\r\n    using\
+    \ type {\r\n\r\n    using inv = decltype([](auto x) { return -x; });\r\n    using\
     \ op = decltype([](auto x, auto y) { return x + y; });\r\n    template <class\
     \ P>\r\n    using AdditiveGroup = Group<P, P(0), op, inv>;\r\n\r\n  }  // namespace\
-    \ Type\r\n\r\n  template <group Group = Type::AdditiveGroup<long long>>\r\n  class\
+    \ type\r\n\r\n  template <group Group = type::AdditiveGroup<long long>>\r\n  class\
     \ Accumulation {\r\n    using S = decltype(Group().m_val);\r\n\r\n    const int\
     \ size;\r\n    std::vector<Group> sumList;\r\n\r\n  public:\r\n    constexpr Accumulation()\
     \ = delete;\r\n    constexpr Accumulation(const std::vector<Group>& v)\r\n   \
@@ -90,7 +90,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_xor.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:34:52+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_xor.test.cpp

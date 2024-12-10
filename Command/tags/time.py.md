@@ -14,22 +14,24 @@ data:
     \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
     \  File \"/opt/hostedtoolcache/Python/3.12.8/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/python.py\"\
     , line 96, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
-  code: "import dataclasses\nfrom pathlib import Path\n\nfrom tags.interface import\
-    \ TagsInterface\n\n\n@dataclasses.dataclass(frozen=True)\nclass TagsDebug(TagsInterface):\n\
-    \    tag = \"debug\"\n\n    def replace(self, lst: list[str], filepath: Path)\
-    \ -> list[str]:\n        # TODO: \u3061\u3083\u3093\u3068\u5206\u5C90\u3059\u308B\
-    \n        return [\"#define dump(...)\\n\"]\n"
+  code: "import dataclasses\nfrom pathlib import Path\nimport datetime\n\nfrom tags.interface\
+    \ import TagsInterface\n\n\n@dataclasses.dataclass(frozen=True)\nclass TagsTime(TagsInterface):\n\
+    \    tag = \"time\"\n\n    def replace(self, lst: list[str], filepath: Path) ->\
+    \ list[str]:\n        now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))\n\
+    \        now = now.strftime(\"%Y-%m-%d %H:%M:%S %Z\")\n\n        return [\n  \
+    \          \"/*\\n\",\n            \" * Author:  cutmdo\\n\",\n            \"\
+    \ * Created: \" + str(now) + \"\\n\",\n            \" */\\n\",\n        ]\n"
   dependsOn: []
   isVerificationFile: false
-  path: Command/tags/debug.py
+  path: Command/tags/time.py
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: Command/tags/debug.py
+documentation_of: Command/tags/time.py
 layout: document
 redirect_from:
-- /library/Command/tags/debug.py
-- /library/Command/tags/debug.py.html
-title: Command/tags/debug.py
+- /library/Command/tags/time.py
+- /library/Command/tags/time.py.html
+title: Command/tags/time.py
 ---

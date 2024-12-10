@@ -23,6 +23,9 @@ data:
     - icon: ':warning:'
       path: Command/tags/selector.py
       title: Command/tags/selector.py
+    - icon: ':warning:'
+      path: Command/tags/time.py
+      title: Command/tags/time.py
   - name: Library/Algebraic
     pages:
     - icon: ':heavy_check_mark:'
@@ -248,6 +251,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
+    - icon: ':warning:'
+      path: Library/Utility/Tools.hpp
+      title: Library/Utility/Tools.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp

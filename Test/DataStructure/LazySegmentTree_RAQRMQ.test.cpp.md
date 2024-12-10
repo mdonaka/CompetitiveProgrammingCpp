@@ -72,7 +72,7 @@ data:
     \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
     \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
     \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace Type {\r\n  \
+    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
     \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
     \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
     \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
@@ -101,13 +101,13 @@ data:
     \ m.m_val.second});\r\n    });\r\n    using OP_MIN_ADD = decltype([](const M_MIN&\
     \ m, const M_ADD& m2) {\r\n      return M_MIN{m.m_val + m2.m_val};\r\n    });\r\
     \n    using OP_MAX_ADD = decltype([](const M_MAX& m, const M_ADD& m2) {\r\n  \
-    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace Type\r\
+    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace type\r\
     \n}  // namespace mtd\r\n#line 8 \"Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp\"\
     \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
     \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int n, q;\r\n\
     \  std::cin >> n >> q;\r\n\r\n  std::vector<long long> v(n);\r\n  auto segtree\
-    \ = mtd::LazySegmentTree<mtd::Type::M_MIN, mtd::Type::M_ADD,\r\n             \
-    \                         mtd::Type::OP_MIN_ADD>(n, v);\r\n\r\n  for (int _ =\
+    \ = mtd::LazySegmentTree<mtd::type::M_MIN, mtd::type::M_ADD,\r\n             \
+    \                         mtd::type::OP_MIN_ADD>(n, v);\r\n\r\n  for (int _ =\
     \ 0; _ < q; ++_) {\r\n    int k;\r\n    std::cin >> k;\r\n    if (k == 0) {\r\n\
     \      int s, t, x;\r\n      std::cin >> s >> t >> x;\r\n      segtree.update(s,\
     \ t, x);\r\n    } else {\r\n      int s, t;\r\n      std::cin >> s >> t;\r\n \
@@ -117,8 +117,8 @@ data:
     \r\n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
     \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int n, q;\r\n\
     \  std::cin >> n >> q;\r\n\r\n  std::vector<long long> v(n);\r\n  auto segtree\
-    \ = mtd::LazySegmentTree<mtd::Type::M_MIN, mtd::Type::M_ADD,\r\n             \
-    \                         mtd::Type::OP_MIN_ADD>(n, v);\r\n\r\n  for (int _ =\
+    \ = mtd::LazySegmentTree<mtd::type::M_MIN, mtd::type::M_ADD,\r\n             \
+    \                         mtd::type::OP_MIN_ADD>(n, v);\r\n\r\n  for (int _ =\
     \ 0; _ < q; ++_) {\r\n    int k;\r\n    std::cin >> k;\r\n    if (k == 0) {\r\n\
     \      int s, t, x;\r\n      std::cin >> s >> t >> x;\r\n      segtree.update(s,\
     \ t, x);\r\n    } else {\r\n      int s, t;\r\n      std::cin >> s >> t;\r\n \
@@ -129,7 +129,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 01:55:28+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp

@@ -78,7 +78,7 @@ data:
     \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
     \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
     \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace Type {\r\n  \
+    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
     \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
     \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
     \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
@@ -107,7 +107,7 @@ data:
     \ m.m_val.second});\r\n    });\r\n    using OP_MIN_ADD = decltype([](const M_MIN&\
     \ m, const M_ADD& m2) {\r\n      return M_MIN{m.m_val + m2.m_val};\r\n    });\r\
     \n    using OP_MAX_ADD = decltype([](const M_MAX& m, const M_ADD& m2) {\r\n  \
-    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace Type\r\
+    \    return M_MAX{m.m_val + m2.m_val};\r\n    });\r\n\r\n  }  // namespace type\r\
     \n}  // namespace mtd\r\n#line 4 \"Library/Graph/Graph.hpp\"\n#include <ranges>\r\
     \n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\n\r\nnamespace mtd {\r\
     \n  template <class Node = int, class Cost = long long>\r\n  class Graph {\r\n\
@@ -252,8 +252,8 @@ data:
     \ >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      std::cin\
     \ >> t;\r\n      tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t,\
     \ add);\r\n      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>>\
-    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM,\
-    \ mtd::Type::M_ADD,\r\n                                      mtd::Type::OP_SUM_ADD>(n\
+    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::type::M_SUM,\
+    \ mtd::type::M_ADD,\r\n                                      mtd::type::OP_SUM_ADD>(n\
     \ - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
     \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n  // val[hld.getEdgeId(i\
     \ + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n  ll\
@@ -274,8 +274,8 @@ data:
     \ >> k;\r\n    for (int _ = 0; _ < k; ++_) {\r\n      int t;\r\n      std::cin\
     \ >> t;\r\n      tree.addEdgeUndirected(f, add);\r\n      tree.addEdgeUndirected(t,\
     \ add);\r\n      ++add;\r\n    }\r\n  }\r\n\r\n  std::vector<std::pair<ll, ll>>\
-    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM,\
-    \ mtd::Type::M_ADD,\r\n                                      mtd::Type::OP_SUM_ADD>(n\
+    \ v(n - 1, {0, 1});\r\n  auto segtree = mtd::LazySegmentTree<mtd::type::M_SUM,\
+    \ mtd::type::M_ADD,\r\n                                      mtd::type::OP_SUM_ADD>(n\
     \ - 1, v);\r\n  // NOTE: \u521D\u671F\u5024\u304C\u542B\u307E\u308C\u308B\u5834\
     \u5408\u306FID\u9806\u306B\u4E26\u3073\u5909\u3048\u308B\r\n  // val[hld.getEdgeId(i\
     \ + n)] = v[i];\r\n  auto hld = mtd::HeavyLightDecomposition(tree);\r\n\r\n  ll\
@@ -294,7 +294,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:10:52+09:00'
+  timestamp: '2024-12-11 02:40:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
