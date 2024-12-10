@@ -1,5 +1,22 @@
 #pragma once
 
+#include <algorithm>
+#include <bitset>
+#include <cmath>
+#include <deque>
+#include <iomanip>
+#include <iostream>
+#include <list>
+#include <map>
+#include <memory>
+#include <numeric>
+#include <random>
+#include <ranges>
+#include <set>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
 #include "../Range/istream.hpp"
 #include "../Utility/Tools.hpp"
 #include "../Utility/io.hpp"
