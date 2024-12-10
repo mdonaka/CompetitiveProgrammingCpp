@@ -6,7 +6,7 @@
 
 namespace mtd {
 
-  template <class Group = Type::AdditiveGroup<long long>>
+  template <group Group = Type::AdditiveGroup<long long>>
   class Accumulation2D {
   private:
     using S = decltype(Group().m_val);
