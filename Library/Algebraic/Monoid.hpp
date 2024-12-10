@@ -1,4 +1,7 @@
+#pragma once
+
 #include <iostream>
+
 namespace mtd {
 
   template <class S,    // set
