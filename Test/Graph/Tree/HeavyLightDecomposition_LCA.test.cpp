@@ -3,24 +3,26 @@
 
 #include <iostream>
 
+// begin:tag includes
 #include "./../../../Library/Graph/Graph.hpp"
 #include "./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   ll n;
-  cin >> n;
+  std::cin >> n;
   auto tree = mtd::Graph<int, bool>(n);
   for (int f = 0; f < n; ++f) {
     ll k;
-    cin >> k;
+    std::cin >> k;
     for (int _ = 0; _ < k; ++_) {
       int t;
-      cin >> t;
+      std::cin >> t;
       tree.addEdge(f, t);
     }
   }
@@ -28,10 +30,10 @@ signed main() {
   auto hld = mtd::HeavyLightDecomposition(tree);
 
   int q;
-  cin >> q;
+  std::cin >> q;
   for (int _ = 0; _ < q; ++_) {
     int u, v;
-    cin >> u >> v;
-    cout << hld.lca(u, v) << endl;
+    std::cin >> u >> v;
+    std::cout << hld.lca(u, v) << std::endl;
   }
 }

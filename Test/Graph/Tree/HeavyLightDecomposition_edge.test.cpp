@@ -3,27 +3,29 @@
 
 #include <iostream>
 
+// begin:tag includes
 #include "./../../../Library/DataStructure/LazySegmentTree.hpp"
 #include "./../../../Library/Graph/Graph.hpp"
 #include "./../../../Library/Graph/Tree/HeavyLightDecomposition.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   ll n;
-  cin >> n;
+  std::cin >> n;
   auto size = n + n - 1;
   auto tree = mtd::Graph<int, bool>(size);
   ll add = n;
   for (int f = 0; f < n; ++f) {
     int k;
-    cin >> k;
+    std::cin >> k;
     for (int _ = 0; _ < k; ++_) {
       int t;
-      cin >> t;
+      std::cin >> t;
       tree.addEdgeUndirected(f, add);
       tree.addEdgeUndirected(t, add);
       ++add;
@@ -31,31 +33,31 @@ signed main() {
   }
 
   std::vector<std::pair<ll, ll>> v(n - 1, {0, 1});
-  auto segtree =
-      mtd::LazySegmentTree<mtd::M_S, mtd::M_A, mtd::OP_RAQ_RSQ>(n - 1, v);
+  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM, mtd::Type::M_ADD,
+                                      mtd::Type::OP_SUM_ADD>(n - 1, v);
   // NOTE: 初期値が含まれる場合はID順に並び変える
   // val[hld.getEdgeId(i + n)] = v[i];
   auto hld = mtd::HeavyLightDecomposition(tree);
 
   ll q;
-  cin >> q;
+  std::cin >> q;
   for (int _ = 0; _ < q; ++_) {
     ll k;
-    cin >> k;
+    std::cin >> k;
     if (k == 0) {
       ll v, w;
-      cin >> v >> w;
+      std::cin >> v >> w;
       for (const auto& [l, r] : hld.rangeEdge(0, v)) {
         segtree.update(l, r, w);
       }
     } else {
       ll u;
-      cin >> u;
+      std::cin >> u;
       ll ans = 0;
       for (const auto& [l, r] : hld.rangeEdge(0, u)) {
         ans += segtree.query(l, r).first;
       }
-      cout << ans << endl;
+      std::cout << ans << std::endl;
     }
   }
 }
