@@ -94,7 +94,7 @@ namespace mtd {
     }
   };
 
-  namespace Type {
+  namespace type {
     /* 各種頻出サンプル */
     using P = std::pair<long long, long long>;
     constexpr long long update_element = -1e18;
@@ -145,5 +145,5 @@ namespace mtd {
       return M_MAX{m.m_val + m2.m_val};
     });
 
-  }  // namespace Type
+  }  // namespace type
 }  // namespace mtd

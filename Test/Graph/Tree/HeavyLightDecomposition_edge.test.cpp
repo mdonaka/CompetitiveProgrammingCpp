@@ -33,8 +33,8 @@ signed main() {
   }
 
   std::vector<std::pair<ll, ll>> v(n - 1, {0, 1});
-  auto segtree = mtd::LazySegmentTree<mtd::Type::M_SUM, mtd::Type::M_ADD,
-                                      mtd::Type::OP_SUM_ADD>(n - 1, v);
+  auto segtree = mtd::LazySegmentTree<mtd::type::M_SUM, mtd::type::M_ADD,
+                                      mtd::type::OP_SUM_ADD>(n - 1, v);
   // NOTE: 初期値が含まれる場合はID順に並び変える
   // val[hld.getEdgeId(i + n)] = v[i];
   auto hld = mtd::HeavyLightDecomposition(tree);

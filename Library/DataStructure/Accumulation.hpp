@@ -7,16 +7,16 @@
 
 namespace mtd {
 
-  namespace Type {
+  namespace type {
 
     using inv = decltype([](auto x) { return -x; });
     using op = decltype([](auto x, auto y) { return x + y; });
     template <class P>
     using AdditiveGroup = Group<P, P(0), op, inv>;
 
-  }  // namespace Type
+  }  // namespace type
 
-  template <group Group = Type::AdditiveGroup<long long>>
+  template <group Group = type::AdditiveGroup<long long>>
   class Accumulation {
     using S = decltype(Group().m_val);
 
