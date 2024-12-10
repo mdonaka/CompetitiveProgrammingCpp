@@ -9,9 +9,9 @@ namespace mtd {
 
   template <int MOD, class T = long long>
   class ModInt {
+  public:
     T x;
 
-  public:
     constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}
     constexpr ModInt() : ModInt(0) {}
 
@@ -101,6 +101,9 @@ namespace mtd {
     // 比較演算
     constexpr auto operator!=(const ModInt<MOD, T>& m) const {
       return x != m.x;
+    }
+    constexpr auto operator==(const ModInt<MOD, T>& m) const {
+      return !(x != m.x);
     }
 
     // 入出力
