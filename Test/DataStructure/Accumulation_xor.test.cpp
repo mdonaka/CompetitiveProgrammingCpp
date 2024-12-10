@@ -3,46 +3,44 @@
 #include <iostream>
 #include <unordered_set>
 
+// begin:tag includes
 #include "./../../Library/DataStructure/Accumulation.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
-
-struct F_inv {
-  auto operator()(ll x) { return x; }
-};
-struct F_xor {
-  auto operator()(ll x, ll y) { return x ^ y; }
-};
-using G = mtd::Group<ll, 0, F_xor, F_inv>;
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   ll n, k;
-  cin >> n >> k;
+  std::cin >> n >> k;
 
   std::vector<ll> a;
   a.reserve(n);
   for (int _ = 0; _ < n; ++_) {
     ll x;
-    cin >> x;
+    std::cin >> x;
     a.emplace_back(x);
   }
 
+  auto inv = [](ll x) { return x; };
+  auto op = [](ll x, ll y) { return x ^ y; };
+  using G = mtd::Group<ll, 0, decltype(op), decltype(inv)>;
   auto acc = mtd::Accumulation<G>(a);
+
   std::unordered_set<ll> st;
   for (int i = 0; i < n; ++i) { st.emplace(acc.get(i) ^ k); }
 
   if (st.find(0) != st.end()) {
-    cout << "Yes" << endl;
+    std::cout << "Yes" << std::endl;
     return 0;
   }
   for (int i = 0; i < n; ++i) {
     if (st.find(acc.get(i)) != st.end()) {
-      cout << "Yes" << endl;
+      std::cout << "Yes" << std::endl;
       return 0;
     }
   }
-  cout << "No" << endl;
+  std::cout << "No" << std::endl;
 }

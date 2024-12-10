@@ -3,24 +3,26 @@
 #include <iostream>
 #include <map>
 
+// begin:tag includes
 #include "./../../Library/DataStructure/Accumulation.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   do {
     ll n, k;
-    cin >> n >> k;
+    std::cin >> n >> k;
     if (n == 0 && k == 0) { break; }
 
     std::vector<ll> a;
     a.reserve(n);
     for (int _ = 0; _ < n; ++_) {
       ll x;
-      cin >> x;
+      std::cin >> x;
       a.emplace_back(x);
     }
 
@@ -31,6 +33,6 @@ signed main() {
       auto val = acc.get(i, i + k - 1);
       ans = std::max(ans, val);
     }
-    cout << ans << endl;
+    std::cout << ans << std::endl;
   } while (true);
 }
