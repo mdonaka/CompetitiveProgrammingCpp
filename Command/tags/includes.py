@@ -80,9 +80,8 @@ class TagsIncludes(TagsInterface):
     def replace(self, lst: list[str], filepath: Path) -> list[str]:
         source = Source(filepath)
         graph = source.get_includes_graph()
-        ret: list[str] = []
 
-        def f(filepath: Path, replace_source: list):
+        def f(filepath: Path, replace_source: list, replace_include: set):
             if ".cpp" not in str(filepath):
                 exclude_words = [
                     "#pragma once",
@@ -91,10 +90,13 @@ class TagsIncludes(TagsInterface):
                 add_line = ""
                 for line in open_src(filepath):
                     if all([ex not in line for ex in exclude_words]):
-                        add_line += line[:-1].split("//")[0]
                         if "#include <" in line:
-                            add_line += "\n"
+                            replace_include.add(line)
+                        else:
+                            add_line += line[:-1].split("//")[0]
                 replace_source.append(add_line + "\n")
 
-        graph.topological_lambda(lambda filepath: f(filepath, ret))
-        return ret
+        include_ret: set[str] = set()
+        src_ret: list[str] = []
+        graph.topological_lambda(lambda filepath: f(filepath, src_ret, include_ret))
+        return [line for line in include_ret] + src_ret
