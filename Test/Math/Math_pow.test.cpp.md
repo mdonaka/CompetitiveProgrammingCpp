@@ -45,7 +45,7 @@ data:
     \    }\r\n    constexpr auto perm(int n, int r) const { return fact(n) * factInv(n\
     \ - r); }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Math/ModInt.hpp\"\
     \n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n  class ModInt\
-    \ {\n    T x;\n\n  public:\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
+    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
     \ + (x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\
     \u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n    \
     \  x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n\
@@ -79,10 +79,11 @@ data:
     \ m) {\n      return ModInt<MOD, T>(1) / m * t;\n    }\n\n    // \u5358\u9805\u6F14\
     \u7B97\n    constexpr auto operator-() const { return ModInt<MOD, T>(0 - x); }\n\
     \n    // \u6BD4\u8F03\u6F14\u7B97\n    constexpr auto operator!=(const ModInt<MOD,\
-    \ T>& m) const {\n      return x != m.x;\n    }\n\n    // \u5165\u51FA\u529B\n\
-    \    constexpr friend std::ostream& operator<<(std::ostream& os,\n           \
-    \                                   const ModInt<MOD, T>& m) {\n      return os\
-    \ << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
+    \ T>& m) const {\n      return x != m.x;\n    }\n    constexpr auto operator==(const\
+    \ ModInt<MOD, T>& m) const {\n      return !(x != m.x);\n    }\n\n    // \u5165\
+    \u51FA\u529B\n    constexpr friend std::ostream& operator<<(std::ostream& os,\n\
+    \                                              const ModInt<MOD, T>& m) {\n  \
+    \    return os << m.x;\n    }\n    constexpr friend std::istream& operator>>(std::istream&\
     \ is,\n                                              ModInt<MOD, T>& m) {\n  \
     \    return is >> m.x;\n    }\n\n    constexpr auto val() const { return x; }\n\
     \  };\n\n}  // namespace mtd\n#line 2 \"Library/Range/istream.hpp\"\n\n#include\
@@ -158,7 +159,7 @@ data:
   isVerificationFile: true
   path: Test/Math/Math_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-11-19 06:52:50+09:00'
+  timestamp: '2024-12-11 02:34:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/Math_pow.test.cpp

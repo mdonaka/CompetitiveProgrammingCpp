@@ -58,7 +58,10 @@ data:
     \ auto get(int l, int r) const {\r\n      if (r < l) { return Group::_element;\
     \ }\r\n      l = std::max(l, 0);\r\n      r = std::min(r, size - 1);\r\n     \
     \ return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n    }\r\
-    \n  };\r\n\r\n}  // namespace mtd\r\n#line 6 \"Library/DataStructure/Accumulation2D.hpp\"\
+    \n\r\n    constexpr friend std::ostream& operator<<(std::ostream& os,\r\n    \
+    \                                          const Accumulation<Group>& acc) {\r\
+    \n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n      return\
+    \ os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 6 \"Library/DataStructure/Accumulation2D.hpp\"\
     \n\r\nnamespace mtd {\r\n\r\n  template <group Group = Type::AdditiveGroup<long\
     \ long>>\r\n  class Accumulation2D {\r\n  private:\r\n    using S = decltype(Group().m_val);\r\
     \n\r\n    const int h;\r\n    const int w;\r\n    std::vector<std::vector<Group>>\
@@ -114,7 +117,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation2D_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:08:28+09:00'
+  timestamp: '2024-12-11 02:34:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation2D_sum.test.cpp

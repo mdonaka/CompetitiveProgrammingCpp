@@ -31,6 +31,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Monoid.hpp
       title: Library/Algebraic/Monoid.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Algebraic/SemiGroup.hpp
+      title: Library/Algebraic/SemiGroup.hpp
   - name: Library/Algorithms
     pages:
     - icon: ':heavy_check_mark:'

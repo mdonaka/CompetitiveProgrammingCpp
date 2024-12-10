@@ -54,7 +54,10 @@ data:
     \ auto get(int l, int r) const {\r\n      if (r < l) { return Group::_element;\
     \ }\r\n      l = std::max(l, 0);\r\n      r = std::min(r, size - 1);\r\n     \
     \ return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n    }\r\
-    \n  };\r\n\r\n}  // namespace mtd\r\n#line 8 \"Test/DataStructure/Accumulation_sum.test.cpp\"\
+    \n\r\n    constexpr friend std::ostream& operator<<(std::ostream& os,\r\n    \
+    \                                          const Accumulation<Group>& acc) {\r\
+    \n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n      return\
+    \ os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 8 \"Test/DataStructure/Accumulation_sum.test.cpp\"\
     \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
     \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  do {\r\n    ll\
     \ n, k;\r\n    std::cin >> n >> k;\r\n    if (n == 0 && k == 0) { break; }\r\n\
@@ -82,7 +85,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:06:57+09:00'
+  timestamp: '2024-12-11 02:34:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation_sum.test.cpp

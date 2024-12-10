@@ -57,7 +57,10 @@ data:
     \ auto get(int l, int r) const {\r\n      if (r < l) { return Group::_element;\
     \ }\r\n      l = std::max(l, 0);\r\n      r = std::min(r, size - 1);\r\n     \
     \ return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\n    }\r\
-    \n  };\r\n\r\n}  // namespace mtd\r\n"
+    \n\r\n    constexpr friend std::ostream& operator<<(std::ostream& os,\r\n    \
+    \                                          const Accumulation<Group>& acc) {\r\
+    \n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n      return\
+    \ os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <algorithm>\r\n#include <vector>\r\n\r\n#include\
     \ \"../Algebraic/Group.hpp\"\r\n\r\nnamespace mtd {\r\n\r\n  namespace Type {\r\
     \n\r\n    using inv = decltype([](auto x) { return -x; });\r\n    using op = decltype([](auto\
@@ -74,14 +77,17 @@ data:
     \ }\r\n    constexpr auto get(int l, int r) const {\r\n      if (r < l) { return\
     \ Group::_element; }\r\n      l = std::max(l, 0);\r\n      r = std::min(r, size\
     \ - 1);\r\n      return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;\r\
-    \n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n"
+    \n    }\r\n\r\n    constexpr friend std::ostream& operator<<(std::ostream& os,\r\
+    \n                                              const Accumulation<Group>& acc)\
+    \ {\r\n      for (const auto& x : acc.sumList) { os << x << \" \"; }\r\n     \
+    \ return os;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n"
   dependsOn:
   - Library/Algebraic/Group.hpp
   isVerificationFile: false
   path: Library/DataStructure/Accumulation.hpp
   requiredBy:
   - Library/DataStructure/Accumulation2D.hpp
-  timestamp: '2024-12-11 02:06:57+09:00'
+  timestamp: '2024-12-11 02:34:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/Accumulation_sum.test.cpp
