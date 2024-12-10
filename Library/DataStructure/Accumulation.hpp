@@ -41,6 +41,12 @@ namespace mtd {
       r = std::min(r, size - 1);
       return sumList[r + 1].binaryOperation(sumList[l].inverse()).m_val;
     }
+
+    constexpr friend std::ostream& operator<<(std::ostream& os,
+                                              const Accumulation<Group>& acc) {
+      for (const auto& x : acc.sumList) { os << x << " "; }
+      return os;
+    }
   };
 
 }  // namespace mtd
