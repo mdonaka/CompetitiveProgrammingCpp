@@ -30,8 +30,10 @@ namespace mtd {
     };
   } _Preprocessing;
 
-  template <class T, int Pre = 1, int Size = 0>
-  using tvec = mtd::io::type::vec<T, Pre, Size>;
+  template <class T>
+  using tvec = mtd::io::type::vec<T>;
+  template <class T>
+  using tmat = mtd::io::type::mat<T>;
   using mtd::io::in;
 
   inline constexpr auto i = std::views::iota;
