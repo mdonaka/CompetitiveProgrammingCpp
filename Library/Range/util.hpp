@@ -1,31 +1,15 @@
 #pragma once
 
 #include <algorithm>
-#include <functional>
 #include <iostream>
 #include <ranges>
+
+#include "../Utility/Tuple.hpp"
 
 namespace mtd {
   namespace ranges {
 
     namespace __detail {
-      template <class F, class T>
-      constexpr auto __tuple_transform(F&& f, T&& t) {
-        return std::apply(
-            [&]<class... Ts>(Ts&&... elems) {
-              return std::tuple<std::invoke_result_t<F&, Ts>...>(
-                  std::invoke(f, std::forward<Ts>(elems))...);
-            },
-            std::forward<T>(t));
-      }
-      template <class F, class T>
-      constexpr auto __tuple_for_each(F&& f, T&& t) {
-        std::apply(
-            [&]<class... Ts>(Ts&&... elems) {
-              (std::invoke(f, std::forward<Ts>(elems)), ...);
-            },
-            std::forward<T>(t));
-      }
       template <typename... T>
       concept __all_random_access = (std::ranges::random_access_range<T> &&
                                      ...);
@@ -65,11 +49,11 @@ namespace mtd {
         constexpr explicit iterator(const decltype(_M_current)& __current)
             : _M_current(__current) {}
         constexpr auto operator*() const {
-          return __detail::__tuple_transform([](auto& __i) { return *__i; },
-                                             _M_current);
+          return util::tuple_transform([](auto& __i) { return *__i; },
+                                       _M_current);
         }
         constexpr auto& operator++() {
-          __detail::__tuple_for_each([](auto& __i) { ++__i; }, _M_current);
+          util::tuple_for_each([](auto& __i) { ++__i; }, _M_current);
           return *this;
         }
         constexpr auto operator++(int) { return ++*this; }
@@ -83,7 +67,7 @@ namespace mtd {
         }
         constexpr auto& operator--() requires
             __detail::__all_bidirectional<_Range...> {
-          __detail::__tuple_for_each([](auto& __i) { --__i; }, _M_current);
+          util::tuple_for_each([](auto& __i) { --__i; }, _M_current);
           return *this;
         }
         constexpr auto operator--(
@@ -103,7 +87,7 @@ namespace mtd {
         }
         constexpr auto& operator+=(const difference_type n) requires
             __detail::__all_random_access<_Range...> {
-          __detail::__tuple_for_each([&n](auto& __i) { __i += n; }, _M_current);
+          util::tuple_for_each([&n](auto& __i) { __i += n; }, _M_current);
           return *this;
         }
         constexpr auto operator+(const difference_type n)
@@ -119,7 +103,7 @@ namespace mtd {
         }
         constexpr auto& operator-=(const difference_type n) requires
             __detail::__all_random_access<_Range...> {
-          __detail::__tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);
+          util::tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);
           return *this;
         }
         constexpr auto operator-(const difference_type n)
@@ -130,8 +114,8 @@ namespace mtd {
         }
         constexpr auto operator[](const difference_type n)
             const requires __detail::__all_random_access<_Range...> {
-          return __detail::__tuple_transform([&n](auto& __i) { return __i[n]; },
-                                             _M_current);
+          return util::tuple_transform([&n](auto& __i) { return __i[n]; },
+                                       _M_current);
         }
       };
 
@@ -157,10 +141,10 @@ namespace mtd {
       std::tuple<_Range...> __r;
       constexpr explicit zip_view(const _Range&... __r) : __r(__r...) {}
       constexpr auto begin() {
-        return iterator(__detail::__tuple_transform(std::ranges::begin, __r));
+        return iterator(util::tuple_transform(std::ranges::begin, __r));
       }
       constexpr auto end() {
-        return sentinel(__detail::__tuple_transform(std::ranges::end, __r));
+        return sentinel(util::tuple_transform(std::ranges::end, __r));
       }
     };
 
