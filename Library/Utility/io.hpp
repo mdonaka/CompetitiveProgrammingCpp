@@ -5,6 +5,9 @@
 #include <type_traits>
 #include <vector>
 
+#include "../Debug/Dump.hpp"
+#include "Tuple.hpp"
+
 namespace mtd {
   namespace io {
 
@@ -34,15 +37,26 @@ namespace mtd {
       std::cin >> x;
       return x;
     }
+    template <typename T>
+    requires requires { typename std::tuple_size<T>::type; }
+    auto _input() {
+      T x;
+      util::tuple_for_each([](auto&& i) { std::cin >> i; }, x);
+      return x;
+    }
     template <type::is_vec T>
     auto _input(int n) {
-      std::vector<typename T::value_type> v(n);
-      for (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }
+      std::vector<typename T::value_type> v;
+      v.reserve(n);
+      for (auto i : std::views::iota(0, n)) {
+        v.emplace_back(_input<typename T::value_type>());
+      }
       return v;
     }
     template <type::is_mat T>
     auto _input(int h, int w) {
       std::vector<std::vector<typename T::value_type>> mat;
+      mat.reserve(h);
       for (auto i : std::views::iota(0, h)) {
         mat.emplace_back(_input<type::vec<typename T::value_type>>(w));
       }
