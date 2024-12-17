@@ -3,12 +3,57 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: Library/Main/includes.hpp
+    title: Library/Main/includes.hpp
+  - icon: ':warning:'
     path: Library/Main/main.cpp
     title: Library/Main/main.cpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: Library/Range/istream.hpp
+    title: Library/Range/istream.hpp
+  - icon: ':warning:'
+    path: Library/Range/template.cpp
+    title: Library/Range/template.cpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Utility/io.hpp
+    title: Library/Utility/io.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/RunLengthEncoding.test.cpp
+    title: Test/DataStructure/RunLengthEncoding.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Convolution_and.test.cpp
+    title: Test/Math/Convolution_and.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math.test.cpp
+    title: Test/Math/Math.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_dynamic.test.cpp
+    title: Test/Math/Math_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow.test.cpp
+    title: Test/Math/Math_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow_dynamic.test.cpp
+    title: Test/Math/Math_pow_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/enumerate.test.cpp
+    title: Test/Range/enumerate.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/flatten.test.cpp
+    title: Test/Range/flatten.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/zip.test.cpp
+    title: Test/Range/zip.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Debug/Dump.hpp\"\n#include <concepts>\n#include\
@@ -100,10 +145,25 @@ data:
   isVerificationFile: false
   path: Library/Debug/Dump.hpp
   requiredBy:
+  - Library/Range/template.cpp
+  - Library/Range/istream.hpp
+  - Library/Utility/io.hpp
   - Library/Main/main.cpp
+  - Library/Main/includes.hpp
   timestamp: '2024-09-16 09:45:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Range/zip.test.cpp
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/flatten.test.cpp
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - Test/Math/Math_pow.test.cpp
+  - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
+  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+  - Test/DataStructure/RunLengthEncoding.test.cpp
 documentation_of: Library/Debug/Dump.hpp
 layout: document
 redirect_from:

@@ -94,7 +94,7 @@ data:
       title: Library/DataStructure/UnionFindWeight.hpp
   - name: Library/Debug
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Debug/Dump.hpp
       title: Library/Debug/Dump.hpp
     - icon: ':warning:'
@@ -254,6 +254,9 @@ data:
     - icon: ':warning:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Utility/Tuple.hpp
+      title: Library/Utility/Tuple.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp

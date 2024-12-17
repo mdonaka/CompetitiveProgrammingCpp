@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Debug/Dump.hpp
     title: Library/Debug/Dump.hpp
   - icon: ':warning:'
@@ -22,6 +22,9 @@ data:
   - icon: ':warning:'
     path: Library/Utility/Tools.hpp
     title: Library/Utility/Tools.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Utility/Tuple.hpp
+    title: Library/Utility/Tuple.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
@@ -243,31 +246,63 @@ data:
     \ <stdexcept>\n#line 19 \"Library/Main/includes.hpp\"\n\n#line 2 \"Library/Range/istream.hpp\"\
     \n\n#line 4 \"Library/Range/istream.hpp\"\n\n#line 2 \"Library/Utility/io.hpp\"\
     \n\n#line 5 \"Library/Utility/io.hpp\"\n#include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\
-    \n\nnamespace mtd {\n  namespace io {\n\n    namespace type {\n      template\
-    \ <class T, int Pre = 1, int Size = 0>\n      struct vec {\n        using value_type\
-    \ = T;\n        static constexpr int pre = Pre;\n        static constexpr int\
-    \ size = Size;\n      };\n      template <class T>\n      concept is_vec = requires\
-    \ {\n        std::is_same_v<T, vec<typename T::value_type, T::pre, T::size>>;\n\
-    \      };\n    }  // namespace type\n\n    template <type::is_vec T>\n    auto\
-    \ _input(int n) {\n      std::vector<typename T::value_type> v(n);\n      for\
-    \ (auto i : std::views::iota(0, n)) { std::cin >> v[i]; }\n      return v;\n \
-    \   }\n\n    template <class T>\n    auto _input() {\n      T x;\n      std::cin\
-    \ >> x;\n      return x;\n    }\n\n    template <int N, class Tuple, class T,\
-    \ class... Args>\n    auto _tuple_input(Tuple& t) {\n      if constexpr (type::is_vec<T>)\
-    \ {\n        if constexpr (T::size == 0) {\n          std::get<N>(t) = _input<T>(std::get<N\
-    \ - T::pre>(t));\n        } else {\n          std::get<N>(t) = _input<T>(T::size);\n\
-    \        }\n      } else {\n        std::get<N>(t) = _input<T>();\n      }\n \
-    \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
-    \ Args...>(t);\n      }\n    }\n\n    template <class T>\n    struct _Converter\
-    \ {\n      using type = T;\n    };\n    template <class T, int Pre, int Size>\n\
-    \    struct _Converter<type::vec<T, Pre, Size>> {\n      using type = std::vector<T>;\n\
-    \    };\n\n    template <class... Args>\n    auto in() {\n      auto base = std::tuple<typename\
-    \ _Converter<Args>::type...>();\n      _tuple_input<0, decltype(base), Args...>(base);\n\
-    \      return base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line\
-    \ 6 \"Library/Range/istream.hpp\"\n\nnamespace mtd {\n  namespace ranges {\n\n\
-    \    constexpr int _inf = 1e9;\n\n    template <class... Args>\n    struct istream_view\n\
-    \        : public std::ranges::view_interface<istream_view<Args...>> {\n     \
-    \ class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
+    \n\n#line 2 \"Library/Utility/Tuple.hpp\"\n\n#line 4 \"Library/Utility/Tuple.hpp\"\
+    \n\nnamespace mtd {\n  namespace util {\n    template <class F, class T>\n   \
+    \ constexpr auto tuple_transform(F&& f, T&& t) {\n      return std::apply(\n \
+    \         [&]<class... Ts>(Ts&&... elems) {\n            return std::tuple<std::invoke_result_t<F&,\
+    \ Ts>...>(\n                std::invoke(f, std::forward<Ts>(elems))...);\n   \
+    \       },\n          std::forward<T>(t));\n    }\n    template <class F, class\
+    \ T>\n    constexpr auto tuple_for_each(F&& f, T&& t) {\n      std::apply(\n \
+    \         [&]<class... Ts>(Ts&&... elems) {\n            (std::invoke(f, std::forward<Ts>(elems)),\
+    \ ...);\n          },\n          std::forward<T>(t));\n    }\n  }  // namespace\
+    \ util\n}  // namespace mtd\n#line 10 \"Library/Utility/io.hpp\"\n\nnamespace\
+    \ mtd {\n  namespace io {\n\n    namespace type {\n      template <class T>\n\
+    \      struct vec {\n        using value_type = T;\n      };\n      template <class\
+    \ T>\n      concept is_vec = requires {\n        requires std::is_same_v<T, vec<typename\
+    \ T::value_type>>;\n      };\n\n      template <class T>\n      struct mat {\n\
+    \        using value_type = T;\n      };\n      template <class T>\n      concept\
+    \ is_mat = requires {\n        requires std::is_same_v<T, mat<typename T::value_type>>;\n\
+    \      };\n    }  // namespace type\n\n    template <class T>\n    auto _input()\
+    \ {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n    template <typename\
+    \ T>\n    requires requires { typename std::tuple_size<T>::type; }\n    auto _input()\
+    \ {\n      T x;\n      util::tuple_for_each([](auto&& i) { std::cin >> i; }, x);\n\
+    \      return x;\n    }\n    template <type::is_vec T>\n    auto _input(int n)\
+    \ {\n      std::vector<typename T::value_type> v;\n      v.reserve(n);\n     \
+    \ for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
+    \ T::value_type>());\n      }\n      return v;\n    }\n    template <type::is_mat\
+    \ T>\n    auto _input(int h, int w) {\n      std::vector<std::vector<typename\
+    \ T::value_type>> mat;\n      mat.reserve(h);\n      for (auto i : std::views::iota(0,\
+    \ h)) {\n        mat.emplace_back(_input<type::vec<typename T::value_type>>(w));\n\
+    \      }\n      return mat;\n    }\n\n    template <int N, class Tuple, class\
+    \ T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple& t, Sizes...\
+    \ sizes);\n    template <int N, class Tuple, type::is_vec T, class... Args, class\
+    \ Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t, Size size,\
+    \ Sizes... sizes);\n    template <int N, class Tuple, type::is_mat T, class...\
+    \ Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Size size_h, Size size_w, Sizes... sizes);\n\n    template <int N, class\
+    \ Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Sizes... sizes) {\n      std::get<N>(t) = _input<T>();\n      if constexpr\
+    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n\
+    \      }\n    }\n    template <int N, class Tuple, type::is_vec T, class... Args,\
+    \ class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t,\
+    \ Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n    \
+    \  if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t,\
+    \ sizes...);\n      }\n    }\n    template <int N, class Tuple, type::is_mat T,\
+    \ class... Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Size size_h, Size size_w, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h,\
+    \ size_w);\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N\
+    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class T>\n\
+    \    struct _Converter {\n      using type = T;\n    };\n    template <class T>\n\
+    \    struct _Converter<type::vec<T>> {\n      using type = std::vector<T>;\n \
+    \   };\n    template <class T>\n    struct _Converter<type::mat<T>> {\n      using\
+    \ type = std::vector<std::vector<T>>;\n    };\n\n    template <class... Args,\
+    \ class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...) auto\
+    \ in(Sizes... sizes) {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
+    \      _tuple_input<0, decltype(base), Args...>(base, sizes...);\n      return\
+    \ base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
+    \n\nnamespace mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n\
+    \    template <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
+    \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
@@ -303,19 +338,12 @@ data:
     \ vec(x, ns...));\n  }\n\n}  // namespace mtd\n#line 23 \"Library/Main/includes.hpp\"\
     \n\nnamespace mtd {\n\n  struct Preprocessing {\n    Preprocessing() {\n     \
     \ std::cin.tie(0);\n      std::ios::sync_with_stdio(0);\n    };\n  } _Preprocessing;\n\
-    \n  template <class T, int Pre = 1, int Size = 0>\n  using tvec = mtd::io::type::vec<T,\
-    \ Pre, Size>;\n  using mtd::io::in;\n\n  inline constexpr auto i = std::views::iota;\n\
-    \  template <class... Args>\n  inline constexpr auto ins = mtd::views::istream<Args...>;\n\
-    }  // namespace mtd\n#line 2 \"Library/Range/util.hpp\"\n\n#line 7 \"Library/Range/util.hpp\"\
-    \n\nnamespace mtd {\n  namespace ranges {\n\n    namespace __detail {\n      template\
-    \ <class F, class T>\n      constexpr auto __tuple_transform(F&& f, T&& t) {\n\
-    \        return std::apply(\n            [&]<class... Ts>(Ts&&... elems) {\n \
-    \             return std::tuple<std::invoke_result_t<F&, Ts>...>(\n          \
-    \        std::invoke(f, std::forward<Ts>(elems))...);\n            },\n      \
-    \      std::forward<T>(t));\n      }\n      template <class F, class T>\n    \
-    \  constexpr auto __tuple_for_each(F&& f, T&& t) {\n        std::apply(\n    \
-    \        [&]<class... Ts>(Ts&&... elems) {\n              (std::invoke(f, std::forward<Ts>(elems)),\
-    \ ...);\n            },\n            std::forward<T>(t));\n      }\n      template\
+    \n  template <class T>\n  using tvec = mtd::io::type::vec<T>;\n  template <class\
+    \ T>\n  using tmat = mtd::io::type::mat<T>;\n  using mtd::io::in;\n\n  inline\
+    \ constexpr auto i = std::views::iota;\n  template <class... Args>\n  inline constexpr\
+    \ auto ins = mtd::views::istream<Args...>;\n}  // namespace mtd\n#line 2 \"Library/Range/util.hpp\"\
+    \n\n#line 6 \"Library/Range/util.hpp\"\n\n#line 8 \"Library/Range/util.hpp\"\n\
+    \nnamespace mtd {\n  namespace ranges {\n\n    namespace __detail {\n      template\
     \ <typename... T>\n      concept __all_random_access = (std::ranges::random_access_range<T>\
     \ &&\n                                     ...);\n      template <typename...\
     \ T>\n      concept __all_bidirectional = (std::ranges::bidirectional_range<T>\
@@ -334,18 +362,18 @@ data:
     \        using iterator_concept =\n            decltype(__detail::_S_iter_concept<_Range...>());\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(const\
     \ decltype(_M_current)& __current)\n            : _M_current(__current) {}\n \
-    \       constexpr auto operator*() const {\n          return __detail::__tuple_transform([](auto&\
-    \ __i) { return *__i; },\n                                             _M_current);\n\
-    \        }\n        constexpr auto& operator++() {\n          __detail::__tuple_for_each([](auto&\
+    \       constexpr auto operator*() const {\n          return util::tuple_transform([](auto&\
+    \ __i) { return *__i; },\n                                       _M_current);\n\
+    \        }\n        constexpr auto& operator++() {\n          util::tuple_for_each([](auto&\
     \ __i) { ++__i; }, _M_current);\n          return *this;\n        }\n        constexpr\
     \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
     \ iterator& other) const {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
     \ {\n            return ((std::get<_Is>(_M_current) ==\n                     std::get<_Is>(other._M_current))\
     \ ||\n                    ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
     \        }\n        constexpr auto& operator--() requires\n            __detail::__all_bidirectional<_Range...>\
-    \ {\n          __detail::__tuple_for_each([](auto& __i) { --__i; }, _M_current);\n\
-    \          return *this;\n        }\n        constexpr auto operator--(\n    \
-    \        int) requires __detail::__all_bidirectional<_Range...> {\n          return\
+    \ {\n          util::tuple_for_each([](auto& __i) { --__i; }, _M_current);\n \
+    \         return *this;\n        }\n        constexpr auto operator--(\n     \
+    \       int) requires __detail::__all_bidirectional<_Range...> {\n          return\
     \ --*this;\n        }\n        constexpr auto operator<=>(const iterator&)\n \
     \           const requires __detail::__all_random_access<_Range...>\n        =\
     \ default;\n        constexpr auto operator-(const iterator& itr)\n          \
@@ -354,7 +382,7 @@ data:
     \                std::get<_Is>(_M_current) - std::get<_Is>(itr._M_current))...});\n\
     \          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n   \
     \     }\n        constexpr auto& operator+=(const difference_type n) requires\n\
-    \            __detail::__all_random_access<_Range...> {\n          __detail::__tuple_for_each([&n](auto&\
+    \            __detail::__all_random_access<_Range...> {\n          util::tuple_for_each([&n](auto&\
     \ __i) { __i += n; }, _M_current);\n          return *this;\n        }\n     \
     \   constexpr auto operator+(const difference_type n)\n            const requires\
     \ __detail::__all_random_access<_Range...> {\n          auto __r = *this;\n  \
@@ -363,25 +391,25 @@ data:
     \      const iterator& itr) requires\n            __detail::__all_random_access<_Range...>\
     \ {\n          return itr + n;\n        }\n        constexpr auto& operator-=(const\
     \ difference_type n) requires\n            __detail::__all_random_access<_Range...>\
-    \ {\n          __detail::__tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);\n\
+    \ {\n          util::tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);\n\
     \          return *this;\n        }\n        constexpr auto operator-(const difference_type\
     \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
     \          auto __r = *this;\n          __r -= n;\n          return __r;\n   \
     \     }\n        constexpr auto operator[](const difference_type n)\n        \
     \    const requires __detail::__all_random_access<_Range...> {\n          return\
-    \ __detail::__tuple_transform([&n](auto& __i) { return __i[n]; },\n          \
-    \                                   _M_current);\n        }\n      };\n\n    \
-    \  class sentinel {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...>\
-    \ _M_end;\n\n        constexpr sentinel() = default;\n        constexpr explicit\
-    \ sentinel(const decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n\
-    \        friend constexpr bool operator==(const iterator& __x,\n             \
-    \                            const sentinel& __y) {\n          return [&]<size_t...\
-    \ _Is>(std::index_sequence<_Is...>) {\n            return (\n                (std::get<_Is>(__x._M_current)\
-    \ == std::get<_Is>(__y._M_end)) ||\n                ...);\n          }\n     \
-    \     (std::make_index_sequence<sizeof...(_Range)>{});\n        }\n      };\n\n\
-    \      std::tuple<_Range...> __r;\n      constexpr explicit zip_view(const _Range&...\
-    \ __r) : __r(__r...) {}\n      constexpr auto begin() {\n        return iterator(__detail::__tuple_transform(std::ranges::begin,\
-    \ __r));\n      }\n      constexpr auto end() {\n        return sentinel(__detail::__tuple_transform(std::ranges::end,\
+    \ util::tuple_transform([&n](auto& __i) { return __i[n]; },\n                \
+    \                       _M_current);\n        }\n      };\n\n      class sentinel\
+    \ {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;\n\
+    \n        constexpr sentinel() = default;\n        constexpr explicit sentinel(const\
+    \ decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n        friend constexpr\
+    \ bool operator==(const iterator& __x,\n                                     \
+    \    const sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
+    \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
+    \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
+    \        }\n      };\n\n      std::tuple<_Range...> __r;\n      constexpr explicit\
+    \ zip_view(const _Range&... __r) : __r(__r...) {}\n      constexpr auto begin()\
+    \ {\n        return iterator(util::tuple_transform(std::ranges::begin, __r));\n\
+    \      }\n      constexpr auto end() {\n        return sentinel(util::tuple_transform(std::ranges::end,\
     \ __r));\n      }\n    };\n\n    namespace __detail {\n      template <typename\
     \ T>\n      auto _flatten(const T& t) {\n        return std::make_tuple(t);\n\
     \      }\n      template <typename... T>\n      auto _flatten(const std::tuple<T...>&\
@@ -469,12 +497,13 @@ data:
   - Library/Main/includes.hpp
   - Library/Range/istream.hpp
   - Library/Utility/io.hpp
+  - Library/Utility/Tuple.hpp
   - Library/Utility/Tools.hpp
   - Library/Range/util.hpp
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-12-11 03:50:10+09:00'
+  timestamp: '2024-12-18 00:20:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp
