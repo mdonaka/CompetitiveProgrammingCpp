@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <ranges>
+#include <set>
 #include <unordered_set>
 #include <vector>
 
@@ -66,12 +67,15 @@ namespace mtd {
     constexpr StronglyConnectedComponents(Graph<Node, Cost>&& graph)
         : m_graph(std::move(graph)), m_group(constructGroup(m_graph)) {}
 
+    constexpr auto size() const {
+      return *std::max_element(m_group.begin(), m_group.end()) + 1;
+    }
+    constexpr auto group(int a) const { return m_group[a]; }
     constexpr auto isSameGroup(int a, int b) const {
       return m_group[a] == m_group[b];
     }
     constexpr auto getGroupNodes() const {
-      auto size = *std::max_element(m_group.begin(), m_group.end()) + 1;
-      std::vector<std::vector<int>> groupNodes(size);
+      std::vector<std::vector<int>> groupNodes(size());
       for (int gi = 0; gi < m_graph.size(); ++gi) {
         groupNodes[m_group[gi]].emplace_back(gi);
       }
@@ -85,7 +89,7 @@ namespace mtd {
           if (!isSameGroup(f, t)) { st.emplace(m_group[f], m_group[t]); }
         }
       }
-      Graph<Node, Cost> ret(m_graph.size());
+      Graph<Node, Cost> ret(size());
       for (const auto& [f, t] : st) { ret.addEdge(f, t); }
       return ret;
     }
