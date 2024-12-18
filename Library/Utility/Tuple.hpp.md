@@ -5,12 +5,6 @@ data:
   - icon: ':warning:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':warning:'
-    path: Library/Main/includes.hpp
-    title: Library/Main/includes.hpp
-  - icon: ':warning:'
-    path: Library/Main/main.cpp
-    title: Library/Main/main.cpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
@@ -91,8 +85,6 @@ data:
   - Library/Range/util.hpp
   - Library/Graph/Normal/Topological.hpp
   - Library/Utility/io.hpp
-  - Library/Main/main.cpp
-  - Library/Main/includes.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

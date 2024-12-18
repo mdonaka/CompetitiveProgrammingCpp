@@ -5,12 +5,6 @@ data:
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Library/Main/includes.hpp
-    title: Library/Main/includes.hpp
-  - icon: ':warning:'
-    path: Library/Main/main.cpp
-    title: Library/Main/main.cpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
@@ -165,8 +159,6 @@ data:
   requiredBy:
   - Library/Range/template.cpp
   - Library/Range/istream.hpp
-  - Library/Main/main.cpp
-  - Library/Main/includes.hpp
   timestamp: '2024-12-18 17:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

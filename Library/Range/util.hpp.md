@@ -9,9 +9,6 @@ data:
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   - icon: ':warning:'
-    path: Library/Main/main.cpp
-    title: Library/Main/main.cpp
-  - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
@@ -328,7 +325,6 @@ data:
   requiredBy:
   - Library/Range/template.cpp
   - Library/Graph/Normal/Topological.hpp
-  - Library/Main/main.cpp
   timestamp: '2024-12-17 23:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

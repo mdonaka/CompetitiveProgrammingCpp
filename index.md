@@ -1,31 +1,6 @@
 ---
 data:
   libraryCategories:
-  - name: Command
-    pages:
-    - icon: ':warning:'
-      path: Command/inline_includes.py
-      title: Command/inline_includes.py
-  - name: Command/tags
-    pages:
-    - icon: ':warning:'
-      path: Command/tags/__init__.py
-      title: Command/tags/__init__.py
-    - icon: ':warning:'
-      path: Command/tags/debug.py
-      title: Command/tags/debug.py
-    - icon: ':warning:'
-      path: Command/tags/includes.py
-      title: Command/tags/includes.py
-    - icon: ':warning:'
-      path: Command/tags/interface.py
-      title: Command/tags/interface.py
-    - icon: ':warning:'
-      path: Command/tags/selector.py
-      title: Command/tags/selector.py
-    - icon: ':warning:'
-      path: Command/tags/time.py
-      title: Command/tags/time.py
   - name: Library/Algebraic
     pages:
     - icon: ':heavy_check_mark:'
@@ -92,17 +67,6 @@ data:
     - icon: ':warning:'
       path: Library/DataStructure/UnionFindWeight.hpp
       title: Library/DataStructure/UnionFindWeight.hpp
-  - name: Library/Debug
-    pages:
-    - icon: ':warning:'
-      path: Library/Debug/Dump.hpp
-      title: Library/Debug/Dump.hpp
-    - icon: ':warning:'
-      path: Library/Debug/Test.hpp
-      title: Library/Debug/Test.hpp
-    - icon: ':warning:'
-      path: Library/Debug/Timer.hpp
-      title: Library/Debug/Timer.hpp
   - name: Library/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -165,17 +129,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
-  - name: Library/Main
-    pages:
-    - icon: ':warning:'
-      path: Library/Main/includes.hpp
-      title: Library/Main/includes.hpp
-    - icon: ':warning:'
-      path: Library/Main/interactive.cpp
-      title: Library/Main/interactive.cpp
-    - icon: ':warning:'
-      path: Library/Main/main.cpp
-      title: Library/Main/main.cpp
   - name: Library/Math
     pages:
     - icon: ':heavy_check_mark:'

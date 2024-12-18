@@ -1,13 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Library/Main/includes.hpp
-    title: Library/Main/includes.hpp
-  - icon: ':warning:'
-    path: Library/Main/main.cpp
-    title: Library/Main/main.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -33,9 +27,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Utility/Tools.hpp
-  requiredBy:
-  - Library/Main/main.cpp
-  - Library/Main/includes.hpp
+  requiredBy: []
   timestamp: '2024-12-11 02:44:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

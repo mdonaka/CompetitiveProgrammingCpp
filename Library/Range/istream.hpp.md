@@ -9,12 +9,6 @@ data:
     title: Library/Utility/io.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: Library/Main/includes.hpp
-    title: Library/Main/includes.hpp
-  - icon: ':warning:'
-    path: Library/Main/main.cpp
-    title: Library/Main/main.cpp
-  - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
@@ -174,8 +168,6 @@ data:
   path: Library/Range/istream.hpp
   requiredBy:
   - Library/Range/template.cpp
-  - Library/Main/main.cpp
-  - Library/Main/includes.hpp
   timestamp: '2024-12-18 17:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
