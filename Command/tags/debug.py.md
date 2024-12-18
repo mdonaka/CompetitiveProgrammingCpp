@@ -23,7 +23,7 @@ data:
   isVerificationFile: false
   path: Command/tags/debug.py
   requiredBy: []
-  timestamp: '2024-08-10 19:45:08+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Command/tags/debug.py

@@ -25,7 +25,7 @@ data:
   isVerificationFile: false
   path: Command/tags/time.py
   requiredBy: []
-  timestamp: '2024-12-11 03:50:10+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Command/tags/time.py
