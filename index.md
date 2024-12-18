@@ -94,7 +94,7 @@ data:
       title: Library/DataStructure/UnionFindWeight.hpp
   - name: Library/Debug
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: Library/Debug/Dump.hpp
       title: Library/Debug/Dump.hpp
     - icon: ':warning:'

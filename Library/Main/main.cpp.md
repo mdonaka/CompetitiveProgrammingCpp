@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: Library/Debug/Dump.hpp
     title: Library/Debug/Dump.hpp
   - icon: ':warning:'
@@ -255,9 +255,9 @@ data:
     \ T>\n    constexpr auto tuple_for_each(F&& f, T&& t) {\n      std::apply(\n \
     \         [&]<class... Ts>(Ts&&... elems) {\n            (std::invoke(f, std::forward<Ts>(elems)),\
     \ ...);\n          },\n          std::forward<T>(t));\n    }\n  }  // namespace\
-    \ util\n}  // namespace mtd\n#line 10 \"Library/Utility/io.hpp\"\n\nnamespace\
-    \ mtd {\n  namespace io {\n\n    namespace type {\n      template <class T>\n\
-    \      struct vec {\n        using value_type = T;\n      };\n      template <class\
+    \ util\n}  // namespace mtd\n#line 9 \"Library/Utility/io.hpp\"\n\nnamespace mtd\
+    \ {\n  namespace io {\n\n    namespace type {\n      template <class T>\n    \
+    \  struct vec {\n        using value_type = T;\n      };\n      template <class\
     \ T>\n      concept is_vec = requires {\n        requires std::is_same_v<T, vec<typename\
     \ T::value_type>>;\n      };\n\n      template <class T>\n      struct mat {\n\
     \        using value_type = T;\n      };\n      template <class T>\n      concept\
@@ -503,7 +503,7 @@ data:
   isVerificationFile: false
   path: Library/Main/main.cpp
   requiredBy: []
-  timestamp: '2024-12-18 00:20:55+09:00'
+  timestamp: '2024-12-18 17:23:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Library/Main/main.cpp
