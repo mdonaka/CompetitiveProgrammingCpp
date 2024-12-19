@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace mtd {
-  class UnionFindWeight {
+  class PotentialDisjointSetUnion {
   public:
     std::vector<long long> m_root;
     std::vector<long long> m_rank;
@@ -21,8 +21,8 @@ namespace mtd {
     }
 
   public:
-    UnionFindWeight() = delete;
-    UnionFindWeight(long long n) : m_root(n), m_rank(n), m_weight(n) {
+    PotentialDisjointSetUnion() = delete;
+    PotentialDisjointSetUnion(long long n) : m_root(n), m_rank(n), m_weight(n) {
       std::iota(m_root.begin(), m_root.end(), 0);
     }
     bool isSame(long long x, long long y) { return root(x) == root(y); }

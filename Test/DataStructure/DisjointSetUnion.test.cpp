@@ -1,6 +1,6 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1390"
 
-#include "./../../Library/DataStructure/UnionFind.hpp"
+#include "./../../Library/DataStructure/DisjointSetUnion.hpp"
 
 #include <deque>
 #include <iostream>
@@ -21,7 +21,7 @@ signed main() {
     cv[c - 1].emplace_back(b - 1);
   }
 
-  auto dsu = mtd::UnionFind(m);
+  auto dsu = mtd::DisjointSetUnion(m);
 
   ll ans = 0;
   for (const auto& dq : cv)
