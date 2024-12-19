@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/EulerTour.test.cpp
     title: Test/Graph/Tree/EulerTour.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/EulerTour.hpp\"\n\r\n#include <stack>\r\
@@ -96,7 +96,7 @@ data:
   path: Library/Graph/Tree/EulerTour.hpp
   requiredBy: []
   timestamp: '2024-12-20 01:44:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/EulerTour.test.cpp
 documentation_of: Library/Graph/Tree/EulerTour.hpp

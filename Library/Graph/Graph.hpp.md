@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/EulerTour.hpp
     title: Library/Graph/Tree/EulerTour.hpp
   - icon: ':heavy_check_mark:'
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/AuxiliaryTree.test.cpp
     title: Test/Graph/Tree/AuxiliaryTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/EulerTour.test.cpp
     title: Test/Graph/Tree/EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -191,7 +191,7 @@ data:
   - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/Dinic.test.cpp
