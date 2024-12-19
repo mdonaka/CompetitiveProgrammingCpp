@@ -1,89 +1,79 @@
 #pragma once
 #include <unordered_map>
+#include <vector>
 
+#include "../../Algebraic/Monoid.hpp"
 #include "../../Graph/Normal/BFS.hpp"
+#include "../../Graph/Tree/TreeDP.hpp"
 
 namespace mtd {
   /*
-   * 部分木の情報をマージするMonoid
-   * edgeの情報を親に流すedge_f(M, f, t)
-   * nodeの情報を親に流すnode_f(M, i)
+   * Monoid: 部分木の情報
+   * edge_f: 辺の情報を親に流す関数: (M, f, t, c) -> M
+   * node_f: 子の情報を親に流す関数: (M, i) -> M
    */
-  template <class Monoid, class Lambda1, class Lambda2>
-  auto reRootingDP(long long n,
-                   const std::unordered_multimap<long long, long long>& graph,
-                   const Lambda1& edge_f, const Lambda2& node_f) {
+  template <monoid Monoid, class Node, class Cost, class Lambda1, class Lambda2>
+  auto reRootingDP(const Graph<Node, Cost>& graph, const Lambda1& edge_f,
+                   const Lambda2& node_f) {
     constexpr int root = 0;
+    auto n = graph.size();
 
     // <辺情報を考慮したMonoidの2項演算>
-    auto merge = [&](Monoid& m1, const Monoid& m2, ll f = -1, ll t = -1) {
+    auto merge = [&](Monoid& m1, const Monoid& m2, Node f = -1, Node t = -1,
+                     const Cost& c = Cost()) {
       if (f == -1 && t == -1) {
         m1 = m1.binaryOperation(m2);
         return;
       }
-      m1 = m1.binaryOperation(edge_f(m2, f, t));
+      m1 = m1.binaryOperation(edge_f(m2, f, t, c));
     };
 
     // <node:toを根とした木で全てマージした解を求める>
-    std::vector<std::deque<pair<int, Monoid>>> partial(n);
-    auto all_merge = [&](ll to) {
+    std::vector<std::vector<std::tuple<int, Monoid, Cost>>> partial(n);
+    auto all_merge = [&](Node to) {
       Monoid val{};
-      for (const auto& [from, ad] : partial[to]) { merge(val, ad, from, to); }
+      for (const auto& [from, ad, cost] : partial[to]) {
+        merge(val, ad, from, to, cost);
+      }
       return node_f(val, to);
     };
 
     // <node:toを根とした木でfrom以外マージした解を求める>
     std::vector<std::unordered_map<int, Monoid>> partial_ac(n);
-    std::vector<Monoid> ret(n);
-    auto accumulation = [&](ll to) {
+    std::vector<Monoid> ret_m(n);
+    auto accumulation = [&](Node to) {
       // 左からマージ
       Monoid val_ord{};
-      for (const auto& [from, ad] : partial[to]) {
+      for (const auto& [from, ad, cost] : partial[to]) {
         partial_ac[to].emplace(from, val_ord);
-        merge(val_ord, ad, from, to);
+        merge(val_ord, ad, from, to, cost);
       }
       // 右からマージ
       Monoid val_rord{};
       for (auto rit = partial[to].rbegin(); rit != partial[to].rend(); ++rit) {
-        auto [from, ad] = *rit;
-        merge(partial_ac[to][from], val_rord);
-        merge(val_rord, ad, from, to);
+        auto [from, ad, cost] = *rit;
+        merge(partial_ac[to][from], val_rord, cost);
+        merge(val_rord, ad, from, to, cost);
       }
       // node情報を反映させて値を確定
-      ret[to] = node_f(val_ord, to);
+      ret_m[to] = node_f(val_ord, to);
       for (auto&& [_, pac] : partial_ac[to]) { pac = node_f(pac, to); }
     };
 
     // rootを根とした解を求める
-    treeDP(n, graph, root,
-           [&](ll f, ll t) { partial[t].emplace_back(f, all_merge(f)); });
+    treeDP(graph, root, [&](Node f, Node t, const Cost& c) {
+      partial[t].emplace_back(f, all_merge(f), c);
+    });
     accumulation(0);
 
     // rootからbfsして各nodeを根とした解を求める
-    graphBFS(n, graph, root, [&](int f, int t) {
-      partial[t].emplace_back(f, partial_ac[f][t]);
+    bfs(graph, root, [&](Node f, Node t, const Cost& c) {
+      partial[t].emplace_back(f, partial_ac[f][t], c);
       accumulation(t);
     });
 
+    std::vector<typename Monoid::value_type> ret;
+    for (const auto x : ret_m) { ret.emplace_back(x.m_val); }
     return ret;
   }
-
-  template <
-      class S,  // 要素の型
-      // ※C++17ではほとんどの型をグローバル宣言した初期値を参照で渡す必要あり
-      S& element,  // 元
-      class T      // 2項演算子．
-      >
-  struct Monoid {
-    S m_val;
-    Monoid() : m_val(element) {}
-    Monoid(S val) : m_val(val) {}
-    Monoid binaryOperation(const Monoid& m2) const {
-      return T()(m_val, m2.m_val);
-    }
-    friend std::ostream& operator<<(std::ostream& os, const Monoid& m) {
-      os << m.m_val;
-      return os;
-    }
-  };
 }  // namespace mtd
