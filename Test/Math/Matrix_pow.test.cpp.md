@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/DataStructure/DisjointSetUnion.hpp
-    title: Library/DataStructure/DisjointSetUnion.hpp
-  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Math/Matrix.hpp
+    title: Library/Math/Matrix.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
@@ -17,36 +17,29 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
+    PROBLEM: https://yukicoder.me/problems/no/1136
     links:
-    - https://judge.yosupo.jp/problem/unionfind_with_potential
-  bundledCode: "#line 1 \"Test/DataStructure/DisjointSetUnion_Potential.test.cpp\"\
-    \n#include <vector>\r\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
-    \r\n\r\n#include <iostream>\r\n#include <ranges>\r\n\r\n// begin:tag includes\r\
-    \n#line 2 \"Library/DataStructure/DisjointSetUnion.hpp\"\n\r\n#line 4 \"Library/DataStructure/DisjointSetUnion.hpp\"\
-    \n#include <numeric>\r\n#line 6 \"Library/DataStructure/DisjointSetUnion.hpp\"\
-    \n\r\nnamespace mtd {\r\n\r\n  template <class T = int>\r\n  class PotentialDisjointSetUnion\
-    \ {\r\n    std::vector<int> m_root;\r\n    std::vector<int> m_rank;\r\n    std::vector<int>\
-    \ m_size;\r\n    std::vector<T> m_potential;\r\n\r\n  public:\r\n    PotentialDisjointSetUnion()\
-    \ = delete;\r\n    PotentialDisjointSetUnion(int n)\r\n        : m_root(n), m_rank(n),\
-    \ m_size(n), m_potential(n) {\r\n      std::iota(m_root.begin(), m_root.end(),\
-    \ 0);\r\n    }\r\n\r\n    auto unite(int x, int y, T p = 0) {\r\n      p += potential(x);\r\
-    \n      p -= potential(y);\r\n      x = root(x);\r\n      y = root(y);\r\n   \
-    \   if (x == y) { return false; }\r\n      if (m_rank[x] < m_rank[y]) {\r\n  \
-    \      std::swap(x, y);\r\n        p = -p;\r\n      }\r\n      if (m_rank[x] ==\
-    \ m_rank[y]) { ++m_rank[x]; }\r\n      m_size[x] = m_size[y] = size(x) + size(y);\r\
-    \n      m_root[y] = x;\r\n      m_potential[y] = p;\r\n      return true;\r\n\
-    \    }\r\n\r\n    auto root(int x) -> int {\r\n      if (m_root[x] == x) { return\
-    \ x; }\r\n      int r = root(m_root[x]);\r\n      m_potential[x] += m_potential[m_root[x]];\r\
-    \n      return m_root[x] = r;\r\n    }\r\n\r\n    auto potential(int x) -> T {\r\
-    \n      root(x);\r\n      return m_potential[x];\r\n    }\r\n\r\n    auto size(int\
-    \ x) -> int {\r\n      if (m_root[x] == x) { return m_size[x]; }\r\n      return\
-    \ size(m_root[x] = root(m_root[x]));\r\n    }\r\n\r\n    auto isSame(int x, int\
-    \ y) { return root(x) == root(y); }\r\n\r\n    auto diff(int x, int y) { return\
-    \ potential(y) - potential(x); }\r\n\r\n    friend std::ostream& operator<<(std::ostream&\
-    \ os,\r\n                                    const PotentialDisjointSetUnion&\
-    \ dsu) {\r\n      for (const auto& x : dsu.m_root) { os << x << \" \"; }\r\n \
-    \     return os;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 2 \"Library/Math/ModInt.hpp\"\
+    - https://yukicoder.me/problems/no/1136
+  bundledCode: "#line 1 \"Test/Math/Matrix_pow.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1136\"\
+    \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/Math/Matrix.hpp\"\
+    \n\r\n#include <cassert>\r\n#line 5 \"Library/Math/Matrix.hpp\"\n#include <vector>\r\
+    \n\r\nnamespace mtd {\r\n  template <class T>\r\n  class Matrix {\r\n    int h,\
+    \ w;\r\n    std::vector<std::vector<T>> mat;\r\n\r\n  public:\r\n    Matrix(const\
+    \ std::vector<std::vector<T>>& mat)\r\n        : h(mat.size()), w(mat[0].size()),\
+    \ mat(mat) {}\r\n\r\n    inline static auto identity(int size) {\r\n      std::vector<std::vector<T>>\
+    \ ret(size, std::vector<T>(size));\r\n      for (int i = 0; i < size; ++i) { ret[i][i]\
+    \ = 1; }\r\n      return Matrix(ret);\r\n    }\r\n\r\n    auto begin() const {\
+    \ return mat.begin(); }\r\n    auto end() const { return mat.end(); }\r\n\r\n\
+    \    const auto& operator[](int i) const { return mat[i]; }\r\n    auto& operator[](int\
+    \ i) { return mat[i]; }\r\n\r\n    auto operator*(const Matrix& tgt) const {\r\
+    \n      assert(w == tgt.h);\r\n      std::vector<std::vector<T>> ret(h, std::vector<T>(tgt.w));\r\
+    \n      for (int i = 0; i < h; ++i)\r\n        for (int j = 0; j < tgt.w; ++j)\
+    \ {\r\n          for (int k = 0; k < w; ++k) { ret[i][j] += mat[i][k] * tgt[k][j];\
+    \ }\r\n        }\r\n      return Matrix(ret);\r\n    }\r\n\r\n    auto pow(long\
+    \ long n) const {\r\n      assert(h == w);\r\n      auto ret = identity(h);\r\n\
+    \      auto now = *this;\r\n      while (n) {\r\n        if (n & 1) { ret = ret\
+    \ * now; }\r\n        n >>= 1;\r\n        now = now * now;\r\n      }\r\n    \
+    \  return ret;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 2 \"Library/Math/ModInt.hpp\"\
     \n\n#line 4 \"Library/Math/ModInt.hpp\"\n#include <iterator>\n\n#line 2 \"Library/Math/Math.hpp\"\
     \n\r\n#line 4 \"Library/Math/Math.hpp\"\n\r\nnamespace mtd {\r\n  template <class\
     \ T>\r\n  class Math {\r\n    const std::vector<T> m_fac;\r\n    const std::vector<T>\
@@ -107,47 +100,34 @@ data:
     \ const ModInt<MOD, T>& m) {\n      return os << m.x;\n    }\n    constexpr friend\
     \ std::istream& operator>>(std::istream& is,\n                               \
     \               ModInt<MOD, T>& m) {\n      return is >> m.x;\n    }\n\n    constexpr\
-    \ auto val() const { return x; }\n  };\n\n}  // namespace mtd\n#line 10 \"Test/DataStructure/DisjointSetUnion_Potential.test.cpp\"\
-    \n// end:tag includes\r\n\r\nconstexpr long long MOD = 998244353;\r\nusing mint\
-    \ = mtd::ModInt<MOD>;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
-    \n\r\n  int n, q;\r\n  std::cin >> n >> q;\r\n\r\n  auto dsu = mtd::PotentialDisjointSetUnion<mint>(n);\r\
-    \n\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n    int t;\r\
-    \n    std::cin >> t;\r\n    if (t == 0) {\r\n      int u, v, x;\r\n      std::cin\
-    \ >> u >> v >> x;\r\n\r\n      if (!dsu.isSame(u, v) || dsu.diff(u, v) == x) {\r\
-    \n        std::cout << 1 << std::endl;\r\n        dsu.unite(u, v, x);\r\n    \
-    \  } else {\r\n        std::cout << 0 << std::endl;\r\n      }\r\n    } else {\r\
-    \n      int u, v;\r\n      std::cin >> u >> v;\r\n\r\n      if (dsu.isSame(u,\
-    \ v)) {\r\n        std::cout << dsu.diff(u, v) << std::endl;\r\n      } else {\r\
-    \n        std::cout << -1 << std::endl;\r\n      }\r\n    }\r\n  }\r\n}\r\n"
-  code: "#include <vector>\r\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
-    \r\n\r\n#include <iostream>\r\n#include <ranges>\r\n\r\n// begin:tag includes\r\
-    \n#include \"./../../Library/DataStructure/DisjointSetUnion.hpp\"\r\n#include\
-    \ \"./../../Library/Math/ModInt.hpp\"\r\n// end:tag includes\r\n\r\nconstexpr\
-    \ long long MOD = 998244353;\r\nusing mint = mtd::ModInt<MOD>;\r\n\r\nsigned main()\
-    \ {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int n, q;\r\
-    \n  std::cin >> n >> q;\r\n\r\n  auto dsu = mtd::PotentialDisjointSetUnion<mint>(n);\r\
-    \n\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {\r\n    int t;\r\
-    \n    std::cin >> t;\r\n    if (t == 0) {\r\n      int u, v, x;\r\n      std::cin\
-    \ >> u >> v >> x;\r\n\r\n      if (!dsu.isSame(u, v) || dsu.diff(u, v) == x) {\r\
-    \n        std::cout << 1 << std::endl;\r\n        dsu.unite(u, v, x);\r\n    \
-    \  } else {\r\n        std::cout << 0 << std::endl;\r\n      }\r\n    } else {\r\
-    \n      int u, v;\r\n      std::cin >> u >> v;\r\n\r\n      if (dsu.isSame(u,\
-    \ v)) {\r\n        std::cout << dsu.diff(u, v) << std::endl;\r\n      } else {\r\
-    \n        std::cout << -1 << std::endl;\r\n      }\r\n    }\r\n  }\r\n}\r\n"
+    \ auto val() const { return x; }\n  };\n\n}  // namespace mtd\n#line 8 \"Test/Math/Matrix_pow.test.cpp\"\
+    \n// end:tag includes\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
+    \n  constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::ModInt<MOD>;\r\n\
+    \r\n  long long n;\r\n  std::cin >> n;\r\n\r\n  mtd::Matrix<mint> mat({{-1, 1},\
+    \ {0, 3}});\r\n  auto mat_p = mat.pow(n);\r\n  mint ans = mat_p[0][0] + mat_p[0][1];\r\
+    \n  std::cout << ans << std::endl;\r\n}\r\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1136\"\r\n\r\n#include\
+    \ <iostream>\r\n\r\n// begin:tag includes\r\n#include \"../../Library/Math/Matrix.hpp\"\
+    \r\n#include \"../../Library/Math/ModInt.hpp\"\r\n// end:tag includes\r\n\r\n\
+    signed main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n \
+    \ constexpr long long MOD = 1e9 + 7;\r\n  using mint = mtd::ModInt<MOD>;\r\n\r\
+    \n  long long n;\r\n  std::cin >> n;\r\n\r\n  mtd::Matrix<mint> mat({{-1, 1},\
+    \ {0, 3}});\r\n  auto mat_p = mat.pow(n);\r\n  mint ans = mat_p[0][0] + mat_p[0][1];\r\
+    \n  std::cout << ans << std::endl;\r\n}\r\n"
   dependsOn:
-  - Library/DataStructure/DisjointSetUnion.hpp
+  - Library/Math/Matrix.hpp
   - Library/Math/ModInt.hpp
   - Library/Math/Math.hpp
   isVerificationFile: true
-  path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  path: Test/Math/Matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 16:02:39+09:00'
+  timestamp: '2024-12-19 17:31:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+documentation_of: Test/Math/Matrix_pow.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/DataStructure/DisjointSetUnion_Potential.test.cpp
-- /verify/Test/DataStructure/DisjointSetUnion_Potential.test.cpp.html
-title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+- /verify/Test/Math/Matrix_pow.test.cpp
+- /verify/Test/Math/Matrix_pow.test.cpp.html
+title: Test/Math/Matrix_pow.test.cpp
 ---

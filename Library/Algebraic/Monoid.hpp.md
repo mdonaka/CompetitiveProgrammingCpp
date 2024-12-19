@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
+  - icon: ':x:'
+    path: Library/Graph/Tree/ReRootingDP.hpp
+    title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Algorithms/CoordinateCompression_comp.test.cpp
@@ -48,12 +51,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#include <iostream>\n\n\
@@ -90,14 +96,16 @@ data:
   isVerificationFile: false
   path: Library/Algebraic/Monoid.hpp
   requiredBy:
+  - Library/Graph/Tree/ReRootingDP.hpp
   - Library/DataStructure/LazySegmentTree.hpp
   - Library/DataStructure/SegmentTree.hpp
   - Library/DataStructure/DynamicSegmentTree.hpp
   timestamp: '2024-12-11 01:55:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp

@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Matrix_pow.test.cpp
+    title: Test/Math/Matrix_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   verifiedWith:
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
   - Test/Math/Math.test.cpp
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
 documentation_of: Library/Math/ModInt.hpp

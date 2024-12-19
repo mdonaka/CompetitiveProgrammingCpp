@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   - icon: ':heavy_check_mark:'
@@ -41,10 +41,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedVerifiedWith:
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Kruskal.test.cpp
     title: Test/Graph/Normal/Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
@@ -186,6 +189,7 @@ data:
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Normal/BFS.test.cpp

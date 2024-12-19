@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
@@ -326,7 +323,6 @@ data:
   isVerificationFile: false
   path: Library/Range/util.hpp
   requiredBy:
-  - Library/Range/template.cpp
   - Library/Graph/Normal/Topological.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -7,10 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/RunLengthEncoding.test.cpp
@@ -166,8 +163,7 @@ data:
   - Library/Utility/Tuple.hpp
   isVerificationFile: false
   path: Library/Range/istream.hpp
-  requiredBy:
-  - Library/Range/template.cpp
+  requiredBy: []
   timestamp: '2024-12-18 17:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

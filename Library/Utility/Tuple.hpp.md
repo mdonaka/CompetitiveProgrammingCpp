@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
@@ -83,7 +80,6 @@ data:
   isVerificationFile: false
   path: Library/Utility/Tuple.hpp
   requiredBy:
-  - Library/Range/template.cpp
   - Library/Range/istream.hpp
   - Library/Range/util.hpp
   - Library/Graph/Normal/Topological.hpp

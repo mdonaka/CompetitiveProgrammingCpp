@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Matrix_pow.test.cpp
+    title: Test/Math/Matrix_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   verifiedWith:
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
   - Test/Math/Math.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp

@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/LowestCommonAncestor.hpp
     title: Library/Graph/Tree/LowestCommonAncestor.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
@@ -18,9 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
     title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#include <queue>\r\n\
@@ -59,18 +62,20 @@ data:
     \ Lambda& lambda) {\r\n    auto n = graph.size();\r\n    std::vector<bool> used(n);\r\
     \n    used[root] = true;\r\n    std::queue<Node> q;\r\n    q.emplace(root);\r\n\
     \    while (!q.empty()) {\r\n      auto from = q.front();\r\n      q.pop();\r\n\
-    \      for (const auto& [to, _] : graph.getEdges(from)) {\r\n        if (used[to])\
+    \      for (const auto& [to, cost] : graph.getEdges(from)) {\r\n        if (used[to])\
     \ { continue; }\r\n        q.emplace(to);\r\n        used[to] = true;\r\n    \
-    \    lambda(from, to);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\n"
+    \    lambda(from, to, cost);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\
+    \n"
   code: "#pragma once\r\n\r\n#include <queue>\r\n#include <vector>\r\n\r\n#include\
     \ \"./../Graph.hpp\"\r\n\r\nnamespace mtd {\r\n  template <class Node, class Cost,\
     \ class Lambda>\r\n  auto bfs(const Graph<Node, Cost>& graph, const Node& root,\r\
     \n           const Lambda& lambda) {\r\n    auto n = graph.size();\r\n    std::vector<bool>\
     \ used(n);\r\n    used[root] = true;\r\n    std::queue<Node> q;\r\n    q.emplace(root);\r\
     \n    while (!q.empty()) {\r\n      auto from = q.front();\r\n      q.pop();\r\
-    \n      for (const auto& [to, _] : graph.getEdges(from)) {\r\n        if (used[to])\
+    \n      for (const auto& [to, cost] : graph.getEdges(from)) {\r\n        if (used[to])\
     \ { continue; }\r\n        q.emplace(to);\r\n        used[to] = true;\r\n    \
-    \    lambda(from, to);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\n"
+    \    lambda(from, to, cost);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\
+    \n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
@@ -78,9 +83,10 @@ data:
   requiredBy:
   - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-19 18:06:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp

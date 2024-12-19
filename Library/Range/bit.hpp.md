@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/bit_subset.test.cpp
+    title: Test/Range/bit_subset.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/bit.hpp\"\n\n#include <ranges>\n\n#line 2\
@@ -200,11 +200,11 @@ data:
   - Library/Math/Bit.hpp
   isVerificationFile: false
   path: Library/Range/bit.hpp
-  requiredBy:
-  - Library/Range/template.cpp
+  requiredBy: []
   timestamp: '2024-11-09 15:39:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Range/bit_subset.test.cpp
 documentation_of: Library/Range/bit.hpp
 layout: document
 redirect_from:

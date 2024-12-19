@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DisjointSetUnion.hpp
     title: Library/DataStructure/DisjointSetUnion.hpp
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
@@ -79,8 +79,8 @@ data:
     \  }\r\n      }\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Graph/Normal/Kruskal.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <class Node, class Cost>\r\n  auto kruskal(const\
     \ Graph<Node, Cost>& graph) {\r\n    auto n = graph.size();\r\n    auto min_spanning_tree\
-    \ = Graph<Node, Cost>(n);\r\n\r\n    auto dsu = DisjointSetUnion(n);\r\n    using\
-    \ Type = std::pair<Cost, std::pair<Node, Node>>;\r\n    std::priority_queue<Type,\
+    \ = Graph<Node, Cost>(n);\r\n\r\n    auto dsu = PotentialDisjointSetUnion(n);\r\
+    \n    using Type = std::pair<Cost, std::pair<Node, Node>>;\r\n    std::priority_queue<Type,\
     \ std::vector<Type>, std::greater<Type>> q;\r\n    for (const auto& [f, t, c]\
     \ : graph.getEdges()) {\r\n      q.emplace(c, std::make_pair(f, t));\r\n    }\r\
     \n\r\n    while (!q.empty()) {\r\n      auto [cost, ft] = q.top();\r\n      auto\
@@ -113,8 +113,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 16:02:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-19 16:12:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Kruskal.test.cpp
 layout: document

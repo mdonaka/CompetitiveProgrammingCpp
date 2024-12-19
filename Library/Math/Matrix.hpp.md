@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Matrix_pow.test.cpp
+    title: Test/Math/Matrix_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Matrix.hpp\"\n\r\n#include <cassert>\r\n#include\
@@ -51,8 +54,9 @@ data:
   path: Library/Math/Matrix.hpp
   requiredBy: []
   timestamp: '2024-11-26 15:19:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - Test/Math/Matrix_pow.test.cpp
 documentation_of: Library/Math/Matrix.hpp
 layout: document
 redirect_from:

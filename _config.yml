@@ -4,6 +4,9 @@ exclude:
 - Command
 - Library/Debug
 - Library/Main
+- Library/Simd
+- Library/Range/check.hpp
+- Library/Range/template.cpp
 plugins:
 - jemoji
 - jekyll-redirect-from

@@ -4,14 +4,20 @@ data:
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/Graph/Tree/ReRootingDP.hpp
+    title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/TreeDP.hpp\"\n#include <queue>\r\n#include\
@@ -53,10 +59,10 @@ data:
     \ used(n);\r\n    for (Node i = 0; i < n; ++i)\r\n      if (i != root && in[i]\
     \ == 1) { q.emplace(i); }\r\n    while (!q.empty()) {\r\n      auto from = q.front();\r\
     \n      q.pop();\r\n      used[from] = true;\r\n\r\n      for (const auto& [to,\
-    \ _] : tree.getEdges(from)) {\r\n        if (used[to]) { continue; }\r\n     \
-    \   lambda(from, to);\r\n        --in[to];\r\n        if (to != root && in[to]\
-    \ == 1) { q.emplace(to); }\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\
-    \n"
+    \ cost] : tree.getEdges(from)) {\r\n        if (used[to]) { continue; }\r\n  \
+    \      lambda(from, to, cost);\r\n        --in[to];\r\n        if (to != root\
+    \ && in[to] == 1) { q.emplace(to); }\r\n      }\r\n    }\r\n  }\r\n}  // namespace\
+    \ mtd\r\n"
   code: "#pragma once\r\n#include <queue>\r\n#include <vector>\r\n\r\n#include \"\
     ./../Graph.hpp\"\r\n\r\nnamespace mtd {\r\n  template <class Node, class Cost,\
     \ class Lambda>\r\n  auto treeDP(const Graph<Node, Cost>& tree, Node root, const\
@@ -66,19 +72,21 @@ data:
     \ q;\r\n    std::vector<bool> used(n);\r\n    for (Node i = 0; i < n; ++i)\r\n\
     \      if (i != root && in[i] == 1) { q.emplace(i); }\r\n    while (!q.empty())\
     \ {\r\n      auto from = q.front();\r\n      q.pop();\r\n      used[from] = true;\r\
-    \n\r\n      for (const auto& [to, _] : tree.getEdges(from)) {\r\n        if (used[to])\
-    \ { continue; }\r\n        lambda(from, to);\r\n        --in[to];\r\n        if\
-    \ (to != root && in[to] == 1) { q.emplace(to); }\r\n      }\r\n    }\r\n  }\r\n\
-    }  // namespace mtd\r\n"
+    \n\r\n      for (const auto& [to, cost] : tree.getEdges(from)) {\r\n        if\
+    \ (used[to]) { continue; }\r\n        lambda(from, to, cost);\r\n        --in[to];\r\
+    \n        if (to != root && in[to] == 1) { q.emplace(to); }\r\n      }\r\n   \
+    \ }\r\n  }\r\n}  // namespace mtd\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/TreeDP.hpp
-  requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - Library/Graph/Tree/ReRootingDP.hpp
+  timestamp: '2024-12-19 18:06:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Tree/TreeDP.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
 documentation_of: Library/Graph/Tree/TreeDP.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
   _extendedRequiredBy: []
@@ -59,17 +59,17 @@ data:
     \ used(n);\r\n    for (Node i = 0; i < n; ++i)\r\n      if (i != root && in[i]\
     \ == 1) { q.emplace(i); }\r\n    while (!q.empty()) {\r\n      auto from = q.front();\r\
     \n      q.pop();\r\n      used[from] = true;\r\n\r\n      for (const auto& [to,\
-    \ _] : tree.getEdges(from)) {\r\n        if (used[to]) { continue; }\r\n     \
-    \   lambda(from, to);\r\n        --in[to];\r\n        if (to != root && in[to]\
-    \ == 1) { q.emplace(to); }\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\
-    \n#line 14 \"Test/Graph/Tree/TreeDP.test.cpp\"\n\r\nsigned main() {\r\n  ll n;\r\
-    \n  cin >> n;\r\n  mtd::Graph<int, bool> tree(n);\r\n  for (int f = 0; f < n -\
-    \ 1; ++f) {\r\n    int u, v;\r\n    cin >> u >> v;\r\n    --u;\r\n    --v;\r\n\
-    \    tree.addEdgeUndirected(u, v);\r\n  }\r\n\r\n  std::vector<int> dp1(n);\r\n\
-    \  std::vector<int> dp2(n, 1);\r\n  mtd::treeDP(tree, 0, [&](int f, int t) {\r\
-    \n    dp1[t] += std::max(dp1[f], dp2[f]);\r\n    dp2[t] += std::max(dp1[f], dp2[f]\
-    \ - 1);\r\n  });\r\n\r\n  auto ans = std::max(dp1[0], dp2[0]);\r\n  cout << ans\
-    \ << endl;\r\n}\r\n"
+    \ cost] : tree.getEdges(from)) {\r\n        if (used[to]) { continue; }\r\n  \
+    \      lambda(from, to, cost);\r\n        --in[to];\r\n        if (to != root\
+    \ && in[to] == 1) { q.emplace(to); }\r\n      }\r\n    }\r\n  }\r\n}  // namespace\
+    \ mtd\r\n#line 14 \"Test/Graph/Tree/TreeDP.test.cpp\"\n\r\nsigned main() {\r\n\
+    \  ll n;\r\n  cin >> n;\r\n  mtd::Graph<int, bool> tree(n);\r\n  for (int f =\
+    \ 0; f < n - 1; ++f) {\r\n    int u, v;\r\n    cin >> u >> v;\r\n    --u;\r\n\
+    \    --v;\r\n    tree.addEdgeUndirected(u, v);\r\n  }\r\n\r\n  std::vector<int>\
+    \ dp1(n);\r\n  std::vector<int> dp2(n, 1);\r\n  mtd::treeDP(tree, 0, [&](int f,\
+    \ int t, int _) {\r\n    dp1[t] += std::max(dp1[f], dp2[f]);\r\n    dp2[t] +=\
+    \ std::max(dp1[f], dp2[f] - 1);\r\n  });\r\n\r\n  auto ans = std::max(dp1[0],\
+    \ dp2[0]);\r\n  cout << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/763\"\r\n\r\n#include\
     \ <iostream>\r\n#include <queue>\r\n#include <vector>\r\n\r\nusing ll = long long;\r\
     \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
@@ -78,16 +78,16 @@ data:
     \n  for (int f = 0; f < n - 1; ++f) {\r\n    int u, v;\r\n    cin >> u >> v;\r\
     \n    --u;\r\n    --v;\r\n    tree.addEdgeUndirected(u, v);\r\n  }\r\n\r\n  std::vector<int>\
     \ dp1(n);\r\n  std::vector<int> dp2(n, 1);\r\n  mtd::treeDP(tree, 0, [&](int f,\
-    \ int t) {\r\n    dp1[t] += std::max(dp1[f], dp2[f]);\r\n    dp2[t] += std::max(dp1[f],\
-    \ dp2[f] - 1);\r\n  });\r\n\r\n  auto ans = std::max(dp1[0], dp2[0]);\r\n  cout\
-    \ << ans << endl;\r\n}\r\n"
+    \ int t, int _) {\r\n    dp1[t] += std::max(dp1[f], dp2[f]);\r\n    dp2[t] +=\
+    \ std::max(dp1[f], dp2[f] - 1);\r\n  });\r\n\r\n  auto ans = std::max(dp1[0],\
+    \ dp2[0]);\r\n  cout << ans << endl;\r\n}\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   - Library/Graph/Tree/TreeDP.hpp
   isVerificationFile: true
   path: Test/Graph/Tree/TreeDP.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-19 18:06:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/TreeDP.test.cpp

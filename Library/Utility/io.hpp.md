@@ -8,9 +8,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
@@ -157,7 +154,6 @@ data:
   isVerificationFile: false
   path: Library/Utility/io.hpp
   requiredBy:
-  - Library/Range/template.cpp
   - Library/Range/istream.hpp
   timestamp: '2024-12-18 17:23:01+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
@@ -57,10 +57,10 @@ data:
     \ Lambda& lambda) {\r\n    auto n = graph.size();\r\n    std::vector<bool> used(n);\r\
     \n    used[root] = true;\r\n    std::queue<Node> q;\r\n    q.emplace(root);\r\n\
     \    while (!q.empty()) {\r\n      auto from = q.front();\r\n      q.pop();\r\n\
-    \      for (const auto& [to, _] : graph.getEdges(from)) {\r\n        if (used[to])\
+    \      for (const auto& [to, cost] : graph.getEdges(from)) {\r\n        if (used[to])\
     \ { continue; }\r\n        q.emplace(to);\r\n        used[to] = true;\r\n    \
-    \    lambda(from, to);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\n#line\
-    \ 4 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\n#line 7 \"Test/Graph/Normal/BFS.test.cpp\"\
+    \    lambda(from, to, cost);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\
+    \n#line 4 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\n#line 7 \"Test/Graph/Normal/BFS.test.cpp\"\
     \n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n\r\n#include <numeric>\r\
     \n#line 5 \"Library/Algorithms/BinarySearch.hpp\"\n\r\nnamespace mtd {\r\n\r\n\
     \  template <class Lambda>\r\n  auto binarySearch(double ok, double ng, int rep,\
@@ -78,10 +78,10 @@ data:
     \ 1, d);\r\n  }\r\n\r\n  auto solve = [&](ll w) {\r\n    auto graph = mtd::Graph(n);\r\
     \n    for (const auto& [s, t, d] : graph_all.getEdges()) {\r\n      if (w <= d)\
     \ { graph.addEdge(s, t); }\r\n    }\r\n\r\n    std::vector<int> dv(n);\r\n   \
-    \ bfs(graph, 0, [&](ll f, ll t) { dv[t] = dv[f] + 1; });\r\n    return dv[n -\
-    \ 1];\r\n  };\r\n\r\n  auto w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w) {\r\
-    \n    auto d = solve(w);\r\n    return d > 0;\r\n  });\r\n\r\n  auto ans = solve(w_max);\r\
-    \n  cout << w_max << \" \" << ans << endl;\r\n}\r\n"
+    \ bfs(graph, 0, [&](ll f, ll t, ll _) { dv[t] = dv[f] + 1; });\r\n    return dv[n\
+    \ - 1];\r\n  };\r\n\r\n  auto w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w)\
+    \ {\r\n    auto d = solve(w);\r\n    return d > 0;\r\n  });\r\n\r\n  auto ans\
+    \ = solve(w_max);\r\n  cout << w_max << \" \" << ans << endl;\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1473\"\r\n\r\n#include\
     \ \"./../../../Library/Graph/Normal/BFS.hpp\"\r\n\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n\r\n#include \"./../../../Library/Algorithms/BinarySearch.hpp\"\r\
@@ -93,8 +93,8 @@ data:
     \ = [&](ll w) {\r\n    auto graph = mtd::Graph(n);\r\n    for (const auto& [s,\
     \ t, d] : graph_all.getEdges()) {\r\n      if (w <= d) { graph.addEdge(s, t);\
     \ }\r\n    }\r\n\r\n    std::vector<int> dv(n);\r\n    bfs(graph, 0, [&](ll f,\
-    \ ll t) { dv[t] = dv[f] + 1; });\r\n    return dv[n - 1];\r\n  };\r\n\r\n  auto\
-    \ w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w) {\r\n    auto d = solve(w);\r\
+    \ ll t, ll _) { dv[t] = dv[f] + 1; });\r\n    return dv[n - 1];\r\n  };\r\n\r\n\
+    \  auto w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w) {\r\n    auto d = solve(w);\r\
     \n    return d > 0;\r\n  });\r\n\r\n  auto ans = solve(w_max);\r\n  cout << w_max\
     \ << \" \" << ans << endl;\r\n}\r\n"
   dependsOn:
@@ -104,7 +104,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-19 18:06:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp

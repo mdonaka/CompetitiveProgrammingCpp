@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Group.hpp
       title: Library/Algebraic/Group.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algebraic/Monoid.hpp
       title: Library/Algebraic/Monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/ConvecHullTrick.hpp
       title: Library/DataStructure/ConvecHullTrick.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DisjointSetUnion.hpp
       title: Library/DataStructure/DisjointSetUnion.hpp
     - icon: ':heavy_check_mark:'
@@ -82,13 +82,10 @@ data:
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
-    - icon: ':warning:'
-      path: Library/Graph/Normal/BellmanFord.cpp
-      title: Library/Graph/Normal/BellmanFord.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
     - icon: ':heavy_check_mark:'
@@ -120,10 +117,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Math
@@ -140,7 +137,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Math/Math.hpp
       title: Library/Math/Math.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -159,26 +156,15 @@ data:
       title: Library/PlaneGeometry/ConvexHull.hpp
   - name: Library/Range
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/bit.hpp
       title: Library/Range/bit.hpp
-    - icon: ':warning:'
-      path: Library/Range/check.hpp
-      title: Library/Range/check.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
-    - icon: ':warning:'
-      path: Library/Range/template.cpp
-      title: Library/Range/template.cpp
     - icon: ':heavy_check_mark:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
-  - name: Library/Simd
-    pages:
-    - icon: ':warning:'
-      path: Library/Simd/MontgomeryMultiplication.hpp
-      title: Library/Simd/MontgomeryMultiplication.hpp
   - name: Library/String
     pages:
     - icon: ':heavy_check_mark:'
@@ -201,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Prime.hpp
       title: Library/Utility/Prime.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
     - icon: ':heavy_check_mark:'
@@ -336,7 +322,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Kruskal.test.cpp
       title: Test/Graph/Normal/Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -365,6 +351,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
+    - icon: ':x:'
+      path: Test/Graph/Tree/ReRootingDP.test.cpp
+      title: Test/Graph/Tree/ReRootingDP.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp
@@ -385,6 +374,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Math/Math_pow_dynamic.test.cpp
       title: Test/Math/Math_pow_dynamic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Matrix_pow.test.cpp
+      title: Test/Math/Matrix_pow.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -392,6 +384,9 @@ data:
       title: Test/PlaneGeometry/ConvexHull.test.cpp
   - name: Test/Range
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Test/Range/bit_subset.test.cpp
+      title: Test/Range/bit_subset.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Range/enumerate.test.cpp
       title: Test/Range/enumerate.test.cpp

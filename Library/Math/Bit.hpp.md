@@ -11,16 +11,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/bit.hpp
     title: Library/Range/bit.hpp
-  - icon: ':warning:'
-    path: Library/Range/template.cpp
-    title: Library/Range/template.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Range/bit_subset.test.cpp
+    title: Test/Range/bit_subset.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -62,7 +62,6 @@ data:
   isVerificationFile: false
   path: Library/Math/Bit.hpp
   requiredBy:
-  - Library/Range/template.cpp
   - Library/Range/bit.hpp
   - Library/Math/Convolution.hpp
   - Library/Math/Zeta.hpp
@@ -70,6 +69,7 @@ data:
   timestamp: '2024-11-09 15:39:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Range/bit_subset.test.cpp
   - Test/Math/Convolution_and.test.cpp
 documentation_of: Library/Math/Bit.hpp
 layout: document
