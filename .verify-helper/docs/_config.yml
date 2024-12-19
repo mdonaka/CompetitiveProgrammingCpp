@@ -8,6 +8,7 @@ exclude: [
   "Library/Debug",
   "Library/Main",
   "Library/Simd",
+  "Library/Range/check.hpp",
   "Library/Range/template.cpp",
 ]
 
