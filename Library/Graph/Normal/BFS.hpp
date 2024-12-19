@@ -17,11 +17,11 @@ namespace mtd {
     while (!q.empty()) {
       auto from = q.front();
       q.pop();
-      for (const auto& [to, _] : graph.getEdges(from)) {
+      for (const auto& [to, cost] : graph.getEdges(from)) {
         if (used[to]) { continue; }
         q.emplace(to);
         used[to] = true;
-        lambda(from, to);
+        lambda(from, to, cost);
       }
     }
   }

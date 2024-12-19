@@ -23,9 +23,9 @@ namespace mtd {
       q.pop();
       used[from] = true;
 
-      for (const auto& [to, _] : tree.getEdges(from)) {
+      for (const auto& [to, cost] : tree.getEdges(from)) {
         if (used[to]) { continue; }
-        lambda(from, to);
+        lambda(from, to, cost);
         --in[to];
         if (to != root && in[to] == 1) { q.emplace(to); }
       }

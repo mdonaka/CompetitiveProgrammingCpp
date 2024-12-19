@@ -16,8 +16,9 @@ namespace mtd {
       auto n = tree.size();
       auto size = static_cast<int>(std::log2(n) + 1);
       std::vector<std::vector<Node>> parent(n, std::vector<Node>(size, root));
-      bfs(tree, root,
-          [&](const Node& from, const Node& to) { parent[to][0] = from; });
+      bfs(tree, root, [&](const Node& from, const Node& to, const Cost& _) {
+        parent[to][0] = from;
+      });
       for (int p2 = 1; p2 < size; ++p2)
         for (int f = 0; f < n; ++f) {
           parent[f][p2] = parent[parent[f][p2 - 1]][p2 - 1];
@@ -28,7 +29,7 @@ namespace mtd {
                                       const Node& root) {
       auto n = tree.size();
       std::vector<Node> depth(n);
-      bfs(tree, root, [&](const Node& from, const Node& to) {
+      bfs(tree, root, [&](const Node& from, const Node& to, const Cost& _) {
         depth[to] = depth[from] + 1;
       });
       return depth;

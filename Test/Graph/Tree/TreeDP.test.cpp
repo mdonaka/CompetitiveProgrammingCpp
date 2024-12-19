@@ -26,7 +26,7 @@ signed main() {
 
   std::vector<int> dp1(n);
   std::vector<int> dp2(n, 1);
-  mtd::treeDP(tree, 0, [&](int f, int t) {
+  mtd::treeDP(tree, 0, [&](int f, int t, int _) {
     dp1[t] += std::max(dp1[f], dp2[f]);
     dp2[t] += std::max(dp1[f], dp2[f] - 1);
   });
