@@ -10,6 +10,9 @@ data:
     title: Library/Math/ModInt.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+    title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,6 +82,7 @@ data:
   - Test/Math/Math.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp
+  - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
 documentation_of: Library/Math/Math.hpp
 layout: document
 redirect_from:

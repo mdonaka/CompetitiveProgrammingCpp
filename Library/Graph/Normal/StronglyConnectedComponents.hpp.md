@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -9,14 +9,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\n\
-    \r\n#include <algorithm>\r\n#include <ranges>\r\n#include <unordered_set>\r\n\
-    #include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\
+    \r\n#include <algorithm>\r\n#include <ranges>\r\n#include <set>\r\n#include <unordered_set>\r\
+    \n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\
     \n#include <iostream>\r\n#line 5 \"Library/Graph/Graph.hpp\"\n#include <tuple>\r\
     \n#line 7 \"Library/Graph/Graph.hpp\"\n\r\nnamespace mtd {\r\n  template <class\
     \ Node = int, class Cost = long long>\r\n  class Graph {\r\n    // using Node\
@@ -46,7 +49,7 @@ data:
     \ = false) const {\r\n      for (const auto& [f, t, c] : getEdges()) {\r\n   \
     \     if (f < t || directed) {\r\n          std::cout << f << \" -> \" << t <<\
     \ \": \" << c << std::endl;\r\n        }\r\n      }\r\n    }\r\n  };\r\n}  //\
-    \ namespace mtd\r\n#line 9 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
+    \ namespace mtd\r\n#line 10 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <class Node, class Cost>\r\n  class StronglyConnectedComponents\
     \ {\r\n    struct HashPair {\r\n      template <class T1, class T2>\r\n      size_t\
     \ operator()(const std::pair<T1, T2>& p) const {\r\n        auto hash1 = std::hash<T1>{}(p.first);\r\
@@ -73,22 +76,23 @@ data:
     \ {}\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\u304C\u5927\u304D\
     \u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    constexpr StronglyConnectedComponents(Graph<Node,\
     \ Cost>&& graph)\r\n        : m_graph(std::move(graph)), m_group(constructGroup(m_graph))\
-    \ {}\r\n\r\n    constexpr auto isSameGroup(int a, int b) const {\r\n      return\
-    \ m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes() const\
-    \ {\r\n      auto size = *std::max_element(m_group.begin(), m_group.end()) + 1;\r\
-    \n      std::vector<std::vector<int>> groupNodes(size);\r\n      for (int gi =\
-    \ 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
+    \ {}\r\n\r\n    constexpr auto size() const {\r\n      return *std::max_element(m_group.begin(),\
+    \ m_group.end()) + 1;\r\n    }\r\n    constexpr auto group(int a) const { return\
+    \ m_group[a]; }\r\n    constexpr auto isSameGroup(int a, int b) const {\r\n  \
+    \    return m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes()\
+    \ const {\r\n      std::vector<std::vector<int>> groupNodes(size());\r\n     \
+    \ for (int gi = 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
     \n      }\r\n      return groupNodes;\r\n    }\r\n    constexpr auto getGroupGraph()\
     \ const {\r\n      std::unordered_set<std::pair<int, int>, HashPair> st;\r\n \
     \     st.reserve(m_graph.size());\r\n      for (int f = 0; f < m_graph.size();\
     \ ++f) {\r\n        for (const auto& [t, _] : m_graph.getEdges(f)) {\r\n     \
     \     if (!isSameGroup(f, t)) { st.emplace(m_group[f], m_group[t]); }\r\n    \
-    \    }\r\n      }\r\n      Graph<Node, Cost> ret(m_graph.size());\r\n      for\
-    \ (const auto& [f, t] : st) { ret.addEdge(f, t); }\r\n      return ret;\r\n  \
-    \  }\r\n  };\r\n}  // namespace mtd\r\n"
+    \    }\r\n      }\r\n      Graph<Node, Cost> ret(size());\r\n      for (const\
+    \ auto& [f, t] : st) { ret.addEdge(f, t); }\r\n      return ret;\r\n    }\r\n\
+    \  };\r\n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <algorithm>\r\n#include <ranges>\r\n#include\
-    \ <unordered_set>\r\n#include <vector>\r\n\r\n#include \"./../Graph.hpp\"\r\n\r\
-    \nnamespace mtd {\r\n  template <class Node, class Cost>\r\n  class StronglyConnectedComponents\
+    \ <set>\r\n#include <unordered_set>\r\n#include <vector>\r\n\r\n#include \"./../Graph.hpp\"\
+    \r\n\r\nnamespace mtd {\r\n  template <class Node, class Cost>\r\n  class StronglyConnectedComponents\
     \ {\r\n    struct HashPair {\r\n      template <class T1, class T2>\r\n      size_t\
     \ operator()(const std::pair<T1, T2>& p) const {\r\n        auto hash1 = std::hash<T1>{}(p.first);\r\
     \n        auto hash2 = std::hash<T2>{}(p.second);\r\n        size_t seed = 0;\r\
@@ -114,27 +118,29 @@ data:
     \ {}\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\u304C\u5927\u304D\
     \u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    constexpr StronglyConnectedComponents(Graph<Node,\
     \ Cost>&& graph)\r\n        : m_graph(std::move(graph)), m_group(constructGroup(m_graph))\
-    \ {}\r\n\r\n    constexpr auto isSameGroup(int a, int b) const {\r\n      return\
-    \ m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes() const\
-    \ {\r\n      auto size = *std::max_element(m_group.begin(), m_group.end()) + 1;\r\
-    \n      std::vector<std::vector<int>> groupNodes(size);\r\n      for (int gi =\
-    \ 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
+    \ {}\r\n\r\n    constexpr auto size() const {\r\n      return *std::max_element(m_group.begin(),\
+    \ m_group.end()) + 1;\r\n    }\r\n    constexpr auto group(int a) const { return\
+    \ m_group[a]; }\r\n    constexpr auto isSameGroup(int a, int b) const {\r\n  \
+    \    return m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes()\
+    \ const {\r\n      std::vector<std::vector<int>> groupNodes(size());\r\n     \
+    \ for (int gi = 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
     \n      }\r\n      return groupNodes;\r\n    }\r\n    constexpr auto getGroupGraph()\
     \ const {\r\n      std::unordered_set<std::pair<int, int>, HashPair> st;\r\n \
     \     st.reserve(m_graph.size());\r\n      for (int f = 0; f < m_graph.size();\
     \ ++f) {\r\n        for (const auto& [t, _] : m_graph.getEdges(f)) {\r\n     \
     \     if (!isSameGroup(f, t)) { st.emplace(m_group[f], m_group[t]); }\r\n    \
-    \    }\r\n      }\r\n      Graph<Node, Cost> ret(m_graph.size());\r\n      for\
-    \ (const auto& [f, t] : st) { ret.addEdge(f, t); }\r\n      return ret;\r\n  \
-    \  }\r\n  };\r\n}  // namespace mtd\r\n"
+    \    }\r\n      }\r\n      Graph<Node, Cost> ret(size());\r\n      for (const\
+    \ auto& [f, t] : st) { ret.addEdge(f, t); }\r\n      return ret;\r\n    }\r\n\
+    \  };\r\n}  // namespace mtd\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2024-11-19 07:35:05+09:00'
+  timestamp: '2024-12-18 22:47:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 documentation_of: Library/Graph/Normal/StronglyConnectedComponents.hpp
 layout: document

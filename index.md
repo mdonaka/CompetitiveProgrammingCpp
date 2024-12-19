@@ -40,6 +40,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/ConvecHullTrick.hpp
       title: Library/DataStructure/ConvecHullTrick.hpp
+    - icon: ':question:'
+      path: Library/DataStructure/DisjointSetUnion.hpp
+      title: Library/DataStructure/DisjointSetUnion.hpp
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/DisjointSparseTable.hpp
       title: Library/DataStructure/DisjointSparseTable.hpp
@@ -61,12 +64,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
-    - icon: ':heavy_check_mark:'
-      path: Library/DataStructure/UnionFind.hpp
-      title: Library/DataStructure/UnionFind.hpp
-    - icon: ':warning:'
-      path: Library/DataStructure/UnionFindWeight.hpp
-      title: Library/DataStructure/UnionFindWeight.hpp
   - name: Library/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -80,7 +77,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -91,7 +88,7 @@ data:
     - icon: ':warning:'
       path: Library/Graph/Normal/BellmanFord.cpp
       title: Library/Graph/Normal/BellmanFord.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
     - icon: ':heavy_check_mark:'
@@ -100,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Topological.hpp
       title: Library/Graph/Normal/Topological.hpp
     - icon: ':heavy_check_mark:'
@@ -261,6 +258,12 @@ data:
       path: Test/DataStructure/ConvexHullTrick.test.cpp
       title: Test/DataStructure/ConvexHullTrick.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DisjointSetUnion.test.cpp
+      title: Test/DataStructure/DisjointSetUnion.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+      title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
       title: Test/DataStructure/DisjointSparseTable_RMQ.test.cpp
     - icon: ':heavy_check_mark:'
@@ -314,9 +317,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentTree_RSQ.test.cpp
       title: Test/DataStructure/SegmentTree_RSQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/DataStructure/UnionFind.test.cpp
-      title: Test/DataStructure/UnionFind.test.cpp
   - name: Test/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -336,7 +336,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Kruskal.test.cpp
       title: Test/Graph/Normal/Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -345,6 +345,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Normal/Topological.test.cpp
+      title: Test/Graph/Normal/Topological.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/WarshallFloyd.test.cpp
       title: Test/Graph/Normal/WarshallFloyd.test.cpp

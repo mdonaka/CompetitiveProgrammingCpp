@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+    title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -137,6 +140,7 @@ data:
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
 documentation_of: Library/Math/ModInt.hpp
 layout: document
 redirect_from:

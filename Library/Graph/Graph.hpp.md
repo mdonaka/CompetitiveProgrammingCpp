@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Dijkstra.test.cpp
     title: Test/Graph/Normal/Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Kruskal.test.cpp
     title: Test/Graph/Normal/Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/WarshallFloyd.test.cpp
     title: Test/Graph/Normal/WarshallFloyd.test.cpp
@@ -90,9 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -175,7 +178,7 @@ data:
   - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/Dinic.test.cpp
@@ -187,6 +190,7 @@ data:
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Normal/BFS.test.cpp
   - Test/Graph/Normal/Kruskal.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/Prim.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Graph/Normal/Dijkstra.test.cpp

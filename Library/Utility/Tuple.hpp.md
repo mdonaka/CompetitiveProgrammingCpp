@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
@@ -91,6 +94,7 @@ data:
   - Test/Range/zip.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp

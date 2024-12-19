@@ -5,13 +5,16 @@ data:
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   - icon: ':warning:'
     path: Library/Range/template.cpp
     title: Library/Range/template.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Normal/Topological.test.cpp
+    title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
@@ -331,6 +334,7 @@ data:
   - Test/Range/zip.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:
