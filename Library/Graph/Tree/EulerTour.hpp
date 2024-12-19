@@ -1,18 +1,21 @@
 #pragma once
+
 #include <stack>
-#include <unordered_map>
 #include <vector>
 
+#include "../Graph.hpp"
+
 namespace mtd {
+
+  template <class Node, class Cost>
   class EulerTour {
-    const std::vector<int> m_tour;
+    const std::vector<Node> m_tour;
     const std::vector<std::pair<int, int>> m_appear;
 
-    auto constructTour(int n, const std::unordered_multimap<int, int>& tree,
-                       int root) const {
-      std::vector<int> tour;
-      tour.reserve(2 * n);
-      std::stack<int> stk;
+    auto constructTour(const Graph<Node, Cost>& tree, Node root) const {
+      auto n = tree.size();
+      std::vector<Node> tour;
+      std::stack<Node> stk;
       std::vector<int> used(n);
       stk.emplace(root);
       while (!stk.empty()) {
@@ -23,9 +26,7 @@ namespace mtd {
         stk.emplace(from);
         used[from] = true;
 
-        auto range = tree.equal_range(from);
-        for (auto it = range.first; it != range.second; ++it) {
-          auto to = it->second;
+        for (auto [to, _] : tree.getEdges(from)) {
           if (!used[to]) { stk.emplace(to); }
         }
       }
@@ -44,15 +45,17 @@ namespace mtd {
     }
 
   public:
-    EulerTour(int n, const std::unordered_multimap<int, int>& tree, int root)
-        : m_tour(constructTour(n, tree, root)), m_appear(constructAppear(n)) {}
+    EulerTour(const Graph<Node, Cost>& tree, Node root = 0)
+        : m_tour(constructTour(tree, root)),
+          m_appear(constructAppear(tree.size())) {}
 
     auto lessOrder(int li, int ri) const {
       return m_appear[li].first < m_appear[ri].first;
     }
-    auto isSon(int son, int parent) {
+    auto isSon(Node son, Node parent) {
       return m_appear[parent].first < m_appear[son].first &&
              m_appear[son].second < m_appear[parent].second;
     }
+    auto range(Node u) const { return m_appear[u]; }
   };
 }  // namespace mtd
