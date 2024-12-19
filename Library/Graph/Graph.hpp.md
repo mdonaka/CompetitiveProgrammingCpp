@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
+  - icon: ':x:'
+    path: Library/Graph/Tree/EulerTour.hpp
+    title: Library/Graph/Tree/EulerTour.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
@@ -81,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/AuxiliaryTree.test.cpp
     title: Test/Graph/Tree/AuxiliaryTree.test.cpp
+  - icon: ':x:'
+    path: Test/Graph/Tree/EulerTour.test.cpp
+    title: Test/Graph/Tree/EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
@@ -99,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -173,6 +179,7 @@ data:
   - Library/Graph/Flow/SuccessiveShortestPath.hpp
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
   - Library/Graph/Tree/LowestCommonAncestor.hpp
+  - Library/Graph/Tree/EulerTour.hpp
   - Library/Graph/Tree/TreeDP.hpp
   - Library/Graph/Tree/AuxiliaryTree.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
@@ -184,7 +191,7 @@ data:
   - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/Dinic.test.cpp
@@ -192,6 +199,7 @@ data:
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
   - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
+  - Test/Graph/Tree/EulerTour.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp

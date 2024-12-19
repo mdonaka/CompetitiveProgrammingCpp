@@ -77,7 +77,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -108,7 +108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/AuxiliaryTree.hpp
       title: Library/Graph/Tree/AuxiliaryTree.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
     - icon: ':heavy_check_mark:'
@@ -342,6 +342,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/AuxiliaryTree.test.cpp
       title: Test/Graph/Tree/AuxiliaryTree.test.cpp
+    - icon: ':x:'
+      path: Test/Graph/Tree/EulerTour.test.cpp
+      title: Test/Graph/Tree/EulerTour.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp
