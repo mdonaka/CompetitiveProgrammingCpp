@@ -1,40 +1,67 @@
 #pragma once
+
+#include <iostream>
 #include <numeric>
 #include <vector>
 
 namespace mtd {
 
-  class DisjointSetUnion {
+  template <class T = int>
+  class PotentialDisjointSetUnion {
     std::vector<int> m_root;
-    std::vector<int> m_depth;
+    std::vector<int> m_rank;
     std::vector<int> m_size;
+    std::vector<T> m_potential;
 
   public:
-    DisjointSetUnion(int size)
-        : m_root(size), m_depth(size, 0), m_size(size, 1) {
+    PotentialDisjointSetUnion() = delete;
+    PotentialDisjointSetUnion(int n)
+        : m_root(n), m_rank(n), m_size(n), m_potential(n) {
       std::iota(m_root.begin(), m_root.end(), 0);
     }
-    void unite(int x, int y) {
+
+    auto unite(int x, int y, T p = 0) {
+      p += potential(x);
+      p -= potential(y);
       x = root(x);
       y = root(y);
-      if (x == y) { return; }
-      auto t = size(x) + size(y);
-      m_size[x] = m_size[y] = t;
-      if (m_depth[x] < m_depth[y]) {
-        m_root[x] = y;
-      } else {
-        m_root[y] = x;
+      if (x == y) { return false; }
+      if (m_rank[x] < m_rank[y]) {
+        std::swap(x, y);
+        p = -p;
       }
-      if (m_depth[x] == m_depth[y]) { ++m_depth[x]; }
+      if (m_rank[x] == m_rank[y]) { ++m_rank[x]; }
+      m_size[x] = m_size[y] = size(x) + size(y);
+      m_root[y] = x;
+      m_potential[y] = p;
+      return true;
     }
-    bool isSame(int x, int y) { return root(x) == root(y); }
-    int root(int x) {
+
+    auto root(int x) -> int {
       if (m_root[x] == x) { return x; }
-      return m_root[x] = root(m_root[x]);
+      int r = root(m_root[x]);
+      m_potential[x] += m_potential[m_root[x]];
+      return m_root[x] = r;
     }
-    int size(int x) {
+
+    auto potential(int x) -> T {
+      root(x);
+      return m_potential[x];
+    }
+
+    auto size(int x) -> int {
       if (m_root[x] == x) { return m_size[x]; }
       return size(m_root[x] = root(m_root[x]));
+    }
+
+    auto isSame(int x, int y) { return root(x) == root(y); }
+
+    auto diff(int x, int y) { return potential(y) - potential(x); }
+
+    friend std::ostream& operator<<(std::ostream& os,
+                                    const PotentialDisjointSetUnion& dsu) {
+      for (const auto& x : dsu.m_root) { os << x << " "; }
+      return os;
     }
   };
 }  // namespace mtd

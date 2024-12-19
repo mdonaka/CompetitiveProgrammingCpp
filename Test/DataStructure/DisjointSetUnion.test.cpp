@@ -1,38 +1,37 @@
+#include <vector>
 #define PROBLEM "https://yukicoder.me/problems/no/1390"
 
-#include "./../../Library/DataStructure/DisjointSetUnion.hpp"
-
-#include <deque>
 #include <iostream>
-#include <vector>
 
-using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
+// begin:tag includes
+#include "./../../Library/DataStructure/DisjointSetUnion.hpp"
+// end:tag includes
 
 signed main() {
-  ll n, m;
-  cin >> n >> m;
-  std::vector<std::deque<ll>> cv(n);
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
+  int n, m;
+  std::cin >> n >> m;
+  std::vector<std::vector<int>> cv(n);
   for (int _ = 0; _ < n; ++_) {
-    ll b, c;
-    cin >> b >> c;
+    int b, c;
+    std::cin >> b >> c;
     cv[c - 1].emplace_back(b - 1);
   }
 
-  auto dsu = mtd::DisjointSetUnion(m);
+  auto dsu = mtd::PotentialDisjointSetUnion(m);
 
-  ll ans = 0;
-  for (const auto& dq : cv)
-    if (!dq.empty()) {
-      auto base = dq.front();
-      for (const auto& tg : dq) {
+  int ans = 0;
+  for (const auto& v : cv)
+    if (!v.empty()) {
+      auto base = v.front();
+      for (const auto& tg : v) {
         if (!dsu.isSame(base, tg)) {
           dsu.unite(base, tg);
           ++ans;
         }
       }
     }
-  cout << ans << endl;
+  std::cout << ans << std::endl;
 }
