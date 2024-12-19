@@ -43,6 +43,7 @@
 "Test/Graph/Normal/Topological.test.cpp": "2024-12-19 15:03:29 +0900",
 "Test/Graph/Normal/WarshallFloyd.test.cpp": "2024-11-12 00:26:16 +0900",
 "Test/Graph/Tree/AuxiliaryTree.test.cpp": "2024-11-12 00:26:16 +0900",
+"Test/Graph/Tree/EulerTour.test.cpp": "2024-12-20 01:58:31 +0900",
 "Test/Graph/Tree/HeavyLightDecomposition_LCA.test.cpp": "2024-12-11 02:10:52 +0900",
 "Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp": "2024-12-11 02:40:26 +0900",
 "Test/Graph/Tree/LowestCommonAncestor.test.cpp": "2024-12-19 18:06:54 +0900",
