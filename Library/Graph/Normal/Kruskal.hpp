@@ -11,7 +11,7 @@ namespace mtd {
     auto n = graph.size();
     auto min_spanning_tree = Graph<Node, Cost>(n);
 
-    auto dsu = DisjointSetUnion(n);
+    auto dsu = PotentialDisjointSetUnion(n);
     using Type = std::pair<Cost, std::pair<Node, Node>>;
     std::priority_queue<Type, std::vector<Type>, std::greater<Type>> q;
     for (const auto& [f, t, c] : graph.getEdges()) {
