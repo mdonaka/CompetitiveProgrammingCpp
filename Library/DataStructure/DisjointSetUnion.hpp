@@ -3,17 +3,15 @@
 #include <vector>
 
 namespace mtd {
-  /**
-   *	UnionFind木を構成する
-   *	nodeの深さ，木のサイズを取得可能
-   */
-  class UnionFind {
+
+  class DisjointSetUnion {
     std::vector<int> m_root;
     std::vector<int> m_depth;
     std::vector<int> m_size;
 
   public:
-    UnionFind(int size) : m_root(size), m_depth(size, 0), m_size(size, 1) {
+    DisjointSetUnion(int size)
+        : m_root(size), m_depth(size, 0), m_size(size, 1) {
       std::iota(m_root.begin(), m_root.end(), 0);
     }
     void unite(int x, int y) {
