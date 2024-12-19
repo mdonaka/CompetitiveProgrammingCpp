@@ -21,37 +21,33 @@ namespace mtd {
     // <辺情報を考慮したMonoidの2項演算>
     auto merge = [&](Monoid& m1, const Monoid& m2, Node f = -1, Node t = -1,
                      const Cost& c = Cost()) {
-      if (f == -1 && t == -1) {
-        m1 = m1.binaryOperation(m2);
-        return;
-      }
-      m1 = m1.binaryOperation(edge_f(m2, f, t, c));
+      m1 = m1.binaryOperation((f == -1 || t == -1) ? m2 : edge_f(m2, f, t, c));
     };
 
     // <node:toを根とした木で全てマージした解を求める>
-    std::vector<std::vector<std::tuple<int, Monoid, Cost>>> partial(n);
+    std::vector<std::vector<std::tuple<Monoid, Node, Cost>>> partial(n);
     auto all_merge = [&](Node to) {
       Monoid val{};
-      for (const auto& [from, ad, cost] : partial[to]) {
+      for (const auto& [ad, from, cost] : partial[to]) {
         merge(val, ad, from, to, cost);
       }
       return node_f(val, to);
     };
 
     // <node:toを根とした木でfrom以外マージした解を求める>
-    std::vector<std::unordered_map<int, Monoid>> partial_ac(n);
+    std::vector<std::unordered_map<Node, Monoid>> partial_ac(n);
     std::vector<Monoid> ret_m(n);
     auto accumulation = [&](Node to) {
       // 左からマージ
       Monoid val_ord{};
-      for (const auto& [from, ad, cost] : partial[to]) {
+      for (const auto& [ad, from, cost] : partial[to]) {
         partial_ac[to].emplace(from, val_ord);
         merge(val_ord, ad, from, to, cost);
       }
       // 右からマージ
       Monoid val_rord{};
       for (auto rit = partial[to].rbegin(); rit != partial[to].rend(); ++rit) {
-        auto [from, ad, cost] = *rit;
+        auto [ad, from, cost] = *rit;
         merge(partial_ac[to][from], val_rord, cost);
         merge(val_rord, ad, from, to, cost);
       }
@@ -62,13 +58,13 @@ namespace mtd {
 
     // rootを根とした解を求める
     treeDP(graph, root, [&](Node f, Node t, const Cost& c) {
-      partial[t].emplace_back(f, all_merge(f), c);
+      partial[t].emplace_back(all_merge(f), f, c);
     });
     accumulation(0);
 
     // rootからbfsして各nodeを根とした解を求める
     bfs(graph, root, [&](Node f, Node t, const Cost& c) {
-      partial[t].emplace_back(f, partial_ac[f][t], c);
+      partial[t].emplace_back(partial_ac[f][t], f, c);
       accumulation(t);
     });
 
