@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/ReRootingDP.test.cpp
     title: Test/Graph/Tree/ReRootingDP.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/ReRootingDP_cost.test.cpp
+    title: Test/Graph/Tree/ReRootingDP_cost.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/TreeDP.hpp\"\n#include <queue>\r\n#include\
@@ -83,8 +86,9 @@ data:
   requiredBy:
   - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2024-12-19 18:06:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/TreeDP.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
 documentation_of: Library/Graph/Tree/TreeDP.hpp

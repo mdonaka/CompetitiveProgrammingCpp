@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Group.hpp
       title: Library/Algebraic/Group.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Monoid.hpp
       title: Library/Algebraic/Monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -77,12 +77,12 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
     - icon: ':heavy_check_mark:'
@@ -117,10 +117,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Math
@@ -351,9 +351,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/ReRootingDP.test.cpp
       title: Test/Graph/Tree/ReRootingDP.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Graph/Tree/ReRootingDP_cost.test.cpp
+      title: Test/Graph/Tree/ReRootingDP_cost.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/TreeDP.test.cpp
       title: Test/Graph/Tree/TreeDP.test.cpp

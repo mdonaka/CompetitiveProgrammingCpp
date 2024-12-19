@@ -10,6 +10,9 @@ data:
     path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
     title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -140,6 +143,7 @@ data:
   timestamp: '2024-12-11 02:34:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Matrix_pow.test.cpp
