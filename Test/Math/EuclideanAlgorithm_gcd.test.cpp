@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/415"
 
 // begin:tag includes
-#include "../../Library/Algorithms/EuclideanAlgorithm.hpp"
+#include "../../Library/Math/EuclideanAlgorithm.hpp"
 #include "../../Library/Utility/io.hpp"
 // end:tag includes
 

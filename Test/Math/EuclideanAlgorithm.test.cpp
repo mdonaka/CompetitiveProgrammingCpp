@@ -1,7 +1,7 @@
 #define PROBLEM \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E"
 
-#include "./../../Library/Algorithms/EuclideanAlgorithm.hpp"
+#include "./../../Library/Math/EuclideanAlgorithm.hpp"
 
 #include <iostream>
 #include <tuple>
