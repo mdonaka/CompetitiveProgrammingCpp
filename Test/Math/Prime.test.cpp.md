@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Utility/Prime.hpp
-    title: Library/Utility/Prime.hpp
+    path: Library/Math/Prime.hpp
+    title: Library/Math/Prime.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,9 +14,8 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
-  bundledCode: "#line 1 \"Test/Utility/Prime.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\r\n\r\n#line\
-    \ 2 \"Library/Utility/Prime.hpp\"\n\r\n#include <deque>\r\n#include <unordered_map>\r\
+  bundledCode: "#line 1 \"Test/Math/Prime.test.cpp\"\n#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
+    \r\n\r\n#line 2 \"Library/Math/Prime.hpp\"\n\r\n#include <deque>\r\n#include <unordered_map>\r\
     \n#include <vector>\r\n\r\nnamespace mtd {\r\n  class Prime {\r\n    const long\
     \ long n;\r\n    const std::deque<long long> p_list;\r\n\r\n    static inline\
     \ auto linearSieve(long long n) {\r\n      std::deque<long long> p_list;\r\n \
@@ -32,17 +31,17 @@ data:
     \ p : p_list) {\r\n        while (x % p == 0) {\r\n          table[p]++;\r\n \
     \         x /= p;\r\n        }\r\n      }\r\n      if (x > 1) { table[x]++; }\r\
     \n      return table;\r\n    }\r\n    auto getPList() const { return p_list; }\r\
-    \n  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Utility/Prime.test.cpp\"\n\r\n\
-    #include <algorithm>\r\n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing\
-    \ std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned\
-    \ main() {\r\n  ll n;\r\n  cin >> n;\r\n\r\n  auto prime = mtd::Prime(1e5);\r\n\
-    \  auto fc = prime.factorization(n);\r\n\r\n  std::vector<ll> ans;\r\n  for (const\
-    \ auto& [x, c] : fc)\r\n    for (int i = 0; i < c; ++i) { ans.emplace_back(x);\
-    \ }\r\n  std::sort(ans.begin(), ans.end());\r\n\r\n  cout << n << \": \";\r\n\
-    \  for (unsigned int i = 0; i < ans.size(); ++i) {\r\n    cout << ans[i] << (i\
-    \ + 1 < ans.size() ? \" \" : \"\\n\");\r\n  }\r\n}\r\n"
+    \n  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Math/Prime.test.cpp\"\n\r\n#include\
+    \ <algorithm>\r\n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\
+    \nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n\
+    \  ll n;\r\n  cin >> n;\r\n\r\n  auto prime = mtd::Prime(1e5);\r\n  auto fc =\
+    \ prime.factorization(n);\r\n\r\n  std::vector<ll> ans;\r\n  for (const auto&\
+    \ [x, c] : fc)\r\n    for (int i = 0; i < c; ++i) { ans.emplace_back(x); }\r\n\
+    \  std::sort(ans.begin(), ans.end());\r\n\r\n  cout << n << \": \";\r\n  for (unsigned\
+    \ int i = 0; i < ans.size(); ++i) {\r\n    cout << ans[i] << (i + 1 < ans.size()\
+    \ ? \" \" : \"\\n\");\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
-    \r\n\r\n#include \"./../../Library/Utility/Prime.hpp\"\r\n\r\n#include <algorithm>\r\
+    \r\n\r\n#include \"./../../Library/Math/Prime.hpp\"\r\n\r\n#include <algorithm>\r\
     \n#include <iostream>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing\
     \ std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n  ll n;\r\
     \n  cin >> n;\r\n\r\n  auto prime = mtd::Prime(1e5);\r\n  auto fc = prime.factorization(n);\r\
@@ -52,17 +51,17 @@ data:
     \ {\r\n    cout << ans[i] << (i + 1 < ans.size() ? \" \" : \"\\n\");\r\n  }\r\n\
     }\r\n"
   dependsOn:
-  - Library/Utility/Prime.hpp
+  - Library/Math/Prime.hpp
   isVerificationFile: true
-  path: Test/Utility/Prime.test.cpp
+  path: Test/Math/Prime.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Utility/Prime.test.cpp
+documentation_of: Test/Math/Prime.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Utility/Prime.test.cpp
-- /verify/Test/Utility/Prime.test.cpp.html
-title: Test/Utility/Prime.test.cpp
+- /verify/Test/Math/Prime.test.cpp
+- /verify/Test/Math/Prime.test.cpp.html
+title: Test/Math/Prime.test.cpp
 ---

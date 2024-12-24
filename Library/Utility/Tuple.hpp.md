@@ -16,9 +16,6 @@ data:
     title: Library/Utility/io.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
-    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
-  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/RunLengthEncoding.test.cpp
     title: Test/DataStructure/RunLengthEncoding.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Math/EuclideanAlgorithm_gcd.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math.test.cpp
     title: Test/Math/Math.test.cpp
@@ -94,10 +94,10 @@ data:
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
+  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
   - Test/Math/Math.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp
-  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
 documentation_of: Library/Utility/Tuple.hpp
 layout: document

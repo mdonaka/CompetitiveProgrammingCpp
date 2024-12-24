@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Utility/Prime.test.cpp
-    title: Test/Utility/Prime.test.cpp
+    path: Test/Math/Prime.test.cpp
+    title: Test/Math/Prime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Utility/Prime.hpp\"\n\r\n#include <deque>\r\n#include\
+  bundledCode: "#line 2 \"Library/Math/Prime.hpp\"\n\r\n#include <deque>\r\n#include\
     \ <unordered_map>\r\n#include <vector>\r\n\r\nnamespace mtd {\r\n  class Prime\
     \ {\r\n    const long long n;\r\n    const std::deque<long long> p_list;\r\n\r\
     \n    static inline auto linearSieve(long long n) {\r\n      std::deque<long long>\
@@ -47,16 +47,16 @@ data:
     \n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Utility/Prime.hpp
+  path: Library/Math/Prime.hpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Utility/Prime.test.cpp
-documentation_of: Library/Utility/Prime.hpp
+  - Test/Math/Prime.test.cpp
+documentation_of: Library/Math/Prime.hpp
 layout: document
 redirect_from:
-- /library/Library/Utility/Prime.hpp
-- /library/Library/Utility/Prime.hpp.html
-title: Library/Utility/Prime.hpp
+- /library/Library/Math/Prime.hpp
+- /library/Library/Math/Prime.hpp.html
+title: Library/Math/Prime.hpp
 ---

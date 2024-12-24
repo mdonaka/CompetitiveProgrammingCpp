@@ -4,23 +4,23 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/EuclideanAlgorithm.test.cpp
-    title: Test/Algorithms/EuclideanAlgorithm.test.cpp
+    path: Test/Math/EuclideanAlgorithm.test.cpp
+    title: Test/Math/EuclideanAlgorithm.test.cpp
   - icon: ':heavy_check_mark:'
-    path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
-    title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
+    path: Test/Math/EuclideanAlgorithm_gcd.test.cpp
+    title: Test/Math/EuclideanAlgorithm_gcd.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"Library/Algorithms/EuclideanAlgorithm.hpp\"\n\r\n#include\
-    \ <iostream>\r\n#include <numeric>\r\n#include <tuple>\r\n\r\nnamespace mtd {\r\
-    \n\r\n  class EuclideanAlgorithm {\r\n    using T = long long;\r\n\r\n    // \u5927\
-    \u304D\u3059\u304E\u308B\u3068\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\
-    \u3066\u3057\u307E\u3046\r\n    const static inline T m_mx = 1e9;\r\n\r\n    const\
-    \ T m_a;\r\n    const T m_b;\r\n    const T m_c;\r\n\r\n    T m_gcd;\r\n    T\
-    \ m_x;\r\n    T m_y;\r\n\r\n    auto excludedEuclidAlgorithm(T a, T b) -> std::tuple<T,\
+  bundledCode: "#line 2 \"Library/Math/EuclideanAlgorithm.hpp\"\n\r\n#include <iostream>\r\
+    \n#include <numeric>\r\n#include <tuple>\r\n\r\nnamespace mtd {\r\n\r\n  class\
+    \ EuclideanAlgorithm {\r\n    using T = long long;\r\n\r\n    // \u5927\u304D\u3059\
+    \u304E\u308B\u3068\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u3066\u3057\
+    \u307E\u3046\r\n    const static inline T m_mx = 1e9;\r\n\r\n    const T m_a;\r\
+    \n    const T m_b;\r\n    const T m_c;\r\n\r\n    T m_gcd;\r\n    T m_x;\r\n \
+    \   T m_y;\r\n\r\n    auto excludedEuclidAlgorithm(T a, T b) -> std::tuple<T,\
     \ T, T> {\r\n      if (a < 0) {\r\n        auto [g, x, y] = excludedEuclidAlgorithm(-a,\
     \ -b);\r\n        return {g, -x, -y};\r\n      }\r\n      if (b == 0) { return\
     \ {a, 1, 0}; }\r\n      auto [g, y, x] = excludedEuclidAlgorithm(b, a % b);\r\n\
@@ -47,10 +47,13 @@ data:
     \ y) const { return m_a * x + m_b * y; }\r\n    auto get(T k) const -> std::pair<T,\
     \ T> {\r\n      if (m_b == 0) { return {m_x, m_y - k}; }\r\n      if (m_a == 0)\
     \ { return {m_x + k, m_y}; }\r\n      return {m_x + m_b * k, m_y - m_a * k};\r\
-    \n    }\r\n    auto getMinX(T x_l = 0) const -> std::pair<T, T> {\r\n      return\
-    \ kRange(m_x, m_b, x_l);\r\n    }\r\n    auto getMinY(T y_l = 0) const -> std::pair<T,\
-    \ T> {\r\n      return kRange(m_y, -1 * m_a, y_l);\r\n    }\r\n    auto getMin(T\
-    \ x_l = 0, T y_l = 0) const -> std::pair<T, T> {\r\n      auto [xl, xr] = getMinX(x_l);\r\
+    \n    }\r\n    // x>=x_l\u3068\u306A\u308B\u3088\u3046\u306Ak\u306E\u7BC4\u56F2\
+    \r\n    auto getMinX(T x_l = 0) const -> std::pair<T, T> {\r\n      return kRange(m_x,\
+    \ m_b, x_l);\r\n    }\r\n    // y>=y_l\u3068\u306A\u308B\u3088\u3046\u306Ak\u306E\
+    \u7BC4\u56F2\r\n    auto getMinY(T y_l = 0) const -> std::pair<T, T> {\r\n   \
+    \   return kRange(m_y, -1 * m_a, y_l);\r\n    }\r\n    // x>=x_l, y>=y_l\u3068\
+    \u306A\u308B\u3088\u3046\u306Ak\u306E\u7BC4\u56F2\r\n    auto getMin(T x_l = 0,\
+    \ T y_l = 0) const -> std::pair<T, T> {\r\n      auto [xl, xr] = getMinX(x_l);\r\
     \n      auto [yl, yr] = getMinY(y_l);\r\n      return {std::max(xl, yl), std::min(xr,\
     \ yr)};\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <iostream>\r\n#include <numeric>\r\n#include\
@@ -85,26 +88,29 @@ data:
     \ get(T x, T y) const { return m_a * x + m_b * y; }\r\n    auto get(T k) const\
     \ -> std::pair<T, T> {\r\n      if (m_b == 0) { return {m_x, m_y - k}; }\r\n \
     \     if (m_a == 0) { return {m_x + k, m_y}; }\r\n      return {m_x + m_b * k,\
-    \ m_y - m_a * k};\r\n    }\r\n    auto getMinX(T x_l = 0) const -> std::pair<T,\
-    \ T> {\r\n      return kRange(m_x, m_b, x_l);\r\n    }\r\n    auto getMinY(T y_l\
-    \ = 0) const -> std::pair<T, T> {\r\n      return kRange(m_y, -1 * m_a, y_l);\r\
-    \n    }\r\n    auto getMin(T x_l = 0, T y_l = 0) const -> std::pair<T, T> {\r\n\
-    \      auto [xl, xr] = getMinX(x_l);\r\n      auto [yl, yr] = getMinY(y_l);\r\n\
-    \      return {std::max(xl, yl), std::min(xr, yr)};\r\n    }\r\n  };\r\n\r\n}\
-    \  // namespace mtd\r\n"
+    \ m_y - m_a * k};\r\n    }\r\n    // x>=x_l\u3068\u306A\u308B\u3088\u3046\u306A\
+    k\u306E\u7BC4\u56F2\r\n    auto getMinX(T x_l = 0) const -> std::pair<T, T> {\r\
+    \n      return kRange(m_x, m_b, x_l);\r\n    }\r\n    // y>=y_l\u3068\u306A\u308B\
+    \u3088\u3046\u306Ak\u306E\u7BC4\u56F2\r\n    auto getMinY(T y_l = 0) const ->\
+    \ std::pair<T, T> {\r\n      return kRange(m_y, -1 * m_a, y_l);\r\n    }\r\n \
+    \   // x>=x_l, y>=y_l\u3068\u306A\u308B\u3088\u3046\u306Ak\u306E\u7BC4\u56F2\r\
+    \n    auto getMin(T x_l = 0, T y_l = 0) const -> std::pair<T, T> {\r\n      auto\
+    \ [xl, xr] = getMinX(x_l);\r\n      auto [yl, yr] = getMinY(y_l);\r\n      return\
+    \ {std::max(xl, yl), std::min(xr, yr)};\r\n    }\r\n  };\r\n\r\n}  // namespace\
+    \ mtd\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: Library/Algorithms/EuclideanAlgorithm.hpp
+  path: Library/Math/EuclideanAlgorithm.hpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
-  - Test/Algorithms/EuclideanAlgorithm.test.cpp
-documentation_of: Library/Algorithms/EuclideanAlgorithm.hpp
+  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
+  - Test/Math/EuclideanAlgorithm.test.cpp
+documentation_of: Library/Math/EuclideanAlgorithm.hpp
 layout: document
 redirect_from:
-- /library/Library/Algorithms/EuclideanAlgorithm.hpp
-- /library/Library/Algorithms/EuclideanAlgorithm.hpp.html
-title: Library/Algorithms/EuclideanAlgorithm.hpp
+- /library/Library/Math/EuclideanAlgorithm.hpp
+- /library/Library/Math/EuclideanAlgorithm.hpp.html
+title: Library/Math/EuclideanAlgorithm.hpp
 ---

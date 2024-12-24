@@ -21,9 +21,6 @@ data:
       path: Library/Algorithms/CoordinateCompression.hpp
       title: Library/Algorithms/CoordinateCompression.hpp
     - icon: ':heavy_check_mark:'
-      path: Library/Algorithms/EuclideanAlgorithm.hpp
-      title: Library/Algorithms/EuclideanAlgorithm.hpp
-    - icon: ':heavy_check_mark:'
       path: Library/Algorithms/Mo.hpp
       title: Library/Algorithms/Mo.hpp
   - name: Library/DataStructure
@@ -135,6 +132,9 @@ data:
       path: Library/Math/DynamicModInt.hpp
       title: Library/Math/DynamicModInt.hpp
     - icon: ':heavy_check_mark:'
+      path: Library/Math/EuclideanAlgorithm.hpp
+      title: Library/Math/EuclideanAlgorithm.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Math.hpp
       title: Library/Math/Math.hpp
     - icon: ':heavy_check_mark:'
@@ -146,6 +146,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Math/ModInt.hpp
       title: Library/Math/ModInt.hpp
+    - icon: ':heavy_check_mark:'
+      path: Library/Math/Prime.hpp
+      title: Library/Math/Prime.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Math/Zeta.hpp
       title: Library/Math/Zeta.hpp
@@ -185,9 +188,6 @@ data:
   - name: Library/Utility
     pages:
     - icon: ':heavy_check_mark:'
-      path: Library/Utility/Prime.hpp
-      title: Library/Utility/Prime.hpp
-    - icon: ':heavy_check_mark:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
     - icon: ':heavy_check_mark:'
@@ -217,12 +217,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/CoordinateCompression_to.test.cpp
       title: Test/Algorithms/CoordinateCompression_to.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Algorithms/EuclideanAlgorithm.test.cpp
-      title: Test/Algorithms/EuclideanAlgorithm.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
-      title: Test/Algorithms/EuclideanAlgorithm_gcd.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Algorithms/Mo.test.cpp
       title: Test/Algorithms/Mo.test.cpp
@@ -369,6 +363,12 @@ data:
       path: Test/Math/Convolution_and.test.cpp
       title: Test/Math/Convolution_and.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/Math/EuclideanAlgorithm.test.cpp
+      title: Test/Math/EuclideanAlgorithm.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/EuclideanAlgorithm_gcd.test.cpp
+      title: Test/Math/EuclideanAlgorithm_gcd.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Math/Math.test.cpp
       title: Test/Math/Math.test.cpp
     - icon: ':heavy_check_mark:'
@@ -383,6 +383,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Math/Matrix_pow.test.cpp
       title: Test/Math/Matrix_pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Prime.test.cpp
+      title: Test/Math/Prime.test.cpp
   - name: Test/PlaneGeometry
     pages:
     - icon: ':heavy_check_mark:'
@@ -424,9 +427,6 @@ data:
       title: Test/String/ZAlgorithm.test.cpp
   - name: Test/Utility
     pages:
-    - icon: ':heavy_check_mark:'
-      path: Test/Utility/Prime.test.cpp
-      title: Test/Utility/Prime.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Utility/Ycombinator.test.cpp
       title: Test/Utility/Ycombinator.test.cpp

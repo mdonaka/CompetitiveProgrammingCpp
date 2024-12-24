@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: Library/Algorithms/EuclideanAlgorithm.hpp
-    title: Library/Algorithms/EuclideanAlgorithm.hpp
+    path: Library/Math/EuclideanAlgorithm.hpp
+    title: Library/Math/EuclideanAlgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,9 +14,9 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E
-  bundledCode: "#line 1 \"Test/Algorithms/EuclideanAlgorithm.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"Test/Math/EuclideanAlgorithm.test.cpp\"\n#define PROBLEM\
     \ \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E\"\
-    \r\n\r\n#line 2 \"Library/Algorithms/EuclideanAlgorithm.hpp\"\n\r\n#include <iostream>\r\
+    \r\n\r\n#line 2 \"Library/Math/EuclideanAlgorithm.hpp\"\n\r\n#include <iostream>\r\
     \n#include <numeric>\r\n#include <tuple>\r\n\r\nnamespace mtd {\r\n\r\n  class\
     \ EuclideanAlgorithm {\r\n    using T = long long;\r\n\r\n    // \u5927\u304D\u3059\
     \u304E\u308B\u3068\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u3066\u3057\
@@ -49,42 +49,45 @@ data:
     \ y) const { return m_a * x + m_b * y; }\r\n    auto get(T k) const -> std::pair<T,\
     \ T> {\r\n      if (m_b == 0) { return {m_x, m_y - k}; }\r\n      if (m_a == 0)\
     \ { return {m_x + k, m_y}; }\r\n      return {m_x + m_b * k, m_y - m_a * k};\r\
-    \n    }\r\n    auto getMinX(T x_l = 0) const -> std::pair<T, T> {\r\n      return\
-    \ kRange(m_x, m_b, x_l);\r\n    }\r\n    auto getMinY(T y_l = 0) const -> std::pair<T,\
-    \ T> {\r\n      return kRange(m_y, -1 * m_a, y_l);\r\n    }\r\n    auto getMin(T\
-    \ x_l = 0, T y_l = 0) const -> std::pair<T, T> {\r\n      auto [xl, xr] = getMinX(x_l);\r\
+    \n    }\r\n    // x>=x_l\u3068\u306A\u308B\u3088\u3046\u306Ak\u306E\u7BC4\u56F2\
+    \r\n    auto getMinX(T x_l = 0) const -> std::pair<T, T> {\r\n      return kRange(m_x,\
+    \ m_b, x_l);\r\n    }\r\n    // y>=y_l\u3068\u306A\u308B\u3088\u3046\u306Ak\u306E\
+    \u7BC4\u56F2\r\n    auto getMinY(T y_l = 0) const -> std::pair<T, T> {\r\n   \
+    \   return kRange(m_y, -1 * m_a, y_l);\r\n    }\r\n    // x>=x_l, y>=y_l\u3068\
+    \u306A\u308B\u3088\u3046\u306Ak\u306E\u7BC4\u56F2\r\n    auto getMin(T x_l = 0,\
+    \ T y_l = 0) const -> std::pair<T, T> {\r\n      auto [xl, xr] = getMinX(x_l);\r\
     \n      auto [yl, yr] = getMinY(y_l);\r\n      return {std::max(xl, yl), std::min(xr,\
-    \ yr)};\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 5 \"Test/Algorithms/EuclideanAlgorithm.test.cpp\"\
-    \n\r\n#line 8 \"Test/Algorithms/EuclideanAlgorithm.test.cpp\"\n\r\nusing ll =\
-    \ long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\\
-    n';\r\n\r\nsigned main() {\r\n  ll x, y;\r\n  cin >> x >> y;\r\n\r\n  auto ea\
-    \ = mtd::EuclideanAlgorithm(x, y);\r\n  auto [kl, kr] = ea.getMin();\r\n  auto\
-    \ [la, lb] = ea.get(kl);\r\n  auto [ra, rb] = ea.get(kr);\r\n\r\n  ll lsum = std::abs(la)\
-    \ + std::abs(lb);\r\n  ll rsum = std::abs(ra) + std::abs(rb);\r\n  if (lsum <\
-    \ rsum || (lsum == rsum && la < ra)) {\r\n    cout << la << \" \" << lb << endl;\r\
-    \n  } else {\r\n    cout << ra << \" \" << rb << endl;\r\n  }\r\n}\r\n"
+    \ yr)};\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n#line 5 \"Test/Math/EuclideanAlgorithm.test.cpp\"\
+    \n\r\n#line 8 \"Test/Math/EuclideanAlgorithm.test.cpp\"\n\r\nusing ll = long long;\r\
+    \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
+    signed main() {\r\n  ll x, y;\r\n  cin >> x >> y;\r\n\r\n  auto ea = mtd::EuclideanAlgorithm(x,\
+    \ y);\r\n  auto [kl, kr] = ea.getMin();\r\n  auto [la, lb] = ea.get(kl);\r\n \
+    \ auto [ra, rb] = ea.get(kr);\r\n\r\n  ll lsum = std::abs(la) + std::abs(lb);\r\
+    \n  ll rsum = std::abs(ra) + std::abs(rb);\r\n  if (lsum < rsum || (lsum == rsum\
+    \ && la < ra)) {\r\n    cout << la << \" \" << lb << endl;\r\n  } else {\r\n \
+    \   cout << ra << \" \" << rb << endl;\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E\"\
-    \r\n\r\n#include \"./../../Library/Algorithms/EuclideanAlgorithm.hpp\"\r\n\r\n\
-    #include <iostream>\r\n#include <tuple>\r\n\r\nusing ll = long long;\r\nusing\
-    \ std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned\
-    \ main() {\r\n  ll x, y;\r\n  cin >> x >> y;\r\n\r\n  auto ea = mtd::EuclideanAlgorithm(x,\
+    \r\n\r\n#include \"./../../Library/Math/EuclideanAlgorithm.hpp\"\r\n\r\n#include\
+    \ <iostream>\r\n#include <tuple>\r\n\r\nusing ll = long long;\r\nusing std::cin;\r\
+    \nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\nsigned main() {\r\n\
+    \  ll x, y;\r\n  cin >> x >> y;\r\n\r\n  auto ea = mtd::EuclideanAlgorithm(x,\
     \ y);\r\n  auto [kl, kr] = ea.getMin();\r\n  auto [la, lb] = ea.get(kl);\r\n \
     \ auto [ra, rb] = ea.get(kr);\r\n\r\n  ll lsum = std::abs(la) + std::abs(lb);\r\
     \n  ll rsum = std::abs(ra) + std::abs(rb);\r\n  if (lsum < rsum || (lsum == rsum\
     \ && la < ra)) {\r\n    cout << la << \" \" << lb << endl;\r\n  } else {\r\n \
     \   cout << ra << \" \" << rb << endl;\r\n  }\r\n}\r\n"
   dependsOn:
-  - Library/Algorithms/EuclideanAlgorithm.hpp
+  - Library/Math/EuclideanAlgorithm.hpp
   isVerificationFile: true
-  path: Test/Algorithms/EuclideanAlgorithm.test.cpp
+  path: Test/Math/EuclideanAlgorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: Test/Algorithms/EuclideanAlgorithm.test.cpp
+documentation_of: Test/Math/EuclideanAlgorithm.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Algorithms/EuclideanAlgorithm.test.cpp
-- /verify/Test/Algorithms/EuclideanAlgorithm.test.cpp.html
-title: Test/Algorithms/EuclideanAlgorithm.test.cpp
+- /verify/Test/Math/EuclideanAlgorithm.test.cpp
+- /verify/Test/Math/EuclideanAlgorithm.test.cpp.html
+title: Test/Math/EuclideanAlgorithm.test.cpp
 ---

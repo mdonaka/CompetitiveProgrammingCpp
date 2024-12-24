@@ -23,7 +23,7 @@ data:
     \  std::vector<int> m_root;\r\n    std::vector<int> m_rank;\r\n    std::vector<int>\
     \ m_size;\r\n    std::vector<T> m_potential;\r\n\r\n  public:\r\n    PotentialDisjointSetUnion()\
     \ = delete;\r\n    PotentialDisjointSetUnion(int n)\r\n        : m_root(n), m_rank(n),\
-    \ m_size(n), m_potential(n) {\r\n      std::iota(m_root.begin(), m_root.end(),\
+    \ m_size(n, 1), m_potential(n) {\r\n      std::iota(m_root.begin(), m_root.end(),\
     \ 0);\r\n    }\r\n\r\n    auto unite(int x, int y, T p = 0) {\r\n      p += potential(x);\r\
     \n      p -= potential(y);\r\n      x = root(x);\r\n      y = root(y);\r\n   \
     \   if (x == y) { return false; }\r\n      if (m_rank[x] < m_rank[y]) {\r\n  \
@@ -64,7 +64,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/DisjointSetUnion.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 16:02:39+09:00'
+  timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/DisjointSetUnion.test.cpp
