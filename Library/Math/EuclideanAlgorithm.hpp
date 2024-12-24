@@ -72,12 +72,15 @@ namespace mtd {
       if (m_a == 0) { return {m_x + k, m_y}; }
       return {m_x + m_b * k, m_y - m_a * k};
     }
+    // x>=x_lとなるようなkの範囲
     auto getMinX(T x_l = 0) const -> std::pair<T, T> {
       return kRange(m_x, m_b, x_l);
     }
+    // y>=y_lとなるようなkの範囲
     auto getMinY(T y_l = 0) const -> std::pair<T, T> {
       return kRange(m_y, -1 * m_a, y_l);
     }
+    // x>=x_l, y>=y_lとなるようなkの範囲
     auto getMin(T x_l = 0, T y_l = 0) const -> std::pair<T, T> {
       auto [xl, xr] = getMinX(x_l);
       auto [yl, yr] = getMinY(y_l);

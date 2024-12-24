@@ -16,7 +16,7 @@ namespace mtd {
   public:
     PotentialDisjointSetUnion() = delete;
     PotentialDisjointSetUnion(int n)
-        : m_root(n), m_rank(n), m_size(n), m_potential(n) {
+        : m_root(n), m_rank(n), m_size(n, 1), m_potential(n) {
       std::iota(m_root.begin(), m_root.end(), 0);
     }
 

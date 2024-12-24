@@ -1,7 +1,7 @@
 #define PROBLEM \
   "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A"
 
-#include "./../../Library/Utility/Prime.hpp"
+#include "./../../Library/Math/Prime.hpp"
 
 #include <algorithm>
 #include <iostream>
