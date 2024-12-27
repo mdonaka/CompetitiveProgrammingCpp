@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -212,7 +212,7 @@ data:
   path: Test/Math/Math.test.cpp
   requiredBy: []
   timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/Math.test.cpp
 layout: document

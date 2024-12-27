@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Algorithms/CoordinateCompression.hpp
     title: Library/Algorithms/CoordinateCompression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
   _extendedRequiredBy: []

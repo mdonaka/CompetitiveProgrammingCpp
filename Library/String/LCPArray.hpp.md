@@ -1,42 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/String/SuffixArray.hpp
     title: Library/String/SuffixArray.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/LCPArray.hpp\"\n\r\n#line 2 \"Library/String/SuffixArray.hpp\"\
     \n#include <iostream>\r\n#include <list>\r\n#include <set>\r\n#include <string>\r\
     \n#include <unordered_map>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Algorithms/BinarySearch.hpp\"\
-    \n\r\n#include <numeric>\r\n#include <ranges>\r\n\r\nnamespace mtd {\r\n\r\n \
-    \ template <class Lambda>\r\n  auto binarySearch(double ok, double ng, int rep,\
-    \ const Lambda& is_ok) {\r\n    for ([[maybe_unused]] auto _ : std::views::iota(0,\
-    \ rep)) {\r\n      double mid = (ok + ng) / 2.0;\r\n      (is_ok(mid) ? ok : ng)\
-    \ = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class Lambda, class\
-    \ T = long long>\r\n  auto binarySearch(T ok, T ng, const Lambda& is_ok) {\r\n\
-    \    while (std::abs(ok - ng) > 1) {\r\n      T mid = (ok + ng) >> 1;\r\n    \
-    \  (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n}  //\
-    \ namespace mtd\r\n#line 10 \"Library/String/SuffixArray.hpp\"\n\r\nnamespace\
-    \ mtd {\r\n  /**\r\n   * SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n   * O(N)\r\
-    \n   * \u6587\u5B57\u5217\u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\
-    \u3057\u305F\u914D\u5217\u304C\u5F97\u3089\u308C\u308B\r\n   * ex) abadc -> [0,\
-    \ 2, 1, 4, 3]([abadc, adc, badc, c, dc])\r\n   *\r\n   * SA-IS(Suffix Array -\
-    \ Induced Sort)\u3067\u5B9F\u88C5\r\n   */\r\n  class SuffixArray {\r\n    enum\
-    \ class TYPE { L, S, LMS };\r\n\r\n    const std::string m_str;\r\n    const std::vector<int>\
-    \ m_suffixArray;\r\n\r\n    /* string to vector<int> */\r\n    static std::vector<int>\
-    \ toIntVec(const std::string& str) {\r\n      std::vector<int> vec;\r\n      vec.reserve(str.size()\
+    \n\r\n#include <concepts>\r\n#include <numeric>\r\n#include <ranges>\r\n#include\
+    \ <type_traits>\r\n\r\nnamespace mtd {\r\n\r\n  template <class Lambda>\r\n  auto\
+    \ binarySearch(double ok, double ng, int rep, const Lambda& is_ok) {\r\n    for\
+    \ ([[maybe_unused]] auto _ : std::views::iota(0, rep)) {\r\n      double mid =\
+    \ (ok + ng) / 2.0;\r\n      (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return\
+    \ ok;\r\n  }\r\n\r\n  template <class Lambda, std::integral T1, std::integral\
+    \ T2>\r\n  auto binarySearch(T1 ok_, T2 ng_, const Lambda& is_ok) {\r\n    using\
+    \ T = std::common_type_t<T1, T2>;\r\n    T ok = ok_, ng = ng_;\r\n    while (std::abs(ok\
+    \ - ng) > 1) {\r\n      T mid = (ok + ng) >> 1;\r\n      (is_ok(mid) ? ok : ng)\
+    \ = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n}  // namespace mtd\r\n#line\
+    \ 10 \"Library/String/SuffixArray.hpp\"\n\r\nnamespace mtd {\r\n  /**\r\n   *\
+    \ SuffixArray\u3092\u69CB\u7BC9\u3059\u308B\r\n   * O(N)\r\n   * \u6587\u5B57\u5217\
+    \u306E\u5168\u3066\u306Esuffix\u3092\u30BD\u30FC\u30C8\u3057\u305F\u914D\u5217\
+    \u304C\u5F97\u3089\u308C\u308B\r\n   * ex) abadc -> [0, 2, 1, 4, 3]([abadc, adc,\
+    \ badc, c, dc])\r\n   *\r\n   * SA-IS(Suffix Array - Induced Sort)\u3067\u5B9F\
+    \u88C5\r\n   */\r\n  class SuffixArray {\r\n    enum class TYPE { L, S, LMS };\r\
+    \n\r\n    const std::string m_str;\r\n    const std::vector<int> m_suffixArray;\r\
+    \n\r\n    /* string to vector<int> */\r\n    static std::vector<int> toIntVec(const\
+    \ std::string& str) {\r\n      std::vector<int> vec;\r\n      vec.reserve(str.size()\
     \ + 1);\r\n      for (const auto& c : str) { vec.emplace_back(c - '0' + 1); }\r\
     \n      vec.emplace_back(0);\r\n      return vec;\r\n    }\r\n\r\n    /* classify\
     \ { L, S, LMS } */\r\n    static std::vector<TYPE> classifying(const std::vector<int>&\
@@ -184,8 +186,8 @@ data:
   isVerificationFile: false
   path: Library/String/LCPArray.hpp
   requiredBy: []
-  timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-12-27 17:36:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/LCPArray.test.cpp
 documentation_of: Library/String/LCPArray.hpp

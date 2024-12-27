@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedVerifiedWith:
@@ -24,36 +24,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/EuclideanAlgorithm_gcd.test.cpp
     title: Test/Math/EuclideanAlgorithm_gcd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math.test.cpp
     title: Test/Math/Math.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_dynamic.test.cpp
     title: Test/Math/Math_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Tuple.hpp\"\n\n#include <functional>\n\n\
@@ -85,7 +85,7 @@ data:
   - Library/Graph/Normal/Topological.hpp
   - Library/Utility/io.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/zip.test.cpp
   - Test/Range/enumerate.test.cpp

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   - icon: ':heavy_check_mark:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
     title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -191,7 +191,7 @@ data:
   - Library/Graph/Normal/BFS.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/Dinic.test.cpp

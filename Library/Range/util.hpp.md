@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy:
@@ -12,18 +12,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -325,7 +325,7 @@ data:
   requiredBy:
   - Library/Graph/Normal/Topological.hpp
   timestamp: '2024-12-27 16:26:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/zip.test.cpp
   - Test/Range/enumerate.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_dynamic.test.cpp
     title: Test/Math/Math_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/DynamicModInt.hpp\"\n\n#include <iostream>\n\
@@ -129,7 +129,7 @@ data:
   path: Library/Math/DynamicModInt.hpp
   requiredBy: []
   timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp

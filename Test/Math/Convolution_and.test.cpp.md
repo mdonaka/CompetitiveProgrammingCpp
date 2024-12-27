@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -265,7 +265,7 @@ data:
   path: Test/Math/Convolution_and.test.cpp
   requiredBy: []
   timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/Convolution_and.test.cpp
 layout: document

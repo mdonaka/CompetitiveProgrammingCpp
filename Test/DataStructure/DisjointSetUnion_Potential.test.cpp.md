@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DisjointSetUnion.hpp
     title: Library/DataStructure/DisjointSetUnion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedRequiredBy: []

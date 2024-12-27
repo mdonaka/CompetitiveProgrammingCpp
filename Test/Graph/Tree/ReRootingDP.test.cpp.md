@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedRequiredBy: []

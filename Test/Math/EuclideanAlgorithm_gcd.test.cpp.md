@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Math/EuclideanAlgorithm.hpp
     title: Library/Math/EuclideanAlgorithm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []

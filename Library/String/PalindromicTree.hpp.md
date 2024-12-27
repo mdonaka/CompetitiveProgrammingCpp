@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/PalindromicTree.test.cpp
     title: Test/String/PalindromicTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/String/PalindromicTree_large.test.cpp
     title: Test/String/PalindromicTree_large.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/PalindromicTree.hpp\"\n#include <iostream>\r\
@@ -209,7 +209,7 @@ data:
   path: Library/String/PalindromicTree.hpp
   requiredBy: []
   timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/String/PalindromicTree.test.cpp
   - Test/String/PalindromicTree_large.test.cpp

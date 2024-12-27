@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/bit.hpp
     title: Library/Range/bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tools.hpp
     title: Library/Utility/Tools.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/733
@@ -159,7 +159,7 @@ data:
   path: Test/Range/bit_subset.test.cpp
   requiredBy: []
   timestamp: '2024-12-27 17:07:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Range/bit_subset.test.cpp
 layout: document
