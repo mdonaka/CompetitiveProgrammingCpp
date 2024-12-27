@@ -33,10 +33,10 @@ namespace mtd {
     }
 
   public:
-    SegmentMap(SizeType n) : n(n) {
+    SegmentMap(SizeType _n) : n(_n) {
       mp.emplace(-1, -1);
       mp.emplace(0, -2);
-      mp.emplace(n, -1);
+      mp.emplace(_n, -1);
     }
 
     auto output() const {

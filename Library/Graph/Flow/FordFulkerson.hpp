@@ -51,7 +51,7 @@ namespace mtd {
 
     auto get_route(Node s, Node t, const PairGraph& graph) const {
       std::unordered_set<Node> visited;
-      auto f = [&](auto&& f, Node now, std::list<Node>& route) -> bool {
+      auto f = [&](auto&& self, Node now, std::list<Node>& route) -> bool {
         route.emplace_back(now);
         for (const auto& to : m_to_list[now]) {
           if (graph.find({now, to}) == graph.end()) { continue; }
@@ -61,7 +61,7 @@ namespace mtd {
           }
           if (visited.find(to) == visited.end()) {
             visited.emplace(to);
-            if (f(f, to, route)) { return true; }
+            if (self(self, to, route)) { return true; }
           }
         }
         route.pop_back();
@@ -127,27 +127,28 @@ namespace mtd {
 
       auto residual = construct_residual(s, t);
       std::queue<Node> q;
-      auto add = [&](Node t) {
-        if (st.find(t) != st.end()) { return; }
-        q.emplace(t);
-        st.emplace(t);
+      auto add = [&](Node to) {
+        if (st.find(to) != st.end()) { return; }
+        q.emplace(to);
+        st.emplace(to);
       };
       add(s);
       std::deque<Node> ans;
       while (!q.empty()) {
-        auto f = q.front();
+        auto from = q.front();
         q.pop();
-        for (const auto& t : m_to_list[f]) {
-          if (residual.find({f, t}) == residual.end()) { continue; }
-          add(t);
+        for (const auto& to : m_to_list[from]) {
+          if (residual.find({from, to}) == residual.end()) { continue; }
+          add(to);
         }
       }
 
       std::deque<std::pair<Node, Node>> cut;
-      for (const auto& f : st)
-        for (const auto& t : m_to_list[f]) {
-          if (st.find(t) == st.end() && m_graph.find({f, t}) != m_graph.end()) {
-            cut.emplace_back(f, t);
+      for (const auto& from : st)
+        for (const auto& to : m_to_list[from]) {
+          if (st.find(to) == st.end() &&
+              m_graph.find({from, to}) != m_graph.end()) {
+            cut.emplace_back(from, to);
           }
         }
 

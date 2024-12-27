@@ -26,7 +26,7 @@ namespace mtd {
       std::unordered_map<char, std::shared_ptr<Node>> m_edges;
 
       // xAxとなるAを探す(x=str[itr])
-      auto find(int itr, const std::string& s, bool flg = false) {
+      auto find(int itr, const std::string& s) {
         auto p = this->weak_from_this();
         while (true) {
           auto size = p.lock()->m_size;
@@ -42,8 +42,7 @@ namespace mtd {
       auto create(int itr, const std::string& s) {
         // suffixLinkの探索
         auto suffixLinkFrom =
-            m_suffixLink.lock() /*->m_suffixLink.lock()*/->find(itr, s, true)
-                .lock();
+            m_suffixLink.lock() /*->m_suffixLink.lock()*/->find(itr, s).lock();
         // 新Nodeの作成
         auto newNode = std::make_shared<Node>(
             m_size + 2, (suffixLinkFrom->m_edges.find(s[itr]) ==
@@ -72,7 +71,7 @@ namespace mtd {
       }
 
       // debug用
-      auto outputTree(const std::string& s) -> void const {
+      auto outputTree(const std::string& s) const -> void {
         if (m_size <= 0) {
           std::cerr << "root";
         } else {
@@ -168,25 +167,26 @@ namespace mtd {
       std::unordered_map<int, int> graph;
       std::vector<int> orderCount(m_s.size());
       m_rootOdd->dfs_edges(
-          [&](int size, const std::list<int>& rItrs) { from = rItrs.front(); },
-          [&](int size, const std::list<int>& rItrs) {
+          [&](int, const std::list<int>& rItrs) { from = rItrs.front(); },
+          [&](int, const std::list<int>& rItrs) {
             int to = rItrs.front();
             graph.emplace(from, to);
             ++orderCount[to];
           });
       // 探索順序に従って処理
       std::queue<int, std::list<int>> q;
-      for (int i = 0; i < static_cast<int>(m_s.size()); ++i)
+      for (int i = 0; i < static_cast<int>(m_s.size()); ++i) {
         if (orderCount[i] == 0) { q.emplace(i); }
+      }
       while (!q.empty()) {
-        int from = q.front();
+        int f = q.front();
         q.pop();
-        auto range = graph.equal_range(from);
+        auto range = graph.equal_range(f);
         for (auto itr = range.first; itr != range.second; ++itr) {
-          int to = itr->second;
-          --orderCount[to];
-          lambda(from, to);
-          if (orderCount[to] == 0) { q.emplace(to); }
+          int t = itr->second;
+          --orderCount[t];
+          lambda(f, t);
+          if (orderCount[t] == 0) { q.emplace(t); }
         }
       }
     }

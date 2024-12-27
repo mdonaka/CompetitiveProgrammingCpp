@@ -81,7 +81,7 @@ namespace mtd {
       cost[s] = 0;
       for (int _ = 0; _ < n; ++_) {
         for (int from = 0; from < n; ++from) {
-          for (const auto& [to, _] : m_graph_undirected.getEdges(from)) {
+          for (const auto& [to, __] : m_graph_undirected.getEdges(from)) {
             if (residual_cap[from][to] > 0) {
               cost[to] =
                   std::min(cost[to], cost[from] + residual_cost[from][to]);
@@ -154,10 +154,10 @@ namespace mtd {
       return sl;
     }
 
-    auto min_cost_max_flow(Node s, Node t, Cap c = 1e18) const {
+    auto min_cost_max_flow(Node s, Node t, Cap cap = 1e18) const {
       Cap use_all = 0;
       Cost cost_all = 0;
-      for (const auto& [u, c] : slope(s, t, c)) {
+      for (const auto& [u, c] : slope(s, t, cap)) {
         use_all += u;
         cost_all += c;
       }

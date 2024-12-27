@@ -29,7 +29,7 @@ namespace mtd {
     }
 
   public:
-    constexpr RunLengthEncoding(const _R& r) : r(construct_rle(r)) {}
+    constexpr RunLengthEncoding(const _R& _r) : r(construct_rle(_r)) {}
 
     constexpr auto begin() const { return r.begin(); }
     constexpr auto end() const { return r.end(); }

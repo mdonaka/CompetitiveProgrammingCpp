@@ -15,7 +15,7 @@ namespace mtd {
   public:
     constexpr static inline auto set_mod(T _MOD) { MOD = _MOD; }
 
-    constexpr DynamicModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}
+    constexpr DynamicModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}
     constexpr DynamicModInt() : DynamicModInt(0) {}
 
     // 四則演算

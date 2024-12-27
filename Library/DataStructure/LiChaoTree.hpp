@@ -31,7 +31,7 @@ namespace mtd {
       return line.first * x + line.second;
     }
 
-    auto addLine(const Line& line_, int k, int l, int r) {
+    auto addLine(const Line& line_, T k, T l, T r) {
       auto line = line_;
 
       auto m = (l + r) / 2;
@@ -47,7 +47,8 @@ namespace mtd {
     }
 
   public:
-    LiChaoTree(const std::vector<T>& x_) : m_size(calcSize(x_.size())) {
+    LiChaoTree(const std::vector<T>& x_)
+        : m_size(calcSize(static_cast<int>(x_.size()))) {
       auto x = x_;
       std::sort(x.begin(), x.end());
       x.erase(std::unique(x.begin(), x.end()), x.end());
@@ -56,7 +57,9 @@ namespace mtd {
         m_x[i] = x[i];
         m_xtoi.emplace(x[i], i);
       }
-      for (size_t i = x.size(); i < m_size; ++i) { m_x[i] = m_x[i - 1] + 1; }
+      for (int i = static_cast<int>(x.size()); i < m_size; ++i) {
+        m_x[i] = m_x[i - 1] + 1;
+      }
       m_node = decltype(m_node)(m_size << 1, {0, INF});
     }
 
@@ -120,7 +123,7 @@ namespace mtd {
       T a, b;
 
     public:
-      Line(const T& a, const T& b) : a(a), b(b) {}
+      Line(const T& _a, const T& _b) : a(_a), b(_b) {}
       Line() : Line(0, INF) {}
       Line(const Line& other) noexcept : Line(other.a, other.b) {}
       Line(Line&& other) noexcept : Line(other) {}
@@ -149,14 +152,13 @@ namespace mtd {
       std::unique_ptr<Node> left;
       std::unique_ptr<Node> right;
 
-      Node(const Line& line) : line(line) {}
+      Node(const Line& _line) : line(_line) {}
       auto f(const T& x) const { return line.f(x); }
     };
 
     std::unique_ptr<Node> m_root;
 
-    auto addLine(std::unique_ptr<Node>& node, Line&& line, long long l,
-                 long long r) {
+    auto addLine(std::unique_ptr<Node>& node, Line&& line, T l, T r) {
       if (!node) {
         node = std::make_unique<Node>(line);
         return;
@@ -184,8 +186,7 @@ namespace mtd {
       addSegment(node->right, line, l, r, m, sr);
     }
 
-    auto query(const std::unique_ptr<Node>& node, const T& x, long long l,
-               long long r) const {
+    auto query(const std::unique_ptr<Node>& node, const T& x, T l, T r) const {
       if (!node) { return Line().f(x); }
       auto m = (l + r) / 2;
       return std::min(node->f(x), (x < m) ? query(node->left, x, l, m)

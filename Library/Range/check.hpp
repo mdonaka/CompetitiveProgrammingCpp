@@ -14,7 +14,7 @@ namespace mtd::check {
     std::vector<std::pair<std::string, bool>> table;
 
   public:
-    Table(const std::string& title) : title(title) {}
+    Table(const std::string& _title) : title(_title) {}
 
     auto add(const std::string& name, bool b) { table.emplace_back(name, b); }
     auto print() const {
@@ -30,8 +30,8 @@ namespace mtd::check {
                 << "|" << std::endl;
       std::cout << "|" << std::string(size + 10, '-') << "|" << std::endl;
       for (const auto& [s, b] : table) {
-        std::cout << "| " << std::left << std::setw(size) << s << " | "
-                  << (b ? "True " : "False") << " |" << std::endl;
+        std::cout << "| " << std::left << std::setw(static_cast<int>(size)) << s
+                  << " | " << (b ? "True " : "False") << " |" << std::endl;
       }
       std::cout << "|" << std::string(size + 10, '_') << "|" << std::endl;
     }

@@ -96,7 +96,7 @@ namespace mtd {
         // DFS
         bool run = false;
         std::vector<Node> visited(m_n);
-        auto f = [&](auto&& f, Node now, std::list<Node>& route) -> void {
+        auto f = [&](auto&& self, Node now, std::list<Node>& route) -> void {
           route.emplace_back(now);
 
           // tに到達していれば流す
@@ -111,7 +111,7 @@ namespace mtd {
             if (visited[to]) { continue; }
             visited[to] = true;
             ;
-            f(f, to, route);
+            self(self, to, route);
           }
           route.pop_back();
         };
@@ -146,27 +146,28 @@ namespace mtd {
 
       auto residual = construct_residual(s, t);
       std::queue<Node> q;
-      auto add = [&](Node t) {
-        if (st.find(t) != st.end()) { return; }
-        q.emplace(t);
-        st.emplace(t);
+      auto add = [&](Node to) {
+        if (st.find(to) != st.end()) { return; }
+        q.emplace(to);
+        st.emplace(to);
       };
       add(s);
       std::deque<Node> ans;
       while (!q.empty()) {
-        auto f = q.front();
+        auto from = q.front();
         q.pop();
-        for (const auto& t : m_to_list[f]) {
-          if (residual.find({f, t}) == residual.end()) { continue; }
-          add(t);
+        for (const auto& to : m_to_list[from]) {
+          if (residual.find({from, to}) == residual.end()) { continue; }
+          add(to);
         }
       }
 
       std::deque<std::pair<Node, Node>> cut;
-      for (const auto& f : st)
-        for (const auto& t : m_to_list[f]) {
-          if (st.find(t) == st.end() && m_graph.find({f, t}) != m_graph.end()) {
-            cut.emplace_back(f, t);
+      for (const auto& from : st)
+        for (const auto& to : m_to_list[from]) {
+          if (st.find(to) == st.end() &&
+              m_graph.find({from, to}) != m_graph.end()) {
+            cut.emplace_back(from, to);
           }
         }
 

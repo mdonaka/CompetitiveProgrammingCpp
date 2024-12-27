@@ -26,7 +26,7 @@ namespace mtd {
     }
 
   public:
-    Prime(long long n) : n(n), p_list(std::get<0>(linearSieve(n))) {}
+    Prime(long long _n) : n(_n), p_list(std::get<0>(linearSieve(_n))) {}
 
     /* nはsqrt(max(x))あれば十分なので気を付ける */
     auto factorization(long long x) const {

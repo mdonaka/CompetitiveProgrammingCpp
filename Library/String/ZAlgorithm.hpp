@@ -16,7 +16,7 @@ namespace mtd {
     const std::vector<int> m_zArray;
 
     static auto constrcutZArray(const std::string& str) {
-      auto sz = str.size();
+      auto sz = static_cast<int>(str.size());
       auto zArray = std::vector<int>(sz);
       zArray[0] = sz;
 

@@ -34,7 +34,7 @@ namespace mtd {
 
     /* classify { L, S, LMS } */
     static std::vector<TYPE> classifying(const std::vector<int>& str) {
-      auto sz = str.size();
+      auto sz = static_cast<int>(str.size());
       auto typeArray = std::vector<TYPE>(sz);
       typeArray[sz - 1] = TYPE::S;
       for (int i = sz - 2; i >= 0; --i) {
@@ -152,7 +152,7 @@ namespace mtd {
       /* calc fake Suffix Array using order seed*/
       auto lmsOrder = [&type]() {
         auto lms = std::list<int>();
-        for (int i = 0; i < type.size(); ++i)
+        for (size_t i = 0; i < type.size(); ++i)
           if (type[i] == TYPE::LMS) { lms.emplace_back(i); }
         return lms;
       }();
@@ -168,17 +168,18 @@ namespace mtd {
       }();
       auto changer = getLmsChanger(str, type, lmsFakeOrder);
       auto& lmsTrueOrder = lmsFakeOrder;
-      if (changer[*lmsFakeOrder.rbegin()] + 1 < lmsFakeOrder.size()) {
+      if (changer[*lmsFakeOrder.rbegin()] + 1 <
+          static_cast<int>(lmsFakeOrder.size())) {
         /* exist same lms-substring */
-        auto str = std::vector<int>();
+        auto s = std::vector<int>();
         auto def = std::vector<int>();
-        str.reserve(lmsOrder.size());
+        s.reserve(lmsOrder.size());
         def.reserve(lmsOrder.size());
         for (const auto& c : lmsOrder) {
-          str.emplace_back(changer[c]);
+          s.emplace_back(changer[c]);
           def.emplace_back(c);
         }
-        auto lmsSuffixArray = constructSuffixArray(str);
+        auto lmsSuffixArray = constructSuffixArray(s);
         lmsTrueOrder = std::list<int>{static_cast<int>(type.size()) - 1};
         for (const auto& c : lmsSuffixArray) {
           lmsTrueOrder.emplace_back(def[c]);
@@ -200,8 +201,8 @@ namespace mtd {
      */
     std::pair<int, int> findPattern(const std::string& pattern) const {
       auto find = [&](const std::string& ptn) {
-        int end = m_suffixArray.size();
-        int ptn_sz = ptn.size();
+        int end = static_cast<int>(m_suffixArray.size());
+        int ptn_sz = static_cast<int>(ptn.size());
         auto ret = binarySearch(end, -1, [&](int mid) {
           int st = m_suffixArray[mid];
           int sub_sz = end - st;
