@@ -4,12 +4,11 @@
 #include <vector>
 
 namespace mtd {
-  constexpr auto nullLambda = [](int n) {};
   template <class Val = bool, Val ignore = false>
   class TrieTree {
     Val m_val;
     std::vector<std::unique_ptr<TrieTree>> m_next;
-    // static constexpr auto nullLambda = [](ll n) {}; c++17
+    static constexpr auto nullLambda = [](int) {};
 
     auto emplace(const std::vector<int>& vec, Val val, int it) {
       if (it == vec.size()) {

@@ -15,18 +15,18 @@ namespace mtd {
     const HeavyLightDecomposition<Node, Cost> hld;
 
     auto construct_depth(const Graph<Node, Cost>& tree) const {
-      std::vector<Cost> depth_cost(tree.size());
+      std::vector<Cost> _depth_cost(tree.size());
       std::vector<int> used(tree.size());
       auto dfs = [&](auto&& self, Node from) -> void {
         used[from] = true;
         for (const auto& [to, c] : tree.getEdges(from))
           if (!used[to]) {
-            depth_cost[to] = depth_cost[from] + c;
+            _depth_cost[to] = _depth_cost[from] + c;
             self(self, to);
           }
       };
       dfs(dfs, 0);
-      return depth_cost;
+      return _depth_cost;
     }
 
   public:

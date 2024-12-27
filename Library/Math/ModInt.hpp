@@ -12,7 +12,7 @@ namespace mtd {
   public:
     T x;
 
-    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}
+    constexpr ModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}
     constexpr ModInt() : ModInt(0) {}
 
     // 四則演算

@@ -11,8 +11,8 @@ namespace mtd {
     std::vector<std::vector<T>> mat;
 
   public:
-    Matrix(const std::vector<std::vector<T>>& mat)
-        : h(mat.size()), w(mat[0].size()), mat(mat) {}
+    Matrix(const std::vector<std::vector<T>>& _mat)
+        : h(_mat.size()), w(_mat[0].size()), mat(_mat) {}
 
     inline static auto identity(int size) {
       std::vector<std::vector<T>> ret(size, std::vector<T>(size));

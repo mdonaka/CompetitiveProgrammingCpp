@@ -12,11 +12,11 @@ namespace mtd {
    * Kasai's algorithmで実装
    */
   class LCPArray {
-    const std::vector<int> m_lcpArray;
     const std::vector<int> m_suffixArray;
+    const std::vector<int> m_lcpArray;
 
     static std::vector<int> constructLcpArray(const std::string& str) {
-      auto sz = str.size();
+      auto sz = static_cast<int>(str.size());
       const auto suffixArray = SuffixArray(str).getSuffixArray();
 
       auto rank = std::vector<int>(sz);

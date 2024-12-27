@@ -36,7 +36,6 @@ namespace mtd {
   using tmat = mtd::io::type::mat<T>;
   using mtd::io::in;
 
-  inline constexpr auto i = std::views::iota;
   template <class... Args>
   inline constexpr auto ins = mtd::views::istream<Args...>;
 }  // namespace mtd

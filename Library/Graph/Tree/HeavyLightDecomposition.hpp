@@ -212,9 +212,9 @@ namespace mtd {
 
     auto range(Node f, Node t) const {
       std::deque<std::pair<Node, Node>> ret;
-      auto add = [&](Node f, Node t) {
-        auto l = std::min(m_ids[f], m_ids[t]);
-        auto r = std::max(m_ids[f], m_ids[t]);
+      auto add = [&](Node from, Node to) {
+        auto l = std::min(m_ids[from], m_ids[to]);
+        auto r = std::max(m_ids[from], m_ids[to]);
         ret.emplace_back(l, r);
       };
       do {
@@ -240,9 +240,9 @@ namespace mtd {
     auto rangeEdge(Node f, Node t) const {
       Node edge_size = (m_n >> 1);
       std::deque<std::pair<Node, Node>> ret;
-      auto add = [&](Node f, Node t) {
-        auto l = std::min(m_ids[f], m_ids[t]);
-        auto r = std::max(m_ids[f], m_ids[t]);
+      auto add = [&](Node from, Node to) {
+        auto l = std::min(m_ids[from], m_ids[to]);
+        auto r = std::max(m_ids[from], m_ids[to]);
         if (m_order[l] <= edge_size) { ++l; }
         if (m_order[r] <= edge_size) { --r; }
         if (l > r) { return; }

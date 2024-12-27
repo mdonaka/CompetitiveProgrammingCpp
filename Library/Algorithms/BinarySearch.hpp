@@ -14,10 +14,10 @@ namespace mtd {
     return ok;
   }
 
-  template <class Lambda>
-  auto binarySearch(long long ok, long long ng, const Lambda& is_ok) {
+  template <class Lambda, class T = long long>
+  auto binarySearch(T ok, T ng, const Lambda& is_ok) {
     while (std::abs(ok - ng) > 1) {
-      long long mid = (ok + ng) >> 1;
+      T mid = (ok + ng) >> 1;
       (is_ok(mid) ? ok : ng) = mid;
     }
     return ok;
