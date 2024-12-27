@@ -25,13 +25,13 @@ namespace mtd {
 
   namespace __detail {
     template <typename T, template <typename, typename> typename S>
-    concept is_specialization_of = requires {
+    concept is_semigroup_specialization_of = requires {
       typename std::enable_if_t<
           std::is_same_v<T, S<typename T::value_type, typename T::op_type>>>;
     };
   }  // namespace __detail
 
   template <typename G>
-  concept semigroup = __detail::is_specialization_of<G, SemiGroup>;
+  concept semigroup = __detail::is_semigroup_specialization_of<G, SemiGroup>;
 
 }  // namespace mtd

@@ -28,13 +28,13 @@ namespace mtd {
 
   namespace __detail {
     template <typename T, template <typename, auto, typename> typename S>
-    concept is_specialization_of = requires {
+    concept is_monoid_specialization_of = requires {
       typename std::enable_if_t<std::is_same_v<
           T, S<typename T::value_type, T::_element, typename T::op_type>>>;
     };
   }  // namespace __detail
 
   template <typename M>
-  concept monoid = __detail::is_specialization_of<M, Monoid>;
+  concept monoid = __detail::is_monoid_specialization_of<M, Monoid>;
 
 }  // namespace mtd

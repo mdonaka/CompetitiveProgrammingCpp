@@ -32,7 +32,7 @@ namespace mtd {
   namespace __detail {
     template <typename T,
               template <typename, auto, typename, typename> typename S>
-    concept is_specialization_of = requires {
+    concept is_group_specialization_of = requires {
       typename std::enable_if_t<
           std::is_same_v<T, S<typename T::value_type, T::_element,
                               typename T::op_type, typename T::inv_type>>>;
@@ -40,6 +40,6 @@ namespace mtd {
   }  // namespace __detail
 
   template <typename G>
-  concept group = __detail::is_specialization_of<G, Group>;
+  concept group = __detail::is_group_specialization_of<G, Group>;
 
 }  // namespace mtd
