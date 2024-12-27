@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1473
@@ -66,17 +66,17 @@ data:
     \  template <class Lambda>\r\n  auto binarySearch(double ok, double ng, int rep,\
     \ const Lambda& is_ok) {\r\n    for ([[maybe_unused]] auto _ : std::views::iota(0,\
     \ rep)) {\r\n      double mid = (ok + ng) / 2.0;\r\n      (is_ok(mid) ? ok : ng)\
-    \ = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class Lambda>\r\n\
-    \  auto binarySearch(long long ok, long long ng, const Lambda& is_ok) {\r\n  \
-    \  while (std::abs(ok - ng) > 1) {\r\n      long long mid = (ok + ng) >> 1;\r\n\
-    \      (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n\
-    }  // namespace mtd\r\n#line 10 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing\
-    \ ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl\
-    \ = '\\n';\r\n\r\nsigned main() {\r\n  ll n, m;\r\n  cin >> n >> m;\r\n  auto\
-    \ graph_all = mtd::Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\n    ll s, t,\
-    \ d;\r\n    cin >> s >> t >> d;\r\n    graph_all.addEdgeUndirected(s - 1, t -\
-    \ 1, d);\r\n  }\r\n\r\n  auto solve = [&](ll w) {\r\n    auto graph = mtd::Graph(n);\r\
-    \n    for (const auto& [s, t, d] : graph_all.getEdges()) {\r\n      if (w <= d)\
+    \ = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class Lambda, class\
+    \ T = long long>\r\n  auto binarySearch(T ok, T ng, const Lambda& is_ok) {\r\n\
+    \    while (std::abs(ok - ng) > 1) {\r\n      T mid = (ok + ng) >> 1;\r\n    \
+    \  (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n}  //\
+    \ namespace mtd\r\n#line 10 \"Test/Graph/Normal/BFS.test.cpp\"\n\r\nusing ll =\
+    \ long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\\
+    n';\r\n\r\nsigned main() {\r\n  ll n, m;\r\n  cin >> n >> m;\r\n  auto graph_all\
+    \ = mtd::Graph(n);\r\n  for (int i = 0; i < m; ++i) {\r\n    ll s, t, d;\r\n \
+    \   cin >> s >> t >> d;\r\n    graph_all.addEdgeUndirected(s - 1, t - 1, d);\r\
+    \n  }\r\n\r\n  auto solve = [&](ll w) {\r\n    auto graph = mtd::Graph(n);\r\n\
+    \    for (const auto& [s, t, d] : graph_all.getEdges()) {\r\n      if (w <= d)\
     \ { graph.addEdge(s, t); }\r\n    }\r\n\r\n    std::vector<int> dv(n);\r\n   \
     \ bfs(graph, 0, [&](ll f, ll t, ll _) { dv[t] = dv[f] + 1; });\r\n    return dv[n\
     \ - 1];\r\n  };\r\n\r\n  auto w_max = mtd::binarySearch(0, 1e9 + 1, [&](ll w)\
@@ -104,8 +104,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 18:06:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp
 layout: document

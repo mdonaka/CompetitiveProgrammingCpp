@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Range/bit_subset.test.cpp
     title: Test/Range/bit_subset.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Tools.hpp\"\n\n#include <vector>\n\nnamespace\
@@ -32,7 +32,7 @@ data:
   path: Library/Utility/Tools.hpp
   requiredBy: []
   timestamp: '2024-12-11 02:44:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Range/bit_subset.test.cpp
 documentation_of: Library/Utility/Tools.hpp

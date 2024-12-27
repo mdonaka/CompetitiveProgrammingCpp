@@ -30,11 +30,11 @@ data:
     \    }\n    constexpr friend std::ostream& operator<<(\n        std::ostream&\
     \ os, const Group<S, element, op, inv>& g) {\n      return os << g.m_val;\n  \
     \  }\n  };\n\n  namespace __detail {\n    template <typename T,\n            \
-    \  template <typename, auto, typename, typename> typename S>\n    concept is_specialization_of\
+    \  template <typename, auto, typename, typename> typename S>\n    concept is_group_specialization_of\
     \ = requires {\n      typename std::enable_if_t<\n          std::is_same_v<T,\
     \ S<typename T::value_type, T::_element,\n                              typename\
     \ T::op_type, typename T::inv_type>>>;\n    };\n  }  // namespace __detail\n\n\
-    \  template <typename G>\n  concept group = __detail::is_specialization_of<G,\
+    \  template <typename G>\n  concept group = __detail::is_group_specialization_of<G,\
     \ Group>;\n\n}  // namespace mtd\n#line 2 \"Library/DataStructure/Accumulation.hpp\"\
     \n\r\n#include <algorithm>\r\n#line 5 \"Library/DataStructure/Accumulation.hpp\"\
     \n\r\n#line 7 \"Library/DataStructure/Accumulation.hpp\"\n\r\nnamespace mtd {\r\
@@ -105,7 +105,7 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/Accumulation2D.hpp
   requiredBy: []
-  timestamp: '2024-12-11 02:40:26+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/Accumulation2D_sum.test.cpp

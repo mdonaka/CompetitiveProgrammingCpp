@@ -36,12 +36,12 @@ data:
     \ friend std::ostream& operator<<(\n        std::ostream& os, const Group<S, element,\
     \ op, inv>& g) {\n      return os << g.m_val;\n    }\n  };\n\n  namespace __detail\
     \ {\n    template <typename T,\n              template <typename, auto, typename,\
-    \ typename> typename S>\n    concept is_specialization_of = requires {\n     \
-    \ typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
+    \ typename> typename S>\n    concept is_group_specialization_of = requires {\n\
+    \      typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
     \ T::_element,\n                              typename T::op_type, typename T::inv_type>>>;\n\
     \    };\n  }  // namespace __detail\n\n  template <typename G>\n  concept group\
-    \ = __detail::is_specialization_of<G, Group>;\n\n}  // namespace mtd\n#line 2\
-    \ \"Library/DataStructure/Accumulation.hpp\"\n\r\n#include <algorithm>\r\n#line\
+    \ = __detail::is_group_specialization_of<G, Group>;\n\n}  // namespace mtd\n#line\
+    \ 2 \"Library/DataStructure/Accumulation.hpp\"\n\r\n#include <algorithm>\r\n#line\
     \ 5 \"Library/DataStructure/Accumulation.hpp\"\n\r\n#line 7 \"Library/DataStructure/Accumulation.hpp\"\
     \n\r\nnamespace mtd {\r\n\r\n  namespace type {\r\n\r\n    using inv = decltype([](auto\
     \ x) { return -x; });\r\n    using op = decltype([](auto x, auto y) { return x\
@@ -117,7 +117,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/Accumulation2D_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:40:26+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/Accumulation2D_sum.test.cpp

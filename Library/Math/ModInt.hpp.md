@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
   _extendedRequiredBy: []
@@ -12,21 +12,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/ReRootingDP.test.cpp
     title: Test/Graph/Tree/ReRootingDP.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Math.test.cpp
     title: Test/Math/Math.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Math_pow.test.cpp
     title: Test/Math/Math_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Matrix_pow.test.cpp
     title: Test/Math/Matrix_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/ModInt.hpp\"\n\n#include <iostream>\n#include\
@@ -49,11 +49,11 @@ data:
     \    }\r\n    constexpr auto perm(int n, int r) const { return fact(n) * factInv(n\
     \ - r); }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Math/ModInt.hpp\"\
     \n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n  class ModInt\
-    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
-    \ + (x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\
-    \u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n    \
-    \  x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n\
-    \    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
+    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T _x) : x(_x >= 0 ? _x % MOD\
+    \ : MOD + (_x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\
+    \u5247\u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n\
+    \      x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n   \
+    \ }\n    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
     \      if (x < 0) { x += MOD; }\n      return *this;\n    }\n    constexpr auto&\
     \ operator*=(const ModInt<MOD, T>& m) {\n      x *= m.x;\n      if (x >= MOD)\
     \ { x %= MOD; }\n      return *this;\n    }\n    constexpr auto& operator/=(const\
@@ -93,11 +93,11 @@ data:
     \  };\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n#include <iterator>\n\n#include \"./Math.hpp\"\
     \n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n  class ModInt\
-    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
-    \ + (x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\
-    \u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n    \
-    \  x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n\
-    \    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
+    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T _x) : x(_x >= 0 ? _x % MOD\
+    \ : MOD + (_x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\
+    \u5247\u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n\
+    \      x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n   \
+    \ }\n    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
     \      if (x < 0) { x += MOD; }\n      return *this;\n    }\n    constexpr auto&\
     \ operator*=(const ModInt<MOD, T>& m) {\n      x *= m.x;\n      if (x >= MOD)\
     \ { x %= MOD; }\n      return *this;\n    }\n    constexpr auto& operator/=(const\
@@ -140,8 +140,8 @@ data:
   isVerificationFile: false
   path: Library/Math/ModInt.hpp
   requiredBy: []
-  timestamp: '2024-12-11 02:34:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Math/Math_pow.test.cpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/DynamicModInt.hpp
     title: Library/Math/DynamicModInt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/117
@@ -50,7 +50,7 @@ data:
     \n\nnamespace mtd {\n\n  template <class T = long long>\n  class DynamicModInt\
     \ {\n    static inline T MOD = 0;\n    T x;\n\n  public:\n    constexpr static\
     \ inline auto set_mod(T _MOD) { MOD = _MOD; }\n\n    constexpr DynamicModInt(T\
-    \ x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr DynamicModInt()\
+    \ _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}\n    constexpr DynamicModInt()\
     \ : DynamicModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto&\
     \ operator+=(const DynamicModInt<T>& m) {\n      x += m.x;\n      if (x >= MOD)\
     \ { x -= MOD; }\n      return *this;\n    }\n    constexpr auto& operator-=(const\
@@ -152,24 +152,25 @@ data:
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
-    \ count) : count(count) { operator++(); }\n\n        constexpr auto operator*()\
-    \ const { return val; }\n        constexpr auto& operator++() {\n          --count;\n\
-    \          if (count >= 0) { val = io::in<Args...>(); }\n          return *this;\n\
-    \        }\n        constexpr auto operator++(int) { return ++*this; }\n\n   \
-    \     constexpr auto operator==(const iterator& s) const {\n          return count\
-    \ == s.count;\n        }\n        constexpr auto operator==(std::default_sentinel_t\
-    \ s) const {\n          return count < 0 || std::cin.eof() || std::cin.fail()\
-    \ ||\n                 std::cin.bad();\n        }\n        constexpr friend auto\
-    \ operator==(std::default_sentinel_t s,\n                                    \
-    \     const iterator& li) {\n          return li == s;\n        }\n      };\n\n\
-    \      int count;\n\n    public:\n      constexpr explicit istream_view(int count)\
-    \ : count(count) {}\n      constexpr explicit istream_view() : istream_view(_inf)\
-    \ {}\n      constexpr auto begin() const { return iterator(count); }\n      constexpr\
-    \ auto end() const { return std::default_sentinel; }\n    };\n  }  // namespace\
-    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
-    \ _Args>\n      concept __can_istream_view = requires {\n        ranges::istream_view(std::declval<_Args>()...);\n\
-    \      };\n    }  // namespace __detail\n\n    template <class... Args>\n    struct\
-    \ _Istream {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
+    \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
+    \ auto operator*() const { return val; }\n        constexpr auto& operator++()\
+    \ {\n          --count;\n          if (count >= 0) { val = io::in<Args...>();\
+    \ }\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n\n        constexpr auto operator==(const iterator& s)\
+    \ const {\n          return count == s.count;\n        }\n        constexpr auto\
+    \ operator==(std::default_sentinel_t) const {\n          return count < 0 || std::cin.eof()\
+    \ || std::cin.fail() ||\n                 std::cin.bad();\n        }\n       \
+    \ constexpr friend auto operator==(std::default_sentinel_t s,\n              \
+    \                           const iterator& li) {\n          return li == s;\n\
+    \        }\n      };\n\n      int count;\n\n    public:\n      constexpr explicit\
+    \ istream_view(int _count) : count(_count) {}\n      constexpr explicit istream_view()\
+    \ : istream_view(_inf) {}\n      constexpr auto begin() const { return iterator(count);\
+    \ }\n      constexpr auto end() const { return std::default_sentinel; }\n    };\n\
+    \  }  // namespace ranges\n\n  namespace views {\n    namespace __detail {\n \
+    \     template <typename... _Args>\n      concept __can_istream_view = requires\
+    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
+    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
+    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
@@ -212,8 +213,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Math_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 17:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Math/Math_dynamic.test.cpp
 layout: document

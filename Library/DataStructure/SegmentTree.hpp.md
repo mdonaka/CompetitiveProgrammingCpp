@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   _extendedRequiredBy: []
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RSQ.test.cpp
     title: Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SegmentTree.hpp\"\n\r\n#include <deque>\r\
@@ -39,10 +39,10 @@ data:
     \ std::ostream& operator<<(std::ostream& os,\n                               \
     \     const Monoid<S, element, op>& m) {\n      return os << m.m_val;\n    }\n\
     \  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
-    \ auto, typename> typename S>\n    concept is_specialization_of = requires {\n\
-    \      typename std::enable_if_t<std::is_same_v<\n          T, S<typename T::value_type,\
-    \ T::_element, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n\
-    \  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ auto, typename> typename S>\n    concept is_monoid_specialization_of = requires\
+    \ {\n      typename std::enable_if_t<std::is_same_v<\n          T, S<typename\
+    \ T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }  // namespace\
+    \ __detail\n\n  template <typename M>\n  concept monoid = __detail::is_monoid_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/SegmentTree.hpp\"\
     \n\r\nnamespace mtd {\r\n\r\n  template <monoid Monoid>\r\n  class SegmentTree\
     \ {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid> m_node;\r\
@@ -124,8 +124,8 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-11 01:55:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 16:29:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp

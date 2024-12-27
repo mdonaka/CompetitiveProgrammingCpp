@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
@@ -87,24 +87,25 @@ data:
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
-    \ count) : count(count) { operator++(); }\n\n        constexpr auto operator*()\
-    \ const { return val; }\n        constexpr auto& operator++() {\n          --count;\n\
-    \          if (count >= 0) { val = io::in<Args...>(); }\n          return *this;\n\
-    \        }\n        constexpr auto operator++(int) { return ++*this; }\n\n   \
-    \     constexpr auto operator==(const iterator& s) const {\n          return count\
-    \ == s.count;\n        }\n        constexpr auto operator==(std::default_sentinel_t\
-    \ s) const {\n          return count < 0 || std::cin.eof() || std::cin.fail()\
-    \ ||\n                 std::cin.bad();\n        }\n        constexpr friend auto\
-    \ operator==(std::default_sentinel_t s,\n                                    \
-    \     const iterator& li) {\n          return li == s;\n        }\n      };\n\n\
-    \      int count;\n\n    public:\n      constexpr explicit istream_view(int count)\
-    \ : count(count) {}\n      constexpr explicit istream_view() : istream_view(_inf)\
-    \ {}\n      constexpr auto begin() const { return iterator(count); }\n      constexpr\
-    \ auto end() const { return std::default_sentinel; }\n    };\n  }  // namespace\
-    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
-    \ _Args>\n      concept __can_istream_view = requires {\n        ranges::istream_view(std::declval<_Args>()...);\n\
-    \      };\n    }  // namespace __detail\n\n    template <class... Args>\n    struct\
-    \ _Istream {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
+    \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
+    \ auto operator*() const { return val; }\n        constexpr auto& operator++()\
+    \ {\n          --count;\n          if (count >= 0) { val = io::in<Args...>();\
+    \ }\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n\n        constexpr auto operator==(const iterator& s)\
+    \ const {\n          return count == s.count;\n        }\n        constexpr auto\
+    \ operator==(std::default_sentinel_t) const {\n          return count < 0 || std::cin.eof()\
+    \ || std::cin.fail() ||\n                 std::cin.bad();\n        }\n       \
+    \ constexpr friend auto operator==(std::default_sentinel_t s,\n              \
+    \                           const iterator& li) {\n          return li == s;\n\
+    \        }\n      };\n\n      int count;\n\n    public:\n      constexpr explicit\
+    \ istream_view(int _count) : count(_count) {}\n      constexpr explicit istream_view()\
+    \ : istream_view(_inf) {}\n      constexpr auto begin() const { return iterator(count);\
+    \ }\n      constexpr auto end() const { return std::default_sentinel; }\n    };\n\
+    \  }  // namespace ranges\n\n  namespace views {\n    namespace __detail {\n \
+    \     template <typename... _Args>\n      concept __can_istream_view = requires\
+    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
+    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
+    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
@@ -152,18 +153,18 @@ data:
     \            __detail::__all_random_access<_Range...> {\n          util::tuple_for_each([&n](auto&\
     \ __i) { __i += n; }, _M_current);\n          return *this;\n        }\n     \
     \   constexpr auto operator+(const difference_type n)\n            const requires\
-    \ __detail::__all_random_access<_Range...> {\n          auto __r = *this;\n  \
-    \        __r += n;\n          return __r;\n        }\n        constexpr friend\
-    \ auto operator+(const difference_type n,\n                                  \
-    \      const iterator& itr) requires\n            __detail::__all_random_access<_Range...>\
+    \ __detail::__all_random_access<_Range...> {\n          auto __tmp = *this;\n\
+    \          __tmp += n;\n          return __tmp;\n        }\n        constexpr\
+    \ friend auto operator+(const difference_type n,\n                           \
+    \             const iterator& itr) requires\n            __detail::__all_random_access<_Range...>\
     \ {\n          return itr + n;\n        }\n        constexpr auto& operator-=(const\
     \ difference_type n) requires\n            __detail::__all_random_access<_Range...>\
     \ {\n          util::tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);\n\
     \          return *this;\n        }\n        constexpr auto operator-(const difference_type\
     \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
-    \          auto __r = *this;\n          __r -= n;\n          return __r;\n   \
-    \     }\n        constexpr auto operator[](const difference_type n)\n        \
-    \    const requires __detail::__all_random_access<_Range...> {\n          return\
+    \          auto __tmp = *this;\n          __tmp -= n;\n          return __tmp;\n\
+    \        }\n        constexpr auto operator[](const difference_type n)\n     \
+    \       const requires __detail::__all_random_access<_Range...> {\n          return\
     \ util::tuple_transform([&n](auto& __i) { return __i[n]; },\n                \
     \                       _M_current);\n        }\n      };\n\n      class sentinel\
     \ {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;\n\
@@ -173,11 +174,11 @@ data:
     \    const sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
     \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
     \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n      };\n\n      std::tuple<_Range...> __r;\n      constexpr explicit\
-    \ zip_view(const _Range&... __r) : __r(__r...) {}\n      constexpr auto begin()\
-    \ {\n        return iterator(util::tuple_transform(std::ranges::begin, __r));\n\
-    \      }\n      constexpr auto end() {\n        return sentinel(util::tuple_transform(std::ranges::end,\
-    \ __r));\n      }\n    };\n\n    namespace __detail {\n      template <typename\
+    \        }\n      };\n\n      std::tuple<_Range...> _M_views;\n      constexpr\
+    \ explicit zip_view(const _Range&... __views)\n          : _M_views(__views...)\
+    \ {}\n      constexpr auto begin() {\n        return iterator(util::tuple_transform(std::ranges::begin,\
+    \ _M_views));\n      }\n      constexpr auto end() {\n        return sentinel(util::tuple_transform(std::ranges::end,\
+    \ _M_views));\n      }\n    };\n\n    namespace __detail {\n      template <typename\
     \ T>\n      auto _flatten(const T& t) {\n        return std::make_tuple(t);\n\
     \      }\n      template <typename... T>\n      auto _flatten(const std::tuple<T...>&\
     \ t);\n\n      template <typename Head, typename... Tail>\n      auto _flatten_impl(const\
@@ -210,7 +211,7 @@ data:
     \ difference_type n) requires\n            __detail::__all_random_access<_Range>\
     \ {\n          _M_current += n;\n          return *this;\n        }\n        constexpr\
     \ auto operator+(const difference_type n)\n            const requires __detail::__all_random_access<_Range>\
-    \ {\n          auto __r = *this;\n          __r += n;\n          return __r;\n\
+    \ {\n          auto __tmp = *this;\n          __tmp += n;\n          return __tmp;\n\
     \        }\n        constexpr friend auto operator+(const difference_type n,\n\
     \                                        const iterator& itr) requires\n     \
     \       __detail::__all_random_access<_Range> {\n          return itr + n;\n \
@@ -218,7 +219,7 @@ data:
     \            __detail::__all_random_access<_Range> {\n          _M_current -=\
     \ n;\n          return *this;\n        }\n        constexpr auto operator-(const\
     \ difference_type n)\n            const requires __detail::__all_random_access<_Range>\
-    \ {\n          auto __r = *this;\n          __r -= n;\n          return __r;\n\
+    \ {\n          auto __tmp = *this;\n          __tmp -= n;\n          return __tmp;\n\
     \        }\n        constexpr auto operator[](const difference_type n)\n     \
     \       const requires __detail::__all_random_access<_Range> {\n          return\
     \ __detail::_flatten(_M_current[n]);\n        }\n      };\n\n      class sentinel\
@@ -227,17 +228,17 @@ data:
     \ decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n        friend constexpr\
     \ bool operator==(const iterator& __x,\n                                     \
     \    const sentinel& __y) {\n          return __x._M_current == __y._M_end;\n\
-    \        }\n      };\n\n      _Range __r;\n      constexpr explicit flatten_view(const\
-    \ _Range& __r) : __r(__r) {}\n      constexpr auto begin() { return iterator(std::ranges::begin(__r));\
-    \ }\n      constexpr auto end() { return sentinel(std::ranges::end(__r)); }\n\
-    \    };\n\n  }  // namespace ranges\n\n  namespace views {\n    namespace __detail\
-    \ {\n      template <typename... _Args>\n      concept __can_zip_view = requires\
-    \ {\n        ranges::zip_view(std::declval<_Args>()...);\n      };\n      template\
-    \ <typename... _Args>\n      concept __can_flatten_view = requires {\n       \
-    \ ranges::flatten_view(std::declval<_Args>()...);\n      };\n    }  // namespace\
-    \ __detail\n\n    struct _ZipView {\n      template <class... _Tp>\n      requires\
-    \ __detail::__can_zip_view<_Tp...>\n      constexpr auto operator() [[nodiscard]]\
-    \ (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
+    \        }\n      };\n\n      _Range _M_views;\n      constexpr explicit flatten_view(const\
+    \ _Range& __views)\n          : _M_views(__views) {}\n      constexpr auto begin()\
+    \ { return iterator(std::ranges::begin(_M_views)); }\n      constexpr auto end()\
+    \ { return sentinel(std::ranges::end(_M_views)); }\n    };\n\n  }  // namespace\
+    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
+    \ _Args>\n      concept __can_zip_view = requires {\n        ranges::zip_view(std::declval<_Args>()...);\n\
+    \      };\n      template <typename... _Args>\n      concept __can_flatten_view\
+    \ = requires {\n        ranges::flatten_view(std::declval<_Args>()...);\n    \
+    \  };\n    }  // namespace __detail\n\n    struct _ZipView {\n      template <class...\
+    \ _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr auto\
+    \ operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
     \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
     \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
     \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
@@ -269,8 +270,8 @@ data:
   isVerificationFile: true
   path: Test/Range/zip.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 17:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 16:26:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/zip.test.cpp
 layout: document

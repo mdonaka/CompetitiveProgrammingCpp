@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   _extendedRequiredBy: []
@@ -33,10 +33,10 @@ data:
     \ std::ostream& operator<<(std::ostream& os,\n                               \
     \     const Monoid<S, element, op>& m) {\n      return os << m.m_val;\n    }\n\
     \  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
-    \ auto, typename> typename S>\n    concept is_specialization_of = requires {\n\
-    \      typename std::enable_if_t<std::is_same_v<\n          T, S<typename T::value_type,\
-    \ T::_element, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n\
-    \  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ auto, typename> typename S>\n    concept is_monoid_specialization_of = requires\
+    \ {\n      typename std::enable_if_t<std::is_same_v<\n          T, S<typename\
+    \ T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }  // namespace\
+    \ __detail\n\n  template <typename M>\n  concept monoid = __detail::is_monoid_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 10 \"Library/DataStructure/DynamicSegmentTree.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <monoid Monoid, int size = static_cast<int>(1e9\
     \ + 1)>\r\n  class DynamicSegmentTree {\r\n  private:\r\n    std::unordered_map<int,\
@@ -109,7 +109,7 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-11 01:55:28+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp

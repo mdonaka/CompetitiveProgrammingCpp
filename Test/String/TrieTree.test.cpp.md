@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/TrieTree.hpp
     title: Library/String/TrieTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/430
@@ -16,12 +16,11 @@ data:
     - https://yukicoder.me/problems/no/430
   bundledCode: "#line 1 \"Test/String/TrieTree.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/430\"\
     \r\n\r\n#line 2 \"Library/String/TrieTree.hpp\"\n\r\n#include <memory>\r\n#include\
-    \ <vector>\r\n\r\nnamespace mtd {\r\n  constexpr auto nullLambda = [](int n) {};\r\
-    \n  template <class Val = bool, Val ignore = false>\r\n  class TrieTree {\r\n\
-    \    Val m_val;\r\n    std::vector<std::unique_ptr<TrieTree>> m_next;\r\n    //\
-    \ static constexpr auto nullLambda = [](ll n) {}; c++17\r\n\r\n    auto emplace(const\
-    \ std::vector<int>& vec, Val val, int it) {\r\n      if (it == vec.size()) {\r\
-    \n        m_val = val;\r\n        return;\r\n      }\r\n      if (!m_next[vec[it]])\
+    \ <vector>\r\n\r\nnamespace mtd {\r\n  template <class Val = bool, Val ignore\
+    \ = false>\r\n  class TrieTree {\r\n    Val m_val;\r\n    std::vector<std::unique_ptr<TrieTree>>\
+    \ m_next;\r\n    static constexpr auto nullLambda = [](int) {};\r\n\r\n    auto\
+    \ emplace(const std::vector<int>& vec, Val val, int it) {\r\n      if (it == vec.size())\
+    \ {\r\n        m_val = val;\r\n        return;\r\n      }\r\n      if (!m_next[vec[it]])\
     \ { m_next[vec[it]] = std::make_unique<TrieTree>(); }\r\n      m_next[vec[it]]->emplace(vec,\
     \ val, it + 1);\r\n    }\r\n\r\n    template <class Lambda>\r\n    auto find(const\
     \ std::vector<int>& vec, int it, const Lambda& lambda) const {\r\n      if (m_val\
@@ -61,8 +60,8 @@ data:
   isVerificationFile: true
   path: Test/String/TrieTree.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/TrieTree.test.cpp
 layout: document

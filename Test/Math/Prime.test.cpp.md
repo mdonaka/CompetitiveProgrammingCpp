@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Prime.hpp
     title: Library/Math/Prime.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
@@ -24,8 +24,8 @@ data:
     \n        }\r\n        for (const auto& p : p_list) {\r\n          if (p * d >\
     \ n || p > lpf[d]) { break; }\r\n          lpf[p * d] = p;\r\n        }\r\n  \
     \    }\r\n      return std::tuple{p_list, lpf};\r\n    }\r\n\r\n  public:\r\n\
-    \    Prime(long long n) : n(n), p_list(std::get<0>(linearSieve(n))) {}\r\n\r\n\
-    \    /* n\u306Fsqrt(max(x))\u3042\u308C\u3070\u5341\u5206\u306A\u306E\u3067\u6C17\
+    \    Prime(long long _n) : n(_n), p_list(std::get<0>(linearSieve(_n))) {}\r\n\r\
+    \n    /* n\u306Fsqrt(max(x))\u3042\u308C\u3070\u5341\u5206\u306A\u306E\u3067\u6C17\
     \u3092\u4ED8\u3051\u308B */\r\n    auto factorization(long long x) const {\r\n\
     \      std::unordered_map<long long, long long> table;\r\n      for (const auto&\
     \ p : p_list) {\r\n        while (x % p == 0) {\r\n          table[p]++;\r\n \
@@ -55,8 +55,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Prime.test.cpp
   requiredBy: []
-  timestamp: '2024-12-25 00:03:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Math/Prime.test.cpp
 layout: document

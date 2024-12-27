@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Matrix.hpp
     title: Library/Math/Matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1136
@@ -25,8 +25,8 @@ data:
     \n\r\n#include <cassert>\r\n#line 5 \"Library/Math/Matrix.hpp\"\n#include <vector>\r\
     \n\r\nnamespace mtd {\r\n  template <class T>\r\n  class Matrix {\r\n    int h,\
     \ w;\r\n    std::vector<std::vector<T>> mat;\r\n\r\n  public:\r\n    Matrix(const\
-    \ std::vector<std::vector<T>>& mat)\r\n        : h(mat.size()), w(mat[0].size()),\
-    \ mat(mat) {}\r\n\r\n    inline static auto identity(int size) {\r\n      std::vector<std::vector<T>>\
+    \ std::vector<std::vector<T>>& _mat)\r\n        : h(_mat.size()), w(_mat[0].size()),\
+    \ mat(_mat) {}\r\n\r\n    inline static auto identity(int size) {\r\n      std::vector<std::vector<T>>\
     \ ret(size, std::vector<T>(size));\r\n      for (int i = 0; i < size; ++i) { ret[i][i]\
     \ = 1; }\r\n      return Matrix(ret);\r\n    }\r\n\r\n    auto begin() const {\
     \ return mat.begin(); }\r\n    auto end() const { return mat.end(); }\r\n\r\n\
@@ -60,7 +60,7 @@ data:
     \ r) const { return fact(n) * factInv(n - r); }\r\n  };\r\n}  // namespace mtd\r\
     \n#line 7 \"Library/Math/ModInt.hpp\"\n\nnamespace mtd {\n\n  template <int MOD,\
     \ class T = long long>\n  class ModInt {\n  public:\n    T x;\n\n    constexpr\
-    \ ModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr ModInt()\
+    \ ModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}\n    constexpr ModInt()\
     \ : ModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto& operator+=(const\
     \ ModInt<MOD, T>& m) {\n      x += m.x;\n      if (x >= MOD) { x -= MOD; }\n \
     \     return *this;\n    }\n    constexpr auto& operator-=(const ModInt<MOD, T>&\
@@ -121,8 +121,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Matrix_pow.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 17:31:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Math/Matrix_pow.test.cpp
 layout: document

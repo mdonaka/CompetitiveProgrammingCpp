@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/LazySegmentTree.hpp
     title: Library/DataStructure/LazySegmentTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
   - icon: ':heavy_check_mark:'
@@ -57,12 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/ReRootingDP_cost.test.cpp
     title: Test/Graph/Tree/ReRootingDP_cost.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#include <iostream>\n\n\
@@ -76,10 +76,10 @@ data:
     \ operator<<(std::ostream& os,\n                                    const Monoid<S,\
     \ element, op>& m) {\n      return os << m.m_val;\n    }\n  };\n\n  namespace\
     \ __detail {\n    template <typename T, template <typename, auto, typename> typename\
-    \ S>\n    concept is_specialization_of = requires {\n      typename std::enable_if_t<std::is_same_v<\n\
+    \ S>\n    concept is_monoid_specialization_of = requires {\n      typename std::enable_if_t<std::is_same_v<\n\
     \          T, S<typename T::value_type, T::_element, typename T::op_type>>>;\n\
     \    };\n  }  // namespace __detail\n\n  template <typename M>\n  concept monoid\
-    \ = __detail::is_specialization_of<M, Monoid>;\n\n}  // namespace mtd\n"
+    \ = __detail::is_monoid_specialization_of<M, Monoid>;\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n\nnamespace mtd {\n\n  template <class\
     \ S,    // set\n            S element,  // identity element\n            class\
     \ op    // binary operation\n            >\n  requires std::is_invocable_r_v<S,\
@@ -90,10 +90,10 @@ data:
     \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ os,\n                                    const Monoid<S, element, op>& m) {\n\
     \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
-    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
+    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_monoid_specialization_of\
     \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
     \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
-    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_monoid_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
@@ -103,8 +103,8 @@ data:
   - Library/DataStructure/LazySegmentTree.hpp
   - Library/DataStructure/SegmentTree.hpp
   - Library/DataStructure/DynamicSegmentTree.hpp
-  timestamp: '2024-12-11 01:55:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 16:29:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/String/LCPArray.test.cpp
   - Test/Graph/Tree/ReRootingDP_cost.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -82,44 +82,44 @@ data:
     \      auto residual = m_graph;\r\n      while (true) {\r\n        // BFS\r\n\
     \        auto depth = get_depth(s, residual);\r\n\r\n        // DFS\r\n      \
     \  bool run = false;\r\n        std::vector<Node> visited(m_n);\r\n        auto\
-    \ f = [&](auto&& f, Node now, std::list<Node>& route) -> void {\r\n          route.emplace_back(now);\r\
-    \n\r\n          // t\u306B\u5230\u9054\u3057\u3066\u3044\u308C\u3070\u6D41\u3059\
-    \r\n          if (now == t) {\r\n            update_residual(s, residual, route);\r\
-    \n            run = true;\r\n          }\r\n\r\n          for (const auto& to\
-    \ : m_to_list[now]) {\r\n            if (residual.find({now, to}) == residual.end())\
-    \ { continue; }\r\n            if (depth[to] <= depth[now]) { continue; }\r\n\
-    \            if (visited[to]) { continue; }\r\n            visited[to] = true;\r\
-    \n            ;\r\n            f(f, to, route);\r\n          }\r\n          route.pop_back();\r\
-    \n        };\r\n        std::list<Node> route;\r\n        visited[s] = true;\r\
-    \n        f(f, s, route);\r\n        if (!run) { break; }\r\n      }\r\n     \
-    \ return residual;\r\n    }\r\n\r\n  public:\r\n    Dinic(const Graph<Node, Cost>&\
-    \ graph)\r\n        : m_n(graph.size()),\r\n          m_graph(construct_graph(graph)),\r\
-    \n          m_to_list(construct_to_list(graph)) {}\r\n\r\n    auto max_flow(Node\
-    \ s, Node t) const {\r\n      auto residual = construct_residual(s, t);\r\n\r\n\
-    \      Cost val = 0;\r\n      for (const auto& to : m_to_list[s]) {\r\n      \
-    \  if (m_graph.find({s, to}) == m_graph.end()) { continue; }\r\n        val +=\
-    \ m_graph.at({s, to}) - residual[{s, to}];\r\n      }\r\n      return val;\r\n\
-    \    }\r\n\r\n    auto get_cut_list(Node s, Node t) const {\r\n      // \u6B8B\
-    \u4F59\u30B0\u30E9\u30D5\u3067\u59CB\u70B9\u304B\u3089\u5230\u9054\u3067\u304D\
-    \u308B\u96C6\u5408\r\n      std::unordered_set<Node> st;\r\n\r\n      auto residual\
-    \ = construct_residual(s, t);\r\n      std::queue<Node> q;\r\n      auto add =\
-    \ [&](Node t) {\r\n        if (st.find(t) != st.end()) { return; }\r\n       \
-    \ q.emplace(t);\r\n        st.emplace(t);\r\n      };\r\n      add(s);\r\n   \
-    \   std::deque<Node> ans;\r\n      while (!q.empty()) {\r\n        auto f = q.front();\r\
-    \n        q.pop();\r\n        for (const auto& t : m_to_list[f]) {\r\n       \
-    \   if (residual.find({f, t}) == residual.end()) { continue; }\r\n          add(t);\r\
-    \n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node, Node>> cut;\r\n\
-    \      for (const auto& f : st)\r\n        for (const auto& t : m_to_list[f])\
-    \ {\r\n          if (st.find(t) == st.end() && m_graph.find({f, t}) != m_graph.end())\
-    \ {\r\n            cut.emplace_back(f, t);\r\n          }\r\n        }\r\n\r\n\
-    \      return cut;\r\n    }\r\n\r\n    auto get_edge(Node s, Node t) const {\r\
-    \n      auto residual = construct_residual(s, t);\r\n\r\n      auto edge = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (Node from = 0; from < m_n; ++from) {\r\n        for\
-    \ (const auto& to : m_to_list[from]) {\r\n          if (m_graph.find({from, to})\
-    \ == m_graph.end()) { continue; }\r\n          auto val = m_graph.at({from, to})\
-    \ - residual[{from, to}];\r\n          if (val > 0) { edge.addEdge(from, to, val);\
-    \ }\r\n        }\r\n      }\r\n      return edge;\r\n    }\r\n  };\r\n}  // namespace\
-    \ mtd\r\n"
+    \ f = [&](auto&& self, Node now, std::list<Node>& route) -> void {\r\n       \
+    \   route.emplace_back(now);\r\n\r\n          // t\u306B\u5230\u9054\u3057\u3066\
+    \u3044\u308C\u3070\u6D41\u3059\r\n          if (now == t) {\r\n            update_residual(s,\
+    \ residual, route);\r\n            run = true;\r\n          }\r\n\r\n        \
+    \  for (const auto& to : m_to_list[now]) {\r\n            if (residual.find({now,\
+    \ to}) == residual.end()) { continue; }\r\n            if (depth[to] <= depth[now])\
+    \ { continue; }\r\n            if (visited[to]) { continue; }\r\n            visited[to]\
+    \ = true;\r\n            ;\r\n            self(self, to, route);\r\n         \
+    \ }\r\n          route.pop_back();\r\n        };\r\n        std::list<Node> route;\r\
+    \n        visited[s] = true;\r\n        f(f, s, route);\r\n        if (!run) {\
+    \ break; }\r\n      }\r\n      return residual;\r\n    }\r\n\r\n  public:\r\n\
+    \    Dinic(const Graph<Node, Cost>& graph)\r\n        : m_n(graph.size()),\r\n\
+    \          m_graph(construct_graph(graph)),\r\n          m_to_list(construct_to_list(graph))\
+    \ {}\r\n\r\n    auto max_flow(Node s, Node t) const {\r\n      auto residual =\
+    \ construct_residual(s, t);\r\n\r\n      Cost val = 0;\r\n      for (const auto&\
+    \ to : m_to_list[s]) {\r\n        if (m_graph.find({s, to}) == m_graph.end())\
+    \ { continue; }\r\n        val += m_graph.at({s, to}) - residual[{s, to}];\r\n\
+    \      }\r\n      return val;\r\n    }\r\n\r\n    auto get_cut_list(Node s, Node\
+    \ t) const {\r\n      // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067\u59CB\u70B9\u304B\
+    \u3089\u5230\u9054\u3067\u304D\u308B\u96C6\u5408\r\n      std::unordered_set<Node>\
+    \ st;\r\n\r\n      auto residual = construct_residual(s, t);\r\n      std::queue<Node>\
+    \ q;\r\n      auto add = [&](Node to) {\r\n        if (st.find(to) != st.end())\
+    \ { return; }\r\n        q.emplace(to);\r\n        st.emplace(to);\r\n      };\r\
+    \n      add(s);\r\n      std::deque<Node> ans;\r\n      while (!q.empty()) {\r\
+    \n        auto from = q.front();\r\n        q.pop();\r\n        for (const auto&\
+    \ to : m_to_list[from]) {\r\n          if (residual.find({from, to}) == residual.end())\
+    \ { continue; }\r\n          add(to);\r\n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node,\
+    \ Node>> cut;\r\n      for (const auto& from : st)\r\n        for (const auto&\
+    \ to : m_to_list[from]) {\r\n          if (st.find(to) == st.end() &&\r\n    \
+    \          m_graph.find({from, to}) != m_graph.end()) {\r\n            cut.emplace_back(from,\
+    \ to);\r\n          }\r\n        }\r\n\r\n      return cut;\r\n    }\r\n\r\n \
+    \   auto get_edge(Node s, Node t) const {\r\n      auto residual = construct_residual(s,\
+    \ t);\r\n\r\n      auto edge = Graph<Node, Cost>(m_n);\r\n      for (Node from\
+    \ = 0; from < m_n; ++from) {\r\n        for (const auto& to : m_to_list[from])\
+    \ {\r\n          if (m_graph.find({from, to}) == m_graph.end()) { continue; }\r\
+    \n          auto val = m_graph.at({from, to}) - residual[{from, to}];\r\n    \
+    \      if (val > 0) { edge.addEdge(from, to, val); }\r\n        }\r\n      }\r\
+    \n      return edge;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n"
   code: "#pragma once\r\n\r\n#include <list>\r\n#include <map>\r\n#include <queue>\r\
     \n#include <unordered_map>\r\n#include <unordered_set>\r\n#include <vector>\r\n\
     \r\n#include \"./../Graph.hpp\"\r\nnamespace mtd {\r\n\r\n  template <class Node,\
@@ -158,17 +158,17 @@ data:
     \ s, Node t) const {\r\n      auto residual = m_graph;\r\n      while (true) {\r\
     \n        // BFS\r\n        auto depth = get_depth(s, residual);\r\n\r\n     \
     \   // DFS\r\n        bool run = false;\r\n        std::vector<Node> visited(m_n);\r\
-    \n        auto f = [&](auto&& f, Node now, std::list<Node>& route) -> void {\r\
-    \n          route.emplace_back(now);\r\n\r\n          // t\u306B\u5230\u9054\u3057\
-    \u3066\u3044\u308C\u3070\u6D41\u3059\r\n          if (now == t) {\r\n        \
-    \    update_residual(s, residual, route);\r\n            run = true;\r\n     \
-    \     }\r\n\r\n          for (const auto& to : m_to_list[now]) {\r\n         \
-    \   if (residual.find({now, to}) == residual.end()) { continue; }\r\n        \
-    \    if (depth[to] <= depth[now]) { continue; }\r\n            if (visited[to])\
+    \n        auto f = [&](auto&& self, Node now, std::list<Node>& route) -> void\
+    \ {\r\n          route.emplace_back(now);\r\n\r\n          // t\u306B\u5230\u9054\
+    \u3057\u3066\u3044\u308C\u3070\u6D41\u3059\r\n          if (now == t) {\r\n  \
+    \          update_residual(s, residual, route);\r\n            run = true;\r\n\
+    \          }\r\n\r\n          for (const auto& to : m_to_list[now]) {\r\n    \
+    \        if (residual.find({now, to}) == residual.end()) { continue; }\r\n   \
+    \         if (depth[to] <= depth[now]) { continue; }\r\n            if (visited[to])\
     \ { continue; }\r\n            visited[to] = true;\r\n            ;\r\n      \
-    \      f(f, to, route);\r\n          }\r\n          route.pop_back();\r\n    \
-    \    };\r\n        std::list<Node> route;\r\n        visited[s] = true;\r\n  \
-    \      f(f, s, route);\r\n        if (!run) { break; }\r\n      }\r\n      return\
+    \      self(self, to, route);\r\n          }\r\n          route.pop_back();\r\n\
+    \        };\r\n        std::list<Node> route;\r\n        visited[s] = true;\r\n\
+    \        f(f, s, route);\r\n        if (!run) { break; }\r\n      }\r\n      return\
     \ residual;\r\n    }\r\n\r\n  public:\r\n    Dinic(const Graph<Node, Cost>& graph)\r\
     \n        : m_n(graph.size()),\r\n          m_graph(construct_graph(graph)),\r\
     \n          m_to_list(construct_to_list(graph)) {}\r\n\r\n    auto max_flow(Node\
@@ -180,29 +180,29 @@ data:
     \u4F59\u30B0\u30E9\u30D5\u3067\u59CB\u70B9\u304B\u3089\u5230\u9054\u3067\u304D\
     \u308B\u96C6\u5408\r\n      std::unordered_set<Node> st;\r\n\r\n      auto residual\
     \ = construct_residual(s, t);\r\n      std::queue<Node> q;\r\n      auto add =\
-    \ [&](Node t) {\r\n        if (st.find(t) != st.end()) { return; }\r\n       \
-    \ q.emplace(t);\r\n        st.emplace(t);\r\n      };\r\n      add(s);\r\n   \
-    \   std::deque<Node> ans;\r\n      while (!q.empty()) {\r\n        auto f = q.front();\r\
-    \n        q.pop();\r\n        for (const auto& t : m_to_list[f]) {\r\n       \
-    \   if (residual.find({f, t}) == residual.end()) { continue; }\r\n          add(t);\r\
-    \n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node, Node>> cut;\r\n\
-    \      for (const auto& f : st)\r\n        for (const auto& t : m_to_list[f])\
-    \ {\r\n          if (st.find(t) == st.end() && m_graph.find({f, t}) != m_graph.end())\
-    \ {\r\n            cut.emplace_back(f, t);\r\n          }\r\n        }\r\n\r\n\
-    \      return cut;\r\n    }\r\n\r\n    auto get_edge(Node s, Node t) const {\r\
-    \n      auto residual = construct_residual(s, t);\r\n\r\n      auto edge = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (Node from = 0; from < m_n; ++from) {\r\n        for\
-    \ (const auto& to : m_to_list[from]) {\r\n          if (m_graph.find({from, to})\
-    \ == m_graph.end()) { continue; }\r\n          auto val = m_graph.at({from, to})\
-    \ - residual[{from, to}];\r\n          if (val > 0) { edge.addEdge(from, to, val);\
-    \ }\r\n        }\r\n      }\r\n      return edge;\r\n    }\r\n  };\r\n}  // namespace\
-    \ mtd\r\n"
+    \ [&](Node to) {\r\n        if (st.find(to) != st.end()) { return; }\r\n     \
+    \   q.emplace(to);\r\n        st.emplace(to);\r\n      };\r\n      add(s);\r\n\
+    \      std::deque<Node> ans;\r\n      while (!q.empty()) {\r\n        auto from\
+    \ = q.front();\r\n        q.pop();\r\n        for (const auto& to : m_to_list[from])\
+    \ {\r\n          if (residual.find({from, to}) == residual.end()) { continue;\
+    \ }\r\n          add(to);\r\n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node,\
+    \ Node>> cut;\r\n      for (const auto& from : st)\r\n        for (const auto&\
+    \ to : m_to_list[from]) {\r\n          if (st.find(to) == st.end() &&\r\n    \
+    \          m_graph.find({from, to}) != m_graph.end()) {\r\n            cut.emplace_back(from,\
+    \ to);\r\n          }\r\n        }\r\n\r\n      return cut;\r\n    }\r\n\r\n \
+    \   auto get_edge(Node s, Node t) const {\r\n      auto residual = construct_residual(s,\
+    \ t);\r\n\r\n      auto edge = Graph<Node, Cost>(m_n);\r\n      for (Node from\
+    \ = 0; from < m_n; ++from) {\r\n        for (const auto& to : m_to_list[from])\
+    \ {\r\n          if (m_graph.find({from, to}) == m_graph.end()) { continue; }\r\
+    \n          auto val = m_graph.at({from, to}) - residual[{from, to}];\r\n    \
+    \      if (val > 0) { edge.addEdge(from, to, val); }\r\n        }\r\n      }\r\
+    \n      return edge;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n"
   dependsOn:
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Flow/Dinic.hpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/Dinic.test.cpp

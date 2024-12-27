@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -82,7 +82,7 @@ data:
     \n                                   const GraphCost& residual_cost) const {\r\
     \n      auto n = m_graph.size();\r\n      std::vector<Cost> cost(n, 1e18);\r\n\
     \      cost[s] = 0;\r\n      for (int _ = 0; _ < n; ++_) {\r\n        for (int\
-    \ from = 0; from < n; ++from) {\r\n          for (const auto& [to, _] : m_graph_undirected.getEdges(from))\
+    \ from = 0; from < n; ++from) {\r\n          for (const auto& [to, __] : m_graph_undirected.getEdges(from))\
     \ {\r\n            if (residual_cap[from][to] > 0) {\r\n              cost[to]\
     \ =\r\n                  std::min(cost[to], cost[from] + residual_cost[from][to]);\r\
     \n            }\r\n          }\r\n        }\r\n      }\r\n      return cost;\r\
@@ -116,11 +116,11 @@ data:
     \ residual_cost, route);\r\n        if (use == 0) { break; }\r\n        sl.emplace_back(use,\
     \ cst);\r\n        rem -= use;\r\n        for (int i = 0; i < m_graph.size();\
     \ ++i) { p[i] += sp[i].first; }\r\n      }\r\n      return sl;\r\n    }\r\n\r\n\
-    \    auto min_cost_max_flow(Node s, Node t, Cap c = 1e18) const {\r\n      Cap\
+    \    auto min_cost_max_flow(Node s, Node t, Cap cap = 1e18) const {\r\n      Cap\
     \ use_all = 0;\r\n      Cost cost_all = 0;\r\n      for (const auto& [u, c] :\
-    \ slope(s, t, c)) {\r\n        use_all += u;\r\n        cost_all += c;\r\n   \
-    \   }\r\n      return std::pair<Cap, Cost>{use_all, cost_all};\r\n    }\r\n  };\r\
-    \n}  // namespace mtd\r\n#line 5 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\
+    \ slope(s, t, cap)) {\r\n        use_all += u;\r\n        cost_all += c;\r\n \
+    \     }\r\n      return std::pair<Cap, Cost>{use_all, cost_all};\r\n    }\r\n\
+    \  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\
     \n\r\n#line 7 \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n\r\n#line 9\
     \ \"Test/Graph/Flow/SuccessiveShortestPath.test.cpp\"\n\r\nusing ll = long long;\r\
     \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/SuccessiveShortestPath.test.cpp

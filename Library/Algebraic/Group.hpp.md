@@ -36,10 +36,10 @@ data:
     \        std::ostream& os, const Group<S, element, op, inv>& g) {\n      return\
     \ os << g.m_val;\n    }\n  };\n\n  namespace __detail {\n    template <typename\
     \ T,\n              template <typename, auto, typename, typename> typename S>\n\
-    \    concept is_specialization_of = requires {\n      typename std::enable_if_t<\n\
+    \    concept is_group_specialization_of = requires {\n      typename std::enable_if_t<\n\
     \          std::is_same_v<T, S<typename T::value_type, T::_element,\n        \
     \                      typename T::op_type, typename T::inv_type>>>;\n    };\n\
-    \  }  // namespace __detail\n\n  template <typename G>\n  concept group = __detail::is_specialization_of<G,\
+    \  }  // namespace __detail\n\n  template <typename G>\n  concept group = __detail::is_group_specialization_of<G,\
     \ Group>;\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n\nnamespace mtd {\n\n  template <class\
     \ S,    // set\n            S element,  // identity element\n            class\
@@ -53,18 +53,18 @@ data:
     \ friend std::ostream& operator<<(\n        std::ostream& os, const Group<S, element,\
     \ op, inv>& g) {\n      return os << g.m_val;\n    }\n  };\n\n  namespace __detail\
     \ {\n    template <typename T,\n              template <typename, auto, typename,\
-    \ typename> typename S>\n    concept is_specialization_of = requires {\n     \
-    \ typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
+    \ typename> typename S>\n    concept is_group_specialization_of = requires {\n\
+    \      typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
     \ T::_element,\n                              typename T::op_type, typename T::inv_type>>>;\n\
     \    };\n  }  // namespace __detail\n\n  template <typename G>\n  concept group\
-    \ = __detail::is_specialization_of<G, Group>;\n\n}  // namespace mtd\n"
+    \ = __detail::is_group_specialization_of<G, Group>;\n\n}  // namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Algebraic/Group.hpp
   requiredBy:
   - Library/DataStructure/Accumulation2D.hpp
   - Library/DataStructure/Accumulation.hpp
-  timestamp: '2024-12-11 02:06:57+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/Accumulation_sum.test.cpp

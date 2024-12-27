@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Math_dynamic.test.cpp
     title: Test/Math/Math_dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/DynamicModInt.hpp\"\n\n#include <iostream>\n\
@@ -39,7 +39,7 @@ data:
     \n\nnamespace mtd {\n\n  template <class T = long long>\n  class DynamicModInt\
     \ {\n    static inline T MOD = 0;\n    T x;\n\n  public:\n    constexpr static\
     \ inline auto set_mod(T _MOD) { MOD = _MOD; }\n\n    constexpr DynamicModInt(T\
-    \ x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr DynamicModInt()\
+    \ _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}\n    constexpr DynamicModInt()\
     \ : DynamicModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto&\
     \ operator+=(const DynamicModInt<T>& m) {\n      x += m.x;\n      if (x >= MOD)\
     \ { x -= MOD; }\n      return *this;\n    }\n    constexpr auto& operator-=(const\
@@ -83,7 +83,7 @@ data:
     \n\nnamespace mtd {\n\n  template <class T = long long>\n  class DynamicModInt\
     \ {\n    static inline T MOD = 0;\n    T x;\n\n  public:\n    constexpr static\
     \ inline auto set_mod(T _MOD) { MOD = _MOD; }\n\n    constexpr DynamicModInt(T\
-    \ x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr DynamicModInt()\
+    \ _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}\n    constexpr DynamicModInt()\
     \ : DynamicModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto&\
     \ operator+=(const DynamicModInt<T>& m) {\n      x += m.x;\n      if (x >= MOD)\
     \ { x -= MOD; }\n      return *this;\n    }\n    constexpr auto& operator-=(const\
@@ -128,8 +128,8 @@ data:
   isVerificationFile: false
   path: Library/Math/DynamicModInt.hpp
   requiredBy: []
-  timestamp: '2024-11-26 08:27:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedRequiredBy: []
@@ -47,10 +47,10 @@ data:
     \ std::ostream& operator<<(std::ostream& os,\n                               \
     \     const Monoid<S, element, op>& m) {\n      return os << m.m_val;\n    }\n\
     \  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
-    \ auto, typename> typename S>\n    concept is_specialization_of = requires {\n\
-    \      typename std::enable_if_t<std::is_same_v<\n          T, S<typename T::value_type,\
-    \ T::_element, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n\
-    \  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \ auto, typename> typename S>\n    concept is_monoid_specialization_of = requires\
+    \ {\n      typename std::enable_if_t<std::is_same_v<\n          T, S<typename\
+    \ T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }  // namespace\
+    \ __detail\n\n  template <typename M>\n  concept monoid = __detail::is_monoid_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 2 \"Library/Graph/Normal/BFS.hpp\"\n\r\
     \n#include <queue>\r\n#line 5 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#line 2 \"\
     Library/Graph/Graph.hpp\"\n#include <deque>\r\n#line 4 \"Library/Graph/Graph.hpp\"\
@@ -162,7 +162,7 @@ data:
     \ r) const { return fact(n) * factInv(n - r); }\r\n  };\r\n}  // namespace mtd\r\
     \n#line 7 \"Library/Math/ModInt.hpp\"\n\nnamespace mtd {\n\n  template <int MOD,\
     \ class T = long long>\n  class ModInt {\n  public:\n    T x;\n\n    constexpr\
-    \ ModInt(T x) : x(x >= 0 ? x % MOD : MOD + (x % MOD)) {}\n    constexpr ModInt()\
+    \ ModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}\n    constexpr ModInt()\
     \ : ModInt(0) {}\n\n    // \u56DB\u5247\u6F14\u7B97\n    constexpr auto& operator+=(const\
     \ ModInt<MOD, T>& m) {\n      x += m.x;\n      if (x >= MOD) { x -= MOD; }\n \
     \     return *this;\n    }\n    constexpr auto& operator-=(const ModInt<MOD, T>&\
@@ -249,7 +249,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/ReRootingDP.test.cpp
   requiredBy: []
-  timestamp: '2024-12-19 23:41:41+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/ReRootingDP.test.cpp

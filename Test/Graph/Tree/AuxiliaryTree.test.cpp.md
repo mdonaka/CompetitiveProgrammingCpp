@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   - icon: ':heavy_check_mark:'
@@ -135,20 +135,21 @@ data:
     \n        } else {\r\n          f = fp;\r\n        }\r\n      } while (true);\r\
     \n      return (m_height[f] < m_height[t]) ? f : t;\r\n    }\r\n\r\n    auto range(Node\
     \ f, Node t) const {\r\n      std::deque<std::pair<Node, Node>> ret;\r\n     \
-    \ auto add = [&](Node f, Node t) {\r\n        auto l = std::min(m_ids[f], m_ids[t]);\r\
-    \n        auto r = std::max(m_ids[f], m_ids[t]);\r\n        ret.emplace_back(l,\
-    \ r);\r\n      };\r\n      do {\r\n        auto [fr, fp] = m_root_par[f];\r\n\
-    \        auto [tr, tp] = m_root_par[t];\r\n        if (fr == tr) {\r\n       \
-    \   add(f, t);\r\n          break;\r\n        }\r\n        auto fph = (fp > -1)\
-    \ ? m_height[fp] : -1;\r\n        auto tph = (tp > -1) ? m_height[tp] : -1;\r\n\
-    \        if (fph < tph) {\r\n          add(t, tr);\r\n          t = tp;\r\n  \
-    \      } else {\r\n          add(f, fr);\r\n          f = fp;\r\n        }\r\n\
-    \      } while (true);\r\n      return ret;\r\n    }\r\n\r\n    auto rangeEdge(Node\
-    \ f, Node t) const {\r\n      Node edge_size = (m_n >> 1);\r\n      std::deque<std::pair<Node,\
-    \ Node>> ret;\r\n      auto add = [&](Node f, Node t) {\r\n        auto l = std::min(m_ids[f],\
-    \ m_ids[t]);\r\n        auto r = std::max(m_ids[f], m_ids[t]);\r\n        if (m_order[l]\
-    \ <= edge_size) { ++l; }\r\n        if (m_order[r] <= edge_size) { --r; }\r\n\
-    \        if (l > r) { return; }\r\n        auto edge_l = m_edge_ids[m_order[l]];\r\
+    \ auto add = [&](Node from, Node to) {\r\n        auto l = std::min(m_ids[from],\
+    \ m_ids[to]);\r\n        auto r = std::max(m_ids[from], m_ids[to]);\r\n      \
+    \  ret.emplace_back(l, r);\r\n      };\r\n      do {\r\n        auto [fr, fp]\
+    \ = m_root_par[f];\r\n        auto [tr, tp] = m_root_par[t];\r\n        if (fr\
+    \ == tr) {\r\n          add(f, t);\r\n          break;\r\n        }\r\n      \
+    \  auto fph = (fp > -1) ? m_height[fp] : -1;\r\n        auto tph = (tp > -1) ?\
+    \ m_height[tp] : -1;\r\n        if (fph < tph) {\r\n          add(t, tr);\r\n\
+    \          t = tp;\r\n        } else {\r\n          add(f, fr);\r\n          f\
+    \ = fp;\r\n        }\r\n      } while (true);\r\n      return ret;\r\n    }\r\n\
+    \r\n    auto rangeEdge(Node f, Node t) const {\r\n      Node edge_size = (m_n\
+    \ >> 1);\r\n      std::deque<std::pair<Node, Node>> ret;\r\n      auto add = [&](Node\
+    \ from, Node to) {\r\n        auto l = std::min(m_ids[from], m_ids[to]);\r\n \
+    \       auto r = std::max(m_ids[from], m_ids[to]);\r\n        if (m_order[l] <=\
+    \ edge_size) { ++l; }\r\n        if (m_order[r] <= edge_size) { --r; }\r\n   \
+    \     if (l > r) { return; }\r\n        auto edge_l = m_edge_ids[m_order[l]];\r\
     \n        auto edge_r = m_edge_ids[m_order[r]];\r\n        ret.emplace_back(edge_l,\
     \ edge_r);\r\n      };\r\n      do {\r\n        auto [fr, fp] = m_root_par[f];\r\
     \n        auto [tr, tp] = m_root_par[t];\r\n        if (fr == tr) {\r\n      \
@@ -164,12 +165,12 @@ data:
     \u7684\r\n    std::vector<int> compres_map;\r\n\r\n    const std::vector<Cost>\
     \ depth_cost;\r\n    const HeavyLightDecomposition<Node, Cost> hld;\r\n\r\n  \
     \  auto construct_depth(const Graph<Node, Cost>& tree) const {\r\n      std::vector<Cost>\
-    \ depth_cost(tree.size());\r\n      std::vector<int> used(tree.size());\r\n  \
-    \    auto dfs = [&](auto&& self, Node from) -> void {\r\n        used[from] =\
+    \ _depth_cost(tree.size());\r\n      std::vector<int> used(tree.size());\r\n \
+    \     auto dfs = [&](auto&& self, Node from) -> void {\r\n        used[from] =\
     \ true;\r\n        for (const auto& [to, c] : tree.getEdges(from))\r\n       \
-    \   if (!used[to]) {\r\n            depth_cost[to] = depth_cost[from] + c;\r\n\
-    \            self(self, to);\r\n          }\r\n      };\r\n      dfs(dfs, 0);\r\
-    \n      return depth_cost;\r\n    }\r\n\r\n  public:\r\n    AuxiliaryTree(const\
+    \   if (!used[to]) {\r\n            _depth_cost[to] = _depth_cost[from] + c;\r\
+    \n            self(self, to);\r\n          }\r\n      };\r\n      dfs(dfs, 0);\r\
+    \n      return _depth_cost;\r\n    }\r\n\r\n  public:\r\n    AuxiliaryTree(const\
     \ Graph<Node, Cost>& tree)\r\n        : compres_map(tree.size()),\r\n        \
     \  depth_cost(construct_depth(tree)),\r\n          hld(tree) {}\r\n\r\n    auto\
     \ compression(const std::vector<Node>& nodes) {\r\n      auto compare = [&](int\
@@ -223,7 +224,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/AuxiliaryTree.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/AuxiliaryTree.test.cpp

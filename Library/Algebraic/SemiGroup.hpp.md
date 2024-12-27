@@ -26,11 +26,11 @@ data:
     \ friend std::ostream& operator<<(std::ostream& os,\n                        \
     \                      const SemiGroup<S, op>& s) {\n      return os << s.m_val;\n\
     \    }\n  };\n\n  namespace __detail {\n    template <typename T, template <typename,\
-    \ typename> typename S>\n    concept is_specialization_of = requires {\n     \
-    \ typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
-    \ typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n  template <typename\
-    \ G>\n  concept semigroup = __detail::is_specialization_of<G, SemiGroup>;\n\n\
-    }  // namespace mtd\n"
+    \ typename> typename S>\n    concept is_semigroup_specialization_of = requires\
+    \ {\n      typename std::enable_if_t<\n          std::is_same_v<T, S<typename\
+    \ T::value_type, typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\
+    \n  template <typename G>\n  concept semigroup = __detail::is_semigroup_specialization_of<G,\
+    \ SemiGroup>;\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n\nnamespace mtd {\n\n  template <class\
     \ S,  // set\n            class op  // binary operation\n            >\n  requires\
     \ std::is_invocable_r_v<S, op, S, S>\n  struct SemiGroup {\n    using value_type\
@@ -40,16 +40,17 @@ data:
     \ operator<<(std::ostream& os,\n                                             \
     \ const SemiGroup<S, op>& s) {\n      return os << s.m_val;\n    }\n  };\n\n \
     \ namespace __detail {\n    template <typename T, template <typename, typename>\
-    \ typename S>\n    concept is_specialization_of = requires {\n      typename std::enable_if_t<\n\
-    \          std::is_same_v<T, S<typename T::value_type, typename T::op_type>>>;\n\
-    \    };\n  }  // namespace __detail\n\n  template <typename G>\n  concept semigroup\
-    \ = __detail::is_specialization_of<G, SemiGroup>;\n\n}  // namespace mtd\n"
+    \ typename S>\n    concept is_semigroup_specialization_of = requires {\n     \
+    \ typename std::enable_if_t<\n          std::is_same_v<T, S<typename T::value_type,\
+    \ typename T::op_type>>>;\n    };\n  }  // namespace __detail\n\n  template <typename\
+    \ G>\n  concept semigroup = __detail::is_semigroup_specialization_of<G, SemiGroup>;\n\
+    \n}  // namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/Algebraic/SemiGroup.hpp
   requiredBy:
   - Library/DataStructure/DisjointSparseTable.hpp
-  timestamp: '2024-12-11 02:19:55+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DisjointSparseTable_xor.test.cpp

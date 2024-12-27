@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -41,8 +41,8 @@ data:
   bundledCode: "#line 1 \"Test/Math/Convolution_and.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n#include <iostream>\n\
     \n// begin:tag includes\n#line 2 \"Library/Math/Convolution.hpp\"\n\n#include\
-    \ <ranges>\n#include <vector>\n\n#line 1 \"Library/Math/Mobius.hpp\"\n\n#line\
-    \ 4 \"Library/Math/Mobius.hpp\"\n\n#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace\
+    \ <ranges>\n#include <vector>\n\n#line 2 \"Library/Math/Mobius.hpp\"\n\n#line\
+    \ 5 \"Library/Math/Mobius.hpp\"\n\n#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace\
     \ mtd {\n\n  constexpr unsigned clz(unsigned int x) {\n    int c = 0;\n    if\
     \ (x == 0) { return 0; }\n    if (x & 0xffff0000) {\n      x &= 0xffff0000;\n\
     \      c |= 0x10;\n    }\n    if (x & 0xff00ff00) {\n      x &= 0xff00ff00;\n\
@@ -57,7 +57,7 @@ data:
     \ long long x) {\n    x = x - ((x >> 1) & 0x5555555555555555);\n    x = (x & 0x3333333333333333)\
     \ + ((x >> 2) & 0x3333333333333333);\n    x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f;\n\
     \    x = x + (x >> 8);\n    x = x + (x >> 16);\n    x = x + (x >> 32);\n    return\
-    \ x & 0x0000007f;\n  }\n\n}  // namespace mtd\n#line 6 \"Library/Math/Mobius.hpp\"\
+    \ x & 0x0000007f;\n  }\n\n}  // namespace mtd\n#line 7 \"Library/Math/Mobius.hpp\"\
     \n\nnamespace mtd::mobius {\n\n  template <class T>\n  auto n(const std::vector<T>&\
     \ a) {\n    auto ret = a;\n    for (auto i : std::views::iota(static_cast<size_t>(1),\
     \ a.size())) {\n      ret[i] = a[i] - a[i - 1];\n    }\n    return ret;\n  }\n\
@@ -111,11 +111,11 @@ data:
     \    }\r\n    constexpr auto perm(int n, int r) const { return fact(n) * factInv(n\
     \ - r); }\r\n  };\r\n}  // namespace mtd\r\n#line 7 \"Library/Math/ModInt.hpp\"\
     \n\nnamespace mtd {\n\n  template <int MOD, class T = long long>\n  class ModInt\
-    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T x) : x(x >= 0 ? x % MOD : MOD\
-    \ + (x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\u5247\
-    \u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n    \
-    \  x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n    }\n\
-    \    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
+    \ {\n  public:\n    T x;\n\n    constexpr ModInt(T _x) : x(_x >= 0 ? _x % MOD\
+    \ : MOD + (_x % MOD)) {}\n    constexpr ModInt() : ModInt(0) {}\n\n    // \u56DB\
+    \u5247\u6F14\u7B97\n    constexpr auto& operator+=(const ModInt<MOD, T>& m) {\n\
+    \      x += m.x;\n      if (x >= MOD) { x -= MOD; }\n      return *this;\n   \
+    \ }\n    constexpr auto& operator-=(const ModInt<MOD, T>& m) {\n      x -= m.x;\n\
     \      if (x < 0) { x += MOD; }\n      return *this;\n    }\n    constexpr auto&\
     \ operator*=(const ModInt<MOD, T>& m) {\n      x *= m.x;\n      if (x >= MOD)\
     \ { x %= MOD; }\n      return *this;\n    }\n    constexpr auto& operator/=(const\
@@ -215,24 +215,25 @@ data:
     \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
-    \ count) : count(count) { operator++(); }\n\n        constexpr auto operator*()\
-    \ const { return val; }\n        constexpr auto& operator++() {\n          --count;\n\
-    \          if (count >= 0) { val = io::in<Args...>(); }\n          return *this;\n\
-    \        }\n        constexpr auto operator++(int) { return ++*this; }\n\n   \
-    \     constexpr auto operator==(const iterator& s) const {\n          return count\
-    \ == s.count;\n        }\n        constexpr auto operator==(std::default_sentinel_t\
-    \ s) const {\n          return count < 0 || std::cin.eof() || std::cin.fail()\
-    \ ||\n                 std::cin.bad();\n        }\n        constexpr friend auto\
-    \ operator==(std::default_sentinel_t s,\n                                    \
-    \     const iterator& li) {\n          return li == s;\n        }\n      };\n\n\
-    \      int count;\n\n    public:\n      constexpr explicit istream_view(int count)\
-    \ : count(count) {}\n      constexpr explicit istream_view() : istream_view(_inf)\
-    \ {}\n      constexpr auto begin() const { return iterator(count); }\n      constexpr\
-    \ auto end() const { return std::default_sentinel; }\n    };\n  }  // namespace\
-    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
-    \ _Args>\n      concept __can_istream_view = requires {\n        ranges::istream_view(std::declval<_Args>()...);\n\
-    \      };\n    }  // namespace __detail\n\n    template <class... Args>\n    struct\
-    \ _Istream {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
+    \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
+    \ auto operator*() const { return val; }\n        constexpr auto& operator++()\
+    \ {\n          --count;\n          if (count >= 0) { val = io::in<Args...>();\
+    \ }\n          return *this;\n        }\n        constexpr auto operator++(int)\
+    \ { return ++*this; }\n\n        constexpr auto operator==(const iterator& s)\
+    \ const {\n          return count == s.count;\n        }\n        constexpr auto\
+    \ operator==(std::default_sentinel_t) const {\n          return count < 0 || std::cin.eof()\
+    \ || std::cin.fail() ||\n                 std::cin.bad();\n        }\n       \
+    \ constexpr friend auto operator==(std::default_sentinel_t s,\n              \
+    \                           const iterator& li) {\n          return li == s;\n\
+    \        }\n      };\n\n      int count;\n\n    public:\n      constexpr explicit\
+    \ istream_view(int _count) : count(_count) {}\n      constexpr explicit istream_view()\
+    \ : istream_view(_inf) {}\n      constexpr auto begin() const { return iterator(count);\
+    \ }\n      constexpr auto end() const { return std::default_sentinel; }\n    };\n\
+    \  }  // namespace ranges\n\n  namespace views {\n    namespace __detail {\n \
+    \     template <typename... _Args>\n      concept __can_istream_view = requires\
+    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
+    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
+    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
     \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
     \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
     \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
@@ -263,8 +264,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2024-12-18 17:23:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Math/Convolution_and.test.cpp
 layout: document

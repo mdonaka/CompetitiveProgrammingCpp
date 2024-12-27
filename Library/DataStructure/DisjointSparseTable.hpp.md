@@ -27,10 +27,10 @@ data:
     \ s.m_val);\n    }\n    constexpr friend std::ostream& operator<<(std::ostream&\
     \ os,\n                                              const SemiGroup<S, op>& s)\
     \ {\n      return os << s.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
-    \ <typename T, template <typename, typename> typename S>\n    concept is_specialization_of\
+    \ <typename T, template <typename, typename> typename S>\n    concept is_semigroup_specialization_of\
     \ = requires {\n      typename std::enable_if_t<\n          std::is_same_v<T,\
     \ S<typename T::value_type, typename T::op_type>>>;\n    };\n  }  // namespace\
-    \ __detail\n\n  template <typename G>\n  concept semigroup = __detail::is_specialization_of<G,\
+    \ __detail\n\n  template <typename G>\n  concept semigroup = __detail::is_semigroup_specialization_of<G,\
     \ SemiGroup>;\n\n}  // namespace mtd\n#line 8 \"Library/DataStructure/DisjointSparseTable.hpp\"\
     \n\r\nnamespace mtd {\r\n\r\n  template <semigroup SG>\r\n  class DisjointSparseTable\
     \ {\r\n    using S = typename SG::value_type;\r\n\r\n    const int m_n;\r\n  \
@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2024-12-11 02:19:55+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DisjointSparseTable_xor.test.cpp

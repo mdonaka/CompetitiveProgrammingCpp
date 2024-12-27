@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Convolution.hpp\"\n\n#include <ranges>\n#include\
-    \ <vector>\n\n#line 1 \"Library/Math/Mobius.hpp\"\n\n#line 4 \"Library/Math/Mobius.hpp\"\
+    \ <vector>\n\n#line 2 \"Library/Math/Mobius.hpp\"\n\n#line 5 \"Library/Math/Mobius.hpp\"\
     \n\n#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace mtd {\n\n  constexpr unsigned\
     \ clz(unsigned int x) {\n    int c = 0;\n    if (x == 0) { return 0; }\n    if\
     \ (x & 0xffff0000) {\n      x &= 0xffff0000;\n      c |= 0x10;\n    }\n    if\
@@ -37,7 +37,7 @@ data:
     \    x = x - ((x >> 1) & 0x5555555555555555);\n    x = (x & 0x3333333333333333)\
     \ + ((x >> 2) & 0x3333333333333333);\n    x = (x + (x >> 4)) & 0x0f0f0f0f0f0f0f0f;\n\
     \    x = x + (x >> 8);\n    x = x + (x >> 16);\n    x = x + (x >> 32);\n    return\
-    \ x & 0x0000007f;\n  }\n\n}  // namespace mtd\n#line 6 \"Library/Math/Mobius.hpp\"\
+    \ x & 0x0000007f;\n  }\n\n}  // namespace mtd\n#line 7 \"Library/Math/Mobius.hpp\"\
     \n\nnamespace mtd::mobius {\n\n  template <class T>\n  auto n(const std::vector<T>&\
     \ a) {\n    auto ret = a;\n    for (auto i : std::views::iota(static_cast<size_t>(1),\
     \ a.size())) {\n      ret[i] = a[i] - a[i - 1];\n    }\n    return ret;\n  }\n\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: false
   path: Library/Math/Convolution.hpp
   requiredBy: []
-  timestamp: '2024-11-09 15:39:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Math/Convolution_and.test.cpp
 documentation_of: Library/Math/Convolution.hpp

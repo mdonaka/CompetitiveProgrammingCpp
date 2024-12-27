@@ -3,20 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Matrix_pow.test.cpp
     title: Test/Math/Matrix_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Matrix.hpp\"\n\r\n#include <cassert>\r\n#include\
     \ <iostream>\r\n#include <vector>\r\n\r\nnamespace mtd {\r\n  template <class\
     \ T>\r\n  class Matrix {\r\n    int h, w;\r\n    std::vector<std::vector<T>> mat;\r\
-    \n\r\n  public:\r\n    Matrix(const std::vector<std::vector<T>>& mat)\r\n    \
-    \    : h(mat.size()), w(mat[0].size()), mat(mat) {}\r\n\r\n    inline static auto\
-    \ identity(int size) {\r\n      std::vector<std::vector<T>> ret(size, std::vector<T>(size));\r\
+    \n\r\n  public:\r\n    Matrix(const std::vector<std::vector<T>>& _mat)\r\n   \
+    \     : h(_mat.size()), w(_mat[0].size()), mat(_mat) {}\r\n\r\n    inline static\
+    \ auto identity(int size) {\r\n      std::vector<std::vector<T>> ret(size, std::vector<T>(size));\r\
     \n      for (int i = 0; i < size; ++i) { ret[i][i] = 1; }\r\n      return Matrix(ret);\r\
     \n    }\r\n\r\n    auto begin() const { return mat.begin(); }\r\n    auto end()\
     \ const { return mat.end(); }\r\n\r\n    const auto& operator[](int i) const {\
@@ -33,8 +33,8 @@ data:
   code: "#pragma once\r\n\r\n#include <cassert>\r\n#include <iostream>\r\n#include\
     \ <vector>\r\n\r\nnamespace mtd {\r\n  template <class T>\r\n  class Matrix {\r\
     \n    int h, w;\r\n    std::vector<std::vector<T>> mat;\r\n\r\n  public:\r\n \
-    \   Matrix(const std::vector<std::vector<T>>& mat)\r\n        : h(mat.size()),\
-    \ w(mat[0].size()), mat(mat) {}\r\n\r\n    inline static auto identity(int size)\
+    \   Matrix(const std::vector<std::vector<T>>& _mat)\r\n        : h(_mat.size()),\
+    \ w(_mat[0].size()), mat(_mat) {}\r\n\r\n    inline static auto identity(int size)\
     \ {\r\n      std::vector<std::vector<T>> ret(size, std::vector<T>(size));\r\n\
     \      for (int i = 0; i < size; ++i) { ret[i][i] = 1; }\r\n      return Matrix(ret);\r\
     \n    }\r\n\r\n    auto begin() const { return mat.begin(); }\r\n    auto end()\
@@ -53,8 +53,8 @@ data:
   isVerificationFile: false
   path: Library/Math/Matrix.hpp
   requiredBy: []
-  timestamp: '2024-11-26 15:19:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Math/Matrix_pow.test.cpp
 documentation_of: Library/Math/Matrix.hpp

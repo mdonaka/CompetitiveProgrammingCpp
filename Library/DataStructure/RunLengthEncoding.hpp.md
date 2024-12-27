@@ -21,7 +21,7 @@ data:
     \        } else {\n          rle.emplace_back(now, cnt);\n          cnt = 1;\n\
     \          now = x;\n        }\n      }\n      rle.emplace_back(now, cnt);\n \
     \     return rle;\n    }\n\n  public:\n    constexpr RunLengthEncoding(const _R&\
-    \ r) : r(construct_rle(r)) {}\n\n    constexpr auto begin() const { return r.begin();\
+    \ _r) : r(construct_rle(_r)) {}\n\n    constexpr auto begin() const { return r.begin();\
     \ }\n    constexpr auto end() const { return r.end(); }\n  };\n}  // namespace\
     \ mtd\n"
   code: "#pragma once\n\n#include <ranges>\n#include <vector>\n\nnamespace mtd {\n\
@@ -33,14 +33,14 @@ data:
     \       if (x == now) {\n          ++cnt;\n        } else {\n          rle.emplace_back(now,\
     \ cnt);\n          cnt = 1;\n          now = x;\n        }\n      }\n      rle.emplace_back(now,\
     \ cnt);\n      return rle;\n    }\n\n  public:\n    constexpr RunLengthEncoding(const\
-    \ _R& r) : r(construct_rle(r)) {}\n\n    constexpr auto begin() const { return\
+    \ _R& _r) : r(construct_rle(_r)) {}\n\n    constexpr auto begin() const { return\
     \ r.begin(); }\n    constexpr auto end() const { return r.end(); }\n  };\n}  //\
     \ namespace mtd\n"
   dependsOn: []
   isVerificationFile: false
   path: Library/DataStructure/RunLengthEncoding.hpp
   requiredBy: []
-  timestamp: '2024-11-09 16:05:32+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/RunLengthEncoding.test.cpp

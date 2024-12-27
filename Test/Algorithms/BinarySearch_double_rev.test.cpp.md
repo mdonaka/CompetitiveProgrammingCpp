@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
   _extendedRequiredBy: []
@@ -23,10 +23,10 @@ data:
     \ ok, double ng, int rep, const Lambda& is_ok) {\r\n    for ([[maybe_unused]]\
     \ auto _ : std::views::iota(0, rep)) {\r\n      double mid = (ok + ng) / 2.0;\r\
     \n      (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n\
-    \  template <class Lambda>\r\n  auto binarySearch(long long ok, long long ng,\
-    \ const Lambda& is_ok) {\r\n    while (std::abs(ok - ng) > 1) {\r\n      long\
-    \ long mid = (ok + ng) >> 1;\r\n      (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\
-    \n    return ok;\r\n  }\r\n\r\n}  // namespace mtd\r\n#line 9 \"Test/Algorithms/BinarySearch_double_rev.test.cpp\"\
+    \  template <class Lambda, class T = long long>\r\n  auto binarySearch(T ok, T\
+    \ ng, const Lambda& is_ok) {\r\n    while (std::abs(ok - ng) > 1) {\r\n      T\
+    \ mid = (ok + ng) >> 1;\r\n      (is_ok(mid) ? ok : ng) = mid;\r\n    }\r\n  \
+    \  return ok;\r\n  }\r\n\r\n}  // namespace mtd\r\n#line 9 \"Test/Algorithms/BinarySearch_double_rev.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\nstruct Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\
     \n    std::ios::sync_with_stdio(0);\r\n  };\r\n} _Preprocessing;\r\n\r\nsigned\
@@ -53,7 +53,7 @@ data:
   isVerificationFile: true
   path: Test/Algorithms/BinarySearch_double_rev.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Algorithms/BinarySearch_double_rev.test.cpp

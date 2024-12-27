@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/FordFulkerson.hpp
     title: Library/Graph/Flow/FordFulkerson.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -69,14 +69,14 @@ data:
     \ auto& [f, t, c] : graph.getEdges()) {\r\n        pair_graph[std::pair<Node,\
     \ Node>{f, t}] += c;\r\n      }\r\n      return pair_graph;\r\n    }\r\n\r\n \
     \   auto get_route(Node s, Node t, const PairGraph& graph) const {\r\n      std::unordered_set<Node>\
-    \ visited;\r\n      auto f = [&](auto&& f, Node now, std::list<Node>& route) ->\
-    \ bool {\r\n        route.emplace_back(now);\r\n        for (const auto& to :\
-    \ m_to_list[now]) {\r\n          if (graph.find({now, to}) == graph.end()) { continue;\
-    \ }\r\n          if (to == t) {\r\n            route.emplace_back(t);\r\n    \
-    \        return true;\r\n          }\r\n          if (visited.find(to) == visited.end())\
-    \ {\r\n            visited.emplace(to);\r\n            if (f(f, to, route)) {\
-    \ return true; }\r\n          }\r\n        }\r\n        route.pop_back();\r\n\
-    \        return false;\r\n      };\r\n      std::list<Node> route;\r\n      visited.emplace(s);\r\
+    \ visited;\r\n      auto f = [&](auto&& self, Node now, std::list<Node>& route)\
+    \ -> bool {\r\n        route.emplace_back(now);\r\n        for (const auto& to\
+    \ : m_to_list[now]) {\r\n          if (graph.find({now, to}) == graph.end()) {\
+    \ continue; }\r\n          if (to == t) {\r\n            route.emplace_back(t);\r\
+    \n            return true;\r\n          }\r\n          if (visited.find(to) ==\
+    \ visited.end()) {\r\n            visited.emplace(to);\r\n            if (self(self,\
+    \ to, route)) { return true; }\r\n          }\r\n        }\r\n        route.pop_back();\r\
+    \n        return false;\r\n      };\r\n      std::list<Node> route;\r\n      visited.emplace(s);\r\
     \n      auto ok = f(f, s, route);\r\n      if (ok) {\r\n        return route;\r\
     \n      } else {\r\n        return std::list<Node>{};\r\n      }\r\n    }\r\n\r\
     \n    auto construct_residual(Node s, Node t) const {\r\n      auto residual =\
@@ -99,23 +99,23 @@ data:
     \ t) const {\r\n      // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067\u59CB\u70B9\u304B\
     \u3089\u5230\u9054\u3067\u304D\u308B\u96C6\u5408\r\n      std::unordered_set<Node>\
     \ st;\r\n\r\n      auto residual = construct_residual(s, t);\r\n      std::queue<Node>\
-    \ q;\r\n      auto add = [&](Node t) {\r\n        if (st.find(t) != st.end())\
-    \ { return; }\r\n        q.emplace(t);\r\n        st.emplace(t);\r\n      };\r\
+    \ q;\r\n      auto add = [&](Node to) {\r\n        if (st.find(to) != st.end())\
+    \ { return; }\r\n        q.emplace(to);\r\n        st.emplace(to);\r\n      };\r\
     \n      add(s);\r\n      std::deque<Node> ans;\r\n      while (!q.empty()) {\r\
-    \n        auto f = q.front();\r\n        q.pop();\r\n        for (const auto&\
-    \ t : m_to_list[f]) {\r\n          if (residual.find({f, t}) == residual.end())\
-    \ { continue; }\r\n          add(t);\r\n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node,\
-    \ Node>> cut;\r\n      for (const auto& f : st)\r\n        for (const auto& t\
-    \ : m_to_list[f]) {\r\n          if (st.find(t) == st.end() && m_graph.find({f,\
-    \ t}) != m_graph.end()) {\r\n            cut.emplace_back(f, t);\r\n         \
-    \ }\r\n        }\r\n\r\n      return cut;\r\n    }\r\n\r\n    auto get_edge(Node\
-    \ s, Node t) const {\r\n      auto residual = construct_residual(s, t);\r\n\r\n\
-    \      auto edge = Graph<Node, Cost>(m_n);\r\n      for (Node from = 0; from <\
-    \ m_n; ++from) {\r\n        for (const auto& to : m_to_list[from]) {\r\n     \
-    \     if (m_graph.find({from, to}) == m_graph.end()) { continue; }\r\n       \
-    \   auto val = m_graph.at({from, to}) - residual[{from, to}];\r\n          if\
-    \ (val > 0) { edge.addEdge(from, to, val); }\r\n        }\r\n      }\r\n     \
-    \ return edge;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Graph/Flow/FordFulkerson.test.cpp\"\
+    \n        auto from = q.front();\r\n        q.pop();\r\n        for (const auto&\
+    \ to : m_to_list[from]) {\r\n          if (residual.find({from, to}) == residual.end())\
+    \ { continue; }\r\n          add(to);\r\n        }\r\n      }\r\n\r\n      std::deque<std::pair<Node,\
+    \ Node>> cut;\r\n      for (const auto& from : st)\r\n        for (const auto&\
+    \ to : m_to_list[from]) {\r\n          if (st.find(to) == st.end() &&\r\n    \
+    \          m_graph.find({from, to}) != m_graph.end()) {\r\n            cut.emplace_back(from,\
+    \ to);\r\n          }\r\n        }\r\n\r\n      return cut;\r\n    }\r\n\r\n \
+    \   auto get_edge(Node s, Node t) const {\r\n      auto residual = construct_residual(s,\
+    \ t);\r\n\r\n      auto edge = Graph<Node, Cost>(m_n);\r\n      for (Node from\
+    \ = 0; from < m_n; ++from) {\r\n        for (const auto& to : m_to_list[from])\
+    \ {\r\n          if (m_graph.find({from, to}) == m_graph.end()) { continue; }\r\
+    \n          auto val = m_graph.at({from, to}) - residual[{from, to}];\r\n    \
+    \      if (val > 0) { edge.addEdge(from, to, val); }\r\n        }\r\n      }\r\
+    \n      return edge;\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Graph/Flow/FordFulkerson.test.cpp\"\
     \n\r\n#line 7 \"Test/Graph/Flow/FordFulkerson.test.cpp\"\n\r\n#line 9 \"Test/Graph/Flow/FordFulkerson.test.cpp\"\
     \n\r\nusing ll = long long;\r\nusing std::cin;\r\nusing std::cout;\r\nconstexpr\
     \ char endl = '\\n';\r\n\r\nsigned main() {\r\n  int n, m;\r\n  cin >> n >> m;\r\
@@ -138,7 +138,7 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/FordFulkerson.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/FordFulkerson.test.cpp

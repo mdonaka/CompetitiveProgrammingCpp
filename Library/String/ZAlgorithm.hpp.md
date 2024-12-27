@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/String/ZAlgorithm.test.cpp
     title: Test/String/ZAlgorithm.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/String/ZAlgorithm.hpp\"\n\r\n#include <deque>\r\n\
@@ -17,7 +17,7 @@ data:
     \u3059\u308B\r\n   * O(N)\r\n   * S[0..]\u3068S[i..]\u306E\u5171\u901A\u63A5\u982D\
     \u8F9E\u6570\r\n   * ex) aaabaaaab -> [9, 2, 1, 0, 3, 4, 2, 1, 0]\r\n   */\r\n\
     \  class ZAlgorithm {\r\n    const std::vector<int> m_zArray;\r\n\r\n    static\
-    \ auto constrcutZArray(const std::string& str) {\r\n      auto sz = str.size();\r\
+    \ auto constrcutZArray(const std::string& str) {\r\n      auto sz = static_cast<int>(str.size());\r\
     \n      auto zArray = std::vector<int>(sz);\r\n      zArray[0] = sz;\r\n\r\n \
     \     int i = 1, j = 0;\r\n      while (i < sz) {\r\n        while (i + j < sz\
     \ && str[j] == str[i + j]) ++j;\r\n        zArray[i] = j;\r\n        if (j ==\
@@ -40,8 +40,8 @@ data:
     S[i..]\u306E\u5171\u901A\u63A5\u982D\u8F9E\u6570\r\n   * ex) aaabaaaab -> [9,\
     \ 2, 1, 0, 3, 4, 2, 1, 0]\r\n   */\r\n  class ZAlgorithm {\r\n    const std::vector<int>\
     \ m_zArray;\r\n\r\n    static auto constrcutZArray(const std::string& str) {\r\
-    \n      auto sz = str.size();\r\n      auto zArray = std::vector<int>(sz);\r\n\
-    \      zArray[0] = sz;\r\n\r\n      int i = 1, j = 0;\r\n      while (i < sz)\
+    \n      auto sz = static_cast<int>(str.size());\r\n      auto zArray = std::vector<int>(sz);\r\
+    \n      zArray[0] = sz;\r\n\r\n      int i = 1, j = 0;\r\n      while (i < sz)\
     \ {\r\n        while (i + j < sz && str[j] == str[i + j]) ++j;\r\n        zArray[i]\
     \ = j;\r\n        if (j == 0) {\r\n          ++i;\r\n          continue;\r\n \
     \       }\r\n        int k = 1;\r\n        while (i + k < sz && k + zArray[k]\
@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: Library/String/ZAlgorithm.hpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/String/ZAlgorithm.test.cpp
 documentation_of: Library/String/ZAlgorithm.hpp

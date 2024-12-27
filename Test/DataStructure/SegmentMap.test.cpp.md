@@ -30,10 +30,10 @@ data:
     \      if (r < nx - 1) { add(r + 1, val, false, true); }\r\n      return ret;\r\
     \n    }\r\n\r\n    auto remove(SizeType l, SizeType r) {\r\n      auto it = std::prev(mp.upper_bound(l));\r\
     \n      while (it->first <= r) { it = remove(l, r, it); }\r\n    }\r\n\r\n  public:\r\
-    \n    SegmentMap(SizeType n) : n(n) {\r\n      mp.emplace(-1, -1);\r\n      mp.emplace(0,\
-    \ -2);\r\n      mp.emplace(n, -1);\r\n    }\r\n\r\n    auto output() const {\r\
-    \n      for (auto it = std::next(mp.begin()); it != std::prev(mp.end()); ++it)\
-    \ {\r\n        std::cout << \"[\" << it->first << \", \" << std::next(it)->first\
+    \n    SegmentMap(SizeType _n) : n(_n) {\r\n      mp.emplace(-1, -1);\r\n     \
+    \ mp.emplace(0, -2);\r\n      mp.emplace(_n, -1);\r\n    }\r\n\r\n    auto output()\
+    \ const {\r\n      for (auto it = std::next(mp.begin()); it != std::prev(mp.end());\
+    \ ++it) {\r\n        std::cout << \"[\" << it->first << \", \" << std::next(it)->first\
     \ - 1\r\n                  << \"] :\" << it->second << std::endl;\r\n      }\r\
     \n    }\r\n\r\n    auto update(SizeType l, SizeType r, ValType val) {\r\n    \
     \  if (l < 0 || r >= n) {\r\n        throw std::runtime_error(\"out of range:\
@@ -75,7 +75,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/SegmentMap.test.cpp
   requiredBy: []
-  timestamp: '2024-11-30 11:22:13+09:00'
+  timestamp: '2024-12-27 17:07:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SegmentMap.test.cpp

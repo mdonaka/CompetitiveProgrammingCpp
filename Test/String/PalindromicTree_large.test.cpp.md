@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/String/PalindromicTree.hpp
     title: Library/String/PalindromicTree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/263
@@ -28,32 +28,32 @@ data:
     \ m_suffixLink;\r\n      // \u6B21\u30B5\u30A4\u30BA\u306E\u56DE\u6587(\u56F2\u3080\
     \u6587\u5B57, \u6B21\u306ENode)\r\n      std::unordered_map<char, std::shared_ptr<Node>>\
     \ m_edges;\r\n\r\n      // xAx\u3068\u306A\u308BA\u3092\u63A2\u3059(x=str[itr])\r\
-    \n      auto find(int itr, const std::string& s, bool flg = false) {\r\n     \
-    \   auto p = this->weak_from_this();\r\n        while (true) {\r\n          auto\
-    \ size = p.lock()->m_size;\r\n          // root\u306B\u305F\u3069\u308A\u7740\u3044\
-    \u305F\r\n          if (size == -1) { return p; }\r\n          // \u73FE\u5728\
-    \u5730\"A\"\u306B\u304A\u3044\u3066\"xAx\"\u3068\u306A\u308B\r\n          if (itr\
-    \ - size - 1 >= 0 && s[itr] == s[itr - size - 1]) { return p; }\r\n          p\
-    \ = p.lock()->m_suffixLink;\r\n        }\r\n      }\r\n\r\n      // \u65B0\u3057\
-    \u3044\u56DE\u6587Node\u3092\u4F5C\u6210\u3059\u308B\r\n      auto create(int\
-    \ itr, const std::string& s) {\r\n        // suffixLink\u306E\u63A2\u7D22\r\n\
-    \        auto suffixLinkFrom =\r\n            m_suffixLink.lock() /*->m_suffixLink.lock()*/->find(itr,\
-    \ s, true)\r\n                .lock();\r\n        // \u65B0Node\u306E\u4F5C\u6210\
-    \r\n        auto newNode = std::make_shared<Node>(\r\n            m_size + 2,\
-    \ (suffixLinkFrom->m_edges.find(s[itr]) ==\r\n                         suffixLinkFrom->m_edges.end())\r\
-    \n                            ? suffixLinkFrom->m_edges.find(' ')->second\r\n\
-    \                            : suffixLinkFrom->m_edges.find(s[itr])->second);\r\
-    \n        m_edges.emplace(s[itr], newNode);\r\n        return std::weak_ptr<Node>(newNode);\r\
-    \n      }\r\n\r\n    public:\r\n      // constructor\r\n      Node(int size, const\
-    \ std::weak_ptr<Node>& suffixLink)\r\n          : m_size(size), m_suffixLink(suffixLink)\
-    \ {}\r\n      Node() : m_size(-1) {}\r\n\r\n      // \u6B21\u30B5\u30A4\u30BA\u306E\
-    \u56DE\u6587\u3092\u8FFD\u52A0\r\n      auto add(int itr, const std::string& s)\
-    \ {\r\n        auto addRoot = find(itr, s).lock();\r\n        auto nextNode =\r\
-    \n            (addRoot->m_edges.find(s[itr]) == addRoot->m_edges.end())\r\n  \
-    \              ? addRoot->create(itr, s)\r\n                : std::weak_ptr<Node>(addRoot->m_edges.find(s[itr])->second);\r\
+    \n      auto find(int itr, const std::string& s) {\r\n        auto p = this->weak_from_this();\r\
+    \n        while (true) {\r\n          auto size = p.lock()->m_size;\r\n      \
+    \    // root\u306B\u305F\u3069\u308A\u7740\u3044\u305F\r\n          if (size ==\
+    \ -1) { return p; }\r\n          // \u73FE\u5728\u5730\"A\"\u306B\u304A\u3044\u3066\
+    \"xAx\"\u3068\u306A\u308B\r\n          if (itr - size - 1 >= 0 && s[itr] == s[itr\
+    \ - size - 1]) { return p; }\r\n          p = p.lock()->m_suffixLink;\r\n    \
+    \    }\r\n      }\r\n\r\n      // \u65B0\u3057\u3044\u56DE\u6587Node\u3092\u4F5C\
+    \u6210\u3059\u308B\r\n      auto create(int itr, const std::string& s) {\r\n \
+    \       // suffixLink\u306E\u63A2\u7D22\r\n        auto suffixLinkFrom =\r\n \
+    \           m_suffixLink.lock() /*->m_suffixLink.lock()*/->find(itr, s).lock();\r\
+    \n        // \u65B0Node\u306E\u4F5C\u6210\r\n        auto newNode = std::make_shared<Node>(\r\
+    \n            m_size + 2, (suffixLinkFrom->m_edges.find(s[itr]) ==\r\n       \
+    \                  suffixLinkFrom->m_edges.end())\r\n                        \
+    \    ? suffixLinkFrom->m_edges.find(' ')->second\r\n                         \
+    \   : suffixLinkFrom->m_edges.find(s[itr])->second);\r\n        m_edges.emplace(s[itr],\
+    \ newNode);\r\n        return std::weak_ptr<Node>(newNode);\r\n      }\r\n\r\n\
+    \    public:\r\n      // constructor\r\n      Node(int size, const std::weak_ptr<Node>&\
+    \ suffixLink)\r\n          : m_size(size), m_suffixLink(suffixLink) {}\r\n   \
+    \   Node() : m_size(-1) {}\r\n\r\n      // \u6B21\u30B5\u30A4\u30BA\u306E\u56DE\
+    \u6587\u3092\u8FFD\u52A0\r\n      auto add(int itr, const std::string& s) {\r\n\
+    \        auto addRoot = find(itr, s).lock();\r\n        auto nextNode =\r\n  \
+    \          (addRoot->m_edges.find(s[itr]) == addRoot->m_edges.end())\r\n     \
+    \           ? addRoot->create(itr, s)\r\n                : std::weak_ptr<Node>(addRoot->m_edges.find(s[itr])->second);\r\
     \n        nextNode.lock()->m_itrs.emplace_back(itr);\r\n        return nextNode;\r\
     \n      }\r\n\r\n      // debug\u7528\r\n      auto outputTree(const std::string&\
-    \ s) -> void const {\r\n        if (m_size <= 0) {\r\n          std::cerr << \"\
+    \ s) const -> void {\r\n        if (m_size <= 0) {\r\n          std::cerr << \"\
     root\";\r\n        } else {\r\n          // \u6BB5\r\n          for (int i = 0;\
     \ (i < (m_size + 1) / 2); ++i) { std::cerr << \" |\"; }\r\n          std::cerr\
     \ << \"- \" << s.substr(*m_itrs.begin() - m_size + 1, m_size);\r\n          //\
@@ -96,21 +96,21 @@ data:
     \ lambda) {\r\n      // \u68EE\u306E\u751F\u6210\uFF0C\u63A2\u7D22\u9806\u5E8F\
     \u306E\u6C7A\u5B9A\r\n      int from;\r\n      std::unordered_map<int, int> graph;\r\
     \n      std::vector<int> orderCount(m_s.size());\r\n      m_rootOdd->dfs_edges(\r\
-    \n          [&](int size, const std::list<int>& rItrs) { from = rItrs.front();\
-    \ },\r\n          [&](int size, const std::list<int>& rItrs) {\r\n           \
-    \ int to = rItrs.front();\r\n            graph.emplace(from, to);\r\n        \
-    \    ++orderCount[to];\r\n          });\r\n      // \u63A2\u7D22\u9806\u5E8F\u306B\
-    \u5F93\u3063\u3066\u51E6\u7406\r\n      std::queue<int, std::list<int>> q;\r\n\
-    \      for (int i = 0; i < static_cast<int>(m_s.size()); ++i)\r\n        if (orderCount[i]\
-    \ == 0) { q.emplace(i); }\r\n      while (!q.empty()) {\r\n        int from =\
-    \ q.front();\r\n        q.pop();\r\n        auto range = graph.equal_range(from);\r\
+    \n          [&](int, const std::list<int>& rItrs) { from = rItrs.front(); },\r\
+    \n          [&](int, const std::list<int>& rItrs) {\r\n            int to = rItrs.front();\r\
+    \n            graph.emplace(from, to);\r\n            ++orderCount[to];\r\n  \
+    \        });\r\n      // \u63A2\u7D22\u9806\u5E8F\u306B\u5F93\u3063\u3066\u51E6\
+    \u7406\r\n      std::queue<int, std::list<int>> q;\r\n      for (int i = 0; i\
+    \ < static_cast<int>(m_s.size()); ++i) {\r\n        if (orderCount[i] == 0) {\
+    \ q.emplace(i); }\r\n      }\r\n      while (!q.empty()) {\r\n        int f =\
+    \ q.front();\r\n        q.pop();\r\n        auto range = graph.equal_range(f);\r\
     \n        for (auto itr = range.first; itr != range.second; ++itr) {\r\n     \
-    \     int to = itr->second;\r\n          --orderCount[to];\r\n          lambda(from,\
-    \ to);\r\n          if (orderCount[to] == 0) { q.emplace(to); }\r\n        }\r\
-    \n      }\r\n    }\r\n\r\n    // debug\u7528\r\n    auto outputTree() {\r\n  \
-    \    std::cerr << m_s << std::endl;\r\n      std::cerr << \"-- even --\\n\";\r\
-    \n      m_rootEven->outputTree(m_s);\r\n      std::cerr << \"-- odd --\\n\";\r\
-    \n      m_rootOdd->outputTree(m_s);\r\n    }\r\n  };\r\n}  // namespace mtd\r\n\
+    \     int t = itr->second;\r\n          --orderCount[t];\r\n          lambda(f,\
+    \ t);\r\n          if (orderCount[t] == 0) { q.emplace(t); }\r\n        }\r\n\
+    \      }\r\n    }\r\n\r\n    // debug\u7528\r\n    auto outputTree() {\r\n   \
+    \   std::cerr << m_s << std::endl;\r\n      std::cerr << \"-- even --\\n\";\r\n\
+    \      m_rootEven->outputTree(m_s);\r\n      std::cerr << \"-- odd --\\n\";\r\n\
+    \      m_rootOdd->outputTree(m_s);\r\n    }\r\n  };\r\n}  // namespace mtd\r\n\
     #line 7 \"Test/String/PalindromicTree_large.test.cpp\"\n\r\nusing ll = long long;\r\
     \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\nstruct\
     \ Preprocessing {\r\n  Preprocessing() {\r\n    std::cin.tie(0);\r\n    std::ios::sync_with_stdio(0);\r\
@@ -143,8 +143,8 @@ data:
   isVerificationFile: true
   path: Test/String/PalindromicTree_large.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 00:26:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-27 17:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/String/PalindromicTree_large.test.cpp
 layout: document

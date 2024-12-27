@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -32,10 +32,10 @@ data:
     \ op()(m_val, m2.m_val);\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ os,\n                                    const Monoid<S, element, op>& m) {\n\
     \      return os << m.m_val;\n    }\n  };\n\n  namespace __detail {\n    template\
-    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_specialization_of\
+    \ <typename T, template <typename, auto, typename> typename S>\n    concept is_monoid_specialization_of\
     \ = requires {\n      typename std::enable_if_t<std::is_same_v<\n          T,\
     \ S<typename T::value_type, T::_element, typename T::op_type>>>;\n    };\n  }\
-    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_specialization_of<M,\
+    \  // namespace __detail\n\n  template <typename M>\n  concept monoid = __detail::is_monoid_specialization_of<M,\
     \ Monoid>;\n\n}  // namespace mtd\n#line 9 \"Library/DataStructure/LazySegmentTree.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <monoid Monoid, monoid MonoidOp, class op>\r\
     \n  class LazySegmentTree {\r\n  private:\r\n    const int m_size;\r\n    std::vector<Monoid>\
@@ -131,7 +131,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2024-12-11 02:40:26+09:00'
+  timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
