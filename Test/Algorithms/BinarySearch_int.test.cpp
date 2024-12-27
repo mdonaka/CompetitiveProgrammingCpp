@@ -5,32 +5,28 @@
 #include <ranges>
 #include <vector>
 
+// begin:tag includes
 #include "./../../Library/Algorithms/BinarySearch.hpp"
+// end:tag includes
 
 using ll = long long;
-using std::cin;
-using std::cout;
-constexpr char endl = '\n';
-struct Preprocessing {
-  Preprocessing() {
-    std::cin.tie(0);
-    std::ios::sync_with_stdio(0);
-  };
-} _Preprocessing;
 
 signed main() {
+  std::cin.tie(0);
+  std::ios::sync_with_stdio(0);
+
   ll n, x;
-  cin >> n >> x;
+  std::cin >> n >> x;
   std::vector<ll> a(n);
-  for (int i = 0; i < n; ++i) { cin >> a[i]; }
+  for (int i = 0; i < n; ++i) { std::cin >> a[i]; }
   std::ranges::sort(a);
 
   ll ans = 0;
   for (const auto& val : a) {
-    auto idx = mtd::binarySearch(
+    auto idx = mtd::binarySearch<>(
         n, -1, [&](ll mid) { return val * a[mid] >= (x << 1); });
     ans += n - idx;
   }
 
-  cout << ans << endl;
+  std::cout << ans << std::endl;
 }

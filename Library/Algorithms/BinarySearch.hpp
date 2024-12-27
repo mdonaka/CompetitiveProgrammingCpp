@@ -1,7 +1,9 @@
 #pragma once
 
+#include <concepts>
 #include <numeric>
 #include <ranges>
+#include <type_traits>
 
 namespace mtd {
 
@@ -14,8 +16,10 @@ namespace mtd {
     return ok;
   }
 
-  template <class Lambda, class T = long long>
-  auto binarySearch(T ok, T ng, const Lambda& is_ok) {
+  template <class Lambda, std::integral T1, std::integral T2>
+  auto binarySearch(T1 ok_, T2 ng_, const Lambda& is_ok) {
+    using T = std::common_type_t<T1, T2>;
+    T ok = ok_, ng = ng_;
     while (std::abs(ok - ng) > 1) {
       T mid = (ok + ng) >> 1;
       (is_ok(mid) ? ok : ng) = mid;
