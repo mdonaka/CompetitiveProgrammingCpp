@@ -92,9 +92,9 @@ namespace mtd {
         }
         constexpr auto operator+(const difference_type n)
             const requires __detail::__all_random_access<_Range...> {
-          auto __r = *this;
-          __r += n;
-          return __r;
+          auto __tmp = *this;
+          __tmp += n;
+          return __tmp;
         }
         constexpr friend auto operator+(const difference_type n,
                                         const iterator& itr) requires
@@ -108,9 +108,9 @@ namespace mtd {
         }
         constexpr auto operator-(const difference_type n)
             const requires __detail::__all_random_access<_Range...> {
-          auto __r = *this;
-          __r -= n;
-          return __r;
+          auto __tmp = *this;
+          __tmp -= n;
+          return __tmp;
         }
         constexpr auto operator[](const difference_type n)
             const requires __detail::__all_random_access<_Range...> {
@@ -138,13 +138,14 @@ namespace mtd {
         }
       };
 
-      std::tuple<_Range...> __r;
-      constexpr explicit zip_view(const _Range&... __r) : __r(__r...) {}
+      std::tuple<_Range...> _M_views;
+      constexpr explicit zip_view(const _Range&... __views)
+          : _M_views(__views...) {}
       constexpr auto begin() {
-        return iterator(util::tuple_transform(std::ranges::begin, __r));
+        return iterator(util::tuple_transform(std::ranges::begin, _M_views));
       }
       constexpr auto end() {
-        return sentinel(util::tuple_transform(std::ranges::end, __r));
+        return sentinel(util::tuple_transform(std::ranges::end, _M_views));
       }
     };
 
@@ -217,9 +218,9 @@ namespace mtd {
         }
         constexpr auto operator+(const difference_type n)
             const requires __detail::__all_random_access<_Range> {
-          auto __r = *this;
-          __r += n;
-          return __r;
+          auto __tmp = *this;
+          __tmp += n;
+          return __tmp;
         }
         constexpr friend auto operator+(const difference_type n,
                                         const iterator& itr) requires
@@ -233,9 +234,9 @@ namespace mtd {
         }
         constexpr auto operator-(const difference_type n)
             const requires __detail::__all_random_access<_Range> {
-          auto __r = *this;
-          __r -= n;
-          return __r;
+          auto __tmp = *this;
+          __tmp -= n;
+          return __tmp;
         }
         constexpr auto operator[](const difference_type n)
             const requires __detail::__all_random_access<_Range> {
@@ -257,10 +258,11 @@ namespace mtd {
         }
       };
 
-      _Range __r;
-      constexpr explicit flatten_view(const _Range& __r) : __r(__r) {}
-      constexpr auto begin() { return iterator(std::ranges::begin(__r)); }
-      constexpr auto end() { return sentinel(std::ranges::end(__r)); }
+      _Range _M_views;
+      constexpr explicit flatten_view(const _Range& __views)
+          : _M_views(__views) {}
+      constexpr auto begin() { return iterator(std::ranges::begin(_M_views)); }
+      constexpr auto end() { return sentinel(std::ranges::end(_M_views)); }
     };
 
   }  // namespace ranges

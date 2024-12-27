@@ -22,7 +22,9 @@ namespace mtd {
         using iterator_concept = std::input_iterator_tag;
 
         constexpr iterator() = default;
-        constexpr explicit iterator(int count) : count(count) { operator++(); }
+        constexpr explicit iterator(int _count) : count(_count) {
+          operator++();
+        }
 
         constexpr auto operator*() const { return val; }
         constexpr auto& operator++() {
@@ -35,7 +37,7 @@ namespace mtd {
         constexpr auto operator==(const iterator& s) const {
           return count == s.count;
         }
-        constexpr auto operator==(std::default_sentinel_t s) const {
+        constexpr auto operator==(std::default_sentinel_t) const {
           return count < 0 || std::cin.eof() || std::cin.fail() ||
                  std::cin.bad();
         }
@@ -48,7 +50,7 @@ namespace mtd {
       int count;
 
     public:
-      constexpr explicit istream_view(int count) : count(count) {}
+      constexpr explicit istream_view(int _count) : count(_count) {}
       constexpr explicit istream_view() : istream_view(_inf) {}
       constexpr auto begin() const { return iterator(count); }
       constexpr auto end() const { return std::default_sentinel; }

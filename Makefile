@@ -7,7 +7,7 @@ SRC_FLAT = $(subst /,_,$(SRC))
 SRC_COPY_FLAT = $(BUILD_DIR)/$(SRC_FLAT:.cpp=_copy.cpp)
 BIN_RUN = $(BUILD_DIR)/$(SRC_FLAT:.cpp=.out)
 BIN_TEST := $(BUILD_DIR)/test.out
-OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library
+OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library -Wall -Wextra -Wshadow -Wconversion
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 HEADERS = $(shell find ./ -name "*.hpp")
 
@@ -41,7 +41,10 @@ t: $(BIN_TEST) ## test
 	@./$^ < i | tee i
 
 .PHONY: c
-c: ## clean
+c: $(BIN_RUN) ## compile
+
+.PHONY: clean
+clean: ## clean
 	@rm -f $(BUILD_DIR)/*
 
 -include $(DEPENDS)
