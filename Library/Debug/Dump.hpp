@@ -107,7 +107,7 @@ constexpr auto printVariable(auto&& name, const Container auto& c) {
 }
 
 // 1変数ずつ処理
-constexpr auto splitVariables(auto&& names) {}
+constexpr auto splitVariables(auto&&) {}
 constexpr auto splitVariables(auto&& names, const auto& x,
                               const auto&... tail) {
   printVariable(names.front(), x);
