@@ -25,8 +25,8 @@ namespace mtd {
         const T u;
 
       public:
-        Range(T l, T u) : l(l), u(u) {}
-        Range(T u) : l(0), u(u) {}
+        Range(T _l, T _u) : l(_l), u(_u) {}
+        Range(T _u) : l(0), u(_u) {}
         Range(const std::initializer_list<int>& v)
             : l(*v.begin()), u(*std::next(v.begin())) {}
 
@@ -41,7 +41,8 @@ namespace mtd {
         const Range<U> r;
 
       public:
-        Vector(const Range<T>& size, const Range<U>& r) : size(size), r(r) {}
+        Vector(const Range<T>& _size, const Range<U>& _r)
+            : size(_size), r(_r) {}
 
         auto generate(engine& mt) const {
           auto v_mt = std::vector<U>(size.generate(mt)) |
@@ -55,9 +56,9 @@ namespace mtd {
         const Range<T> size;
 
       public:
-        Permutation(const Range<T>& size) : size(size) {}
-        Permutation(const std::initializer_list<int>& size)
-            : Permutation(Range<T>(size)) {}
+        Permutation(const Range<T>& _size) : size(_size) {}
+        Permutation(const std::initializer_list<int>& _size)
+            : Permutation(Range<T>(_size)) {}
 
         auto generate(engine& mt) const {
           std::vector<T> p(size.generate(mt));
@@ -73,7 +74,8 @@ namespace mtd {
         const Range<T> r;
 
       public:
-        String(const Range<T>& size, const Range<T>& r) : size(size), r(r) {}
+        String(const Range<T>& _size, const Range<T>& _r)
+            : size(_size), r(_r) {}
 
         auto generate(engine& mt) const {
           auto v_mt =
@@ -92,11 +94,11 @@ namespace mtd {
         const Range<T> cost_size;
 
       public:
-        Graph(const Range<T>& node_size, const Range<T>& edge_size,
-              const Range<T>& cost_size = {1, 1})
-            : node_size(node_size),
-              edge_size(edge_size),
-              cost_size(cost_size) {}
+        Graph(const Range<T>& _node_size, const Range<T>& _edge_size,
+              const Range<T>& _cost_size = {1, 1})
+            : node_size(_node_size),
+              edge_size(_edge_size),
+              cost_size(_cost_size) {}
 
         auto generate(engine& mt) const {
           using Edge = std::pair<int, long long>;
@@ -162,7 +164,7 @@ namespace mtd {
       template <>
       struct Expand<0> {
         template <typename F, typename Tuple, typename... Args>
-        static auto apply(F& f, Tuple& t, Args&... args) {
+        static auto apply(F& f, Tuple&, Args&... args) {
           return f(args...);
         }
       };
@@ -198,7 +200,7 @@ namespace mtd {
       auto run(int conut, const auto& gen, const auto& solver) {
         auto tm = Timer::LapTimer();
         for (int i = 1; i <= conut; ++i) {
-          auto tm = Timer::SimpleTimer();
+          Timer::SimpleTimer();
           auto args = gen();
           Inner::apply(solver, args);
           tm.print<Timer::UNITS::MILLI>();
