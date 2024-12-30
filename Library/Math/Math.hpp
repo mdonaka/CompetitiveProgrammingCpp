@@ -24,7 +24,7 @@ namespace mtd {
     }
 
   public:
-    constexpr Math(long long size = 3 * 1e6)
+    constexpr Math(int size = 3 * static_cast<int>(1e6))
         : m_fac(constructFac(size)), m_finv(constructInv(size)) {}
 
     static constexpr T pow(T a, long long b) {
