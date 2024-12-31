@@ -10,6 +10,7 @@ namespace mtd {
   template <int MOD, class T = long long>
   class ModInt {
   public:
+    using value_type = T;
     T x;
 
     constexpr ModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}
@@ -117,6 +118,7 @@ namespace mtd {
     }
 
     constexpr auto val() const { return x; }
+    static constexpr auto mod() { return MOD; }
   };
 
 }  // namespace mtd

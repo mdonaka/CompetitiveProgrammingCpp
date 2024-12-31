@@ -9,10 +9,11 @@ namespace mtd {
 
   template <class T = long long>
   class DynamicModInt {
+  public:
+    using value_type = T;
     static inline T MOD = 0;
     T x;
 
-  public:
     constexpr static inline auto set_mod(T _MOD) { MOD = _MOD; }
 
     constexpr DynamicModInt(T _x) : x(_x >= 0 ? _x % MOD : MOD + (_x % MOD)) {}
@@ -105,6 +106,9 @@ namespace mtd {
     constexpr auto operator!=(const DynamicModInt<T>& m) const {
       return x != m.x;
     }
+    constexpr auto operator==(const DynamicModInt<T>& m) const {
+      return !(x != m.x);
+    }
 
     // 入出力
     constexpr friend std::ostream& operator<<(std::ostream& os,
@@ -117,6 +121,7 @@ namespace mtd {
     }
 
     constexpr auto val() const { return x; }
+    static constexpr auto mod() { return MOD; }
   };
 
 }  // namespace mtd
