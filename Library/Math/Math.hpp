@@ -46,14 +46,8 @@ namespace mtd {
     }
 
     /* O(log mod) */
-    static constexpr std::optional<long long> log(
-        typename T::value_type x, typename T::value_type y,
-        typename T::value_type mod = T::mod()) requires requires {
-      typename T::value_type;
-      T::mod();
-    }
-    {
-      using S = typename T::value_type;
+    template <class S>
+    static constexpr std::optional<long long> log(S x, S y, S mod) {
       auto _pow = [](S a, S b, S mod) {
         S ans = 1;
         while (b > 0) {
@@ -66,7 +60,7 @@ namespace mtd {
       x %= mod;
       y %= mod;
 
-      if (T::mod() == 1) { return 0; }
+      if (mod == 1) { return 0; }
       if (x == 0 && y == 0) { return 1; }
       if (x == 0 && y == 1) { return 0; }
       if (x == 0) { return std::nullopt; }
@@ -87,9 +81,10 @@ namespace mtd {
         }
       }
 
-      auto s = static_cast<S>(std::sqrt(T::mod())) + 5;
+      auto s = static_cast<S>(std::sqrt(mod));
       S xe = y;
       std::unordered_map<S, S> map;
+      map.reserve(s);
       for (auto i : std::views::iota(0, s)) {
         (xe *= x) %= mod;
         map[xe] = i + 1;
@@ -100,12 +95,18 @@ namespace mtd {
         (xs *= x) %= mod;
       }
       S xse = 1;
-      for (auto i : std::views::iota(0, s)) {
+      for (auto i : std::views::iota(0, mod / s + 5)) {
         (xse *= xs) %= mod;
         if (map.contains(xse)) { return s * (i + 1) - map[xse]; }
       }
       return std::nullopt;
     }
+    constexpr std::optional<long long> log(long long x,
+                                           long long y) requires requires {
+      typename T::value_type;
+      T::mod();
+    }
+    { return log(x, y, T::mod()); }
 
     constexpr auto fact(int n) const { return (n < 0) ? 0 : m_fac[n]; }
     constexpr auto factInv(int n) const { return (n < 0 ? 0 : m_finv[n]); }

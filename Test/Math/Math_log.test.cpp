@@ -3,7 +3,7 @@
 #include <ranges>
 
 // begin:tag includes
-#include "../../Library/Math/DynamicModInt.hpp"
+#include "../../Library/Math/Math.hpp"
 // end:tag includes
 
 using ll = long long;
@@ -18,11 +18,7 @@ signed main() {
     ll x, y, m;
     std::cin >> x >> y >> m;
 
-    using mint = mtd::DynamicModInt<>;
-    mint::set_mod(m);
-    auto math = mtd::Math<mint>();
-
-    if (auto ans = math.log(x, y); ans) {
+    if (auto ans = mtd::Math<ll>::log(x, y, m); ans) {
       std::cout << ans.value() << std::endl;
     } else {
       std::cout << -1 << std::endl;
