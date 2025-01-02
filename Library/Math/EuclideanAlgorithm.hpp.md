@@ -1,14 +1,50 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Library/Math/DynamicModInt.hpp
+    title: Library/Math/DynamicModInt.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Math/Math.hpp
+    title: Library/Math/Math.hpp
+  - icon: ':heavy_check_mark:'
+    path: Library/Math/ModInt.hpp
+    title: Library/Math/ModInt.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+    title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Graph/Tree/ReRootingDP.test.cpp
+    title: Test/Graph/Tree/ReRootingDP.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Convolution_and.test.cpp
+    title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/EuclideanAlgorithm.test.cpp
     title: Test/Math/EuclideanAlgorithm.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Math/EuclideanAlgorithm_gcd.test.cpp
     title: Test/Math/EuclideanAlgorithm_gcd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math.test.cpp
+    title: Test/Math/Math.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_dynamic.test.cpp
+    title: Test/Math/Math_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_log.test.cpp
+    title: Test/Math/Math_log.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow.test.cpp
+    title: Test/Math/Math_pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Math_pow_dynamic.test.cpp
+    title: Test/Math/Math_pow_dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/Math/Matrix_pow.test.cpp
+    title: Test/Math/Matrix_pow.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -101,12 +137,24 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Library/Math/EuclideanAlgorithm.hpp
-  requiredBy: []
+  requiredBy:
+  - Library/Math/Math.hpp
+  - Library/Math/DynamicModInt.hpp
+  - Library/Math/ModInt.hpp
   timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Tree/ReRootingDP.test.cpp
+  - Test/Math/Math_pow.test.cpp
+  - Test/Math/Math_log.test.cpp
+  - Test/Math/Convolution_and.test.cpp
   - Test/Math/EuclideanAlgorithm_gcd.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
+  - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
   - Test/Math/EuclideanAlgorithm.test.cpp
+  - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
 documentation_of: Library/Math/EuclideanAlgorithm.hpp
 layout: document
 redirect_from:

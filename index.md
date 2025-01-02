@@ -123,6 +123,9 @@ data:
   - name: Library/Math
     pages:
     - icon: ':heavy_check_mark:'
+      path: Library/Math/BabyStepGiantStep.hpp
+      title: Library/Math/BabyStepGiantStep.hpp
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Bit.hpp
       title: Library/Math/Bit.hpp
     - icon: ':heavy_check_mark:'
@@ -360,6 +363,9 @@ data:
   - name: Test/Math
     pages:
     - icon: ':heavy_check_mark:'
+      path: Test/Math/BabyStepGiantStep.test.cpp
+      title: Test/Math/BabyStepGiantStep.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Math/Convolution_and.test.cpp
       title: Test/Math/Convolution_and.test.cpp
     - icon: ':heavy_check_mark:'
@@ -374,6 +380,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Math/Math_dynamic.test.cpp
       title: Test/Math/Math_dynamic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/Math/Math_log.test.cpp
+      title: Test/Math/Math_log.test.cpp
     - icon: ':heavy_check_mark:'
       path: Test/Math/Math_pow.test.cpp
       title: Test/Math/Math_pow.test.cpp
