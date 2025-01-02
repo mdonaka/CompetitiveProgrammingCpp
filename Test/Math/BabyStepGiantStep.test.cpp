@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/discrete_logarithm_mod"
 
+#include <iostream>
 #include <ranges>
 
 // begin:tag includes
-#include "../../Library/Math/Math.hpp"
+#include "../../Library/Math/BabyStepGiantStep.hpp"
 // end:tag includes
 
 using ll = long long;
@@ -18,7 +19,13 @@ signed main() {
     ll x, y, m;
     std::cin >> x >> y >> m;
 
-    if (auto ans = mtd::Math<ll>::log(x, y, m); ans) {
+    auto ans = (m == 1)
+                   ? 0
+                   : mtd::baby_step_giant_step(
+                         x, ll(1), y, m - 1,
+                         [&](ll _x, ll _y) { return (_x * _y) % m; },
+                         [&](const ll _m, ll _x) { return (_m * _x) % m; });
+    if (ans) {
       std::cout << ans.value() << std::endl;
     } else {
       std::cout << -1 << std::endl;
