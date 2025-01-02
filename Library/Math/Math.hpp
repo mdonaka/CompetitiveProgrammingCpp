@@ -48,15 +48,6 @@ namespace mtd {
     /* O(log mod) */
     template <class S>
     static constexpr std::optional<long long> log(S x, S y, S mod) {
-      auto _pow = [](S a, S b, S mod) {
-        S ans = 1;
-        while (b > 0) {
-          if (b & 1) { (ans *= a) %= mod; }
-          b >>= 1;
-          (a *= a) %= mod;
-        }
-        return ans;
-      };
       x %= mod;
       y %= mod;
 
