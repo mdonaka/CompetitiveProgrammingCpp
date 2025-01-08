@@ -3,14 +3,14 @@
 #include <cmath>
 #include <optional>
 #include <ranges>
-#include <unordered_map>
+#include <unordered_set>
 
 namespace mtd {
   /*
    * x^i * s = t (0 <= i < n) を満たす最小のi
    * O(sqrt(n))
    */
-  template <class Monoid, class T, class Product, class Op>
+  template <class Hash, class Monoid, class T, class Product, class Op>
   std::optional<long long> baby_step_giant_step(const Monoid& x, const T& s,
                                                 const T& t, long long n,
                                                 const Product prod,
@@ -23,10 +23,10 @@ namespace mtd {
     }
 
     auto m = static_cast<long long>(std::sqrt(n));
-    std::unordered_map<T, size_t> mp;
+    std::unordered_set<T, Hash> mp;
     auto xm = x;
     for (auto i : std::views::iota(0, m)) {
-      mp[op(xm, t)] = i;
+      mp.emplace(op(xm, t));
       if (i < m - 1) { xm = prod(xm, x); }
     }
 
