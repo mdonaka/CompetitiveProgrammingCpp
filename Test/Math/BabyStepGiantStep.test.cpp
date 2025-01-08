@@ -21,10 +21,11 @@ signed main() {
 
     auto ans = (m == 1)
                    ? 0
-                   : mtd::baby_step_giant_step(
+                   : mtd::baby_step_giant_step<std::hash<ll>>(
                          x, ll(1), y, m - 1,
                          [&](ll _x, ll _y) { return (_x * _y) % m; },
                          [&](const ll _m, ll _x) { return (_m * _x) % m; });
+
     if (ans) {
       std::cout << ans.value() << std::endl;
     } else {
