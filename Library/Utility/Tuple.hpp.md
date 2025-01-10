@@ -43,6 +43,9 @@ data:
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/Range/cartesian_product.test.cpp
+    title: Test/Range/cartesian_product.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
   - icon: ':heavy_check_mark:'
@@ -88,6 +91,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Range/zip.test.cpp
+  - Test/Range/cartesian_product.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
   - Test/Graph/Normal/Topological.test.cpp

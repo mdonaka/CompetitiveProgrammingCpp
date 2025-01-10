@@ -406,6 +406,9 @@ data:
       path: Test/Range/bit_subset.test.cpp
       title: Test/Range/bit_subset.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/Range/cartesian_product.test.cpp
+      title: Test/Range/cartesian_product.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/Range/enumerate.test.cpp
       title: Test/Range/enumerate.test.cpp
     - icon: ':heavy_check_mark:'
