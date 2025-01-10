@@ -487,10 +487,19 @@ namespace mtd {
         return ranges::cartesian_product_view(std::forward<_Tp>(__e)...);
       }
     };
+    struct _ProductN {
+      template <class... _Tp>
+      requires __detail::__can_cartesian_product_view<
+          std::ranges::iota_view<size_t, _Tp>...>
+      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {
+        return ranges::cartesian_product_view(std::views::iota(0, __e)...);
+      }
+    };
 
     inline constexpr _ZipView zip{};
     inline constexpr _Enumerate enumerate{};
     inline constexpr _Flatten flatten{};
     inline constexpr _CartesianProduct cartesian_product{};
+    inline constexpr _ProductN product_n{};
   }  // namespace views
 }  // namespace mtd
