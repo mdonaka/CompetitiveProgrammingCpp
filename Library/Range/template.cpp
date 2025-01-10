@@ -16,7 +16,7 @@ namespace mtd {
         using iterator_concept = std::input_iterator_tag;
 
         constexpr iterator() = default;
-        constexpr explicit iterator(int i) : i(i) {}
+        constexpr explicit iterator(int _i) : i(_i) {}
         constexpr auto operator*() const { return i; }
         constexpr auto &operator++() {
           ++i;
@@ -30,7 +30,7 @@ namespace mtd {
 
       int n;
 
-      constexpr explicit input_range_template_view(int n) : n(n) {}
+      constexpr explicit input_range_template_view(int _n) : n(_n) {}
       constexpr auto begin() const { return iterator(0); }
       constexpr auto end() const { return iterator(n); }
     };
@@ -46,7 +46,7 @@ namespace mtd {
         using iterator_concept = std::forward_iterator_tag;
 
         constexpr iterator() = default;
-        constexpr explicit iterator(int i) : i(i) {}
+        constexpr explicit iterator(int _i) : i(_i) {}
         constexpr auto operator*() const { return i; }
         constexpr auto &operator++() {
           ++i;
@@ -60,7 +60,7 @@ namespace mtd {
 
       int n;
 
-      constexpr explicit forward_range_template_view(int n) : n(n) {}
+      constexpr explicit forward_range_template_view(int _n) : n(_n) {}
       constexpr auto begin() const { return iterator(0); }
       constexpr auto end() const { return iterator(n); }
     };
@@ -77,7 +77,7 @@ namespace mtd {
         using iterator_concept = std::bidirectional_iterator_tag;
 
         constexpr iterator() = default;
-        constexpr explicit iterator(int i) : i(i) {}
+        constexpr explicit iterator(int _i) : i(_i) {}
         constexpr auto operator*() const { return i; }
         constexpr auto &operator++() {
           ++i;
@@ -96,7 +96,7 @@ namespace mtd {
 
       int n;
 
-      constexpr explicit bidirectional_range_template_view(int n) : n(n) {}
+      constexpr explicit bidirectional_range_template_view(int _n) : n(_n) {}
       constexpr auto begin() const { return iterator(0); }
       constexpr auto end() const { return iterator(n); }
     };
@@ -113,7 +113,7 @@ namespace mtd {
         using iterator_concept = std::random_access_iterator_tag;
 
         constexpr iterator() = default;
-        constexpr explicit iterator(int i) : i(i) {}
+        constexpr explicit iterator(int _i) : i(_i) {}
         constexpr auto operator*() const { return i; }
         constexpr auto &operator++() {
           ++i;
@@ -161,7 +161,7 @@ namespace mtd {
 
       int n;
 
-      constexpr explicit random_access_range_template_view(int n) : n(n) {}
+      constexpr explicit random_access_range_template_view(int _n) : n(_n) {}
       constexpr auto begin() const { return iterator(0); }
       constexpr auto end() const { return iterator(n); }
     };
@@ -191,6 +191,11 @@ int main() {
   // mtd::check::all<mtd::ranges::flatten_view<
   //     mtd::ranges::zip_view<mtd::ranges::bidirectional_range_template_view,
   //                           mtd::ranges::random_access_range_template_view>>>();
+  // mtd::check::all<
+  //     mtd::ranges::cartesian_product_view<std::ranges::iota_view<int>>>();
+  // mtd::check::all<mtd::ranges::cartesian_product_view<
+  //     mtd::ranges::bidirectional_range_template_view,
+  //     mtd::ranges::random_access_range_template_view>>();
 
   // istream
   // mtd::check::all<mtd::ranges::istream_view<int>>();
