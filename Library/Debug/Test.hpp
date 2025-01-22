@@ -86,28 +86,28 @@ namespace mtd {
         }
       };
 
-      template <class T, bool directed, bool connected, bool loop,
+      template <class S, class T, bool directed, bool connected, bool loop,
                 bool multiple>
       class Graph {
-        const Range<T> node_size;
-        const Range<T> edge_size;
+        const Range<S> node_size;
+        const Range<S> edge_size;
         const Range<T> cost_size;
 
       public:
-        Graph(const Range<T>& _node_size, const Range<T>& _edge_size,
+        Graph(const Range<S>& _node_size, const Range<S>& _edge_size,
               const Range<T>& _cost_size = {1, 1})
             : node_size(_node_size),
               edge_size(_edge_size),
               cost_size(_cost_size) {}
 
         auto generate(engine& mt) const {
-          using Edge = std::pair<int, long long>;
+          using Edge = std::pair<S, T>;
           auto n = node_size.generate(mt);
           auto m = edge_size.generate(mt);
           if (!multiple) { m = std::min(m, n * (n - 1) / 2); }
           if (connected) { m = std::max(m, n - 1); }
 
-          using Key = std::pair<int, int>;
+          using Key = std::pair<S, S>;
           using Val = long long;
           using Map =
               typename std::conditional<multiple, std::multimap<Key, Val>,
@@ -217,8 +217,8 @@ namespace mtd {
   using tp = debug::type::Permutation<T>;
   template <class T>
   using ts = debug::type::String<T>;
-  template <class T, bool directed = false, bool connected = true,
-            bool loop = false, bool multiple = false>
-  using tg = debug::type::Graph<T, directed, connected, loop, multiple>;
+  template <class S = int, class T = long long, bool directed = false,
+            bool connected = true, bool loop = false, bool multiple = false>
+  using tg = debug::type::Graph<S, T, directed, connected, loop, multiple>;
 
 }  // namespace mtd
