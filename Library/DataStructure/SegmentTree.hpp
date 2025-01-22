@@ -85,6 +85,44 @@ namespace mtd {
     constexpr auto query(int l, int r) const { return _query(l, r).m_val; }
     constexpr auto query_all() const { return m_node[0].m_val; }
 
+    /*
+     * f([l, r]) = true となる最大のr
+     * judge: (Monoid) -> bool
+     **/
+    template <class F>
+    constexpr auto max_right(int _l, const F& judge) const {
+      if (!judge(Monoid())) {
+        throw std::runtime_error("SegmentTree.max_right.judge(e) must be true");
+      }
+      auto l = std::max(_l, 0) + m_size;
+      auto r = 2 * m_size - 1;
+      auto lm = Monoid();
+      while (l <= r) {
+        if (l & 1) {
+          auto next = lm.binaryOperation(m_node[l - 1]);
+          if (!judge(next)) {
+            auto itr = l;
+            while (itr < m_size) {
+              auto litr = 2 * itr;
+              auto ritr = 2 * itr + 1;
+              auto lval = lm.binaryOperation(m_node[litr - 1]);
+              if (!judge(lval)) {
+                itr = litr;
+              } else {
+                itr = ritr;
+                std::swap(lm, lval);
+              }
+            }
+            return itr - m_size - 1;
+          }
+          std::swap(lm, next);
+          ++l;
+        }
+        l >>= 1, r >>= 1;
+      }
+      return m_size - 1;
+    }
+
     constexpr auto debug() const {
       for (int i = 0; i < m_size; ++i) {
         std::cout << m_node[m_size + i - 1] << " ";
