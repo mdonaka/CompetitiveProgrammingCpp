@@ -33,10 +33,8 @@ namespace mtd {
     }
 
     constexpr auto _query(int _l, int _r) const {
-      _l = std::max(_l, 0);
-      _r = std::min(_r, m_size - 1);
-      auto l = _l + m_size;
-      auto r = _r + m_size;
+      auto l = std::max(_l, 0) + m_size;
+      auto r = std::min(_r, m_size - 1) + m_size;
       auto lm = Monoid();
       auto rm = Monoid();
       while (l <= r) {
@@ -121,6 +119,45 @@ namespace mtd {
         l >>= 1, r >>= 1;
       }
       return m_size - 1;
+    }
+
+    /*
+     * f([l, r]) = true となる最小のl
+     * judge: (Monoid) -> bool
+     **/
+    template <class F>
+    constexpr auto min_left(int _r, const F& judge) const {
+      if (!judge(Monoid())) {
+        throw std::runtime_error("SegmentTree.min_left.judge(e) must be true");
+      }
+      auto l = m_size;
+      auto r = std::min(_r, m_size - 1) + m_size;
+      auto rm = Monoid();
+      while (l <= r) {
+        if (l & 1) { ++l; }
+        if (!(r & 1) || (_r == m_size - 1 && r == 1)) {
+          auto next = m_node[r - 1].binaryOperation(rm);
+          if (!judge(next)) {
+            auto itr = r;
+            while (itr < m_size) {
+              auto litr = 2 * itr;
+              auto ritr = 2 * itr + 1;
+              auto rval = m_node[ritr - 1].binaryOperation(rm);
+              if (!judge(rval)) {
+                itr = ritr;
+              } else {
+                itr = litr;
+                std::swap(rm, rval);
+              }
+            }
+            return itr - m_size + 1;
+          }
+          std::swap(rm, next);
+          --r;
+        }
+        l >>= 1, r >>= 1;
+      }
+      return 0;
     }
 
     constexpr auto debug() const {
