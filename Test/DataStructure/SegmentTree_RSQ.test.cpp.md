@@ -46,42 +46,71 @@ data:
     \ itr + m_size - 1;\r\n      m_node[i] = op(m_node[i], std::forward<decltype(val)>(val));\r\
     \n      while (i) {\r\n        i = (i - 1) >> 1;\r\n        m_node[i] = m_node[(i\
     \ << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n    }\r\n\r\n\
-    \    constexpr auto _query(int _l, int _r) const {\r\n      _l = std::max(_l,\
-    \ 0);\r\n      _r = std::min(_r, m_size - 1);\r\n      auto l = _l + m_size;\r\
-    \n      auto r = _r + m_size;\r\n      auto lm = Monoid();\r\n      auto rm =\
-    \ Monoid();\r\n      while (l <= r) {\r\n        if (l & 1) {\r\n          lm\
-    \ = lm.binaryOperation(m_node[l - 1]);\r\n          ++l;\r\n        }\r\n    \
-    \    if (!(r & 1)) {\r\n          rm = m_node[r - 1].binaryOperation(rm);\r\n\
-    \          --r;\r\n        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n     \
-    \ return lm.binaryOperation(rm);\r\n    }\r\n\r\n    constexpr auto _construct(const\
-    \ std::vector<S>& vec) {\r\n      for (unsigned int i = 0; i < vec.size(); ++i)\
-    \ {\r\n        m_node[i + m_size - 1] = Monoid(vec[i]);\r\n      }\r\n      for\
-    \ (int i = m_size - 2; i >= 0; --i) {\r\n        m_node[i] = m_node[(i << 1) |\
-    \ 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n    }\r\n\r\n  public:\r\
-    \n    SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size << 1) - 1) {}\r\
-    \n    SegmentTree(int n, const std::vector<S>& vec) : SegmentTree(n) {\r\n   \
-    \   _construct(vec);\r\n    }\r\n\r\n    template <class Lambda>\r\n    constexpr\
-    \ auto update_op(int itr, Monoid&& val, const Lambda& op) {\r\n      return _update_op(itr,\
-    \ std::forward<Monoid>(val), op);\r\n    }\r\n    constexpr auto update(int itr,\
-    \ Monoid&& val) {\r\n      return update_op(itr, std::forward<Monoid>(val),\r\n\
-    \                       [](const Monoid&, const Monoid& m2) { return m2; });\r\
+    \    constexpr auto _query(int _l, int _r) const {\r\n      auto l = std::max(_l,\
+    \ 0) + m_size;\r\n      auto r = std::min(_r, m_size - 1) + m_size;\r\n      auto\
+    \ lm = Monoid();\r\n      auto rm = Monoid();\r\n      while (l <= r) {\r\n  \
+    \      if (l & 1) {\r\n          lm = lm.binaryOperation(m_node[l - 1]);\r\n \
+    \         ++l;\r\n        }\r\n        if (!(r & 1)) {\r\n          rm = m_node[r\
+    \ - 1].binaryOperation(rm);\r\n          --r;\r\n        }\r\n        l >>= 1,\
+    \ r >>= 1;\r\n      }\r\n      return lm.binaryOperation(rm);\r\n    }\r\n\r\n\
+    \    constexpr auto _construct(const std::vector<S>& vec) {\r\n      for (unsigned\
+    \ int i = 0; i < vec.size(); ++i) {\r\n        m_node[i + m_size - 1] = Monoid(vec[i]);\r\
+    \n      }\r\n      for (int i = m_size - 2; i >= 0; --i) {\r\n        m_node[i]\
+    \ = m_node[(i << 1) | 1].binaryOperation(m_node[(i + 1) << 1]);\r\n      }\r\n\
+    \    }\r\n\r\n  public:\r\n    SegmentTree(int n) : m_size(calcSize(n)), m_node((m_size\
+    \ << 1) - 1) {}\r\n    SegmentTree(int n, const std::vector<S>& vec) : SegmentTree(n)\
+    \ {\r\n      _construct(vec);\r\n    }\r\n\r\n    template <class Lambda>\r\n\
+    \    constexpr auto update_op(int itr, Monoid&& val, const Lambda& op) {\r\n \
+    \     return _update_op(itr, std::forward<Monoid>(val), op);\r\n    }\r\n    constexpr\
+    \ auto update(int itr, Monoid&& val) {\r\n      return update_op(itr, std::forward<Monoid>(val),\r\
+    \n                       [](const Monoid&, const Monoid& m2) { return m2; });\r\
     \n    }\r\n    constexpr auto add(int itr, Monoid&& val) {\r\n      return update_op(itr,\
     \ std::forward<Monoid>(val),\r\n                       [](const Monoid& m1, const\
     \ Monoid& m2) {\r\n                         return Monoid(m1.m_val + m2.m_val);\r\
     \n                       });\r\n    }\r\n    constexpr auto query(int l, int r)\
     \ const { return _query(l, r).m_val; }\r\n    constexpr auto query_all() const\
-    \ { return m_node[0].m_val; }\r\n\r\n    constexpr auto debug() const {\r\n  \
-    \    for (int i = 0; i < m_size; ++i) {\r\n        std::cout << m_node[m_size\
-    \ + i - 1] << \" \";\r\n      }\r\n      std::cout << std::endl;\r\n    }\r\n\
-    \  };\r\n\r\n}  // namespace mtd\r\n#line 8 \"Test/DataStructure/SegmentTree_RSQ.test.cpp\"\
-    \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
-    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int n, q;\r\n\
-    \  std::cin >> n >> q;\r\n\r\n  auto op = [](ll a, ll b) { return a + b; };\r\n\
-    \  using M = mtd::Monoid<ll, 0, decltype(op)>;\r\n  auto segtree = mtd::SegmentTree<M>(n);\r\
-    \n\r\n  for (int _ = 0; _ < q; ++_) {\r\n    int k, x, y;\r\n    std::cin >> k\
-    \ >> x >> y;\r\n    if (k == 0) {\r\n      segtree.add(x - 1, y);\r\n    } else\
-    \ {\r\n      std::cout << segtree.query(x - 1, y - 1) << std::endl;\r\n    }\r\
-    \n  }\r\n}\r\n"
+    \ { return m_node[0].m_val; }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\
+    \u308B\u6700\u5927\u306Er\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n  \
+    \  template <class F>\r\n    constexpr auto max_right(int _l, const F& judge)\
+    \ const {\r\n      if (!judge(Monoid())) {\r\n        throw std::runtime_error(\"\
+    SegmentTree.max_right.judge(e) must be true\");\r\n      }\r\n      auto l = std::max(_l,\
+    \ 0) + m_size;\r\n      auto r = 2 * m_size - 1;\r\n      auto lm = Monoid();\r\
+    \n      while (l <= r) {\r\n        if (l & 1) {\r\n          auto next = lm.binaryOperation(m_node[l\
+    \ - 1]);\r\n          if (!judge(next)) {\r\n            auto itr = l;\r\n   \
+    \         while (itr < m_size) {\r\n              auto litr = 2 * itr;\r\n   \
+    \           auto ritr = 2 * itr + 1;\r\n              auto lval = lm.binaryOperation(m_node[litr\
+    \ - 1]);\r\n              if (!judge(lval)) {\r\n                itr = litr;\r\
+    \n              } else {\r\n                itr = ritr;\r\n                std::swap(lm,\
+    \ lval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ - 1;\r\n          }\r\n          std::swap(lm, next);\r\n          ++l;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return m_size - 1;\r\
+    \n    }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\u308B\u6700\u5C0F\
+    \u306El\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n    template <class F>\r\
+    \n    constexpr auto min_left(int _r, const F& judge) const {\r\n      if (!judge(Monoid()))\
+    \ {\r\n        throw std::runtime_error(\"SegmentTree.min_left.judge(e) must be\
+    \ true\");\r\n      }\r\n      auto l = m_size;\r\n      auto r = std::min(_r,\
+    \ m_size - 1) + m_size;\r\n      auto rm = Monoid();\r\n      while (l <= r) {\r\
+    \n        if (l & 1) { ++l; }\r\n        if (!(r & 1) || (_r == m_size - 1 &&\
+    \ r == 1)) {\r\n          auto next = m_node[r - 1].binaryOperation(rm);\r\n \
+    \         if (!judge(next)) {\r\n            auto itr = r;\r\n            while\
+    \ (itr < m_size) {\r\n              auto litr = 2 * itr;\r\n              auto\
+    \ ritr = 2 * itr + 1;\r\n              auto rval = m_node[ritr - 1].binaryOperation(rm);\r\
+    \n              if (!judge(rval)) {\r\n                itr = ritr;\r\n       \
+    \       } else {\r\n                itr = litr;\r\n                std::swap(rm,\
+    \ rval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ + 1;\r\n          }\r\n          std::swap(rm, next);\r\n          --r;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return 0;\r\n    }\r\
+    \n\r\n    constexpr auto debug() const {\r\n      for (int i = 0; i < m_size;\
+    \ ++i) {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\
+    \n      std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n}  // namespace mtd\r\n\
+    #line 8 \"Test/DataStructure/SegmentTree_RSQ.test.cpp\"\n// end:tag includes\r\
+    \n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n \
+    \ std::ios::sync_with_stdio(0);\r\n\r\n  int n, q;\r\n  std::cin >> n >> q;\r\n\
+    \r\n  auto op = [](ll a, ll b) { return a + b; };\r\n  using M = mtd::Monoid<ll,\
+    \ 0, decltype(op)>;\r\n  auto segtree = mtd::SegmentTree<M>(n);\r\n\r\n  for (int\
+    \ _ = 0; _ < q; ++_) {\r\n    int k, x, y;\r\n    std::cin >> k >> x >> y;\r\n\
+    \    if (k == 0) {\r\n      segtree.add(x - 1, y);\r\n    } else {\r\n      std::cout\
+    \ << segtree.query(x - 1, y - 1) << std::endl;\r\n    }\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\
     \r\n\r\n#include <iostream>\r\n\r\n// begin:tag includes\r\n#include \"./../../Library/DataStructure/SegmentTree.hpp\"\
     \r\n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
@@ -98,7 +127,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/SegmentTree_RSQ.test.cpp
   requiredBy: []
-  timestamp: '2024-12-27 16:29:20+09:00'
+  timestamp: '2025-01-23 04:47:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SegmentTree_RSQ.test.cpp

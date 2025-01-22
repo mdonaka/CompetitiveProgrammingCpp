@@ -300,6 +300,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentTree_RSQ.test.cpp
       title: Test/DataStructure/SegmentTree_RSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/SegmentTree_maxright.test.cpp
+      title: Test/DataStructure/SegmentTree_maxright.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/SegmentTree_minleft.test.cpp
+      title: Test/DataStructure/SegmentTree_minleft.test.cpp
   - name: Test/Graph/Flow
     pages:
     - icon: ':heavy_check_mark:'

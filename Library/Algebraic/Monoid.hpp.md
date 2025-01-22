@@ -49,6 +49,12 @@ data:
     path: Test/DataStructure/SegmentTree_RSQ.test.cpp
     title: Test/DataStructure/SegmentTree_RSQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/SegmentTree_maxright.test.cpp
+    title: Test/DataStructure/SegmentTree_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/SegmentTree_minleft.test.cpp
+    title: Test/DataStructure/SegmentTree_minleft.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +120,8 @@ data:
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
+  - Test/DataStructure/SegmentTree_maxright.test.cpp
+  - Test/DataStructure/SegmentTree_minleft.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp
