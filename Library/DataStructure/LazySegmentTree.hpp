@@ -85,7 +85,90 @@ namespace mtd {
       return _query(l, r, 0, 0, m_size - 1).m_val;
     }
 
-    constexpr auto output() {
+    /*
+     * f([l, r]) = true となる最大のr
+     * judge: (Monoid) -> bool
+     **/
+    template <class F>
+    constexpr auto max_right(int _l, const F& judge) {
+      if (!judge(Monoid())) {
+        throw std::runtime_error("SegmentTree.max_right.judge(e) must be true");
+      }
+      query(_l, m_size - 1);
+      auto l = std::max(_l, 0) + m_size;
+      auto r = 2 * m_size - 1;
+      auto lm = Monoid();
+      while (l <= r) {
+        if (l & 1) {
+          auto next = lm.binaryOperation(m_node[l - 1]);
+          if (!judge(next)) {
+            auto itr = l;
+            while (itr < m_size) {
+              _propagate(itr - 1);
+              auto litr = 2 * itr;
+              auto ritr = 2 * itr + 1;
+              _propagate(litr - 1);
+              auto lval = lm.binaryOperation(m_node[litr - 1]);
+              if (!judge(lval)) {
+                itr = litr;
+              } else {
+                itr = ritr;
+                std::swap(lm, lval);
+              }
+            }
+            return itr - m_size - 1;
+          }
+          std::swap(lm, next);
+          ++l;
+        }
+        l >>= 1, r >>= 1;
+      }
+      return m_size - 1;
+    }
+
+    /*
+     * f([l, r]) = true となる最小のl
+     * judge: (Monoid) -> bool
+     **/
+    template <class F>
+    constexpr auto min_left(int _r, const F& judge) {
+      if (!judge(Monoid())) {
+        throw std::runtime_error("SegmentTree.min_left.judge(e) must be true");
+      }
+      query(0, _r);
+      auto l = m_size;
+      auto r = std::min(_r, m_size - 1) + m_size;
+      auto rm = Monoid();
+      while (l <= r) {
+        if (l & 1) { ++l; }
+        if (!(r & 1) || (_r == m_size - 1 && r == 1)) {
+          auto next = m_node[r - 1].binaryOperation(rm);
+          if (!judge(next)) {
+            auto itr = r;
+            while (itr < m_size) {
+              _propagate(itr);
+              auto litr = 2 * itr;
+              auto ritr = 2 * itr + 1;
+              _propagate(ritr - 1);
+              auto rval = m_node[ritr - 1].binaryOperation(rm);
+              if (!judge(rval)) {
+                itr = ritr;
+              } else {
+                itr = litr;
+                std::swap(rm, rval);
+              }
+            }
+            return itr - m_size + 1;
+          }
+          std::swap(rm, next);
+          --r;
+        }
+        l >>= 1, r >>= 1;
+      }
+      return 0;
+    }
+
+    constexpr auto debug() {
       for (int i = 0; i < (m_size << 1) - 1; ++i) { _propagate(i); }
       for (int i = 0; i < m_size; ++i) {
         std::cout << m_node[m_size + i - 1] << " ";
