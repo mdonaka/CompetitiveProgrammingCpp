@@ -19,6 +19,9 @@ data:
     path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+    title: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
   _isVerificationFailed: false
@@ -76,13 +79,46 @@ data:
     \n    }\r\n\r\n    constexpr auto update(int l, int r, const MonoidOp& val) {\r\
     \n      _update(l, r, 0, 0, m_size - 1, val);\r\n    }\r\n\r\n    constexpr auto\
     \ query(int l, int r) {\r\n      return _query(l, r, 0, 0, m_size - 1).m_val;\r\
-    \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
-    \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
-    \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
-    \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
-    \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
-    \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
+    \n    }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\u308B\u6700\u5927\
+    \u306Er\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n    template <class F>\r\
+    \n    constexpr auto max_right(int _l, const F& judge) {\r\n      if (!judge(Monoid()))\
+    \ {\r\n        throw std::runtime_error(\"SegmentTree.max_right.judge(e) must\
+    \ be true\");\r\n      }\r\n      query(_l, m_size - 1);\r\n      auto l = std::max(_l,\
+    \ 0) + m_size;\r\n      auto r = 2 * m_size - 1;\r\n      auto lm = Monoid();\r\
+    \n      while (l <= r) {\r\n        if (l & 1) {\r\n          auto next = lm.binaryOperation(m_node[l\
+    \ - 1]);\r\n          if (!judge(next)) {\r\n            auto itr = l;\r\n   \
+    \         while (itr < m_size) {\r\n              _propagate(itr - 1);\r\n   \
+    \           auto litr = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n\
+    \              _propagate(litr - 1);\r\n              auto lval = lm.binaryOperation(m_node[litr\
+    \ - 1]);\r\n              if (!judge(lval)) {\r\n                itr = litr;\r\
+    \n              } else {\r\n                itr = ritr;\r\n                std::swap(lm,\
+    \ lval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ - 1;\r\n          }\r\n          std::swap(lm, next);\r\n          ++l;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return m_size - 1;\r\
+    \n    }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\u308B\u6700\u5C0F\
+    \u306El\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n    template <class F>\r\
+    \n    constexpr auto min_left(int _r, const F& judge) {\r\n      if (!judge(Monoid()))\
+    \ {\r\n        throw std::runtime_error(\"SegmentTree.min_left.judge(e) must be\
+    \ true\");\r\n      }\r\n      query(0, _r);\r\n      auto l = m_size;\r\n   \
+    \   auto r = std::min(_r, m_size - 1) + m_size;\r\n      auto rm = Monoid();\r\
+    \n      while (l <= r) {\r\n        if (l & 1) { ++l; }\r\n        if (!(r & 1)\
+    \ || (_r == m_size - 1 && r == 1)) {\r\n          auto next = m_node[r - 1].binaryOperation(rm);\r\
+    \n          if (!judge(next)) {\r\n            auto itr = r;\r\n            while\
+    \ (itr < m_size) {\r\n              _propagate(itr);\r\n              auto litr\
+    \ = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n              _propagate(ritr\
+    \ - 1);\r\n              auto rval = m_node[ritr - 1].binaryOperation(rm);\r\n\
+    \              if (!judge(rval)) {\r\n                itr = ritr;\r\n        \
+    \      } else {\r\n                itr = litr;\r\n                std::swap(rm,\
+    \ rval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ + 1;\r\n          }\r\n          std::swap(rm, next);\r\n          --r;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return 0;\r\n    }\r\
+    \n\r\n    constexpr auto debug() {\r\n      for (int i = 0; i < (m_size << 1)\
+    \ - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i) {\r\n\
+    \        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n      std::cout\
+    \ << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n    /* \u5404\u7A2E\
+    \u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long long,\
+    \ long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n    /*----\
+    \ \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
     \ P& a, const P& b) {\r\n                           return P{a.first + b.first,\
     \ a.second + b.second};\r\n                         })>;\r\n    using M_MIN =\
     \ Monoid<long long, static_cast<long long>(1e18),\r\n                        \
@@ -144,13 +180,46 @@ data:
     \n    }\r\n\r\n    constexpr auto update(int l, int r, const MonoidOp& val) {\r\
     \n      _update(l, r, 0, 0, m_size - 1, val);\r\n    }\r\n\r\n    constexpr auto\
     \ query(int l, int r) {\r\n      return _query(l, r, 0, 0, m_size - 1).m_val;\r\
-    \n    }\r\n\r\n    constexpr auto output() {\r\n      for (int i = 0; i < (m_size\
-    \ << 1) - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i)\
-    \ {\r\n        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n  \
-    \    std::cout << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n  \
-    \  /* \u5404\u7A2E\u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long\
-    \ long, long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n\
-    \    /*---- \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
+    \n    }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\u308B\u6700\u5927\
+    \u306Er\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n    template <class F>\r\
+    \n    constexpr auto max_right(int _l, const F& judge) {\r\n      if (!judge(Monoid()))\
+    \ {\r\n        throw std::runtime_error(\"SegmentTree.max_right.judge(e) must\
+    \ be true\");\r\n      }\r\n      query(_l, m_size - 1);\r\n      auto l = std::max(_l,\
+    \ 0) + m_size;\r\n      auto r = 2 * m_size - 1;\r\n      auto lm = Monoid();\r\
+    \n      while (l <= r) {\r\n        if (l & 1) {\r\n          auto next = lm.binaryOperation(m_node[l\
+    \ - 1]);\r\n          if (!judge(next)) {\r\n            auto itr = l;\r\n   \
+    \         while (itr < m_size) {\r\n              _propagate(itr - 1);\r\n   \
+    \           auto litr = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n\
+    \              _propagate(litr - 1);\r\n              auto lval = lm.binaryOperation(m_node[litr\
+    \ - 1]);\r\n              if (!judge(lval)) {\r\n                itr = litr;\r\
+    \n              } else {\r\n                itr = ritr;\r\n                std::swap(lm,\
+    \ lval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ - 1;\r\n          }\r\n          std::swap(lm, next);\r\n          ++l;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return m_size - 1;\r\
+    \n    }\r\n\r\n    /*\r\n     * f([l, r]) = true \u3068\u306A\u308B\u6700\u5C0F\
+    \u306El\r\n     * judge: (Monoid) -> bool\r\n     **/\r\n    template <class F>\r\
+    \n    constexpr auto min_left(int _r, const F& judge) {\r\n      if (!judge(Monoid()))\
+    \ {\r\n        throw std::runtime_error(\"SegmentTree.min_left.judge(e) must be\
+    \ true\");\r\n      }\r\n      query(0, _r);\r\n      auto l = m_size;\r\n   \
+    \   auto r = std::min(_r, m_size - 1) + m_size;\r\n      auto rm = Monoid();\r\
+    \n      while (l <= r) {\r\n        if (l & 1) { ++l; }\r\n        if (!(r & 1)\
+    \ || (_r == m_size - 1 && r == 1)) {\r\n          auto next = m_node[r - 1].binaryOperation(rm);\r\
+    \n          if (!judge(next)) {\r\n            auto itr = r;\r\n            while\
+    \ (itr < m_size) {\r\n              _propagate(itr);\r\n              auto litr\
+    \ = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n              _propagate(ritr\
+    \ - 1);\r\n              auto rval = m_node[ritr - 1].binaryOperation(rm);\r\n\
+    \              if (!judge(rval)) {\r\n                itr = ritr;\r\n        \
+    \      } else {\r\n                itr = litr;\r\n                std::swap(rm,\
+    \ rval);\r\n              }\r\n            }\r\n            return itr - m_size\
+    \ + 1;\r\n          }\r\n          std::swap(rm, next);\r\n          --r;\r\n\
+    \        }\r\n        l >>= 1, r >>= 1;\r\n      }\r\n      return 0;\r\n    }\r\
+    \n\r\n    constexpr auto debug() {\r\n      for (int i = 0; i < (m_size << 1)\
+    \ - 1; ++i) { _propagate(i); }\r\n      for (int i = 0; i < m_size; ++i) {\r\n\
+    \        std::cout << m_node[m_size + i - 1] << \" \";\r\n      }\r\n      std::cout\
+    \ << std::endl;\r\n    }\r\n  };\r\n\r\n  namespace type {\r\n    /* \u5404\u7A2E\
+    \u983B\u51FA\u30B5\u30F3\u30D7\u30EB */\r\n    using P = std::pair<long long,\
+    \ long long>;\r\n    constexpr long long update_element = -1e18;\r\n\r\n    /*----\
+    \ \u8981\u7D20 ----*/\r\n    using M_SUM = Monoid<P, P{0, 0}, decltype([](const\
     \ P& a, const P& b) {\r\n                           return P{a.first + b.first,\
     \ a.second + b.second};\r\n                         })>;\r\n    using M_MIN =\
     \ Monoid<long long, static_cast<long long>(1e18),\r\n                        \
@@ -183,10 +252,11 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-12-27 16:29:20+09:00'
+  timestamp: '2025-01-23 16:34:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
+  - Test/DataStructure/LazySegmentTree_maxright.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp

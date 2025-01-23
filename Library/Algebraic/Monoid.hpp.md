@@ -43,6 +43,9 @@ data:
     path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+    title: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RMQ.test.cpp
     title: Test/DataStructure/SegmentTree_RMQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -121,6 +124,7 @@ data:
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_maxright.test.cpp
+  - Test/DataStructure/LazySegmentTree_maxright.test.cpp
   - Test/DataStructure/SegmentTree_minleft.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp

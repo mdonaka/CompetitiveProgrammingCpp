@@ -280,6 +280,9 @@ data:
       path: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
       title: Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
     - icon: ':heavy_check_mark:'
+      path: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+      title: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/LiChaoTree.test.cpp
       title: Test/DataStructure/LiChaoTree.test.cpp
     - icon: ':heavy_check_mark:'

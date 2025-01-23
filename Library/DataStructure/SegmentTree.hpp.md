@@ -13,6 +13,9 @@ data:
     path: Test/Algorithms/CoordinateCompression_to.test.cpp
     title: Test/Algorithms/CoordinateCompression_to.test.cpp
   - icon: ':heavy_check_mark:'
+    path: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+    title: Test/DataStructure/LazySegmentTree_maxright.test.cpp
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SegmentTree_RMQ.test.cpp
     title: Test/DataStructure/SegmentTree_RMQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -197,6 +200,7 @@ data:
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_maxright.test.cpp
+  - Test/DataStructure/LazySegmentTree_maxright.test.cpp
   - Test/DataStructure/SegmentTree_minleft.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
