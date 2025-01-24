@@ -62,14 +62,14 @@ data:
   isVerificationFile: false
   path: Library/Algebraic/Group.hpp
   requiredBy:
-  - Library/DataStructure/Accumulation2D.hpp
   - Library/DataStructure/Accumulation.hpp
+  - Library/DataStructure/Accumulation2D.hpp
   timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/DataStructure/Accumulation_sum.test.cpp
   - Test/DataStructure/Accumulation2D_sum.test.cpp
   - Test/DataStructure/Accumulation_xor.test.cpp
+  - Test/DataStructure/Accumulation_sum.test.cpp
 documentation_of: Library/Algebraic/Group.hpp
 layout: document
 redirect_from:

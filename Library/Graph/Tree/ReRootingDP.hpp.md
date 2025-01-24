@@ -185,8 +185,8 @@ data:
   timestamp: '2024-12-27 16:29:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
+  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
 documentation_of: Library/Graph/Tree/ReRootingDP.hpp
 layout: document
 redirect_from:

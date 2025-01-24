@@ -81,8 +81,8 @@ data:
     \ 0) + m_size;\r\n      auto r = 2 * m_size - 1;\r\n      auto lm = Monoid();\r\
     \n      while (l <= r) {\r\n        if (l & 1) {\r\n          auto next = lm.binaryOperation(m_node[l\
     \ - 1]);\r\n          if (!judge(next)) {\r\n            auto itr = l;\r\n   \
-    \         while (itr < m_size) {\r\n              _propagate(itr - 1);\r\n   \
-    \           auto litr = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n\
+    \         while (itr < m_size) {\r\n              auto litr = 2 * itr;\r\n   \
+    \           auto ritr = 2 * itr + 1;\r\n              _propagate(itr - 1);\r\n\
     \              _propagate(litr - 1);\r\n              auto lval = lm.binaryOperation(m_node[litr\
     \ - 1]);\r\n              if (!judge(lval)) {\r\n                itr = litr;\r\
     \n              } else {\r\n                itr = ritr;\r\n                std::swap(lm,\
@@ -98,8 +98,8 @@ data:
     \n      while (l <= r) {\r\n        if (l & 1) { ++l; }\r\n        if (!(r & 1)\
     \ || (_r == m_size - 1 && r == 1)) {\r\n          auto next = m_node[r - 1].binaryOperation(rm);\r\
     \n          if (!judge(next)) {\r\n            auto itr = r;\r\n            while\
-    \ (itr < m_size) {\r\n              _propagate(itr);\r\n              auto litr\
-    \ = 2 * itr;\r\n              auto ritr = 2 * itr + 1;\r\n              _propagate(ritr\
+    \ (itr < m_size) {\r\n              auto litr = 2 * itr;\r\n              auto\
+    \ ritr = 2 * itr + 1;\r\n              _propagate(itr - 1);\r\n              _propagate(ritr\
     \ - 1);\r\n              auto rval = m_node[ritr - 1].binaryOperation(rm);\r\n\
     \              if (!judge(rval)) {\r\n                itr = ritr;\r\n        \
     \      } else {\r\n                itr = litr;\r\n                std::swap(rm,\
@@ -267,7 +267,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/LazySegmentTree_maxright.test.cpp
   requiredBy: []
-  timestamp: '2025-01-23 16:34:39+09:00'
+  timestamp: '2025-01-24 16:43:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/LazySegmentTree_maxright.test.cpp
