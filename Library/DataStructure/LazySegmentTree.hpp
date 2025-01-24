@@ -104,9 +104,9 @@ namespace mtd {
           if (!judge(next)) {
             auto itr = l;
             while (itr < m_size) {
-              _propagate(itr - 1);
               auto litr = 2 * itr;
               auto ritr = 2 * itr + 1;
+              _propagate(itr - 1);
               _propagate(litr - 1);
               auto lval = lm.binaryOperation(m_node[litr - 1]);
               if (!judge(lval)) {
@@ -146,9 +146,9 @@ namespace mtd {
           if (!judge(next)) {
             auto itr = r;
             while (itr < m_size) {
-              _propagate(itr);
               auto litr = 2 * itr;
               auto ritr = 2 * itr + 1;
+              _propagate(itr - 1);
               _propagate(ritr - 1);
               auto rval = m_node[ritr - 1].binaryOperation(rm);
               if (!judge(rval)) {
