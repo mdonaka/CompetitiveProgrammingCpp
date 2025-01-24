@@ -491,7 +491,7 @@ namespace mtd {
       template <class... _Tp>
       requires __detail::__can_cartesian_product_view<
           std::ranges::iota_view<size_t, _Tp>...>
-      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {
+      constexpr auto operator() [[nodiscard]] (_Tp... __e) const {
         return ranges::cartesian_product_view(std::views::iota(0, __e)...);
       }
     };
