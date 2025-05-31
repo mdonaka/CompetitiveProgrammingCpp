@@ -15,7 +15,9 @@ namespace mtd {
     using Path = std::vector<std::tuple<bool, T>>;
 
     class Node {
+      // 定数倍高速化のため破壊的変更や怪しい仕様あり
       T num_l, den_l, num_r, den_r;
+      Path path_rle;
 
       friend std::ostream& operator<<(std::ostream& os, const Node& node) {
         return os << node.num_l + node.num_r << "/" << node.den_l + node.den_r
@@ -29,6 +31,7 @@ namespace mtd {
       }
       constexpr auto get_l() const { return Node(num_l, den_l); }
       constexpr auto get_r() const { return Node(num_r, den_r); }
+      constexpr auto get_path_rle() const { return path_rle; }
       constexpr auto move_left(T d = 1) const {
         return Node(num_l, den_l, d * num_l + num_r, d * den_l + den_r);
       }
@@ -36,7 +39,7 @@ namespace mtd {
         return Node(num_l + d * num_r, den_l + d * den_r, num_r, den_r);
       }
 
-      constexpr static auto encode(T num, T den) {
+      constexpr static auto generate_node(T num, T den) {
         if (den <= 0) {
           throw std::runtime_error("denominator must be positive");
         }
@@ -51,8 +54,8 @@ namespace mtd {
         auto den_d = static_cast<CompT>(den);
         auto num_d = static_cast<CompT>(num);
 
-        Path path_rle;
         auto node = Node(0, 1, 1, 0);
+        Path path_rle;
         while (true) {
           if (node.get() == std::make_tuple(num, den)) { break; }
           auto [num_now, den_now] = node.get();
@@ -72,7 +75,8 @@ namespace mtd {
             std::swap(node, next_node);
           }
         }
-        return path_rle;
+        return Node(node.num_l, node.den_l, node.num_r, node.den_r,
+                    std::move(path_rle));
       }
 
       constexpr static auto decode(const Path& path_rle) {
@@ -85,9 +89,15 @@ namespace mtd {
         return run(run, Node(0, 1, 1, 0), 0);
       }
 
+      constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle)
+          : num_l(num_l),
+            den_l(den_l),
+            num_r(num_r),
+            den_r(den_r),
+            path_rle(std::move(path_rle)) {}
       constexpr Node(T num_l, T den_l, T num_r, T den_r)
-          : num_l(num_l), den_l(den_l), num_r(num_r), den_r(den_r) {}
-      constexpr Node(T num, T den) : Node(decode(encode(num, den))) {}
+          : Node(num_l, den_l, num_r, den_r, Path()) {}
+      constexpr Node(T num, T den) : Node(generate_node(num, den)) {}
 
       constexpr auto operator!=(const Node& other) const {
         return std::tie(num_l, den_l, num_r, den_r) !=
@@ -102,11 +112,10 @@ namespace mtd {
     /*
      * Encode the path from the root to the fraction num/den
      **/
-    constexpr auto encode(T num, T den) const { return Node::encode(num, den); }
     constexpr auto encode(const Node& node) const {
-      auto [num, den] = node.get();
-      return encode(num, den);
+      return node.get_path_rle();
     }
+    constexpr auto encode(T num, T den) const { return encode(Node(num, den)); }
 
     /*
      * Decode the path from the root to the fraction represented by
@@ -170,5 +179,10 @@ namespace mtd {
       return std::make_tuple(node.get_l(), node.get_r());
     }
     constexpr auto range(T num, T den) const { return range(Node(num, den)); }
+
+    /*
+     * Create a node representing the fraction num/den
+     **/
+    constexpr auto create_node(T num, T den) const { return Node(num, den); }
   };
 }  // namespace mtd
