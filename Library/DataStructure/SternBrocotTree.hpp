@@ -15,7 +15,7 @@ namespace mtd {
     using Path = std::vector<std::tuple<bool, T>>;
 
     class Node {
-      const T num_l, den_l, num_r, den_r;
+      T num_l, den_l, num_r, den_r;
 
       friend std::ostream& operator<<(std::ostream& os, const Node& node) {
         return os << node.num_l + node.num_r << "/" << node.den_l + node.den_r
@@ -47,32 +47,31 @@ namespace mtd {
           throw std::runtime_error("numerator and denominator must be coprime");
         }
 
+        // overflow対策
+        auto den_d = static_cast<CompT>(den);
+        auto num_d = static_cast<CompT>(num);
+
         Path path_rle;
-        auto dfs = [&](auto&& self, const Node& node) {
-          if (node.get() == std::make_tuple(num, den)) { return; }
+        auto node = Node(0, 1, 1, 0);
+        while (true) {
+          if (node.get() == std::make_tuple(num, den)) { break; }
           auto [num_now, den_now] = node.get();
-          // overflow対策
-          auto num_now_d = static_cast<CompT>(num_now);
-          auto den_now_d = static_cast<CompT>(den_now);
-          auto den_d = static_cast<CompT>(den);
-          auto num_d = static_cast<CompT>(num);
-          if (num_now_d * den_d < den_now_d * num_d) {
+          if (num_now * den_d < den_now * num_d) {
             // Move right
             auto tmp = den_d * node.num_r - node.den_r * num_d;
-            T k = (den_now_d * num_d - den_d * num_now + tmp - 1) / tmp;
+            T k = (den_now * num_d - den_d * num_now + tmp - 1) / tmp;
             auto next_node = node.move_right(k);
             path_rle.emplace_back(true, k);
-            return self(self, next_node);
+            std::swap(node, next_node);
           } else {
             // Move left
             auto tmp = node.den_l * num_d - den_d * node.num_l;
-            T k = (den_d * num_now - den_now_d * num_d + tmp - 1) / tmp;
+            T k = (den_d * num_now - den_now * num_d + tmp - 1) / tmp;
             auto next_node = node.move_left(k);
             path_rle.emplace_back(false, k);
-            return self(self, next_node);
+            std::swap(node, next_node);
           }
-        };
-        dfs(dfs, Node(0, 1, 1, 0));
+        }
         return path_rle;
       }
 
@@ -140,9 +139,8 @@ namespace mtd {
      * Find the k-th ancestor of the fraction num/den
      **/
     constexpr auto ancestor(const Node& node, T k) const {
-      auto path_rle = encode(node);
       Path k_path_rle;
-      for (const auto& [right, count] : path_rle) {
+      for (const auto& [right, count] : encode(node)) {
         if (count > k) {
           k_path_rle.emplace_back(right, k);
           k = 0;

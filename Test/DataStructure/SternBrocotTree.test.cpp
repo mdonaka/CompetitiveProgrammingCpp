@@ -36,7 +36,7 @@ signed main() {
     if (s == "DECODE_PATH") {
       ll k;
       std::cin >> k;
-      std::vector<std::tuple<ll, ll>> path_rle;
+      std::vector<std::tuple<bool, ll>> path_rle;
       for (auto __ : std::views::iota(0, k)) {
         char c;
         ll n;
