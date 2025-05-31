@@ -21,18 +21,19 @@ namespace mtd {
                   << node.num_r << "/" << node.den_r;
       }
 
-    public:
-      constexpr auto get() const {
-        return std::make_tuple(num_l + num_r, den_l + den_r);
-      }
-      constexpr auto get_l() const { return Node(num_l, den_l); }
-      constexpr auto get_r() const { return Node(num_r, den_r); }
       constexpr auto move_left(T d = 1) const {
         return Node(num_l, den_l, d * num_l + num_r, d * den_l + den_r);
       }
       constexpr auto move_right(T d = 1) const {
         return Node(num_l + d * num_r, den_l + d * den_r, num_r, den_r);
       }
+
+    public:
+      constexpr auto get() const {
+        return std::make_tuple(num_l + num_r, den_l + den_r);
+      }
+      constexpr auto get_l() const { return Node(num_l, den_l); }
+      constexpr auto get_r() const { return Node(num_r, den_r); }
 
       constexpr static auto encode(T num, T den) {
         if (den <= 0) {
@@ -50,12 +51,14 @@ namespace mtd {
           if (node.get() == std::make_tuple(num, den)) { return; }
           auto [num_now, den_now] = node.get();
           if (num_now * den < den_now * num) {
+            // Move right
             T tmp = den * node.num_r - node.den_r * num;
             T k = (den_now * num - den * num_now + tmp - 1) / tmp;
             auto next_node = node.move_right(k);
             path_rle.emplace_back(true, k);
             return self(self, next_node);
           } else {
+            // Move left
             T tmp = node.den_l * num - den * node.num_l;
             T k = (den * num_now - den_now * num + tmp - 1) / tmp;
             auto next_node = node.move_left(k);
@@ -84,10 +87,21 @@ namespace mtd {
     };
 
   public:
+    /*
+     * Encode the path from the root to the fraction num/den
+     **/
     constexpr auto encode(T num, T den) const { return Node::encode(num, den); }
+
+    /*
+     * Decode the path from the root to the fraction represented by
+     **/
     constexpr auto decode(const std::vector<std::tuple<T, T>>& path_rle) const {
       return Node::decode(path_rle);
     }
+
+    /*
+     * Find the lowest common ancestor of two fractions num1/den1 and num2/den2
+     **/
     constexpr auto lca(T num1, T den1, T num2, T den2) const {
       auto path_rle1 = Node::encode(num1, den1);
       auto path_rle2 = Node::encode(num2, den2);
@@ -101,6 +115,10 @@ namespace mtd {
       }
       return decode(lca_path);
     }
+
+    /*
+     * Find the k-th ancestor of the fraction num/den
+     **/
     constexpr auto ancestor(T num, T den, T k) const {
       auto path_rle = Node::encode(num, den);
       std::vector<std::tuple<T, T>> k_path_rle;
@@ -117,6 +135,10 @@ namespace mtd {
       if (k > 0) { throw std::runtime_error("k is too large for the path"); }
       return Node::decode(k_path_rle);
     }
+
+    /*
+     * Find the lower and upper bounds of the descendants of num/den
+     **/
     constexpr auto range(T num, T den) const {
       auto node = Node(num, den);
       if (num == 1 && den == 1) {
