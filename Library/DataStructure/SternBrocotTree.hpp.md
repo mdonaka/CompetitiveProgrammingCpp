@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SternBrocotTree.hpp\"\n\n#include\
@@ -267,54 +267,61 @@ data:
     \ operator<<(std::ostream& os, const Node& node) {\n        return os << node.num_l\
     \ + node.num_r << \"/\" << node.den_l + node.den_r\n                  << \": \"\
     \ << node.num_l << \"/\" << node.den_l << \" \"\n                  << node.num_r\
-    \ << \"/\" << node.den_r;\n      }\n\n    public:\n      constexpr auto get()\
-    \ const {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n   \
-    \   }\n      constexpr auto get_l() const { return Node(num_l, den_l); }\n   \
-    \   constexpr auto get_r() const { return Node(num_r, den_r); }\n      constexpr\
-    \ auto move_left(T d = 1) const {\n        return Node(num_l, den_l, d * num_l\
-    \ + num_r, d * den_l + den_r);\n      }\n      constexpr auto move_right(T d =\
-    \ 1) const {\n        return Node(num_l + d * num_r, den_l + d * den_r, num_r,\
-    \ den_r);\n      }\n\n      constexpr static auto encode(T num, T den) {\n   \
-    \     if (den <= 0) {\n          throw std::runtime_error(\"denominator must be\
-    \ positive\");\n        }\n        if (num < 0) {\n          throw std::runtime_error(\"\
-    numerator must be non-negative\");\n        }\n        if (std::gcd(num, den)\
-    \ > 1) {\n          throw std::runtime_error(\"numerator and denominator must\
-    \ be coprime\");\n        }\n\n        std::vector<std::tuple<T, T>> path_rle;\n\
-    \        auto dfs = [&](auto&& self, const Node& node) {\n          if (node.get()\
-    \ == std::make_tuple(num, den)) { return; }\n          auto [num_now, den_now]\
-    \ = node.get();\n          if (num_now * den < den_now * num) {\n            T\
-    \ tmp = den * node.num_r - node.den_r * num;\n            T k = (den_now * num\
-    \ - den * num_now + tmp - 1) / tmp;\n            auto next_node = node.move_right(k);\n\
+    \ << \"/\" << node.den_r;\n      }\n\n      constexpr auto move_left(T d = 1)\
+    \ const {\n        return Node(num_l, den_l, d * num_l + num_r, d * den_l + den_r);\n\
+    \      }\n      constexpr auto move_right(T d = 1) const {\n        return Node(num_l\
+    \ + d * num_r, den_l + d * den_r, num_r, den_r);\n      }\n\n    public:\n   \
+    \   constexpr auto get() const {\n        return std::make_tuple(num_l + num_r,\
+    \ den_l + den_r);\n      }\n      constexpr auto get_l() const { return Node(num_l,\
+    \ den_l); }\n      constexpr auto get_r() const { return Node(num_r, den_r); }\n\
+    \n      constexpr static auto encode(T num, T den) {\n        if (den <= 0) {\n\
+    \          throw std::runtime_error(\"denominator must be positive\");\n     \
+    \   }\n        if (num < 0) {\n          throw std::runtime_error(\"numerator\
+    \ must be non-negative\");\n        }\n        if (std::gcd(num, den) > 1) {\n\
+    \          throw std::runtime_error(\"numerator and denominator must be coprime\"\
+    );\n        }\n\n        std::vector<std::tuple<T, T>> path_rle;\n        auto\
+    \ dfs = [&](auto&& self, const Node& node) {\n          if (node.get() == std::make_tuple(num,\
+    \ den)) { return; }\n          auto [num_now, den_now] = node.get();\n       \
+    \   if (num_now * den < den_now * num) {\n            // Move right\n        \
+    \    T tmp = den * node.num_r - node.den_r * num;\n            T k = (den_now\
+    \ * num - den * num_now + tmp - 1) / tmp;\n            auto next_node = node.move_right(k);\n\
     \            path_rle.emplace_back(true, k);\n            return self(self, next_node);\n\
-    \          } else {\n            T tmp = node.den_l * num - den * node.num_l;\n\
-    \            T k = (den * num_now - den_now * num + tmp - 1) / tmp;\n        \
-    \    auto next_node = node.move_left(k);\n            path_rle.emplace_back(false,\
-    \ k);\n            return self(self, next_node);\n          }\n        };\n  \
-    \      dfs(dfs, Node(0, 1, 1, 0));\n        return path_rle;\n      }\n\n    \
-    \  constexpr static auto decode(\n          const std::vector<std::tuple<T, T>>&\
-    \ path_rle) {\n        auto run = [&](auto&& self, const Node& node, size_t itr)\
-    \ {\n          if (itr == path_rle.size()) { return node; }\n          auto [right,\
-    \ k] = path_rle[itr];\n          return self(self, right ? node.move_right(k)\
+    \          } else {\n            // Move left\n            T tmp = node.den_l\
+    \ * num - den * node.num_l;\n            T k = (den * num_now - den_now * num\
+    \ + tmp - 1) / tmp;\n            auto next_node = node.move_left(k);\n       \
+    \     path_rle.emplace_back(false, k);\n            return self(self, next_node);\n\
+    \          }\n        };\n        dfs(dfs, Node(0, 1, 1, 0));\n        return\
+    \ path_rle;\n      }\n\n      constexpr static auto decode(\n          const std::vector<std::tuple<T,\
+    \ T>>& path_rle) {\n        auto run = [&](auto&& self, const Node& node, size_t\
+    \ itr) {\n          if (itr == path_rle.size()) { return node; }\n          auto\
+    \ [right, k] = path_rle[itr];\n          return self(self, right ? node.move_right(k)\
     \ : node.move_left(k),\n                      itr + 1);\n        };\n        return\
     \ run(run, Node(0, 1, 1, 0), 0);\n      }\n\n      constexpr Node(T num_l, T den_l,\
     \ T num_r, T den_r)\n          : num_l(num_l), den_l(den_l), num_r(num_r), den_r(den_r)\
     \ {}\n      constexpr Node(T num, T den) : Node(decode(encode(num, den))) {}\n\
-    \    };\n\n  public:\n    constexpr auto encode(T num, T den) const { return Node::encode(num,\
-    \ den); }\n    constexpr auto decode(const std::vector<std::tuple<T, T>>& path_rle)\
-    \ const {\n      return Node::decode(path_rle);\n    }\n    constexpr auto lca(T\
-    \ num1, T den1, T num2, T den2) const {\n      auto path_rle1 = Node::encode(num1,\
-    \ den1);\n      auto path_rle2 = Node::encode(num2, den2);\n      std::vector<std::tuple<T,\
-    \ T>> lca_path;\n      for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2))\
-    \ {\n        auto [right1, k1] = p1;\n        auto [right2, k2] = p2;\n      \
-    \  lca_path.emplace_back(right1, std::min(k1, k2));\n        if (p1 != p2) { break;\
-    \ }\n      }\n      return decode(lca_path);\n    }\n    constexpr auto ancestor(T\
-    \ num, T den, T k) const {\n      auto path_rle = Node::encode(num, den);\n  \
-    \    std::vector<std::tuple<T, T>> k_path_rle;\n      for (const auto& [right,\
-    \ count] : path_rle) {\n        if (count > k) {\n          k_path_rle.emplace_back(right,\
-    \ k);\n          k = 0;\n          break;\n        } else {\n          k_path_rle.emplace_back(right,\
-    \ count);\n          k -= count;\n        }\n      }\n      if (k > 0) { throw\
-    \ std::runtime_error(\"k is too large for the path\"); }\n      return Node::decode(k_path_rle);\n\
-    \    }\n    constexpr auto range(T num, T den) const {\n      auto node = Node(num,\
+    \    };\n\n  public:\n    /*\n     * Encode the path from the root to the fraction\
+    \ num/den\n     **/\n    constexpr auto encode(T num, T den) const { return Node::encode(num,\
+    \ den); }\n\n    /*\n     * Decode the path from the root to the fraction represented\
+    \ by\n     **/\n    constexpr auto decode(const std::vector<std::tuple<T, T>>&\
+    \ path_rle) const {\n      return Node::decode(path_rle);\n    }\n\n    /*\n \
+    \    * Find the lowest common ancestor of two fractions num1/den1 and num2/den2\n\
+    \     **/\n    constexpr auto lca(T num1, T den1, T num2, T den2) const {\n  \
+    \    auto path_rle1 = Node::encode(num1, den1);\n      auto path_rle2 = Node::encode(num2,\
+    \ den2);\n      std::vector<std::tuple<T, T>> lca_path;\n      for (const auto\
+    \ [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {\n        auto [right1, k1]\
+    \ = p1;\n        auto [right2, k2] = p2;\n        if (right1 != right2) { return\
+    \ Node(0, 1, 1, 0); }\n        lca_path.emplace_back(right1, std::min(k1, k2));\n\
+    \        if (p1 != p2) { break; }\n      }\n      return decode(lca_path);\n \
+    \   }\n\n    /*\n     * Find the k-th ancestor of the fraction num/den\n     **/\n\
+    \    constexpr auto ancestor(T num, T den, T k) const {\n      auto path_rle =\
+    \ Node::encode(num, den);\n      std::vector<std::tuple<T, T>> k_path_rle;\n \
+    \     for (const auto& [right, count] : path_rle) {\n        if (count > k) {\n\
+    \          k_path_rle.emplace_back(right, k);\n          k = 0;\n          break;\n\
+    \        } else {\n          k_path_rle.emplace_back(right, count);\n        \
+    \  k -= count;\n        }\n      }\n      if (k > 0) { throw std::runtime_error(\"\
+    k is too large for the path\"); }\n      return Node::decode(k_path_rle);\n  \
+    \  }\n\n    /*\n     * Find the lower and upper bounds of the descendants of num/den\n\
+    \     **/\n    constexpr auto range(T num, T den) const {\n      auto node = Node(num,\
     \ den);\n      if (num == 1 && den == 1) {\n        return std::make_tuple(Node(0,\
     \ 0, 0, 1), Node(0, 0, 1, 0));\n      }\n      if (den == 1) { return std::make_tuple(node.get_l(),\
     \ Node(0, 0, 1, 0)); }\n      if (num == 1) { return std::make_tuple(Node(0, 0,\
@@ -327,25 +334,26 @@ data:
     \ os, const Node& node) {\n        return os << node.num_l + node.num_r << \"\
     /\" << node.den_l + node.den_r\n                  << \": \" << node.num_l << \"\
     /\" << node.den_l << \" \"\n                  << node.num_r << \"/\" << node.den_r;\n\
-    \      }\n\n    public:\n      constexpr auto get() const {\n        return std::make_tuple(num_l\
-    \ + num_r, den_l + den_r);\n      }\n      constexpr auto get_l() const { return\
-    \ Node(num_l, den_l); }\n      constexpr auto get_r() const { return Node(num_r,\
-    \ den_r); }\n      constexpr auto move_left(T d = 1) const {\n        return Node(num_l,\
+    \      }\n\n      constexpr auto move_left(T d = 1) const {\n        return Node(num_l,\
     \ den_l, d * num_l + num_r, d * den_l + den_r);\n      }\n      constexpr auto\
     \ move_right(T d = 1) const {\n        return Node(num_l + d * num_r, den_l +\
-    \ d * den_r, num_r, den_r);\n      }\n\n      constexpr static auto encode(T num,\
-    \ T den) {\n        if (den <= 0) {\n          throw std::runtime_error(\"denominator\
-    \ must be positive\");\n        }\n        if (num < 0) {\n          throw std::runtime_error(\"\
-    numerator must be non-negative\");\n        }\n        if (std::gcd(num, den)\
-    \ > 1) {\n          throw std::runtime_error(\"numerator and denominator must\
-    \ be coprime\");\n        }\n\n        std::vector<std::tuple<T, T>> path_rle;\n\
-    \        auto dfs = [&](auto&& self, const Node& node) {\n          if (node.get()\
-    \ == std::make_tuple(num, den)) { return; }\n          auto [num_now, den_now]\
-    \ = node.get();\n          if (num_now * den < den_now * num) {\n            T\
-    \ tmp = den * node.num_r - node.den_r * num;\n            T k = (den_now * num\
-    \ - den * num_now + tmp - 1) / tmp;\n            auto next_node = node.move_right(k);\n\
-    \            path_rle.emplace_back(true, k);\n            return self(self, next_node);\n\
-    \          } else {\n            T tmp = node.den_l * num - den * node.num_l;\n\
+    \ d * den_r, num_r, den_r);\n      }\n\n    public:\n      constexpr auto get()\
+    \ const {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n   \
+    \   }\n      constexpr auto get_l() const { return Node(num_l, den_l); }\n   \
+    \   constexpr auto get_r() const { return Node(num_r, den_r); }\n\n      constexpr\
+    \ static auto encode(T num, T den) {\n        if (den <= 0) {\n          throw\
+    \ std::runtime_error(\"denominator must be positive\");\n        }\n        if\
+    \ (num < 0) {\n          throw std::runtime_error(\"numerator must be non-negative\"\
+    );\n        }\n        if (std::gcd(num, den) > 1) {\n          throw std::runtime_error(\"\
+    numerator and denominator must be coprime\");\n        }\n\n        std::vector<std::tuple<T,\
+    \ T>> path_rle;\n        auto dfs = [&](auto&& self, const Node& node) {\n   \
+    \       if (node.get() == std::make_tuple(num, den)) { return; }\n          auto\
+    \ [num_now, den_now] = node.get();\n          if (num_now * den < den_now * num)\
+    \ {\n            // Move right\n            T tmp = den * node.num_r - node.den_r\
+    \ * num;\n            T k = (den_now * num - den * num_now + tmp - 1) / tmp;\n\
+    \            auto next_node = node.move_right(k);\n            path_rle.emplace_back(true,\
+    \ k);\n            return self(self, next_node);\n          } else {\n       \
+    \     // Move left\n            T tmp = node.den_l * num - den * node.num_l;\n\
     \            T k = (den * num_now - den_now * num + tmp - 1) / tmp;\n        \
     \    auto next_node = node.move_left(k);\n            path_rle.emplace_back(false,\
     \ k);\n            return self(self, next_node);\n          }\n        };\n  \
@@ -358,22 +366,29 @@ data:
     \ run(run, Node(0, 1, 1, 0), 0);\n      }\n\n      constexpr Node(T num_l, T den_l,\
     \ T num_r, T den_r)\n          : num_l(num_l), den_l(den_l), num_r(num_r), den_r(den_r)\
     \ {}\n      constexpr Node(T num, T den) : Node(decode(encode(num, den))) {}\n\
-    \    };\n\n  public:\n    constexpr auto encode(T num, T den) const { return Node::encode(num,\
-    \ den); }\n    constexpr auto decode(const std::vector<std::tuple<T, T>>& path_rle)\
-    \ const {\n      return Node::decode(path_rle);\n    }\n    constexpr auto lca(T\
-    \ num1, T den1, T num2, T den2) const {\n      auto path_rle1 = Node::encode(num1,\
-    \ den1);\n      auto path_rle2 = Node::encode(num2, den2);\n      std::vector<std::tuple<T,\
-    \ T>> lca_path;\n      for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2))\
-    \ {\n        auto [right1, k1] = p1;\n        auto [right2, k2] = p2;\n      \
-    \  lca_path.emplace_back(right1, std::min(k1, k2));\n        if (p1 != p2) { break;\
-    \ }\n      }\n      return decode(lca_path);\n    }\n    constexpr auto ancestor(T\
-    \ num, T den, T k) const {\n      auto path_rle = Node::encode(num, den);\n  \
-    \    std::vector<std::tuple<T, T>> k_path_rle;\n      for (const auto& [right,\
-    \ count] : path_rle) {\n        if (count > k) {\n          k_path_rle.emplace_back(right,\
-    \ k);\n          k = 0;\n          break;\n        } else {\n          k_path_rle.emplace_back(right,\
-    \ count);\n          k -= count;\n        }\n      }\n      if (k > 0) { throw\
-    \ std::runtime_error(\"k is too large for the path\"); }\n      return Node::decode(k_path_rle);\n\
-    \    }\n    constexpr auto range(T num, T den) const {\n      auto node = Node(num,\
+    \    };\n\n  public:\n    /*\n     * Encode the path from the root to the fraction\
+    \ num/den\n     **/\n    constexpr auto encode(T num, T den) const { return Node::encode(num,\
+    \ den); }\n\n    /*\n     * Decode the path from the root to the fraction represented\
+    \ by\n     **/\n    constexpr auto decode(const std::vector<std::tuple<T, T>>&\
+    \ path_rle) const {\n      return Node::decode(path_rle);\n    }\n\n    /*\n \
+    \    * Find the lowest common ancestor of two fractions num1/den1 and num2/den2\n\
+    \     **/\n    constexpr auto lca(T num1, T den1, T num2, T den2) const {\n  \
+    \    auto path_rle1 = Node::encode(num1, den1);\n      auto path_rle2 = Node::encode(num2,\
+    \ den2);\n      std::vector<std::tuple<T, T>> lca_path;\n      for (const auto\
+    \ [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {\n        auto [right1, k1]\
+    \ = p1;\n        auto [right2, k2] = p2;\n        if (right1 != right2) { return\
+    \ Node(0, 1, 1, 0); }\n        lca_path.emplace_back(right1, std::min(k1, k2));\n\
+    \        if (p1 != p2) { break; }\n      }\n      return decode(lca_path);\n \
+    \   }\n\n    /*\n     * Find the k-th ancestor of the fraction num/den\n     **/\n\
+    \    constexpr auto ancestor(T num, T den, T k) const {\n      auto path_rle =\
+    \ Node::encode(num, den);\n      std::vector<std::tuple<T, T>> k_path_rle;\n \
+    \     for (const auto& [right, count] : path_rle) {\n        if (count > k) {\n\
+    \          k_path_rle.emplace_back(right, k);\n          k = 0;\n          break;\n\
+    \        } else {\n          k_path_rle.emplace_back(right, count);\n        \
+    \  k -= count;\n        }\n      }\n      if (k > 0) { throw std::runtime_error(\"\
+    k is too large for the path\"); }\n      return Node::decode(k_path_rle);\n  \
+    \  }\n\n    /*\n     * Find the lower and upper bounds of the descendants of num/den\n\
+    \     **/\n    constexpr auto range(T num, T den) const {\n      auto node = Node(num,\
     \ den);\n      if (num == 1 && den == 1) {\n        return std::make_tuple(Node(0,\
     \ 0, 0, 1), Node(0, 0, 1, 0));\n      }\n      if (den == 1) { return std::make_tuple(node.get_l(),\
     \ Node(0, 0, 1, 0)); }\n      if (num == 1) { return std::make_tuple(Node(0, 0,\
@@ -385,8 +400,8 @@ data:
   isVerificationFile: false
   path: Library/DataStructure/SternBrocotTree.hpp
   requiredBy: []
-  timestamp: '2025-06-01 02:21:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-01 02:53:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
 documentation_of: Library/DataStructure/SternBrocotTree.hpp
