@@ -24,9 +24,11 @@ signed main() {
       ll a, b;
       std::cin >> a >> b;
       auto path_rle = sbt.encode(a, b);
-      std::cout << path_rle.size() << " ";
-      for (const auto& [right, k] : path_rle) {
-        std::cout << (right ? 'R' : 'L') << " " << k << " ";
+      std::cout << path_rle.size() << (path_rle.empty() ? "" : " ");
+      for (const auto& [i, right, k] :
+           path_rle | mtd::views::enumerate | mtd::views::flatten) {
+        std::cout << (right ? 'R' : 'L') << " " << k
+                  << (i == path_rle.size() - 1 ? "" : " ");
       }
       std::cout << std::endl;
     }
@@ -56,7 +58,7 @@ signed main() {
       ll k, a, b;
       std::cin >> k >> a >> b;
       try {
-        auto [f, g] = sbt.ancestor(k, a, b).get();
+        auto [f, g] = sbt.ancestor(a, b, k).get();
         std::cout << f << " " << g << std::endl;
       } catch (const std::runtime_error& e) { std::cout << -1 << std::endl; }
     }
