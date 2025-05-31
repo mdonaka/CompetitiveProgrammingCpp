@@ -214,12 +214,12 @@ data:
   timestamp: '2025-01-02 21:02:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Math/Math.test.cpp
-  - Test/Math/Math_pow.test.cpp
-  - Test/Math/Matrix_pow.test.cpp
-  - Test/Math/Convolution_and.test.cpp
-  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
+  - Test/Math/Math_pow.test.cpp
+  - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math.test.cpp
 documentation_of: Library/Math/ModInt.hpp
 layout: document
 redirect_from:

@@ -90,9 +90,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/BFS.test.cpp
-  - Test/Graph/Tree/ReRootingDP.test.cpp
-  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
@@ -258,8 +258,8 @@ data:
     \ [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::cartesian_product_view(std::forward<_Tp>(__e)...);\n\
     \      }\n    };\n    struct _ProductN {\n      template <class... _Tp>\n    \
     \  requires __detail::__can_cartesian_product_view<\n          std::ranges::iota_view<size_t,\
-    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const\
-    \ {\n        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
+    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp... __e) const {\n\
+    \        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
     \      }\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
     \ _Enumerate enumerate{};\n    inline constexpr _Flatten flatten{};\n    inline\
     \ constexpr _CartesianProduct cartesian_product{};\n    inline constexpr _ProductN\
@@ -320,7 +320,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/Topological.hpp
   requiredBy: []
-  timestamp: '2025-01-11 03:46:30+09:00'
+  timestamp: '2025-01-24 16:53:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/Topological.test.cpp

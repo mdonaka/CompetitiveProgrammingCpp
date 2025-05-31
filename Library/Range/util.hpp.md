@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: Library/DataStructure/SternBrocotTree.hpp
+    title: Library/DataStructure/SternBrocotTree.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: Test/DataStructure/SternBrocotTree.test.cpp
+    title: Test/DataStructure/SternBrocotTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
@@ -24,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -265,8 +271,8 @@ data:
     \ [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::cartesian_product_view(std::forward<_Tp>(__e)...);\n\
     \      }\n    };\n    struct _ProductN {\n      template <class... _Tp>\n    \
     \  requires __detail::__can_cartesian_product_view<\n          std::ranges::iota_view<size_t,\
-    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const\
-    \ {\n        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
+    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp... __e) const {\n\
+    \        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
     \      }\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
     \ _Enumerate enumerate{};\n    inline constexpr _Flatten flatten{};\n    inline\
     \ constexpr _CartesianProduct cartesian_product{};\n    inline constexpr _ProductN\
@@ -497,8 +503,8 @@ data:
     \ [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::cartesian_product_view(std::forward<_Tp>(__e)...);\n\
     \      }\n    };\n    struct _ProductN {\n      template <class... _Tp>\n    \
     \  requires __detail::__can_cartesian_product_view<\n          std::ranges::iota_view<size_t,\
-    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const\
-    \ {\n        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
+    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp... __e) const {\n\
+    \        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
     \      }\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
     \ _Enumerate enumerate{};\n    inline constexpr _Flatten flatten{};\n    inline\
     \ constexpr _CartesianProduct cartesian_product{};\n    inline constexpr _ProductN\
@@ -508,15 +514,17 @@ data:
   isVerificationFile: false
   path: Library/Range/util.hpp
   requiredBy:
+  - Library/DataStructure/SternBrocotTree.hpp
   - Library/Graph/Normal/Topological.hpp
-  timestamp: '2025-01-11 03:46:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-24 16:53:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/Graph/Normal/Topological.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Range/enumerate.test.cpp
-  - Test/Range/cartesian_product.test.cpp
   - Test/Range/flatten.test.cpp
+  - Test/Range/cartesian_product.test.cpp
+  - Test/Range/enumerate.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:

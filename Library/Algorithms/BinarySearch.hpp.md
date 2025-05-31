@@ -63,12 +63,12 @@ data:
   timestamp: '2024-12-27 17:36:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Algorithms/BinarySearch_double_rev.test.cpp
-  - Test/Algorithms/BinarySearch_int.test.cpp
-  - Test/Algorithms/BinarySearch_int_rev.test.cpp
-  - Test/Graph/Normal/BFS.test.cpp
   - Test/String/SuffixArray.test.cpp
   - Test/String/LCPArray.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
+  - Test/Algorithms/BinarySearch_int.test.cpp
+  - Test/Algorithms/BinarySearch_double_rev.test.cpp
+  - Test/Algorithms/BinarySearch_int_rev.test.cpp
 documentation_of: Library/Algorithms/BinarySearch.hpp
 layout: document
 redirect_from:

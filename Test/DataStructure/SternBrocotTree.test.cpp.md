@@ -1,32 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: Library/Range/istream.hpp
-    title: Library/Range/istream.hpp
+  - icon: ':x:'
+    path: Library/DataStructure/SternBrocotTree.hpp
+    title: Library/DataStructure/SternBrocotTree.hpp
   - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
   - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
-    path: Library/Utility/io.hpp
-    title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
+    PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B
-  bundledCode: "#line 1 \"Test/Range/zip.test.cpp\"\n#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
-    \n#include <iostream>\n\n// begin:tag includes\n#line 2 \"Library/Range/istream.hpp\"\
-    \n\n#include <ranges>\n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\
-    \n#include <type_traits>\n#include <vector>\n\n#line 2 \"Library/Utility/Tuple.hpp\"\
+    - https://judge.yosupo.jp/problem/stern_brocot_tree
+  bundledCode: "#line 1 \"Test/DataStructure/SternBrocotTree.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\r\n\r\n#include <iostream>\r\
+    \n#include <ranges>\r\n\r\n// begin:tag includes\r\n#line 2 \"Library/DataStructure/SternBrocotTree.hpp\"\
+    \n\n#line 4 \"Library/DataStructure/SternBrocotTree.hpp\"\n#include <numeric>\n\
+    #include <stdexcept>\n#include <tuple>\n#include <vector>\n\n#line 2 \"Library/Range/util.hpp\"\
+    \n\n#include <algorithm>\n#line 6 \"Library/Range/util.hpp\"\n\n#line 2 \"Library/Utility/Tuple.hpp\"\
     \n\n#include <functional>\n\nnamespace mtd {\n  namespace util {\n    template\
     \ <class F, class T>\n    constexpr auto tuple_transform(F&& f, T&& t) {\n   \
     \   return std::apply(\n          [&]<class... Ts>(Ts&&... elems) {\n        \
@@ -36,90 +35,16 @@ data:
     \ f, T&& t) {\n      std::apply(\n          [&]<class... Ts>(Ts&&... elems) {\n\
     \            (std::invoke(f, std::forward<Ts>(elems)), ...);\n          },\n \
     \         std::forward<T>(t));\n    }\n  }  // namespace util\n}  // namespace\
-    \ mtd\n#line 9 \"Library/Utility/io.hpp\"\n\nnamespace mtd {\n  namespace io {\n\
-    \n    namespace type {\n      template <class T>\n      struct vec {\n       \
-    \ using value_type = T;\n      };\n      template <class T>\n      concept is_vec\
-    \ = requires {\n        requires std::is_same_v<T, vec<typename T::value_type>>;\n\
-    \      };\n\n      template <class T>\n      struct mat {\n        using value_type\
-    \ = T;\n      };\n      template <class T>\n      concept is_mat = requires {\n\
-    \        requires std::is_same_v<T, mat<typename T::value_type>>;\n      };\n\
-    \    }  // namespace type\n\n    template <class T>\n    auto _input() {\n   \
-    \   T x;\n      std::cin >> x;\n      return x;\n    }\n    template <typename\
-    \ T>\n    requires requires { typename std::tuple_size<T>::type; }\n    auto _input()\
-    \ {\n      T x;\n      util::tuple_for_each([](auto&& i) { std::cin >> i; }, x);\n\
-    \      return x;\n    }\n    template <type::is_vec T>\n    auto _input(int n)\
-    \ {\n      std::vector<typename T::value_type> v;\n      v.reserve(n);\n     \
-    \ for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
-    \ T::value_type>());\n      }\n      return v;\n    }\n    template <type::is_mat\
-    \ T>\n    auto _input(int h, int w) {\n      std::vector<std::vector<typename\
-    \ T::value_type>> mat;\n      mat.reserve(h);\n      for (auto i : std::views::iota(0,\
-    \ h)) {\n        mat.emplace_back(_input<type::vec<typename T::value_type>>(w));\n\
-    \      }\n      return mat;\n    }\n\n    template <int N, class Tuple, class\
-    \ T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple& t, Sizes...\
-    \ sizes);\n    template <int N, class Tuple, type::is_vec T, class... Args, class\
-    \ Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t, Size size,\
-    \ Sizes... sizes);\n    template <int N, class Tuple, type::is_mat T, class...\
-    \ Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes);\n\n    template <int N, class\
-    \ Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Sizes... sizes) {\n      std::get<N>(t) = _input<T>();\n      if constexpr\
-    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n\
-    \      }\n    }\n    template <int N, class Tuple, type::is_vec T, class... Args,\
-    \ class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t,\
-    \ Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n    \
-    \  if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t,\
-    \ sizes...);\n      }\n    }\n    template <int N, class Tuple, type::is_mat T,\
-    \ class... Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h,\
-    \ size_w);\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N\
-    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class T>\n\
-    \    struct _Converter {\n      using type = T;\n    };\n    template <class T>\n\
-    \    struct _Converter<type::vec<T>> {\n      using type = std::vector<T>;\n \
-    \   };\n    template <class T>\n    struct _Converter<type::mat<T>> {\n      using\
-    \ type = std::vector<std::vector<T>>;\n    };\n\n    template <class... Args,\
-    \ class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...) auto\
-    \ in(Sizes... sizes) {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
-    \      _tuple_input<0, decltype(base), Args...>(base, sizes...);\n      return\
-    \ base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
-    \n\nnamespace mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n\
-    \    template <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
-    \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
-    \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
-    \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
-    \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
-    \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
-    \ auto operator*() const { return val; }\n        constexpr auto& operator++()\
-    \ {\n          --count;\n          if (count >= 0) { val = io::in<Args...>();\
-    \ }\n          return *this;\n        }\n        constexpr auto operator++(int)\
-    \ { return ++*this; }\n\n        constexpr auto operator==(const iterator& s)\
-    \ const {\n          return count == s.count;\n        }\n        constexpr auto\
-    \ operator==(std::default_sentinel_t) const {\n          return count < 0 || std::cin.eof()\
-    \ || std::cin.fail() ||\n                 std::cin.bad();\n        }\n       \
-    \ constexpr friend auto operator==(std::default_sentinel_t s,\n              \
-    \                           const iterator& li) {\n          return li == s;\n\
-    \        }\n      };\n\n      int count;\n\n    public:\n      constexpr explicit\
-    \ istream_view(int _count) : count(_count) {}\n      constexpr explicit istream_view()\
-    \ : istream_view(_inf) {}\n      constexpr auto begin() const { return iterator(count);\
-    \ }\n      constexpr auto end() const { return std::default_sentinel; }\n    };\n\
-    \  }  // namespace ranges\n\n  namespace views {\n    namespace __detail {\n \
-    \     template <typename... _Args>\n      concept __can_istream_view = requires\
-    \ {\n        ranges::istream_view(std::declval<_Args>()...);\n      };\n    }\
-    \  // namespace __detail\n\n    template <class... Args>\n    struct _Istream\
-    \ {\n      template <class... _Tp>\n      requires __detail::__can_istream_view<_Tp...>\n\
-    \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
-    \  return ranges::istream_view<Args...>(std::forward<_Tp>(__e)...);\n      }\n\
-    \    };\n\n    template <class... Args>\n    inline constexpr _Istream<Args...>\
-    \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 2 \"Library/Range/util.hpp\"\
-    \n\n#include <algorithm>\n#line 6 \"Library/Range/util.hpp\"\n\n#line 8 \"Library/Range/util.hpp\"\
-    \n\nnamespace mtd {\n  namespace ranges {\n\n    namespace __detail {\n      template\
-    \ <typename... T>\n      concept __all_random_access = (std::ranges::random_access_range<T>\
-    \ &&\n                                     ...);\n      template <typename...\
-    \ T>\n      concept __all_bidirectional = (std::ranges::bidirectional_range<T>\
-    \ &&\n                                     ...);\n      template <typename...\
-    \ T>\n      concept __all_forward = (std::ranges::forward_range<T> && ...);\n\n\
-    \      template <class... T>\n      constexpr auto _S_iter_concept() {\n     \
-    \   if constexpr (__all_random_access<T...>) {\n          return std::random_access_iterator_tag{};\n\
-    \        } else if constexpr (__all_bidirectional<T...>) {\n          return std::bidirectional_iterator_tag{};\n\
+    \ mtd\n#line 8 \"Library/Range/util.hpp\"\n\nnamespace mtd {\n  namespace ranges\
+    \ {\n\n    namespace __detail {\n      template <typename... T>\n      concept\
+    \ __all_random_access = (std::ranges::random_access_range<T> &&\n            \
+    \                         ...);\n      template <typename... T>\n      concept\
+    \ __all_bidirectional = (std::ranges::bidirectional_range<T> &&\n            \
+    \                         ...);\n      template <typename... T>\n      concept\
+    \ __all_forward = (std::ranges::forward_range<T> && ...);\n\n      template <class...\
+    \ T>\n      constexpr auto _S_iter_concept() {\n        if constexpr (__all_random_access<T...>)\
+    \ {\n          return std::random_access_iterator_tag{};\n        } else if constexpr\
+    \ (__all_bidirectional<T...>) {\n          return std::bidirectional_iterator_tag{};\n\
     \        } else if constexpr (__all_forward<T...>) {\n          return std::forward_iterator_tag{};\n\
     \        } else {\n          return std::input_iterator_tag{};\n        }\n  \
     \    }\n    }  // namespace __detail\n\n    template <std::ranges::range... _Range>\n\
@@ -341,34 +266,134 @@ data:
     \      }\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
     \ _Enumerate enumerate{};\n    inline constexpr _Flatten flatten{};\n    inline\
     \ constexpr _CartesianProduct cartesian_product{};\n    inline constexpr _ProductN\
-    \ product_n{};\n  }  // namespace views\n}  // namespace mtd\n#line 8 \"Test/Range/zip.test.cpp\"\
-    \n// end:tag includes\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
-    \n  auto istream = mtd::views::istream<int>();\n  auto iota = std::views::iota(0);\n\
-    \  for (auto [i, x] : mtd::views::zip(iota, istream)) {\n    if (std::get<0>(x)\
-    \ == 0) { break; }\n    std::cout << \"Case \" << i + 1 << \": \" << std::get<0>(x)\
-    \ << std::endl;\n  }\n}\n"
-  code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
-    \n#include <iostream>\n\n// begin:tag includes\n#include \"../../Library/Range/istream.hpp\"\
-    \n#include \"../../Library/Range/util.hpp\"\n// end:tag includes\n\nint main()\
-    \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  auto istream = mtd::views::istream<int>();\n\
-    \  auto iota = std::views::iota(0);\n  for (auto [i, x] : mtd::views::zip(iota,\
-    \ istream)) {\n    if (std::get<0>(x) == 0) { break; }\n    std::cout << \"Case\
-    \ \" << i + 1 << \": \" << std::get<0>(x) << std::endl;\n  }\n}\n"
+    \ product_n{};\n  }  // namespace views\n}  // namespace mtd\n#line 10 \"Library/DataStructure/SternBrocotTree.hpp\"\
+    \n\nnamespace mtd {\n\n  template <class T>\n  class SternBrocotTree {\n    class\
+    \ Node {\n      const T num_l, den_l, num_r, den_r;\n\n      friend std::ostream&\
+    \ operator<<(std::ostream& os, const Node& node) {\n        return os << node.num_l\
+    \ + node.num_r << \"/\" << node.den_l + node.den_r\n                  << \": \"\
+    \ << node.num_l << \"/\" << node.den_l << \" \"\n                  << node.num_r\
+    \ << \"/\" << node.den_r;\n      }\n\n    public:\n      constexpr auto get()\
+    \ const {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n   \
+    \   }\n      constexpr auto get_l() const { return Node(num_l, den_l); }\n   \
+    \   constexpr auto get_r() const { return Node(num_r, den_r); }\n      constexpr\
+    \ auto move_left(T d = 1) const {\n        return Node(num_l, den_l, d * num_l\
+    \ + num_r, d * den_l + den_r);\n      }\n      constexpr auto move_right(T d =\
+    \ 1) const {\n        return Node(num_l + d * num_r, den_l + d * den_r, num_r,\
+    \ den_r);\n      }\n\n      constexpr static auto encode(T num, T den) {\n   \
+    \     if (den <= 0) {\n          throw std::runtime_error(\"denominator must be\
+    \ positive\");\n        }\n        if (num < 0) {\n          throw std::runtime_error(\"\
+    numerator must be non-negative\");\n        }\n        if (std::gcd(num, den)\
+    \ > 1) {\n          throw std::runtime_error(\"numerator and denominator must\
+    \ be coprime\");\n        }\n\n        std::vector<std::tuple<T, T>> path_rle;\n\
+    \        auto dfs = [&](auto&& self, const Node& node) {\n          if (node.get()\
+    \ == std::make_tuple(num, den)) { return; }\n          auto [num_now, den_now]\
+    \ = node.get();\n          if (num_now * den < den_now * num) {\n            T\
+    \ tmp = den * node.num_r - node.den_r * num;\n            T k = (den_now * num\
+    \ - den * num_now + tmp - 1) / tmp;\n            auto next_node = node.move_right(k);\n\
+    \            path_rle.emplace_back(true, k);\n            return self(self, next_node);\n\
+    \          } else {\n            T tmp = node.den_l * num - den * node.num_l;\n\
+    \            T k = (den * num_now - den_now * num + tmp - 1) / tmp;\n        \
+    \    auto next_node = node.move_left(k);\n            path_rle.emplace_back(false,\
+    \ k);\n            return self(self, next_node);\n          }\n        };\n  \
+    \      dfs(dfs, Node(0, 1, 1, 0));\n        return path_rle;\n      }\n\n    \
+    \  constexpr static auto decode(\n          const std::vector<std::tuple<T, T>>&\
+    \ path_rle) {\n        auto run = [&](auto&& self, const Node& node, size_t itr)\
+    \ {\n          if (itr == path_rle.size()) { return node; }\n          auto [right,\
+    \ k] = path_rle[itr];\n          return self(self, right ? node.move_right(k)\
+    \ : node.move_left(k),\n                      itr + 1);\n        };\n        return\
+    \ run(run, Node(0, 1, 1, 0), 0);\n      }\n\n      constexpr Node(T num_l, T den_l,\
+    \ T num_r, T den_r)\n          : num_l(num_l), den_l(den_l), num_r(num_r), den_r(den_r)\
+    \ {}\n      constexpr Node(T num, T den) : Node(decode(encode(num, den))) {}\n\
+    \    };\n\n  public:\n    constexpr auto encode(T num, T den) const { return Node::encode(num,\
+    \ den); }\n    constexpr auto decode(const std::vector<std::tuple<T, T>>& path_rle)\
+    \ const {\n      return Node::decode(path_rle);\n    }\n    constexpr auto lca(T\
+    \ num1, T den1, T num2, T den2) const {\n      auto path_rle1 = Node::encode(num1,\
+    \ den1);\n      auto path_rle2 = Node::encode(num2, den2);\n      std::vector<std::tuple<T,\
+    \ T>> lca_path;\n      for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2))\
+    \ {\n        auto [right1, k1] = p1;\n        auto [right2, k2] = p2;\n      \
+    \  lca_path.emplace_back(right1, std::min(k1, k2));\n        if (p1 != p2) { break;\
+    \ }\n      }\n      return decode(lca_path);\n    }\n    constexpr auto ancestor(T\
+    \ num, T den, T k) const {\n      auto path_rle = Node::encode(num, den);\n  \
+    \    std::vector<std::tuple<T, T>> k_path_rle;\n      for (const auto& [right,\
+    \ count] : path_rle) {\n        if (count > k) {\n          k_path_rle.emplace_back(right,\
+    \ k);\n          k = 0;\n          break;\n        } else {\n          k_path_rle.emplace_back(right,\
+    \ count);\n          k -= count;\n        }\n      }\n      if (k > 0) { throw\
+    \ std::runtime_error(\"k is too large for the path\"); }\n      return Node::decode(k_path_rle);\n\
+    \    }\n    constexpr auto range(T num, T den) const {\n      auto node = Node(num,\
+    \ den);\n      if (num == 1 && den == 1) {\n        return std::make_tuple(Node(0,\
+    \ 0, 0, 1), Node(0, 0, 1, 0));\n      }\n      if (den == 1) { return std::make_tuple(node.get_l(),\
+    \ Node(0, 0, 1, 0)); }\n      if (num == 1) { return std::make_tuple(Node(0, 0,\
+    \ 0, 1), node.get_r()); }\n      return std::make_tuple(node.get_l(), node.get_r());\n\
+    \    }\n  };\n}  // namespace mtd\n#line 8 \"Test/DataStructure/SternBrocotTree.test.cpp\"\
+    \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
+    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int t;\r\n  std::cin\
+    \ >> t;\r\n  mtd::SternBrocotTree<ll> sbt;\r\n  for (auto _ : std::views::iota(0,\
+    \ t)) {\r\n    std::string s;\r\n    std::cin >> s;\r\n\r\n    if (s == \"ENCODE_PATH\"\
+    ) {\r\n      ll a, b;\r\n      std::cin >> a >> b;\r\n      auto path_rle = sbt.encode(a,\
+    \ b);\r\n      std::cout << path_rle.size() << \" \";\r\n      for (const auto&\
+    \ [right, k] : path_rle) {\r\n        std::cout << (right ? 'R' : 'L') << \" \"\
+    \ << k << \" \";\r\n      }\r\n      std::cout << std::endl;\r\n    }\r\n\r\n\
+    \    if (s == \"DECODE_PATH\") {\r\n      ll k;\r\n      std::cin >> k;\r\n  \
+    \    std::vector<std::tuple<ll, ll>> path_rle;\r\n      for (auto __ : std::views::iota(0,\
+    \ k)) {\r\n        char c;\r\n        ll n;\r\n        std::cin >> c >> n;\r\n\
+    \        path_rle.emplace_back(c == 'R', n);\r\n      }\r\n      auto [a, b] =\
+    \ sbt.decode(path_rle).get();\r\n      std::cout << a << \" \" << b << std::endl;\r\
+    \n    }\r\n\r\n    if (s == \"LCA\") {\r\n      ll a, b, c, d;\r\n      std::cin\
+    \ >> a >> b >> c >> d;\r\n      auto [f, g] = sbt.lca(a, b, c, d).get();\r\n \
+    \     std::cout << f << \" \" << g << std::endl;\r\n    }\r\n\r\n    if (s ==\
+    \ \"ANCESTOR\") {\r\n      ll k, a, b;\r\n      std::cin >> k >> a >> b;\r\n \
+    \     try {\r\n        auto [f, g] = sbt.ancestor(k, a, b).get();\r\n        std::cout\
+    \ << f << \" \" << g << std::endl;\r\n      } catch (const std::runtime_error&\
+    \ e) { std::cout << -1 << std::endl; }\r\n    }\r\n\r\n    if (s == \"RANGE\"\
+    ) {\r\n      ll a, b;\r\n      std::cin >> a >> b;\r\n      try {\r\n        auto\
+    \ [node_l, node_r] = sbt.range(a, b);\r\n        auto [f, g] = node_l.get();\r\
+    \n        auto [h, k] = node_r.get();\r\n        std::cout << f << \" \" << g\
+    \ << \" \" << h << \" \" << k << std::endl;\r\n      } catch (const std::runtime_error&\
+    \ e) {\r\n        std::cout << e.what() << std::endl;\r\n      }\r\n    }\r\n\
+    \  }\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\r\n\
+    \r\n#include <iostream>\r\n#include <ranges>\r\n\r\n// begin:tag includes\r\n\
+    #include \"./../../Library/DataStructure/SternBrocotTree.hpp\"\r\n// end:tag includes\r\
+    \n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n \
+    \ std::ios::sync_with_stdio(0);\r\n\r\n  int t;\r\n  std::cin >> t;\r\n  mtd::SternBrocotTree<ll>\
+    \ sbt;\r\n  for (auto _ : std::views::iota(0, t)) {\r\n    std::string s;\r\n\
+    \    std::cin >> s;\r\n\r\n    if (s == \"ENCODE_PATH\") {\r\n      ll a, b;\r\
+    \n      std::cin >> a >> b;\r\n      auto path_rle = sbt.encode(a, b);\r\n   \
+    \   std::cout << path_rle.size() << \" \";\r\n      for (const auto& [right, k]\
+    \ : path_rle) {\r\n        std::cout << (right ? 'R' : 'L') << \" \" << k << \"\
+    \ \";\r\n      }\r\n      std::cout << std::endl;\r\n    }\r\n\r\n    if (s ==\
+    \ \"DECODE_PATH\") {\r\n      ll k;\r\n      std::cin >> k;\r\n      std::vector<std::tuple<ll,\
+    \ ll>> path_rle;\r\n      for (auto __ : std::views::iota(0, k)) {\r\n       \
+    \ char c;\r\n        ll n;\r\n        std::cin >> c >> n;\r\n        path_rle.emplace_back(c\
+    \ == 'R', n);\r\n      }\r\n      auto [a, b] = sbt.decode(path_rle).get();\r\n\
+    \      std::cout << a << \" \" << b << std::endl;\r\n    }\r\n\r\n    if (s ==\
+    \ \"LCA\") {\r\n      ll a, b, c, d;\r\n      std::cin >> a >> b >> c >> d;\r\n\
+    \      auto [f, g] = sbt.lca(a, b, c, d).get();\r\n      std::cout << f << \"\
+    \ \" << g << std::endl;\r\n    }\r\n\r\n    if (s == \"ANCESTOR\") {\r\n     \
+    \ ll k, a, b;\r\n      std::cin >> k >> a >> b;\r\n      try {\r\n        auto\
+    \ [f, g] = sbt.ancestor(k, a, b).get();\r\n        std::cout << f << \" \" <<\
+    \ g << std::endl;\r\n      } catch (const std::runtime_error& e) { std::cout <<\
+    \ -1 << std::endl; }\r\n    }\r\n\r\n    if (s == \"RANGE\") {\r\n      ll a,\
+    \ b;\r\n      std::cin >> a >> b;\r\n      try {\r\n        auto [node_l, node_r]\
+    \ = sbt.range(a, b);\r\n        auto [f, g] = node_l.get();\r\n        auto [h,\
+    \ k] = node_r.get();\r\n        std::cout << f << \" \" << g << \" \" << h <<\
+    \ \" \" << k << std::endl;\r\n      } catch (const std::runtime_error& e) {\r\n\
+    \        std::cout << e.what() << std::endl;\r\n      }\r\n    }\r\n  }\r\n}\r\
+    \n"
   dependsOn:
-  - Library/Range/istream.hpp
-  - Library/Utility/io.hpp
-  - Library/Utility/Tuple.hpp
+  - Library/DataStructure/SternBrocotTree.hpp
   - Library/Range/util.hpp
+  - Library/Utility/Tuple.hpp
   isVerificationFile: true
-  path: Test/Range/zip.test.cpp
+  path: Test/DataStructure/SternBrocotTree.test.cpp
   requiredBy: []
-  timestamp: '2025-01-24 16:53:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-01 02:21:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: Test/Range/zip.test.cpp
+documentation_of: Test/DataStructure/SternBrocotTree.test.cpp
 layout: document
 redirect_from:
-- /verify/Test/Range/zip.test.cpp
-- /verify/Test/Range/zip.test.cpp.html
-title: Test/Range/zip.test.cpp
+- /verify/Test/DataStructure/SternBrocotTree.test.cpp
+- /verify/Test/DataStructure/SternBrocotTree.test.cpp.html
+title: Test/DataStructure/SternBrocotTree.test.cpp
 ---
