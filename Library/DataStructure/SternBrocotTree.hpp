@@ -95,6 +95,7 @@ namespace mtd {
       for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {
         auto [right1, k1] = p1;
         auto [right2, k2] = p2;
+        if (right1 != right2) { return Node(0, 1, 1, 0); }
         lca_path.emplace_back(right1, std::min(k1, k2));
         if (p1 != p2) { break; }
       }
