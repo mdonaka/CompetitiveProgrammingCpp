@@ -18,6 +18,8 @@ namespace mtd {
       // 定数倍高速化のため破壊的変更や怪しい仕様あり
       T num_l, den_l, num_r, den_r;
       Path path_rle;
+      const T max_num;
+      const T max_den;
 
       friend std::ostream& operator<<(std::ostream& os, const Node& node) {
         return os << node.num_l + node.num_r << "/" << node.den_l + node.den_r
@@ -26,7 +28,9 @@ namespace mtd {
       }
 
     public:
-      static constexpr auto get_root() { return Node(0, 1, 1, 0); }
+      static constexpr auto get_root(T max_num, T max_den) {
+        return Node(0, 1, 1, 0, Path(), max_num, max_den);
+      }
 
       constexpr auto get() const {
         return std::make_tuple(num_l + num_r, den_l + den_r);
@@ -36,7 +40,9 @@ namespace mtd {
       constexpr auto get_path_rle() const { return path_rle; }
 
       constexpr auto move_left(T d = 1) {
-        if (d == 0) { return false; }
+        if (num_l > 0) { d = std::min(d, (max_num - num_r - num_l) / num_l); }
+        if (den_l > 0) { d = std::min(d, (max_den - den_r - den_l) / den_l); }
+        if (d <= 0) { return false; }
         path_rle.emplace_back(false, d);
         num_r += d * num_l;
         den_r += d * den_l;
@@ -51,7 +57,9 @@ namespace mtd {
         return move_left(d);
       }
       constexpr auto move_right(T d = 1) {
-        if (d == 0) { return false; }
+        if (num_r > 0) { d = std::min(d, (max_num - num_l - num_r) / num_r); }
+        if (den_r > 0) { d = std::min(d, (max_den - den_l - den_r) / den_r); }
+        if (d <= 0) { return false; }
         path_rle.emplace_back(true, d);
         num_l += d * num_r;
         den_l += d * den_r;
@@ -66,7 +74,7 @@ namespace mtd {
         return move_right(d);
       }
 
-      constexpr static auto generate_node(T num, T den) {
+      constexpr static auto generate_node(T num, T den, T max_num, T max_den) {
         if (den <= 0) {
           throw std::runtime_error("denominator must be positive");
         }
@@ -77,34 +85,28 @@ namespace mtd {
           throw std::runtime_error("numerator and denominator must be coprime");
         }
 
-        auto node = get_root();
-        Path path_rle;
-        while (true) {
-          if (node.get() == std::make_tuple(num, den)) { break; }
-          node.move_left_to(num, den);
-          node.move_right_to(num, den);
-        }
+        auto node = get_root(max_num, max_den);
+        while (node.move_left_to(num, den) || node.move_right_to(num, den)) {}
         return node;
       }
 
       constexpr static auto decode(const Path& path_rle) {
         auto node = get_root();
         for (const auto& [right, k] : path_rle) {
-          if (right) {
-            node.move_right(k);
-          } else {
-            node.move_left(k);
-          }
+          right ? node.move_right(k) : node.move_left(k);
         }
         return node;
       }
 
-      constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle)
+      constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle,
+                     T max_num, T max_den)
           : num_l(num_l),
             den_l(den_l),
             num_r(num_r),
             den_r(den_r),
-            path_rle(std::move(path_rle)) {}
+            path_rle(std::move(path_rle)),
+            max_num(max_num),
+            max_den(max_den) {}
       constexpr Node(T num_l, T den_l, T num_r, T den_r)
           : Node(num_l, den_l, num_r, den_r, Path()) {}
       constexpr Node(T num, T den) : Node(generate_node(num, den)) {}
@@ -144,7 +146,7 @@ namespace mtd {
       for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {
         auto [right1, k1] = p1;
         auto [right2, k2] = p2;
-        if (right1 != right2) { return Node(0, 1, 1, 0); }
+        if (right1 != right2) { return Node::root(); }
         lca_path.emplace_back(right1, std::min(k1, k2));
         if (p1 != p2) { break; }
       }
@@ -193,11 +195,17 @@ namespace mtd {
     /*
      * Create a node representing the fraction num/den
      **/
-    constexpr auto create_node(T num, T den) const { return Node(num, den); }
+    constexpr auto create_node(T num, T den, T max_num = static_cast<T>(2e18),
+                               T max_den = static_cast<T>(2e18)) const {
+      return Node::generate_node(num, den, max_num, max_den);
+    }
 
     /*
      * Get the root node of the tree
      **/
-    constexpr auto get_root() const { return Node::get_root(); }
+    constexpr auto get_root(T max_num = static_cast<T>(2e18),
+                            T max_den = static_cast<T>(2e18)) const {
+      return Node::get_root(max_num, max_den);
+    }
   };
 }  // namespace mtd
