@@ -275,42 +275,42 @@ data:
     \ operator<<(std::ostream& os, const Node& node) {\n        return os << node.num_l\
     \ + node.num_r << \"/\" << node.den_l + node.den_r\n                  << \": \"\
     \ << node.num_l << \"/\" << node.den_l << \" \"\n                  << node.num_r\
-    \ << \"/\" << node.den_r;\n      }\n\n    public:\n      constexpr auto get()\
-    \ const {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n   \
-    \   }\n      constexpr auto get_l() const { return Node(num_l, den_l); }\n   \
-    \   constexpr auto get_r() const { return Node(num_r, den_r); }\n      constexpr\
-    \ auto get_path_rle() const { return path_rle; }\n      constexpr auto move_left(T\
-    \ d = 1) const {\n        return Node(num_l, den_l, d * num_l + num_r, d * den_l\
-    \ + den_r);\n      }\n      constexpr auto move_right(T d = 1) const {\n     \
-    \   return Node(num_l + d * num_r, den_l + d * den_r, num_r, den_r);\n      }\n\
-    \n      constexpr static auto generate_node(T num, T den) {\n        if (den <=\
-    \ 0) {\n          throw std::runtime_error(\"denominator must be positive\");\n\
-    \        }\n        if (num < 0) {\n          throw std::runtime_error(\"numerator\
-    \ must be non-negative\");\n        }\n        if (std::gcd(num, den) > 1) {\n\
-    \          throw std::runtime_error(\"numerator and denominator must be coprime\"\
-    );\n        }\n\n        // overflow\u5BFE\u7B56\n        auto den_d = static_cast<CompT>(den);\n\
-    \        auto num_d = static_cast<CompT>(num);\n\n        auto node = Node(0,\
-    \ 1, 1, 0);\n        Path path_rle;\n        while (true) {\n          if (node.get()\
-    \ == std::make_tuple(num, den)) { break; }\n          auto [num_now, den_now]\
-    \ = node.get();\n          if (num_now * den_d < den_now * num_d) {\n        \
-    \    // Move right\n            auto tmp = den_d * node.num_r - node.den_r * num_d;\n\
-    \            T k = (den_now * num_d - den_d * num_now + tmp - 1) / tmp;\n    \
-    \        auto next_node = node.move_right(k);\n            path_rle.emplace_back(true,\
-    \ k);\n            std::swap(node, next_node);\n          } else {\n         \
-    \   // Move left\n            auto tmp = node.den_l * num_d - den_d * node.num_l;\n\
-    \            T k = (den_d * num_now - den_now * num_d + tmp - 1) / tmp;\n    \
-    \        auto next_node = node.move_left(k);\n            path_rle.emplace_back(false,\
-    \ k);\n            std::swap(node, next_node);\n          }\n        }\n     \
-    \   return Node(node.num_l, node.den_l, node.num_r, node.den_r,\n            \
-    \        std::move(path_rle));\n      }\n\n      constexpr static auto decode(const\
-    \ Path& path_rle) {\n        auto run = [&](auto&& self, const Node& node, size_t\
-    \ itr) {\n          if (itr == path_rle.size()) { return node; }\n          auto\
-    \ [right, k] = path_rle[itr];\n          return self(self, right ? node.move_right(k)\
-    \ : node.move_left(k),\n                      itr + 1);\n        };\n        return\
-    \ run(run, Node(0, 1, 1, 0), 0);\n      }\n\n      constexpr Node(T num_l, T den_l,\
-    \ T num_r, T den_r, Path&& path_rle)\n          : num_l(num_l),\n            den_l(den_l),\n\
-    \            num_r(num_r),\n            den_r(den_r),\n            path_rle(std::move(path_rle))\
-    \ {}\n      constexpr Node(T num_l, T den_l, T num_r, T den_r)\n          : Node(num_l,\
+    \ << \"/\" << node.den_r;\n      }\n\n    public:\n      static constexpr auto\
+    \ get_root() { return Node(0, 1, 1, 0); }\n\n      constexpr auto get() const\
+    \ {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n      }\n\
+    \      constexpr auto get_l() const { return Node(num_l, den_l); }\n      constexpr\
+    \ auto get_r() const { return Node(num_r, den_r); }\n      constexpr auto get_path_rle()\
+    \ const { return path_rle; }\n\n      constexpr auto move_left(T d = 1) {\n  \
+    \      if (d == 0) { return false; }\n        path_rle.emplace_back(false, d);\n\
+    \        num_r += d * num_l;\n        den_r += d * den_l;\n        return true;\n\
+    \      }\n      constexpr auto move_left_to(T num, T den) {\n        auto den_d\
+    \ = static_cast<CompT>(den);\n        auto num_d = static_cast<CompT>(num);\n\
+    \        auto tmp = den_l * num_d - den_d * num_l;\n        T d =\n          \
+    \  (den_d * (num_l + num_r) - (den_l + den_r) * num_d + tmp - 1) / tmp;\n    \
+    \    return move_left(d);\n      }\n      constexpr auto move_right(T d = 1) {\n\
+    \        if (d == 0) { return false; }\n        path_rle.emplace_back(true, d);\n\
+    \        num_l += d * num_r;\n        den_l += d * den_r;\n        return true;\n\
+    \      }\n      constexpr auto move_right_to(T num, T den) {\n        auto den_d\
+    \ = static_cast<CompT>(den);\n        auto num_d = static_cast<CompT>(num);\n\
+    \        auto tmp = den_d * num_r - den_r * num_d;\n        T d =\n          \
+    \  ((den_l + den_r) * num_d - den_d * (num_l + num_r) + tmp - 1) / tmp;\n    \
+    \    return move_right(d);\n      }\n\n      constexpr static auto generate_node(T\
+    \ num, T den) {\n        if (den <= 0) {\n          throw std::runtime_error(\"\
+    denominator must be positive\");\n        }\n        if (num < 0) {\n        \
+    \  throw std::runtime_error(\"numerator must be non-negative\");\n        }\n\
+    \        if (std::gcd(num, den) > 1) {\n          throw std::runtime_error(\"\
+    numerator and denominator must be coprime\");\n        }\n\n        auto node\
+    \ = get_root();\n        Path path_rle;\n        while (true) {\n          if\
+    \ (node.get() == std::make_tuple(num, den)) { break; }\n          node.move_left_to(num,\
+    \ den);\n          node.move_right_to(num, den);\n        }\n        return node;\n\
+    \      }\n\n      constexpr static auto decode(const Path& path_rle) {\n     \
+    \   auto node = get_root();\n        for (const auto& [right, k] : path_rle) {\n\
+    \          if (right) {\n            node.move_right(k);\n          } else {\n\
+    \            node.move_left(k);\n          }\n        }\n        return node;\n\
+    \      }\n\n      constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle)\n\
+    \          : num_l(num_l),\n            den_l(den_l),\n            num_r(num_r),\n\
+    \            den_r(den_r),\n            path_rle(std::move(path_rle)) {}\n   \
+    \   constexpr Node(T num_l, T den_l, T num_r, T den_r)\n          : Node(num_l,\
     \ den_l, num_r, den_r, Path()) {}\n      constexpr Node(T num, T den) : Node(generate_node(num,\
     \ den)) {}\n\n      constexpr auto operator!=(const Node& other) const {\n   \
     \     return std::tie(num_l, den_l, num_r, den_r) !=\n               std::tie(other.num_l,\
@@ -347,15 +347,16 @@ data:
     \ }\n      return std::make_tuple(node.get_l(), node.get_r());\n    }\n    constexpr\
     \ auto range(T num, T den) const { return range(Node(num, den)); }\n\n    /*\n\
     \     * Create a node representing the fraction num/den\n     **/\n    constexpr\
-    \ auto create_node(T num, T den) const { return Node(num, den); }\n  };\n}  //\
-    \ namespace mtd\n#line 8 \"Test/DataStructure/SternBrocotTree.test.cpp\"\n// end:tag\
-    \ includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\
-    \n  std::ios::sync_with_stdio(0);\r\n\r\n  int t;\r\n  std::cin >> t;\r\n  mtd::SternBrocotTree<ll>\
-    \ sbt;\r\n  for (auto _ : std::views::iota(0, t)) {\r\n    std::string s;\r\n\
-    \    std::cin >> s;\r\n\r\n    if (s == \"ENCODE_PATH\") {\r\n      ll a, b;\r\
-    \n      std::cin >> a >> b;\r\n      auto path_rle = sbt.encode(a, b);\r\n   \
-    \   std::cout << path_rle.size() << (path_rle.empty() ? \"\" : \" \");\r\n   \
-    \   for (const auto& [i, right, k] :\r\n           path_rle | mtd::views::enumerate\
+    \ auto create_node(T num, T den) const { return Node(num, den); }\n\n    /*\n\
+    \     * Get the root node of the tree\n     **/\n    constexpr auto get_root()\
+    \ const { return Node::get_root(); }\n  };\n}  // namespace mtd\n#line 8 \"Test/DataStructure/SternBrocotTree.test.cpp\"\
+    \n// end:tag includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n\
+    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int t;\r\n  std::cin\
+    \ >> t;\r\n  mtd::SternBrocotTree<ll> sbt;\r\n  for (auto _ : std::views::iota(0,\
+    \ t)) {\r\n    std::string s;\r\n    std::cin >> s;\r\n\r\n    if (s == \"ENCODE_PATH\"\
+    ) {\r\n      ll a, b;\r\n      std::cin >> a >> b;\r\n      auto path_rle = sbt.encode(a,\
+    \ b);\r\n      std::cout << path_rle.size() << (path_rle.empty() ? \"\" : \" \"\
+    );\r\n      for (const auto& [i, right, k] :\r\n           path_rle | mtd::views::enumerate\
     \ | mtd::views::flatten) {\r\n        std::cout << (right ? 'R' : 'L') << \" \"\
     \ << k\r\n                  << (i == path_rle.size() - 1 ? \"\" : \" \");\r\n\
     \      }\r\n      std::cout << std::endl;\r\n    }\r\n\r\n    if (s == \"DECODE_PATH\"\
@@ -415,7 +416,7 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/SternBrocotTree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-01 04:31:27+09:00'
+  timestamp: '2025-06-02 23:06:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SternBrocotTree.test.cpp
