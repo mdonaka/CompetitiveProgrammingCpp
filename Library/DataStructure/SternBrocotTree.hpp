@@ -26,17 +26,44 @@ namespace mtd {
       }
 
     public:
+      static constexpr auto get_root() { return Node(0, 1, 1, 0); }
+
       constexpr auto get() const {
         return std::make_tuple(num_l + num_r, den_l + den_r);
       }
       constexpr auto get_l() const { return Node(num_l, den_l); }
       constexpr auto get_r() const { return Node(num_r, den_r); }
       constexpr auto get_path_rle() const { return path_rle; }
-      constexpr auto move_left(T d = 1) const {
-        return Node(num_l, den_l, d * num_l + num_r, d * den_l + den_r);
+
+      constexpr auto move_left(T d = 1) {
+        if (d == 0) { return false; }
+        path_rle.emplace_back(false, d);
+        num_r += d * num_l;
+        den_r += d * den_l;
+        return true;
       }
-      constexpr auto move_right(T d = 1) const {
-        return Node(num_l + d * num_r, den_l + d * den_r, num_r, den_r);
+      constexpr auto move_left_to(T num, T den) {
+        auto den_d = static_cast<CompT>(den);
+        auto num_d = static_cast<CompT>(num);
+        auto tmp = den_l * num_d - den_d * num_l;
+        T d =
+            (den_d * (num_l + num_r) - (den_l + den_r) * num_d + tmp - 1) / tmp;
+        return move_left(d);
+      }
+      constexpr auto move_right(T d = 1) {
+        if (d == 0) { return false; }
+        path_rle.emplace_back(true, d);
+        num_l += d * num_r;
+        den_l += d * den_r;
+        return true;
+      }
+      constexpr auto move_right_to(T num, T den) {
+        auto den_d = static_cast<CompT>(den);
+        auto num_d = static_cast<CompT>(num);
+        auto tmp = den_d * num_r - den_r * num_d;
+        T d =
+            ((den_l + den_r) * num_d - den_d * (num_l + num_r) + tmp - 1) / tmp;
+        return move_right(d);
       }
 
       constexpr static auto generate_node(T num, T den) {
@@ -50,43 +77,26 @@ namespace mtd {
           throw std::runtime_error("numerator and denominator must be coprime");
         }
 
-        // overflow対策
-        auto den_d = static_cast<CompT>(den);
-        auto num_d = static_cast<CompT>(num);
-
-        auto node = Node(0, 1, 1, 0);
+        auto node = get_root();
         Path path_rle;
         while (true) {
           if (node.get() == std::make_tuple(num, den)) { break; }
-          auto [num_now, den_now] = node.get();
-          if (num_now * den_d < den_now * num_d) {
-            // Move right
-            auto tmp = den_d * node.num_r - node.den_r * num_d;
-            T k = (den_now * num_d - den_d * num_now + tmp - 1) / tmp;
-            auto next_node = node.move_right(k);
-            path_rle.emplace_back(true, k);
-            std::swap(node, next_node);
-          } else {
-            // Move left
-            auto tmp = node.den_l * num_d - den_d * node.num_l;
-            T k = (den_d * num_now - den_now * num_d + tmp - 1) / tmp;
-            auto next_node = node.move_left(k);
-            path_rle.emplace_back(false, k);
-            std::swap(node, next_node);
-          }
+          node.move_left_to(num, den);
+          node.move_right_to(num, den);
         }
-        return Node(node.num_l, node.den_l, node.num_r, node.den_r,
-                    std::move(path_rle));
+        return node;
       }
 
       constexpr static auto decode(const Path& path_rle) {
-        auto run = [&](auto&& self, const Node& node, size_t itr) {
-          if (itr == path_rle.size()) { return node; }
-          auto [right, k] = path_rle[itr];
-          return self(self, right ? node.move_right(k) : node.move_left(k),
-                      itr + 1);
-        };
-        return run(run, Node(0, 1, 1, 0), 0);
+        auto node = get_root();
+        for (const auto& [right, k] : path_rle) {
+          if (right) {
+            node.move_right(k);
+          } else {
+            node.move_left(k);
+          }
+        }
+        return node;
       }
 
       constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle)
@@ -184,5 +194,10 @@ namespace mtd {
      * Create a node representing the fraction num/den
      **/
     constexpr auto create_node(T num, T den) const { return Node(num, den); }
+
+    /*
+     * Get the root node of the tree
+     **/
+    constexpr auto get_root() const { return Node::get_root(); }
   };
 }  // namespace mtd
