@@ -14,6 +14,9 @@ namespace mtd {
   class SternBrocotTree {
     using Path = std::vector<std::tuple<bool, T>>;
 
+    static constexpr T MAX_NUM = static_cast<T>(2e18);
+    static constexpr T MAX_DEN = static_cast<T>(2e18);
+
     class Node {
       // 定数倍高速化のため破壊的変更や怪しい仕様あり
       T num_l, den_l, num_r, den_r;
@@ -90,8 +93,9 @@ namespace mtd {
         return node;
       }
 
-      constexpr static auto decode(const Path& path_rle) {
-        auto node = get_root();
+      constexpr static auto decode(const Path& path_rle, T max_num = MAX_NUM,
+                                   T max_den = MAX_DEN) {
+        auto node = get_root(max_num, max_den);
         for (const auto& [right, k] : path_rle) {
           right ? node.move_right(k) : node.move_left(k);
         }
@@ -108,8 +112,9 @@ namespace mtd {
             max_num(max_num),
             max_den(max_den) {}
       constexpr Node(T num_l, T den_l, T num_r, T den_r)
-          : Node(num_l, den_l, num_r, den_r, Path()) {}
-      constexpr Node(T num, T den) : Node(generate_node(num, den)) {}
+          : Node(num_l, den_l, num_r, den_r, Path(), MAX_NUM, MAX_DEN) {}
+      constexpr Node(T num, T den)
+          : Node(generate_node(num, den, MAX_NUM, MAX_DEN)) {}
 
       constexpr auto operator!=(const Node& other) const {
         return std::tie(num_l, den_l, num_r, den_r) !=
@@ -146,7 +151,7 @@ namespace mtd {
       for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {
         auto [right1, k1] = p1;
         auto [right2, k2] = p2;
-        if (right1 != right2) { return Node::root(); }
+        if (right1 != right2) { return Node::get_root(MAX_NUM, MAX_DEN); }
         lca_path.emplace_back(right1, std::min(k1, k2));
         if (p1 != p2) { break; }
       }
@@ -195,16 +200,15 @@ namespace mtd {
     /*
      * Create a node representing the fraction num/den
      **/
-    constexpr auto create_node(T num, T den, T max_num = static_cast<T>(2e18),
-                               T max_den = static_cast<T>(2e18)) const {
+    constexpr auto create_node(T num, T den, T max_num = MAX_NUM,
+                               T max_den = MAX_DEN) const {
       return Node::generate_node(num, den, max_num, max_den);
     }
 
     /*
      * Get the root node of the tree
      **/
-    constexpr auto get_root(T max_num = static_cast<T>(2e18),
-                            T max_den = static_cast<T>(2e18)) const {
+    constexpr auto get_root(T max_num = MAX_NUM, T max_den = MAX_DEN) const {
       return Node::get_root(max_num, max_den);
     }
   };
