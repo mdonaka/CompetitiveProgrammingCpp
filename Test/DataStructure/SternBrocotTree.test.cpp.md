@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
@@ -269,31 +269,33 @@ data:
     \ product_n{};\n  }  // namespace views\n}  // namespace mtd\n#line 10 \"Library/DataStructure/SternBrocotTree.hpp\"\
     \n\nnamespace mtd {\n\n  template <class T, class CompT = long long>\n  class\
     \ SternBrocotTree {\n    using Path = std::vector<std::tuple<bool, T>>;\n\n  \
-    \  class Node {\n      // \u5B9A\u6570\u500D\u9AD8\u901F\u5316\u306E\u305F\u3081\
-    \u7834\u58CA\u7684\u5909\u66F4\u3084\u602A\u3057\u3044\u4ED5\u69D8\u3042\u308A\
-    \n      T num_l, den_l, num_r, den_r;\n      Path path_rle;\n      const T max_num;\n\
-    \      const T max_den;\n\n      friend std::ostream& operator<<(std::ostream&\
-    \ os, const Node& node) {\n        return os << node.num_l + node.num_r << \"\
-    /\" << node.den_l + node.den_r\n                  << \": \" << node.num_l << \"\
-    /\" << node.den_l << \" \"\n                  << node.num_r << \"/\" << node.den_r;\n\
-    \      }\n\n    public:\n      static constexpr auto get_root(T max_num, T max_den)\
-    \ {\n        return Node(0, 1, 1, 0, Path(), max_num, max_den);\n      }\n\n \
-    \     constexpr auto get() const {\n        return std::make_tuple(num_l + num_r,\
-    \ den_l + den_r);\n      }\n      constexpr auto get_l() const { return Node(num_l,\
-    \ den_l); }\n      constexpr auto get_r() const { return Node(num_r, den_r); }\n\
-    \      constexpr auto get_path_rle() const { return path_rle; }\n\n      constexpr\
-    \ auto move_left(T d = 1) {\n        if (num_l > 0) { d = std::min(d, (max_num\
-    \ - num_r - num_l) / num_l); }\n        if (den_l > 0) { d = std::min(d, (max_den\
-    \ - den_r - den_l) / den_l); }\n        if (d <= 0) { return false; }\n      \
-    \  path_rle.emplace_back(false, d);\n        num_r += d * num_l;\n        den_r\
-    \ += d * den_l;\n        return true;\n      }\n      constexpr auto move_left_to(T\
-    \ num, T den) {\n        auto den_d = static_cast<CompT>(den);\n        auto num_d\
-    \ = static_cast<CompT>(num);\n        auto tmp = den_l * num_d - den_d * num_l;\n\
-    \        T d =\n            (den_d * (num_l + num_r) - (den_l + den_r) * num_d\
-    \ + tmp - 1) / tmp;\n        return move_left(d);\n      }\n      constexpr auto\
-    \ move_right(T d = 1) {\n        if (num_r > 0) { d = std::min(d, (max_num - num_l\
-    \ - num_r) / num_r); }\n        if (den_r > 0) { d = std::min(d, (max_den - den_l\
-    \ - den_r) / den_r); }\n        if (d <= 0) { return false; }\n        path_rle.emplace_back(true,\
+    \  static constexpr T MAX_NUM = static_cast<T>(2e18);\n    static constexpr T\
+    \ MAX_DEN = static_cast<T>(2e18);\n\n    class Node {\n      // \u5B9A\u6570\u500D\
+    \u9AD8\u901F\u5316\u306E\u305F\u3081\u7834\u58CA\u7684\u5909\u66F4\u3084\u602A\
+    \u3057\u3044\u4ED5\u69D8\u3042\u308A\n      T num_l, den_l, num_r, den_r;\n  \
+    \    Path path_rle;\n      const T max_num;\n      const T max_den;\n\n      friend\
+    \ std::ostream& operator<<(std::ostream& os, const Node& node) {\n        return\
+    \ os << node.num_l + node.num_r << \"/\" << node.den_l + node.den_r\n        \
+    \          << \": \" << node.num_l << \"/\" << node.den_l << \" \"\n         \
+    \         << node.num_r << \"/\" << node.den_r;\n      }\n\n    public:\n    \
+    \  static constexpr auto get_root(T max_num, T max_den) {\n        return Node(0,\
+    \ 1, 1, 0, Path(), max_num, max_den);\n      }\n\n      constexpr auto get() const\
+    \ {\n        return std::make_tuple(num_l + num_r, den_l + den_r);\n      }\n\
+    \      constexpr auto get_l() const { return Node(num_l, den_l); }\n      constexpr\
+    \ auto get_r() const { return Node(num_r, den_r); }\n      constexpr auto get_path_rle()\
+    \ const { return path_rle; }\n\n      constexpr auto move_left(T d = 1) {\n  \
+    \      if (num_l > 0) { d = std::min(d, (max_num - num_r - num_l) / num_l); }\n\
+    \        if (den_l > 0) { d = std::min(d, (max_den - den_r - den_l) / den_l);\
+    \ }\n        if (d <= 0) { return false; }\n        path_rle.emplace_back(false,\
+    \ d);\n        num_r += d * num_l;\n        den_r += d * den_l;\n        return\
+    \ true;\n      }\n      constexpr auto move_left_to(T num, T den) {\n        auto\
+    \ den_d = static_cast<CompT>(den);\n        auto num_d = static_cast<CompT>(num);\n\
+    \        auto tmp = den_l * num_d - den_d * num_l;\n        T d =\n          \
+    \  (den_d * (num_l + num_r) - (den_l + den_r) * num_d + tmp - 1) / tmp;\n    \
+    \    return move_left(d);\n      }\n      constexpr auto move_right(T d = 1) {\n\
+    \        if (num_r > 0) { d = std::min(d, (max_num - num_l - num_r) / num_r);\
+    \ }\n        if (den_r > 0) { d = std::min(d, (max_den - den_l - den_r) / den_r);\
+    \ }\n        if (d <= 0) { return false; }\n        path_rle.emplace_back(true,\
     \ d);\n        num_l += d * num_r;\n        den_l += d * den_r;\n        return\
     \ true;\n      }\n      constexpr auto move_right_to(T num, T den) {\n       \
     \ auto den_d = static_cast<CompT>(den);\n        auto num_d = static_cast<CompT>(num);\n\
@@ -307,37 +309,40 @@ data:
     numerator and denominator must be coprime\");\n        }\n\n        auto node\
     \ = get_root(max_num, max_den);\n        while (node.move_left_to(num, den) ||\
     \ node.move_right_to(num, den)) {}\n        return node;\n      }\n\n      constexpr\
-    \ static auto decode(const Path& path_rle) {\n        auto node = get_root();\n\
-    \        for (const auto& [right, k] : path_rle) {\n          right ? node.move_right(k)\
-    \ : node.move_left(k);\n        }\n        return node;\n      }\n\n      constexpr\
-    \ Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle,\n                \
-    \     T max_num, T max_den)\n          : num_l(num_l),\n            den_l(den_l),\n\
-    \            num_r(num_r),\n            den_r(den_r),\n            path_rle(std::move(path_rle)),\n\
-    \            max_num(max_num),\n            max_den(max_den) {}\n      constexpr\
-    \ Node(T num_l, T den_l, T num_r, T den_r)\n          : Node(num_l, den_l, num_r,\
-    \ den_r, Path()) {}\n      constexpr Node(T num, T den) : Node(generate_node(num,\
-    \ den)) {}\n\n      constexpr auto operator!=(const Node& other) const {\n   \
-    \     return std::tie(num_l, den_l, num_r, den_r) !=\n               std::tie(other.num_l,\
-    \ other.den_l, other.num_r, other.den_r);\n      }\n      constexpr auto operator==(const\
-    \ Node& other) const {\n        return !(*this != other);\n      }\n    };\n\n\
-    \  public:\n    /*\n     * Encode the path from the root to the fraction num/den\n\
-    \     **/\n    constexpr auto encode(const Node& node) const {\n      return node.get_path_rle();\n\
-    \    }\n    constexpr auto encode(T num, T den) const { return encode(Node(num,\
-    \ den)); }\n\n    /*\n     * Decode the path from the root to the fraction represented\
-    \ by\n     **/\n    constexpr auto decode(const Path& path_rle) const {\n    \
-    \  return Node::decode(path_rle);\n    }\n\n    /*\n     * Find the lowest common\
-    \ ancestor of two fractions num1/den1 and num2/den2\n     **/\n    constexpr auto\
-    \ lca(const Node& node1, const Node& node2) const {\n      auto path_rle1 = encode(node1);\n\
-    \      auto path_rle2 = encode(node2);\n      Path lca_path;\n      for (const\
-    \ auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {\n        auto [right1,\
-    \ k1] = p1;\n        auto [right2, k2] = p2;\n        if (right1 != right2) {\
-    \ return Node::root(); }\n        lca_path.emplace_back(right1, std::min(k1, k2));\n\
-    \        if (p1 != p2) { break; }\n      }\n      return decode(lca_path);\n \
-    \   }\n    constexpr auto lca(T num1, T den1, T num2, T den2) const {\n      return\
-    \ lca(Node(num1, den1), Node(num2, den2));\n    }\n\n    /*\n     * Find the k-th\
-    \ ancestor of the fraction num/den\n     **/\n    constexpr auto ancestor(const\
-    \ Node& node, T k) const {\n      Path k_path_rle;\n      for (const auto& [right,\
-    \ count] : encode(node)) {\n        if (count > k) {\n          k_path_rle.emplace_back(right,\
+    \ static auto decode(const Path& path_rle, T max_num = MAX_NUM,\n            \
+    \                       T max_den = MAX_DEN) {\n        auto node = get_root(max_num,\
+    \ max_den);\n        for (const auto& [right, k] : path_rle) {\n          right\
+    \ ? node.move_right(k) : node.move_left(k);\n        }\n        return node;\n\
+    \      }\n\n      constexpr Node(T num_l, T den_l, T num_r, T den_r, Path&& path_rle,\n\
+    \                     T max_num, T max_den)\n          : num_l(num_l),\n     \
+    \       den_l(den_l),\n            num_r(num_r),\n            den_r(den_r),\n\
+    \            path_rle(std::move(path_rle)),\n            max_num(max_num),\n \
+    \           max_den(max_den) {}\n      constexpr Node(T num_l, T den_l, T num_r,\
+    \ T den_r)\n          : Node(num_l, den_l, num_r, den_r, Path(), MAX_NUM, MAX_DEN)\
+    \ {}\n      constexpr Node(T num, T den)\n          : Node(generate_node(num,\
+    \ den, MAX_NUM, MAX_DEN)) {}\n\n      constexpr auto operator!=(const Node& other)\
+    \ const {\n        return std::tie(num_l, den_l, num_r, den_r) !=\n          \
+    \     std::tie(other.num_l, other.den_l, other.num_r, other.den_r);\n      }\n\
+    \      constexpr auto operator==(const Node& other) const {\n        return !(*this\
+    \ != other);\n      }\n    };\n\n  public:\n    /*\n     * Encode the path from\
+    \ the root to the fraction num/den\n     **/\n    constexpr auto encode(const\
+    \ Node& node) const {\n      return node.get_path_rle();\n    }\n    constexpr\
+    \ auto encode(T num, T den) const { return encode(Node(num, den)); }\n\n    /*\n\
+    \     * Decode the path from the root to the fraction represented by\n     **/\n\
+    \    constexpr auto decode(const Path& path_rle) const {\n      return Node::decode(path_rle);\n\
+    \    }\n\n    /*\n     * Find the lowest common ancestor of two fractions num1/den1\
+    \ and num2/den2\n     **/\n    constexpr auto lca(const Node& node1, const Node&\
+    \ node2) const {\n      auto path_rle1 = encode(node1);\n      auto path_rle2\
+    \ = encode(node2);\n      Path lca_path;\n      for (const auto [p1, p2] : mtd::views::zip(path_rle1,\
+    \ path_rle2)) {\n        auto [right1, k1] = p1;\n        auto [right2, k2] =\
+    \ p2;\n        if (right1 != right2) { return Node::get_root(MAX_NUM, MAX_DEN);\
+    \ }\n        lca_path.emplace_back(right1, std::min(k1, k2));\n        if (p1\
+    \ != p2) { break; }\n      }\n      return decode(lca_path);\n    }\n    constexpr\
+    \ auto lca(T num1, T den1, T num2, T den2) const {\n      return lca(Node(num1,\
+    \ den1), Node(num2, den2));\n    }\n\n    /*\n     * Find the k-th ancestor of\
+    \ the fraction num/den\n     **/\n    constexpr auto ancestor(const Node& node,\
+    \ T k) const {\n      Path k_path_rle;\n      for (const auto& [right, count]\
+    \ : encode(node)) {\n        if (count > k) {\n          k_path_rle.emplace_back(right,\
     \ k);\n          k = 0;\n          break;\n        } else {\n          k_path_rle.emplace_back(right,\
     \ count);\n          k -= count;\n        }\n      }\n      if (k > 0) { throw\
     \ std::runtime_error(\"k is too large for the path\"); }\n      return decode(k_path_rle);\n\
@@ -351,11 +356,10 @@ data:
     \ }\n      return std::make_tuple(node.get_l(), node.get_r());\n    }\n    constexpr\
     \ auto range(T num, T den) const { return range(Node(num, den)); }\n\n    /*\n\
     \     * Create a node representing the fraction num/den\n     **/\n    constexpr\
-    \ auto create_node(T num, T den, T max_num = static_cast<T>(2e18),\n         \
-    \                      T max_den = static_cast<T>(2e18)) const {\n      return\
-    \ Node::generate_node(num, den, max_num, max_den);\n    }\n\n    /*\n     * Get\
-    \ the root node of the tree\n     **/\n    constexpr auto get_root(T max_num =\
-    \ static_cast<T>(2e18),\n                            T max_den = static_cast<T>(2e18))\
+    \ auto create_node(T num, T den, T max_num = MAX_NUM,\n                      \
+    \         T max_den = MAX_DEN) const {\n      return Node::generate_node(num,\
+    \ den, max_num, max_den);\n    }\n\n    /*\n     * Get the root node of the tree\n\
+    \     **/\n    constexpr auto get_root(T max_num = MAX_NUM, T max_den = MAX_DEN)\
     \ const {\n      return Node::get_root(max_num, max_den);\n    }\n  };\n}  //\
     \ namespace mtd\n#line 8 \"Test/DataStructure/SternBrocotTree.test.cpp\"\n// end:tag\
     \ includes\r\n\r\nusing ll = long long;\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\
@@ -424,8 +428,8 @@ data:
   isVerificationFile: true
   path: Test/DataStructure/SternBrocotTree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-03 00:50:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-03 01:16:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SternBrocotTree.test.cpp
 layout: document

@@ -61,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SternBrocotTree.hpp
       title: Library/DataStructure/SternBrocotTree.hpp
   - name: Library/Graph/Flow
@@ -171,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/String
@@ -196,7 +196,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Tuple.hpp
       title: Library/Utility/Tuple.hpp
     - icon: ':heavy_check_mark:'
@@ -312,7 +312,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentTree_minleft.test.cpp
       title: Test/DataStructure/SegmentTree_minleft.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SternBrocotTree.test.cpp
       title: Test/DataStructure/SternBrocotTree.test.cpp
   - name: Test/Graph/Flow
