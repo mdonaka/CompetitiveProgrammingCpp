@@ -68,8 +68,8 @@ if __name__ == "__main__":
 
     ok = True
     repeat = 10**3
-    for cnt in range(repeat):
-        if cnt % 100 == 0:
+    for cnt in range(1, repeat + 1):
+        if cnt == 1 or cnt % 100 == 0:
             print(f"Running test {cnt}...", file=sys.stderr)
         if not compare(
             main_src.as_posix(), correct_src.as_posix(), testcases_src.as_posix()
