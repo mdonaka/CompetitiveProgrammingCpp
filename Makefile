@@ -2,20 +2,16 @@
 
 SRC ?= main.cpp
 SRC_CORRECT ?= main_correct.cpp
+SRC_TESTCASES ?= main_testcases.cpp
 BUILD_DIR := Bin/
 
 SRC_FLAT = $(subst /,_,$(SRC))
 SRC_COPY_FLAT = $(BUILD_DIR)/$(SRC_FLAT:.cpp=_copy.cpp)
 BIN_RUN = $(BUILD_DIR)/$(SRC_FLAT:.cpp=.out)
-
-SRC_CORRECT_FLAT = $(subst /,_,$(SRC_CORRECT))
-SRC_CORRECT_COPY_FLAT = $(BUILD_DIR)/$(SRC_FLAT:.cpp=_copy.cpp)
-BIN_CORRECT = $(BUILD_DIR)/$(SRC_CORRECT_FLAT:.cpp=.out)
-
 BIN_TEST := $(BUILD_DIR)/test.out
 
 OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion
-DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d) $(BIN_CORRECT:.out=.d)
+DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 HEADERS = $(shell find ./ -name "*.hpp")
 
 $(SRC_COPY_FLAT): $(SRC) $(HEADERS)
@@ -24,15 +20,14 @@ $(SRC_COPY_FLAT): $(SRC) $(HEADERS)
 $(BIN_RUN): $(SRC) $(HEADERS)
 	@g++-12 $(OPTION) $< -MMD -MP -o $@
 
-$(BIN_CORRECT): $(SRC_CORRECT) $(HEADERS)
-	@g++-12 $(OPTION) $< -MMD -MP -o $@
-
 $(BIN_TEST): $(SRC) $(HEADERS)
 	@g++-12 $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: ## reset
 	@cp Library/Main/$(SRC) ./$(SRC)
+	@cp Library/Main/$(SRC) ./$(SRC_CORRECT)
+	@cp Library/Main/$(SRC) ./$(SRC_TESTCASES)
 
 .PHONY: y
 y: $(SRC_COPY_FLAT) ## yank
@@ -46,13 +41,9 @@ r: $(BIN_RUN) ## run
 ri: $(BIN_RUN) ## run without input
 	@./$^
 
-# .PHONY: t
-# t: $(BIN_TEST) ## test
-# 	@./$^ < i | tee i
-
 .PHONY: t
-t: $(BIN_RUN) $(BIN_CORRECT) ## test
-	@python Command/debug_compare.py $^
+t: ## test
+	@python Command/debug_compare.py $(SRC) $(SRC_CORRECT) $(SRC_TESTCASES) | tee i
 
 .PHONY: c
 c: $(BIN_RUN) ## compile
