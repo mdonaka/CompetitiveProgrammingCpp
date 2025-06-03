@@ -1,64 +1,85 @@
-import contextlib
-import os
-import subprocess
 import sys
-from typing import Generator, TextIO
+from pathlib import Path
+import subprocess
+import os
+from runner import process_pipe_communication, popen_cpp
+from runner.pipe import ospipe
 
 
-@contextlib.contextmanager
-def pipe() -> Generator[tuple[TextIO, TextIO], None, None]:
-    fd_in, fd_out = os.pipe()
-    fobj_in = os.fdopen(fd_in, "r")
-    fobj_out = os.fdopen(fd_out, "w")
-    try:
-        yield fobj_in, fobj_out
-    finally:
-        fobj_out.close()
-        fobj_in.close()
+def reset(src: Path) -> None:
+    if os.path.exists(src.as_posix().replace(".cpp", ".o")):
+        os.remove(src.as_posix().replace(".cpp", ".o"))
 
 
-def run(command: str, judge: str) -> bool:
-    with pipe() as (fobj_in1, fobj_out1):
-        with pipe() as (fobj_in2, fobj_out2):
-            proc1 = subprocess.Popen(
-                command, shell=True, stdin=fobj_in2, stdout=fobj_out1, stderr=sys.stderr
-            )
-            proc2 = subprocess.Popen(
-                judge,
-                shell=True,
-                stdin=fobj_in1,
-                stdout=fobj_out2,
-                stderr=subprocess.PIPE,
-                text=True,
-            )
-            proc1.communicate()
-            [_, err] = proc2.communicate()
-
-            if proc1.returncode == 0 and proc2.returncode == 0:
-                return True
-
-            print("--- input ---", file=sys.stderr)
-            print(err)
-            print("-------------", file=sys.stderr, flush=True)
-            if proc1.returncode != 0:
-                print("RE", file=sys.stderr)
-            else:
-                print("WA", file=sys.stderr)
+def compare(src: str, correct: str, testcases: str) -> bool:
+    with ospipe() as (fobj_in, fobj_out):
+        try:
+            testcases_process = popen_cpp(testcases, None, fobj_out)
+            testcases_process.communicate()
+            fobj_out.close()
+            testcases_output = "".join(fobj_in.readlines())
+        except RuntimeError as e:
+            print(f"Error during testcases execution: {e}", file=sys.stderr)
             return False
+
+    with ospipe() as (fobj_in, fobj_out):
+        try:
+            fobj_out.write(testcases_output)
+            fobj_out.close()
+            src_process = popen_cpp(src, fobj_in, subprocess.PIPE)
+            src_output, _ = src_process.communicate()
+            src_output = src_output.strip()
+        except RuntimeError as e:
+            print(f"Error during source execution: {e}", file=sys.stderr)
+            return False
+
+    with ospipe() as (fobj_in, fobj_out):
+        try:
+            fobj_out.write(testcases_output)
+            fobj_out.close()
+            correct_process = popen_cpp(correct, fobj_in, subprocess.PIPE)
+            correct_output, _ = correct_process.communicate()
+            correct_output = correct_output.strip()
+        except RuntimeError as e:
+            print(f"Error during correct source execution: {e}", file=sys.stderr)
+            return False
+
+    if src_output != correct_output:
+        print(testcases_output)
+        print(f"Expected: {correct_output}\nGot: {src_output}")
+        return False
+    return True
 
 
 if __name__ == "__main__":
     args = sys.argv
-    if len(args) != 3:
-        raise RuntimeError("USAGE: python {this file} {bin file} {correct bin file}")
+    if len(args) != 4:
+        raise RuntimeError(
+            "USAGE: python {this file} {main src file} {correct src file} {testcases file}"
+        )
 
-    main_bin = args[1]
-    correct_bin = args[2]
+    main_src = Path.cwd() / args[1]
+    correct_src = Path.cwd() / args[2]
+    testcases_src = Path.cwd() / args[3]
 
-    for cnt in range(10**3):
+    reset(main_src)
+    reset(correct_src)
+    reset(testcases_src)
+
+    ok = True
+    repeat = 10**3
+    for cnt in range(repeat):
         if cnt % 100 == 0:
             print(f"Running test {cnt}...", file=sys.stderr)
-        if not run(main_bin, correct_bin):
+        if not compare(
+            main_src.as_posix(), correct_src.as_posix(), testcases_src.as_posix()
+        ):
             print(f"Test {cnt} failed", file=sys.stderr)
+            ok = False
             break
-    print("All tests passed!", file=sys.stderr)
+    if ok:
+        print("All tests passed!", file=sys.stderr)
+
+    reset(main_src)
+    reset(correct_src)
+    reset(testcases_src)
