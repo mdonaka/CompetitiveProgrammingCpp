@@ -39,8 +39,8 @@ if __name__ == "__main__":
     reset(judge_src)
 
     repeat = 10**3
-    for cnt in range(repeat):
-        if cnt % 100 == 0:
+    for cnt in range(1, repeat + 1):
+        if cnt == 1 or cnt % 100 == 0:
             print(f"Running test {cnt}...", file=sys.stderr)
         if not run(main_src.as_posix(), judge_src.as_posix()):
             print(f"Test {cnt} failed", file=sys.stderr)
