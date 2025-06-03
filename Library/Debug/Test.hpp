@@ -151,62 +151,6 @@ namespace mtd {
         return std::make_tuple((std::forward<T>(t).generate(mt))...);
       }
     };
-
-    namespace Inner {
-      template <int N>
-      struct Expand {
-        template <typename F, typename Tuple, typename... Args>
-        static auto apply(F& f, Tuple& t, Args&... args) {
-          return Expand<N - 1>::apply(f, t, std::get<N - 1>(t), args...);
-        }
-      };
-
-      template <>
-      struct Expand<0> {
-        template <typename F, typename Tuple, typename... Args>
-        static auto apply(F& f, Tuple&, Args&... args) {
-          return f(args...);
-        }
-      };
-
-      template <typename F, typename Tuple>
-      auto apply(F& f, Tuple& t) {
-        return Expand<std::tuple_size<Tuple>::value>::apply(f, t);
-      }
-    };  // namespace Inner
-
-    class RandomCaseDebugger {
-    public:
-      auto compare(int conut, const auto& gen, const auto& outputer,
-                   const auto& solver1, const auto& solver2,
-                   int output_itr = 1000) {
-        for (int i = 1; i <= conut; ++i) {
-          if (i == 1 || (i > 0 && i % output_itr == 0)) {
-            std::cerr << "-- " << i << "th run -" << endl;
-          }
-          auto args = gen();
-          auto ans1 = Inner::apply(solver1, args);
-          auto ans2 = Inner::apply(solver2, args);
-          if (ans1 != ans2) {
-            std::cerr << "Failed test" << std::endl;
-            auto t = std::tuple_cat(args, std::make_tuple(ans1, ans2));
-            Inner::apply(outputer, t);
-            return false;
-          }
-        }
-        std::cerr << "All test are success!" << std::endl;
-        return true;
-      }
-      auto run(int conut, const auto& gen, const auto& solver) {
-        auto tm = Timer::LapTimer();
-        for (int i = 1; i <= conut; ++i) {
-          Timer::SimpleTimer();
-          auto args = gen();
-          Inner::apply(solver, args);
-          tm.print<Timer::UNITS::MILLI>();
-        }
-      }
-    };
   }  // namespace debug
 
   template <class T = long long>
