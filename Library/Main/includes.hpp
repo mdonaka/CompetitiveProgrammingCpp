@@ -33,9 +33,4 @@ namespace mtd {
   template <class T>
   using tvec = mtd::io::type::vec<T>;
   template <class T>
-  using tmat = mtd::io::type::mat<T>;
-  using mtd::io::in;
-
-  template <class... Args>
-  inline constexpr auto ins = mtd::views::istream<Args...>;
 }  // namespace mtd
