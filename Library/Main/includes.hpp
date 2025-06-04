@@ -32,5 +32,4 @@ namespace mtd {
 
   template <class T>
   using tvec = mtd::io::type::vec<T>;
-  template <class T>
 }  // namespace mtd
