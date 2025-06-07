@@ -171,6 +171,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
+    - icon: ':warning:'
+      path: Library/Range/set.hpp
+      title: Library/Range/set.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
