@@ -1,6 +1,7 @@
 #include "./bit.hpp"
 #include "./check.hpp"
 #include "./istream.hpp"
+#include "./set.hpp"
 #include "./util.hpp"
 
 namespace mtd {
@@ -199,4 +200,7 @@ int main() {
 
   // istream
   // mtd::check::all<mtd::ranges::istream_view<int>>();
+
+  // set
+  // mtd::check::all<mtd::ranges::base_k_product_view>();
 }
