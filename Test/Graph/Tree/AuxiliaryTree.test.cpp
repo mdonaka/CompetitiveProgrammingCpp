@@ -15,7 +15,7 @@ int main() {
   for (auto _ : std::views::iota(0, n - 1)) {
     int f, t, c;
     std::cin >> f >> t >> c;
-    tree.addEdgeUndirected(f, t, c);
+    tree.addEdge(f, t, c);
   }
 
   auto at = mtd::AuxiliaryTree(tree);

@@ -21,7 +21,7 @@ signed main() {
     cin >> u >> v;
     --u;
     --v;
-    tree.addEdgeUndirected(u, v);
+    tree.addEdge(u, v);
   }
 
   std::vector<int> dp1(n);

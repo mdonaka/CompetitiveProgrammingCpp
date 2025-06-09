@@ -19,7 +19,7 @@ int main() {
     for ([[maybe_unused]] auto _ : std::views::iota(0, m)) {
       int v;
       std::cin >> v;
-      graph.addEdge(u, v - 1);
+      graph.addArc(u, v - 1);
     }
   }
 

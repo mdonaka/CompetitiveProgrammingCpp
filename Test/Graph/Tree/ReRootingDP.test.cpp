@@ -32,7 +32,7 @@ int main() {
   for ([[maybe_unused]] auto _ : std::views::iota(0, n - 1)) {
     int u, v;
     std::cin >> u >> v;
-    graph.addEdgeUndirected(u - 1, v - 1);
+    graph.addEdge(u - 1, v - 1);
   }
 
   std::vector<mint> at;

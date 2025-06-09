@@ -19,13 +19,13 @@ signed main() {
   for (int i = 0; i < m; ++i) {
     int s, t, d;
     std::cin >> s >> t >> d;
-    graph_all.addEdgeUndirected(s - 1, t - 1, d);
+    graph_all.addEdge(s - 1, t - 1, d);
   }
 
   auto solve = [&](int w) {
     auto graph = mtd::Graph(n);
     for (const auto& [s, t, d] : graph_all.getEdges()) {
-      if (w <= d) { graph.addEdge(s, t); }
+      if (w <= d) { graph.addArc(s, t); }
     }
 
     std::vector<int> dv(n);

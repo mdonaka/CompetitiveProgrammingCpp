@@ -23,7 +23,7 @@ signed main() {
     for (int _ = 0; _ < k; ++_) {
       int t;
       std::cin >> t;
-      tree.addEdge(f, t);
+      tree.addArc(f, t);
     }
   }
 

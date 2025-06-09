@@ -20,7 +20,7 @@ int main() {
   for ([[maybe_unused]] auto _ : std::views::iota(0, n - 1)) {
     int s, t, w;
     std::cin >> s >> t >> w;
-    graph.addEdgeUndirected(s, t, w);
+    graph.addEdge(s, t, w);
   }
 
   auto op = [](int a, int b) { return std::max(a, b); };

@@ -22,7 +22,7 @@ signed main() {
     for (int _ = 0; _ < k; ++_) {
       int t;
       cin >> t;
-      tree.addEdgeUndirected(f, t);
+      tree.addEdge(f, t);
     }
   }
 

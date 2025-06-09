@@ -26,8 +26,8 @@ signed main() {
     for (int _ = 0; _ < k; ++_) {
       int t;
       std::cin >> t;
-      tree.addEdgeUndirected(f, add);
-      tree.addEdgeUndirected(t, add);
+      tree.addEdge(f, add);
+      tree.addEdge(t, add);
       ++add;
     }
   }
