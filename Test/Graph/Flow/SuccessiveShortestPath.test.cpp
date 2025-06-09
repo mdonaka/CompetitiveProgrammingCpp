@@ -19,7 +19,7 @@ signed main() {
   for (int i = 0; i < m; ++i) {
     int u, v, c, d;
     cin >> u >> v >> c >> d;
-    graph.addEdge(u, v, std::make_pair(c, d));
+    graph.addArc(u, v, std::make_pair(c, d));
   }
 
   auto mcf = mtd::SuccessiveShortestPath(graph);

@@ -20,7 +20,7 @@ signed main() {
   for (int i = 0; i < m; ++i) {
     int u, v, c;
     cin >> u >> v >> c;
-    graph.addEdge(u, v, c);
+    graph.addArc(u, v, c);
   }
 
   auto min_cost = mtd::dijkstra(graph, r);

@@ -20,7 +20,7 @@ signed main() {
   for (int i = 0; i < m; ++i) {
     int s, t, w;
     cin >> s >> t >> w;
-    graph.addEdgeUndirected(s, t, w);
+    graph.addEdge(s, t, w);
   }
 
   auto min_spanning_tree = mtd::kruskal(graph);

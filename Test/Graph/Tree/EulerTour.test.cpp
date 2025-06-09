@@ -16,7 +16,7 @@ signed main() {
   for ([[maybe_unused]] auto _ : std::views::iota(0, n - 1)) {
     int a, b;
     std::cin >> a >> b;
-    tree.addEdgeUndirected(a - 1, b - 1);
+    tree.addEdge(a - 1, b - 1);
   }
 
   auto et = mtd::EulerTour(tree);

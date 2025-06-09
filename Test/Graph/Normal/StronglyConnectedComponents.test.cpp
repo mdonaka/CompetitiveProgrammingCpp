@@ -13,7 +13,7 @@ signed main() {
 
   auto [n, m] = mtd::io::in<int, int>();
   auto graph = mtd::Graph(n);
-  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addEdge(f, t); }
+  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addArc(f, t); }
 
   auto scc = mtd::StronglyConnectedComponents(std::move(graph));
 

@@ -6,11 +6,8 @@
 #include <vector>
 
 namespace mtd {
-  template <class Node = int, class Cost = long long>
+  template <class Node = long long, class Cost = long long>
   class Graph {
-    // using Node = int;
-    // using Cost = long long;
-
     using Edge = std::pair<Node, Cost>;
     using Edges = std::vector<Edge>;
 
@@ -21,13 +18,39 @@ namespace mtd {
     Graph(int n) : m_n(n), m_graph(n) {}
     Graph(const std::vector<Edges>& edges)
         : m_n(edges.size()), m_graph(edges) {}
+    Graph(int n, const std::vector<std::tuple<Node, Node>>& edges,
+          bool is_arc = false, bool is_index1 = true)
+        : Graph<Node, Cost>(n) {
+      for (auto [u, v] : edges) {
+        u -= is_index1;
+        v -= is_index1;
+        if (is_arc) {
+          addArc(u, v);
+        } else {
+          addEdge(u, v);
+        }
+      }
+    }
+    Graph(int n, const std::vector<std::tuple<Node, Node, Cost>>& edges,
+          bool is_arc = false, bool is_index1 = true)
+        : Graph<Node, Cost>(n) {
+      for (auto [u, v, c] : edges) {
+        u -= is_index1;
+        v -= is_index1;
+        if (is_arc) {
+          addArc(u, v, c);
+        } else {
+          addEdge(u, v, c);
+        }
+      }
+    }
 
     auto addEdge(const Node& f, const Node& t, const Cost& c = 1) {
-      m_graph[f].emplace_back(t, c);
+      addArc(f, t, c);
+      addArc(t, f, c);
     }
-    auto addEdgeUndirected(const Node& f, const Node& t, const Cost& c = 1) {
-      addEdge(f, t, c);
-      addEdge(t, f, c);
+    auto addArc(const Node& f, const Node& t, const Cost& c = 1) {
+      m_graph[f].emplace_back(t, c);
     }
     auto getEdges(const Node& from) const {
       class EdgesRange {
@@ -60,7 +83,7 @@ namespace mtd {
     }
     auto reverse() const {
       auto rev = Graph<Node, Cost>(m_n);
-      for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to, from, c); }
+      for (const auto& [from, to, c] : getEdges()) { rev.addArc(to, from, c); }
       return rev;
     }
     auto size() const { return m_n; };
