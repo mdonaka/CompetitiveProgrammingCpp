@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SegmentTree.hpp
     title: Library/DataStructure/SegmentTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
   _extendedVerifiedWith:
@@ -60,18 +60,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
     title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/ReRootingDP.test.cpp
     title: Test/Graph/Tree/ReRootingDP.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/ReRootingDP_cost.test.cpp
     title: Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/String/LCPArray.test.cpp
     title: Test/String/LCPArray.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algebraic/Monoid.hpp\"\n\n#include <iostream>\n\n\
@@ -113,26 +113,26 @@ data:
   - Library/DataStructure/DynamicSegmentTree.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
   timestamp: '2024-12-27 16:29:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/String/LCPArray.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
-  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
-  - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/DynamicSegmentTree.test.cpp
+  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
+  - Test/DataStructure/SegmentTree_minleft.test.cpp
+  - Test/DataStructure/DynamicSegmentTree_RMQ.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_maxright.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRMQ.test.cpp
   - Test/DataStructure/LazySegmentTree_RUQRSQ.test.cpp
-  - Test/DataStructure/SegmentTree_minleft.test.cpp
+  - Test/DataStructure/LazySegmentTree_RAQRSQ.test.cpp
   - Test/DataStructure/SegmentTree_maxright.test.cpp
-  - Test/DataStructure/LazySegmentTree_RUQRMQ.test.cpp
   - Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
+  - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/Algebraic/Monoid.hpp
 layout: document
 redirect_from:

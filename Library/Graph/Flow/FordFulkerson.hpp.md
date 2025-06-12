@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
@@ -18,18 +18,27 @@ data:
     \n#include <map>\r\n#include <queue>\r\n#include <unordered_map>\r\n#include <unordered_set>\r\
     \n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\
     \n#include <iostream>\r\n#include <ranges>\r\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
-    \n\r\nnamespace mtd {\r\n  template <class Node = int, class Cost = long long>\r\
-    \n  class Graph {\r\n    // using Node = int;\r\n    // using Cost = long long;\r\
-    \n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
-    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\
-    \n    Graph(int n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>&\
-    \ edges)\r\n        : m_n(edges.size()), m_graph(edges) {}\r\n\r\n    auto addEdge(const\
+    \n\r\nnamespace mtd {\r\n  template <class Node = long long, class Cost = long\
+    \ long>\r\n  class Graph {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n), m_graph(n) {}\r\n  \
+    \  Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()), m_graph(edges)\
+    \ {}\r\n    Graph(int n, const std::vector<std::tuple<Node, Node>>& edges,\r\n\
+    \          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v);\r\
+    \n        } else {\r\n          addEdge(u, v);\r\n        }\r\n      }\r\n   \
+    \ }\r\n    Graph(int n, const std::vector<std::tuple<Node, Node, Cost>>& edges,\r\
+    \n          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v, c);\r\
+    \n        } else {\r\n          addEdge(u, v, c);\r\n        }\r\n      }\r\n\
+    \    }\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n      addArc(f, t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t,\
-    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
-    \ Cost& c = 1) {\r\n      addEdge(f, t, c);\r\n      addEdge(t, f, c);\r\n   \
-    \ }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange {\r\
-    \n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\n\
-    \        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
+    \ c);\r\n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
+    \ {\r\n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\
+    \n        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
     \n        auto begin() const { return b; }\r\n        auto end() const { return\
     \ e; }\r\n      };\r\n      return EdgesRange(m_graph[from]);\r\n    }\r\n   \
     \ auto getEdges() const {\r\n      std::deque<std::tuple<Node, Node, Cost>> edges;\r\
@@ -40,7 +49,7 @@ data:
     \ from : std::views::iota(0, m_n)) {\r\n        for (const auto& [to, _] : getEdges(from))\
     \ {\r\n          edges.emplace_back(from, to);\r\n        }\r\n      }\r\n   \
     \   return edges;\r\n    }\r\n    auto reverse() const {\r\n      auto rev = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to,\
+    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addArc(to,\
     \ from, c); }\r\n      return rev;\r\n    }\r\n    auto size() const { return\
     \ m_n; };\r\n    auto debug(bool directed = false) const {\r\n      for (const\
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
@@ -184,7 +193,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Flow/FordFulkerson.hpp
   requiredBy: []
-  timestamp: '2024-12-27 17:07:26+09:00'
+  timestamp: '2025-06-09 16:27:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp

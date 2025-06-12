@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/EuclideanAlgorithm.hpp
     title: Library/Math/EuclideanAlgorithm.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: Library/Math/DynamicModInt.hpp
     title: Library/Math/DynamicModInt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
     title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Tree/ReRootingDP.test.cpp
     title: Test/Graph/Tree/ReRootingDP.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Matrix_pow.test.cpp
     title: Test/Math/Matrix_pow.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Math.hpp\"\n\r\n#include <cmath>\r\n#include\
@@ -178,17 +178,17 @@ data:
   - Library/Math/ModInt.hpp
   - Library/Math/DynamicModInt.hpp
   timestamp: '2025-01-02 21:02:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
-  - Test/Math/Matrix_pow.test.cpp
-  - Test/Math/Math_log.test.cpp
-  - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math_dynamic.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
+  - Test/Math/Math_log.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/Math.hpp
 layout: document
 redirect_from:

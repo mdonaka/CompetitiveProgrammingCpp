@@ -68,8 +68,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/Accumulation_sum.test.cpp
-  - Test/DataStructure/Accumulation2D_sum.test.cpp
   - Test/DataStructure/Accumulation_xor.test.cpp
+  - Test/DataStructure/Accumulation2D_sum.test.cpp
 documentation_of: Library/Algebraic/Group.hpp
 layout: document
 redirect_from:

@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedVerifiedWith:
@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Tuple.hpp\"\n\n#include <functional>\n\n\
@@ -90,27 +90,27 @@ data:
   path: Library/Utility/Tuple.hpp
   requiredBy:
   - Library/DataStructure/SternBrocotTree.hpp
-  - Library/Graph/Normal/Topological.hpp
   - Library/Utility/io.hpp
-  - Library/Range/istream.hpp
+  - Library/Graph/Normal/Topological.hpp
   - Library/Range/util.hpp
+  - Library/Range/istream.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Range/zip.test.cpp
   - Test/Range/flatten.test.cpp
-  - Test/Range/cartesian_product.test.cpp
   - Test/Range/enumerate.test.cpp
+  - Test/Range/cartesian_product.test.cpp
+  - Test/Range/zip.test.cpp
   - Test/Math/EuclideanAlgorithm_gcd.test.cpp
-  - Test/Math/Math_pow.test.cpp
   - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math_dynamic.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Utility/Tuple.hpp
 layout: document
 redirect_from:

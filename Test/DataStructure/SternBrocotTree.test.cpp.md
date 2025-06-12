@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []

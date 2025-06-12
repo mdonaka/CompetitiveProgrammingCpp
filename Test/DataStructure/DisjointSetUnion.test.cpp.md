@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/DataStructure/DisjointSetUnion.hpp
     title: Library/DataStructure/DisjointSetUnion.hpp
   _extendedRequiredBy: []

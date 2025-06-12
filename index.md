@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Algebraic/Group.hpp
       title: Library/Algebraic/Group.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algebraic/Monoid.hpp
       title: Library/Algebraic/Monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
       title: Library/Algebraic/SemiGroup.hpp
   - name: Library/Algorithms
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Algorithms/BinarySearch.hpp
       title: Library/Algorithms/BinarySearch.hpp
     - icon: ':heavy_check_mark:'
@@ -37,7 +37,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/ConvecHullTrick.hpp
       title: Library/DataStructure/ConvecHullTrick.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/DataStructure/DisjointSetUnion.hpp
       title: Library/DataStructure/DisjointSetUnion.hpp
     - icon: ':heavy_check_mark:'
@@ -72,55 +72,55 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Flow/FordFulkerson.hpp
       title: Library/Graph/Flow/FordFulkerson.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Flow/SuccessiveShortestPath.hpp
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/BFS.hpp
       title: Library/Graph/Normal/BFS.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Kruskal.hpp
       title: Library/Graph/Normal/Kruskal.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Prim.hpp
       title: Library/Graph/Normal/Prim.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Topological.hpp
       title: Library/Graph/Normal/Topological.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/WarshallFloyd.hpp
       title: Library/Graph/Normal/WarshallFloyd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/dijkstra.hpp
       title: Library/Graph/Normal/dijkstra.hpp
   - name: Library/Graph/Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/AuxiliaryTree.hpp
       title: Library/Graph/Tree/AuxiliaryTree.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Tree/EulerTour.hpp
       title: Library/Graph/Tree/EulerTour.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Tree/HeavyLightDecomposition.hpp
       title: Library/Graph/Tree/HeavyLightDecomposition.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/LowestCommonAncestor.hpp
       title: Library/Graph/Tree/LowestCommonAncestor.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Tree/ReRootingDP.hpp
       title: Library/Graph/Tree/ReRootingDP.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Tree/TreeDP.hpp
       title: Library/Graph/Tree/TreeDP.hpp
   - name: Library/Math
@@ -137,10 +137,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Math/DynamicModInt.hpp
       title: Library/Math/DynamicModInt.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Math/EuclideanAlgorithm.hpp
       title: Library/Math/EuclideanAlgorithm.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Math/Math.hpp
       title: Library/Math/Math.hpp
     - icon: ':heavy_check_mark:'
@@ -149,7 +149,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Math/Mobius.hpp
       title: Library/Math/Mobius.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Math/ModInt.hpp
       title: Library/Math/ModInt.hpp
     - icon: ':heavy_check_mark:'
@@ -168,13 +168,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Range/bit.hpp
       title: Library/Range/bit.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
       path: Library/Range/set.hpp
       title: Library/Range/set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/String
@@ -185,6 +185,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/String/PalindromicTree.hpp
       title: Library/String/PalindromicTree.hpp
+    - icon: ':warning:'
+      path: Library/String/RollingHash.hpp
+      title: Library/String/RollingHash.hpp
     - icon: ':heavy_check_mark:'
       path: Library/String/SuffixArray.hpp
       title: Library/String/SuffixArray.hpp
@@ -199,13 +202,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Utility/Tuple.hpp
       title: Library/Utility/Tuple.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -326,27 +329,27 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Flow/FordFulkerson.test.cpp
       title: Test/Graph/Flow/FordFulkerson.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
       title: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   - name: Test/Graph/Normal
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/BFS.test.cpp
       title: Test/Graph/Normal/BFS.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Dijkstra.test.cpp
       title: Test/Graph/Normal/Dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Kruskal.test.cpp
       title: Test/Graph/Normal/Kruskal.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Prim.test.cpp
       title: Test/Graph/Normal/Prim.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Topological.test.cpp
       title: Test/Graph/Normal/Topological.test.cpp
     - icon: ':heavy_check_mark:'
@@ -354,7 +357,7 @@ data:
       title: Test/Graph/Normal/WarshallFloyd.test.cpp
   - name: Test/Graph/Tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/AuxiliaryTree.test.cpp
       title: Test/Graph/Tree/AuxiliaryTree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -366,13 +369,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
       title: Test/Graph/Tree/HeavyLightDecomposition_edge.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/LowestCommonAncestor.test.cpp
       title: Test/Graph/Tree/LowestCommonAncestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/ReRootingDP.test.cpp
       title: Test/Graph/Tree/ReRootingDP.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Tree/ReRootingDP_cost.test.cpp
       title: Test/Graph/Tree/ReRootingDP_cost.test.cpp
     - icon: ':heavy_check_mark:'

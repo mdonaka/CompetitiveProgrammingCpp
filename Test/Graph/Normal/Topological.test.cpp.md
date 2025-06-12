@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/2780
@@ -32,18 +32,27 @@ data:
     \r\n#include <algorithm>\r\n#include <ranges>\r\n#include <set>\r\n#include <unordered_set>\r\
     \n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\
     \n#line 5 \"Library/Graph/Graph.hpp\"\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
-    \n\r\nnamespace mtd {\r\n  template <class Node = int, class Cost = long long>\r\
-    \n  class Graph {\r\n    // using Node = int;\r\n    // using Cost = long long;\r\
-    \n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
-    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\
-    \n    Graph(int n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>&\
-    \ edges)\r\n        : m_n(edges.size()), m_graph(edges) {}\r\n\r\n    auto addEdge(const\
+    \n\r\nnamespace mtd {\r\n  template <class Node = long long, class Cost = long\
+    \ long>\r\n  class Graph {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n), m_graph(n) {}\r\n  \
+    \  Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()), m_graph(edges)\
+    \ {}\r\n    Graph(int n, const std::vector<std::tuple<Node, Node>>& edges,\r\n\
+    \          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v);\r\
+    \n        } else {\r\n          addEdge(u, v);\r\n        }\r\n      }\r\n   \
+    \ }\r\n    Graph(int n, const std::vector<std::tuple<Node, Node, Cost>>& edges,\r\
+    \n          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v, c);\r\
+    \n        } else {\r\n          addEdge(u, v, c);\r\n        }\r\n      }\r\n\
+    \    }\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n      addArc(f, t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t,\
-    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
-    \ Cost& c = 1) {\r\n      addEdge(f, t, c);\r\n      addEdge(t, f, c);\r\n   \
-    \ }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange {\r\
-    \n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\n\
-    \        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
+    \ c);\r\n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
+    \ {\r\n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\
+    \n        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
     \n        auto begin() const { return b; }\r\n        auto end() const { return\
     \ e; }\r\n      };\r\n      return EdgesRange(m_graph[from]);\r\n    }\r\n   \
     \ auto getEdges() const {\r\n      std::deque<std::tuple<Node, Node, Cost>> edges;\r\
@@ -54,7 +63,7 @@ data:
     \ from : std::views::iota(0, m_n)) {\r\n        for (const auto& [to, _] : getEdges(from))\
     \ {\r\n          edges.emplace_back(from, to);\r\n        }\r\n      }\r\n   \
     \   return edges;\r\n    }\r\n    auto reverse() const {\r\n      auto rev = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to,\
+    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addArc(to,\
     \ from, c); }\r\n      return rev;\r\n    }\r\n    auto size() const { return\
     \ m_n; };\r\n    auto debug(bool directed = false) const {\r\n      for (const\
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
@@ -356,8 +365,8 @@ data:
     \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  int n;\n  std::cin\
     \ >> n;\n  auto graph = mtd::Graph<>(n);\n  for (auto u : std::views::iota(0,\
     \ n)) {\n    int m;\n    std::cin >> m;\n    for ([[maybe_unused]] auto _ : std::views::iota(0,\
-    \ m)) {\n      int v;\n      std::cin >> v;\n      graph.addEdge(u, v - 1);\n\
-    \    }\n  }\n\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\n\
+    \ m)) {\n      int v;\n      std::cin >> v;\n      graph.addArc(u, v - 1);\n \
+    \   }\n  }\n\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\n\
     \  auto scc_graph = scc.getGroupGraph();\n  auto scc_nodes = scc.getGroupNodes();\n\
     \n  int now = -1;\n  bool yes = true;\n  for (auto u : mtd::topological_order(scc_graph))\
     \ {\n    bool ex = (now == -1 ? u == scc.group(0) : false);\n    if (now > -1)\
@@ -370,8 +379,8 @@ data:
     \nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  int n;\n\
     \  std::cin >> n;\n  auto graph = mtd::Graph<>(n);\n  for (auto u : std::views::iota(0,\
     \ n)) {\n    int m;\n    std::cin >> m;\n    for ([[maybe_unused]] auto _ : std::views::iota(0,\
-    \ m)) {\n      int v;\n      std::cin >> v;\n      graph.addEdge(u, v - 1);\n\
-    \    }\n  }\n\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\n\
+    \ m)) {\n      int v;\n      std::cin >> v;\n      graph.addArc(u, v - 1);\n \
+    \   }\n  }\n\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\n\
     \  auto scc_graph = scc.getGroupGraph();\n  auto scc_nodes = scc.getGroupNodes();\n\
     \n  int now = -1;\n  bool yes = true;\n  for (auto u : mtd::topological_order(scc_graph))\
     \ {\n    bool ex = (now == -1 ? u == scc.group(0) : false);\n    if (now > -1)\
@@ -387,8 +396,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/Topological.test.cpp
   requiredBy: []
-  timestamp: '2025-01-24 16:53:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-09 16:27:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Topological.test.cpp
 layout: document

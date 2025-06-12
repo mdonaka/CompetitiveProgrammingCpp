@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Tree/ReRootingDP.hpp
     title: Library/Graph/Tree/ReRootingDP.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Tree/TreeDP.hpp
     title: Library/Graph/Tree/TreeDP.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/EuclideanAlgorithm.hpp
     title: Library/Math/EuclideanAlgorithm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/2360
@@ -58,18 +58,27 @@ data:
     \n#include <queue>\r\n#line 5 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#line 2 \"\
     Library/Graph/Graph.hpp\"\n#include <deque>\r\n#line 4 \"Library/Graph/Graph.hpp\"\
     \n#include <ranges>\r\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
-    \n\r\nnamespace mtd {\r\n  template <class Node = int, class Cost = long long>\r\
-    \n  class Graph {\r\n    // using Node = int;\r\n    // using Cost = long long;\r\
-    \n\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
-    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\
-    \n    Graph(int n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>&\
-    \ edges)\r\n        : m_n(edges.size()), m_graph(edges) {}\r\n\r\n    auto addEdge(const\
+    \n\r\nnamespace mtd {\r\n  template <class Node = long long, class Cost = long\
+    \ long>\r\n  class Graph {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n), m_graph(n) {}\r\n  \
+    \  Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()), m_graph(edges)\
+    \ {}\r\n    Graph(int n, const std::vector<std::tuple<Node, Node>>& edges,\r\n\
+    \          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v);\r\
+    \n        } else {\r\n          addEdge(u, v);\r\n        }\r\n      }\r\n   \
+    \ }\r\n    Graph(int n, const std::vector<std::tuple<Node, Node, Cost>>& edges,\r\
+    \n          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v, c);\r\
+    \n        } else {\r\n          addEdge(u, v, c);\r\n        }\r\n      }\r\n\
+    \    }\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n      addArc(f, t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const\
     \ Node& f, const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t,\
-    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
-    \ Cost& c = 1) {\r\n      addEdge(f, t, c);\r\n      addEdge(t, f, c);\r\n   \
-    \ }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange {\r\
-    \n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\n\
-    \        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
+    \ c);\r\n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
+    \ {\r\n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\
+    \n        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
     \n        auto begin() const { return b; }\r\n        auto end() const { return\
     \ e; }\r\n      };\r\n      return EdgesRange(m_graph[from]);\r\n    }\r\n   \
     \ auto getEdges() const {\r\n      std::deque<std::tuple<Node, Node, Cost>> edges;\r\
@@ -80,7 +89,7 @@ data:
     \ from : std::views::iota(0, m_n)) {\r\n        for (const auto& [to, _] : getEdges(from))\
     \ {\r\n          edges.emplace_back(from, to);\r\n        }\r\n      }\r\n   \
     \   return edges;\r\n    }\r\n    auto reverse() const {\r\n      auto rev = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to,\
+    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addArc(to,\
     \ from, c); }\r\n      return rev;\r\n    }\r\n    auto size() const { return\
     \ m_n; };\r\n    auto debug(bool directed = false) const {\r\n      for (const\
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
@@ -279,8 +288,8 @@ data:
     \n  ll n;\n  std::cin >> n;\n  std::vector<ll> a(n);\n  for (auto i : std::views::iota(0,\
     \ n)) { std::cin >> a[i]; }\n  auto graph = mtd::Graph<>(n);\n  for ([[maybe_unused]]\
     \ auto _ : std::views::iota(0, n - 1)) {\n    int u, v;\n    std::cin >> u >>\
-    \ v;\n    graph.addEdgeUndirected(u - 1, v - 1);\n  }\n\n  std::vector<mint> at;\n\
-    \  for (auto x : a) {\n    auto size = std::to_string(x).size();\n    at.emplace_back(math.pow(10,\
+    \ v;\n    graph.addEdge(u - 1, v - 1);\n  }\n\n  std::vector<mint> at;\n  for\
+    \ (auto x : a) {\n    auto size = std::to_string(x).size();\n    at.emplace_back(math.pow(10,\
     \ size));\n  }\n\n  auto op = [](const S& a, const S& b) { return S(a.m + b.m,\
     \ a.s + b.s); };\n  using M = mtd::Monoid<S, S(0, 0), decltype(op)>;\n\n  auto\
     \ edge_f = [&](const M& m, int f, int t, int c) {\n    return M(S(m.m_val.m *\
@@ -298,8 +307,8 @@ data:
     \ n;\n  std::cin >> n;\n  std::vector<ll> a(n);\n  for (auto i : std::views::iota(0,\
     \ n)) { std::cin >> a[i]; }\n  auto graph = mtd::Graph<>(n);\n  for ([[maybe_unused]]\
     \ auto _ : std::views::iota(0, n - 1)) {\n    int u, v;\n    std::cin >> u >>\
-    \ v;\n    graph.addEdgeUndirected(u - 1, v - 1);\n  }\n\n  std::vector<mint> at;\n\
-    \  for (auto x : a) {\n    auto size = std::to_string(x).size();\n    at.emplace_back(math.pow(10,\
+    \ v;\n    graph.addEdge(u - 1, v - 1);\n  }\n\n  std::vector<mint> at;\n  for\
+    \ (auto x : a) {\n    auto size = std::to_string(x).size();\n    at.emplace_back(math.pow(10,\
     \ size));\n  }\n\n  auto op = [](const S& a, const S& b) { return S(a.m + b.m,\
     \ a.s + b.s); };\n  using M = mtd::Monoid<S, S(0, 0), decltype(op)>;\n\n  auto\
     \ edge_f = [&](const M& m, int f, int t, int c) {\n    return M(S(m.m_val.m *\
@@ -319,8 +328,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/ReRootingDP.test.cpp
   requiredBy: []
-  timestamp: '2025-01-02 21:02:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-09 16:27:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Tree/ReRootingDP.test.cpp
 layout: document

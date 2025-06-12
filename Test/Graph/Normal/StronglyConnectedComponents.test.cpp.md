@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
@@ -33,18 +33,27 @@ data:
     \ <unordered_set>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\
     \n#include <deque>\r\n#include <iostream>\r\n#line 5 \"Library/Graph/Graph.hpp\"\
     \n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\n\r\nnamespace mtd {\r\
-    \n  template <class Node = int, class Cost = long long>\r\n  class Graph {\r\n\
-    \    // using Node = int;\r\n    // using Cost = long long;\r\n\r\n    using Edge\
-    \ = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\n\r\n   \
-    \ const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\n    Graph(int\
-    \ n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>& edges)\r\n\
-    \        : m_n(edges.size()), m_graph(edges) {}\r\n\r\n    auto addEdge(const\
-    \ Node& f, const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t,\
-    \ c);\r\n    }\r\n    auto addEdgeUndirected(const Node& f, const Node& t, const\
-    \ Cost& c = 1) {\r\n      addEdge(f, t, c);\r\n      addEdge(t, f, c);\r\n   \
-    \ }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange {\r\
-    \n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\n\
-    \        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
+    \n  template <class Node = long long, class Cost = long long>\r\n  class Graph\
+    \ {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
+    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\
+    \n    Graph(int n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>&\
+    \ edges)\r\n        : m_n(edges.size()), m_graph(edges) {}\r\n    Graph(int n,\
+    \ const std::vector<std::tuple<Node, Node>>& edges,\r\n          bool is_arc =\
+    \ false, bool is_index1 = true)\r\n        : Graph<Node, Cost>(n) {\r\n      for\
+    \ (auto [u, v] : edges) {\r\n        u -= is_index1;\r\n        v -= is_index1;\r\
+    \n        if (is_arc) {\r\n          addArc(u, v);\r\n        } else {\r\n   \
+    \       addEdge(u, v);\r\n        }\r\n      }\r\n    }\r\n    Graph(int n, const\
+    \ std::vector<std::tuple<Node, Node, Cost>>& edges,\r\n          bool is_arc =\
+    \ false, bool is_index1 = true)\r\n        : Graph<Node, Cost>(n) {\r\n      for\
+    \ (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\n        v -= is_index1;\r\
+    \n        if (is_arc) {\r\n          addArc(u, v, c);\r\n        } else {\r\n\
+    \          addEdge(u, v, c);\r\n        }\r\n      }\r\n    }\r\n\r\n    auto\
+    \ addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      addArc(f,\
+    \ t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const Node& f,\
+    \ const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t, c);\r\
+    \n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
+    \ {\r\n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\
+    \n        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
     \n        auto begin() const { return b; }\r\n        auto end() const { return\
     \ e; }\r\n      };\r\n      return EdgesRange(m_graph[from]);\r\n    }\r\n   \
     \ auto getEdges() const {\r\n      std::deque<std::tuple<Node, Node, Cost>> edges;\r\
@@ -55,7 +64,7 @@ data:
     \ from : std::views::iota(0, m_n)) {\r\n        for (const auto& [to, _] : getEdges(from))\
     \ {\r\n          edges.emplace_back(from, to);\r\n        }\r\n      }\r\n   \
     \   return edges;\r\n    }\r\n    auto reverse() const {\r\n      auto rev = Graph<Node,\
-    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addEdge(to,\
+    \ Cost>(m_n);\r\n      for (const auto& [from, to, c] : getEdges()) { rev.addArc(to,\
     \ from, c); }\r\n      return rev;\r\n    }\r\n    auto size() const { return\
     \ m_n; };\r\n    auto debug(bool directed = false) const {\r\n      for (const\
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
@@ -189,7 +198,7 @@ data:
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 8 \"Test/Graph/Normal/StronglyConnectedComponents.test.cpp\"\
     \n// end:tag includes\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
     \n\r\n  auto [n, m] = mtd::io::in<int, int>();\r\n  auto graph = mtd::Graph(n);\r\
-    \n  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addEdge(f, t);\
+    \n  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addArc(f, t);\
     \ }\r\n\r\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\r\n\
     \r\n  auto [q] = mtd::io::in<int>();\r\n  for (auto [u, v] : mtd::views::istream<int,\
     \ int>(q)) {\r\n    std::cout << scc.isSameGroup(u, v) << std::endl;\r\n  }\r\n\
@@ -199,7 +208,7 @@ data:
     \r\n\r\n#include \"../../../Library/Graph/Graph.hpp\"\r\n#include \"../../../Library/Range/istream.hpp\"\
     \r\n// end:tag includes\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
     \n\r\n  auto [n, m] = mtd::io::in<int, int>();\r\n  auto graph = mtd::Graph(n);\r\
-    \n  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addEdge(f, t);\
+    \n  for (auto [f, t] : mtd::views::istream<int, int>(m)) { graph.addArc(f, t);\
     \ }\r\n\r\n  auto scc = mtd::StronglyConnectedComponents(std::move(graph));\r\n\
     \r\n  auto [q] = mtd::io::in<int>();\r\n  for (auto [u, v] : mtd::views::istream<int,\
     \ int>(q)) {\r\n    std::cout << scc.isSameGroup(u, v) << std::endl;\r\n  }\r\n\
@@ -213,8 +222,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2024-12-27 16:26:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-06-09 16:27:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 layout: document
