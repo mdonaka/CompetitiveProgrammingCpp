@@ -28,6 +28,7 @@ i: ## reset
 	@cp Library/Main/$(SRC) ./$(SRC)
 	@cp Library/Main/$(SRC) ./$(SRC_CORRECT)
 	@cp Library/Main/$(SRC) ./$(SRC_TESTCASES)
+	@rm -f *.o
 
 .PHONY: y
 y: $(SRC_COPY_FLAT) ## yank
@@ -51,6 +52,7 @@ c: $(BIN_RUN) ## compile
 .PHONY: clean
 clean: ## clean
 	@rm -f $(BUILD_DIR)/*
+	@rm -f *.o
 
 -include $(DEPENDS)
 
