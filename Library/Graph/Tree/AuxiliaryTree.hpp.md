@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/AuxiliaryTree.test.cpp
     title: Test/Graph/Tree/AuxiliaryTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Tree/AuxiliaryTree.hpp\"\n\r\n#include <set>\r\
@@ -196,9 +196,9 @@ data:
     \n        if (!stk.empty()) {\r\n          auto f = compres_map[stk.top()];\r\n\
     \          auto t = compres_map[nd];\r\n          auto c = depth_cost[stk.top()]\
     \ + depth_cost[nd] -\r\n                   depth_cost[hld.lca(stk.top(), nd)]\
-    \ * 2;\r\n          auxiliary_tree.addEdgeUndirected(f, t, c);\r\n        }\r\n\
-    \        stk.emplace(nd);\r\n      }\r\n      return auxiliary_tree;\r\n    }\r\
-    \n  };\r\n}  // namespace mtd\r\n"
+    \ * 2;\r\n          auxiliary_tree.addEdge(f, t, c);\r\n        }\r\n        stk.emplace(nd);\r\
+    \n      }\r\n      return auxiliary_tree;\r\n    }\r\n  };\r\n}  // namespace\
+    \ mtd\r\n"
   code: "#pragma once\r\n\r\n#include <set>\r\n#include <vector>\r\n\r\n#include \"\
     ./HeavyLightDecomposition.hpp\"\r\n\r\nnamespace mtd {\r\n  template <class Node,\
     \ class Cost>\r\n  class AuxiliaryTree {\r\n    // \u5B9A\u6570\u500D\u9AD8\u901F\
@@ -231,17 +231,17 @@ data:
     \n        if (!stk.empty()) {\r\n          auto f = compres_map[stk.top()];\r\n\
     \          auto t = compres_map[nd];\r\n          auto c = depth_cost[stk.top()]\
     \ + depth_cost[nd] -\r\n                   depth_cost[hld.lca(stk.top(), nd)]\
-    \ * 2;\r\n          auxiliary_tree.addEdgeUndirected(f, t, c);\r\n        }\r\n\
-    \        stk.emplace(nd);\r\n      }\r\n      return auxiliary_tree;\r\n    }\r\
-    \n  };\r\n}  // namespace mtd\r\n"
+    \ * 2;\r\n          auxiliary_tree.addEdge(f, t, c);\r\n        }\r\n        stk.emplace(nd);\r\
+    \n      }\r\n      return auxiliary_tree;\r\n    }\r\n  };\r\n}  // namespace\
+    \ mtd\r\n"
   dependsOn:
   - Library/Graph/Tree/HeavyLightDecomposition.hpp
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Tree/AuxiliaryTree.hpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Tree/AuxiliaryTree.test.cpp
 documentation_of: Library/Graph/Tree/AuxiliaryTree.hpp

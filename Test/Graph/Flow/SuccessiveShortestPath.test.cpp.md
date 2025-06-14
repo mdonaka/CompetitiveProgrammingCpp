@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Flow/SuccessiveShortestPath.hpp
     title: Library/Graph/Flow/SuccessiveShortestPath.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B
@@ -68,13 +68,13 @@ data:
     \ std::pair<Cap, Cost>> m_graph;\r\n    const Graph<Node, bool> m_graph_undirected;\r\
     \n\r\n    auto construct_graph_undirected() const {\r\n      auto graph_undirected\
     \ = Graph<Node, bool>(m_graph.size());\r\n      for (const auto& [f, t] : m_graph.getEdgesExcludeCost())\
-    \ {\r\n        graph_undirected.addEdgeUndirected(f, t);\r\n      }\r\n      return\
-    \ graph_undirected;\r\n    }\r\n\r\n    auto construct_graph_cap() const {\r\n\
-    \      auto n = m_graph.size();\r\n      GraphCap graph_cap(n, std::vector<Cap>(n));\r\
-    \n      for (const auto& [f, t, cc] : m_graph.getEdges()) {\r\n        auto [cap,\
-    \ _] = cc;\r\n        graph_cap[f][t] += cap;\r\n      }\r\n      return graph_cap;\r\
-    \n    }\r\n    auto construct_graph_cost() const {\r\n      auto n = m_graph.size();\r\
-    \n      GraphCost graph_cost(n, std::vector<Cost>(n));\r\n      for (const auto&\
+    \ {\r\n        graph_undirected.addEdge(f, t);\r\n      }\r\n      return graph_undirected;\r\
+    \n    }\r\n\r\n    auto construct_graph_cap() const {\r\n      auto n = m_graph.size();\r\
+    \n      GraphCap graph_cap(n, std::vector<Cap>(n));\r\n      for (const auto&\
+    \ [f, t, cc] : m_graph.getEdges()) {\r\n        auto [cap, _] = cc;\r\n      \
+    \  graph_cap[f][t] += cap;\r\n      }\r\n      return graph_cap;\r\n    }\r\n\
+    \    auto construct_graph_cost() const {\r\n      auto n = m_graph.size();\r\n\
+    \      GraphCost graph_cost(n, std::vector<Cost>(n));\r\n      for (const auto&\
     \ [f, t, cc] : m_graph.getEdges()) {\r\n        auto [_, cost] = cc;\r\n     \
     \   graph_cost[f][t] = cost;\r\n        graph_cost[t][f] = -cost;\r\n      }\r\
     \n      return graph_cost;\r\n    }\r\n\r\n    auto update_residual(Node s, Cap\
@@ -155,8 +155,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Flow/SuccessiveShortestPath.test.cpp
 layout: document

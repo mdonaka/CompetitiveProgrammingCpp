@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algebraic/Monoid.hpp
     title: Library/Algebraic/Monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
   - icon: ':heavy_check_mark:'

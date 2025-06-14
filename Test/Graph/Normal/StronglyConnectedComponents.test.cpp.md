@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
@@ -29,8 +29,8 @@ data:
   bundledCode: "#line 1 \"Test/Graph/Normal/StronglyConnectedComponents.test.cpp\"\
     \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\r\n\r\n\
     // begin:tag includes\r\n#line 2 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
-    \n\r\n#include <algorithm>\r\n#include <ranges>\r\n#include <set>\r\n#include\
-    \ <unordered_set>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\
+    \n\r\n#include <algorithm>\r\n#include <concepts>\r\n#include <ranges>\r\n#include\
+    \ <set>\r\n#include <unordered_set>\r\n#include <vector>\r\n\r\n#line 2 \"Library/Graph/Graph.hpp\"\
     \n#include <deque>\r\n#include <iostream>\r\n#line 5 \"Library/Graph/Graph.hpp\"\
     \n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\n\r\nnamespace mtd {\r\
     \n  template <class Node = long long, class Cost = long long>\r\n  class Graph\
@@ -69,47 +69,47 @@ data:
     \ m_n; };\r\n    auto debug(bool directed = false) const {\r\n      for (const\
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
     \      std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n      \
-    \  }\r\n      }\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 10 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
+    \  }\r\n      }\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 11 \"Library/Graph/Normal/StronglyConnectedComponents.hpp\"\
     \n\r\nnamespace mtd {\r\n  template <class Node, class Cost>\r\n  class StronglyConnectedComponents\
     \ {\r\n    struct HashPair {\r\n      template <class T1, class T2>\r\n      size_t\
     \ operator()(const std::pair<T1, T2>& p) const {\r\n        auto hash1 = std::hash<T1>{}(p.first);\r\
     \n        auto hash2 = std::hash<T2>{}(p.second);\r\n        size_t seed = 0;\r\
     \n        seed ^= hash1 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n        seed\
     \ ^= hash2 + 0x9e3779b9 + (seed << 6) + (seed >> 2);\r\n        return seed;\r\
-    \n      }\r\n    };\r\n\r\n    const Graph<Node, Cost> m_graph;\r\n    const std::vector<int>\
+    \n      }\r\n    };\r\n\r\n    const Graph<Node, Cost> m_graph;\r\n    const std::vector<Node>\
     \ m_group;\r\n\r\n    template <class F>\r\n    constexpr static inline auto dfs(const\
-    \ Graph<Node, Cost>& graph, int from,\r\n                                    \
-    \ std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      is_used[from]\
+    \ Graph<Node, Cost>& graph, Node from,\r\n                                   \
+    \  std::vector<bool>& is_used, const F& f)\r\n        -> void {\r\n      is_used[from]\
     \ = true;\r\n      for (const auto& [to, _] : graph.getEdges(from)) {\r\n    \
     \    if (is_used[to]) { continue; }\r\n        dfs(graph, to, is_used, f);\r\n\
     \      }\r\n      f(from);\r\n    }\r\n\r\n    constexpr static auto constructGroup(const\
     \ Graph<Node, Cost>& graph) {\r\n      int n = graph.size();\r\n      std::vector<Node>\
     \ order;\r\n      std::vector<bool> is_used(n);\r\n      for (auto from : std::views::iota(0,\
     \ n)) {\r\n        if (is_used[from]) { continue; }\r\n        dfs(graph, from,\
-    \ is_used, [&](int f) { order.emplace_back(f); });\r\n      }\r\n\r\n      int\
+    \ is_used, [&](auto f) { order.emplace_back(f); });\r\n      }\r\n\r\n      int\
     \ g = 0;\r\n      std::vector<Node> group(n);\r\n      std::vector<bool> is_used2(n);\r\
     \n      auto rev = graph.reverse();\r\n      for (auto from : order | std::views::reverse)\
     \ {\r\n        if (is_used2[from]) { continue; }\r\n        dfs(rev, from, is_used2,\
-    \ [&](int f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\
+    \ [&](auto f) { group[f] = g; });\r\n        ++g;\r\n      }\r\n      return group;\r\
     \n    }\r\n\r\n  public:\r\n    [[deprecated]] constexpr StronglyConnectedComponents(\r\
     \n        const Graph<Node, Cost>& graph)\r\n        : m_graph(graph), m_group(constructGroup(m_graph))\
     \ {}\r\n    // graph\u306E\u30B3\u30D4\u30FC\u30B3\u30B9\u30C8\u304C\u5927\u304D\
     \u3044\u306E\u3067\u3053\u3063\u3061\u63A8\u5968\r\n    constexpr StronglyConnectedComponents(Graph<Node,\
     \ Cost>&& graph)\r\n        : m_graph(std::move(graph)), m_group(constructGroup(m_graph))\
     \ {}\r\n\r\n    constexpr auto size() const {\r\n      return *std::max_element(m_group.begin(),\
-    \ m_group.end()) + 1;\r\n    }\r\n    constexpr auto group(int a) const { return\
-    \ m_group[a]; }\r\n    constexpr auto isSameGroup(int a, int b) const {\r\n  \
-    \    return m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes()\
-    \ const {\r\n      std::vector<std::vector<int>> groupNodes(size());\r\n     \
-    \ for (int gi = 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
+    \ m_group.end()) + 1;\r\n    }\r\n    constexpr auto group(Node a) const { return\
+    \ m_group[a]; }\r\n    constexpr auto isSameGroup(Node a, Node b) const {\r\n\
+    \      return m_group[a] == m_group[b];\r\n    }\r\n    constexpr auto getGroupNodes()\
+    \ const {\r\n      std::vector<std::vector<Node>> groupNodes(size());\r\n    \
+    \  for (int gi = 0; gi < m_graph.size(); ++gi) {\r\n        groupNodes[m_group[gi]].emplace_back(gi);\r\
     \n      }\r\n      return groupNodes;\r\n    }\r\n    constexpr auto getGroupGraph()\
-    \ const {\r\n      std::unordered_set<std::pair<int, int>, HashPair> st;\r\n \
-    \     st.reserve(m_graph.size());\r\n      for (int f = 0; f < m_graph.size();\
+    \ const {\r\n      std::unordered_set<std::pair<Node, Node>, HashPair> st;\r\n\
+    \      st.reserve(m_graph.size());\r\n      for (int f = 0; f < m_graph.size();\
     \ ++f) {\r\n        for (const auto& [t, _] : m_graph.getEdges(f)) {\r\n     \
     \     if (!isSameGroup(f, t)) { st.emplace(m_group[f], m_group[t]); }\r\n    \
     \    }\r\n      }\r\n      Graph<Node, Cost> ret(size());\r\n      for (const\
-    \ auto& [f, t] : st) { ret.addEdge(f, t); }\r\n      return ret;\r\n    }\r\n\
-    \  };\r\n}  // namespace mtd\r\n#line 5 \"Test/Graph/Normal/StronglyConnectedComponents.test.cpp\"\
+    \ auto& [f, t] : st) { ret.addArc(f, t); }\r\n      return ret;\r\n    }\r\n \
+    \ };\r\n}  // namespace mtd\r\n#line 5 \"Test/Graph/Normal/StronglyConnectedComponents.test.cpp\"\
     \n\r\n#line 2 \"Library/Range/istream.hpp\"\n\n#line 4 \"Library/Range/istream.hpp\"\
     \n\n#line 2 \"Library/Utility/io.hpp\"\n\n#line 5 \"Library/Utility/io.hpp\"\n\
     #include <type_traits>\n#line 7 \"Library/Utility/io.hpp\"\n\n#line 2 \"Library/Utility/Tuple.hpp\"\
@@ -222,8 +222,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
 layout: document

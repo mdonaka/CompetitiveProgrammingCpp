@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/AuxiliaryTree.hpp
     title: Library/Graph/Tree/AuxiliaryTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Tree/HeavyLightDecomposition.hpp
     title: Library/Graph/Tree/HeavyLightDecomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/901
@@ -200,20 +200,19 @@ data:
     \n        if (!stk.empty()) {\r\n          auto f = compres_map[stk.top()];\r\n\
     \          auto t = compres_map[nd];\r\n          auto c = depth_cost[stk.top()]\
     \ + depth_cost[nd] -\r\n                   depth_cost[hld.lca(stk.top(), nd)]\
-    \ * 2;\r\n          auxiliary_tree.addEdgeUndirected(f, t, c);\r\n        }\r\n\
-    \        stk.emplace(nd);\r\n      }\r\n      return auxiliary_tree;\r\n    }\r\
-    \n  };\r\n}  // namespace mtd\r\n#line 4 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\
-    \n\r\n#line 7 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n\r\nint main() {\r\n\
-    \  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\r\n  int n;\r\n  std::cin\
-    \ >> n;\r\n  mtd::Graph tree(n);\r\n  for (auto _ : std::views::iota(0, n - 1))\
-    \ {\r\n    int f, t, c;\r\n    std::cin >> f >> t >> c;\r\n    tree.addEdge(f,\
+    \ * 2;\r\n          auxiliary_tree.addEdge(f, t, c);\r\n        }\r\n        stk.emplace(nd);\r\
+    \n      }\r\n      return auxiliary_tree;\r\n    }\r\n  };\r\n}  // namespace\
+    \ mtd\r\n#line 4 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\n\r\n#line 7 \"Test/Graph/Tree/AuxiliaryTree.test.cpp\"\
+    \n\r\nint main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\n\
+    \r\n  int n;\r\n  std::cin >> n;\r\n  mtd::Graph tree(n);\r\n  for (auto _ : std::views::iota(0,\
+    \ n - 1)) {\r\n    int f, t, c;\r\n    std::cin >> f >> t >> c;\r\n    tree.addEdge(f,\
     \ t, c);\r\n  }\r\n\r\n  auto at = mtd::AuxiliaryTree(tree);\r\n\r\n  int q;\r\
     \n  std::cin >> q;\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0, q))\
-    \ {\r\n    int k;\r\n    std::cin >> k;\r\n    std::vector<int> v(k);\r\n    for\
-    \ (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n    auto comp_tree\
-    \ = at.compression(v);\r\n\r\n    long long ans = 0;\r\n    for (const auto& [f,\
-    \ t, c] : comp_tree.getEdges())\r\n      if (f < t) { ans += c; }\r\n\r\n    std::cout\
-    \ << ans << \"\\n\";\r\n  }\r\n}\r\n"
+    \ {\r\n    int k;\r\n    std::cin >> k;\r\n    std::vector<long long> v(k);\r\n\
+    \    for (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n    auto\
+    \ comp_tree = at.compression(v);\r\n\r\n    long long ans = 0;\r\n    for (const\
+    \ auto& [f, t, c] : comp_tree.getEdges())\r\n      if (f < t) { ans += c; }\r\n\
+    \r\n    std::cout << ans << \"\\n\";\r\n  }\r\n}\r\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/901\"\r\n\r\n#include\
     \ \"../../../Library/Graph/Tree/AuxiliaryTree.hpp\"\r\n\r\n#include <iostream>\r\
     \n#include <ranges>\r\n\r\nint main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
@@ -221,8 +220,8 @@ data:
     \ std::views::iota(0, n - 1)) {\r\n    int f, t, c;\r\n    std::cin >> f >> t\
     \ >> c;\r\n    tree.addEdge(f, t, c);\r\n  }\r\n\r\n  auto at = mtd::AuxiliaryTree(tree);\r\
     \n\r\n  int q;\r\n  std::cin >> q;\r\n  for ([[maybe_unused]] auto _ : std::views::iota(0,\
-    \ q)) {\r\n    int k;\r\n    std::cin >> k;\r\n    std::vector<int> v(k);\r\n\
-    \    for (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n    auto\
+    \ q)) {\r\n    int k;\r\n    std::cin >> k;\r\n    std::vector<long long> v(k);\r\
+    \n    for (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }\r\n\r\n    auto\
     \ comp_tree = at.compression(v);\r\n\r\n    long long ans = 0;\r\n    for (const\
     \ auto& [f, t, c] : comp_tree.getEdges())\r\n      if (f < t) { ans += c; }\r\n\
     \r\n    std::cout << ans << \"\\n\";\r\n  }\r\n}\r\n"
@@ -233,8 +232,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Tree/AuxiliaryTree.test.cpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Tree/AuxiliaryTree.test.cpp
 layout: document

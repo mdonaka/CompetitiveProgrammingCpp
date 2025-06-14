@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/BFS.hpp
     title: Library/Graph/Normal/BFS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1473
@@ -71,23 +71,24 @@ data:
     \ auto& [f, t, c] : getEdges()) {\r\n        if (f < t || directed) {\r\n    \
     \      std::cout << f << \" -> \" << t << \": \" << c << std::endl;\r\n      \
     \  }\r\n      }\r\n    }\r\n  };\r\n}  // namespace mtd\r\n#line 2 \"Library/Graph/Normal/BFS.hpp\"\
-    \n\r\n#include <queue>\r\n#line 5 \"Library/Graph/Normal/BFS.hpp\"\n\r\n#line\
-    \ 7 \"Library/Graph/Normal/BFS.hpp\"\n\r\nnamespace mtd {\r\n  template <class\
-    \ Node, class Cost, class Lambda>\r\n  auto bfs(const Graph<Node, Cost>& graph,\
-    \ const Node& root,\r\n           const Lambda& lambda) {\r\n    auto n = graph.size();\r\
-    \n    std::vector<bool> used(n);\r\n    used[root] = true;\r\n    std::queue<Node>\
-    \ q;\r\n    q.emplace(root);\r\n    while (!q.empty()) {\r\n      auto from =\
-    \ q.front();\r\n      q.pop();\r\n      for (const auto& [to, cost] : graph.getEdges(from))\
-    \ {\r\n        if (used[to]) { continue; }\r\n        q.emplace(to);\r\n     \
-    \   used[to] = true;\r\n        lambda(from, to, cost);\r\n      }\r\n    }\r\n\
-    \  }\r\n}  // namespace mtd\r\n#line 10 \"Test/Graph/Normal/BFS.test.cpp\"\n//\
-    \ end:tag includes\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
+    \n\r\n#line 4 \"Library/Graph/Normal/BFS.hpp\"\n#include <queue>\r\n#line 6 \"\
+    Library/Graph/Normal/BFS.hpp\"\n\r\n#line 8 \"Library/Graph/Normal/BFS.hpp\"\n\
+    \r\nnamespace mtd {\r\n  template <class Node, class Cost, class Lambda,\r\n \
+    \           std::convertible_to<Node> _Node>\r\n  auto bfs(const Graph<Node, Cost>&\
+    \ graph, const _Node& root,\r\n           const Lambda& lambda) {\r\n    auto\
+    \ n = graph.size();\r\n    std::vector<bool> used(n);\r\n    used[root] = true;\r\
+    \n    std::queue<Node> q;\r\n    q.emplace(root);\r\n    while (!q.empty()) {\r\
+    \n      auto from = q.front();\r\n      q.pop();\r\n      for (const auto& [to,\
+    \ cost] : graph.getEdges(from)) {\r\n        if (used[to]) { continue; }\r\n \
+    \       q.emplace(to);\r\n        used[to] = true;\r\n        lambda(from, to,\
+    \ cost);\r\n      }\r\n    }\r\n  }\r\n}  // namespace mtd\r\n#line 10 \"Test/Graph/Normal/BFS.test.cpp\"\
+    \n// end:tag includes\r\n\r\nsigned main() {\r\n  std::cin.tie(0);\r\n  std::ios::sync_with_stdio(0);\r\
     \n\r\n  int n, m;\r\n  std::cin >> n >> m;\r\n  auto graph_all = mtd::Graph(n);\r\
     \n  for (int i = 0; i < m; ++i) {\r\n    int s, t, d;\r\n    std::cin >> s >>\
     \ t >> d;\r\n    graph_all.addEdge(s - 1, t - 1, d);\r\n  }\r\n\r\n  auto solve\
     \ = [&](int w) {\r\n    auto graph = mtd::Graph(n);\r\n    for (const auto& [s,\
     \ t, d] : graph_all.getEdges()) {\r\n      if (w <= d) { graph.addArc(s, t); }\r\
-    \n    }\r\n\r\n    std::vector<int> dv(n);\r\n    bfs(graph, 0, [&](int f, int\
+    \n    }\r\n\r\n    std::vector<int> dv(n);\r\n    bfs(graph, 0, [&](auto f, auto\
     \ t, auto) { dv[t] = dv[f] + 1; });\r\n    return dv[n - 1];\r\n  };\r\n\r\n \
     \ auto w_max = mtd::binarySearch(0, static_cast<int>(1e9) + 1, [&](int w) {\r\n\
     \    auto d = solve(w);\r\n    return d > 0;\r\n  });\r\n\r\n  auto ans = solve(w_max);\r\
@@ -102,7 +103,7 @@ data:
     \ t >> d;\r\n    graph_all.addEdge(s - 1, t - 1, d);\r\n  }\r\n\r\n  auto solve\
     \ = [&](int w) {\r\n    auto graph = mtd::Graph(n);\r\n    for (const auto& [s,\
     \ t, d] : graph_all.getEdges()) {\r\n      if (w <= d) { graph.addArc(s, t); }\r\
-    \n    }\r\n\r\n    std::vector<int> dv(n);\r\n    bfs(graph, 0, [&](int f, int\
+    \n    }\r\n\r\n    std::vector<int> dv(n);\r\n    bfs(graph, 0, [&](auto f, auto\
     \ t, auto) { dv[t] = dv[f] + 1; });\r\n    return dv[n - 1];\r\n  };\r\n\r\n \
     \ auto w_max = mtd::binarySearch(0, static_cast<int>(1e9) + 1, [&](int w) {\r\n\
     \    auto d = solve(w);\r\n    return d > 0;\r\n  });\r\n\r\n  auto ans = solve(w_max);\r\
@@ -114,8 +115,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/BFS.test.cpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/BFS.test.cpp
 layout: document

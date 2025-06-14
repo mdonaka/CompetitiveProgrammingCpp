@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DisjointSetUnion.hpp
     title: Library/DataStructure/DisjointSetUnion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A
@@ -94,8 +94,8 @@ data:
     \ : graph.getEdges()) {\r\n      q.emplace(c, std::make_pair(f, t));\r\n    }\r\
     \n\r\n    while (!q.empty()) {\r\n      auto [cost, ft] = q.top();\r\n      auto\
     \ [from, to] = ft;\r\n      q.pop();\r\n      if (dsu.isSame(from, to)) { continue;\
-    \ }\r\n      dsu.unite(from, to);\r\n      min_spanning_tree.addEdgeUndirected(from,\
-    \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n  }\r\n}  // namespace\
+    \ }\r\n      dsu.unite(from, to);\r\n      min_spanning_tree.addEdge(from, to,\
+    \ cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n  }\r\n}  // namespace\
     \ mtd\r\n#line 5 \"Test/Graph/Normal/Kruskal.test.cpp\"\n\r\n#line 7 \"Test/Graph/Normal/Kruskal.test.cpp\"\
     \n\r\n#line 9 \"Test/Graph/Normal/Kruskal.test.cpp\"\n\r\nusing ll = long long;\r\
     \nusing std::cin;\r\nusing std::cout;\r\nconstexpr char endl = '\\n';\r\n\r\n\
@@ -121,8 +121,8 @@ data:
   isVerificationFile: true
   path: Test/Graph/Normal/Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Graph/Normal/Kruskal.test.cpp
 layout: document

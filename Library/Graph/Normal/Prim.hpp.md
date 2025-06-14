@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Prim.test.cpp
     title: Test/Graph/Normal/Prim.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Prim.hpp\"\n\r\n#include <queue>\r\n\
@@ -61,7 +61,7 @@ data:
     \ std::greater<Type>> q;\r\n    q.emplace(0, std::make_pair(-1, 0));\r\n    std::vector<bool>\
     \ used(n);\r\n    while (!q.empty()) {\r\n      auto [cost, ft] = q.top();\r\n\
     \      auto [from, to] = ft;\r\n      q.pop();\r\n      if (used[to]) { continue;\
-    \ }\r\n      used[to] = true;\r\n\r\n      if (from >= 0) { min_spanning_tree.addEdgeUndirected(from,\
+    \ }\r\n      used[to] = true;\r\n\r\n      if (from >= 0) { min_spanning_tree.addEdge(from,\
     \ to, cost); }\r\n      for (const auto& [nto, ncost] : graph.getEdges(to)) {\r\
     \n        if (used[nto]) { continue; }\r\n        q.emplace(ncost, std::make_pair(to,\
     \ nto));\r\n      }\r\n    }\r\n    return min_spanning_tree;\r\n  }\r\n}  //\
@@ -74,7 +74,7 @@ data:
     \ std::greater<Type>> q;\r\n    q.emplace(0, std::make_pair(-1, 0));\r\n    std::vector<bool>\
     \ used(n);\r\n    while (!q.empty()) {\r\n      auto [cost, ft] = q.top();\r\n\
     \      auto [from, to] = ft;\r\n      q.pop();\r\n      if (used[to]) { continue;\
-    \ }\r\n      used[to] = true;\r\n\r\n      if (from >= 0) { min_spanning_tree.addEdgeUndirected(from,\
+    \ }\r\n      used[to] = true;\r\n\r\n      if (from >= 0) { min_spanning_tree.addEdge(from,\
     \ to, cost); }\r\n      for (const auto& [nto, ncost] : graph.getEdges(to)) {\r\
     \n        if (used[nto]) { continue; }\r\n        q.emplace(ncost, std::make_pair(to,\
     \ nto));\r\n      }\r\n    }\r\n    return min_spanning_tree;\r\n  }\r\n}  //\
@@ -84,8 +84,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/Prim.hpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/Prim.test.cpp
 documentation_of: Library/Graph/Normal/Prim.hpp

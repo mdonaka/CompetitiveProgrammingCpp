@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Kruskal.hpp
     title: Library/Graph/Normal/Kruskal.hpp
   _extendedVerifiedWith:
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
     title: Test/DataStructure/DisjointSetUnion_Potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Kruskal.test.cpp
     title: Test/Graph/Normal/Kruskal.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/DisjointSetUnion.hpp\"\n\r\n#include\
@@ -74,7 +74,7 @@ data:
   requiredBy:
   - Library/Graph/Normal/Kruskal.hpp
   timestamp: '2024-12-25 00:03:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
   - Test/DataStructure/DisjointSetUnion.test.cpp

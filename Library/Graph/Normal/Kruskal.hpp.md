@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/DisjointSetUnion.hpp
     title: Library/DataStructure/DisjointSetUnion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Kruskal.test.cpp
     title: Test/Graph/Normal/Kruskal.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Kruskal.hpp\"\n\r\n#include <queue>\r\
@@ -89,8 +89,8 @@ data:
     \ : graph.getEdges()) {\r\n      q.emplace(c, std::make_pair(f, t));\r\n    }\r\
     \n\r\n    while (!q.empty()) {\r\n      auto [cost, ft] = q.top();\r\n      auto\
     \ [from, to] = ft;\r\n      q.pop();\r\n      if (dsu.isSame(from, to)) { continue;\
-    \ }\r\n      dsu.unite(from, to);\r\n      min_spanning_tree.addEdgeUndirected(from,\
-    \ to, cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n  }\r\n}  // namespace\
+    \ }\r\n      dsu.unite(from, to);\r\n      min_spanning_tree.addEdge(from, to,\
+    \ cost);\r\n    }\r\n\r\n    return min_spanning_tree;\r\n  }\r\n}  // namespace\
     \ mtd\r\n"
   code: "#pragma once\r\n\r\n#include <queue>\r\n\r\n#include \"./../../DataStructure/DisjointSetUnion.hpp\"\
     \r\n#include \"./../Graph.hpp\"\r\n\r\nnamespace mtd {\r\n  template <class Node,\
@@ -102,16 +102,16 @@ data:
     \ {\r\n      q.emplace(c, std::make_pair(f, t));\r\n    }\r\n\r\n    while (!q.empty())\
     \ {\r\n      auto [cost, ft] = q.top();\r\n      auto [from, to] = ft;\r\n   \
     \   q.pop();\r\n      if (dsu.isSame(from, to)) { continue; }\r\n      dsu.unite(from,\
-    \ to);\r\n      min_spanning_tree.addEdgeUndirected(from, to, cost);\r\n    }\r\
-    \n\r\n    return min_spanning_tree;\r\n  }\r\n}  // namespace mtd\r\n"
+    \ to);\r\n      min_spanning_tree.addEdge(from, to, cost);\r\n    }\r\n\r\n  \
+    \  return min_spanning_tree;\r\n  }\r\n}  // namespace mtd\r\n"
   dependsOn:
   - Library/DataStructure/DisjointSetUnion.hpp
   - Library/Graph/Graph.hpp
   isVerificationFile: false
   path: Library/Graph/Normal/Kruskal.hpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-06-14 20:53:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/Kruskal.test.cpp
 documentation_of: Library/Graph/Normal/Kruskal.hpp

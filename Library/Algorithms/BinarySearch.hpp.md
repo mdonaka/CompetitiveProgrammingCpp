@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Algorithms/BinarySearch_int_rev.test.cpp
     title: Test/Algorithms/BinarySearch_int_rev.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/BFS.test.cpp
     title: Test/Graph/Normal/BFS.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/String/SuffixArray.test.cpp
     title: Test/String/SuffixArray.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Algorithms/BinarySearch.hpp\"\n\r\n#include <concepts>\r\
@@ -61,7 +61,7 @@ data:
   - Library/String/SuffixArray.hpp
   - Library/String/LCPArray.hpp
   timestamp: '2024-12-27 17:36:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/BFS.test.cpp
   - Test/Algorithms/BinarySearch_int.test.cpp

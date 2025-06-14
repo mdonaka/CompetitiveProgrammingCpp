@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedVerifiedWith:
@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Tuple.hpp\"\n\n#include <functional>\n\n\
@@ -95,7 +95,7 @@ data:
   - Library/Range/util.hpp
   - Library/Range/istream.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
