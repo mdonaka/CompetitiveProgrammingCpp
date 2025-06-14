@@ -68,7 +68,7 @@ namespace mtd {
           auto t = compres_map[nd];
           auto c = depth_cost[stk.top()] + depth_cost[nd] -
                    depth_cost[hld.lca(stk.top(), nd)] * 2;
-          auxiliary_tree.addEdgeUndirected(f, t, c);
+          auxiliary_tree.addEdge(f, t, c);
         }
         stk.emplace(nd);
       }

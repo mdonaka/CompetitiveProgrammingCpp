@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <concepts>
 #include <ranges>
 #include <set>
 #include <unordered_set>
@@ -24,10 +25,10 @@ namespace mtd {
     };
 
     const Graph<Node, Cost> m_graph;
-    const std::vector<int> m_group;
+    const std::vector<Node> m_group;
 
     template <class F>
-    constexpr static inline auto dfs(const Graph<Node, Cost>& graph, int from,
+    constexpr static inline auto dfs(const Graph<Node, Cost>& graph, Node from,
                                      std::vector<bool>& is_used, const F& f)
         -> void {
       is_used[from] = true;
@@ -44,7 +45,7 @@ namespace mtd {
       std::vector<bool> is_used(n);
       for (auto from : std::views::iota(0, n)) {
         if (is_used[from]) { continue; }
-        dfs(graph, from, is_used, [&](int f) { order.emplace_back(f); });
+        dfs(graph, from, is_used, [&](auto f) { order.emplace_back(f); });
       }
 
       int g = 0;
@@ -53,7 +54,7 @@ namespace mtd {
       auto rev = graph.reverse();
       for (auto from : order | std::views::reverse) {
         if (is_used2[from]) { continue; }
-        dfs(rev, from, is_used2, [&](int f) { group[f] = g; });
+        dfs(rev, from, is_used2, [&](auto f) { group[f] = g; });
         ++g;
       }
       return group;
@@ -70,19 +71,19 @@ namespace mtd {
     constexpr auto size() const {
       return *std::max_element(m_group.begin(), m_group.end()) + 1;
     }
-    constexpr auto group(int a) const { return m_group[a]; }
-    constexpr auto isSameGroup(int a, int b) const {
+    constexpr auto group(Node a) const { return m_group[a]; }
+    constexpr auto isSameGroup(Node a, Node b) const {
       return m_group[a] == m_group[b];
     }
     constexpr auto getGroupNodes() const {
-      std::vector<std::vector<int>> groupNodes(size());
+      std::vector<std::vector<Node>> groupNodes(size());
       for (int gi = 0; gi < m_graph.size(); ++gi) {
         groupNodes[m_group[gi]].emplace_back(gi);
       }
       return groupNodes;
     }
     constexpr auto getGroupGraph() const {
-      std::unordered_set<std::pair<int, int>, HashPair> st;
+      std::unordered_set<std::pair<Node, Node>, HashPair> st;
       st.reserve(m_graph.size());
       for (int f = 0; f < m_graph.size(); ++f) {
         for (const auto& [t, _] : m_graph.getEdges(f)) {
@@ -90,7 +91,7 @@ namespace mtd {
         }
       }
       Graph<Node, Cost> ret(size());
-      for (const auto& [f, t] : st) { ret.addEdge(f, t); }
+      for (const auto& [f, t] : st) { ret.addArc(f, t); }
       return ret;
     }
   };

@@ -26,7 +26,7 @@ namespace mtd {
     auto construct_graph_undirected() const {
       auto graph_undirected = Graph<Node, bool>(m_graph.size());
       for (const auto& [f, t] : m_graph.getEdgesExcludeCost()) {
-        graph_undirected.addEdgeUndirected(f, t);
+        graph_undirected.addEdge(f, t);
       }
       return graph_undirected;
     }

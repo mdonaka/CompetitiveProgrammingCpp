@@ -1,13 +1,15 @@
 #pragma once
 
+#include <concepts>
 #include <queue>
 #include <vector>
 
 #include "./../Graph.hpp"
 
 namespace mtd {
-  template <class Node, class Cost, class Lambda>
-  auto bfs(const Graph<Node, Cost>& graph, const Node& root,
+  template <class Node, class Cost, class Lambda,
+            std::convertible_to<Node> _Node>
+  auto bfs(const Graph<Node, Cost>& graph, const _Node& root,
            const Lambda& lambda) {
     auto n = graph.size();
     std::vector<bool> used(n);
