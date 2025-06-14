@@ -1,12 +1,14 @@
 #pragma once
+
+#include <concepts>
 #include <queue>
 #include <vector>
 
 #include "../Graph.hpp"
 
 namespace mtd {
-  template <class Node, class Cost>
-  auto dijkstra(const Graph<Node, Cost>& graph, const Node& begin,
+  template <class Node, class Cost, std::convertible_to<Node> _Node>
+  auto dijkstra(const Graph<Node, Cost>& graph, const _Node& begin,
                 const Cost& lim = 1LL << 62) {
     std::vector<Cost> cost(graph.size(), lim);
     cost[begin] = 0;

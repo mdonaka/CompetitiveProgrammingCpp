@@ -25,7 +25,7 @@ int main() {
   for ([[maybe_unused]] auto _ : std::views::iota(0, q)) {
     int k;
     std::cin >> k;
-    std::vector<int> v(k);
+    std::vector<long long> v(k);
     for (auto i : std::views::iota(0, k)) { std::cin >> v[i]; }
 
     auto comp_tree = at.compression(v);

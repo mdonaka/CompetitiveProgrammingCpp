@@ -29,7 +29,7 @@ signed main() {
     }
 
     std::vector<int> dv(n);
-    bfs(graph, 0, [&](int f, int t, auto) { dv[t] = dv[f] + 1; });
+    bfs(graph, 0, [&](auto f, auto t, auto) { dv[t] = dv[f] + 1; });
     return dv[n - 1];
   };
 

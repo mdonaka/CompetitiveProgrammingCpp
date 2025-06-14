@@ -24,7 +24,7 @@ namespace mtd {
       q.pop();
       if (dsu.isSame(from, to)) { continue; }
       dsu.unite(from, to);
-      min_spanning_tree.addEdgeUndirected(from, to, cost);
+      min_spanning_tree.addEdge(from, to, cost);
     }
 
     return min_spanning_tree;

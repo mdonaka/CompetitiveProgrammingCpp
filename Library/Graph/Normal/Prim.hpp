@@ -22,7 +22,7 @@ namespace mtd {
       if (used[to]) { continue; }
       used[to] = true;
 
-      if (from >= 0) { min_spanning_tree.addEdgeUndirected(from, to, cost); }
+      if (from >= 0) { min_spanning_tree.addEdge(from, to, cost); }
       for (const auto& [nto, ncost] : graph.getEdges(to)) {
         if (used[nto]) { continue; }
         q.emplace(ncost, std::make_pair(to, nto));

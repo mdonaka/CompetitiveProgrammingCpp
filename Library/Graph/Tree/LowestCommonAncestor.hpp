@@ -1,5 +1,7 @@
 #pragma once
+
 #include <cmath>
+#include <concepts>
 #include <vector>
 
 #include "../Graph.hpp"
@@ -36,7 +38,8 @@ namespace mtd {
     }
 
   public:
-    LowestCommonAncestor(const Graph<Node, Cost>& tree, const Node& root)
+    template <std::convertible_to<Node> _Node>
+    LowestCommonAncestor(const Graph<Node, Cost>& tree, const _Node& root)
         : m_parent(constructParent(tree, root)),
           m_depth(constructDepth(tree, root)) {}
 

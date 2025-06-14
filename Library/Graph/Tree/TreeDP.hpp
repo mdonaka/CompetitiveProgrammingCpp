@@ -1,12 +1,15 @@
 #pragma once
+
+#include <concepts>
 #include <queue>
 #include <vector>
 
 #include "./../Graph.hpp"
 
 namespace mtd {
-  template <class Node, class Cost, class Lambda>
-  auto treeDP(const Graph<Node, Cost>& tree, Node root, const Lambda& lambda) {
+  template <class Node, class Cost, class Lambda,
+            std::convertible_to<Node> _Node>
+  auto treeDP(const Graph<Node, Cost>& tree, _Node root, const Lambda& lambda) {
     auto n = tree.size();
     std::vector<Node> in(n);
     for (const auto& [f, t] : tree.getEdgesExcludeCost())
