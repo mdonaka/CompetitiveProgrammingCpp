@@ -14,7 +14,7 @@ namespace mtd {
         : public std::ranges::view_interface<istream_view<Args...>> {
       class iterator {
         int count;
-        std::tuple<typename io::_Converter<Args>::type...> val;
+        std::tuple<Args...> val;
 
       public:
         using difference_type = int;

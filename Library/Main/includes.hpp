@@ -31,8 +31,4 @@ namespace mtd {
     };
   } _Preprocessing;
 
-  template <class T>
-  using tvec = mtd::io::type::vec<T>;
-  template <class T>
-  using tmat = mtd::io::type::mat<T>;
 }  // namespace mtd
