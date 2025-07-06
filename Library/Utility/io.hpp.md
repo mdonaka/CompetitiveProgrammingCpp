@@ -63,83 +63,89 @@ data:
     \ = std::same_as<\n          T, std::vector<typename T::value_type, typename T::allocator_type>>;\n\
     \      template <typename T>\n      concept is_mat = is_vec<T> && is_vec<typename\
     \ T::value_type>;\n\n    }  // namespace __details\n\n    template <class T>\n\
-    \    auto _input() {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\
-    \    template <typename T>\n    requires requires { typename std::tuple_size<T>::type;\
-    \ }\n    auto _input() {\n      T x;\n      util::tuple_for_each([](auto&& i)\
-    \ { std::cin >> i; }, x);\n      return x;\n    }\n    template <__details::is_vec\
-    \ T>\n    auto _input(int n) {\n      std::vector<typename T::value_type> v;\n\
-    \      v.reserve(n);\n      for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
-    \ T::value_type>());\n      }\n      return v;\n    }\n    template <__details::is_mat\
-    \ T>\n    auto _input(int h, int w) {\n      T mat;\n      mat.reserve(h);\n \
-    \     for (auto i : std::views::iota(0, h)) {\n        mat.emplace_back(_input<typename\
-    \ T::value_type>(w));\n      }\n      return mat;\n    }\n\n    template <int\
-    \ N, class Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Sizes... sizes);\n    template <int N, class Tuple, __details::is_vec T,\
-    \ class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \    constexpr auto _input() {\n      T x;\n      std::cin >> x;\n      return\
+    \ x;\n    }\n    template <typename T>\n    requires requires { typename std::tuple_size<T>::type;\
+    \ }\n    constexpr auto _input() {\n      T x;\n      util::tuple_for_each([](auto&&\
+    \ i) { std::cin >> i; }, x);\n      return x;\n    }\n    template <__details::is_vec\
+    \ T>\n    constexpr auto _input(int n) {\n      std::vector<typename T::value_type>\
+    \ v;\n      v.reserve(n);\n      for (auto i : std::views::iota(0, n)) {\n   \
+    \     v.emplace_back(_input<typename T::value_type>());\n      }\n      return\
+    \ v;\n    }\n    template <__details::is_mat T>\n    constexpr auto _input(int\
+    \ h, int w) {\n      T mat;\n      mat.reserve(h);\n      for (auto i : std::views::iota(0,\
+    \ h)) {\n        mat.emplace_back(_input<typename T::value_type>(w));\n      }\n\
+    \      return mat;\n    }\n\n    template <int N, class Tuple, class T, class...\
+    \ Args, class... Sizes>\n    constexpr auto _tuple_input(Tuple& t, Sizes... sizes);\n\
+    \    template <int N, class Tuple, __details::is_vec T, class... Args,\n     \
+    \         class Size, class... Sizes>\n    constexpr auto _tuple_input(Tuple&\
     \ t, Size size, Sizes... sizes);\n    template <int N, class Tuple, __details::is_mat\
-    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes);\n\n    template <int N, class\
-    \ Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Sizes... sizes) {\n      std::get<N>(t) = _input<T>();\n      if constexpr\
-    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n\
-    \      }\n    }\n    template <int N, class Tuple, __details::is_vec T, class...\
-    \ Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ T, class... Args,\n              class Size, class... Sizes>\n    constexpr\
+    \ auto _tuple_input(Tuple& t, Size size_h, Size size_w,\n                    \
+    \            Sizes... sizes);\n\n    template <int N, class Tuple, class T, class...\
+    \ Args, class... Sizes>\n    constexpr auto _tuple_input(Tuple& t, Sizes... sizes)\
+    \ {\n      std::get<N>(t) = _input<T>();\n      if constexpr (sizeof...(Args)\
+    \ > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n      }\n\
+    \    }\n    template <int N, class Tuple, __details::is_vec T, class... Args,\n\
+    \              class Size, class... Sizes>\n    constexpr auto _tuple_input(Tuple&\
     \ t, Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n \
     \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
     \ Args...>(t, sizes...);\n      }\n    }\n    template <int N, class Tuple, __details::is_mat\
-    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h,\
-    \ size_w);\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N\
-    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class...\
-    \ Args, class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...)\
-    \ auto in(Sizes... sizes) {\n      auto base = std::tuple<Args...>();\n      _tuple_input<0,\
-    \ decltype(base), Args...>(base, sizes...);\n      return base;\n    }\n\n  }\
-    \  // namespace io\n\n}  // namespace mtd\n"
+    \ T, class... Args,\n              class Size, class... Sizes>\n    constexpr\
+    \ auto _tuple_input(Tuple& t, Size size_h, Size size_w,\n                    \
+    \            Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h, size_w);\n\
+    \      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
+    \ Args...>(t, sizes...);\n      }\n    }\n\n    template <class... Args, class...\
+    \ Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...) constexpr auto\
+    \ in(\n        Sizes... sizes) {\n      auto base = std::tuple<Args...>();\n \
+    \     _tuple_input<0, decltype(base), Args...>(base, sizes...);\n      return\
+    \ base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n"
   code: "#pragma once\n\n#include <iostream>\n#include <ranges>\n#include <type_traits>\n\
     #include <vector>\n\n#include \"Tuple.hpp\"\n\nnamespace mtd {\n  namespace io\
     \ {\n\n    namespace __details {\n      template <typename T>\n      concept is_vec\
     \ = std::same_as<\n          T, std::vector<typename T::value_type, typename T::allocator_type>>;\n\
     \      template <typename T>\n      concept is_mat = is_vec<T> && is_vec<typename\
     \ T::value_type>;\n\n    }  // namespace __details\n\n    template <class T>\n\
-    \    auto _input() {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\
-    \    template <typename T>\n    requires requires { typename std::tuple_size<T>::type;\
-    \ }\n    auto _input() {\n      T x;\n      util::tuple_for_each([](auto&& i)\
-    \ { std::cin >> i; }, x);\n      return x;\n    }\n    template <__details::is_vec\
-    \ T>\n    auto _input(int n) {\n      std::vector<typename T::value_type> v;\n\
-    \      v.reserve(n);\n      for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
-    \ T::value_type>());\n      }\n      return v;\n    }\n    template <__details::is_mat\
-    \ T>\n    auto _input(int h, int w) {\n      T mat;\n      mat.reserve(h);\n \
-    \     for (auto i : std::views::iota(0, h)) {\n        mat.emplace_back(_input<typename\
-    \ T::value_type>(w));\n      }\n      return mat;\n    }\n\n    template <int\
-    \ N, class Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Sizes... sizes);\n    template <int N, class Tuple, __details::is_vec T,\
-    \ class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \    constexpr auto _input() {\n      T x;\n      std::cin >> x;\n      return\
+    \ x;\n    }\n    template <typename T>\n    requires requires { typename std::tuple_size<T>::type;\
+    \ }\n    constexpr auto _input() {\n      T x;\n      util::tuple_for_each([](auto&&\
+    \ i) { std::cin >> i; }, x);\n      return x;\n    }\n    template <__details::is_vec\
+    \ T>\n    constexpr auto _input(int n) {\n      std::vector<typename T::value_type>\
+    \ v;\n      v.reserve(n);\n      for (auto i : std::views::iota(0, n)) {\n   \
+    \     v.emplace_back(_input<typename T::value_type>());\n      }\n      return\
+    \ v;\n    }\n    template <__details::is_mat T>\n    constexpr auto _input(int\
+    \ h, int w) {\n      T mat;\n      mat.reserve(h);\n      for (auto i : std::views::iota(0,\
+    \ h)) {\n        mat.emplace_back(_input<typename T::value_type>(w));\n      }\n\
+    \      return mat;\n    }\n\n    template <int N, class Tuple, class T, class...\
+    \ Args, class... Sizes>\n    constexpr auto _tuple_input(Tuple& t, Sizes... sizes);\n\
+    \    template <int N, class Tuple, __details::is_vec T, class... Args,\n     \
+    \         class Size, class... Sizes>\n    constexpr auto _tuple_input(Tuple&\
     \ t, Size size, Sizes... sizes);\n    template <int N, class Tuple, __details::is_mat\
-    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes);\n\n    template <int N, class\
-    \ Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Sizes... sizes) {\n      std::get<N>(t) = _input<T>();\n      if constexpr\
-    \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n\
-    \      }\n    }\n    template <int N, class Tuple, __details::is_vec T, class...\
-    \ Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ T, class... Args,\n              class Size, class... Sizes>\n    constexpr\
+    \ auto _tuple_input(Tuple& t, Size size_h, Size size_w,\n                    \
+    \            Sizes... sizes);\n\n    template <int N, class Tuple, class T, class...\
+    \ Args, class... Sizes>\n    constexpr auto _tuple_input(Tuple& t, Sizes... sizes)\
+    \ {\n      std::get<N>(t) = _input<T>();\n      if constexpr (sizeof...(Args)\
+    \ > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n      }\n\
+    \    }\n    template <int N, class Tuple, __details::is_vec T, class... Args,\n\
+    \              class Size, class... Sizes>\n    constexpr auto _tuple_input(Tuple&\
     \ t, Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n \
     \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
     \ Args...>(t, sizes...);\n      }\n    }\n    template <int N, class Tuple, __details::is_mat\
-    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
-    \ t, Size size_h, Size size_w, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h,\
-    \ size_w);\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N\
-    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class...\
-    \ Args, class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...)\
-    \ auto in(Sizes... sizes) {\n      auto base = std::tuple<Args...>();\n      _tuple_input<0,\
-    \ decltype(base), Args...>(base, sizes...);\n      return base;\n    }\n\n  }\
-    \  // namespace io\n\n}  // namespace mtd\n"
+    \ T, class... Args,\n              class Size, class... Sizes>\n    constexpr\
+    \ auto _tuple_input(Tuple& t, Size size_h, Size size_w,\n                    \
+    \            Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h, size_w);\n\
+    \      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
+    \ Args...>(t, sizes...);\n      }\n    }\n\n    template <class... Args, class...\
+    \ Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...) constexpr auto\
+    \ in(\n        Sizes... sizes) {\n      auto base = std::tuple<Args...>();\n \
+    \     _tuple_input<0, decltype(base), Args...>(base, sizes...);\n      return\
+    \ base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n"
   dependsOn:
   - Library/Utility/Tuple.hpp
   isVerificationFile: false
   path: Library/Utility/io.hpp
   requiredBy:
   - Library/Range/istream.hpp
-  timestamp: '2025-07-06 21:38:29+09:00'
+  timestamp: '2025-07-06 21:41:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Range/zip.test.cpp
