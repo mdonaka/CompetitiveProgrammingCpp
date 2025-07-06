@@ -46,6 +46,10 @@ ri: $(BIN_RUN) ## run without input
 t: ## test
 	@python Command/debug_compare.py $(SRC) $(SRC_CORRECT) $(SRC_TESTCASES) | tee i
 
+.PHONY: ti
+ti: ## interactive test
+	@python Command/debug_interactive.py $(SRC) $(SRC_TESTCASES) | tee i
+
 .PHONY: c
 c: $(BIN_RUN) ## compile
 
