@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
   _extendedRequiredBy: []

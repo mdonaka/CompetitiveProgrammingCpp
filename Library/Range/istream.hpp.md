@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/istream.hpp\"\n\n#include <ranges>\n\n#line\
@@ -57,54 +57,46 @@ data:
     \            (std::invoke(f, std::forward<Ts>(elems)), ...);\n          },\n \
     \         std::forward<T>(t));\n    }\n  }  // namespace util\n}  // namespace\
     \ mtd\n#line 9 \"Library/Utility/io.hpp\"\n\nnamespace mtd {\n  namespace io {\n\
-    \n    namespace type {\n      template <class T>\n      struct vec {\n       \
-    \ using value_type = T;\n      };\n      template <class T>\n      concept is_vec\
-    \ = requires {\n        requires std::is_same_v<T, vec<typename T::value_type>>;\n\
-    \      };\n\n      template <class T>\n      struct mat {\n        using value_type\
-    \ = T;\n      };\n      template <class T>\n      concept is_mat = requires {\n\
-    \        requires std::is_same_v<T, mat<typename T::value_type>>;\n      };\n\
-    \    }  // namespace type\n\n    template <class T>\n    auto _input() {\n   \
-    \   T x;\n      std::cin >> x;\n      return x;\n    }\n    template <typename\
-    \ T>\n    requires requires { typename std::tuple_size<T>::type; }\n    auto _input()\
-    \ {\n      T x;\n      util::tuple_for_each([](auto&& i) { std::cin >> i; }, x);\n\
-    \      return x;\n    }\n    template <type::is_vec T>\n    auto _input(int n)\
-    \ {\n      std::vector<typename T::value_type> v;\n      v.reserve(n);\n     \
-    \ for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
-    \ T::value_type>());\n      }\n      return v;\n    }\n    template <type::is_mat\
-    \ T>\n    auto _input(int h, int w) {\n      std::vector<std::vector<typename\
-    \ T::value_type>> mat;\n      mat.reserve(h);\n      for (auto i : std::views::iota(0,\
-    \ h)) {\n        mat.emplace_back(_input<type::vec<typename T::value_type>>(w));\n\
-    \      }\n      return mat;\n    }\n\n    template <int N, class Tuple, class\
-    \ T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple& t, Sizes...\
-    \ sizes);\n    template <int N, class Tuple, type::is_vec T, class... Args, class\
-    \ Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t, Size size,\
-    \ Sizes... sizes);\n    template <int N, class Tuple, type::is_mat T, class...\
-    \ Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
+    \n    namespace __details {\n      template <typename T>\n      concept is_vec\
+    \ = std::same_as<\n          T, std::vector<typename T::value_type, typename T::allocator_type>>;\n\
+    \      template <typename T>\n      concept is_mat = is_vec<T> && is_vec<typename\
+    \ T::value_type>;\n\n    }  // namespace __details\n\n    template <class T>\n\
+    \    auto _input() {\n      T x;\n      std::cin >> x;\n      return x;\n    }\n\
+    \    template <typename T>\n    requires requires { typename std::tuple_size<T>::type;\
+    \ }\n    auto _input() {\n      T x;\n      util::tuple_for_each([](auto&& i)\
+    \ { std::cin >> i; }, x);\n      return x;\n    }\n    template <__details::is_vec\
+    \ T>\n    auto _input(int n) {\n      std::vector<typename T::value_type> v;\n\
+    \      v.reserve(n);\n      for (auto i : std::views::iota(0, n)) {\n        v.emplace_back(_input<typename\
+    \ T::value_type>());\n      }\n      return v;\n    }\n    template <__details::is_mat\
+    \ T>\n    auto _input(int h, int w) {\n      T mat;\n      mat.reserve(h);\n \
+    \     for (auto i : std::views::iota(0, h)) {\n        mat.emplace_back(_input<typename\
+    \ T::value_type>(w));\n      }\n      return mat;\n    }\n\n    template <int\
+    \ N, class Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Sizes... sizes);\n    template <int N, class Tuple, __details::is_vec T,\
+    \ class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Size size, Sizes... sizes);\n    template <int N, class Tuple, __details::is_mat\
+    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
     \ t, Size size_h, Size size_w, Sizes... sizes);\n\n    template <int N, class\
     \ Tuple, class T, class... Args, class... Sizes>\n    auto _tuple_input(Tuple&\
     \ t, Sizes... sizes) {\n      std::get<N>(t) = _input<T>();\n      if constexpr\
     \ (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t, sizes...);\n\
-    \      }\n    }\n    template <int N, class Tuple, type::is_vec T, class... Args,\
-    \ class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple& t,\
-    \ Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n    \
-    \  if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple, Args...>(t,\
-    \ sizes...);\n      }\n    }\n    template <int N, class Tuple, type::is_mat T,\
-    \ class... Args, class Size,\n              class... Sizes>\n    auto _tuple_input(Tuple&\
+    \      }\n    }\n    template <int N, class Tuple, __details::is_vec T, class...\
+    \ Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
+    \ t, Size size, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size);\n \
+    \     if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N + 1, Tuple,\
+    \ Args...>(t, sizes...);\n      }\n    }\n    template <int N, class Tuple, __details::is_mat\
+    \ T, class... Args,\n              class Size, class... Sizes>\n    auto _tuple_input(Tuple&\
     \ t, Size size_h, Size size_w, Sizes... sizes) {\n      std::get<N>(t) = _input<T>(size_h,\
     \ size_w);\n      if constexpr (sizeof...(Args) > 0) {\n        _tuple_input<N\
-    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class T>\n\
-    \    struct _Converter {\n      using type = T;\n    };\n    template <class T>\n\
-    \    struct _Converter<type::vec<T>> {\n      using type = std::vector<T>;\n \
-    \   };\n    template <class T>\n    struct _Converter<type::mat<T>> {\n      using\
-    \ type = std::vector<std::vector<T>>;\n    };\n\n    template <class... Args,\
-    \ class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...) auto\
-    \ in(Sizes... sizes) {\n      auto base = std::tuple<typename _Converter<Args>::type...>();\n\
-    \      _tuple_input<0, decltype(base), Args...>(base, sizes...);\n      return\
-    \ base;\n    }\n\n  }  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
+    \ + 1, Tuple, Args...>(t, sizes...);\n      }\n    }\n\n    template <class...\
+    \ Args, class... Sizes>\n    requires(std::convertible_to<Sizes, size_t>&&...)\
+    \ auto in(Sizes... sizes) {\n      auto base = std::tuple<Args...>();\n      _tuple_input<0,\
+    \ decltype(base), Args...>(base, sizes...);\n      return base;\n    }\n\n  }\
+    \  // namespace io\n\n}  // namespace mtd\n#line 6 \"Library/Range/istream.hpp\"\
     \n\nnamespace mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n\
     \    template <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
-    \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
-    \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
+    \ {\n      class iterator {\n        int count;\n        std::tuple<Args...> val;\n\
+    \n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
     \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
@@ -133,8 +125,8 @@ data:
   code: "#pragma once\n\n#include <ranges>\n\n#include \"../Utility/io.hpp\"\n\nnamespace\
     \ mtd {\n  namespace ranges {\n\n    constexpr int _inf = 1e9;\n\n    template\
     \ <class... Args>\n    struct istream_view\n        : public std::ranges::view_interface<istream_view<Args...>>\
-    \ {\n      class iterator {\n        int count;\n        std::tuple<typename io::_Converter<Args>::type...>\
-    \ val;\n\n      public:\n        using difference_type = int;\n        using value_type\
+    \ {\n      class iterator {\n        int count;\n        std::tuple<Args...> val;\n\
+    \n      public:\n        using difference_type = int;\n        using value_type\
     \ = decltype(val);\n        using iterator_concept = std::input_iterator_tag;\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(int\
     \ _count) : count(_count) {\n          operator++();\n        }\n\n        constexpr\
@@ -166,18 +158,18 @@ data:
   isVerificationFile: false
   path: Library/Range/istream.hpp
   requiredBy: []
-  timestamp: '2024-12-27 16:26:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-07-06 21:38:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/DataStructure/RunLengthEncoding.test.cpp
-  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Range/flatten.test.cpp
-  - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Math/Convolution_and.test.cpp
-  - Test/Math/Math_dynamic.test.cpp
-  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/flatten.test.cpp
+  - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
+  - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
+  - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document

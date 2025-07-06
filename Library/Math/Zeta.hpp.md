@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Zeta.hpp\"\n\n#include <ranges>\n#include <vector>\n\
@@ -68,7 +68,7 @@ data:
   requiredBy:
   - Library/Math/Convolution.hpp
   timestamp: '2024-11-09 15:39:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Math/Convolution_and.test.cpp
 documentation_of: Library/Math/Zeta.hpp

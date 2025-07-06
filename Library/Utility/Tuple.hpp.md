@@ -8,13 +8,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedVerifiedWith:
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Utility/Tuple.hpp\"\n\n#include <functional>\n\n\
@@ -89,27 +89,27 @@ data:
   isVerificationFile: false
   path: Library/Utility/Tuple.hpp
   requiredBy:
+  - Library/Range/istream.hpp
+  - Library/Range/util.hpp
+  - Library/Graph/Normal/Topological.hpp
   - Library/DataStructure/SternBrocotTree.hpp
   - Library/Utility/io.hpp
-  - Library/Graph/Normal/Topological.hpp
-  - Library/Range/util.hpp
-  - Library/Range/istream.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/DataStructure/SternBrocotTree.test.cpp
-  - Test/DataStructure/RunLengthEncoding.test.cpp
+  - Test/Range/zip.test.cpp
+  - Test/Range/cartesian_product.test.cpp
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/flatten.test.cpp
   - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Range/flatten.test.cpp
-  - Test/Range/enumerate.test.cpp
-  - Test/Range/cartesian_product.test.cpp
-  - Test/Range/zip.test.cpp
-  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
-  - Test/Math/Convolution_and.test.cpp
-  - Test/Math/Math_dynamic.test.cpp
-  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/DataStructure/RunLengthEncoding.test.cpp
+  - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/Math/Math.test.cpp
+  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
+  - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Utility/Tuple.hpp
 layout: document

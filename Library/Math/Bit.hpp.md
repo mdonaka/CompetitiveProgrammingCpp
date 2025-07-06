@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
   - icon: ':heavy_check_mark:'
     path: Library/Range/bit.hpp
     title: Library/Range/bit.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
     path: Test/Range/bit_subset.test.cpp
     title: Test/Range/bit_subset.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Math/Bit.hpp\"\n\nnamespace mtd {\n\n  constexpr\
@@ -63,11 +63,11 @@ data:
   path: Library/Math/Bit.hpp
   requiredBy:
   - Library/Range/bit.hpp
-  - Library/Math/Mobius.hpp
   - Library/Math/Zeta.hpp
+  - Library/Math/Mobius.hpp
   - Library/Math/Convolution.hpp
   timestamp: '2024-11-09 15:39:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - Test/Range/bit_subset.test.cpp
   - Test/Math/Convolution_and.test.cpp
