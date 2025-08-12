@@ -204,8 +204,8 @@ data:
   timestamp: '2025-01-02 21:02:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Math/Math_dynamic.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
 documentation_of: Library/Math/DynamicModInt.hpp
 layout: document
 redirect_from:

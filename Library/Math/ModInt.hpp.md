@@ -216,9 +216,9 @@ data:
   verifiedWith:
   - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
-  - Test/Math/Matrix_pow.test.cpp
-  - Test/Math/Math.test.cpp
   - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math.test.cpp
+  - Test/Math/Matrix_pow.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Math/ModInt.hpp
 layout: document

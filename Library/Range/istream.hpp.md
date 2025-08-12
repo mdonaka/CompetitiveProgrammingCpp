@@ -164,15 +164,15 @@ data:
   timestamp: '2025-07-06 21:41:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/Range/zip.test.cpp
-  - Test/Range/enumerate.test.cpp
-  - Test/Range/flatten.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
+  - Test/Range/flatten.test.cpp
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/zip.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/Convolution_and.test.cpp
   - Test/Math/Math.test.cpp
   - Test/Math/Math_dynamic.test.cpp
-  - Test/Math/Convolution_and.test.cpp
-  - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Range/istream.hpp
 layout: document
