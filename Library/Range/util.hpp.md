@@ -522,8 +522,8 @@ data:
   - Test/Graph/Normal/Topological.test.cpp
   - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/Range/flatten.test.cpp
-  - Test/Range/cartesian_product.test.cpp
   - Test/Range/enumerate.test.cpp
+  - Test/Range/cartesian_product.test.cpp
   - Test/Range/zip.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document

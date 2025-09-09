@@ -150,15 +150,15 @@ data:
   verifiedWith:
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - Test/DataStructure/RunLengthEncoding.test.cpp
+  - Test/Math/Convolution_and.test.cpp
+  - Test/Math/Math_dynamic.test.cpp
+  - Test/Math/Math_pow_dynamic.test.cpp
+  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
+  - Test/Math/Math.test.cpp
+  - Test/Math/Math_pow.test.cpp
   - Test/Range/flatten.test.cpp
   - Test/Range/enumerate.test.cpp
   - Test/Range/zip.test.cpp
-  - Test/Math/Math_pow_dynamic.test.cpp
-  - Test/Math/Convolution_and.test.cpp
-  - Test/Math/Math.test.cpp
-  - Test/Math/Math_dynamic.test.cpp
-  - Test/Math/EuclideanAlgorithm_gcd.test.cpp
-  - Test/Math/Math_pow.test.cpp
 documentation_of: Library/Utility/io.hpp
 layout: document
 redirect_from:

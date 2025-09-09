@@ -100,10 +100,10 @@ data:
   timestamp: '2025-06-14 20:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Normal/BFS.test.cpp
-  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Graph/Tree/ReRootingDP_cost.test.cpp
+  - Test/Graph/Tree/ReRootingDP.test.cpp
   - Test/Graph/Tree/LowestCommonAncestor.test.cpp
+  - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document
 redirect_from:

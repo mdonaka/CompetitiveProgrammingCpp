@@ -77,8 +77,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Normal/Kruskal.test.cpp
-  - Test/DataStructure/DisjointSetUnion.test.cpp
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
+  - Test/DataStructure/DisjointSetUnion.test.cpp
 documentation_of: Library/DataStructure/DisjointSetUnion.hpp
 layout: document
 redirect_from:
