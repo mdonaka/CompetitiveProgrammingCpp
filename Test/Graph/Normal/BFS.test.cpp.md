@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Algorithms/BinarySearch.hpp
     title: Library/Algorithms/BinarySearch.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   - icon: ':heavy_check_mark:'

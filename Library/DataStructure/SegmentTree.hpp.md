@@ -197,12 +197,12 @@ data:
   verifiedWith:
   - Test/Algorithms/CoordinateCompression_comp.test.cpp
   - Test/Algorithms/CoordinateCompression_to.test.cpp
-  - Test/String/LCPArray.test.cpp
+  - Test/DataStructure/SegmentTree_RSQ.test.cpp
   - Test/DataStructure/SegmentTree_RMQ.test.cpp
+  - Test/DataStructure/SegmentTree_minleft.test.cpp
   - Test/DataStructure/LazySegmentTree_maxright.test.cpp
   - Test/DataStructure/SegmentTree_maxright.test.cpp
-  - Test/DataStructure/SegmentTree_RSQ.test.cpp
-  - Test/DataStructure/SegmentTree_minleft.test.cpp
+  - Test/String/LCPArray.test.cpp
 documentation_of: Library/DataStructure/SegmentTree.hpp
 layout: document
 redirect_from:

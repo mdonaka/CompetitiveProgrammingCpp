@@ -76,9 +76,9 @@ data:
   timestamp: '2024-12-25 00:03:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - Test/Graph/Normal/Kruskal.test.cpp
   - Test/DataStructure/DisjointSetUnion_Potential.test.cpp
   - Test/DataStructure/DisjointSetUnion.test.cpp
+  - Test/Graph/Normal/Kruskal.test.cpp
 documentation_of: Library/DataStructure/DisjointSetUnion.hpp
 layout: document
 redirect_from:

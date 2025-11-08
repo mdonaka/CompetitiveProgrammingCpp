@@ -61,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/DataStructure/SegmentTree.hpp
       title: Library/DataStructure/SegmentTree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/DataStructure/SternBrocotTree.hpp
       title: Library/DataStructure/SternBrocotTree.hpp
   - name: Library/Graph/Flow
@@ -77,7 +77,7 @@ data:
       title: Library/Graph/Flow/SuccessiveShortestPath.hpp
   - name: Library/Graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Graph.hpp
       title: Library/Graph/Graph.hpp
   - name: Library/Graph/Normal
@@ -91,10 +91,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Graph/Normal/Prim.hpp
       title: Library/Graph/Normal/Prim.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: Library/Graph/Normal/StronglyConnectedComponents.hpp
       title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Graph/Normal/Topological.hpp
       title: Library/Graph/Normal/Topological.hpp
     - icon: ':heavy_check_mark:'
@@ -174,7 +174,7 @@ data:
     - icon: ':warning:'
       path: Library/Range/set.hpp
       title: Library/Range/set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Library/Range/util.hpp
       title: Library/Range/util.hpp
   - name: Library/String
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/DataStructure/SegmentTree_minleft.test.cpp
       title: Test/DataStructure/SegmentTree_minleft.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/DataStructure/SternBrocotTree.test.cpp
       title: Test/DataStructure/SternBrocotTree.test.cpp
   - name: Test/Graph/Flow
@@ -349,7 +349,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
       title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Graph/Normal/Topological.test.cpp
       title: Test/Graph/Normal/Topological.test.cpp
     - icon: ':heavy_check_mark:'
@@ -426,16 +426,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Range/bit_subset.test.cpp
       title: Test/Range/bit_subset.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Range/cartesian_product.test.cpp
       title: Test/Range/cartesian_product.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Range/enumerate.test.cpp
       title: Test/Range/enumerate.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Range/flatten.test.cpp
       title: Test/Range/flatten.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: Test/Range/zip.test.cpp
       title: Test/Range/zip.test.cpp
   - name: Test/String

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
   _extendedRequiredBy:
@@ -95,14 +95,14 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/BFS.hpp
   requiredBy:
-  - Library/Graph/Tree/LowestCommonAncestor.hpp
   - Library/Graph/Tree/ReRootingDP.hpp
+  - Library/Graph/Tree/LowestCommonAncestor.hpp
   timestamp: '2025-06-14 20:53:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Tree/ReRootingDP_cost.test.cpp
   - Test/Graph/Tree/ReRootingDP.test.cpp
-  - Test/Graph/Tree/LowestCommonAncestor.test.cpp
   - Test/Graph/Normal/BFS.test.cpp
 documentation_of: Library/Graph/Normal/BFS.hpp
 layout: document

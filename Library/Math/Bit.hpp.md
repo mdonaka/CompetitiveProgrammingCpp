@@ -62,15 +62,15 @@ data:
   isVerificationFile: false
   path: Library/Math/Bit.hpp
   requiredBy:
-  - Library/Math/Zeta.hpp
-  - Library/Math/Mobius.hpp
-  - Library/Math/Convolution.hpp
   - Library/Range/bit.hpp
+  - Library/Math/Convolution.hpp
+  - Library/Math/Mobius.hpp
+  - Library/Math/Zeta.hpp
   timestamp: '2024-11-09 15:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - Test/Math/Convolution_and.test.cpp
   - Test/Range/bit_subset.test.cpp
+  - Test/Math/Convolution_and.test.cpp
 documentation_of: Library/Math/Bit.hpp
 layout: document
 redirect_from:

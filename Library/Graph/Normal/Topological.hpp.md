@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: Library/Graph/Graph.hpp
     title: Library/Graph/Graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Normal/Topological.hpp\"\n\r\n#include <deque>\r\
@@ -244,12 +244,12 @@ data:
     \      };\n    }  // namespace __detail\n\n    struct _ZipView {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \      }\n    };\n    struct _Enumerate : std::ranges::range_adaptor_closure<_Enumerate>\
     \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
     \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
     \      return ranges::zip_view{std::views::iota(0), std::forward<_Tp>(__e)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
-    \    struct _Flatten : std::views::__adaptor::_RangeAdaptorClosure {\n      template\
+    \    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten> {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::flatten_view(std::forward<_Tp>(__e)...);\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
@@ -329,8 +329,8 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/Topological.hpp
   requiredBy: []
-  timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-11-08 10:58:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Normal/Topological.test.cpp
 documentation_of: Library/Graph/Normal/Topological.hpp

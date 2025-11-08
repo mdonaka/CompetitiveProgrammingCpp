@@ -5,34 +5,34 @@ data:
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Range/cartesian_product.test.cpp
     title: Test/Range/cartesian_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Range/enumerate.test.cpp
     title: Test/Range/enumerate.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: Test/Range/zip.test.cpp
     title: Test/Range/zip.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -257,12 +257,12 @@ data:
     \      };\n    }  // namespace __detail\n\n    struct _ZipView {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \      }\n    };\n    struct _Enumerate : std::ranges::range_adaptor_closure<_Enumerate>\
     \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
     \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
     \      return ranges::zip_view{std::views::iota(0), std::forward<_Tp>(__e)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
-    \    struct _Flatten : std::views::__adaptor::_RangeAdaptorClosure {\n      template\
+    \    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten> {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::flatten_view(std::forward<_Tp>(__e)...);\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
@@ -489,12 +489,12 @@ data:
     \      };\n    }  // namespace __detail\n\n    struct _ZipView {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n    };\n    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure\
+    \      }\n    };\n    struct _Enumerate : std::ranges::range_adaptor_closure<_Enumerate>\
     \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
     \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
     \      return ranges::zip_view{std::views::iota(0), std::forward<_Tp>(__e)};\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
-    \    struct _Flatten : std::views::__adaptor::_RangeAdaptorClosure {\n      template\
+    \    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten> {\n      template\
     \ <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n      constexpr\
     \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::flatten_view(std::forward<_Tp>(__e)...);\n\
     \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
@@ -514,16 +514,16 @@ data:
   isVerificationFile: false
   path: Library/Range/util.hpp
   requiredBy:
-  - Library/Graph/Normal/Topological.hpp
   - Library/DataStructure/SternBrocotTree.hpp
-  timestamp: '2025-01-24 16:53:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - Library/Graph/Normal/Topological.hpp
+  timestamp: '2025-11-08 10:58:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - Test/Graph/Normal/Topological.test.cpp
   - Test/DataStructure/SternBrocotTree.test.cpp
-  - Test/Range/flatten.test.cpp
-  - Test/Range/enumerate.test.cpp
+  - Test/Graph/Normal/Topological.test.cpp
   - Test/Range/cartesian_product.test.cpp
+  - Test/Range/enumerate.test.cpp
+  - Test/Range/flatten.test.cpp
   - Test/Range/zip.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
