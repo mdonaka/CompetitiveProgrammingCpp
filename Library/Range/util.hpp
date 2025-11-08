@@ -464,7 +464,7 @@ namespace mtd {
         return ranges::zip_view(std::forward<_Tp>(__e)...);
       }
     };
-    struct _Enumerate : std::views::__adaptor::_RangeAdaptorClosure {
+    struct _Enumerate : std::ranges::range_adaptor_closure<_Enumerate> {
       template <class _Tp>
       requires __detail::__can_zip_view<std::ranges::iota_view<size_t>, _Tp>
       constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {
@@ -472,7 +472,7 @@ namespace mtd {
       }
       static constexpr bool _S_has_simple_call_op = true;
     };
-    struct _Flatten : std::views::__adaptor::_RangeAdaptorClosure {
+    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten> {
       template <class... _Tp>
       requires __detail::__can_flatten_view<_Tp...>
       constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {

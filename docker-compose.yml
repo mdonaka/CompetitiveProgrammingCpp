@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  gcc15:
+    image: gcc:15
+    container_name: gcc15
+    working_dir: /src
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /src
+        read_only: false

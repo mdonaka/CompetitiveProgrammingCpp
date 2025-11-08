@@ -1,5 +1,8 @@
 .DEFAULT_GOAL := help
 
+GXX := g++
+OPTION := -std=c++2b -O2 -D DEBUG -I /ac-library -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion
+
 SRC ?= main.cpp
 SRC_CORRECT ?= main_correct.cpp
 SRC_TESTCASES ?= main_testcases.cpp
@@ -10,7 +13,6 @@ SRC_COPY_FLAT = $(BUILD_DIR)/$(SRC_FLAT:.cpp=_copy.cpp)
 BIN_RUN = $(BUILD_DIR)/$(SRC_FLAT:.cpp=.out)
 BIN_TEST := $(BUILD_DIR)/test.out
 
-OPTION := -std=c++2a -O2 -D DEBUG -I /ac-library -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion
 DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 HEADERS = $(shell find ./ -name "*.hpp")
 
@@ -18,10 +20,10 @@ $(SRC_COPY_FLAT): $(SRC) $(HEADERS)
 	@python Command/inline_includes.py $< | tee $@ | xsel -bi
 
 $(BIN_RUN): $(SRC) $(HEADERS)
-	@g++-12 $(OPTION) $< -MMD -MP -o $@
+	@$(GXX) $(OPTION) $< -MMD -MP -o $@
 
 $(BIN_TEST): $(SRC) $(HEADERS)
-	@g++-12 $(OPTION) $< -D TEST -MMD -MP -o $@
+	@$(GXX) $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: ## reset
@@ -32,7 +34,7 @@ i: ## reset
 
 .PHONY: y
 y: $(SRC_COPY_FLAT) ## yank
-	@g++-12 $(OPTION) $(SRC_COPY_FLAT) -o tmp && rm -r tmp
+	@# @$(GXX) $(OPTION) $(SRC_COPY_FLAT) -o tmp && rm -r tmp
 
 .PHONY: r
 r: $(BIN_RUN) ## run
