@@ -5,6 +5,7 @@
 
 // begin:tag includes
 #include "./../../Library/DataStructure/SternBrocotTree.hpp"
+#include "./../../Library/Range/util.hpp"
 // end:tag includes
 
 using ll = long long;
@@ -26,7 +27,7 @@ signed main() {
       auto path_rle = sbt.encode(a, b);
       std::cout << path_rle.size() << (path_rle.empty() ? "" : " ");
       for (const auto& [i, right, k] :
-           path_rle | mtd::views::enumerate | mtd::views::flatten) {
+           path_rle | std::views::enumerate | mtd::views::flatten) {
         std::cout << (right ? 'R' : 'L') << " " << k
                   << (i == path_rle.size() - 1 ? "" : " ");
       }

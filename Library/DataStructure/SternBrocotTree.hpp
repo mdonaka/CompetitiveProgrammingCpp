@@ -2,11 +2,10 @@
 
 #include <iostream>
 #include <numeric>
+#include <ranges>
 #include <stdexcept>
 #include <tuple>
 #include <vector>
-
-#include "../Range/util.hpp"
 
 namespace mtd {
 
@@ -148,7 +147,7 @@ namespace mtd {
       auto path_rle1 = encode(node1);
       auto path_rle2 = encode(node2);
       Path lca_path;
-      for (const auto [p1, p2] : mtd::views::zip(path_rle1, path_rle2)) {
+      for (const auto [p1, p2] : std::views::zip(path_rle1, path_rle2)) {
         auto [right1, k1] = p1;
         auto [right2, k2] = p2;
         if (right1 != right2) { return Node::get_root(MAX_NUM, MAX_DEN); }

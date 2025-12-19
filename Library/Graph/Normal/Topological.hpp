@@ -1,9 +1,9 @@
 #pragma once
 
 #include <deque>
+#include <ranges>
 #include <vector>
 
-#include "../../Range/util.hpp"
 #include "../Graph.hpp"
 
 namespace mtd {
@@ -13,7 +13,7 @@ namespace mtd {
     for (auto [_, v] : graph.getEdgesExcludeCost()) { ++cnt[v]; }
 
     std::deque<Node> q;
-    for (auto [nd, c] : cnt | mtd::views::enumerate) {
+    for (auto [nd, c] : cnt | std::views::enumerate) {
       if (c == 0) { q.emplace_back(nd); }
     }
 
