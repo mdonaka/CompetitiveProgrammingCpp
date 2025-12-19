@@ -427,17 +427,8 @@ data:
       path: Test/Range/bit_subset.test.cpp
       title: Test/Range/bit_subset.test.cpp
     - icon: ':x:'
-      path: Test/Range/cartesian_product.test.cpp
-      title: Test/Range/cartesian_product.test.cpp
-    - icon: ':x:'
-      path: Test/Range/enumerate.test.cpp
-      title: Test/Range/enumerate.test.cpp
-    - icon: ':x:'
       path: Test/Range/flatten.test.cpp
       title: Test/Range/flatten.test.cpp
-    - icon: ':x:'
-      path: Test/Range/zip.test.cpp
-      title: Test/Range/zip.test.cpp
   - name: Test/String
     pages:
     - icon: ':heavy_check_mark:'

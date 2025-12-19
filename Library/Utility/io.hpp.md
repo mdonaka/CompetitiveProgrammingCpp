@@ -34,14 +34,8 @@ data:
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
   - icon: ':x:'
-    path: Test/Range/enumerate.test.cpp
-    title: Test/Range/enumerate.test.cpp
-  - icon: ':x:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':x:'
-    path: Test/Range/zip.test.cpp
-    title: Test/Range/zip.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -150,9 +144,7 @@ data:
   verifiedWith:
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
-  - Test/Range/zip.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp
   - Test/Math/EuclideanAlgorithm_gcd.test.cpp

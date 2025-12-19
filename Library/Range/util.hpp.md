@@ -4,32 +4,14 @@ data:
   - icon: ':question:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: Library/DataStructure/SternBrocotTree.hpp
-    title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':x:'
-    path: Library/Graph/Normal/Topological.hpp
-    title: Library/Graph/Normal/Topological.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
   - icon: ':x:'
-    path: Test/Graph/Normal/Topological.test.cpp
-    title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':x:'
-    path: Test/Range/cartesian_product.test.cpp
-    title: Test/Range/cartesian_product.test.cpp
-  - icon: ':x:'
-    path: Test/Range/enumerate.test.cpp
-    title: Test/Range/enumerate.test.cpp
-  - icon: ':x:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':x:'
-    path: Test/Range/zip.test.cpp
-    title: Test/Range/zip.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -205,18 +187,12 @@ data:
   - Library/Utility/Tuple.hpp
   isVerificationFile: false
   path: Library/Range/util.hpp
-  requiredBy:
-  - Library/DataStructure/SternBrocotTree.hpp
-  - Library/Graph/Normal/Topological.hpp
+  requiredBy: []
   timestamp: '2025-12-20 01:59:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
-  - Test/Graph/Normal/Topological.test.cpp
-  - Test/Range/cartesian_product.test.cpp
-  - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
-  - Test/Range/zip.test.cpp
 documentation_of: Library/Range/util.hpp
 layout: document
 redirect_from:

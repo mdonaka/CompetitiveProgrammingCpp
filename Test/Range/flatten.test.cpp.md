@@ -185,14 +185,14 @@ data:
     \ inline constexpr _ProductN product_n{};\n  }  // namespace views\n}  // namespace\
     \ mtd\n#line 8 \"Test/Range/flatten.test.cpp\"\n// end:tag includes\n\nint main()\
     \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  for (auto [i, x]\
-    \ : mtd::views::istream<int>() | mtd::views::enumerate |\n                   \
+    \ : mtd::views::istream<int>() | std::views::enumerate |\n                   \
     \      mtd::views::flatten) {\n    if (x == 0) { break; }\n    std::cout << \"\
     Case \" << i + 1 << \": \" << x << std::endl;\n  }\n}\n"
   code: "#define PROBLEM \\\n  \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/3/ITP1_3_B\"\
     \n#include <iostream>\n\n// begin:tag includes\n#include \"../../Library/Range/istream.hpp\"\
     \n#include \"../../Library/Range/util.hpp\"\n// end:tag includes\n\nint main()\
     \ {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\n  for (auto [i, x]\
-    \ : mtd::views::istream<int>() | mtd::views::enumerate |\n                   \
+    \ : mtd::views::istream<int>() | std::views::enumerate |\n                   \
     \      mtd::views::flatten) {\n    if (x == 0) { break; }\n    std::cout << \"\
     Case \" << i + 1 << \": \" << x << std::endl;\n  }\n}\n"
   dependsOn:
@@ -203,7 +203,7 @@ data:
   isVerificationFile: true
   path: Test/Range/flatten.test.cpp
   requiredBy: []
-  timestamp: '2025-12-20 01:59:21+09:00'
+  timestamp: '2025-12-20 02:07:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: Test/Range/flatten.test.cpp

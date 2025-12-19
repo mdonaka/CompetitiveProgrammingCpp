@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: Library/DataStructure/SternBrocotTree.hpp
-    title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':x:'
-    path: Library/Graph/Normal/Topological.hpp
-    title: Library/Graph/Normal/Topological.hpp
   - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
@@ -28,9 +22,6 @@ data:
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
   - icon: ':x:'
-    path: Test/Graph/Normal/Topological.test.cpp
-    title: Test/Graph/Normal/Topological.test.cpp
-  - icon: ':x:'
     path: Test/Math/Convolution_and.test.cpp
     title: Test/Math/Convolution_and.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,17 +40,8 @@ data:
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
   - icon: ':x:'
-    path: Test/Range/cartesian_product.test.cpp
-    title: Test/Range/cartesian_product.test.cpp
-  - icon: ':x:'
-    path: Test/Range/enumerate.test.cpp
-    title: Test/Range/enumerate.test.cpp
-  - icon: ':x:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  - icon: ':x:'
-    path: Test/Range/zip.test.cpp
-    title: Test/Range/zip.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -90,8 +72,6 @@ data:
   path: Library/Utility/Tuple.hpp
   requiredBy:
   - Library/Utility/io.hpp
-  - Library/DataStructure/SternBrocotTree.hpp
-  - Library/Graph/Normal/Topological.hpp
   - Library/Range/util.hpp
   - Library/Range/istream.hpp
   timestamp: '2024-12-17 23:51:37+09:00'
@@ -99,12 +79,8 @@ data:
   verifiedWith:
   - Test/DataStructure/RunLengthEncoding.test.cpp
   - Test/DataStructure/SternBrocotTree.test.cpp
-  - Test/Graph/Normal/Topological.test.cpp
   - Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - Test/Range/cartesian_product.test.cpp
-  - Test/Range/enumerate.test.cpp
   - Test/Range/flatten.test.cpp
-  - Test/Range/zip.test.cpp
   - Test/Math/Math_pow_dynamic.test.cpp
   - Test/Math/Math_dynamic.test.cpp
   - Test/Math/EuclideanAlgorithm_gcd.test.cpp
