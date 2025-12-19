@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/DataStructure/SternBrocotTree.hpp\"\n\n#include\
@@ -209,7 +209,7 @@ data:
   path: Library/DataStructure/SternBrocotTree.hpp
   requiredBy: []
   timestamp: '2025-12-20 02:07:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
 documentation_of: Library/DataStructure/SternBrocotTree.hpp

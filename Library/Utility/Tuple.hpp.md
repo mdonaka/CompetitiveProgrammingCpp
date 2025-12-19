@@ -5,7 +5,7 @@ data:
   - icon: ':question:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
   - icon: ':question:'
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/DataStructure/RunLengthEncoding.test.cpp
     title: Test/DataStructure/RunLengthEncoding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
   _isVerificationFailed: true

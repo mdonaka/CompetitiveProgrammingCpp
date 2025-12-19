@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/DataStructure/SternBrocotTree.hpp
     title: Library/DataStructure/SternBrocotTree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/util.hpp
     title: Library/Range/util.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
@@ -275,7 +275,7 @@ data:
   path: Test/DataStructure/SternBrocotTree.test.cpp
   requiredBy: []
   timestamp: '2025-12-20 02:07:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/DataStructure/SternBrocotTree.test.cpp
 layout: document

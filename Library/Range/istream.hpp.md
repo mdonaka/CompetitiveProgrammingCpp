@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Math/Math_pow_dynamic.test.cpp
     title: Test/Math/Math_pow_dynamic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
   _isVerificationFailed: true

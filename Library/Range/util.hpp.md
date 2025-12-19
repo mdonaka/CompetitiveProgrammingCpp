@@ -6,15 +6,15 @@ data:
     title: Library/Utility/Tuple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/DataStructure/SternBrocotTree.test.cpp
     title: Test/DataStructure/SternBrocotTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Range/flatten.test.cpp
     title: Test/Range/flatten.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Range/util.hpp\"\n\n#include <algorithm>\n#include\
@@ -189,7 +189,7 @@ data:
   path: Library/Range/util.hpp
   requiredBy: []
   timestamp: '2025-12-20 01:59:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/DataStructure/SternBrocotTree.test.cpp
   - Test/Range/flatten.test.cpp

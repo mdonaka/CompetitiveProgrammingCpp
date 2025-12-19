@@ -20,10 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Prim.hpp
     title: Library/Graph/Normal/Prim.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/StronglyConnectedComponents.hpp
     title: Library/Graph/Normal/StronglyConnectedComponents.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Graph/Normal/Topological.hpp
     title: Library/Graph/Normal/Topological.hpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
     title: Test/Graph/Normal/StronglyConnectedComponents.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Test/Graph/Normal/Topological.test.cpp
     title: Test/Graph/Normal/Topological.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,9 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: Test/Graph/Tree/TreeDP.test.cpp
     title: Test/Graph/Tree/TreeDP.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"Library/Graph/Graph.hpp\"\n#include <deque>\r\n#include\
@@ -209,7 +209,7 @@ data:
   - Library/Graph/Normal/Topological.hpp
   - Library/Graph/Normal/dijkstra.hpp
   timestamp: '2025-06-09 16:27:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - Test/Graph/Flow/FordFulkerson.test.cpp
   - Test/Graph/Flow/SuccessiveShortestPath.test.cpp
