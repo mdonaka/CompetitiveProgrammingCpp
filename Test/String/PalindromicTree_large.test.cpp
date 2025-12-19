@@ -25,7 +25,7 @@ signed main() {
 
   ll an = a.size();
   std::vector<std::pair<ll, ll>> dp(s.size());
-  tree.dfs_edges([&](int size, const std::list<int>& ritr) {
+  tree.dfs_edges([&](int size, const std::vector<int>& ritr) {
     ll l = 0, r = 0;
     for (const auto& x : ritr)
       if (x != an && x != an + 1) { ++((x < an) ? l : r); }
