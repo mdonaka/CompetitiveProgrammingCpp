@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Bit.hpp
     title: Library/Math/Bit.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Convolution.hpp
     title: Library/Math/Convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/EuclideanAlgorithm.hpp
     title: Library/Math/EuclideanAlgorithm.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Math.hpp
     title: Library/Math/Math.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Mobius.hpp
     title: Library/Math/Mobius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/ModInt.hpp
     title: Library/Math/ModInt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: Library/Math/Zeta.hpp
     title: Library/Math/Zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -305,7 +305,7 @@ data:
     \ istream{};\n  }  // namespace views\n\n}  // namespace mtd\n#line 8 \"Test/Math/Convolution_and.test.cpp\"\
     \n// end:tag includes\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
     \n  using mint = mtd::ModInt<998244353>;\n\n  auto [n] = mtd::io::in<int>();\n\
-    \  auto a = mtd::io::_input<mtd::io::type::vec<mint>>(1LL << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<mint>>(1LL\
+    \  auto a = mtd::io::_input<std::vector<mint>>(1LL << n);\n  auto b = mtd::io::_input<std::vector<mint>>(1LL\
     \ << n);\n\n  auto ans = mtd::convolution::bitwise_and(a, b);\n  for (auto x :\
     \ ans) { std::cout << x << \" \"; }\n  std::cout << std::endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
@@ -313,7 +313,7 @@ data:
     \n#include \"../../Library/Math/ModInt.hpp\"\n#include \"../../Library/Range/istream.hpp\"\
     \n// end:tag includes\n\nint main() {\n  std::cin.tie(0);\n  std::ios::sync_with_stdio(0);\n\
     \n  using mint = mtd::ModInt<998244353>;\n\n  auto [n] = mtd::io::in<int>();\n\
-    \  auto a = mtd::io::_input<mtd::io::type::vec<mint>>(1LL << n);\n  auto b = mtd::io::_input<mtd::io::type::vec<mint>>(1LL\
+    \  auto a = mtd::io::_input<std::vector<mint>>(1LL << n);\n  auto b = mtd::io::_input<std::vector<mint>>(1LL\
     \ << n);\n\n  auto ans = mtd::convolution::bitwise_and(a, b);\n  for (auto x :\
     \ ans) { std::cout << x << \" \"; }\n  std::cout << std::endl;\n}\n"
   dependsOn:
@@ -330,8 +330,8 @@ data:
   isVerificationFile: true
   path: Test/Math/Convolution_and.test.cpp
   requiredBy: []
-  timestamp: '2025-07-06 21:41:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-12-20 02:32:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: Test/Math/Convolution_and.test.cpp
 layout: document

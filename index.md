@@ -128,34 +128,34 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Math/BabyStepGiantStep.hpp
       title: Library/Math/BabyStepGiantStep.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Bit.hpp
       title: Library/Math/Bit.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Convolution.hpp
       title: Library/Math/Convolution.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Math/DynamicModInt.hpp
       title: Library/Math/DynamicModInt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/EuclideanAlgorithm.hpp
       title: Library/Math/EuclideanAlgorithm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Math.hpp
       title: Library/Math/Math.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Math/Matrix.hpp
       title: Library/Math/Matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Mobius.hpp
       title: Library/Math/Mobius.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/ModInt.hpp
       title: Library/Math/ModInt.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Math/Prime.hpp
       title: Library/Math/Prime.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Library/Math/Zeta.hpp
       title: Library/Math/Zeta.hpp
   - name: Library/PlaneGeometry
@@ -168,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Range/bit.hpp
       title: Library/Range/bit.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Range/istream.hpp
       title: Library/Range/istream.hpp
     - icon: ':warning:'
@@ -202,13 +202,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Tools.hpp
       title: Library/Utility/Tools.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/Tuple.hpp
       title: Library/Utility/Tuple.hpp
     - icon: ':heavy_check_mark:'
       path: Library/Utility/Ycombinator.hpp
       title: Library/Utility/Ycombinator.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: Library/Utility/io.hpp
       title: Library/Utility/io.hpp
   verificationCategories:
@@ -386,7 +386,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: Test/Math/BabyStepGiantStep.test.cpp
       title: Test/Math/BabyStepGiantStep.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: Test/Math/Convolution_and.test.cpp
       title: Test/Math/Convolution_and.test.cpp
     - icon: ':heavy_check_mark:'

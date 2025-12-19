@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Library/DataStructure/RunLengthEncoding.hpp
     title: Library/DataStructure/RunLengthEncoding.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Range/istream.hpp
     title: Library/Range/istream.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/Tuple.hpp
     title: Library/Utility/Tuple.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: Library/Utility/io.hpp
     title: Library/Utility/io.hpp
   _extendedRequiredBy: []
