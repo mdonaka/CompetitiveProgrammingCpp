@@ -29,7 +29,7 @@ namespace mtd {
         if (first_itr == -1) {
           first_itr = itr;
         } else {
-          rest_itrs.push_back(itr);
+          rest_itrs.emplace_back(itr);
         }
       }
 
@@ -37,7 +37,7 @@ namespace mtd {
         if (first_itr == -1) { return {}; }
         std::vector<int> result;
         result.reserve(1 + rest_itrs.size());
-        result.push_back(first_itr);
+        result.emplace_back(first_itr);
         result.insert(result.end(), rest_itrs.begin(), rest_itrs.end());
         return result;
       }
@@ -102,8 +102,8 @@ namespace mtd {
     template <class Lambda>
     auto dfs_edges(const Lambda& lambda) const -> void {
       std::stack<int, std::vector<int>> stk;
-      stk.push(ROOT_ODD);
-      stk.push(ROOT_EVEN);
+      stk.emplace(ROOT_ODD);
+      stk.emplace(ROOT_EVEN);
 
       while (!stk.empty()) {
         int idx = stk.top();
@@ -112,7 +112,7 @@ namespace mtd {
         const auto& node = m_nodes[idx];
         if (node.size > 0) { lambda(node.size, node.get_itrs()); }
 
-        for (const auto& [_, next_idx] : node.edges) { stk.push(next_idx); }
+        for (const auto& [_, next_idx] : node.edges) { stk.emplace(next_idx); }
       }
     }
 
@@ -129,14 +129,14 @@ namespace mtd {
         int sl_idx = node.suffix_link;
         if (sl_idx >= 2 && m_nodes[sl_idx].first_itr != -1) {
           int to = m_nodes[sl_idx].first_itr;
-          graph[from].push_back(to);
+          graph[from].emplace_back(to);
           ++order_count[to];
         }
       }
 
       std::queue<int> q;
       for (int i = 0; i < static_cast<int>(m_s.size()); ++i) {
-        if (order_count[i] == 0) { q.push(i); }
+        if (order_count[i] == 0) { q.emplace(i); }
       }
 
       while (!q.empty()) {
@@ -145,7 +145,7 @@ namespace mtd {
         for (int t : graph[f]) {
           --order_count[t];
           lambda(f, t);
-          if (order_count[t] == 0) { q.push(t); }
+          if (order_count[t] == 0) { q.emplace(t); }
         }
       }
     }
