@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 
-GXX := g++
+CXX := g++
+PYTHON := uv run python
 OPTION := -std=c++2b -O2 -D DEBUG -I /ac-library -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion
 
 SRC ?= main.cpp
@@ -17,13 +18,13 @@ DEPENDS = $(BIN_RUN:.out=.d) $(BIN_TEST:.out=.d)
 HEADERS = $(shell find ./ -name "*.hpp")
 
 $(SRC_COPY_FLAT): $(SRC) $(HEADERS)
-	@python Command/inline_includes.py $< | tee $@ | xsel -bi
+	@$(PYTHON) Command/inline_includes.py $< | tee $@ | xsel -bi
 
 $(BIN_RUN): $(SRC) $(HEADERS)
-	@$(GXX) $(OPTION) $< -MMD -MP -o $@
+	@$(CXX) $(OPTION) $< -MMD -MP -o $@
 
 $(BIN_TEST): $(SRC) $(HEADERS)
-	@$(GXX) $(OPTION) $< -D TEST -MMD -MP -o $@
+	@$(CXX) $(OPTION) $< -D TEST -MMD -MP -o $@
 
 .PHONY: i
 i: ## reset
@@ -34,7 +35,7 @@ i: ## reset
 
 .PHONY: y
 y: $(SRC_COPY_FLAT) ## yank
-	@# @$(GXX) $(OPTION) $(SRC_COPY_FLAT) -o tmp && rm -r tmp
+	@$(CXX) $(OPTION) $(SRC_COPY_FLAT) -o tmp && rm -r tmp
 
 .PHONY: r
 r: $(BIN_RUN) ## run
@@ -46,11 +47,11 @@ ri: $(BIN_RUN) ## run without input
 
 .PHONY: t
 t: ## test
-	@python Command/debug_compare.py $(SRC) $(SRC_CORRECT) $(SRC_TESTCASES) | tee i
+	@$(PYTHON) Command/debug_compare.py $(SRC) $(SRC_CORRECT) $(SRC_TESTCASES) | tee i
 
 .PHONY: ti
 ti: ## interactive test
-	@python Command/debug_interactive.py $(SRC) $(SRC_TESTCASES) | tee i
+	@$(PYTHON) Command/debug_interactive.py $(SRC) $(SRC_TESTCASES) | tee i
 
 .PHONY: c
 c: $(BIN_RUN) ## compile
