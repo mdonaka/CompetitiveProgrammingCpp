@@ -44,77 +44,21 @@ data:
     \ (__all_bidirectional<T...>) {\n          return std::bidirectional_iterator_tag{};\n\
     \        } else if constexpr (__all_forward<T...>) {\n          return std::forward_iterator_tag{};\n\
     \        } else {\n          return std::input_iterator_tag{};\n        }\n  \
-    \    }\n    }  // namespace __detail\n\n    template <std::ranges::range... _Range>\n\
-    \    struct zip_view : public std::ranges::view_interface<zip_view<_Range...>>\
-    \ {\n      class iterator {\n      public:\n        std::tuple<std::ranges::iterator_t<_Range>...>\
-    \ _M_current;\n\n        using difference_type = int;\n        using value_type\
-    \ = std::tuple<\n            std::iter_reference_t<std::ranges::iterator_t<_Range>>...>;\n\
-    \        using iterator_concept =\n            decltype(__detail::_S_iter_concept<_Range...>());\n\
-    \n        constexpr iterator() = default;\n        constexpr explicit iterator(const\
-    \ decltype(_M_current)& __current)\n            : _M_current(__current) {}\n \
-    \       constexpr auto operator*() const {\n          return util::tuple_transform([](auto&\
-    \ __i) { return *__i; },\n                                       _M_current);\n\
-    \        }\n        constexpr auto& operator++() {\n          util::tuple_for_each([](auto&\
-    \ __i) { ++__i; }, _M_current);\n          return *this;\n        }\n        constexpr\
-    \ auto operator++(int) { return ++*this; }\n        constexpr auto operator==(const\
-    \ iterator& other) const {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
-    \ {\n            return ((std::get<_Is>(_M_current) ==\n                     std::get<_Is>(other._M_current))\
-    \ ||\n                    ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n        constexpr auto& operator--() requires\n            __detail::__all_bidirectional<_Range...>\
-    \ {\n          util::tuple_for_each([](auto& __i) { --__i; }, _M_current);\n \
-    \         return *this;\n        }\n        constexpr auto operator--(\n     \
-    \       int) requires __detail::__all_bidirectional<_Range...> {\n          return\
-    \ --*this;\n        }\n        constexpr auto operator<=>(const iterator&)\n \
-    \           const requires __detail::__all_random_access<_Range...>\n        =\
-    \ default;\n        constexpr auto operator-(const iterator& itr)\n          \
-    \  const requires __detail::__all_random_access<_Range...> {\n          return\
-    \ [&]<size_t... _Is>(std::index_sequence<_Is...>) {\n            return std::ranges::min({difference_type(\n\
-    \                std::get<_Is>(_M_current) - std::get<_Is>(itr._M_current))...});\n\
-    \          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n   \
-    \     }\n        constexpr auto& operator+=(const difference_type n) requires\n\
-    \            __detail::__all_random_access<_Range...> {\n          util::tuple_for_each([&n](auto&\
-    \ __i) { __i += n; }, _M_current);\n          return *this;\n        }\n     \
-    \   constexpr auto operator+(const difference_type n)\n            const requires\
-    \ __detail::__all_random_access<_Range...> {\n          auto __tmp = *this;\n\
-    \          __tmp += n;\n          return __tmp;\n        }\n        constexpr\
-    \ friend auto operator+(const difference_type n,\n                           \
-    \             const iterator& itr) requires\n            __detail::__all_random_access<_Range...>\
-    \ {\n          return itr + n;\n        }\n        constexpr auto& operator-=(const\
-    \ difference_type n) requires\n            __detail::__all_random_access<_Range...>\
-    \ {\n          util::tuple_for_each([&n](auto& __i) { __i -= n; }, _M_current);\n\
-    \          return *this;\n        }\n        constexpr auto operator-(const difference_type\
-    \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
-    \          auto __tmp = *this;\n          __tmp -= n;\n          return __tmp;\n\
-    \        }\n        constexpr auto operator[](const difference_type n)\n     \
-    \       const requires __detail::__all_random_access<_Range...> {\n          return\
-    \ util::tuple_transform([&n](auto& __i) { return __i[n]; },\n                \
-    \                       _M_current);\n        }\n      };\n\n      class sentinel\
-    \ {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;\n\
-    \n        constexpr sentinel() = default;\n        constexpr explicit sentinel(const\
-    \ decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n        friend constexpr\
-    \ bool operator==(const iterator& __x,\n                                     \
-    \    const sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
-    \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
-    \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n      };\n\n      std::tuple<_Range...> _M_views;\n      constexpr\
-    \ explicit zip_view(const _Range&... __views)\n          : _M_views(__views...)\
-    \ {}\n      constexpr auto begin() {\n        return iterator(util::tuple_transform(std::ranges::begin,\
-    \ _M_views));\n      }\n      constexpr auto end() {\n        return sentinel(util::tuple_transform(std::ranges::end,\
-    \ _M_views));\n      }\n    };\n\n    namespace __detail {\n      template <typename\
-    \ T>\n      auto _flatten(const T& t) {\n        return std::make_tuple(t);\n\
+    \    }\n\n      template <typename T>\n      auto _flatten(const T& t) {\n   \
+    \     return std::make_tuple(t);\n      }\n      template <typename... T>\n  \
+    \    auto _flatten(const std::tuple<T...>& t);\n\n      template <typename Head,\
+    \ typename... Tail>\n      auto _flatten_impl(const Head& head, const Tail&...\
+    \ tail) {\n        return std::tuple_cat(_flatten(head), _flatten(tail)...);\n\
     \      }\n      template <typename... T>\n      auto _flatten(const std::tuple<T...>&\
-    \ t);\n\n      template <typename Head, typename... Tail>\n      auto _flatten_impl(const\
-    \ Head& head, const Tail&... tail) {\n        return std::tuple_cat(_flatten(head),\
-    \ _flatten(tail)...);\n      }\n      template <typename... T>\n      auto _flatten(const\
-    \ std::tuple<T...>& t) {\n        return std::apply(\n            [](const auto&...\
-    \ args) { return _flatten_impl(args...); }, t);\n      }\n    }  // namespace\
-    \ __detail\n\n    template <std::ranges::range _Range>\n    struct flatten_view\n\
-    \        : public std::ranges::view_interface<flatten_view<_Range>> {\n      class\
-    \ iterator {\n      public:\n        std::ranges::iterator_t<_Range> _M_current;\n\
-    \n        using difference_type = std::ranges::range_difference_t<_Range>;\n \
-    \       using value_type = decltype(__detail::_flatten(\n            std::declval<\n\
-    \                std::iter_reference_t<std::ranges::iterator_t<_Range>>>()));\n\
-    \        using iterator_concept = decltype(__detail::_S_iter_concept<_Range>());\n\
+    \ t) {\n        return std::apply(\n            [](const auto&... args) { return\
+    \ _flatten_impl(args...); }, t);\n      }\n    }  // namespace __detail\n\n  \
+    \  template <std::ranges::range _Range>\n    struct flatten_view\n        : public\
+    \ std::ranges::view_interface<flatten_view<_Range>> {\n      class iterator {\n\
+    \      public:\n        std::ranges::iterator_t<_Range> _M_current;\n\n      \
+    \  using difference_type = std::ranges::range_difference_t<_Range>;\n        using\
+    \ value_type = decltype(__detail::_flatten(\n            std::declval<\n     \
+    \           std::iter_reference_t<std::ranges::iterator_t<_Range>>>()));\n   \
+    \     using iterator_concept = decltype(__detail::_S_iter_concept<_Range>());\n\
     \n        constexpr iterator() = default;\n        constexpr explicit iterator(decltype(_M_current)\
     \ __current)\n            : _M_current(__current) {}\n        constexpr auto operator*()\
     \ const {\n          return __detail::_flatten(*_M_current);\n        }\n    \
@@ -153,137 +97,38 @@ data:
     \        }\n      };\n\n      _Range _M_views;\n      constexpr explicit flatten_view(const\
     \ _Range& __views)\n          : _M_views(__views) {}\n      constexpr auto begin()\
     \ { return iterator(std::ranges::begin(_M_views)); }\n      constexpr auto end()\
-    \ { return sentinel(std::ranges::end(_M_views)); }\n    };\n\n    template <std::ranges::range...\
-    \ _Range>\n    struct cartesian_product_view : public std::ranges::view_interface<\n\
-    \                                        cartesian_product_view<_Range...>> {\n\
-    \      class iterator {\n      public:\n        using _Parent = cartesian_product_view;\n\
-    \        _Parent* _M_parent = nullptr;\n        std::tuple<std::ranges::iterator_t<_Range>...>\
-    \ _M_current;\n\n        using difference_type = int;\n        using value_type\
-    \ = std::tuple<\n            std::iter_reference_t<std::ranges::iterator_t<_Range>>...>;\n\
-    \        using iterator_concept =\n            decltype(__detail::_S_iter_concept<_Range...>());\n\
-    \n      private:\n        template <size_t _Nm = sizeof...(_Range) - 1>\n    \
-    \    constexpr void _M_next() {\n          auto& __it = std::get<_Nm>(_M_current);\n\
-    \          ++__it;\n          if constexpr (_Nm > 0)\n            if (__it ==\
-    \ std::ranges::end(std::get<_Nm>(_M_parent->_M_views))) {\n              __it\
-    \ = std::ranges::begin(std::get<_Nm>(_M_parent->_M_views));\n              _M_next<_Nm\
-    \ - 1>();\n            }\n        }\n        template <size_t _Nm = sizeof...(_Range)\
-    \ - 1>\n        constexpr void _M_prev() {\n          auto& __it = std::get<_Nm>(_M_current);\n\
-    \          if constexpr (_Nm > 0)\n            if (__it ==\n                std::ranges::begin(std::get<_Nm>(_M_parent->_M_views)))\
-    \ {\n              __it = std::ranges::end(std::get<_Nm>(_M_parent->_M_views));\n\
-    \              _M_prev<_Nm - 1>();\n            }\n          --__it;\n       \
-    \ }\n\n        template <size_t _Nm = sizeof...(_Range) - 1>\n        constexpr\
-    \ void _M_advance(difference_type __x) requires\n            __detail::__all_random_access<_Range...>\
-    \ {\n          if (__x == 1)\n            _M_next<_Nm>();\n          else if (__x\
-    \ == -1)\n            _M_prev<_Nm>();\n          else if (__x != 0) {\n      \
-    \      auto& __r = std::get<_Nm>(_M_parent->_M_views);\n            auto& __it\
-    \ = std::get<_Nm>(_M_current);\n            if constexpr (_Nm == 0) {\n      \
-    \        __it += __x;\n            } else {\n              auto __size = std::ranges::ssize(__r);\n\
-    \              auto __begin = std::ranges::begin(__r);\n              auto __offset\
-    \ = __it - __begin;\n              __offset += __x;\n              __x = __offset\
-    \ / __size;\n              __offset %= __size;\n              if (__offset < 0)\
-    \ {\n                __offset = __size + __offset;\n                --__x;\n \
-    \             }\n              __it = __begin + __offset;\n              _M_advance<_Nm\
-    \ - 1>(__x);\n            }\n          }\n        }\n\n      public:\n       \
-    \ constexpr iterator() = default;\n        constexpr explicit iterator(_Parent&\
-    \ __parent,\n                                    const decltype(_M_current)& __current)\n\
-    \            : _M_parent(std::addressof(__parent)), _M_current(__current) {}\n\
-    \        constexpr auto operator*() const {\n          return util::tuple_transform([](auto&\
-    \ __i) { return *__i; },\n                                       _M_current);\n\
-    \        }\n        constexpr auto& operator++() {\n          _M_next();\n   \
-    \       return *this;\n        }\n        constexpr auto operator++(int) { return\
-    \ ++*this; }\n        constexpr auto operator==(const iterator& other) const {\n\
-    \          return [&]<size_t... _Is>(std::index_sequence<_Is...>) {\n        \
-    \    return ((std::get<_Is>(_M_current) ==\n                     std::get<_Is>(other._M_current))\
-    \ ||\n                    ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n        constexpr auto& operator--() requires\n            __detail::__all_bidirectional<_Range...>\
-    \ {\n          _M_prev();\n          return *this;\n        }\n        constexpr\
-    \ auto operator--(\n            int) requires __detail::__all_bidirectional<_Range...>\
-    \ {\n          return --*this;\n        }\n        constexpr auto operator<=>(const\
-    \ iterator&)\n            const requires __detail::__all_random_access<_Range...>\n\
-    \        = default;\n        constexpr auto operator-(const iterator& itr)\n \
-    \           const requires __detail::__all_random_access<_Range...> {\n      \
-    \    return [&]<size_t... _Is>(std::index_sequence<_Is...>) {\n            return\
-    \ std::ranges::min({difference_type(\n                std::get<_Is>(_M_current)\
-    \ - std::get<_Is>(itr._M_current))...});\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n        constexpr auto& operator+=(const difference_type n) requires\n\
-    \            __detail::__all_random_access<_Range...> {\n          _M_advance(n);\n\
-    \          return *this;\n        }\n        constexpr auto operator+(const difference_type\
-    \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
-    \          auto __tmp = *this;\n          __tmp += n;\n          return __tmp;\n\
-    \        }\n        constexpr friend auto operator+(const difference_type n,\n\
-    \                                        const iterator& itr) requires\n     \
-    \       __detail::__all_random_access<_Range...> {\n          return itr + n;\n\
-    \        }\n        constexpr auto& operator-=(const difference_type n) requires\n\
-    \            __detail::__all_random_access<_Range...> {\n          *this += -n;\n\
-    \          return *this;\n        }\n        constexpr auto operator-(const difference_type\
-    \ n)\n            const requires __detail::__all_random_access<_Range...> {\n\
-    \          auto __tmp = *this;\n          __tmp -= n;\n          return __tmp;\n\
-    \        }\n        constexpr auto operator[](const difference_type n)\n     \
-    \       const requires __detail::__all_random_access<_Range...> {\n          return\
-    \ util::tuple_transform([&n](auto& __i) { return __i[n]; },\n                \
-    \                       _M_current);\n        }\n      };\n\n      class sentinel\
-    \ {\n      public:\n        std::tuple<std::ranges::sentinel_t<_Range>...> _M_end;\n\
-    \n        constexpr sentinel() = default;\n        constexpr explicit sentinel(const\
-    \ decltype(_M_end)& __end)\n            : _M_end(__end) {}\n\n        friend constexpr\
-    \ bool operator==(const iterator& __x,\n                                     \
-    \    const sentinel& __y) {\n          return [&]<size_t... _Is>(std::index_sequence<_Is...>)\
-    \ {\n            return (\n                (std::get<_Is>(__x._M_current) == std::get<_Is>(__y._M_end))\
-    \ ||\n                ...);\n          }\n          (std::make_index_sequence<sizeof...(_Range)>{});\n\
-    \        }\n      };\n\n      std::tuple<_Range...> _M_views;\n      constexpr\
-    \ explicit cartesian_product_view(const _Range&... __views)\n          : _M_views(__views...)\
-    \ {}\n      constexpr auto begin() {\n        return iterator(*this,\n       \
-    \                 util::tuple_transform(std::ranges::begin, _M_views));\n    \
-    \  }\n      constexpr auto end() {\n        return sentinel(util::tuple_transform(std::ranges::end,\
-    \ _M_views));\n      }\n    };\n\n  }  // namespace ranges\n\n  namespace views\
-    \ {\n    namespace __detail {\n      template <typename... _Args>\n      concept\
-    \ __can_zip_view = requires {\n        ranges::zip_view(std::declval<_Args>()...);\n\
-    \      };\n      template <typename... _Args>\n      concept __can_flatten_view\
-    \ = requires {\n        ranges::flatten_view(std::declval<_Args>()...);\n    \
-    \  };\n      template <typename... _Args>\n      concept __can_cartesian_product_view\
-    \ = requires {\n        ranges::cartesian_product_view(std::declval<_Args>()...);\n\
-    \      };\n    }  // namespace __detail\n\n    struct _ZipView {\n      template\
-    \ <class... _Tp>\n      requires __detail::__can_zip_view<_Tp...>\n      constexpr\
-    \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::zip_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n    };\n    struct _Enumerate : std::ranges::range_adaptor_closure<_Enumerate>\
-    \ {\n      template <class _Tp>\n      requires __detail::__can_zip_view<std::ranges::iota_view<size_t>,\
-    \ _Tp>\n      constexpr auto operator() [[nodiscard]] (_Tp&& __e) const {\n  \
-    \      return ranges::zip_view{std::views::iota(0), std::forward<_Tp>(__e)};\n\
-    \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
-    \    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten> {\n      template\
-    \ <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n      constexpr\
-    \ auto operator() [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::flatten_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n      static constexpr bool _S_has_simple_call_op = true;\n    };\n\
-    \    struct _CartesianProduct {\n      template <class... _Tp>\n      requires\
-    \ __detail::__can_cartesian_product_view<_Tp...>\n      constexpr auto operator()\
-    \ [[nodiscard]] (_Tp&&... __e) const {\n        return ranges::cartesian_product_view(std::forward<_Tp>(__e)...);\n\
-    \      }\n    };\n    struct _ProductN {\n      template <class... _Tp>\n    \
-    \  requires __detail::__can_cartesian_product_view<\n          std::ranges::iota_view<size_t,\
-    \ _Tp>...>\n      constexpr auto operator() [[nodiscard]] (_Tp... __e) const {\n\
-    \        return ranges::cartesian_product_view(std::views::iota(0, __e)...);\n\
-    \      }\n    };\n\n    inline constexpr _ZipView zip{};\n    inline constexpr\
-    \ _Enumerate enumerate{};\n    inline constexpr _Flatten flatten{};\n    inline\
-    \ constexpr _CartesianProduct cartesian_product{};\n    inline constexpr _ProductN\
-    \ product_n{};\n  }  // namespace views\n}  // namespace mtd\n#line 5 \"Library/Graph/Graph.hpp\"\
-    \n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\n\r\nnamespace mtd {\r\
-    \n  template <class Node = long long, class Cost = long long>\r\n  class Graph\
-    \ {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using Edges = std::vector<Edge>;\r\
-    \n\r\n    const int m_n;\r\n    std::vector<Edges> m_graph;\r\n\r\n  public:\r\
-    \n    Graph(int n) : m_n(n), m_graph(n) {}\r\n    Graph(const std::vector<Edges>&\
-    \ edges)\r\n        : m_n(edges.size()), m_graph(edges) {}\r\n    Graph(int n,\
-    \ const std::vector<std::tuple<Node, Node>>& edges,\r\n          bool is_arc =\
-    \ false, bool is_index1 = true)\r\n        : Graph<Node, Cost>(n) {\r\n      for\
-    \ (auto [u, v] : edges) {\r\n        u -= is_index1;\r\n        v -= is_index1;\r\
-    \n        if (is_arc) {\r\n          addArc(u, v);\r\n        } else {\r\n   \
-    \       addEdge(u, v);\r\n        }\r\n      }\r\n    }\r\n    Graph(int n, const\
-    \ std::vector<std::tuple<Node, Node, Cost>>& edges,\r\n          bool is_arc =\
-    \ false, bool is_index1 = true)\r\n        : Graph<Node, Cost>(n) {\r\n      for\
-    \ (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\n        v -= is_index1;\r\
-    \n        if (is_arc) {\r\n          addArc(u, v, c);\r\n        } else {\r\n\
-    \          addEdge(u, v, c);\r\n        }\r\n      }\r\n    }\r\n\r\n    auto\
-    \ addEdge(const Node& f, const Node& t, const Cost& c = 1) {\r\n      addArc(f,\
-    \ t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const Node& f,\
-    \ const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t, c);\r\
-    \n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
+    \ { return sentinel(std::ranges::end(_M_views)); }\n    };\n\n  }  // namespace\
+    \ ranges\n\n  namespace views {\n    namespace __detail {\n      template <typename...\
+    \ _Args>\n      concept __can_flatten_view = requires {\n        ranges::flatten_view(std::declval<_Args>()...);\n\
+    \      };\n    }  // namespace __detail\n\n    struct _Flatten : std::ranges::range_adaptor_closure<_Flatten>\
+    \ {\n      template <class... _Tp>\n      requires __detail::__can_flatten_view<_Tp...>\n\
+    \      constexpr auto operator() [[nodiscard]] (_Tp&&... __e) const {\n      \
+    \  return ranges::flatten_view(std::forward<_Tp>(__e)...);\n      }\n      static\
+    \ constexpr bool _S_has_simple_call_op = true;\n    };\n    struct _ProductN {\n\
+    \      template <class... _Tp>\n      constexpr auto operator() [[nodiscard]]\
+    \ (_Tp... __e) const {\n        return std::views::cartesian_product(std::views::iota(0,\
+    \ __e)...);\n      }\n    };\n\n    inline constexpr _Flatten flatten{};\n   \
+    \ inline constexpr _ProductN product_n{};\n  }  // namespace views\n}  // namespace\
+    \ mtd\n#line 5 \"Library/Graph/Graph.hpp\"\n#include <tuple>\r\n#line 7 \"Library/Graph/Graph.hpp\"\
+    \n\r\nnamespace mtd {\r\n  template <class Node = long long, class Cost = long\
+    \ long>\r\n  class Graph {\r\n    using Edge = std::pair<Node, Cost>;\r\n    using\
+    \ Edges = std::vector<Edge>;\r\n\r\n    const int m_n;\r\n    std::vector<Edges>\
+    \ m_graph;\r\n\r\n  public:\r\n    Graph(int n) : m_n(n), m_graph(n) {}\r\n  \
+    \  Graph(const std::vector<Edges>& edges)\r\n        : m_n(edges.size()), m_graph(edges)\
+    \ {}\r\n    Graph(int n, const std::vector<std::tuple<Node, Node>>& edges,\r\n\
+    \          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v);\r\
+    \n        } else {\r\n          addEdge(u, v);\r\n        }\r\n      }\r\n   \
+    \ }\r\n    Graph(int n, const std::vector<std::tuple<Node, Node, Cost>>& edges,\r\
+    \n          bool is_arc = false, bool is_index1 = true)\r\n        : Graph<Node,\
+    \ Cost>(n) {\r\n      for (auto [u, v, c] : edges) {\r\n        u -= is_index1;\r\
+    \n        v -= is_index1;\r\n        if (is_arc) {\r\n          addArc(u, v, c);\r\
+    \n        } else {\r\n          addEdge(u, v, c);\r\n        }\r\n      }\r\n\
+    \    }\r\n\r\n    auto addEdge(const Node& f, const Node& t, const Cost& c = 1)\
+    \ {\r\n      addArc(f, t, c);\r\n      addArc(t, f, c);\r\n    }\r\n    auto addArc(const\
+    \ Node& f, const Node& t, const Cost& c = 1) {\r\n      m_graph[f].emplace_back(t,\
+    \ c);\r\n    }\r\n    auto getEdges(const Node& from) const {\r\n      class EdgesRange\
     \ {\r\n        const typename Edges::const_iterator b, e;\r\n\r\n      public:\r\
     \n        EdgesRange(const Edges& edges) : b(edges.begin()), e(edges.end()) {}\r\
     \n        auto begin() const { return b; }\r\n        auto end() const { return\
@@ -329,7 +174,7 @@ data:
   isVerificationFile: false
   path: Library/Graph/Normal/Topological.hpp
   requiredBy: []
-  timestamp: '2025-11-08 10:58:02+09:00'
+  timestamp: '2025-12-20 01:59:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - Test/Graph/Normal/Topological.test.cpp
