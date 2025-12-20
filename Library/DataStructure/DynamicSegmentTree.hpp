@@ -1,8 +1,8 @@
 #pragma once
 
 #include <deque>
+#include <memory>
 #include <ostream>
-#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -12,72 +12,83 @@ namespace mtd {
   template <monoid Monoid, int size = static_cast<int>(1e9 + 1)>
   class DynamicSegmentTree {
   private:
-    std::unordered_map<int, Monoid> m_node;
     using S = decltype(Monoid().m_val);
 
-    constexpr auto _get(int i) const {
-      return (m_node.find(i) == m_node.end()) ? Monoid() : m_node.at(i);
+    struct Node {
+      Monoid val;
+      Node* left;
+      Node* right;
+      Node() : val(Monoid()), left(nullptr), right(nullptr) {}
+      explicit Node(const Monoid& v) : val(v), left(nullptr), right(nullptr) {}
+    };
+
+    std::deque<Node> m_nodes;
+    Node* m_root;
+
+    Node* _get_node() {
+      m_nodes.emplace_back();
+      return &m_nodes.back();
+    }
+
+    Node* _get_node(const Monoid& val) {
+      m_nodes.emplace_back(val);
+      return &m_nodes.back();
     }
 
     template <class Lambda>
-    constexpr auto _update_op(int itr, Monoid&& val, const Lambda& op) {
-      int i = itr + size - 1;
-      m_node[i] = op(_get(i), std::forward<decltype(val)>(val));
-      while (i) {
-        i = (i - 1) >> 1;
-        m_node[i] = _get((i << 1) | 1).binaryOperation(_get((i + 1) << 1LL));
+    void _update_op(Node*& node, int l, int r, int pos, const Monoid& val,
+                    const Lambda& op) {
+      if (!node) node = _get_node();
+      if (r - l == 1) {
+        node->val = op(node->val, val);
+        return;
       }
+      int mid = l + (r - l) / 2;
+      if (pos < mid) {
+        _update_op(node->left, l, mid, pos, val, op);
+      } else {
+        _update_op(node->right, mid, r, pos, val, op);
+      }
+      Monoid left_val = node->left ? node->left->val : Monoid();
+      Monoid right_val = node->right ? node->right->val : Monoid();
+      node->val = left_val.binaryOperation(right_val);
     }
 
-    constexpr auto _query(int _l, int _r) const {
-      _l = std::max(_l, 0);
-      _r = std::min(_r, size - 1);
-      auto l = _l + size;
-      int r = _r + size;
-      auto lm = Monoid();
-      auto rm = Monoid();
-      while (l <= r) {
-        if (l & 1) {
-          lm = lm.binaryOperation(_get(l - 1));
-          ++l;
-        }
-        if (!(r & 1)) {
-          rm = _get(r - 1).binaryOperation(rm);
-          --r;
-        }
-        l >>= 1, r >>= 1;
-      }
-      return lm.binaryOperation(rm);
-    }
-
-    constexpr auto _construct(const std::vector<S>& vec) {
-      for (unsigned int i = 0; i < vec.size(); ++i) {
-        m_node[i + size - 1] = Monoid(vec[i]);
-      }
-      for (int i = size - 2; i >= 0; --i) {
-        m_node[i] = _get((i << 1) | 1).binaryOperation(_get((i + 1) << 1));
-      }
+    Monoid _query(Node* node, int l, int r, int ql, int qr) const {
+      if (!node || r <= ql || qr <= l) return Monoid();
+      if (ql <= l && r <= qr) return node->val;
+      int mid = l + (r - l) / 2;
+      return _query(node->left, l, mid, ql, qr)
+          .binaryOperation(_query(node->right, mid, r, ql, qr));
     }
 
   public:
-    constexpr DynamicSegmentTree() {}
+    constexpr DynamicSegmentTree() : m_root(nullptr) {}
 
     template <class Lambda>
-    constexpr auto update_op(int itr, Monoid&& val, const Lambda& op) {
-      return _update_op(itr, std::forward<Monoid>(val), op);
+    void update_op(int pos, const Monoid& val, const Lambda& op) {
+      _update_op(m_root, 0, size, pos, val, op);
     }
-    constexpr auto update(int itr, Monoid&& val) {
-      return update_op(itr, std::forward<Monoid>(val),
-                       [](const Monoid&, const Monoid& m2) { return m2; });
+
+    void update(int pos, const Monoid& val) {
+      update_op(pos, val,
+                [](const Monoid&, const Monoid& m2) { return m2; });
     }
-    constexpr auto add(int itr, Monoid&& val) {
-      return update_op(itr, std::forward<Monoid>(val),
-                       [](const Monoid& m1, const Monoid& m2) {
-                         return Monoid(m1.m_val + m2.m_val);
-                       });
+
+    void add(int pos, const Monoid& val) {
+      update_op(pos, val, [](const Monoid& m1, const Monoid& m2) {
+        return Monoid(m1.m_val + m2.m_val);
+      });
     }
-    constexpr auto query(int l, int r) const { return _query(l, r).m_val; }
-    constexpr auto query_all() const { return m_node[0].m_val; }
+
+    S query(int l, int r) const {
+      if (l > r) return Monoid().m_val;
+      return _query(m_root, 0, size, l, r + 1).m_val;
+    }
+
+    S query_all() const {
+      return m_root ? m_root->val.m_val : Monoid().m_val;
+    }
   };
 
 }  // namespace mtd
